@@ -125,6 +125,7 @@ RUN ./install_bioc.r \
     spatial \
     treemap \
     umap  \
+    uwot \
     UpSetR \
     VennDiagram 
 
