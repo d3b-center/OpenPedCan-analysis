@@ -1,3 +1,18 @@
+# Merge PBTA, GTEx, TARGET and TCGA RSEM expected read counts.
+# 1. Matched `gtex_target_tcga-gene-counts-rsem-expected_count-collapsed.rds`
+#    column names with the mapping files shared by
+#    [@komalsrathi](https://github.com/komalsrathi) at
+#    <https://github.com/PediatricOpenTargets/ticket-tracker/
+#         issues/22#issuecomment-854901528>
+# 2. Removed duplicated samples. Some TCGA `sample_barcode`s are mapped to
+#    multiple `sample_id`s, and some of their expected count sums are different
+#    in `gtex_target_tcga-gene-counts-rsem-expected_count-collapsed.rds`.
+#    Keep one of the duplicated samples that have the same RESM expected count.
+# 3. Use PBTA `gene-counts-rsem-expected_count-collapsed.rds` column names as
+#    both `sample_barcode` and `sample_id` for consitency.
+# 4. Find the histologies of the samples by matching their `sample_barcode`s
+#    with the `Kids_First_Biospecimen_ID`s in `histologies.tsv`.
+
 # load histology df and count df ------------------------------------------
 htl_df <- read.delim('../../data/histologies.tsv',
                      stringsAsFactors = FALSE, sep = '\t',
@@ -5,12 +20,6 @@ htl_df <- read.delim('../../data/histologies.tsv',
 
 pb_kf_cnt_df <- readRDS(
     '../../data/gene-counts-rsem-expected_count-collapsed.rds')
-
-# table(htl_df[htl_df$Kids_First_Biospecimen_ID %in% colnames(pb_kf_cnt_df),
-#              'cohort'])
-# 
-# table(htl_df[htl_df$Kids_First_Biospecimen_ID %in% colnames(pb_kf_cnt_df),
-#              'short_histology'])
 
 gt_ta_tc_cnt_df <- readRDS(
     '../../data/gtex_target_tcga-gene-counts-rsem-expected_count-collapsed.rds')
@@ -39,9 +48,7 @@ rownames(kfbid_colid_mapping_mdf) <- NULL
 stopifnot(identical(
     sum(sapply(kfbid_colid_mapping_df_list, nrow)),
     nrow(kfbid_colid_mapping_mdf)))
-# # sample barcodes are not unique
-# stopifnot(identical(length(kfbid_colid_mapping_mdf$sample_barcode),
-#                     length(unique(kfbid_colid_mapping_mdf$sample_barcode))))
+# sample barcodes are not unique
 dup_brcds <- kfbid_colid_mapping_mdf$sample_barcode[
     duplicated(kfbid_colid_mapping_mdf$sample_barcode)]
 dup_brcd_df <- kfbid_colid_mapping_mdf[
@@ -114,15 +121,8 @@ m_kfbid_sid_htl_df <- merge(
 stopifnot(identical(sort(m_kfbid_sid_htl_df$sample_id),
                     sort(m_kfbid_sid_df$sample_id)))
 
-# table(m_kfbid_sid_htl_df[m_kfbid_sid_htl_df$sample_id %in%
-#                              colnames(pb_kf_cnt_df), 'cohort'])
+# gtex sample ids do not match biospecimen ids
 
-# # gtex sample ids do not match biospecimen ids
-# m_kfbid_sid_htl_df[
-#     substr(m_kfbid_sid_htl_df$sample_barcode, 1, 4) == 'GTEX', ]
-# table(substr(
-#     m_kfbid_sid_htl_df[is.na(m_kfbid_sid_htl_df$cohort), 'sample_barcode'],
-#     1, 5))
 
 # subset and merge count df -----------------------------------------------
 stopifnot(all(colnames(pb_kf_cnt_df) %in% m_kfbid_sid_htl_df$sample_id))
@@ -130,12 +130,7 @@ stopifnot(all(colnames(gt_ta_tc_cnt_df) %in%
                   c(dup_rm_sample_ids, m_kfbid_sid_htl_df$sample_id)))
 
 cmn_genes <- intersect(rownames(pb_kf_cnt_df), rownames(gt_ta_tc_cnt_df))
-# head(rownames(gt_ta_tc_cnt_df)[!rownames(gt_ta_tc_cnt_df) %in% cmn_genes])
-# colSums(gt_ta_tc_cnt_df[!rownames(gt_ta_tc_cnt_df) %in% cmn_genes, 1:10]) /
-#     colSums(gt_ta_tc_cnt_df[, 1:10])
-# 
-# colSums(pb_kf_cnt_df[!rownames(pb_kf_cnt_df) %in% cmn_genes, 1:10]) /
-#     colSums(pb_kf_cnt_df[, 1:10])
+
 m_cnt_df <- cbind(
     pb_kf_cnt_df[cmn_genes, ],
     gt_ta_tc_cnt_df[

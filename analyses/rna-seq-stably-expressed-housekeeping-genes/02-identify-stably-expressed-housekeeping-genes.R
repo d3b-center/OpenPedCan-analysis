@@ -1,6 +1,7 @@
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(edgeR))
 
+
 #------------ Create output directories ----------------------------------------
 norm_method <- 'tmm'
 table_outdir <- file.path('results', paste0(norm_method, '_normalized'))
@@ -9,12 +10,14 @@ dir.create(table_outdir, showWarnings = FALSE)
 plot_outdir <- file.path('plots', paste0(norm_method, '_normalized'))
 dir.create(plot_outdir, showWarnings = FALSE)
 
+
 #------------ Read prepared data -----------------------------------------------
 m_cnt_df <- readRDS(
     '../../scratch/pbta_kf_gtex_target_tcga_rsem_expected_cnt_df.rds')
 
 m_kfbid_sid_htl_df <- readRDS(
     '../../scratch/pbta_kf_gtex_target_tcga_histology_df.rds')
+
 
 #------------ Select samples for DGE -------------------------------------------
 sh_rmna_m_kfbid_sid_htl_df <- m_kfbid_sid_htl_df[
@@ -68,6 +71,8 @@ counts_object <- estimateDisp(
 png(file.path(plot_outdir, 'estimated_dispersions.png'))
 plotBCV(counts_object)
 n_null_dev <- dev.off()
+
+
 #------------ Run LRT ----------------------------------------------------------
 print(paste0('Run differential gene expression LRT on',
              ' NBL vs GTEX RNA-seq...'))
@@ -80,21 +85,6 @@ lrt_top_tags <- topTags(lrt, adjust.method = "BH", n = Inf)
 lrt_out_df <- lrt_top_tags$table
 stopifnot(identical(colnames(lrt_out_df),
                     c("logFC", "logCPM", "LR", "PValue", "FDR")))
-
-# head(lrt_out_df[order(-abs(lrt_out_df$logFC)), ])
-# head(lrt_out_df, n = 10)
-# head(rowSums(counts_object$counts[rownames(lrt_out_df), nbl_sids]) /
-#          rowSums(counts_object$counts[rownames(lrt_out_df), gtex_sids]),
-#      n = 10)
-
-# head(rowSums(counts_object$counts[rownames(lrt_out_df), nbl_sids]), n = 10)
-# head(rowSums(counts_object$counts[rownames(lrt_out_df), gtex_sids]), n = 10)
-
-# head(rowSums(norm_cnt_mat[rownames(lrt_out_df), nbl_sids]))
-# head(rowSums(norm_cnt_mat[rownames(lrt_out_df), gtex_sids]))
-# head(rowSums(norm_cnt_mat[rownames(lrt_out_df), nbl_sids]) /
-#          rowSums(norm_cnt_mat[rownames(lrt_out_df), gtex_sids]),
-#      n = 10)
 
 lrt_out_df <- lrt_out_df[order(-lrt_out_df$PValue), ]
 colnames(lrt_out_df) <- c("NBL_over_GTEX_logFC",
@@ -149,9 +139,6 @@ get_ge_boxplot <- function(gid, norm_cnt_mat, histology, plot_cnt_type) {
         theme(text = element_text(size=15))
     return(p)
 }
-# stopifnot(identical(colnames(norm_cnt_mat), rownames(counts_object$samples)))
-# p <- get_ge_boxplot('ZBED5', norm_cnt_mat, counts_object$samples$group,
-#             '\nTMM normalized CPM')
 
 seg_plot_outdir <- file.path(plot_outdir,
                              'stably_exp_hk_gene_norm_cnt_boxplot')
