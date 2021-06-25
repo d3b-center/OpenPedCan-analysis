@@ -41,15 +41,20 @@ prepare_maf_object <- function(maf_df,
     }
 
     # Bind rows of maf and fusion data frames
+    # bind_rows fill non-existing columns with NA
     maf_df <- dplyr::bind_rows(maf_df, fusion_df)
   }
 
   # Filter metadata to only include tumor samples that are included in
-  metadata <- dplyr::filter(metadata,
-                            composition == "Solid Tissue",
-                            sample_type == "Tumor",
-                            Tumor_Sample_Barcode %in% maf_df$Tumor_Sample_Barcode)
+  metadata <- dplyr::filter(
+    metadata,
+    composition == "Solid Tissue",
+    sample_type == "Tumor",
+    Tumor_Sample_Barcode %in% maf_df$Tumor_Sample_Barcode)
 
+  # TODO: check vc_nonSyn.
+  # exclude synonymous, silent, RNA, and intergenic
+  # Why "Translation_Start_Site" is not included in vc_nonSyn?
   # Convert into MAF object
   maf_object <-
     read.maf(
@@ -78,5 +83,4 @@ prepare_maf_object <- function(maf_df,
 
   # Return the maf object
   return(maf_object)
-
 }

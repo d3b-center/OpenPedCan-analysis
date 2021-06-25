@@ -1,8 +1,9 @@
-# This script displays an oncoprint displaying the landscape across PBTA given
-# the relevant metadata. It addresses issue #6 in the OpenPBTA-analysis
-# github repository. It uses the output of 00-map-to-sample_id.R. It can
-# accept a gene list file or a comma-separated set of gene list files that will
-# be concatenated and restricts plotting to those genes (via --goi_list).
+# This script displays an oncoprint displaying the landscape across OT given the
+# relevant metadata. It addresses issue #8 in the PediatricOpenTargets/
+# ticket-tracker github repository. It uses the output of 00-map-to-sample_id.R.
+# It can accept a gene list file or a comma-separated set of gene list files
+# that will be concatenated and restricts plotting to those genes (via
+# --goi_list).
 #
 # Code adapted from the PPTC PDX Oncoprint Generation repository here:
 # https://github.com/marislab/create-pptc-pdx-oncoprints/tree/master/R
@@ -15,9 +16,8 @@
 #  --maf_file ../../scratch/all_primary_samples_maf.tsv \
 #  --cnv_file ../../scratch/all_primary_samples_cnv.tsv \
 #  --fusion_file ../../scratch/all_primary_samples_fusions.tsv \
-#  --metadata_file ../../data/pbta-histologies.tsv \
-#  --goi_list ${genes_list} \
-#  --png_name ${primary_filename}_goi_oncoprint.png
+#  --metadata_file ../../data/histologies.tsv \
+#  --output_prefix ${primary_filename}
 
 
 #### Set Up --------------------------------------------------------------------
@@ -42,6 +42,15 @@ plots_dir <-
 if (!dir.exists(plots_dir)) {
   dir.create(plots_dir)
 }
+
+# Path to output directory for tables produced
+tables_dir <-
+  file.path(root_dir, "analyses", "oncoprint-landscape", "results")
+
+if (!dir.exists(tables_dir)) {
+  dir.create(tables_dir)
+}
+
 
 # Source the custom functions script
 source(
@@ -90,16 +99,10 @@ option_list <- list(
             genes to include on oncoprint"
   ),
   optparse::make_option(
-    c("-b", "--broad_histology"),
+    c("-o", "--output_prefix"),
     type = "character",
     default = NULL,
-    help = "optional name of `broad_histology` value to plot associated oncoprint"
-  ),
-  optparse::make_option(
-    c("-p", "--png_name"),
-    type = "character",
-    default = NULL,
-    help = "oncoprint output png file name"
+    help = "oncoprint output plot and table prefix"
   )
 )
 
@@ -134,26 +137,28 @@ read_genes <- function(gene_list) {
 #### Read in data --------------------------------------------------------------
 
 # Read in metadata
-metadata <- readr::read_tsv(opt$metadata_file, guess_max = 10000) %>%
-  dplyr::rename(Tumor_Sample_Barcode = sample_id)
+metadata <- readr::read_tsv(opt$metadata_file, guess_max = 100000)
 
 # Read in MAF file
-maf_df <- data.table::fread(opt$maf_file,
-                            stringsAsFactors = FALSE,
-                            data.table = FALSE)
-
+maf_df <- maf_df <- readr::read_tsv(
+  opt$maf_file, comment = '#',
+  col_types = readr::cols(
+    .default = readr::col_guess(),
+    CLIN_SIG = readr::col_character(),
+    PUBMED = readr::col_character()))
+  
 # Read in cnv file
 if (!is.null(opt$cnv_file)) {
   cnv_df <- readr::read_tsv(opt$cnv_file) %>%
-    dplyr::mutate(Variant_Classification = dplyr::case_when(Variant_Classification == "loss" ~ "Del",
-                                                            Variant_Classification %in% c("gain", "amplification") ~ "Amp",
-                                                            TRUE ~ as.character(Variant_Classification)))
+    dplyr::mutate(
+      Variant_Classification = dplyr::case_when(
+        Variant_Classification == "loss" ~ "Del",
+        Variant_Classification %in% c("gain", "amplification") ~ "Amp",
+        TRUE ~ as.character(Variant_Classification)))
 }
 
 # Read in fusion file and join
-if (!is.null(opt$fusion_file)) {
-  fusion_df <- readr::read_tsv(opt$fusion_file)
-}
+fusion_df <- readr::read_tsv(opt$fusion_file)
 
 # Read in gene information from the list of genes of interest files
 if (!is.null(opt$goi_list)) {
@@ -165,61 +170,82 @@ if (!is.null(opt$goi_list)) {
   goi_list <- unique(unlist(goi_list))
 }
 
-#### Set up oncoprint annotation objects --------------------------------------
+
 # Read in histology standard color palette for project
-histology_label_mapping <- readr::read_tsv(
-  file.path(root_dir,
-            "figures",
-            "palettes", 
-            "histology_label_color_table.tsv")) %>%
-  # Select just the columns we will need for plotting
-  dplyr::select(Kids_First_Biospecimen_ID, display_group, display_order, hex_codes)
+#
+# These palettes are for broad histology. OT uses cancer group and cohort
+# instead.
+#
+# TODO: create a palette file for OT cancer groups and cohorts.
+# histology_pal_df <- readr::read_tsv(
+#   file.path(root_dir,
+#             "figures",
+#             "palettes", 
+#             "histology_label_color_table.tsv")) %>%
+#   # Select just the columns we will need for plotting
+#   dplyr::select(display_group, display_order, hex_codes) %>%
+#   dplyr::distinct() %>%
+#   dplyr::arrange(display_order)
 
 # Join on these columns to the metadata
-metadata <- metadata %>% 
-  dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>% 
-  # Reorder display_group based on display_order
-  dplyr::mutate(display_group = forcats::fct_reorder(display_group, display_order))
+# metadata <- metadata %>% 
+#   dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>% 
+#   # Reorder display_group based on display_order
+#   dplyr::mutate(display_group = forcats::fct_reorder(display_group, display_order))
 
-# Filter to the metadata associated with the broad histology value, if provided
-if (!is.null(opt$broad_histology)) {
-  
-  if (!opt$broad_histology == "Other CNS") {
-    metadata <- metadata %>%
-      dplyr::filter(broad_histology == opt$broad_histology)
-  } else {
-    metadata <- metadata %>%
-      dplyr::filter(
-        broad_histology %in% c(
-          "Tumors of sellar region",
-          "Neuronal and mixed neuronal-glial tumor",
-          "Tumor of cranial and paraspinal nerves",
-          "Meningioma",
-          "Mesenchymal non-meningothelial tumor",
-          "Germ cell tumor",
-          "Choroid plexus tumor",
-          "Histiocytic tumor",
-          "Tumor of pineal region",
-          "Metastatic tumors",
-          "Other astrocytic tumor",
-          "Lymphoma",
-          "Melanocytic tumor",
-          "Other tumor"
-        )
-      )
-  }
-  
-  # Now filter the remaining data files
-  maf_df <- maf_df %>%
-    dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-  
-  cnv_df <- cnv_df %>%
-    dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-  
-  fusion_df <- fusion_df %>%
-    dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-  
-}
+# # Filter to the metadata associated with the broad histology value, if provided
+# if (!is.null(opt$broad_histology)) {
+# 
+#   if (!opt$broad_histology == "Other CNS") {
+#     metadata <- metadata %>%
+#       dplyr::filter(broad_histology == opt$broad_histology)
+#   } else {
+#     metadata <- metadata %>%
+#       dplyr::filter(
+#         broad_histology %in% c(
+#           "Tumors of sellar region",
+#           "Neuronal and mixed neuronal-glial tumor",
+#           "Tumor of cranial and paraspinal nerves",
+#           "Meningioma",
+#           "Mesenchymal non-meningothelial tumor",
+#           "Germ cell tumor",
+#           "Choroid plexus tumor",
+#           "Histiocytic tumor",
+#           "Tumor of pineal region",
+#           "Metastatic tumors",
+#           "Other astrocytic tumor",
+#           "Lymphoma",
+#           "Melanocytic tumor",
+#           "Other tumor"
+#         )
+#       )
+#   }
+# 
+#   # Now filter the remaining data files
+#   maf_df <- maf_df %>%
+#     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
+# 
+#   cnv_df <- cnv_df %>%
+#     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
+# 
+#   fusion_df <- fusion_df %>%
+#     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
+# 
+# }
+
+# # Color coding for `display_group` classification
+# # Get unique tumor descriptor categories
+# histologies_color_key_df <- metadata %>%
+#   dplyr::arrange(display_order) %>%
+#   dplyr::select(display_group, hex_codes) %>%
+#   dplyr::distinct()
+# 
+# # Make color key specific to these samples
+# histologies_color_key <- histologies_color_key_df$hex_codes
+# names(histologies_color_key) <- histologies_color_key_df$display_group
+# 
+# # Now format the color key objet into a list
+# annotation_colors <- list(display_group = histologies_color_key)
 
 # Read in the oncoprint color palette
 oncoprint_col_palette <- readr::read_tsv(file.path(
@@ -231,54 +257,113 @@ oncoprint_col_palette <- readr::read_tsv(file.path(
   # Use deframe so we can use it as a recoding list
   tibble::deframe()
 
-# Color coding for `display_group` classification
-# Get unique tumor descriptor categories
-histologies_color_key_df <- metadata %>%
-  dplyr::arrange(display_order) %>%
-  dplyr::select(display_group, hex_codes) %>%
-  dplyr::distinct()
 
-# Make color key specific to these samples
-histologies_color_key <- histologies_color_key_df$hex_codes
-names(histologies_color_key) <- histologies_color_key_df$display_group
+# Generate oncoprint plots and mutation frequency tables -----------------------
+metadata <- metadata %>%
+  dplyr::filter(!is.na(cancer_group),
+                !is.na(cohort))
 
-# Now format the color key objet into a list
-annotation_colors <- list(display_group = histologies_color_key)
+metadata$cancer_group_cohort <- paste(
+  metadata$cancer_group,
+  metadata$cohort, sep = '___')
 
-#### Prepare MAF object for plotting ------------------------------------------
+# Tumor_Sample_Barcode is required by maftools
+metadata <- metadata %>%
+  dplyr::mutate(Tumor_Sample_Barcode = Kids_First_Biospecimen_ID)
 
-maf_object <- prepare_maf_object(
-  maf_df = maf_df,
-  cnv_df = cnv_df,
-  metadata = metadata,
-  fusion_df = fusion_df
-)
+# construct maf once. does not work. subset maf removes all clinical data
+# columns other than tumor sample barcode
+# filter for each cancer group.
+# subset metadata to only have maf sample ids.
 
-#### Plot and Save Oncoprint --------------------------------------------------
+mut_tsbs <- unique(c(maf_df$Tumor_Sample_Barcode,
+                     cnv_df$Tumor_Sample_Barcode,
+                     fusion_df$Tumor_Sample_Barcode))
+metadata <- metadata[metadata$Tumor_Sample_Barcode %in% mut_tsbs, ]
 
-# Given a maf object, plot an oncoprint of the variants in the
-# dataset and save as a png file.
-png(
-  file.path(plots_dir, tolower(gsub(" ", "-", opt$png_name))),
-  width = 65,
-  height = 30,
-  units = "cm",
-  res = 300
-)
-oncoplot(
-  maf_object,
-  clinicalFeatures = "display_group",
-  genes = goi_list,
-  logColBar = TRUE,
-  sortByAnnotation = TRUE,
-  showTumorSampleBarcodes = TRUE,
-  removeNonMutated = TRUE,
-  annotationFontSize = 1.0,
-  SampleNamefontSize = 0.5,
-  fontSize = 0.7,
-  colors = oncoprint_col_palette,
-  annotationColor = annotation_colors,
-  bgCol = "#F5F5F5",
-  top = 25
-)
-dev.off()
+# res is the place holder for the return values
+res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
+  uniq_groups <- sort(unique(metadata[, group_col, drop = TRUE]))
+  # print(uniq_groups)
+  # print(class(uniq_groups))
+  # stop()
+
+  # s_res is the place holder for the inner loop return values
+  s_res <- lapply(uniq_groups, function(group) {
+    f_metadata <- metadata[metadata[, group_col, drop = TRUE] == group, ]
+    # only plot and tabulate for groups with >= 5 samples
+    if (nrow(f_metadata) < 5) {
+      return(0)
+    }
+
+    f_maf_df <- maf_df[maf_df$Tumor_Sample_Barcode %in%
+                         f_metadata$Tumor_Sample_Barcode, ]
+
+    f_cnv_df <- cnv_df[cnv_df$Tumor_Sample_Barcode %in%
+                         f_metadata$Tumor_Sample_Barcode, ]
+
+    f_fusion_df <- fusion_df[fusion_df$Tumor_Sample_Barcode %in%
+                         f_metadata$Tumor_Sample_Barcode, ]
+    
+    f_maf_object <- prepare_maf_object(
+      maf_df = f_maf_df,
+      cnv_df = f_cnv_df,
+      metadata = f_metadata,
+      fusion_df = f_fusion_df
+    )
+
+    # Given a maf object, plot an oncoprint of the variants in the
+    # dataset and save as a png file.
+    plot_path <- file.path(
+      plots_dir,
+      gsub("[^._a-zA-Z0-9]", "-",
+           paste(opt$output_prefix, group, 'oncoprint.png', sep = '-')))
+
+    png(plot_path, width = 65, height = 30, units = "cm", res = 300)
+    oncoplot(
+      f_maf_object, clinicalFeatures = group_col, genes = NULL,
+      logColBar = TRUE, sortByAnnotation = TRUE,
+      showTumorSampleBarcodes = TRUE, removeNonMutated = TRUE,
+      annotationFontSize = 1.0, SampleNamefontSize = 0.5,
+      fontSize = 0.7, colors = oncoprint_col_palette,
+      # annotationColor = annotation_colors,
+      bgCol = "#F5F5F5", top = 25)
+    dev.off()
+
+
+    # plot for gene of interests
+    if (!is.null(goi_list)) {
+      plot_path <- file.path(
+        plots_dir,
+        gsub("[^._a-zA-Z0-9]", "-",
+            paste(opt$output_prefix, group, 'goi_oncoprint.png', sep = '-')))
+
+      png(plot_path, width = 65, height = 30, units = "cm", res = 300)
+      oncoplot(
+        f_maf_object, clinicalFeatures = group_col, genes = goi_list,
+        logColBar = TRUE, sortByAnnotation = TRUE,
+        showTumorSampleBarcodes = TRUE, removeNonMutated = TRUE,
+        annotationFontSize = 1.0, SampleNamefontSize = 0.5,
+        fontSize = 0.7, colors = oncoprint_col_palette,
+        # annotationColor = annotation_colors,
+        bgCol = "#F5F5F5", top = 25)
+      dev.off()
+    }
+
+
+    table_path <- file.path(
+      tables_dir,
+      gsub(
+        "[^._a-zA-Z0-9]", "-",
+        paste(opt$output_prefix, group, 'mutation_frequency.tsv', sep = '-')))
+    mut_freq_tbl <- dplyr::as_tibble(getGeneSummary(f_maf_object))
+    mut_freq_tbl$n_samples <- nrow(getSampleSummary(f_maf_object))
+    mut_freq_tbl <- mut_freq_tbl %>%
+      dplyr::mutate(
+        altered_sample_percentage = AlteredSamples / n_samples * 100)
+    readr::write_tsv(mut_freq_tbl, table_path)
+
+    return(0)
+  })
+  return(0)
+})

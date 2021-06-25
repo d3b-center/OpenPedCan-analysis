@@ -3,10 +3,6 @@
 # standardized fusion files and prepares them for oncoprint plotting.
 #
 # NOTES:
-#   * The `Tumor_Sample_Barcode` will now corresponds to the `sample_id` column
-#     in the histologies file
-#   * We remove ambiguous `sample_id` -- i.e., where there are more than two
-#     tumor biospecimens that map to the same sample id
 #   * Filtering via an independent specimen file is optional, but highly
 #     recommended
 #
@@ -16,7 +12,7 @@
 #   --maf_file snv-consensus_11122019/consensus_mutation.maf.tsv \
 #   --cnv_file ../focal-cn-file-preparation/results/controlfreec_annotated_cn_autosomes.tsv.gz \
 #   --fusion_file ../../scratch/arriba.tsv \
-#   --metadata_file ../../data/pbta-histologies.tsv \
+#   --metadata_file ../../data/histologies.tsv \
 #   --output_directory ../../scratch/oncoprint_files \
 #   --filename_lead "primary_only" \
 #   --independent_specimens ../../data/independent-specimens.wgswxs.primary.tsv
@@ -74,7 +70,6 @@ option_list <- list(
 # Read the arguments passed
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
-
 #### Directory and output file set up ------------------------------------------
 
 output_dir <- opt$output_directory
@@ -90,29 +85,54 @@ fusion_output <- file.path(output_dir, paste0(opt$filename_lead,
 cnv_output <- file.path(output_dir, paste0(opt$filename_lead, "_cnv.tsv"))
 
 #### Read in data --------------------------------------------------------------
-histologies_df <- readr::read_tsv(opt$metadata_file, guess_max = 10000)
+histologies_df <- readr::read_tsv(opt$metadata_file, guess_max = 100000)
 
-maf_df <- readr::read_tsv(opt$maf_file)
+# TODO: report that some AF has comma separated values
+maf_df <- readr::read_tsv(
+  opt$maf_file, comment = '#',
+  col_types = readr::cols(
+    .default = readr::col_guess(),
+    CLIN_SIG = readr::col_character(),
+    PUBMED = readr::col_character()))
+
 cnv_df <- readr::read_tsv(opt$cnv_file)
+
 fusion_df <- readr::read_tsv(opt$fusion_file)
 
-#### Get rid of ambiguous and non-tumor samples --------------------------------
 
-# An ambiguous sample_id will have more than 2 rows associated with it in the
-# histologies file when looking at tumor samples -- that means we won't be able
-# to determine when an WGS/WXS assay maps to an RNA-seq assay for the purpose of
-# the oncoprint plot
-ambiguous_sample_ids <- histologies_df %>%
-  filter(sample_type == "Tumor",
-         composition == "Solid Tissue") %>%
-  group_by(sample_id) %>%
-  tally() %>%
-  filter(n > 2) %>%
-  pull(sample_id)
+#### Get rid of non-tumor samples ----------------------------------------------
 
-ambiguous_biospecimens <- histologies_df %>%
-  filter(sample_id %in% ambiguous_sample_ids) %>%
-  pull(Kids_First_Biospecimen_ID)
+# Note by @logstar 06/24/2021: The previous code fusion independent samples are
+# determined by matching sample_ids to the Kids_First_Biospecimen_ID in
+# independent-specimens.wgs.primary.tsv, so the sample_ids with more than 2 rows
+# in the histologies_df are removed from the
+# snv-consensus-plus-hotspots.maf.tsv.gz in order to unambiguous matching
+# between WGS and RNA-seq samples. 
+#
+# In the OT data release, we may be able to use
+# independent-specimens.rnaseq.primary-plus.tsv from the independent-samples
+# module to subset the fusion table, so we do not need to remove ambiguous
+# sample_ids.
+# 
+# <https://github.com/PediatricOpenTargets/ticket-tracker/issues/8
+#      issuecomment-867902947>
+# keep the relevant code here for future references
+
+# # An ambiguous sample_id will have more than 2 rows associated with it in the
+# # histologies file when looking at tumor samples -- that means we won't be able
+# # to determine when an WGS/WXS assay maps to an RNA-seq assay for the purpose of
+# # the oncoprint plot
+# ambiguous_sample_ids <- histologies_df %>%
+#   filter(sample_type == "Tumor",
+#          composition == "Solid Tissue") %>%
+#   group_by(sample_id) %>%
+#   tally() %>%
+#   filter(n > 2) %>%
+#   pull(sample_id)
+# 
+# ambiguous_biospecimens <- histologies_df %>%
+#   filter(sample_id %in% ambiguous_sample_ids) %>%
+#   pull(Kids_First_Biospecimen_ID)
 
 # we're only going to look at tumor samples in the oncoprint plot
 not_tumor_biospecimens <- histologies_df %>%
@@ -120,16 +140,27 @@ not_tumor_biospecimens <- histologies_df %>%
          composition != "Solid Tissue") %>%
   pull(Kids_First_Biospecimen_ID)
 
-biospecimens_to_remove <- unique(c(ambiguous_biospecimens,
-                                   not_tumor_biospecimens))
+# biospecimens_to_remove <- unique(c(ambiguous_biospecimens,
+#                                    not_tumor_biospecimens))
+biospecimens_to_remove <- not_tumor_biospecimens
+
 
 # Filter the files!
 maf_df <- maf_df %>%
   dplyr::filter(!(Tumor_Sample_Barcode %in% biospecimens_to_remove))
+
+# garbage collection to reduce memory usage
+gc(reset = TRUE, full = TRUE)
+
 cnv_df <- cnv_df %>%
   dplyr::filter(!(Kids_First_Biospecimen_ID %in% biospecimens_to_remove))
+
 fusion_df <- fusion_df %>%
   dplyr::filter(!(Sample %in% biospecimens_to_remove))
+
+# garbage collection to reduce memory usage
+gc(reset = TRUE, full = TRUE)
+
 
 #### Filter to independent specimens (optional) --------------------------------
 
@@ -142,26 +173,42 @@ if (!is.null(opt$independent_specimens)) {
   # identifiers in the independent file
   maf_df <- maf_df %>%
     filter(Tumor_Sample_Barcode %in% ind_biospecimen)
+
   cnv_df <- cnv_df %>%
     filter(Kids_First_Biospecimen_ID %in% ind_biospecimen)
 
-  # for the RNA-seq samples, we need to map from the sample identifier
-  # associated with the independent specimen and back to a biospecimen ID
-  ind_sample_id <- histologies_df %>%
-    filter(Kids_First_Biospecimen_ID %in% ind_biospecimen) %>%
-    pull(sample_id)
-
-  # get the corresponding biospecimen ID to be used
-  rnaseq_ind <- histologies_df %>%
-    filter(sample_id %in% ind_sample_id,
-           experimental_strategy == "RNA-Seq") %>%
-    pull(Kids_First_Biospecimen_ID)
-
-  # finally filter the fusions
-  fusion_df <- fusion_df %>%
-    filter(Sample %in% rnaseq_ind)
-
+  # Note by @logstar 06/24/2021:
+  # As described above, we may be able to use
+  # independent-specimens.rnaseq.primary-plus.tsv from the independent-samples
+  # module to subset the fusion table.
+  # 
+  # This would require passing an additional argument for the 
+  # independent-specimens.rnaseq.primary-plus.tsv or
+  # independent-specimens.rnaseq.primary.tsv.
+  #
+  # Keep relevant code here for future references. Now, no filter on fusion df.
+  #
+  #  # for the RNA-seq samples, we need to map from the sample identifier
+  #  # associated with the independent specimen and back to a biospecimen ID
+  #  ind_sample_id <- histologies_df %>%
+  #    filter(Kids_First_Biospecimen_ID %in% ind_biospecimen) %>%
+  #    pull(sample_id)
+  #
+  #  # get the corresponding biospecimen ID to be used
+  #  rnaseq_ind <- histologies_df %>%
+  #    filter(sample_id %in% ind_sample_id,
+  #           experimental_strategy == "RNA-Seq") %>%
+  #    pull(Kids_First_Biospecimen_ID)
+  #
+  #  # finally filter the fusions
+  #  fusion_df <- fusion_df %>%
+  #    filter(Sample %in% rnaseq_ind)
+  # TODO: select fusion independent samples
+  fusion_df <- fusion_df
 }
+# garbage collection to reduce memory usage
+gc(reset = TRUE, full = TRUE)
+
 
 #### MAF file preparation ------------------------------------------------------
 
@@ -169,15 +216,24 @@ message("Preparing MAF file...")
 
 # join the sample_id information to the MAF file and then set as the tumor
 # sample barcode
+#
+# Tumor_Sample_Barcode is used in maftools, so we need to keep it.
+# Use Kids_First_Biospecimen_ID as Tumor_Sample_Barcode.
+# Too many duplicated sample_ids.
 maf_df <- maf_df %>%
   inner_join(select(histologies_df,
                     Kids_First_Biospecimen_ID,
                     sample_id),
              by = c("Tumor_Sample_Barcode" = "Kids_First_Biospecimen_ID")) %>%
-  # now let's remove this `Tumor_Sample_Barcode` column with biospecimen IDs in
-  # preparation for our next step -- renaming `sample_id`
-  select(-Tumor_Sample_Barcode) %>%
-  rename(Tumor_Sample_Barcode = sample_id)
+  mutate(Kids_First_Biospecimen_ID = Tumor_Sample_Barcode)
+
+# Tumor_Sample_Barcode is only used in 01-plot-oncoprint.R to filter samples.
+# Remove Tumor_Sample_Barcode to see if it works.
+#  %>%
+#  # now let's remove this `Tumor_Sample_Barcode` column with biospecimen IDs in
+#  # preparation for our next step -- renaming `sample_id`
+#  select(-Tumor_Sample_Barcode) %>%
+#  rename(Tumor_Sample_Barcode = sample_id)
 
 # Write MAF to file
 readr::write_tsv(maf_df, maf_output)
@@ -270,8 +326,12 @@ reformat_fusion <- multihit_fusions %>%
                     Kids_First_Biospecimen_ID,
                     sample_id),
              by = c("Sample" = "Kids_First_Biospecimen_ID")) %>%
-  rename(Tumor_Sample_Barcode = sample_id,
-         Kids_First_Biospecimen_ID = Sample)
+  mutate(Kids_First_Biospecimen_ID = Sample) %>%
+  mutate(Tumor_Sample_Barcode = Sample)
+
+#   %>%
+#  rename(Tumor_Sample_Barcode = sample_id,
+#         Kids_First_Biospecimen_ID = Sample)
 
 # Write to file
 readr::write_tsv(reformat_fusion, fusion_output)
@@ -285,10 +345,21 @@ cnv_df <- cnv_df %>%
                     sample_id),
              by = "Kids_First_Biospecimen_ID") %>%
   filter(status != "uncallable") %>%
-  mutate(Tumor_Sample_Barcode =  sample_id) %>%
   rename(Variant_Classification = status,
          Hugo_Symbol = region) %>%
+  mutate(Tumor_Sample_Barcode = Kids_First_Biospecimen_ID) %>%
   select(Hugo_Symbol, Tumor_Sample_Barcode, Variant_Classification)
+
+# cnv_df <- cnv_df %>%
+#   inner_join(select(histologies_df,
+#                     Kids_First_Biospecimen_ID,
+#                     sample_id),
+#              by = "Kids_First_Biospecimen_ID") %>%
+#   filter(status != "uncallable") %>%
+#   mutate(Tumor_Sample_Barcode =  sample_id) %>%
+#   rename(Variant_Classification = status,
+#          Hugo_Symbol = region) %>%
+#   select(Hugo_Symbol, Tumor_Sample_Barcode, Variant_Classification)
 
 # Write to file
 readr::write_tsv(cnv_df, cnv_output)
