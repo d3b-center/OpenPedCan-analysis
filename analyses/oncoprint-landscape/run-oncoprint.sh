@@ -86,7 +86,7 @@ Rscript --vanilla 01-plot-oncoprint.R \
   --fusion_file ${intermediate_directory}/${primary_filename}_fusions.tsv \
   --metadata_file ${histologies_file} \
   --goi_list ${genes_list} \
-  --output_prefix ${primary_filename}_goi
+  --output_prefix ${primary_filename}
 
 
 # primary plus oncoprints plot and mutation tables
@@ -96,7 +96,7 @@ Rscript --vanilla 01-plot-oncoprint.R \
   --fusion_file ${intermediate_directory}/${primaryplus_filename}_fusions.tsv \
   --metadata_file ${histologies_file} \
   --goi_list ${genes_list} \
-  --output_prefix ${primary_filename}_goi
+  --output_prefix ${primaryplus_filename}
 
 
 # done

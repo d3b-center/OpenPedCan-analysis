@@ -52,16 +52,95 @@ if (!dir.exists(tables_dir)) {
 }
 
 
-# Source the custom functions script
-source(
-  file.path(
-    root_dir,
-    "analyses",
-    "oncoprint-landscape",
-    "util",
-    "oncoplot-functions.R"
-  )
-)
+# This script defines custom functions to be sourced in the
+# `01-plot-oncoprint.R` script of this module.
+#
+# Chante Bethell for CCDL 2020
+#
+# # #### USAGE
+# This script is intended to be sourced in the script as follows:
+#
+# source(file.path("util", "oncoplot-functions.R"))
+
+
+prepare_maf_object <- function(maf_df,
+                               cnv_df,
+                               metadata,
+                               fusion_df = NULL) {
+  # Given maf, cnv, and fusion data.frames prepared in `00-map-to-sample_id.R`,
+  # along with the relevant metadata prepared in the `interaction-plots`
+  # directory, return a maf object. Note that the fusion data.frame argument is
+  # optional here and is NULL by default.
+  #
+  # Args:
+  #   maf_df: data.frame with data from a MAF file
+  #   cnv_df: data.frame with copy number variant data
+  #   metadata: data.frame with the relevant metadata
+  #   fusion_df: data.frame with fusion data. This is NULL by default.
+
+  if (!is.null(fusion_df)) {
+    # Want to check that the fusion file has these columns before we `bind_rows``
+    # The MAF file will already have them and `read.maf` will check
+    needed_col <- c("Hugo_Symbol",
+                    "Variant_Classification",
+                    "Variant_Type",
+                    "Tumor_Sample_Barcode")
+
+    # Which columns do we have in `fusion_df`?
+    cols_found <- needed_col %in% colnames(fusion_df)
+
+    # Print out error message if fusion df doesn't have needed columns
+    if(!all(cols_found)){
+      stop(paste("Fusion file is missing the necessary column(s):\n",
+                 paste(needed_col[which(cols_found)], collapse = "\n ")))
+    }
+
+    # Bind rows of maf and fusion data frames
+    # bind_rows fill non-existing columns with NA
+    maf_df <- dplyr::bind_rows(maf_df, fusion_df)
+  }
+
+  # Filter metadata to only include tumor samples that are included in
+  metadata <- dplyr::filter(
+    metadata,
+    composition == "Solid Tissue",
+    sample_type == "Tumor",
+    Tumor_Sample_Barcode %in% maf_df$Tumor_Sample_Barcode)
+
+  # TODO: check vc_nonSyn.
+  # exclude synonymous, silent, RNA, and intergenic
+  # Why "Translation_Start_Site" is not included in vc_nonSyn?
+  # Convert into MAF object
+  maf_object <-
+    read.maf(
+      maf = maf_df,
+      clinicalData = metadata,
+      cnTable = cnv_df,
+      removeDuplicatedVariants = FALSE,
+      vc_nonSyn = c(
+        "Frame_Shift_Del",
+        "Frame_Shift_Ins",
+        "Splice_Site",
+        "Nonsense_Mutation",
+        "Nonstop_Mutation",
+        "In_Frame_Del",
+        "In_Frame_Ins",
+        "Missense_Mutation",
+        "Fusion",
+        "Multi_Hit",
+        "Multi_Hit_Fusion",
+        "Hom_Deletion",
+        "Hem_Deletion",
+        "Amp",
+        "Del",
+        "Translation_Start_Site"
+      )
+    )
+
+  # Return the maf object
+  return(maf_object)
+}
+
 
 #### Command line options ------------------------------------------------------
 
@@ -140,13 +219,13 @@ read_genes <- function(gene_list) {
 metadata <- readr::read_tsv(opt$metadata_file, guess_max = 100000)
 
 # Read in MAF file
-maf_df <- maf_df <- readr::read_tsv(
+maf_df <- readr::read_tsv(
   opt$maf_file, comment = '#',
   col_types = readr::cols(
     .default = readr::col_guess(),
     CLIN_SIG = readr::col_character(),
     PUBMED = readr::col_character()))
-  
+
 # Read in cnv file
 if (!is.null(opt$cnv_file)) {
   cnv_df <- readr::read_tsv(opt$cnv_file) %>%
@@ -180,7 +259,7 @@ if (!is.null(opt$goi_list)) {
 # histology_pal_df <- readr::read_tsv(
 #   file.path(root_dir,
 #             "figures",
-#             "palettes", 
+#             "palettes",
 #             "histology_label_color_table.tsv")) %>%
 #   # Select just the columns we will need for plotting
 #   dplyr::select(display_group, display_order, hex_codes) %>%
@@ -188,14 +267,14 @@ if (!is.null(opt$goi_list)) {
 #   dplyr::arrange(display_order)
 
 # Join on these columns to the metadata
-# metadata <- metadata %>% 
-#   dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>% 
+# metadata <- metadata %>%
+#   dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>%
 #   # Reorder display_group based on display_order
 #   dplyr::mutate(display_group = forcats::fct_reorder(display_group, display_order))
 
 # # Filter to the metadata associated with the broad histology value, if provided
 # if (!is.null(opt$broad_histology)) {
-# 
+#
 #   if (!opt$broad_histology == "Other CNS") {
 #     metadata <- metadata %>%
 #       dplyr::filter(broad_histology == opt$broad_histology)
@@ -220,17 +299,17 @@ if (!is.null(opt$goi_list)) {
 #         )
 #       )
 #   }
-# 
+#
 #   # Now filter the remaining data files
 #   maf_df <- maf_df %>%
 #     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-# 
+#
 #   cnv_df <- cnv_df %>%
 #     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-# 
+#
 #   fusion_df <- fusion_df %>%
 #     dplyr::filter(Tumor_Sample_Barcode %in% metadata$Tumor_Sample_Barcode)
-# 
+#
 # }
 
 # # Color coding for `display_group` classification
@@ -239,11 +318,11 @@ if (!is.null(opt$goi_list)) {
 #   dplyr::arrange(display_order) %>%
 #   dplyr::select(display_group, hex_codes) %>%
 #   dplyr::distinct()
-# 
+#
 # # Make color key specific to these samples
 # histologies_color_key <- histologies_color_key_df$hex_codes
 # names(histologies_color_key) <- histologies_color_key_df$display_group
-# 
+#
 # # Now format the color key objet into a list
 # annotation_colors <- list(display_group = histologies_color_key)
 
@@ -280,6 +359,9 @@ mut_tsbs <- unique(c(maf_df$Tumor_Sample_Barcode,
                      cnv_df$Tumor_Sample_Barcode,
                      fusion_df$Tumor_Sample_Barcode))
 metadata <- metadata[metadata$Tumor_Sample_Barcode %in% mut_tsbs, ]
+rm(mut_tsbs)
+gc(reset = TRUE)
+
 
 # res is the place holder for the return values
 res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
@@ -287,10 +369,14 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
   # print(uniq_groups)
   # print(class(uniq_groups))
   # stop()
+  print(gc(reset = TRUE))
 
   # s_res is the place holder for the inner loop return values
   s_res <- lapply(uniq_groups, function(group) {
+    print(gc(reset = TRUE))
+    message('--------------------------------------')
     f_metadata <- metadata[metadata[, group_col, drop = TRUE] == group, ]
+    message(paste0(group, ': ', nrow(f_metadata), ' samples\n'))
     # only plot and tabulate for groups with >= 5 samples
     if (nrow(f_metadata) < 5) {
       return(0)
@@ -304,7 +390,7 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
 
     f_fusion_df <- fusion_df[fusion_df$Tumor_Sample_Barcode %in%
                          f_metadata$Tumor_Sample_Barcode, ]
-    
+
     f_maf_object <- prepare_maf_object(
       maf_df = f_maf_df,
       cnv_df = f_cnv_df,
@@ -356,8 +442,13 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
       gsub(
         "[^._a-zA-Z0-9]", "-",
         paste(opt$output_prefix, group, 'mutation_frequency.tsv', sep = '-')))
+
     mut_freq_tbl <- dplyr::as_tibble(getGeneSummary(f_maf_object))
-    mut_freq_tbl$n_samples <- nrow(getSampleSummary(f_maf_object))
+    f_maf_summary_tbl <- dplyr::as_tibble(f_maf_object@summary)
+    mut_freq_tbl$n_samples <- as.numeric(
+      f_maf_summary_tbl %>%
+        dplyr::filter(ID == 'Samples') %>%
+        dplyr::select(summary))
     mut_freq_tbl <- mut_freq_tbl %>%
       dplyr::mutate(
         altered_sample_percentage = AlteredSamples / n_samples * 100)
@@ -367,3 +458,5 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
   })
   return(0)
 })
+
+message('Done.')
