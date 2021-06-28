@@ -359,7 +359,7 @@ mut_tsbs <- unique(c(maf_df$Tumor_Sample_Barcode,
                      cnv_df$Tumor_Sample_Barcode,
                      fusion_df$Tumor_Sample_Barcode))
 metadata <- metadata[metadata$Tumor_Sample_Barcode %in% mut_tsbs, ]
-rm(mut_tsbs)
+rm(mut_tsbs, maf_df)
 gc(reset = TRUE)
 
 
@@ -373,6 +373,7 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
 
   # s_res is the place holder for the inner loop return values
   s_res <- lapply(uniq_groups, function(group) {
+  # s_res <- lapply(uniq_groups[stringr::str_detect(uniq_groups, 'High-grade glioma')], function(group) {
     print(gc(reset = TRUE))
     message('--------------------------------------')
     f_metadata <- metadata[metadata[, group_col, drop = TRUE] == group, ]
@@ -382,14 +383,23 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
       return(0)
     }
 
-    f_maf_df <- maf_df[maf_df$Tumor_Sample_Barcode %in%
-                         f_metadata$Tumor_Sample_Barcode, ]
+    # Read in MAF file
+    f_maf_df <- readr::read_tsv(
+      opt$maf_file, comment = '#',
+      col_types = readr::cols(
+        .default = readr::col_guess(),
+        CLIN_SIG = readr::col_character(),
+        PUBMED = readr::col_character())) %>%
+      dplyr::filter(Tumor_Sample_Barcode %in% f_metadata$Tumor_Sample_Barcode)
+    # f_maf_df <- f_maf_df[f_maf_df$Tumor_Sample_Barcode %in%
+    #                      f_metadata$Tumor_Sample_Barcode, ]
+    print(gc(reset = TRUE))
 
     f_cnv_df <- cnv_df[cnv_df$Tumor_Sample_Barcode %in%
                          f_metadata$Tumor_Sample_Barcode, ]
 
     f_fusion_df <- fusion_df[fusion_df$Tumor_Sample_Barcode %in%
-                         f_metadata$Tumor_Sample_Barcode, ]
+                               f_metadata$Tumor_Sample_Barcode, ]
 
     f_maf_object <- prepare_maf_object(
       maf_df = f_maf_df,
@@ -397,7 +407,8 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
       metadata = f_metadata,
       fusion_df = f_fusion_df
     )
-
+    print(gc(reset = TRUE))
+  
     # Given a maf object, plot an oncoprint of the variants in the
     # dataset and save as a png file.
     plot_path <- file.path(
@@ -422,7 +433,7 @@ res <- lapply(c('cancer_group', 'cancer_group_cohort'), function(group_col) {
       plot_path <- file.path(
         plots_dir,
         gsub("[^._a-zA-Z0-9]", "-",
-            paste(opt$output_prefix, group, 'goi_oncoprint.png', sep = '-')))
+             paste(opt$output_prefix, group, 'goi_oncoprint.png', sep = '-')))
 
       png(plot_path, width = 65, height = 30, units = "cm", res = 300)
       oncoplot(
