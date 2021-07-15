@@ -1,176 +1,194 @@
-# Author: Sangeeta Shukla
+# Author: Sangeeta Shukla and Alvin Farrel
 # Date: June 2021
 # Function: 
 # 1. summarize Differential expression from RNASeq data
 # 2. tabulate corresponding P-value
 
 # Example run: DESeq
-# Rscript analyses/DESeq/run-DESeq-analysis.R 
+# Rscript analyses/DESeq/run-DESeq-analysis.R 1 1
+# This was compares 1 cancer group (Combined or Cohort specific) with one GTEx tissue type. The input arguments are the indices of the comparison of the cancer groups and gtex sub tissues to be compared. In v6, there are 107 cancer groups vs 54 GTEx tissues
 
+# Read arguments from terminal
+args <- commandArgs(trailingOnly = TRUE)
 
-suppressPackageStartupMessages(library(optparse))
-suppressPackageStartupMessages(library(BiocGenerics))
-suppressPackageStartupMessages(library(data.table))
-suppressPackageStartupMessages(library(tidyverse))
-
+# Load required libraries
 suppressPackageStartupMessages({
-    library(ggplot2)
-    library(DESeq2)
+  library(ggplot2)
+  #library(DESeq2)
 })
 
 
+HIST_index <- args[1]   #assign first argument to Histology index
+GTEX_index <- args[2]   #assign second argument to GTEx index
+
+    
+
+
+
 #Load histology file
-hist <- read.delim("/Users/shuklas1/Git_Code/OpenPedCan-analysis/OpenPedCan-analysis/data/v5/histologies.tsv", header=TRUE, sep = '\t')
+hist <- read.delim("histologies.tsv", header=TRUE, sep = '\t')
 
 #Load expression counts data
-countData <- readRDS("/Users/shuklas1/Git_Code/OpenPedCan-analysis/OpenPedCan-analysis/data/v5/gene-counts-rsem-expected_count-collapsed.rds")
+countData <- readRDS("gene-counts-rsem-expected_count-collapsed.rds")
 
+#Load expression TPM data
+TPMData <- readRDS("gene-expression-rsem-tpm-collapsed.rds")
 
-#Verify if the files were loaded successfully with appropriate data
-countData[1:5,1:5]
-hist[1:5,]
+#Load EFO-MONDO map file
+EFO_MONDO <- read.delim("efo-mondo-map.tsv", header =T)
 
-colnames(hist)
-colnames(countData)
+#Load gene symbol-gene ID RMTL file
+ENSG_Hugo <- read.delim("ensg-hugo-rmtl-v1-mapping.tsv", header =T)
 
-#Verify if the GTEX and BS data is found in both counts and hist files
-colnames(countData)[grep("BS",colnames(countData))]
-hist$Kids_First_Biospecimen_ID[grep("BS",hist$Kids_First_Biospecimen_ID)]
-
-
-#Test intersection between hist and counts for "BS" and "GTEX" each
-intersect(
-  hist$Kids_First_Biospecimen_ID[grep("BS",hist$Kids_First_Biospecimen_ID)],
-  colnames(countData)[grep("BS",colnames(countData))]
-)
-
-
-
-#summary(countData)
-nrow(countData)
-ncol(countData)
-
-#summary(hist)
-nrow(hist)
-ncol(hist)
-
-
-
+# Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
 hist.filtered = unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames(countData)),])
+
+#Subset countadata for data that are present in the hitstoly files (To ensure no discepancies cause errors later in the code)
 countData_filtered = countData[,which(colnames(countData) %in% hist$Kids_First_Biospecimen_ID)]
 
+#Subset countadata for data that are present in the hitstoly files (To ensure no discepancies cause errors later in the code)
+TPMData_filtered = TPMData[,which(colnames(TPMData) %in% hist$Kids_First_Biospecimen_ID)]
 
-#summary(countData)
-nrow(countData_filtered)
-ncol(countData_filtered)
-
-#summary(hist)
-nrow(hist.filtered)
-ncol(hist.filtered)
-
-
-
+#Save all the unique cancer histologies in a variable. These cancer histologies represent the patient data in the countsdata
 Cancer_Histology <- unique(hist.filtered$cancer_group)
+
+#Save all the GTEx tissue subgroups in a variable. These cancer histologies represent the GTEx RNDA data available in the countsdata
 Gtex_Tissue_subgroup = sort(unique(hist.filtered$gtex_subgroup))
 
+#Save all the cohorts represented in the countsdata into a variable. Renove all 'NA's from the list. and paste cohort to cancer groep (eg GMKF_Neuroblastoma)
+Cancer_Histology_COHORT <- unique(paste(hist.filtered$cohort[which(!is.na(hist.filtered$cancer_group))],hist.filtered$cancer_group[which(!is.na(hist.filtered$cancer_group))],sep="_"))
 
-Cancer_Histology <- Cancer_Histology[which(!is.na(Cancer_Histology))]
+#Save all the histologies represented in the countsdata into a variable. Renove all 'NA's from the list. This will be the basis of all the data from each histology combined regardless of cohort (eg Combined_Neuroblastoma)
+Cancer_Histology <- paste("Combined",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
 
 
-
-#Gtex_Tissue_subgroup
-#sample_type_df_tumor = data.frame(Case_ID = hist$Kids_First_Biospecimen_ID[which(hist$short_histology == Cancer_Histology[1])],Type=hist$short_histology[which(hist$short_histology == Cancer_Histology[1])])
-#sample_type_df_normal = data.frame(Case_ID = hist$Kids_First_Biospecimen_ID[which(hist$gtex_group == Gtex_Tissue[1])],Type=paste(hist$gtex_group[which(hist$gtex_group == Gtex_Tissue[1])],"-",hist$gtex_subgroup[which(hist$gtex_subgroup == Gtex_Tissue[1])] )  )
-#sample_type_df_normal = data.frame(Case_ID = hist$Kids_First_Biospecimen_ID[which(hist$gtex_subgroup == Gtex_Tissue_subgroup[1])],Type=hist$gtex_group[which(hist$gtex_subgroup == Gtex_Tissue_subgroup[1])])
-
+#Save all the GTEx subgroups represented in the countsdata into a variable. Remove all 'NA's 
 Gtex_Tissue_subgroup = Gtex_Tissue_subgroup[!is.na(Gtex_Tissue_subgroup)]
 
-
 #Create an empty df to populate with rbind of all normal Kids_First_Biospecimen_ID and gtex_subgroup
+#Create DF that list all Kids_First_Biospecimen_IDs by GTEX subgroup
 sample_type_df_normal = data.frame()
 for(I in 1:length(Gtex_Tissue_subgroup))
 {
   sample_type_df_normal = rbind(sample_type_df_normal,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$gtex_subgroup == Gtex_Tissue_subgroup[I])],Type = Gtex_Tissue_subgroup[I]))
 }
 
-
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group
+#Create DF that list all Kids_First_Biospecimen_IDs by cancer group subgroup
 sample_type_df_tumor = data.frame()
 for(I in 1:length(Cancer_Histology))
 {
-  sample_type_df_tumor = rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology[I])],Type=Cancer_Histology[I]))
+  sample_type_df_tumor = rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("Combined_","",Cancer_Histology[I]))],Type=Cancer_Histology[I]))
 }
 
+#Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
+#Create DF that list all Kids_First_Biospecimen_IDs by Cohort - Cancer groups
+sample_type_df_tumor_cohort = data.frame()
+for(I in 1:length(Cancer_Histology_COHORT))
+{
+  Cancer_Histology_COHORT_cohort =  strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
+  Cancer_Histology_COHORT_cancer_group =  strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][2]
+  sample_type_df_tumor_cohort = rbind(sample_type_df_tumor_cohort,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I]))
+}
 
 #Combine the rows from the normal and tumor sample df
-sample_type_df = rbind(sample_type_df_tumor,sample_type_df_normal)
+sample_type_df = rbind(sample_type_df_tumor,sample_type_df_tumor_cohort,sample_type_df_normal)
 
-#Verify if the new data frame is populated correctly
-head(sample_type_df)
-tail(sample_type_df)
-
-nrow(sample_type_df)
-ncol(countData_filtered)
-
-
+#Filter one more to ensure the rownames in the countsdata file match the sample dataframe for DEG just created
 countData_filtered_DEG = countData_filtered[,which(colnames(countData_filtered) %in% sample_type_df$Case_ID)]
-sample_type_df_filtered = unique(sample_type_df[which(sample_type_df$Case_ID %in% colnames(countData_filtered_DEG)),])
-nrow(sample_type_df_filtered)
-ncol(countData_filtered_DEG)
 
+#Filter one more to ensure the rownames in the countsdata file match the sample dataframe for DEG just created
+sample_type_df_filtered = unique(sample_type_df[which(sample_type_df$Case_ID %in% colnames(countData_filtered_DEG)),])
+
+#Define All cancer groups (Combined and cohort-specific) in the histology list
 histology_filtered = unique(sample_type_df_filtered$Type[-grep("GTEX",sample_type_df_filtered$Case_ID)])
+
+#Define All GTEx groups as normal in the GTEX_filtered list
 GTEX_filtered = unique(sample_type_df_filtered$Type[grep("GTEX",sample_type_df_filtered$Case_ID)])
 
-ALL_comparisons <- list()
-for(I in 1:length(histology_filtered)){
-  for(J in 1:length(GTEX_filtered)){
+#Assign cmparison
+ I = as.numeric(HIST_index)   #assign first argument to Histology index
+ J = as.numeric(GTEX_index)   #assign second argument to GTEx index
+
+
     
-      
-      
-      countData_filtered_DEG.hist = data.matrix(countData_filtered_DEG[,which(colnames(countData_filtered_DEG) %in% sample_type_df_filtered$Case_ID[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J]))])])
-                                                                           
-      sample_type_df_filtered.hist = sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J])),]
-      
-      all(is.numeric(countData_filtered_DEG.hist))
-      round(countData_filtered_DEG.hist[1:5,1:4])
-      
-      sub.deseqdataset <- DESeqDataSetFromMatrix(countData=round(countData_filtered_DEG.hist),
-                                                 colData=sample_type_df_filtered.hist,
-                                                 design= ~ Type)
-      
-      #sub.deseqdataset <- DESeqDataSetFromMatrix(countData=countData_filtered_DEG,
-      #                                           colData=sample_type_df_filtered,
-      #                                           design= ~Type)
-      
-      #sub.deseqdataset[1:5,1:5]
-      sub.deseqdataset <- sub.deseqdataset[ rowSums(counts(sub.deseqdataset)) > 0, ]
-      
-      
-      sub.deseqdataset$Type <- factor(sub.deseqdataset$Type, levels=c(GTEX_filtered[J], histology_filtered[I]))
-      #dataset$Status <- factor(dataset$Status, levels=c("Nonamplified", "Amplified"))
-      
-      dds <- DESeq(sub.deseqdataset)
-      res <- results(dds)
-      resOrdered <- res[order(res$padj),]
-      
-      Result = data.matrix(data_frame(log2FC = as.numeric(resOrdered$log2FoldChange), log2p= log2(as.numeric(resOrdered$padj+0.00001))))
-      rownames(Result) <- as.character(rownames(resOrdered))
+#Subset countData_filtered_DEG dataframe for only the histology group and GTEx group being compared
+    countData_filtered_DEG.hist = data.matrix(countData_filtered_DEG[,which(colnames(countData_filtered_DEG) %in% sample_type_df_filtered$Case_ID[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J]))])])
     
-      ALL_comparisons <- c(ALL_comparisons,list(Result))
-      
-      rm(sub.deseqdataset)
-  }#for(J in 1:length(GTEX_filtered)){
-}#for(I in 1:length(histology_filtered)){
+#Subset sample type dataframe for only the histology group and GTEx group being compared
+    sample_type_df_filtered.hist = sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J])),]
+    
+#Run DESeq2  
+    sub.deseqdataset <- DESeqDataSetFromMatrix(countData=round(countData_filtered_DEG.hist),
+                                               colData=sample_type_df_filtered.hist,
+                                               design= ~ Type)
+    
+    
+    sub.deseqdataset$Type <- factor(sub.deseqdataset$Type, levels=c(GTEX_filtered[J], histology_filtered[I]))
+    
+    dds <- DESeq(sub.deseqdataset)
+    res <- results(dds)
+    resOrdered <- res[order(rownames(res)),]
+
+    Result = resOrdered
 
 
-#head(res, tidy=TRUE)
+#Save subset of table with samples representing the histology in the DEG comparison to a variable.
+HIST_sample_type_df_filtered = sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I])),]
+ 
+#Define study ID as all cohorts represented by the pateints involved in DEG comparison
+STUDY_ID = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]),collapse=";",sep=";")
 
-#summary(resOrdered)
+#Record number of samples represnt the GTEX tissue used in the comparison
+GTEX_Hits = length(sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(GTEX_filtered[J])),1])
 
-# Put the resulting list in a file for later use
+#Determine the mean TPM of the tissue. If there are multiple samples use the mean TPM
+if(GTEX_Hits > 1) GTEX_MEAN_TPMs = round(apply(TPMData_filtered[match(rownames(Result),rownames(TPMData_filtered)),which(colnames(TPMData_filtered) %in%  sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(GTEX_filtered[J])),1])]  ,MARGIN=1, mean ),2)
+
+#Determine the mean TPM of the tissue. If there is one sample just use the single TPM value of the sample
+if(GTEX_Hits <= 1) GTEX_MEAN_TPMs = TPMData_filtered[match(rownames(Result),rownames(TPMData_filtered)),which(colnames(TPMData_filtered) %in%  sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(GTEX_filtered[J])),1])]
+
+#Record number of samples represnt the cancer patient data used in the comparison
+Cancer.Hist_Hits = length(sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I])),1])
+
+#Determine the mean TPM of the tissue. If there are multiple samples use the mean TPM
+if(Cancer.Hist_Hits > 1) Histology_MEAN_TPMs = round(apply(TPMData_filtered[match(rownames(Result),rownames(TPMData_filtered)),which(colnames(TPMData_filtered) %in%  sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I])),1])]  ,MARGIN=1, mean ),2)
+
+#Determine the mean TPM of the tissue. If there is one sample just use the single TPM value of the sample
+if(Cancer.Hist_Hits <= 1) Histology_MEAN_TPMs = TPMData_filtered[match(rownames(Result),rownames(TPMData_filtered)),which(colnames(TPMData_filtered) %in%  sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I])),1])]
+
+#Round the mean TPMs to the 2 decimal places
+Histology_MEAN_TPMs = round(Histology_MEAN_TPMs,2)
+GTEX_MEAN_TPMs = round(GTEX_MEAN_TPMs,2)
 
 
+#Create Final Dataframe with all the info calculated and extracted from histology file Including EFO/MONDO codes where available and RMTL status
+Final_Data_Table = data.frame(
+  datasourceId = paste(strsplit(histology_filtered[I],split="_")[[1]][1],"vs_GTex",sep="_"),
+  datatypeId = "rna_expression",
+  cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]),collapse=";",sep=";"),
+  gene_symbol = rownames(Result),
+  gene_id = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  RMTL = ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  EFO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1, EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
+  MONDO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1,EFO_MONDO$mondo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))],""),
+  comparisonId = gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")),
+  cancer_group = paste(unlist(strsplit(histology_filtered[I],split="_"))[-1],collapse=" "),
+  cancer_group_Count = Cancer.Hist_Hits,
+  GTEx = GTEX_filtered[J],
+  GTEx_Count = GTEX_Hits,
+  cancer_group_MeanTpm = Histology_MEAN_TPMs,
+  GTEx_MeanTpm = GTEX_MEAN_TPMs,
+  Result
+)#Final_Data_Table = data.frame(
 
+
+#Save files
+system("mkdir Results/")
+
+#Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
+FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
+write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
 
 
 
