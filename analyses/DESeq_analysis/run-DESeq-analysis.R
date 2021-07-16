@@ -101,10 +101,10 @@ countData_filtered_DEG = countData_filtered[,which(colnames(countData_filtered) 
 sample_type_df_filtered = unique(sample_type_df[which(sample_type_df$Case_ID %in% colnames(countData_filtered_DEG)),])
 
 #Define All cancer groups (Combined and cohort-specific) in the histology list
-histology_filtered = unique(sample_type_df_filtered$Type[-grep("GTEX",sample_type_df_filtered$Case_ID)])
+histology_filtered = unique(sample_type_df_filtered$Type[-grep("^GTEX",sample_type_df_filtered$Case_ID)])
 
 #Define All GTEx groups as normal in the GTEX_filtered list
-GTEX_filtered = unique(sample_type_df_filtered$Type[grep("GTEX",sample_type_df_filtered$Case_ID)])
+GTEX_filtered = unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df_filtered$Case_ID)])
 
 #Assign cmparison
  I = as.numeric(HIST_index)   #assign first argument to Histology index
@@ -189,5 +189,4 @@ system("mkdir Results/")
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
 write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-
 
