@@ -35,7 +35,7 @@ countData <- readRDS("gene-counts-rsem-expected_count-collapsed.rds")
 TPMData <- readRDS("gene-expression-rsem-tpm-collapsed.rds")
 
 #Load EFO-MONDO map file
-EFO_MONDO <- read.delim("efo-mondo-map.tsv", header =T)
+EFO_MONDO <- read.delim("efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
 ENSG_Hugo <- read.delim("ensg-hugo-rmtl-v1-mapping.tsv", header =T)
@@ -189,4 +189,3 @@ system("mkdir Results/")
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
 write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-
