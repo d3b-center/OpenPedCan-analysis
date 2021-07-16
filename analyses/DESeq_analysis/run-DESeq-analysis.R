@@ -70,7 +70,7 @@ Gtex_Tissue_subgroup = Gtex_Tissue_subgroup[!is.na(Gtex_Tissue_subgroup)]
 sample_type_df_normal = data.frame()
 for(I in 1:length(Gtex_Tissue_subgroup))
 {
-  sample_type_df_normal = rbind(sample_type_df_normal,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$gtex_subgroup == Gtex_Tissue_subgroup[I])],Type = Gtex_Tissue_subgroup[I]))
+  sample_type_df_normal = rbind(sample_type_df_normal,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$gtex_subgroup == Gtex_Tissue_subgroup[I])],Type = Gtex_Tissue_subgroup[I]), stringsAsFactors = FALSE)
 }
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group
