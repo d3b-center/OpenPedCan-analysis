@@ -179,7 +179,7 @@ Final_Data_Table = data.frame(
   GTEx_Count = GTEX_Hits,
   cancer_group_MeanTpm = Histology_MEAN_TPMs,
   GTEx_MeanTpm = GTEX_MEAN_TPMs,
-  Result
+  Result, stringsAsFactors = FALSE
 )#Final_Data_Table = data.frame(
 
 
