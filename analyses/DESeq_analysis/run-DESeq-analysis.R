@@ -78,7 +78,7 @@ for(I in 1:length(Gtex_Tissue_subgroup))
 sample_type_df_tumor = data.frame()
 for(I in 1:length(Cancer_Histology))
 {
-  sample_type_df_tumor = rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("Combined_","",Cancer_Histology[I]))],Type=Cancer_Histology[I]))
+  sample_type_df_tumor = rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("all_cohorts_","",Cancer_Histology[I]))],Type=Cancer_Histology[I], stringsAsFactors = FALSE))
 }
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
@@ -189,6 +189,5 @@ system("mkdir Results/")
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
 write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-
 
 
