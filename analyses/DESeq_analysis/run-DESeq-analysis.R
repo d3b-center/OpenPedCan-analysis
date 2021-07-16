@@ -88,7 +88,7 @@ for(I in 1:length(Cancer_Histology_COHORT))
 {
   Cancer_Histology_COHORT_cohort =  strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
   Cancer_Histology_COHORT_cancer_group =  strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][2]
-  sample_type_df_tumor_cohort = rbind(sample_type_df_tumor_cohort,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I]))
+  sample_type_df_tumor_cohort = rbind(sample_type_df_tumor_cohort,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
 }
 
 #Combine the rows from the normal and tumor sample df
