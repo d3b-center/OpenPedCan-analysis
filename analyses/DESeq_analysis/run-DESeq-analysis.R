@@ -59,7 +59,7 @@ Gtex_Tissue_subgroup = sort(unique(hist.filtered$gtex_subgroup))
 Cancer_Histology_COHORT <- unique(paste(hist.filtered$cohort[which(!is.na(hist.filtered$cancer_group))],hist.filtered$cancer_group[which(!is.na(hist.filtered$cancer_group))],sep="_"))
 
 #Save all the histologies represented in the countsdata into a variable. Renove all 'NA's from the list. This will be the basis of all the data from each histology combined regardless of cohort (eg Combined_Neuroblastoma)
-Cancer_Histology <- paste("Combined",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
+Cancer_Histology <- paste("all_cohorts",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
 
 
 #Save all the GTEx subgroups represented in the countsdata into a variable. Remove all 'NA's 
@@ -189,7 +189,6 @@ system("mkdir Results/")
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
 write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-
 
 
 
