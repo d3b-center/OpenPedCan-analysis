@@ -14,6 +14,7 @@ args <- commandArgs(trailingOnly = TRUE)
 # Load required libraries
 suppressPackageStartupMessages({
   library(ggplot2)
+  library(DESeq2)
 })
 
 
@@ -25,24 +26,24 @@ GTEX_index <- args[2]   #assign second argument to GTEx index
 
 
 #Load histology file
-hist <- read.delim("../data/histologies.tsv", header=TRUE, sep = '\t')
+hist <- read.delim("../data/v6/histologies.tsv", header=TRUE, sep = '\t')
 
 #Load expression counts data
-countData <- readRDS("../data/gene-counts-rsem-expected_count-collapsed.rds")
+countData <- readRDS("../data/v6/gene-counts-rsem-expected_count-collapsed.rds")
 
 #Load expression TPM data
-TPMData <- readRDS("../data/gene-expression-rsem-tpm-collapsed.rds")
+TPMData <- readRDS("../data/v6/gene-expression-rsem-tpm-collapsed.rds")
 
 #Load EFO-MONDO map file
-EFO_MONDO <- read.delim("../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+EFO_MONDO <- read.delim("../data/v6/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-ENSG_Hugo <- read.delim("../data/ensg-hugo-rmtl-v1-mapping.tsv", header =T)
+ENSG_Hugo <- read.delim("../data/v6/ensg-hugo-rmtl-v1-mapping.tsv", header =T)
 
 # Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
 hist.filtered <- unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames(countData)),])
 
-#Subset countadata for data that are present in the hitstoly files (To ensure no discepancies cause errors later in the code)
+#Subset countdata for data that are present in the hitstoly files (To ensure no discepancies cause errors later in the code)
 countData_filtered <- countData[,which(colnames(countData) %in% hist$Kids_First_Biospecimen_ID)]
 
 #Subset countadata for data that are present in the hitstoly files (To ensure no discepancies cause errors later in the code)
@@ -54,14 +55,17 @@ Cancer_Histology <- unique(hist.filtered$cancer_group)
 #Save all the GTEx tissue subgroups in a variable. These cancer histologies represent the GTEx RNDA data available in the countsdata
 Gtex_Tissue_subgroup <- sort(unique(hist.filtered$gtex_subgroup))
 
-#Save all the cohorts represented in the countsdata into a variable. Renove all 'NA's from the list. and paste cohort to cancer groep (eg GMKF_Neuroblastoma)
+#Save all the cohorts represented in the countsdata into a variable. Remove all 'NA's from the list. 
+#And paste cohort to cancer groep (eg GMKF_Neuroblastoma)
 Cancer_Histology_COHORT <- unique(
   paste(hist.filtered$cohort[which(!is.na(hist.filtered$cancer_group))],
         hist.filtered$cancer_group[which(!is.na(hist.filtered$cancer_group))],
         sep="_")
   )
 
-#Save all the histologies represented in the countsdata into a variable. Renove all 'NA's from the list. This will be the basis of all the data from each histology combined regardless of cohort (eg Combined_Neuroblastoma)
+#Save all the histologies represented in the countsdata into a variable. 
+#Remove all 'NA's from the list. 
+#This will be the basis of all the data from each histology combined regardless of cohort (eg all_cohorts_Neuroblastoma)
 Cancer_Histology <- paste("all_cohorts",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
 
 
@@ -74,7 +78,7 @@ sample_type_df_normal <- data.frame()
 for(I in 1:length(Gtex_Tissue_subgroup))
 {
   sample_type_df_normal <- rbind(sample_type_df_normal,
-                                 data.frame(Case_ID <- hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$gtex_subgroup == Gtex_Tissue_subgroup[I])],Type = Gtex_Tissue_subgroup[I]), stringsAsFactors = FALSE)
+                                 data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$gtex_subgroup == Gtex_Tissue_subgroup[I])],Type = Gtex_Tissue_subgroup[I]), stringsAsFactors = FALSE)
 }
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group
@@ -82,7 +86,7 @@ for(I in 1:length(Gtex_Tissue_subgroup))
 sample_type_df_tumor <- data.frame()
 for(I in 1:length(Cancer_Histology))
 {
-  sample_type_df_tumor <- rbind(sample_type_df_tumor,data.frame(Case_ID <- hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("all_cohorts_","",Cancer_Histology[I]))],Type=Cancer_Histology[I], stringsAsFactors = FALSE))
+  sample_type_df_tumor <- rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("all_cohorts_","",Cancer_Histology[I]))],Type=Cancer_Histology[I], stringsAsFactors = FALSE))
 }
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
@@ -92,8 +96,8 @@ for(I in 1:length(Cancer_Histology_COHORT))
 {
   Cancer_Histology_COHORT_cohort <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
   Cancer_Histology_COHORT_cancer_group <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][2]
-  sample_type_df_tumor_cohort = rbind(sample_type_df_tumor_cohort,
-                                      data.frame(Case_ID <- hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
+  sample_type_df_tumor_cohort <- rbind(sample_type_df_tumor_cohort,
+                                       data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
 }
 
 #Combine the rows from the normal and tumor sample df
@@ -189,8 +193,8 @@ Final_Data_Table <- data.frame(
 
 
 #Save files
-system("mkdir Results/")
+system("mkdir DESeq_analysis/Results/")
 
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
-write.table(Final_Data_Table,file=paste("Results_5_forv6/",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
+write.table(Final_Data_Table,file=paste("DESeq_analysis/Results/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
