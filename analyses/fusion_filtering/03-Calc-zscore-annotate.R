@@ -53,8 +53,10 @@ option_list <- list(
               help="cohorts of interest for the filtering"),
   make_option(c("-s","--saveZscoredMatrix"),type="character",
               help="path to save zscored matrix from GTEx normalization (.RDS)"),
-  make_option(c("-n","--normalExpressionMatrix"),type="character",
-              help="normalization TPM expression data to compare (.rds) - please make sure it matches the cohort"),
+  make_option(c("-n","--normalExpMatrix_path"),type="character",
+              help="path to normal expression matrixes"),
+  make_option(c("-m","--normalExpMatrix_match"),type="character",
+              help="file containing the gtex normalized expression file to be used by each cohort and cancer group (.TSV"),
   make_option(c("-o","--outputFile"),type="character",
               help="Standardized fusion calls with additional annotation from GTEx zscore comparison (.TSV)")
 )
@@ -66,21 +68,29 @@ zscoreFilter<- opt$zscoreFilter
 saveZscoredMatrix<-opt$saveZscoredMatrix
 clinicalFile <- opt$clinicalFile
 cohortInterest<-unlist(strsplit(opt$cohortInterest,","))
-gtexMatrix<-unlist(strsplit(opt$normalExpressionMatrix,","))
+normalExpMatrix_path<-opt$normalExpMatrix_path
+normalExpMatrix_match<-opt$normalExpMatrix_match
 
 
 # load standardaized fusion calls cohort
 standardFusionCalls<-readRDS(standardFusionCalls)
 
+# read in table that matches cohort + cancer_group with a certain normal group
+normal_exp_match <- readr::read_tsv(normalExpMatrix_match)
+
+# read in histologies file & filter to tumor + RNA-Seq
+clinicalFile <- read.delim(clinicalFile, header = TRUE, sep = "\t", stringsAsFactors = FALSE) %>% 
+  dplyr::filter(experimental_strategy == "RNA-Seq") %>% dplyr::filter(sample_type == "Tumor")
+
 # load expression Matrix for cohort
 expressionMatrix<-readRDS(expressionMatrix) 
 
-# load GTEx norm data for each cohort
-normData <-lapply(gtexMatrix, readRDS)
+# get the list of normal GTEx expression matrix in the references folder
+gtexMatrix <- list.files(normalExpMatrix_path)
 
 ZscoredAnnotation<-function(standardFusionCalls=standardFusionCalls,
                             normData=normData, zscoreFilter=zscoreFilter,
-                            saveZscoredMatrix=saveZscoredMatrix,cohort_BSids= cohort_BSids,
+                            saveZscoredMatrix=saveZscoredMatrix,cohort_cg_BSids= cohort_cg_BSids,
                             expressionMatrix=expressionMatrix){
   #  @param standardFusionCalls : Annotates standardizes fusion calls from callers [STARfusion| Arriba] or QC filtered fusion
   #  @param zscoreFilter : Zscore value to use as threshold for annotation of differential expression
@@ -192,15 +202,32 @@ ZscoredAnnotation<-function(standardFusionCalls=standardFusionCalls,
 }
 
 GTExZscoredAnnotation_filtered_fusions <- data.frame()
-for (j in (1:length(cohortInterest))) {
-  cohort_BSids <- read.delim(clinicalFile, header = TRUE, sep = "\t", stringsAsFactors = FALSE) %>%
-    # uses each value x in cohortInterest
-    filter(cohort == cohortInterest[j]) %>% filter(experimental_strategy == "RNA-Seq") %>%
-    filter(sample_type == "Tumor") %>% pull("Kids_First_Biospecimen_ID")
+for (j in (1:length(gtexMatrix))) {
+  # find the cohort + cancer_group that match to this particuarl gtexMatrix
+  normal_matrix_name <- gtexMatrix[j]
+  cohort_cg_matched <- normal_exp_match %>% dplyr::filter(gtex_matrix == normal_matrix_name) %>% 
+    dplyr::filter(cohort %in% cohortInterest) %>% dplyr::select(cohort,cancer_group) %>% distinct()
+  cohort_list <- cohort_cg_matched$cohort %>% unique()
   
-  # use index to find the matched normal data
-  normData_matched <- normData[[j]]
-  GTExZscoredAnnotation_filtered_fusions_individual <-ZscoredAnnotation(standardFusionCalls,zscoreFilter,normData=normData_matched,cohort_BSids=cohort_BSids, expressionMatrix = expressionMatrix)
+  # find the BSids that are associated with all the above combinations of cohort + cancer_group
+  cohort_cg_BSids <-data.frame()
+  for (k in (1:nrow(cohort_cg_matched))){
+    each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_cg_matched[k,1])) %>% 
+      dplyr::filter(cancer_group == as.character(cohort_cg_matched[k,2])) %>%
+      dplyr::select(Kids_First_Biospecimen_ID) 
+    cohort_cg_BSids <- rbind(cohort_cg_BSids, each_set)
+  }
+  # add some of them have cancer_group as NA, those needed to be added back
+  cohort_cg_BSids <- clinicalFile %>% dplyr::filter(cohort %in% cohort_list) %>%
+    filter(is.na(cancer_group)) %>% dplyr::select(Kids_First_Biospecimen_ID) %>% rbind(cohort_cg_BSids)
+  # get the list of BSids that matches to the same normal matrix
+  cohort_cg_BSids <- cohort_cg_BSids %>% pull(Kids_First_Biospecimen_ID)
+  
+  # read in the normData that matches with the cohort + cancer_group by normal_matrix_name
+  normal_matrix_file_path <- file.path(normalExpMatrix_path, normal_matrix_name)
+  normData_matched <- readRDS(normal_matrix_file_path)
+  
+  GTExZscoredAnnotation_filtered_fusions_individual <-ZscoredAnnotation(standardFusionCalls,zscoreFilter,normData=normData_matched,cohort_cg_BSids=cohort_cg_BSids, expressionMatrix = expressionMatrix)
   GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, GTExZscoredAnnotation_filtered_fusions_individual)
   }
 

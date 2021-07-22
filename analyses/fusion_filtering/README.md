@@ -61,13 +61,13 @@ bash run_fusion_merged.sh
 
 
 #### Order of scripts in analysis
-`00-normal-matrix-generation.R` : Based on the specific sample type, this script filter the gene expression file to contain only normal samples with the specific sample type. 
+`00-normal-matrix-generation.R` : Based on the specific sample type, this script filter the gene expression file to contain only normal samples with the specific sample type. This script also generates a references file 'gtex_match_cg_cohort.tsv' which shows the matching normal expression matrix for each cohort + cancer_group combination. The logic for the match is hard-coded in the script.
 
 `01-fusion-standardization.R` : Standardizes fusion calls from STARFusion and Arriba
 
 `02-fusion-filtering.R` : Filters artifacts by removing readthroughs and NEIGHBORS from annots column; annots column also contains red flag databases that are used to further filter common/normal occuring fusions; filters all fusions where both genes are expressed TPM < 1 are removed as non-expressed; requires fusions to have at least 1 JunctionSpanningRead and SpanningFragCount-JunctionReadCount to be <100
 
-`03-Calc-zscore-annotate.R` : Calculates z-score for gene fused gene's expression compared to GTeX normal samples. Please **note** that for different cohort, different normal expression files are used and hence the input values for the cohort of interest (--cohortInterest) and the input values for the normal GTEx expression file (--normalExpressionMatrix) need to be in the same order.
+`03-Calc-zscore-annotate.R` : Calculates z-score for gene fused gene's expression compared to GTeX normal samples. This script takes in a list of cohort of interest (--cohortInterest) and a references file 'gtex_match_cg_cohort.tsv' which shows the matching normal expression matrix for each cohort + cancer_group combination. Samples are subset based on the normal expression matrix they need for z-score normalization and all samples matched to the same normal expression matrix will be processed at the same time. These batches of results are then combined to generate the final output.
 
 `04-project-specific-filtering.Rmd` : Performs project specific filtering. We prioritize the fusions as putative-oncogenic fusions if any fused gene in the fusion is annotated as kinases, oncogenes, tumor suppressors, curated transcription factors or present in COSMIC Cancer Gene Census list. We also annotated fusions if they are present in TCGA fusions list.
 All fusion calls have an additional column `reciprocal_exists` to specify if within the Sample a fusion GeneX--GeneY has a reciprocal GeneY--GeneX . `DomainRetainedGene1A` and `DomainRetainedGene1B` are added to identify kinase domain retention for Gene1A (5` Gene) and Gene1B (3` Gene).

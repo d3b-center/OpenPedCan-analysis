@@ -1,0 +1,56 @@
+cancer_group	cohort	tissue_type	gtex_matrix
+Low-grade glioma/astrocytoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Adamantinomatous Craniopharyngioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Ewing sarcoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+High-grade glioma/astrocytoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+NA	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Ependymoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+CNS Embryonal tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Medulloblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Choroid plexus papilloma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Embryonal tumor with multilayer rosettes	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Neurofibroma/Plexiform	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Langerhans Cell histiocytosis	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Choroid plexus carcinoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Diffuse midline glioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Meningioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Sarcoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Atypical Teratoid Rhabdoid Tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Primary CNS lymphoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Diffuse intrinsic pontine glioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Metastatic secondary tumors;Neuroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Schwannoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Epilepsy	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Dysembryoplastic neuroepithelial tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Teratoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Subependymal Giant Cell Astrocytoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Ganglioneuroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Dysplasia/Gliosis;Glial-neuronal tumor NOS	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Malignant peripheral nerve sheath tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Pineoblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Rosai-Dorfman disease	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Rhabdomyosarcoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Glial-neuronal tumor NOS	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Chordoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Germinoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Ganglioneuroma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Ganglioglioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Extraventricular Neurocytoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Fibromyxoid lesion	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Melanocytic tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Arteriovenous malformation	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Metastatic secondary tumors	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Oligodendroglioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Craniopharyngioma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Adenoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Central Neurocytoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Cavernoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Choroid plexus cyst	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Neuroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Reactive connective tissue	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Hemangioblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Myofibroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Myxoid spindle cell tumor	PBTA	Brain	gtex_brain_TPM_hg38.rds
+CNS neuroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Germinoma;Teratoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
+Neuroblastoma	GMKF	Adrenal Gland	gtex_adrenal_gland_TPM_hg38.rds
