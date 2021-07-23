@@ -62,7 +62,7 @@ putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 # Run filtering code to get the reference file
 Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
                                        --clinicalFile $histologies_file \
-                                       --specimenTypes "Adrenal Gland,Brain" \
+                                       --specimenTypes "Adrenal Gland,Brain,Blood,Kidney" \
                                        --outputPath $normal_expression_file_path
 
 
