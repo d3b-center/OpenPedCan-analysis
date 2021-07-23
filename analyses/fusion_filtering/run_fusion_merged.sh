@@ -20,7 +20,7 @@ script_directory="$(perl -e 'use File::Basename;
 cd "$script_directory" || exit
 
 # Set up paths to data files consumed by analysis, and path to result output
-data_path="../../data"
+data_path="../../data/v7"
 scratch_path="../../scratch"
 references_path="references"
 results_path="results/"
@@ -59,25 +59,25 @@ fi
 
 putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 
-# Run filtering code to get the reference file
-Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
-                                       --clinicalFile $histologies_file \
-                                       --specimenTypes "Adrenal Gland,Brain,Blood,Kidney" \
-                                       --outputPath $normal_expression_file_path
+# # Run filtering code to get the reference file
+# Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
+#                                        --clinicalFile $histologies_file \
+#                                        --specimenTypes "Adrenal Gland,Brain,Blood,Kidney" \
+#                                        --outputPath $normal_expression_file_path
 
 
 # # Run Fusion standardization for arriba caller
 # Rscript 01-fusion-standardization.R --fusionfile $arriba_file \
 #                                     --caller "arriba" \
 #                                     --outputFile $standard_arriba_file
-#                                     
-#                                     
+# 
+# 
 # # Run Fusion standardization for starfusion caller
 # Rscript 01-fusion-standardization.R --fusionfile $starfusion_file \
 #                                     --caller "starfusion" \
 #                                     --outputFile $standard_starfusion_file
 # 
-# # Run Fusion general filtering for combined expression file
+# Run Fusion general filtering for combined expression file
 # Rscript 02-fusion-filtering.R --standardFusionFiles $standard_starfusion_file,$standard_arriba_file  \
 #                               --expressionMatrix $rna_expression_file \
 #                               --clinicalFile $histologies_file \
@@ -102,8 +102,8 @@ Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
 # # Project specific filtering
 # Rscript -e "rmarkdown::render('04-project-specific-filtering.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 # 
-# # QC filter putative oncogene found in more than 4 histologies
-# Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# QC filter putative oncogene found in more than 4 histologies
+Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 # 
 # # Recurrent fusion/fused genes
 # Rscript 06-recurrent-fusions-per-cancer-group.R --standardFusionCalls $putative_oncogenic_fusion \

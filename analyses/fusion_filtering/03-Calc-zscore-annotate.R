@@ -80,7 +80,7 @@ normal_exp_match <- readr::read_tsv(normalExpMatrix_match)
 
 # read in histologies file & filter to tumor + RNA-Seq
 clinicalFile <- read.delim(clinicalFile, header = TRUE, sep = "\t", stringsAsFactors = FALSE) %>% 
-  dplyr::filter(experimental_strategy == "RNA-Seq") %>% dplyr::filter(sample_type == "Tumor")
+  dplyr::filter(experimental_strategy == "RNA-Seq") 
 
 # load expression Matrix for cohort
 expressionMatrix<-readRDS(expressionMatrix) 
@@ -110,7 +110,9 @@ ZscoredAnnotation<-function(standardFusionCalls=standardFusionCalls,
               # note_expression_Gene2B : differentially expressed or no change in expression for Gene2B
 
   # fusion calls
-  fusion_sample_gene_df <- standardFusionCalls %>%
+  fusion_sample_gene_df_matched <- standardFusionCalls %>%
+    # filter the fusion results to contain only samples in the cohort of interest
+    dplyr::filter(Sample %in% cohort_BSids) %>%
     # We want to keep track of the gene symbols for each sample-fusion pair
     dplyr::select(Sample, FusionName, Gene1A, Gene1B, Gene2A, Gene2B) %>%
     # We want a single column that contains the gene symbols
@@ -122,8 +124,7 @@ ZscoredAnnotation<-function(standardFusionCalls=standardFusionCalls,
     # Retain only distinct rows
     dplyr::distinct()
     
-    # filter the fusion results to contain only samples in the cohort of interest
-    fusion_sample_gene_df_matched <- fusion_sample_gene_df %>% filter(Sample %in% cohort_BSids)
+    # gather the sample list 
     fusion_sample_list <- fusion_sample_gene_df_matched$Sample %>% unique()
     
     expressionMatrixMatched <- expressionMatrix  %>%
@@ -231,4 +232,42 @@ for (j in (1:length(gtexMatrix))) {
   GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, GTExZscoredAnnotation_filtered_fusions_individual)
   }
 
+# there are cohort+cancer_group that does not have associated gtex normal data
+# for those specimens, we will add 'NA's to the zscore-related columns and combine that the rest
+# this is needed since for next step, we are using the zscored annotated files as input so we need to
+# combine those
+
+no_normal_matrix <- normal_exp_match %>% dplyr::filter(gtex_matrix == "not available") %>% dplyr::select(cohort,cancer_group) %>% distinct()
+no_normal_BSids <-data.frame()
+for (p in (1:nrow(no_normal_matrix))){
+  each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(no_normal_matrix[p,1])) %>% 
+    dplyr::filter(cancer_group == as.character(no_normal_matrix[p,2])) %>%
+    dplyr::select(Kids_First_Biospecimen_ID) 
+  no_normal_BSids <- rbind(no_normal_BSids, each_set)
+}
+no_normal_BSids <-  no_normal_BSids %>% pull(Kids_First_Biospecimen_ID)
+
+# fusion calls
+fusion_sample_gene_df_no_normal <- standardFusionCalls %>% 
+  dplyr::filter(Sample %in% no_normal_BSids) %>%
+  # We want to keep track of the gene symbols for each sample-fusion pair
+  dplyr::select(Sample, FusionName, Gene1A, Gene1B, Gene2A, Gene2B) %>%
+  # We want a single column that contains the gene symbols
+  tidyr::gather(Gene1A, Gene1B, Gene2A, Gene2B,
+                key = gene_position, value = GeneSymbol) %>%
+  # Remove columns without gene symbols
+  dplyr::filter(GeneSymbol != "") %>%
+  dplyr::arrange(Sample, FusionName) %>%
+  # Retain only distinct rows
+  dplyr::distinct()
+
+no_normal_matrix_zscored <- fusion_sample_gene_df_no_normal %>% dplyr:: mutate(note_expression_Gene1A = NA,
+                                                                               note_expression_Gene1B = NA,
+                                                                               note_expression_Gene2A = NA,
+                                                                               note_expression_Gene2B = NA, 
+                                                                               zscore_Gene1A=NA,
+                                                                               zscore_Gene1B=NA,
+                                                                               zscore_Gene2A=NA,
+                                                                               zscore_Gene2B=NA)
+GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, no_normal_matrix_zscored)
 saveRDS(GTExZscoredAnnotation_filtered_fusions,paste0(opt$outputFile,"_GTExComparison_annotated.RDS"))
