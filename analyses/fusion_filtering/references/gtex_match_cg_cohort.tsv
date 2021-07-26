@@ -60,5 +60,4 @@ Acute Myeloid Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
 Acute Lymphoblastic Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
 Neuroblastoma	TARGET	Adrenal Gland	gtex_adrenal_gland_TPM_hg38.rd
 Clear cell sarcoma of the kidney	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
-Osteosarcoma	TARGET	not available	not available
-NA	TARGET	not available	not available
+Osteosarcoma	TARGET	Bone	not available

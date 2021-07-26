@@ -23,22 +23,22 @@ specimen_type_list <-unlist(strsplit(opt$specimenTypes,","))
 outputPath<- opt$outputPath
 
 #read in expression matrix with all specimens and only select 
-# expressionMatrix <- readRDS(expressionMatrix)
+expressionMatrix <- readRDS(expressionMatrix)
 
 #read in clinical file to find the list of normal specimens
 histology_df <- read.delim(clinicalFile, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
-# save<-lapply(specimen_type_list, function(x){
-#   # filter to the names of the specimen based on gtex_group
-#   normal_specimen <- histology_df %>% filter(gtex_group == x) %>% 
-#     filter(experimental_strategy == "RNA-Seq") %>%
-#     tibble::column_to_rownames("Kids_First_Biospecimen_ID")
-#   # subset the expression matrix to only contain specimen type of interest
-#   normal_expression_matrix <- expressionMatrix %>% select(rownames(normal_specimen))
-#   # define output file name and generate output
-#   specimen_type_name <- tolower(gsub(" ", "_", x))
-#   file_name <- file.path(outputPath, paste0("gtex_", specimen_type_name, "_TPM_hg38.rds"))
-#   saveRDS(normal_expression_matrix, file_name)
-# })
+save<-lapply(specimen_type_list, function(x){
+  # filter to the names of the specimen based on gtex_group
+  normal_specimen <- histology_df %>% filter(gtex_group == x) %>%
+    filter(experimental_strategy == "RNA-Seq") %>%
+    tibble::column_to_rownames("Kids_First_Biospecimen_ID")
+  # subset the expression matrix to only contain specimen type of interest
+  normal_expression_matrix <- expressionMatrix %>% select(rownames(normal_specimen))
+  # define output file name and generate output
+  specimen_type_name <- tolower(gsub(" ", "_", x))
+  file_name <- file.path(outputPath, paste0("gtex_", specimen_type_name, "_TPM_hg38.rds"))
+  saveRDS(normal_expression_matrix, file_name)
+})
 
 ### generate reference file that matches each cohort and cancer_group with gtex normal expression file
 # filter to RNA-Seq tumor samples first
@@ -57,13 +57,15 @@ cohort_TARGET <- histology_df %>%
     cancer_group %in% c("Acute Myeloid Leukemia", "Acute Lymphoblastic Leukemia") ~ "Blood",
     cancer_group %in% c("Wilms tumor","Rhabdoid tumor","Clear cell sarcoma of the kidney")  ~ "Kidney",
     cancer_group == "Neuroblastoma" ~ "Adrenal Gland",
+    cancer_group == "Osteosarcoma" ~ "Bone",
     TRUE ~ "not available"
   )) %>% 
   mutate(gtex_matrix = case_when(
     tissue_type == "Kidney" ~ "gtex_kidney_TPM_hg38.rds",
     tissue_type == "Blood" ~ "gtex_blood_TPM_hg38.rds",
     tissue_type == "Adrenal Gland" ~ "gtex_adrenal_gland_TPM_hg38.rd",
+    tissue_type == "Bone" ~ "not available",
     TRUE ~ "not available"))
 
 gtex_match_cg_cohort <- rbind(cohort_PBTA, cohort_GMKF, cohort_TARGET)
-readr::write_tsv(gtex_match_cg_cohort, "references/gtex_match_cg_test_cohort.tsv")
+readr::write_tsv(gtex_match_cg_cohort, "references/gtex_match_cg_cohort.tsv")

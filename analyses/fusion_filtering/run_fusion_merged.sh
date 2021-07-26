@@ -20,7 +20,7 @@ script_directory="$(perl -e 'use File::Basename;
 cd "$script_directory" || exit
 
 # Set up paths to data files consumed by analysis, and path to result output
-data_path="../../data/v7"
+data_path="../../data"
 scratch_path="../../scratch"
 references_path="references"
 results_path="results/"
@@ -59,7 +59,7 @@ fi
 
 putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 
-# # Run filtering code to get the reference file
+# Run filtering code to get the reference file
 # Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
 #                                        --clinicalFile $histologies_file \
 #                                        --specimenTypes "Adrenal Gland,Brain,Blood,Kidney" \
@@ -76,8 +76,8 @@ putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 # Rscript 01-fusion-standardization.R --fusionfile $starfusion_file \
 #                                     --caller "starfusion" \
 #                                     --outputFile $standard_starfusion_file
-# 
-# Run Fusion general filtering for combined expression file
+
+# # Run Fusion general filtering for combined expression file
 # Rscript 02-fusion-filtering.R --standardFusionFiles $standard_starfusion_file,$standard_arriba_file  \
 #                               --expressionMatrix $rna_expression_file \
 #                               --clinicalFile $histologies_file \
@@ -90,20 +90,20 @@ putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 #                               --readthroughFilter
 # 
 # 
-# # Fusion zscore annotation for filtered fusion for the combined RNA expression file
-# Rscript 03-Calc-zscore-annotate.R --standardFusionCalls "${scratch_path}/standardFusionExp_QC_expression_filtered_annotated.RDS" \
-#                                   --expressionMatrix $rna_expression_file \
-#                                   --clinicalFile $histologies_file \
-#                                   --cohortInterest "PBTA,GMKF,TARGET" \
-#                                   --normalExpMatrix_path $normal_expression_file_path \
-#                                   --normalExpMatrix_match "${references_path}/gtex_match_cg_cohort.tsv" \
-#                                   --outputFile "${scratch_path}/standardFusionExp_QC_expression"
+# Fusion zscore annotation for filtered fusion for the combined RNA expression file
+Rscript 03-Calc-zscore-annotate.R --standardFusionCalls "${scratch_path}/standardFusionExp_QC_expression_filtered_annotated.RDS" \
+                                  --expressionMatrix $rna_expression_file \
+                                  --clinicalFile $histologies_file \
+                                  --cohortInterest "PBTA,GMKF,TARGET" \
+                                  --normalExpMatrix_path $normal_expression_file_path \
+                                  --normalExpMatrix_match "${references_path}/gtex_match_cg_cohort.tsv" \
+                                  --outputFile "${scratch_path}/standardFusionExp_QC_expression"
 # 
 # # Project specific filtering
 # Rscript -e "rmarkdown::render('04-project-specific-filtering.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 # 
 # QC filter putative oncogene found in more than 4 histologies
-Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 # 
 # # Recurrent fusion/fused genes
 # Rscript 06-recurrent-fusions-per-cancer-group.R --standardFusionCalls $putative_oncogenic_fusion \
