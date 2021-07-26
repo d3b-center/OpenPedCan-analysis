@@ -58,6 +58,6 @@ Wilms tumor	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
 Rhabdoid tumor	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
 Acute Myeloid Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
 Acute Lymphoblastic Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
-Neuroblastoma	TARGET	Adrenal Gland	gtex_adrenal_gland_TPM_hg38.rd
+Neuroblastoma	TARGET	Adrenal Gland	gtex_adrenal_gland_TPM_hg38.rds
 Clear cell sarcoma of the kidney	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
 Osteosarcoma	TARGET	Bone	not available

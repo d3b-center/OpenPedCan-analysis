@@ -22,7 +22,7 @@ clinicalFile<-opt$clinicalFile
 specimen_type_list <-unlist(strsplit(opt$specimenTypes,","))
 outputPath<- opt$outputPath
 
-#read in expression matrix with all specimens and only select 
+#read in expression matrix with all specimens and only select
 expressionMatrix <- readRDS(expressionMatrix)
 
 #read in clinical file to find the list of normal specimens
@@ -63,7 +63,7 @@ cohort_TARGET <- histology_df %>%
   mutate(gtex_matrix = case_when(
     tissue_type == "Kidney" ~ "gtex_kidney_TPM_hg38.rds",
     tissue_type == "Blood" ~ "gtex_blood_TPM_hg38.rds",
-    tissue_type == "Adrenal Gland" ~ "gtex_adrenal_gland_TPM_hg38.rd",
+    tissue_type == "Adrenal Gland" ~ "gtex_adrenal_gland_TPM_hg38.rds",
     tissue_type == "Bone" ~ "not available",
     TRUE ~ "not available"))
 

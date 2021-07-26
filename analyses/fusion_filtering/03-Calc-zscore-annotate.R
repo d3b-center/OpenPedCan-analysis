@@ -46,7 +46,7 @@ option_list <- list(
   make_option(c("-z", "--zscoreFilter"), type="integer",default=2,
               help="zscore value to use as threshold for annotation of differential expression"),
   make_option(c("-e","--expressionMatrix"),type="character",
-              help="expression matrix (FPKM for samples that need to be zscore normalized .RDS)"),
+              help="expression matrix (TPM for samples that need to be zscore normalized .RDS)"),
   make_option(c("-c","--clinicalFile"),type="character",
               help="clinical file for all samples (.tsv)"),
   make_option(c("-y", "--cohortInterest"),type="character",
@@ -90,7 +90,7 @@ gtexMatrix <- list.files(normalExpMatrix_path)
 
 ZscoredAnnotation<-function(standardFusionCalls=standardFusionCalls,
                             normData=normData, zscoreFilter=zscoreFilter,
-                            saveZscoredMatrix=saveZscoredMatrix,cohort_cg_BSids= cohort_cg_BSids,
+                            saveZscoredMatrix=saveZscoredMatrix,cohort_BSids= cohort_BSids,
                             expressionMatrix=expressionMatrix){
   #  @param standardFusionCalls : Annotates standardizes fusion calls from callers [STARfusion| Arriba] or QC filtered fusion
   #  @param zscoreFilter : Zscore value to use as threshold for annotation of differential expression
@@ -206,29 +206,30 @@ GTExZscoredAnnotation_filtered_fusions <- data.frame()
 for (j in (1:length(gtexMatrix))) {
   # find the cohort + cancer_group that match to this particuarl gtexMatrix
   normal_matrix_name <- gtexMatrix[j]
-  cohort_cg_matched <- normal_exp_match %>% dplyr::filter(gtex_matrix == normal_matrix_name) %>% 
+  cohort_matched <- normal_exp_match %>% dplyr::filter(gtex_matrix == normal_matrix_name) %>% 
     dplyr::filter(cohort %in% cohortInterest) %>% dplyr::select(cohort,cancer_group) %>% distinct()
-  cohort_list <- cohort_cg_matched$cohort %>% unique()
+  cohort_list <- cohort_matched$cohort %>% unique()
   
   # find the BSids that are associated with all the above combinations of cohort + cancer_group
-  cohort_cg_BSids <-data.frame()
-  for (k in (1:nrow(cohort_cg_matched))){
-    each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_cg_matched[k,1])) %>% 
-      dplyr::filter(cancer_group == as.character(cohort_cg_matched[k,2])) %>%
+  cohort_BSids <-data.frame()
+  for (k in (1:nrow(cohort_matched))){
+    each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_matched[k,1])) %>% 
+      dplyr::filter(cancer_group == as.character(cohort_matched[k,2])) %>%
       dplyr::select(Kids_First_Biospecimen_ID) 
-    cohort_cg_BSids <- rbind(cohort_cg_BSids, each_set)
+    cohort_BSids <- rbind(cohort_BSids, each_set)
   }
   # add some of them have cancer_group as NA, those needed to be added back
-  cohort_cg_BSids <- clinicalFile %>% dplyr::filter(cohort %in% cohort_list) %>%
-    filter(is.na(cancer_group)) %>% dplyr::select(Kids_First_Biospecimen_ID) %>% rbind(cohort_cg_BSids)
+  cohort_BSids <- clinicalFile %>% dplyr::filter(cohort %in% cohort_list) %>%
+    filter(is.na(cancer_group)) %>% dplyr::select(Kids_First_Biospecimen_ID) %>%
+    rbind(cohort_BSids)
   # get the list of BSids that matches to the same normal matrix
-  cohort_cg_BSids <- cohort_cg_BSids %>% pull(Kids_First_Biospecimen_ID)
+  cohort_BSids <- cohort_BSids %>% pull(Kids_First_Biospecimen_ID)
   
   # read in the normData that matches with the cohort + cancer_group by normal_matrix_name
   normal_matrix_file_path <- file.path(normalExpMatrix_path, normal_matrix_name)
   normData_matched <- readRDS(normal_matrix_file_path)
   
-  GTExZscoredAnnotation_filtered_fusions_individual <-ZscoredAnnotation(standardFusionCalls,zscoreFilter,normData=normData_matched,cohort_cg_BSids=cohort_cg_BSids, expressionMatrix = expressionMatrix)
+  GTExZscoredAnnotation_filtered_fusions_individual <-ZscoredAnnotation(standardFusionCalls,zscoreFilter,normData=normData_matched,cohort_BSids=cohort_BSids, expressionMatrix = expressionMatrix)
   GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, GTExZscoredAnnotation_filtered_fusions_individual)
   }
 
