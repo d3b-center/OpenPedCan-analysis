@@ -213,15 +213,18 @@ for (j in (1:length(gtexMatrix))) {
   # find the BSids that are associated with all the above combinations of cohort + cancer_group
   cohort_BSids <-data.frame()
   for (k in (1:nrow(cohort_matched))){
-    each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_matched[k,1])) %>% 
-      dplyr::filter(cancer_group == as.character(cohort_matched[k,2])) %>%
-      dplyr::select(Kids_First_Biospecimen_ID) 
+    if(is.na(cohort_matched[k,2])){
+      each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_matched[k,1])) %>% 
+        dplyr::filter(is.na(cancer_group)) %>%
+        dplyr::select(Kids_First_Biospecimen_ID) 
+    }else{
+      each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(cohort_matched[k,1])) %>% 
+        dplyr::filter(cancer_group == as.character(cohort_matched[k,2])) %>%
+        dplyr::select(Kids_First_Biospecimen_ID) 
+    }
     cohort_BSids <- rbind(cohort_BSids, each_set)
   }
-  # add some of them have cancer_group as NA, those needed to be added back
-  cohort_BSids <- clinicalFile %>% dplyr::filter(cohort %in% cohort_list) %>%
-    filter(is.na(cancer_group)) %>% dplyr::select(Kids_First_Biospecimen_ID) %>%
-    rbind(cohort_BSids)
+
   # get the list of BSids that matches to the same normal matrix
   cohort_BSids <- cohort_BSids %>% pull(Kids_First_Biospecimen_ID)
   
@@ -241,34 +244,30 @@ for (j in (1:length(gtexMatrix))) {
 no_normal_matrix <- normal_exp_match %>% dplyr::filter(gtex_matrix == "not available") %>% dplyr::select(cohort,cancer_group) %>% distinct()
 no_normal_BSids <-data.frame()
 for (p in (1:nrow(no_normal_matrix))){
+  if(is.na(no_normal_matrix[p,2])){
+    each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(no_normal_matrix[p,1])) %>% 
+      dplyr::filter(is.na(cancer_group)) %>%
+      dplyr::select(Kids_First_Biospecimen_ID) 
+  }else{
   each_set <- clinicalFile %>% dplyr::filter(cohort == as.character(no_normal_matrix[p,1])) %>% 
     dplyr::filter(cancer_group == as.character(no_normal_matrix[p,2])) %>%
     dplyr::select(Kids_First_Biospecimen_ID) 
+  }
   no_normal_BSids <- rbind(no_normal_BSids, each_set)
 }
 no_normal_BSids <-  no_normal_BSids %>% pull(Kids_First_Biospecimen_ID)
 
 # fusion calls
-fusion_sample_gene_df_no_normal <- standardFusionCalls %>% 
-  dplyr::filter(Sample %in% no_normal_BSids) %>%
-  # We want to keep track of the gene symbols for each sample-fusion pair
-  dplyr::select(Sample, FusionName, Gene1A, Gene1B, Gene2A, Gene2B) %>%
-  # We want a single column that contains the gene symbols
-  tidyr::gather(Gene1A, Gene1B, Gene2A, Gene2B,
-                key = gene_position, value = GeneSymbol) %>%
-  # Remove columns without gene symbols
-  dplyr::filter(GeneSymbol != "") %>%
-  dplyr::arrange(Sample, FusionName) %>%
-  # Retain only distinct rows
-  dplyr::distinct()
+fusion_sample_no_normal <- standardFusionCalls %>% 
+  dplyr::filter(Sample %in% no_normal_BSids) %>% 
+  dplyr:: mutate(note_expression_Gene1A = NA,
+                 note_expression_Gene1B = NA,
+                 note_expression_Gene2A = NA,
+                 note_expression_Gene2B = NA, 
+                 zscore_Gene1A=NA,
+                 zscore_Gene1B=NA,
+                 zscore_Gene2A=NA,
+                 zscore_Gene2B=NA)
 
-no_normal_matrix_zscored <- fusion_sample_gene_df_no_normal %>% dplyr:: mutate(note_expression_Gene1A = NA,
-                                                                               note_expression_Gene1B = NA,
-                                                                               note_expression_Gene2A = NA,
-                                                                               note_expression_Gene2B = NA, 
-                                                                               zscore_Gene1A=NA,
-                                                                               zscore_Gene1B=NA,
-                                                                               zscore_Gene2A=NA,
-                                                                               zscore_Gene2B=NA)
-GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, no_normal_matrix_zscored)
+GTExZscoredAnnotation_filtered_fusions <- rbind(GTExZscoredAnnotation_filtered_fusions, fusion_sample_no_normal)
 saveRDS(GTExZscoredAnnotation_filtered_fusions,paste0(opt$outputFile,"_GTExComparison_annotated.RDS"))

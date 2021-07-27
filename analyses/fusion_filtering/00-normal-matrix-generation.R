@@ -13,7 +13,9 @@ option_list <- list(
   make_option(c("-s","--specimenTypes"),type="character",
               help="list of specimen types that we want normal expresion matrix"),
   make_option(c("-o","--outputPath"),type="character",
-              help="path to the normal expression matrix that we are generating")
+              help="path to the normal expression matrix that we are generating"),
+  make_option(c("-m","--matchRef"),type="character",
+              help="output file for the cohort + cancer_group match for normalization file (.TSV)")
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
@@ -21,6 +23,7 @@ expressionMatrix<-opt$expressionMatrix
 clinicalFile<-opt$clinicalFile
 specimen_type_list <-unlist(strsplit(opt$specimenTypes,","))
 outputPath<- opt$outputPath
+matchRef<-opt$matchRef
 
 #read in expression matrix with all specimens and only select
 expressionMatrix <- readRDS(expressionMatrix)
@@ -42,7 +45,7 @@ save<-lapply(specimen_type_list, function(x){
 
 ### generate reference file that matches each cohort and cancer_group with gtex normal expression file
 # filter to RNA-Seq tumor samples first
-histology_df <-  histology_df %>% filter(experimental_strategy == "RNA-Seq") %>% filter(sample_type == "Tumor") 
+histology_df <-  histology_df %>% filter(experimental_strategy == "RNA-Seq") 
 
 cohort_PBTA <- histology_df %>%
   filter(cohort == "PBTA") %>% select(cancer_group, cohort) %>% distinct() %>% mutate(tissue_type = "Brain") %>% 
@@ -53,7 +56,8 @@ cohort_GMKF <- histology_df %>%
   mutate(gtex_matrix = "gtex_adrenal_gland_TPM_hg38.rds")
 
 cohort_TARGET <- histology_df %>%
-  filter(cohort == "TARGET") %>% select(cancer_group, cohort) %>% distinct() %>% mutate(tissue_type = case_when(
+  filter(cohort == "TARGET") %>% select(cancer_group, cohort) %>% distinct() %>% 
+  mutate(tissue_type = case_when(
     cancer_group %in% c("Acute Myeloid Leukemia", "Acute Lymphoblastic Leukemia") ~ "Blood",
     cancer_group %in% c("Wilms tumor","Rhabdoid tumor","Clear cell sarcoma of the kidney")  ~ "Kidney",
     cancer_group == "Neuroblastoma" ~ "Adrenal Gland",
@@ -68,4 +72,4 @@ cohort_TARGET <- histology_df %>%
     TRUE ~ "not available"))
 
 gtex_match_cg_cohort <- rbind(cohort_PBTA, cohort_GMKF, cohort_TARGET)
-readr::write_tsv(gtex_match_cg_cohort, "references/gtex_match_cg_cohort.tsv")
+readr::write_tsv(gtex_match_cg_cohort, matchRef)
