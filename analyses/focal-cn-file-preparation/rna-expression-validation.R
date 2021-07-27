@@ -83,7 +83,7 @@ if (!dir.exists(plots_dir)) {
   dir.create(plots_dir)
 }
 
-# Read in data from tsv file (produced in `03-prepare-cn-file.R`)
+# Read in data from tsv file (produced in `04-prepare-cn-file.R`)
 cn_df <- readr::read_tsv(opt$annotated_cnv_file)
 
 # Read in RNA-seq expression data
@@ -109,29 +109,26 @@ source(
 #### Get rid of ambiguous and non-tumor samples --------------------------------
 
 # Below code is adapted from: analyses/oncoprint-landscape/00-map-to-sample_id.R
-# An ambiguous sample_id will have more than 2 rows associated with it in the
-# histologies file when looking at tumor samples -- that means we won't be able
-# to determine when an WGS/WXS assay maps to an RNA-seq assay for the purpose of
-# plotting
-ambiguous_sample_ids <- metadata %>%
-  dplyr::filter(
-    sample_type == "Tumor",
-    composition == "Solid Tissue" | composition == "Bone Marrow"
-  ) %>%
-  dplyr::group_by(sample_id) %>%
+# An ambiguous Kids_First_Participant_ID will have more than 1 DNA specimen 
+# either WXS or WGS -- that means we won't be able to determine when an WGS/WXS 
+# assay maps to an RNA-seq assay for the purpose of plotting
+
+ambiguous_participants <- metadata %>%
+  dplyr::filter(sample_type == "Tumor") %>%
+  dplyr::filter(experimental_strategy != "RNA-Seq") %>%
+  dplyr::group_by(Kids_First_Participant_ID) %>%
   dplyr::tally() %>%
-  dplyr::filter(n > 2) %>%
-  dplyr::pull(sample_id)
+  dplyr::filter(n > 1) %>%
+  dplyr::pull(Kids_First_Participant_ID)
 
 ambiguous_biospecimens <- metadata %>%
-  dplyr::filter(sample_id %in% ambiguous_sample_ids) %>%
+  dplyr::filter(Kids_First_Participant_ID %in% ambiguous_participants) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # We're only going to look at tumor samples
 not_tumor_biospecimens <- metadata %>%
   dplyr::filter(
-    sample_type != "Tumor",
-    composition != "Solid Tissue" & composition != "Bone Marrow"
+    sample_type != "Tumor"
   ) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
@@ -143,21 +140,7 @@ biospecimens_to_remove <- unique(c(
 # Filter the CN data
 cn_df <- cn_df %>%
   dplyr::filter(!(biospecimen_id %in% biospecimens_to_remove)) %>%
-  dplyr::select(biospecimen_id, status, copy_number, gene_symbol)
-
-#### Determine independent specimens -------------------------------------------
-
-# Below code is adapted from: analyses/oncoprint-landscape/00-map-to-sample_id.R
-# Read in the primary indepedent specimens file
-ind_biospecimen <-
-  readr::read_tsv(opt$independent_specimens_file) %>%
-  dplyr::pull(Kids_First_Biospecimen_ID)
-
-# Filter the CN data, to only include biospecimen identifiers in the
-# independent file
-cn_df <- cn_df %>%
-  dplyr::filter(biospecimen_id %in% ind_biospecimen) %>%
-  dplyr::distinct() %>%
+  dplyr::select(biospecimen_id, status, copy_number, gene_symbol) %>%
   dplyr::group_by(biospecimen_id, gene_symbol) %>%
   # Collapse status and copy number -- anything with conflicting (e.g., more 
   # than one) values will contain a comma in status and/or copy number
@@ -166,37 +149,33 @@ cn_df <- cn_df %>%
                    copy_number = paste(sort(unique(copy_number)),
                                        collapse = ", "))
 
-# TODO: write cases where there is conflicting evidence re: status and copy
-# number to a separate file -- this would be the same regardless of the 
-# expression data being used 
-# ambiguous_cn_status_df <- cn_df %>%
-#   dplyr::filter(stringr::str_detect(status, ",") |
-#                   stringr::str_detect(copy_number, ","))
-
 # This is removing any instances where the status or copy number do not agree
 cn_df <-cn_df %>%
   dplyr::filter(stringr::str_detect(status, ",", negate = TRUE) |
                   stringr::str_detect(copy_number, ",", negate = TRUE))
 
-# For the RNA-seq samples, we need to map from the sample identifier
-# associated with the independent specimen and back to a biospecimen ID
-ind_sample_id <- metadata %>%
-  dplyr::filter(Kids_First_Biospecimen_ID %in% ind_biospecimen) %>%
-  dplyr::pull(sample_id)
+# For the RNA-seq samples, we need to map from the Kids_First_Participant_ID
+# to the Kids_First_Biospecimen_ID of the matching RNA specimens 
 
-# Get the corresponding biospecimen ID to be used
-rnaseq_ind <- metadata %>%
-  dplyr::filter(
-    sample_id %in% ind_sample_id,
-    experimental_strategy == "RNA-Seq"
-  ) %>%
+# First find the biospecimen id of CN samples 
+cn_df_biospecimens <- cn_df %>% dplyr::pull(biospecimen_id) %>% unique()
+
+# Call the participant ID and find the matching RNA 
+# Since we already remove the ambiguous specimens, this should get the matching RNA-Seq
+cn_df_participants <- metadata %>% 
+  dplyr::filter(Kids_First_Biospecimen_ID %in% cn_df_biospecimens) %>%
+  dplyr::pull(Kids_First_Participant_ID)
+
+rna_matched<- metadata %>%
+  dplyr::filter(Kids_First_Participant_ID %in% cn_df_participants) %>%
+  dplyr::filter(experimental_strategy == "RNA-Seq") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 #### Filter and Join data ------------------------------------------------------
 
 # Filter expression data to include independent sample and calculate z-scores by
 # gene using `calculate_z_score` custom function
-expression_zscore_df <- calculate_z_score(expression_matrix, rnaseq_ind)
+expression_zscore_df <- calculate_z_score(expression_matrix, rna_matched)
 
 # Merge Focal CN data.frame with RNA expression data.frame using
 # `merge_expression` custom function

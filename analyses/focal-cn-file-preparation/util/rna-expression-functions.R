@@ -10,7 +10,7 @@
 #
 # source(file.path("util", "rna-expression-functions.R"))
 
-calculate_z_score <- function (expression_data, rnaseq_ind) {
+calculate_z_score <- function (expression_data, rna_matched) {
   # Given an expression data matrix, filter for independent samples and
   # calculate the log2 expression values and z-scores.
   #
@@ -21,6 +21,9 @@ calculate_z_score <- function (expression_data, rnaseq_ind) {
   #   long_expression: expression data.frame filtered for independent samples
   #                    and now in long format, and with the added columns:
   #                    `z_score`, `expression_class`
+  
+  # subset expression data to only the matching specimens
+  expression_data <- expression_data %>% select(rna_matched)
   
   # log2 transform expression matrix
   log2_exp <- log2(expression_data + 1)
@@ -38,7 +41,6 @@ calculate_z_score <- function (expression_data, rnaseq_ind) {
       gene_id = Var2,
       z_score = value
     ) %>%
-    dplyr::filter(biospecimen_id %in% rnaseq_ind) %>%
     dplyr::mutate(
       gene_id = gsub(".*\\_", "", gene_id),
       # Trim the gene ids to
@@ -88,19 +90,12 @@ merge_expression <-
     #   combined_df: data.frame with information from the focal CN, the
     #                       RNA-seq expression, and metadata data.frames
     
+    # subset metadata to contain only columns of interest 
+    meta_expression <- metadata %>% select(Kids_First_Participant_ID, tumor_descriptor)
     # Annotate expression data with metadata
     expression_metadata <- expression_df %>%
-      dplyr::inner_join(metadata,
-                        by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
-      dplyr::select(
-        gene_id,
-        Kids_First_Participant_ID,
-        sample_id,
-        biospecimen_id,
-        z_score,
-        expression_class,
-        tumor_descriptor
-      ) %>%
+      dplyr::left_join(meta_expression,
+                        by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>% 
       dplyr::distinct()
     
     # Annotate focal CN data with metadata
