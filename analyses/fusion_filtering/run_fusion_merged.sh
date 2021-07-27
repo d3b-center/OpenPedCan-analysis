@@ -62,46 +62,46 @@ fi
 
 putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 
-# # Run filtering code to get the reference file
-# Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
-#                                        --clinicalFile $histologies_file \
-#                                        --specimenType "Adrenal Gland,Brain,Blood,Kidney" \
-#                                        --outputPath $normal_expression_path \
-#                                        --matchRef $normal_expression_match
+# Run filtering code to get the reference file
+Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
+                                       --clinicalFile $histologies_file \
+                                       --specimenType "Adrenal Gland,Brain,Blood,Kidney" \
+                                       --outputPath $normal_expression_path \
+                                       --matchRef $normal_expression_match
 
 
-# # Run Fusion standardization for arriba caller
-# Rscript 01-fusion-standardization.R --fusionfile $arriba_file \
-#                                     --caller "arriba" \
-#                                     --outputFile $standard_arriba_file
-# 
-# 
-# # Run Fusion standardization for starfusion caller
-# Rscript 01-fusion-standardization.R --fusionfile $starfusion_file \
-#                                     --caller "starfusion" \
-#                                     --outputFile $standard_starfusion_file
-# 
-# # Run Fusion general filtering for combined expression file
-# Rscript 02-fusion-filtering.R --standardFusionFiles $standard_starfusion_file,$standard_arriba_file  \
-#                               --expressionMatrix $rna_expression_file \
-#                               --clinicalFile $histologies_file \
-#                               --cohortInterest "PBTA,GMKF,TARGET" \
-#                               --artifactFilter $artifact_filter  \
-#                               --spanningFragCountFilter $spanningFragCountFilter \
-#                               --readingFrameFilter $reading_frame_filter \
-#                               --referenceFolder $references_path \
-#                               --outputFile "${scratch_path}/standardFusionExp" \
-#                               --readthroughFilter
+# Run Fusion standardization for arriba caller
+Rscript 01-fusion-standardization.R --fusionfile $arriba_file \
+                                    --caller "arriba" \
+                                    --outputFile $standard_arriba_file
 
 
-# # Fusion zscore annotation for filtered fusion for the combined RNA expression file
-# Rscript 03-Calc-zscore-annotate.R --standardFusionCalls "${scratch_path}/standardFusionExp_QC_expression_filtered_annotated.RDS" \
-#                                   --expressionMatrix $rna_expression_file \
-#                                   --clinicalFile $histologies_file \
-#                                   --cohortInterest "PBTA,GMKF,TARGET" \
-#                                   --normalExpMatrix_path $normal_expression_path \
-#                                   --normalExpMatrix_match $normal_expression_match \
-#                                   --outputFile "${scratch_path}/standardFusionExp_QC_expression"
+# Run Fusion standardization for starfusion caller
+Rscript 01-fusion-standardization.R --fusionfile $starfusion_file \
+                                    --caller "starfusion" \
+                                    --outputFile $standard_starfusion_file
+
+# Run Fusion general filtering for combined expression file
+Rscript 02-fusion-filtering.R --standardFusionFiles $standard_starfusion_file,$standard_arriba_file  \
+                              --expressionMatrix $rna_expression_file \
+                              --clinicalFile $histologies_file \
+                              --cohortInterest "PBTA,GMKF,TARGET" \
+                              --artifactFilter $artifact_filter  \
+                              --spanningFragCountFilter $spanningFragCountFilter \
+                              --readingFrameFilter $reading_frame_filter \
+                              --referenceFolder $references_path \
+                              --outputFile "${scratch_path}/standardFusionExp" \
+                              --readthroughFilter
+
+
+# Fusion zscore annotation for filtered fusion for the combined RNA expression file
+Rscript 03-Calc-zscore-annotate.R --standardFusionCalls "${scratch_path}/standardFusionExp_QC_expression_filtered_annotated.RDS" \
+                                  --expressionMatrix $rna_expression_file \
+                                  --clinicalFile $histologies_file \
+                                  --cohortInterest "PBTA,GMKF,TARGET" \
+                                  --normalExpMatrix_path $normal_expression_path \
+                                  --normalExpMatrix_match $normal_expression_match \
+                                  --outputFile "${scratch_path}/standardFusionExp_QC_expression"
 
 # Project specific filtering
 Rscript -e "rmarkdown::render('04-project-specific-filtering.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"

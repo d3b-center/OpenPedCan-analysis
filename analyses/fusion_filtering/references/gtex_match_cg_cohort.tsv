@@ -55,6 +55,7 @@ CNS neuroblastoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
 Germinoma;Teratoma	PBTA	Brain	gtex_brain_TPM_hg38.rds
 Neuroblastoma	GMKF	Adrenal Gland	gtex_adrenal_gland_TPM_hg38.rds
 Wilms tumor	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
+NA	TARGET	not available	not available
 Rhabdoid tumor	TARGET	Kidney	gtex_kidney_TPM_hg38.rds
 Acute Myeloid Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
 Acute Lymphoblastic Leukemia	TARGET	Blood	gtex_blood_TPM_hg38.rds
