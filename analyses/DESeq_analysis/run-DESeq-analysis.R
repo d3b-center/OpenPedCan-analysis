@@ -9,36 +9,70 @@
 # This was compares 1 cancer group (Combined or Cohort specific) with one GTEx tissue type. The input arguments are the indices of the comparison of the cancer groups and gtex sub tissues to be compared. In v6, there are 107 cancer groups vs 54 GTEx tissues
 
 # Read arguments from terminal
-args <- commandArgs(trailingOnly = TRUE)
+#args <- commandArgs(trailingOnly = TRUE)
 
 # Load required libraries
 suppressPackageStartupMessages({
+  library(optparse)
+  library(this.path)
   library(ggplot2)
   library(DESeq2)
 })
 
 
-HIST_index <- args[1]   #assign first argument to Histology index
-GTEX_index <- args[2]   #assign second argument to GTEx index
+# read params
+option_list <- list(
+  make_option(c("-c", "--hist_file"), type = "character",
+              help = "Histology data file (.TSV)"),
+  make_option(c("-n", "--counts_file"), type = "character",
+              help = "Gene Counts file (.rds)"),
+  make_option(c("-t", "--tpm_file"), type = "character",
+              help = "Counts TPM file (.rds)"),
+  make_option(c("-e", "--ensg_hugo_file"), type = "character",
+              help = "ENSG Hugo codes file (.tsv)"),
+  make_option(c("-m", "--efo_mondo_file"), type = "character",
+              help = "MONDO and EFO codes file (.tsv)"),
+  make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
+              help = "HIST_index"),
+  make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
+              help = "GTEX_index")
+)
+
+script.dir <- this.path()
+#print(script.dir)
+dir.create(file.path(dirname(dirname(script.dir)),"Results"), showWarnings = FALSE)
+
+# parse the parameters
+opt <- parse_args(OptionParser(option_list = option_list))
+
+
+#HIST_index <- args[1]   #assign first argument to Histology index
+#GTEX_index <- args[2]   #assign second argument to GTEx index
 
     
-
+HIST_index <- opt$HIST_i   #assign first argument to Histology index
+GTEX_index <- opt$GTEX_i   #assign second argument to GTEx index
 
 
 #Load histology file
-hist <- read.delim("../data/v6/histologies.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("../data/v6/histologies.tsv", header=TRUE, sep = '\t')
+hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-countData <- readRDS("../data/v6/gene-counts-rsem-expected_count-collapsed.rds")
+#countData <- readRDS("../data/v6/gene-counts-rsem-expected_count-collapsed.rds")
+countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-TPMData <- readRDS("../data/v6/gene-expression-rsem-tpm-collapsed.rds")
+#TPMData <- readRDS("../data/v6/gene-expression-rsem-tpm-collapsed.rds")
+TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-EFO_MONDO <- read.delim("../data/v6/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+#EFO_MONDO <- read.delim("../data/v6/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-ENSG_Hugo <- read.delim("../data/v6/ensg-hugo-rmtl-v1-mapping.tsv", header =T)
+#ENSG_Hugo <- read.delim("../data/v6/ensg-hugo-rmtl-v1-mapping.tsv", header =T)
+ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
 # Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
 hist.filtered <- unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames(countData)),])
@@ -92,13 +126,13 @@ for(I in 1:length(Cancer_Histology))
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
 #Create DF that list all Kids_First_Biospecimen_IDs by Cohort - Cancer groups
 sample_type_df_tumor_cohort <- data.frame()
-for(I in 1:length(Cancer_Histology_COHORT))
-{
+#for(I in 1:length(Cancer_Histology_COHORT))
+#{
   Cancer_Histology_COHORT_cohort <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
   Cancer_Histology_COHORT_cancer_group <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][2]
   sample_type_df_tumor_cohort <- rbind(sample_type_df_tumor_cohort,
                                        data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)],Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
-}
+#}
 
 #Combine the rows from the normal and tumor sample df
 sample_type_df <- rbind(sample_type_df_tumor,sample_type_df_tumor_cohort,sample_type_df_normal)
@@ -193,8 +227,10 @@ Final_Data_Table <- data.frame(
 
 
 #Save files
-system("mkdir DESeq_analysis/Results/")
+#system("mkdir DESeq_analysis/Results/")
+
+#dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
 
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
-write.table(Final_Data_Table,file=paste("DESeq_analysis/Results/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
+write.table(Final_Data_Table,file=paste(dirname(dirname(script.dir)),"/Results/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
