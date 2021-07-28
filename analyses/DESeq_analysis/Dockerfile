@@ -21,6 +21,6 @@ RUN chmod 755 ./install_bioc.R && ./install_bioc.R	DESeq2
 
 
 RUN R -e "install.packages('optparse', dependencies = TRUE)"
-
+RUN R -e "install.packages('this.path', dependencies = TRUE)"
 
 CMD Rscript --vanilla run-DESeq-analysis.R --hist_file histologies.tsv --counts_file gene-counts-rsem-expected_count-collapsed.rds --tpm_file gene-expression-rsem-tpm-collapsed.rds --efo_mondo_file efo-mondo-map.tsv --ensg_hugo_file ensg-hugo-rmtl-mapping.tsv
