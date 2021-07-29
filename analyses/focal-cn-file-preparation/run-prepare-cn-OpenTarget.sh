@@ -64,14 +64,13 @@ Rscript --vanilla 04-prepare-cn-file.R \
 --controlfreec \
 --runWXSonly
 
-# filenameLead=("cnvkit_annotated_cn" "controlfreec_annotated_cn" "cnvkit_annotated_cn_wxs" "controlfreec_annotated_cn_wxs")
-# chromosomeType=("autosomes" "x_and_y")
-# for filename in ${filenameLead[@]}; do
-#   for chromosome_type in ${chromosomesType[@]}; do
-#       Rscript --vanilla rna-expression-validation.R \
-#         --annotated_cnv_file results/${filename}_${chromosome_type}.tsv.gz \
-#         --expression_file ${data_dir}/gene-expression-rsem-tpm-collapsed.rds \
-#         --independent_specimens_file $independent_specimens_file \
+ filenameLead=("cnvkit_annotated_cn_wxs" "controlfreec_annotated_cn_wxs")
+ chromosomeType=("autosomes" "x_and_y")
+ for filename in ${filenameLead[@]}; do
+   for chromosome_type in ${chromosomesType[@]}; do
+       Rscript --vanilla rna-expression-validation.R \
+         --annotated_cnv_file results/${filename}_${chromosome_type}.tsv.gz \
+         --expression_file ${data_dir}/gene-expression-rsem-tpm-collapsed.rds \
 #         --metadata $histologies_file \
 #         --goi_list $goi_file \
 #         --filename_lead ${filename}_${chromosome_type}

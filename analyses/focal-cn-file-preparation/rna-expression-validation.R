@@ -37,12 +37,6 @@ option_list <- list(
     help = "file path to RDS file that contains gene expression information"
   ),
   optparse::make_option(
-    c("--independent_specimens_file"),
-    type = "character",
-    default = NULL,
-    help = "file path to tsv file that contains list of independent specimen ids"
-  ),
-  optparse::make_option(
     c("--metadata"),
     type = "character",
     default = NULL,
@@ -53,6 +47,12 @@ option_list <- list(
     type = "character",
     default = NULL,
     help = "file path to tsv file that contains list of driver genes"
+  ),
+  optparse::make_option(
+    c("--independent_specimens_file"),
+    type = "character",
+    default = NULL,
+    help = "file path to tsv file that defines independent specimens"
   ),
   optparse::make_option(
     c("--filename_lead"),
@@ -213,6 +213,7 @@ cn_neutral_df <- filtered_expression_cn_combined_df %>%
 # Filter for copy number equal to 0
 cn_zero_df <- filtered_expression_cn_combined_df %>%
   dplyr::filter(copy_number == 0)
+
 
 # Plot and save using `plot_stacked_expression` custom function on expression
 # data

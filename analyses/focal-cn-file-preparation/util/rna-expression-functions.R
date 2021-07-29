@@ -23,7 +23,7 @@ calculate_z_score <- function (expression_data, rna_matched) {
   #                    `z_score`, `expression_class`
   
   # subset expression data to only the matching specimens
-  expression_data <- expression_data %>% select(rna_matched)
+  expression_data <- expression_data %>% dplyr::select(rna_matched)
   
   # log2 transform expression matrix
   log2_exp <- log2(expression_data + 1)
@@ -91,21 +91,29 @@ merge_expression <-
     #                       RNA-seq expression, and metadata data.frames
     
     # subset metadata to contain only columns of interest 
-    meta_expression <- metadata %>% select(Kids_First_Participant_ID, tumor_descriptor)
+    meta_expression <- metadata %>% dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, tumor_descriptor)
     # Annotate expression data with metadata
     expression_metadata <- expression_df %>%
       dplyr::left_join(meta_expression,
                         by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>% 
+      dplyr::select(
+        gene_id,
+        Kids_First_Participant_ID,
+        biospecimen_id,
+        z_score,
+        expression_class,
+        tumor_descriptor
+      ) %>%
       dplyr::distinct()
     
+    meta_cn <- metadata %>% dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, tumor_descriptor, tumor_ploidy)
     # Annotate focal CN data with metadata
     cn_metadata <- copy_number_df %>%
-      dplyr::inner_join(metadata,
+      dplyr::left_join(metadata,
                         by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
       dplyr::select(
         gene_symbol,
         Kids_First_Participant_ID,
-        sample_id,
         biospecimen_id,
         status,
         copy_number,
@@ -113,12 +121,13 @@ merge_expression <-
         tumor_descriptor
       ) %>%
       dplyr::distinct()
+
     
     # Merge Focal CN data.frame with RNA expression data.frame
     combined_df <- expression_metadata %>%
       dplyr::left_join(
         cn_metadata,
-        by = c("sample_id",
+        by = c("Kids_First_Participant_ID",
                "gene_id" = "gene_symbol",
                "tumor_descriptor"),
         suffix = c("_expression", "_cn")
@@ -126,7 +135,6 @@ merge_expression <-
     
     # Save results
     readr::write_tsv(combined_df, file.path(results_dir, paste0(filename_lead, "_expression_merged.tsv")))
-    
     return(combined_df)
     
   }
@@ -140,7 +148,7 @@ plot_stacked_expression <- function (cn_expression_loss_df,
   # `copy_number` == 0.
   #
   # Args:
-  #   cn_expression_loss_df: data.frame with annotated CN and RNA expression
+  #   cn_expression_loss_df: data.frame with annotated CN and RvNA expression
   #                          data produced using `merge_expression` custom
   #                          function and filtered for loss calls
   #   cn_expression_neutral_df: data.frame with annotated CN and RNA expression
