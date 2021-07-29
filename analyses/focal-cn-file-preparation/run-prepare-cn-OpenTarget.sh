@@ -71,10 +71,10 @@ Rscript --vanilla 04-prepare-cn-file.R \
        Rscript --vanilla rna-expression-validation.R \
          --annotated_cnv_file results/${filename}_${chromosome_type}.tsv.gz \
          --expression_file ${data_dir}/gene-expression-rsem-tpm-collapsed.rds \
-#         --metadata $histologies_file \
-#         --goi_list $goi_file \
-#         --filename_lead ${filename}_${chromosome_type}
-#   done
-# done
+         --metadata $histologies_file \
+         --goi_list $goi_file \
+         --filename_lead ${filename}_${chromosome_type}
+   done
+ done
 
 fi

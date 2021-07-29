@@ -49,12 +49,6 @@ option_list <- list(
     help = "file path to tsv file that contains list of driver genes"
   ),
   optparse::make_option(
-    c("--independent_specimens_file"),
-    type = "character",
-    default = NULL,
-    help = "file path to tsv file that defines independent specimens"
-  ),
-  optparse::make_option(
     c("--filename_lead"),
     type = "character",
     default = "annotated_expression",
