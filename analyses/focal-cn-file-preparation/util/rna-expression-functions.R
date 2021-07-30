@@ -148,7 +148,7 @@ plot_stacked_expression <- function (cn_expression_loss_df,
   # `copy_number` == 0.
   #
   # Args:
-  #   cn_expression_loss_df: data.frame with annotated CN and RvNA expression
+  #   cn_expression_loss_df: data.frame with annotated CN and RNA expression
   #                          data produced using `merge_expression` custom
   #                          function and filtered for loss calls
   #   cn_expression_neutral_df: data.frame with annotated CN and RNA expression
