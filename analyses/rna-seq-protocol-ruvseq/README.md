@@ -30,6 +30,8 @@ Evaluate the effectiveness of using empirically defined negative control houseke
 
 ### Results
 
+The results were generated using v7 release data.
+
 #### RNA-seq libraries with matching `sample_id`s
 
 **DGE without RUVSeq estimated batch effect:**
@@ -127,6 +129,7 @@ Parameters:
 
 Input:
 
+- `../../data/histologies.tsv`
 - `../../data/gene-counts-rsem-expected_count-collapsed.rds`: collapsed RSEM expected count matrix of poly-A RNA-seq libraries.
 - `input/uqpgq2_normalized_stranded_vs_polya_stably_exp_genes.csv`: the empirically defined negative control housekeeping genes show stable expression levels in poly-A and ribo-deplete-stranded RNA-seq libraries prepared from the same biological samples, which are selected in the [PR 11](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/11).
 
