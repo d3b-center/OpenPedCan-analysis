@@ -17,12 +17,12 @@ mkdir -p results
 mkdir -p plots
 
 echo 'Run RUVSeq DESeq2 differential gene expression analysis on RNA-seq libraries with matched sample IDs...'
-Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'
+Rscript --vanilla '01-protocol-ruvseq.R' -d 'match' -e 'stable'
 
 echo 'Run RUVSeq DESeq2 differential gene expression analysis on DIPG RNA-seq libraries without matching sample IDs...'
-Rscript --vanilla '01-protocol-ruvseq.R' -d 'dipg'
+Rscript --vanilla '01-protocol-ruvseq.R' -d 'dipg' -e 'stable'
 
 echo 'Run RUVSeq DESeq2 differential gene expression analysis on NBL RNA-seq libraries...'
-Rscript --vanilla '01-protocol-ruvseq.R' -d 'nbl'
+Rscript --vanilla '01-protocol-ruvseq.R' -d 'nbl' -e 'stable'
 
 echo 'Done running run-rna-seq-protocol-ruvseq.sh.'

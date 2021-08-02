@@ -1,3 +1,8 @@
+# Example usage:
+#
+# Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable'
+#
+# See README.md Analysis scripts section for more details.
 library(RUVSeq)
 library(tidyverse)
 
@@ -40,13 +45,18 @@ option_list <- list(
     optparse::make_option(
         c("-d", "--dataset"), type = "character",
         help = paste0("Dataset for running differential gene ",
-                      "expression analysis: match, dipg, and nbl. "))
+                      "expression analysis: match, dipg, and nbl.")),
+    optparse::make_option(
+        c("-e", "--empirical-negative-control-gene-set"), type = "character",
+        help = paste0("Empirical negative control gene set for RUVSeq::RUVg ",
+                      "batch effect estimation: stable or DE."))
 )
 
 # parse the parameters
 option_parser <- optparse::OptionParser(option_list = option_list)
 parsed_opts <- optparse::parse_args(option_parser)
 dge_dataset <- parsed_opts$dataset
+emp_neg_ctrl_gene_set <- parsed_opts$`empirical-negative-control-gene-set`
 
 if (is.null(dge_dataset)) {
     print("Required dataset parameter not found.")
@@ -145,20 +155,34 @@ group <- factor(c(rep("stranded", length(stranded_col_ids)),
 counts_object <- edgeR::DGEList(counts = counts, group = group)
 counts_object <- counts_object[
     edgeR::filterByExpr(counts_object), , keep.lib.sizes=FALSE]
+# DESeq2 requires integer matrix as read count matrix
+round_cnt_mat <- round(counts_object$counts)
+
+if (identical(emp_neg_ctrl_gene_set, 'stable')) {
+    seg_df <- read.csv(
+        file.path(
+            '..', 'rna-seq-protocol-dge', 'results', 'uqpgq2_normalized',
+            'stranded_vs_polya_stably_exp_genes.csv'),
+        stringsAsFactors = FALSE, row.names = 1)
+
+    emp_neg_ctrl_genes <- seg_df$gene[seg_df$gene %in% rownames(round_cnt_mat)]
+    output_encgs_str <- 'stably-expressed-genes-as-negative-control'
+} else {
+    stop(paste0('Unknown empirical negative control gene set ',
+                 emp_neg_ctrl_gene_set))
+}
 
 
 # Create output directories ----------------------------------------------------
-table_outdir <- file.path('results', output_dataset_str)
-dir.create(table_outdir, showWarnings = FALSE)
+table_outdir <- file.path('results', output_encgs_str, output_dataset_str)
+dir.create(table_outdir, recursive = TRUE, showWarnings = FALSE)
 
-plot_outdir <- file.path('plots', output_dataset_str)
-dir.create(plot_outdir, showWarnings = FALSE)
+plot_outdir <- file.path('plots', output_encgs_str, output_dataset_str)
+dir.create(plot_outdir, recursive = TRUE, showWarnings = FALSE)
 
 # Run DESeq2 nbinomWaldTest ----------------------------------------------------
 print(paste0('Run differential gene expression DESeq2 nbinomWaldTest on',
              ' poly-A vs stranded RNA-seq...'))
-# DESeq2 requires integer matrix as read count matrix
-round_cnt_mat <- round(counts_object$counts)
 suppressMessages(
     dds <- DESeq2::DESeqDataSetFromMatrix(
         countData = round_cnt_mat,
@@ -215,12 +239,6 @@ print(paste0('Run differential gene expression DESeq2 nbinomWaldTest ',
 seq_expr_set <- EDASeq::newSeqExpressionSet(
     round_cnt_mat,
     phenoData = data.frame(group, row.names = colnames(round_cnt_mat)))
-
-seg_df <- read.csv(
-    'input/uqpgq2_normalized_stranded_vs_polya_stably_exp_genes.csv',
-    stringsAsFactors = FALSE, row.names = 1)
-
-emp_neg_ctrl_genes <- seg_df$gene[seg_df$gene %in% rownames(round_cnt_mat)]
 
 ruvg_res <- RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
 
