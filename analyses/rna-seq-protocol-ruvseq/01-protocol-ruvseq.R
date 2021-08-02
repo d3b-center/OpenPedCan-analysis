@@ -1,3 +1,4 @@
+library(RUVSeq)
 library(tidyverse)
 
 
@@ -225,12 +226,12 @@ seg_df <- read.csv(
 
 emp_neg_ctrl_genes <- seg_df$gene[seg_df$gene %in% rownames(round_cnt_mat)]
 
-ruvg_res <- RUVSeq::RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
+ruvg_res <- RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
 
 suppressMessages(
     ruv_dds <- DESeq2::DESeqDataSetFromMatrix(
         countData = counts(ruvg_res),
-        colData = Biobase::pData(ruvg_res),
+        colData = pData(ruvg_res),
         design = ~ W_1 + group)
 )
 # From DESeq2 documentation:
