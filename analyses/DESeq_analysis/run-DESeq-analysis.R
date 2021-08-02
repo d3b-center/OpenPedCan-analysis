@@ -14,7 +14,7 @@
 # Load required libraries
 suppressPackageStartupMessages({
   library(optparse)
-  library(this.path)
+  #library(this.path)
   library(ggplot2)
   library(DESeq2)
 })
@@ -32,15 +32,17 @@ option_list <- list(
               help = "ENSG Hugo codes file (.tsv)"),
   make_option(c("-m", "--efo_mondo_file"), type = "character",
               help = "MONDO and EFO codes file (.tsv)"),
+  make_option(c("-o", "--outdir"), type = "character",
+              help = "Output Directory"),
   make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
               help = "HIST_index"),
   make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
               help = "GTEX_index")
 )
 
-script.dir <- this.path()
+#script.dir <- this.path()
 #print(script.dir)
-dir.create(file.path(dirname(dirname(script.dir)),"Results"), showWarnings = FALSE)
+#dir.create(file.path(dirname(dirname(script.dir)),"Results"), showWarnings = FALSE)
 
 # parse the parameters
 opt <- parse_args(OptionParser(option_list = option_list))
@@ -55,23 +57,23 @@ GTEX_index <- opt$GTEX_i   #assign second argument to GTEx index
 
 
 #Load histology file
-#hist <- read.delim("../data/v6/histologies.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("../data/histologies.tsv", header=TRUE, sep = '\t')
 hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-#countData <- readRDS("../data/v6/gene-counts-rsem-expected_count-collapsed.rds")
+#countData <- readRDS("../data/gene-counts-rsem-expected_count-collapsed.rds")
 countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-#TPMData <- readRDS("../data/v6/gene-expression-rsem-tpm-collapsed.rds")
+#TPMData <- readRDS("../data/gene-expression-rsem-tpm-collapsed.rds")
 TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-#EFO_MONDO <- read.delim("../data/v6/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+#EFO_MONDO <- read.delim("../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-#ENSG_Hugo <- read.delim("../data/v6/ensg-hugo-rmtl-v1-mapping.tsv", header =T)
+#ENSG_Hugo <- read.delim("../data/ensg-hugo-rmtl-mapping.tsv", header =T)
 ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
 # Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
@@ -99,8 +101,8 @@ Cancer_Histology_COHORT <- unique(
 
 #Save all the histologies represented in the countsdata into a variable. 
 #Remove all 'NA's from the list. 
-#This will be the basis of all the data from each histology combined regardless of cohort (eg all_cohorts_Neuroblastoma)
-Cancer_Histology <- paste("all_cohorts",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
+#This will be the basis of all the data from each histology combined regardless of cohort (eg all-cohorts_Neuroblastoma)
+Cancer_Histology <- paste("all-cohorts",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
 
 
 #Save all the GTEx subgroups represented in the countsdata into a variable. Remove all 'NA's 
@@ -120,7 +122,7 @@ for(I in 1:length(Gtex_Tissue_subgroup))
 sample_type_df_tumor <- data.frame()
 for(I in 1:length(Cancer_Histology))
 {
-  sample_type_df_tumor <- rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("all_cohorts_","",Cancer_Histology[I]))],Type=Cancer_Histology[I], stringsAsFactors = FALSE))
+  sample_type_df_tumor <- rbind(sample_type_df_tumor,data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == gsub("all-cohorts_","",Cancer_Histology[I]))],Type=Cancer_Histology[I], stringsAsFactors = FALSE))
 }
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
@@ -156,10 +158,15 @@ GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df
 
     
 #Subset countData_filtered_DEG dataframe for only the histology group and GTEx group being compared
-    countData_filtered_DEG.hist <- data.matrix(countData_filtered_DEG[,which(colnames(countData_filtered_DEG) %in% sample_type_df_filtered$Case_ID[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J]))])])
+    countData_filtered_DEG.hist <- data.matrix(countData_filtered_DEG[,which(colnames(countData_filtered_DEG) 
+                                                                             %in% sample_type_df_filtered$Case_ID[
+                                                                             which(sample_type_df_filtered$Type %in% 
+                                                                             c(histology_filtered[I],GTEX_filtered[J])
+                                                                                  )])])
     
 #Subset sample type dataframe for only the histology group and GTEx group being compared
-    sample_type_df_filtered.hist <- sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I],GTEX_filtered[J])),]
+    sample_type_df_filtered.hist <- sample_type_df_filtered[which(sample_type_df_filtered$Type 
+                                                                  %in% c(histology_filtered[I],GTEX_filtered[J])),]
     
 #Run DESeq2  
     sub.deseqdataset <- DESeqDataSetFromMatrix(countData <- round(countData_filtered_DEG.hist),
@@ -207,21 +214,21 @@ GTEX_MEAN_TPMs <- round(GTEX_MEAN_TPMs,2)
 
 #Create Final Dataframe with all the info calculated and extracted from histology file Including EFO/MONDO codes where available and RMTL status
 Final_Data_Table <- data.frame(
-  datasourceId <- paste(strsplit(histology_filtered[I],split="_")[[1]][1],"vs_GTex",sep="_"),
-  datatypeId <- "rna_expression",
-  cohort <- paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]),collapse=";",sep=";"),
-  Gene_symbol <- rownames(Result),
-  gene_id <- ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
-  RMTL <- ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
-  EFO <- ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1, EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
-  MONDO <- ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1,EFO_MONDO$mondo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))],""),
-  comparisonId <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")),
-  Disease <- paste(unlist(strsplit(histology_filtered[I],split="_"))[-1],collapse=" "),
-  cancer_group_Count <- Cancer.Hist_Hits,
-  GTEx <- GTEX_filtered[J],
-  GTEx_Count <- GTEX_Hits,
-  cancer_group_MeanTpm <- Histology_MEAN_TPMs,
-  GTEx_MeanTpm <- GTEX_MEAN_TPMs,
+  datasourceId = paste(strsplit(histology_filtered[I],split="_")[[1]][1],"vs_GTex",sep="_"),
+  datatypeId = "rna_expression",
+  cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]),collapse=";",sep=";"),
+  gene_symbol = rownames(Result),
+  gene_id = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  RMTL = ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  EFO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1, EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
+  MONDO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1,EFO_MONDO$mondo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))],""),
+  comparisonId = gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")),
+  cancer_group = paste(unlist(strsplit(histology_filtered[I],split="_"))[-1],collapse=" "),
+  cancer_group_Count = Cancer.Hist_Hits,
+  GTEx = GTEX_filtered[J],
+  GTEx_Count = GTEX_Hits,
+  cancer_group_MeanTpm = Histology_MEAN_TPMs,
+  GTEx_MeanTpm = GTEX_MEAN_TPMs,
   Result, stringsAsFactors = FALSE
 )#Final_Data_Table = data.frame(
 
@@ -233,4 +240,4 @@ Final_Data_Table <- data.frame(
 
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))
-write.table(Final_Data_Table,file=paste(dirname(dirname(script.dir)),"/Results/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
+write.table(Final_Data_Table,file=paste(opt$outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
