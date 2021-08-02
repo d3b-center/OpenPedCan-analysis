@@ -1,5 +1,4 @@
-suppressPackageStartupMessages(library(RUVSeq))
-suppressPackageStartupMessages(library(tidyverse))
+library(tidyverse)
 
 
 output_deseq2_res_df <- function(res_df, save_colnames, path) {
@@ -216,7 +215,7 @@ ggsave(
 print(paste0('Run differential gene expression DESeq2 nbinomWaldTest ',
              'with RUVSeq estimated batch effect',
              'on poly-A vs stranded RNA-seq...'))
-seq_expr_set <- newSeqExpressionSet(
+seq_expr_set <- EDASeq::newSeqExpressionSet(
     round_cnt_mat,
     phenoData = data.frame(group, row.names = colnames(round_cnt_mat)))
 
@@ -226,12 +225,12 @@ seg_df <- read.csv(
 
 emp_neg_ctrl_genes <- seg_df$gene[seg_df$gene %in% rownames(round_cnt_mat)]
 
-ruvg_res <- RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
+ruvg_res <- RUVSeq::RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
 
 suppressMessages(
     ruv_dds <- DESeq2::DESeqDataSetFromMatrix(
         countData = counts(ruvg_res),
-        colData = pData(ruvg_res),
+        colData = Biobase::pData(ruvg_res),
         design = ~ W_1 + group)
 )
 # From DESeq2 documentation:
