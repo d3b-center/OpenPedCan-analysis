@@ -74,24 +74,17 @@ The DGE result table is at `results/nbl/stranded_vs_polya_dge_ruvg_k1_deseq2_nbi
 
 ### Usage
 
-1. Change working directory to local `OpenPBTA-analysis`.
-2. Download data using `bash download-data.sh`. Make sure the following files are downloaded:
-   - `histologies.tsv`
-   - `gene-counts-rsem-expected_count-collapsed.rds`
-   - `gtex_target_tcga-gene-counts-rsem-expected_count-collapsed.rds`
+1. Change working directory to local `OpenPedCan-analysis`.
+2. Download data using `bash download-data.sh`.
 3. Run this analysis module in the continuous integration (CI) docker image using `./scripts/run_in_ci.sh bash analyses/rna-seq-protocol-ruvseq/run-rna-seq-protocol-ruvseq.sh`.
 
 ### Module structure
 
 ```text
 .
-├── 00-prepare-data.R
 ├── 01-protocol-ruvseq.R
 ├── README.md
 ├── input
-│   ├── gtex_mapping.txt
-│   ├── target_mapping.txt
-│   ├── tcga_mapping.txt
 │   └── uqpgq2_normalized_stranded_vs_polya_stably_exp_genes.csv
 ├── plots
 │   ├── dipg_rm_matched_sample_ids
@@ -117,31 +110,6 @@ The DGE result table is at `results/nbl/stranded_vs_polya_dge_ruvg_k1_deseq2_nbi
 ```
 
 ### Analysis scripts
-
-#### 00-prepare-data.R
-
-This script cleans up data for RUVSeq DGE analysis.
-
-Usage:
-
-```bash
-Rscript --vanilla '00-prepare-data.R'
-```
-
-Input:
-
-- `../../data/histologies.tsv`
-- `../../data/gene-counts-rsem-expected_count-collapsed.rds`
-- `../../data/gtex_target_tcga-gene-counts-rsem-expected_count-collapsed.rds`
-- Mapping files shared by [@komalsrathi](https://github.com/komalsrathi) at <https://github.com/PediatricOpenTargets/ticket-tracker/issues/22#issuecomment-854901528>:
-  - `input/gtex_mapping.txt`
-  - `input/target_mapping.txt`
-  - `input/tcga_mapping.txt`
-
-Output:
-
-- `../../scratch/pbta_kf_gtex_target_tcga_histology_df.rds`
-- `../../scratch/pbta_kf_gtex_target_tcga_rsem_expected_cnt_df.rds`
 
 #### 01-protocol-ruvseq.R
 
