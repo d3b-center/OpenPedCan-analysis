@@ -3,8 +3,8 @@
 # Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable'
 #
 # See README.md Analysis scripts section for more details.
-library(RUVSeq)
-library(tidyverse)
+suppressPackageStartupMessages(library(RUVSeq))
+suppressPackageStartupMessages(library(tidyverse))
 
 # Function definitions ---------------------------------------------------------
 output_deseq2_res_df <- function(res_df, save_colnames, path) {
@@ -49,7 +49,7 @@ option_list <- list(
     optparse::make_option(
         c("-e", "--empirical-negative-control-gene-set"), type = "character",
         help = paste0("Empirical negative control gene set for RUVSeq::RUVg ",
-                      "batch effect estimation: stable or DE."))
+                      "batch effect estimation: stable or DESeq2."))
 )
 
 # parse the parameters
@@ -64,8 +64,8 @@ if (is.null(dge_dataset)) {
     stop()
 }
 
-if (!dge_dataset %in% c('match', 'dipg', 'nbl')) {
-    print(paste('Unknown dataset', dge_dataset))
+if (is.null(emp_neg_ctrl_gene_set)) {
+    print("Required empirical-negative-control-gene-set parameter not found.")
     optparse::print_help(option_parser)
     stop()
 }
@@ -167,6 +167,17 @@ if (identical(emp_neg_ctrl_gene_set, 'stable')) {
 
     emp_neg_ctrl_genes <- seg_df$gene[seg_df$gene %in% rownames(round_cnt_mat)]
     output_encgs_str <- 'stably-expressed-genes-as-negative-control'
+} else if (identical(emp_neg_ctrl_gene_set, 'DESeq2')) {
+    seg_df <- read.csv(
+        file.path(
+            '..', 'rna-seq-protocol-dge', 'results', 'deseq2_rle_normalized',
+            'stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv'),
+        stringsAsFactors = FALSE, row.names = 1)
+
+    emp_neg_ctrl_genes <- rownames(seg_df)[
+        rownames(seg_df) %in% rownames(round_cnt_mat) & seg_df$BH.FDR < 0.05]
+    output_encgs_str <- paste0('deseq2-significant-house-keeping-genes-',
+                               'as-negative-control')
 } else {
     stop(paste0('Unknown empirical negative control gene set ',
                  emp_neg_ctrl_gene_set))
