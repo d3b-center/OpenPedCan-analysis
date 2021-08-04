@@ -23,4 +23,6 @@ for emp_neg_ctrl_gene_set in "stable" "DESeq2"; do
   done
 done
 
+Rscript --vanilla '02-summarize-deseq-result-tables.R'
+
 echo 'Done running run-rna-seq-protocol-ruvseq.sh.'
