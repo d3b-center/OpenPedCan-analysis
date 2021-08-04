@@ -324,11 +324,10 @@ ggsave(
 
 
 # Run RUVSeq batch correction and DESeq2 nbinomWaldTest ------------------------
-print(paste0('Run differential gene expression DESeq2 nbinomWaldTest ',
-             'with RUVSeq estimated batch effect ',
-             'on poly-A vs stranded RNA-seq...'))
-
 walk(ruvg_k_vec, function(k) {
+    print(paste0('Run differential gene expression DESeq2 nbinomWaldTest ',
+                 'with RUVSeq k = ', k, ' estimated batch effect ',
+                 'on poly-A vs stranded RNA-seq...'))
     ruvg_deseq2(round_cnt_mat, group, emp_neg_ctrl_genes, k)
 })
 

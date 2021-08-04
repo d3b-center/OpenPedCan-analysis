@@ -15,6 +15,7 @@
 - [5. Module structure](#5-module-structure)
 - [6. Analysis scripts](#6-analysis-scripts)
   - [6.1. 01-protocol-ruvseq.R](#61-01-protocol-ruvseqr)
+  - [6.1. 02-summarize-deseq-result-tables.R](#61-02-summarize-deseq-result-tablesr)
 
 ## 1. Purpose
 
@@ -41,7 +42,7 @@ Evaluate the effectiveness of using empirically defined negative control houseke
     2. Diffuse intrinsic pontine glioma (DIPG) libraries without matching `sample_id`s, as suggested by [@jharenza](https://github.com/jharenza) at <https://github.com/PediatricOpenTargets/ticket-tracker/issues/39#issuecomment-859751927>.
     3. Neuroblastoma (NBL) libraries, as suggested by [@jharenza](https://github.com/jharenza) at <https://github.com/PediatricOpenTargets/ticket-tracker/issues/39#issuecomment-859751927>.
 2. Run DESeq2 default differential gene expression (DGE) analysis to compare ribo-deplete-stranded and poly-A RNA-seq `rsem-expected_count`s.
-3. Run DESeq2 DGE analysis with RUVSeq estimated batch effect in the design to compare ribo-deplete-stranded and poly-A RNA-seq `rsem-expected_count`s. The batch effect is estimated using [empirically defined negative control housekeeping genes](https://github.com/logstar/OpenPedCan-analysis/blob/rna-seq-protocol-dge-fourth/analyses/rna-seq-protocol-dge/results/uqpgq2_normalized/stranded_vs_polya_stably_exp_genes.csv), using the RUVg workflow demonstrated in the section "2.4 Empirical control genes" in the [RUVSeq vignette](https://bioconductor.riken.jp/packages/3.0/bioc/vignettes/RUVSeq/inst/doc/RUVSeq.pdf).
+3. Run DESeq2 DGE analysis with RUVSeq estimated batch effect in the design to compare ribo-deplete-stranded and poly-A RNA-seq `rsem-expected_count`s. The batch effect is estimated using [empirically defined negative control housekeeping genes](https://github.com/logstar/OpenPedCan-analysis/blob/rna-seq-protocol-dge-fourth/analyses/rna-seq-protocol-dge/results/uqpgq2_normalized/stranded_vs_polya_stably_exp_genes.csv), using the RUVg workflow demonstrated in the section "2.4 Empirical control genes" in the [RUVSeq vignette](http://bioconductor.org/packages/release/bioc/vignettes/RUVSeq/inst/doc/RUVSeq.pdf).
 4. Plot the distributions of DGE p-values computed from step 2 and 3.
 
 ## 3. Results
@@ -145,52 +146,7 @@ The DGE result table is at `results/deseq2-significant-house-keeping-genes-as-ne
 ## 5. Module structure
 
 ```text
-.
-├── 01-protocol-ruvseq.R
-├── README.md
-├── plots
-│   ├── deseq2-significant-house-keeping-genes-as-negative-control
-│   │   ├── dipg_rm_matched_sample_ids
-│   │   │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│   │   │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-│   │   ├── matched_sample_ids
-│   │   │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│   │   │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-│   │   └── nbl
-│   │       ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│   │       └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-│   └── stably-expressed-genes-as-negative-control
-│       ├── dipg_rm_matched_sample_ids
-│       │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│       │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-│       ├── matched_sample_ids
-│       │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│       │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-│       └── nbl
-│           ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png
-│           └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png
-├── results
-│   ├── deseq2-significant-house-keeping-genes-as-negative-control
-│   │   ├── dipg_rm_matched_sample_ids
-│   │   │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│   │   │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-│   │   ├── matched_sample_ids
-│   │   │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│   │   │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-│   │   └── nbl
-│   │       ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│   │       └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-│   └── stably-expressed-genes-as-negative-control
-│       ├── dipg_rm_matched_sample_ids
-│       │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│       │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-│       ├── matched_sample_ids
-│       │   ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│       │   └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-│       └── nbl
-│           ├── stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv
-│           └── stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv
-└── run-rna-seq-protocol-ruvseq.sh
+
 ```
 
 ## 6. Analysis scripts
@@ -202,13 +158,14 @@ This analysis script runs DESeq2 DGE analysis, with or without RUVSeq estimated 
 Example usage:
 
 ```bash
-Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable'
+Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable' -k '1'
 ```
 
 Parameters:
 
 - `-d` or `--dataset`: Dataset for running differential gene expression analysis: match, dipg, and nbl.
 - `-e` or `--empirical-negative-control-gene-set`: Empirical negative control gene set for RUVSeq::RUVg batch effect estimation: stable or DESeq2.
+- `-k` or `--k-ruvg`: A comma separated list of non-negative integers for the `k` parameter values in `RUVSeq::RUVg` batch effect estimation, e.g. "1", "2", "1,2".
 
 Input:
 
@@ -221,6 +178,25 @@ Input:
 Output:
 
 - `plots/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_deseq2_nbinom_wald_test_pvals_histogram.png`: DESeq2 DGE p-value histogram without RUVSeq estimated batch effect in the design.
-- `plots/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_pvals_histogram.png`: DESeq2 DGE p-value histogram with RUVSeq estimated batch effect in the design.
+- `plots/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_ruvg_kK-RUVG_deseq2_nbinom_wald_test_pvals_histogram.png`: DESeq2 DGE p-value histogram with RUVSeq estimated batch effect in the design. Generate multiple plots if `-k/--k-ruvg` is a list of multiple `k` values.
 - `results/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_deseq2_nbinom_wald_test_res.csv`: DESeq2 DGE result table without RUVSeq estimated batch effect in the design.
-- `results/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv`: DESeq2 DGE result table with RUVSeq estimated batch effect in the design.
+- `results/EMPIRICAL-NEGATIVE-CONTROL-GENE-SET/DATASET/stranded_vs_polya_dge_ruvg_kK-RUVG_deseq2_nbinom_wald_test_res.csv`: DESeq2 DGE result table with RUVSeq estimated batch effect in the design. Generate multiple tables if `-k/--k-ruvg` is a list of multiple `k` values.
+
+### 6.1. 02-summarize-deseq-result-tables.R
+
+This analysis script summarizes the DESeq2 DGE tables generated by `01-protocol-ruvseq.R` into `results/de_result_summary_table.tsv`, as suggested by @aadamk at <https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/74#issuecomment-891913653>.
+
+Usage:
+
+```bash
+Rscript --vanilla '02-summarize-deseq-result-tables.R'
+```
+
+Input:
+
+- `../rna-seq-protocol-dge/input/Housekeeping_GenesHuman.csv`: housekeeping gene list downloaded from <https://housekeeping.unicamp.br/?download>.
+- `results/*/*/*.csv`: DESeq2 DGE tables generated by `01-protocol-ruvseq.R`.
+
+Output:
+
+- `results/de_result_summary_table.tsv`: summarized DESeq2 DGE result table.
