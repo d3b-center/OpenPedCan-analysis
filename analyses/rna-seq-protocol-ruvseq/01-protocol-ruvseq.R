@@ -95,7 +95,7 @@ ruvg_deseq2 <- function(de_cnt_mat, de_group, ruvg_emp_neg_ctrl_genes, ruvg_k) {
         'Gene count',
         paste0('Histogram of stranded vs poly-A RNA-seq\n',
                'differential gene expression RLE normalized\n',
-               'RUVg DESeq2 nbinomWaldTest p-values'))
+               'RUVg k = ', ruvg_k, ' DESeq2 nbinomWaldTest p-values'))
 
     ggsave(
         file.path(
