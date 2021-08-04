@@ -1,6 +1,6 @@
 # Example usage:
 #
-# Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable'
+# Rscript --vanilla '01-protocol-ruvseq.R' -d 'match'  -e 'stable' -k '1'
 #
 # See README.md Analysis scripts section for more details.
 suppressPackageStartupMessages(library(RUVSeq))
@@ -39,6 +39,73 @@ deseq2_pvals_histogram <- function(res_df, xlab, ylab, title) {
     return(p)
 }
 
+# Run DESeq2 standard procedure with RUVg estimated batch effect
+ruvg_deseq2 <- function(de_cnt_mat, de_group, ruvg_emp_neg_ctrl_genes, ruvg_k) {
+    seq_expr_set <- EDASeq::newSeqExpressionSet(
+        de_cnt_mat,
+        phenoData = data.frame(
+            group = de_group, row.names = colnames(de_cnt_mat)))
+
+    ruvg_res <- RUVg(seq_expr_set, ruvg_emp_neg_ctrl_genes, k = ruvg_k)
+
+    # reformulate creates a formula of ~W_1 + W_2 + ... + W_ruvg_k + group
+    suppressMessages(
+        ruv_dds <- DESeq2::DESeqDataSetFromMatrix(
+            countData = counts(ruvg_res),
+            colData = pData(ruvg_res),
+            design = reformulate(
+                c(paste0('W_', seq(1, ruvg_k)),
+                'group')
+            )
+        )
+    )
+    # From DESeq2 documentation:
+    # DESeq2::DESeq performs a default analysis through the steps:
+    # - estimation of size factors: estimateSizeFactors
+    # - estimation of dispersion: estimateDispersions
+    # - Negative Binomial GLM fitting and Wald statistics: nbinomWaldTest
+    suppressMessages(
+        ruv_dds <- DESeq2::DESeq(ruv_dds)
+    )
+
+    # Export results and save as CSV
+    ruv_deseq2_res <- DESeq2::results(
+        ruv_dds, cooksCutoff = FALSE, pAdjustMethod = 'BH')
+    ruv_deseq2_res_df <- data.frame(ruv_deseq2_res)
+    ruv_deseq2_res_df <- ruv_deseq2_res_df[order(ruv_deseq2_res_df$pvalue), ]
+
+    output_deseq2_res_df(
+        ruv_deseq2_res_df,
+        save_colnames = c('mean_counts', 'stranded_over_polya_log2FC',
+                          'stranded_over_polya_log2FC_standard_error',
+                          'statistic', 'PValue', 'BH FDR'),
+        path = file.path(
+            table_outdir,
+            paste0('stranded_vs_polya_dge_ruvg_k', ruvg_k,
+                   '_deseq2_nbinom_wald_test_res.csv'))
+    )
+
+    # plot and save p-value histogram
+    # some DESeq2 p-values are NAs due to all-0 normalized read counts
+    ruv_deseq2_plot_df <- ruv_deseq2_res_df[, c('pvalue', 'padj')]
+    ruv_deseq2_plot_df[is.na(ruv_deseq2_plot_df)] <- 1
+    p <- deseq2_pvals_histogram(
+        ruv_deseq2_plot_df,
+        'stranded vs poly-A RNA-seq DGE RLE RUVg nbinomWaldTest p-value',
+        'Gene count',
+        paste0('Histogram of stranded vs poly-A RNA-seq\n',
+               'differential gene expression RLE normalized\n',
+               'RUVg DESeq2 nbinomWaldTest p-values'))
+
+    ggsave(
+        file.path(
+            plot_outdir,
+            paste0('stranded_vs_polya_dge_ruvg_k', ruvg_k,
+                   '_deseq2_nbinom_wald_test_pvals_histogram.png')),
+        dpi = 300, plot = p, width = 8, height = 7)
+
+    return(0)
+}
 
 # Parse parameters -------------------------------------------------------------
 option_list <- list(
@@ -49,26 +116,39 @@ option_list <- list(
     optparse::make_option(
         c("-e", "--empirical-negative-control-gene-set"), type = "character",
         help = paste0("Empirical negative control gene set for RUVSeq::RUVg ",
-                      "batch effect estimation: stable or DESeq2."))
+                      "batch effect estimation: stable or DESeq2.")),
+    optparse::make_option(
+        c("-k", "--k-ruvg"), type = "character",
+        help = paste0("A comma separated list of non-negative integers for ",
+                      "the k parameter values in RUVSeq::RUVg ",
+                      "batch effect estimation, e.g. \"1\", \"2\", \"1,2\"."))
 )
 
 # parse the parameters
 option_parser <- optparse::OptionParser(option_list = option_list)
 parsed_opts <- optparse::parse_args(option_parser)
-dge_dataset <- parsed_opts$dataset
-emp_neg_ctrl_gene_set <- parsed_opts$`empirical-negative-control-gene-set`
 
-if (is.null(dge_dataset)) {
+if (is.null(parsed_opts$dataset)) {
     print("Required dataset parameter not found.")
     optparse::print_help(option_parser)
     stop()
 }
+dge_dataset <- parsed_opts$dataset
 
-if (is.null(emp_neg_ctrl_gene_set)) {
+if (is.null(parsed_opts$`empirical-negative-control-gene-set`)) {
     print("Required empirical-negative-control-gene-set parameter not found.")
     optparse::print_help(option_parser)
     stop()
 }
+emp_neg_ctrl_gene_set <- parsed_opts$`empirical-negative-control-gene-set`
+
+if (is.null(parsed_opts$`k-ruvg`)) {
+    print("Required empirical-negative-control-gene-set parameter not found.")
+    optparse::print_help(option_parser)
+    stop()
+}
+ruvg_k_vec <- as.integer(
+  stringr::str_split(parsed_opts$`k-ruvg`, ",")[[1]])
 
 # Read and pre-process data ----------------------------------------------------
 print('Read count matrices...')
@@ -243,67 +323,13 @@ ggsave(
     dpi = 300, plot = p, width = 8, height = 7)
 
 
-#------------ Run RUVSeq batch correction and DESeq2 nbinomWaldTest ------------
+# Run RUVSeq batch correction and DESeq2 nbinomWaldTest ------------------------
 print(paste0('Run differential gene expression DESeq2 nbinomWaldTest ',
              'with RUVSeq estimated batch effect ',
              'on poly-A vs stranded RNA-seq...'))
-seq_expr_set <- EDASeq::newSeqExpressionSet(
-    round_cnt_mat,
-    phenoData = data.frame(group, row.names = colnames(round_cnt_mat)))
 
-ruvg_res <- RUVg(seq_expr_set, emp_neg_ctrl_genes, k=1)
-
-suppressMessages(
-    ruv_dds <- DESeq2::DESeqDataSetFromMatrix(
-        countData = counts(ruvg_res),
-        colData = pData(ruvg_res),
-        design = ~ W_1 + group)
-)
-# From DESeq2 documentation:
-# DESeq2::DESeq performs a default analysis through the steps:
-# - estimation of size factors: estimateSizeFactors
-# - estimation of dispersion: estimateDispersions
-# - Negative Binomial GLM fitting and Wald statistics: nbinomWaldTest
-suppressMessages(
-    ruv_dds <- DESeq2::DESeq(ruv_dds)
-)
-
-# Export results and save as CSV
-ruv_deseq2_res <- DESeq2::results(
-    ruv_dds, cooksCutoff = FALSE, pAdjustMethod = 'BH')
-ruv_deseq2_res_df <- data.frame(ruv_deseq2_res)
-ruv_deseq2_res_df <- ruv_deseq2_res_df[order(ruv_deseq2_res_df$pvalue), ]
-
-output_deseq2_res_df(
-    ruv_deseq2_res_df,
-    save_colnames = c("mean_counts", "stranded_over_polya_log2FC",
-                      "stranded_over_polya_log2FC_standard_error",
-                      "statistic", "PValue", "BH FDR"),
-    path = file.path(
-        table_outdir,
-        'stranded_vs_polya_dge_ruvg_k1_deseq2_nbinom_wald_test_res.csv')
-)
-
-
-
-# plot and save p-value histogram
-# some DESeq2 p-values are NAs due to all-0 normalized read counts
-ruv_deseq2_plot_df <- ruv_deseq2_res_df[, c('pvalue', 'padj')]
-ruv_deseq2_plot_df[is.na(ruv_deseq2_plot_df)] <- 1
-p <- deseq2_pvals_histogram(
-    ruv_deseq2_plot_df,
-    'stranded vs poly-A RNA-seq DGE RLE RUVg nbinomWaldTest p-value',
-    'Gene count',
-    paste0('Histogram of stranded vs poly-A RNA-seq\n',
-           'differential gene expression RLE normalized\n',
-           'RUVg DESeq2 nbinomWaldTest p-values'))
-
-ggsave(
-    file.path(
-        plot_outdir,
-        paste0('stranded_vs_polya_dge_ruvg_k1_',
-               'deseq2_nbinom_wald_test_pvals_histogram.png')),
-    dpi = 300, plot = p, width = 8, height = 7)
-
+walk(ruvg_k_vec, function(k) {
+    ruvg_deseq2(round_cnt_mat, group, emp_neg_ctrl_genes, k)
+})
 
 print('Done.')

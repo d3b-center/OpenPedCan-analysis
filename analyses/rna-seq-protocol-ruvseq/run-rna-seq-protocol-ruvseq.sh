@@ -18,8 +18,10 @@ mkdir -p plots
 
 for emp_neg_ctrl_gene_set in "stable" "DESeq2"; do
   for dataset in "match" "dipg" "nbl"; do
-    echo "Run RUVSeq DESeq2 differential gene expression analysis on RNA-seq libraries with dataset $dataset and empirical negative control gene set $emp_neg_ctrl_gene_set ..."
-    Rscript --vanilla '01-protocol-ruvseq.R' -d $dataset -e $emp_neg_ctrl_gene_set
+    for ruvg_k in "1"; do
+      echo "Run RUVSeq DESeq2 differential gene expression analysis on RNA-seq libraries with dataset $dataset and empirical negative control gene set $emp_neg_ctrl_gene_set with k = $ruvg_k ..."
+      Rscript --vanilla '01-protocol-ruvseq.R' -d $dataset -e $emp_neg_ctrl_gene_set -k $ruvg_k
+    done
   done
 done
 
