@@ -149,7 +149,6 @@ plots/
         └── stranded_vs_polya_dge_ruvg_k5_deseq2_nbinom_wald_test_pvals_histogram.png
 ```
 
-
 ## 4. Usage
 
 1. Change working directory to local `OpenPedCan-analysis`.
