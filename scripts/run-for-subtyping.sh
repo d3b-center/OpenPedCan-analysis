@@ -13,25 +13,25 @@ OPENPBTA_BASE_SUBTYPING=1
 ## Step 1. Generate summary files needed for subtyping
 
 echo "Create collapse rsem files"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/collapse-rnaseq/run-collapse-rnaseq.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/collapse-rnaseq/run-collapse-rnaseq.sh
 
 echo "Create independent sample list"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/independent-samples/run-independent-samples.sh 
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/independent-samples/run-independent-samples.sh 
 
 echo "Create fusion filtered list" 
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/fusion_filtering/run_fusion_merged.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/fusion_filtering/run_fusion_merged.sh
 
 echo "Run fusion summary for subtypes"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/fusion-summary/run-new-analysis.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/fusion-summary/run-new-analysis.sh
 
 echo "Run tsne"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/transcriptomic-dimension-reduction/dimension-reduction-plots.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/transcriptomic-dimension-reduction/dimension-reduction-plots.sh
 
 echo "Run gsea"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/gene-set-enrichment-analysis/run-gsea.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/gene-set-enrichment-analysis/run-gsea.sh
 
 echo "TP53 altered score"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/tp53_nf1_score/run_classifier.sh
+OPENPBTA_BASE_SUBTYPING=1 bash ../analyses/tp53_nf1_score/run_classifier.sh
 
 ## Step 2. Run subtyping modules
 
