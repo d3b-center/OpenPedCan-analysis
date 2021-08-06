@@ -8,12 +8,8 @@
 # uses pbta-histologies-base.tsv for subtyping if value is 0 runs all modules with pbta-histologies.tsv(Default)
 
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 
 RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
@@ -25,7 +21,7 @@ COUNT_THRESHOLD=100
 if [ "$RUN_FOR_SUBTYPING" == 0 ]; then
 METADATA="../../data/pbta-histologies.tsv"
 else
-METADATA="../../data/pbta-histologies-base.tsv" 
+METADATA="../../data/pbta-histologies-base.tsv"
 fi
 
 OUTPUT="results"
@@ -117,4 +113,3 @@ Rscript --vanilla scripts/run-dimension-reduction.R \
   --neighbors ${NEIGHBORS} \
   --low_count_threshold ${COUNT_THRESHOLD} \
   --log2_transform
-

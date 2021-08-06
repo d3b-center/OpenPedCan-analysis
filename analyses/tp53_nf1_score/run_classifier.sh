@@ -14,12 +14,8 @@ set -o pipefail
 
 RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-analysis_dir="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$analysis_dir" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 
 # we want to skip the poly-A steps in CI
@@ -28,16 +24,16 @@ POLYA=${OPENPBTA_POLYAPLOT:-1}
 
 data_dir="../../data"
 scratch_dir="../../scratch"
-# cds gencode bed file  
+# cds gencode bed file
 cds_file="${scratch_dir}/gencode.v27.primary_assembly.annotation.bed"
 snvconsensus_file="${data_dir}/pbta-snv-consensus-mutation.maf.tsv.gz"
 cnvconsensus_file="${data_dir}/consensus_seg_annotated_cn_autosomes.tsv.gz"
 
 if [[ RUN_FOR_SUBTYPING == "0" ]]
 then
-   histology_file="../../data/pbta-histologies.tsv" 
-else 
-   histology_file="../../data/pbta-histologies-base.tsv"  
+   histology_file="../../data/pbta-histologies.tsv"
+else
+   histology_file="../../data/pbta-histologies-base.tsv"
 fi
 
 
@@ -65,7 +61,7 @@ else
    # expression files for prediction
    collapsed_stranded="../collapse-rnaseq/results/pbta-gene-expression-rsem-fpkm-collapsed.stranded.rds"
    collapsed_polya="../collapse-rnaseq/results/pbta-gene-expression-rsem-fpkm-collapsed.polya.rds"
-fi   
+fi
 
 # Skip poly-A steps in CI
 if [ "$POLYA" -gt "0" ]; then
@@ -94,4 +90,3 @@ python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp5
 if [ "$POLYA" -gt "0" ]; then
   python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp53_altered_status.tsv -f ${analysis_dir}/results/pbta-gene-expression-rsem-fpkm-collapsed.polya_classifier_scores.tsv -c ${histology_file} -o polya
 fi
-

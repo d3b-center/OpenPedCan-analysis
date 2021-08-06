@@ -18,12 +18,8 @@ SUBSET=${OPENPBTA_SUBSET:-1}
 # filtered to only coding regions
 exon_file="../../scratch/gencode.v27.primary_assembly.annotation.bed"
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Gather pathology diagnosis and pathology free text diagnosis for HGG sample selection
 Rscript 00-HGG-select-pathology-dx.R

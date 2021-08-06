@@ -5,13 +5,8 @@
 set -e
 set -o pipefail
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # option for only running a single tail percent in continuous integration
 PERCENT=${OPENPBTA_PERCENT:-1}
@@ -159,6 +154,3 @@ Rscript -e "rmarkdown::render('04-present_results.Rmd', 'html_document', params 
       model_dir = '${MODELS}', \
       train_target_column = '${TRAIN_TARGET_COLUMN}', \
       target_columns = '${targetColumns_to_pass}'))"
-
-
-

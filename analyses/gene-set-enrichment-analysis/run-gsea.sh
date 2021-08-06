@@ -22,12 +22,8 @@ set -o pipefail
 IS_CI=${OPENPBTA_TESTING:-0}
 RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 if [ "$RUN_FOR_SUBTYPING" == 0 ]; then
 DATA_DIR="../../data"

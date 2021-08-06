@@ -2,14 +2,10 @@
 set -e
 set -o pipefail
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
-#generate collapsed data for count files 
+#generate collapsed data for count files
 Rscript ../collapse-rnaseq/01-summarize_matrices.R -i ../../data/pbta-gene-counts-rsem-expected_count.stranded.rds -g ../../data/gencode.v27.primary_assembly.annotation.gtf.gz -m ../collapse-rnaseq/pbta-gene-counts-rsem-expected_count-collapsed.stranded.rds -t ../collapse-rnaseq/pbta-gene-counts-rsem-expected_count-collapsed_table.stranded.rds
 Rscript ../collapse-rnaseq/01-summarize_matrices.R -i ../../data/pbta-gene-counts-rsem-expected_count.polya.rds -g ../../data/gencode.v27.primary_assembly.annotation.gtf.gz -m ../collapse-rnaseq/pbta-gene-counts-rsem-expected_count-collapsed.polya.rds -t ../collapse-rnaseq/pbta-gene-counts-rsem-expected_count-collapsed_table.polya.rds
 

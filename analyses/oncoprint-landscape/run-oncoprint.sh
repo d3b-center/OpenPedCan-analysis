@@ -6,12 +6,8 @@
 set -e
 set -o pipefail
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # For the genes lists
 # https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
@@ -63,7 +59,7 @@ for histology in "Low-grade astrocytic tumor" \
 "Ependymal tumor" \
 "Other CNS"
 do
-  
+
   # Print primary only oncoprints by broad histology
   Rscript --vanilla 01-plot-oncoprint.R \
     --maf_file ${intermediate_directory}/${primary_filename}_maf.tsv \
@@ -72,7 +68,7 @@ do
     --metadata_file ${histologies_file} \
     --png_name ${primary_filename}_"$histology"_oncoprint.png \
     --broad_histology "$histology"
-      
+
   # Genes of interest only version of oncoprint
   Rscript --vanilla 01-plot-oncoprint.R \
     --maf_file ${intermediate_directory}/${primary_filename}_maf.tsv \
@@ -102,5 +98,5 @@ do
     --goi_list ${genes_list} \
     --png_name ${primaryplus_filename}_"$histology"_goi_oncoprint.png \
     --broad_histology "$histology"
-    
+
 done

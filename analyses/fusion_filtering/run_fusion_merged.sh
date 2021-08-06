@@ -12,12 +12,8 @@ set -o pipefail
 
 RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
 
-# This script should always run as if it were being called from
-# the directory it lives in.
-script_directory="$(perl -e 'use File::Basename;
-  use Cwd "abs_path";
-  print dirname(abs_path(@ARGV[0]));' -- "$0")"
-cd "$script_directory" || exit
+# Set the working directory to the directory of this file
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Set up paths to data files consumed by analysis, and path to result output
 data_path="../../data"
@@ -48,11 +44,11 @@ normal_expression_file="${references_path}/Brain_FPKM_hg38_matrix.txt.zip"
 # metadata files
 if [[ RUN_FOR_SUBTYPING == "0" ]]
 then
-   histologies_file="${data_path}/pbta-histologies.tsv" 
+   histologies_file="${data_path}/pbta-histologies.tsv"
    independent_samples_file="${data_path}/independent-specimens.wgswxs.primary-plus.tsv"
-else 
-   histologies_file="${data_path}/pbta-histologies-base.tsv"  
-   independent_samples_file="../independent-samples/results/independent-specimens.wgswxs.primary-plus.tsv" 
+else
+   histologies_file="${data_path}/pbta-histologies-base.tsv"
+   independent_samples_file="../independent-samples/results/independent-specimens.wgswxs.primary-plus.tsv"
 fi
 
 
@@ -65,8 +61,8 @@ putative_oncogenic_fusion="${results_path}/pbta-fusion-putative-oncogenic.tsv"
 Rscript 01-fusion-standardization.R --fusionfile $arriba_file \
                                     --caller "arriba" \
                                     --outputfile $standard_arriba_file
-                                    
-                                    
+
+
 # Run Fusion standardization for starfusion caller
 Rscript 01-fusion-standardization.R --fusionfile $starfusion_file \
                                     --caller "starfusion" \
@@ -81,8 +77,8 @@ Rscript 02-fusion-filtering.R --standardFusionFiles $standard_starfusion_file,$s
                               --referenceFolder $references_path \
                               --outputfile "${scratch_path}/standardFusionPolyaExp" \
                               --readthroughFilter
-                              
-                              
+
+
 # Run Fusion general filtering for stranded
 Rscript 02-fusion-filtering.R --standardFusionFiles $standard_arriba_file,$standard_starfusion_file \
                               --expressionMatrix $stranded_expression_file \
@@ -117,4 +113,3 @@ Rscript 06-recurrent-fusions-per-histology.R --standardFusionCalls $putative_onc
                                              --clinicalFile $histologies_file \
                                              --outputfolder $results_path \
                                              --independentSpecimensFile $independent_samples_file
-
