@@ -46,8 +46,8 @@ expr <- readRDS(input.mat)
 
 # read gencode (v27 for the paper) to get gene id-gene symbo-gene type annotation
 # PAR_Y entries are just duplications - so remove beforehand
-gtf2 <- read.table(input.gtf, sep="\t")
-gtf <- rtracklayer::import(input.gtf)
+gtf <- read.table(input.gtf, sep="\t")
+#gtf <- rtracklayer::import(input.gtf)
 gtf <- gtf %>% 
   as.data.frame() %>%
   select(gene_id, gene_name, gene_type) %>%
