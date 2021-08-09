@@ -28,4 +28,4 @@ for strategy in ${libraryStrategies[@]}; do
 done
 
 # run the notebook for analysis of dropped genes
-Rscript -e "rmarkdown::render(input = '02-analyze-drops.Rmd', params = list(polya.annot.table = 'results/pbta-gene-expression-rsem-fpkm-collapsed_table.polya.rds', stranded.annot.table = 'results/pbta-gene-expression-rsem-fpkm-collapsed_table.stranded.rds'), clean = TRUE)"
+Rscript --vanilla 02-analyze-drops.R

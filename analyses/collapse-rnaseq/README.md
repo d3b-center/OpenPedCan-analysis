@@ -22,4 +22,4 @@ bash run-collapse-rnaseq.sh
 This script is not run via `run-collapse-rnaseq.sh`.
 * `01-summarize_matrices.R` - this script generates the collapsed matrices as described above.
 In addition, this script calculates the average Pearson correlation between the values of the gene symbol that is kept and those duplicates that are discarded.
-* `02-analyze-drops.Rmd` - this is used to display tables from `01-summarize_matrices.R`.
+* `02-analyze-drops.R` - this is used to display tables from `01-summarize_matrices.R`.
