@@ -1,25 +1,38 @@
----
-title: "Find CNV losses that overlap with TP53 domains"
-author: "K S Gaonkar (D3B)"
-output: html_notebook
-params:
-  base_run:
-    label: "1/0 to run with base histology"
-    value: 0
-    input: integer
----
-    
-In this script we will find if there are a Structural Variant breakpoints within TP53 or covering the gene locus such that it is deleted and concurrently, there are either one or both of:
-  - 0 or 1 copy of TP53 (we would already have captured them as loss)
-  - expression less than 1 FPKM
-
-We want to subset SV calls which will possibly	lead to loss of function to use for evaluation of TP53 inactivation score at a later step.
-
-### Setup
-```{r}
+#' ---
+#' title: "Find CNV losses that overlap with TP53 domains"
+#' author: "K S Gaonkar (D3B)"
+#' output: html_notebook
+#' params:
+#'   base_run:
+#'     label: "1/0 to run with base histology"
+#'     value: 0
+#'     input: integer
+#' ---
+#'
+#' In this script we will find if there are a Structural Variant breakpoints within TP53 or covering the gene locus such that it is deleted and concurrently, there are either one or both of:
+#'   - 0 or 1 copy of TP53 (we would already have captured them as loss)
+#'   - expression less than 1 FPKM
+#'
+#' We want to subset SV calls which will possibly	lead to loss of function to use for evaluation of TP53 inactivation score at a later step.
+#'
+#' ### Setup
+## -----------------------------------------------------------------------------
 library("ggpubr")
 library("ggthemes")
 library("tidyverse")
+suppressPackageStartupMessages(library("optparse"))
+
+option_list <- list(
+  make_option(
+    opt_str = "--base_run",
+    type = "character",
+    help = "Flag for which histology file to use",
+    default = "0L"
+  )
+)
+
+opts <- parse_args(OptionParser(option_list = option_list))
+base_run <- opts$base_run
 
 # rootdir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -34,30 +47,30 @@ results_dir <- file.path(
 if (!dir.exists(results_dir)) {
   dir.create(results_dir)
 }
-```
 
-### Input files
-```{r}
+#'
+#' ### Input files
+## -----------------------------------------------------------------------------
 
 manta_sv <- read_tsv(file.path(data_dir, "pbta-sv-manta.tsv.gz"))
 stranded_expr <- readRDS(file.path(data_dir, "pbta-gene-expression-rsem-fpkm-collapsed.stranded.rds"))
 polya_expr <- readRDS(file.path(data_dir, "pbta-gene-expression-rsem-fpkm-collapsed.polya.rds"))
-if ( params$base_run ==0 ){
+if ( base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"pbta-histologies.tsv"), stringsAsFactors = FALSE)
 } else{
-  clinical<-read.delim(file.path(data_dir,"pbta-histologies-base.tsv"), stringsAsFactors = FALSE)  
+  clinical<-read.delim(file.path(data_dir,"pbta-histologies-base.tsv"), stringsAsFactors = FALSE)
 }
 
 histology <- select(clinical,c("Kids_First_Biospecimen_ID", "sample_id"))
 
 # high confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd`
 cnv_tp53_loss <- read_tsv(file.path(results_dir, "loss_overlap_domains_tp53.tsv"))
-```
 
-## SV breakpoints associated with TP53 loss 
-Since we want to capture TP53 loss phenotypes we will only keep breakpoints that are either DEL: deletion, INV: inversion and BND: translocations which are breakpoint notations with with 2 breakpoints in different chromosomes
- 
-```{r}
+#'
+#' ## SV breakpoints associated with TP53 loss
+#' Since we want to capture TP53 loss phenotypes we will only keep breakpoints that are either DEL: deletion, INV: inversion and BND: translocations which are breakpoint notations with with 2 breakpoints in different chromosomes
+#'
+## -----------------------------------------------------------------------------
 manta_sv_tp53 <- manta_sv %>%
   select(SV.chrom, SV.start, SV.end, SV.length, Kids.First.Biospecimen.ID.Tumor, SV.type, Gene.name, ALT) %>%
   # Distribution of TP53 SVs
@@ -74,29 +87,29 @@ manta_sv_tp53 <- manta_sv %>%
 
 manta_sv_tp53 %>%
   arrange(Kids.First.Biospecimen.ID.Tumor)
-```
 
-## Filter SV calls that are associated with sample with TP53 CNV loss
-High confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd` overlap TP53 domains:
-
- - TAD = trans-activating domain (essential for function)
- - DBD = DNA-binding domain (residues 102–292)
- - TD = tetramerization domain (residues 326–356) 
- 
-```{r}
+#'
+#' ## Filter SV calls that are associated with sample with TP53 CNV loss
+#' High confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd` overlap TP53 domains:
+#'
+#'  - TAD = trans-activating domain (essential for function)
+#'  - DBD = DNA-binding domain (residues 102–292)
+#'  - TD = tetramerization domain (residues 326–356)
+#'
+## -----------------------------------------------------------------------------
 sv_with_loss_cnv <- manta_sv_tp53 %>%
   # filter to samples with SV within or overlapping TP53
   filter(sample_id %in% cnv_tp53_loss$sample_id)
 
 sv_with_loss_cnv
-```
-BS_3NX3RBCX and BS_EJV0N3BX have a CNV loss and multiple SV breakpoints overlapping TP53 locus!
 
-
-## Filter SV calls that are associated with sample with low TP53 expression
-We will use sample_id from `manta_sv_tp53` to filter stranded and polya expression file 
-
-```{r}
+#' BS_3NX3RBCX and BS_EJV0N3BX have a CNV loss and multiple SV breakpoints overlapping TP53 locus!
+#'
+#'
+#' ## Filter SV calls that are associated with sample with low TP53 expression
+#' We will use sample_id from `manta_sv_tp53` to filter stranded and polya expression file
+#'
+## -----------------------------------------------------------------------------
 stranded_expr_tp53 <- stranded_expr["TP53", ] %>%
   t() %>%
   as.data.frame() %>%
@@ -120,21 +133,21 @@ sv_with_lowexpr <- manta_sv_tp53 %>%
   filter(sample_id %in% lowexpr_tp53_with_sv$sample_id)
 
 sv_with_lowexpr
-```
-No sample_ids with a SV within or overlapping TP53 have low expression of TP53!
 
-
-## Save high confidence SV associated with TP53 loss
-```{r}
+#' No sample_ids with a SV within or overlapping TP53 have low expression of TP53!
+#'
+#'
+#' ## Save high confidence SV associated with TP53 loss
+## -----------------------------------------------------------------------------
 if (nrow(sv_with_lowexpr) == 0) {
   # only saving sv_with_loss_cnv here
   # because sv_with_lowexpr is empty
-  sv_with_loss_cnv %>% 
+  sv_with_loss_cnv %>%
     write_tsv(file.path(results_dir, "sv_overlap_tp53.tsv"))
 } else if (nrow(sv_with_loss_cnv) == 0) {
   # only saving sv_with_lowexpr here
   # because sv_with_loss_cnv is empty
-  sv_with_lowexpr %>% 
+  sv_with_lowexpr %>%
     write_tsv(file.path(results_dir, "sv_overlap_tp53.tsv"))
 } else {
   # bind rows of both sv_with_lowexpr
@@ -145,5 +158,5 @@ if (nrow(sv_with_lowexpr) == 0) {
   ) %>%
     write_tsv(file.path(results_dir, "sv_overlap_tp53.tsv"))
 }
-```
 
+#'

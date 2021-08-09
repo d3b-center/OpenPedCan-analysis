@@ -103,10 +103,10 @@ Rscript 03-Calc-zscore-annotate.R --standardFusionCalls "${scratch_path}/standar
                                   --outputfile "${scratch_path}/standardFusionStrandedExp_QC_expression"
 
 # Project specific filtering
-Rscript -e "rmarkdown::render('04-project-specific-filtering.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+Rscript --vanilla 04-project-specific-filtering.R --base_run $RUN_FOR_SUBTYPING
 
 # QC filter putative oncogene found in more than 4 histologies
-Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+Rscript --vanilla 05-QC_putative_onco_fusion_distribution.R --base_run $RUN_FOR_SUBTYPING
 
 # Recurrent fusion/fused genes
 Rscript 06-recurrent-fusions-per-histology.R --standardFusionCalls $putative_oncogenic_fusion \

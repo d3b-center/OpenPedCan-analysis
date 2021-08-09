@@ -1,46 +1,62 @@
----
-title: "GSVA Score Modeling"
-author: "Stephanie J. Spielman for ALSF CCDL"
-date: '2020'
-output:
-  html_document:
-    df_print: paged
-    toc: yes
-  html_notebook:
-    df_print: paged
-    toc: yes
-    toc_float: yes
-params:
-  plot_ci: yes
-  is_ci: FALSE
----
+params <-
+list(plot_ci = TRUE)
 
-### Purpose
-
-The purpose of this analysis is to assess significant differences in GSVA scores for each hallmark pathways. Using ANOVA and subsequent Tukey tests, we ask:
-
-+ For each pathway, are GSVA scores significantly different across `display_group`? If so, which histologies are significantly different?
-
-+ For each pathway, are GSVA scores significantly different across `harmonized_diagnosis`? If so, which types are significantly different?
-
-We perform this using both GSVA scores calculated from the stranded and polyA RNA-seq libraries. Code is also flexible enough to test a different variable besides `display_group`, etc.
-
-### Usage
-
-To run this from the command line, use:
-```
-Rscript -e "rmarkdown::render('analyses/gene-set-enrichment-analysis/02-model-gsea.Rmd', clean = TRUE)" 
-```
-_This assumes you are in the top directory of the repository._
-
-### Setup
-
-Load libraries and define certain constants:
-
-```{r, lib-load, warning=FALSE, message=FALSE}
+#' ---
+#' title: "GSVA Score Modeling"
+#' author: "Stephanie J. Spielman for ALSF CCDL"
+#' date: '2020'
+#' output:
+#'   html_document:
+#'     df_print: paged
+#'     toc: yes
+#'   html_notebook:
+#'     df_print: paged
+#'     toc: yes
+#'     toc_float: yes
+#' params:
+#'   plot_ci: yes
+#'   is_ci: FALSE
+#' ---
+#'
+#' ### Purpose
+#'
+#' The purpose of this analysis is to assess significant differences in GSVA scores for each hallmark pathways. Using ANOVA and subsequent Tukey tests, we ask:
+#'
+#' + For each pathway, are GSVA scores significantly different across `display_group`? If so, which histologies are significantly different?
+#'
+#' + For each pathway, are GSVA scores significantly different across `harmonized_diagnosis`? If so, which types are significantly different?
+#'
+#' We perform this using both GSVA scores calculated from the stranded and polyA RNA-seq libraries. Code is also flexible enough to test a different variable besides `display_group`, etc.
+#'
+#' ### Usage
+#'
+#' To run this from the command line, use:
+#' ```
+#' Rscript -e "rmarkdown::render('analyses/gene-set-enrichment-analysis/02-model-gsea.Rmd', clean = TRUE)"
+#' ```
+#' _This assumes you are in the top directory of the repository._
+#'
+#' ### Setup
+#'
+#' Load libraries and define certain constants:
+#'
+## ---- lib-load, warning=FALSE, message=FALSE----------------------------------
 library(tidyverse)
 library(broom)
+library(optparse)
 `%>%` <- dplyr::`%>%`
+
+option_list <- list(
+  make_option(
+    opt_str = "--is_ci",
+    action = "store_true",
+    help = "Flag for which histology file to use",
+    default = FALSE
+  )
+)
+
+opts <- parse_args(OptionParser(option_list = option_list))
+is_ci <- opts$is_ci
 
 # This script contains functions used to modeling GSVA scores
 source(file.path("util", "hallmark_models.R"))
@@ -49,7 +65,7 @@ source(file.path("util", "hallmark_models.R"))
 SIGNIFICANCE_THRESHOLD <- 0.01
 
 # Assigning params$is_ci to running_in_ci avoids a locked binding error
-running_in_ci <- params$is_ci
+running_in_ci <- is_ci
 
 # Are we testing? In case of a non 0/1 number, we recast as logical, and then ensure logical.
 if (running_in_ci %in% c(0,1)) running_in_ci <- as.logical(running_in_ci)
@@ -58,16 +74,16 @@ if (!(is.logical(running_in_ci)))
   stop("\n\nERROR: The parameter `is_ci` should be FALSE/TRUE (or 0/1).")
 }
 
-```
 
-
-<br>
-Next, define directories and load data files:
-```{r, data-load, message=FALSE, warning=FALSE}
+#'
+#'
+#' <br>
+#' Next, define directories and load data files:
+## ---- data-load, message=FALSE, warning=FALSE---------------------------------
 ### Define directories
 # Establish base dir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
-data_dir    <- file.path(root_dir, "data") 
+data_dir    <- file.path(root_dir, "data")
 results_dir <- "results"
 
 ######### Define input files
@@ -95,18 +111,18 @@ file_tukey_polya_harmonized_diagnosis    <- file.path(results_dir, "gsva_tukey_p
 metadata        <- readr::read_tsv(metadata_file, guess_max = 10000)
 scores_stranded <- readr::read_tsv(scores_stranded_file)
 scores_polya    <- readr::read_tsv(scores_polya_file)
-```
 
-
-
-### ANOVA and Tukey analysis of GSVA scores
-
-Here we perform a series of ANOVAs, for polyA and stranded libraries separately, to determine whether mean GSVA scores for a given grouping are significantly different across hallmarks (pathways). The given groupings examined here are `display_group` and `harmonized_diagnosis`. 
-In other words, we perform an ANOVA (and associated posthoc Tukey test) for each hallmark as, `hallmark ~ grouping`. Users can specify the grouping variable.
-
-First, prepare the data for modeling:
-
-```{r aov-prep}
+#'
+#'
+#'
+#' ### ANOVA and Tukey analysis of GSVA scores
+#'
+#' Here we perform a series of ANOVAs, for polyA and stranded libraries separately, to determine whether mean GSVA scores for a given grouping are significantly different across hallmarks (pathways). The given groupings examined here are `display_group` and `harmonized_diagnosis`.
+#' In other words, we perform an ANOVA (and associated posthoc Tukey test) for each hallmark as, `hallmark ~ grouping`. Users can specify the grouping variable.
+#'
+#' First, prepare the data for modeling:
+#'
+## ----aov-prep-----------------------------------------------------------------
 
 ### Merge histology metadata with each set of gsea scores
 scores_stranded  <- scores_stranded %>% mutate(data_type = "stranded")
@@ -116,25 +132,25 @@ all_scores      <- bind_rows(scores_stranded, scores_polya) %>%
                         hallmark_name = factor(hallmark_name))
 
 # Import standard groupings from the color palette
-histology_label_mapping <- readr::read_tsv(histology_color_file) %>% 
+histology_label_mapping <- readr::read_tsv(histology_color_file) %>%
   # Select just the columns we will need for plotting
-  dplyr::select(Kids_First_Biospecimen_ID, display_group, display_order, hex_codes) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, display_group, display_order, hex_codes) %>%
   # Reorder display_group based on display_order
   dplyr::mutate(display_group = forcats::fct_reorder(display_group, display_order))
 
 metadata_with_gsva <- metadata %>%
   filter(experimental_strategy == "RNA-Seq") %>%
-  inner_join(all_scores, by = "Kids_First_Biospecimen_ID") %>% 
-  # Join on color palette groupings 
+  inner_join(all_scores, by = "Kids_First_Biospecimen_ID") %>%
+  # Join on color palette groupings
   inner_join(histology_label_mapping)
-```
 
-
-Now, model:
-
-```{r, aov-perform}
-display_group_stranded_model_results <- gsva_anova_tukey(metadata_with_gsva, display_group, "stranded", SIGNIFICANCE_THRESHOLD) 
-harmonized_diagnosis_stranded_model_results <- gsva_anova_tukey(metadata_with_gsva, harmonized_diagnosis, "stranded", SIGNIFICANCE_THRESHOLD) 
+#'
+#'
+#' Now, model:
+#'
+## ---- aov-perform-------------------------------------------------------------
+display_group_stranded_model_results <- gsva_anova_tukey(metadata_with_gsva, display_group, "stranded", SIGNIFICANCE_THRESHOLD)
+harmonized_diagnosis_stranded_model_results <- gsva_anova_tukey(metadata_with_gsva, harmonized_diagnosis, "stranded", SIGNIFICANCE_THRESHOLD)
 
 head(display_group_stranded_model_results)
 head(harmonized_diagnosis_stranded_model_results)
@@ -160,26 +176,26 @@ if (!(running_in_ci)){
   write_tsv(harmonized_diagnosis_polya_model_results[["tukey"]],    file_tukey_polya_harmonized_diagnosis)
 
 }
-```
 
-**How many `display_group` have significant ANOVAs across hallmark pathways, for each library?**
-```{r}
+#'
+#' **How many `display_group` have significant ANOVAs across hallmark pathways, for each library?**
+## -----------------------------------------------------------------------------
 display_group_stranded_model_results[["anova"]] %>% count(significant_anova)
 if (!(running_in_ci))
 {
   display_group_polya_model_results[["anova"]] %>% count(significant_anova)
 }
-```
 
-> All are significantly different for stranded, none for polya. Likely due to data/power limitations.
-
-**How many `harmonized_diagnosis` have significant ANOVAs across hallmark pathways, for each library?**
-```{r}
+#'
+#' > All are significantly different for stranded, none for polya. Likely due to data/power limitations.
+#'
+#' **How many `harmonized_diagnosis` have significant ANOVAs across hallmark pathways, for each library?**
+## -----------------------------------------------------------------------------
 harmonized_diagnosis_stranded_model_results[["anova"]] %>% count(significant_anova)
 if (!(running_in_ci))
 {
   harmonized_diagnosis_polya_model_results[["anova"]] %>% count(significant_anova)
 }
-```
 
-> Again, all are significantly different for stranded, none for polya. Likely due to data/power limitations.
+#'
+#' > Again, all are significantly different for stranded, none for polya. Likely due to data/power limitations.

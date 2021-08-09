@@ -42,7 +42,7 @@ Rscript --vanilla 01-conduct-gsea-analysis.R --input ${INPUT_FILE} --output ${OU
 
 ######## Model GSVA scores ############
 # Only run when pbta-histologies.tsv is generated which has harmonized_diagnosis
-Rscript -e "rmarkdown::render('02-model-gsea.Rmd', clean = TRUE, params=list(is_ci = ${IS_CI}))"
+Rscript --vanilla 02-model-gsea.R --is_ci ${IS_CI}
 else
 DATA_DIR="../collapse-rnaseq/results"
 RESULTS_DIR="results"

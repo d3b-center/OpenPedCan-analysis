@@ -1,71 +1,78 @@
----
-title: "Project specific filtering"
-author: "K S Gaonkar (D3B); Jaclyn Taroni (CCDL)"
-output: html_notebook
-params:
-  histology:
-    label: "Clinical file" 
-    value: data/pbta-histologies.tsv
-    input: file
-  group:
-    label: "Grouping variable"
-    value: broad_histology
-    input: string
-  dataStranded:
-    label: "Input filtered fusion dataframe"
-    value: scratch/standardFusionStrandedExp_QC_expression_GTExComparison_annotated.RDS
-    input: file
-  dataPolya:
-    label: "Input filtered fusion dataframe"
-    value: scratch/standardFusionPolyaExp_QC_expression_GTExComparison_annotated.RDS
-    input: file    
-  numCaller:
-    label: "Least Number of callers to have called fusion"
-    value: 2
-    input: integer
-  numSample:
-    label: "Least Number of samples to have fusion per group"
-    value: 2
-    input: integer
-  numGroup:
-    label: "Max number of groups found in"
-    value: 1
-    input: integer
-  limitMultiFused:
-    label: "Max number of times gene can be fused per sample"
-    value: 5
-    input: integer  
-  outputfolder:
-    label: "results folder for *tsv files"
-    value: results
-    input: string
-  base_run:
-    label: "1/0 to run with base histology"
-    value: 0
-    input: integer
-  base_histology:
-    label: "Base histology file"
-    value: data/pbta-histologies-base.tsv
-    input: file
----
+params <-
+list(histology = "data/pbta-histologies.tsv", group = "broad_histology",
+    dataStranded = "scratch/standardFusionStrandedExp_QC_expression_GTExComparison_annotated.RDS",
+    dataPolya = "scratch/standardFusionPolyaExp_QC_expression_GTExComparison_annotated.RDS",
+    numCaller = 2L, numSample = 2L, numGroup = 1L, limitMultiFused = 5L,
+    outputfolder = "results", base_histology = "data/pbta-histologies-base.tsv")
 
-
-
-Filtered Fusions:
-1. In-frame fusions is called in atleast 2 samples per histology OR
-2. In-frame fusions is called in atleast 2 callers 
-AND
-Filtered-fusions found in more than 1 histology OR
-Filtered-fusion doesn't have multi-fused gene (more than 5 times in sample)
-
-Putative Driver:
-Filtering for general cancer specific genes
-Fusions with genes in either onco
-
-This notebook assumes you are in OpenPBTA-analysis project folder structure.
-
-
-```{r}
+#' ---
+#' title: "Project specific filtering"
+#' author: "K S Gaonkar (D3B); Jaclyn Taroni (CCDL)"
+#' output: html_notebook
+#' params:
+#'   histology:
+#'     label: "Clinical file"
+#'     value: data/pbta-histologies.tsv
+#'     input: file
+#'   group:
+#'     label: "Grouping variable"
+#'     value: broad_histology
+#'     input: string
+#'   dataStranded:
+#'     label: "Input filtered fusion dataframe"
+#'     value: scratch/standardFusionStrandedExp_QC_expression_GTExComparison_annotated.RDS
+#'     input: file
+#'   dataPolya:
+#'     label: "Input filtered fusion dataframe"
+#'     value: scratch/standardFusionPolyaExp_QC_expression_GTExComparison_annotated.RDS
+#'     input: file
+#'   numCaller:
+#'     label: "Least Number of callers to have called fusion"
+#'     value: 2
+#'     input: integer
+#'   numSample:
+#'     label: "Least Number of samples to have fusion per group"
+#'     value: 2
+#'     input: integer
+#'   numGroup:
+#'     label: "Max number of groups found in"
+#'     value: 1
+#'     input: integer
+#'   limitMultiFused:
+#'     label: "Max number of times gene can be fused per sample"
+#'     value: 5
+#'     input: integer
+#'   outputfolder:
+#'     label: "results folder for *tsv files"
+#'     value: results
+#'     input: string
+#'   base_run:
+#'     label: "1/0 to run with base histology"
+#'     value: 0
+#'     input: integer
+#'   base_histology:
+#'     label: "Base histology file"
+#'     value: data/pbta-histologies-base.tsv
+#'     input: file
+#' ---
+#'
+#'
+#'
+#' Filtered Fusions:
+#' 1. In-frame fusions is called in atleast 2 samples per histology OR
+#' 2. In-frame fusions is called in atleast 2 callers
+#' AND
+#' Filtered-fusions found in more than 1 histology OR
+#' Filtered-fusion doesn't have multi-fused gene (more than 5 times in sample)
+#'
+#' Putative Driver:
+#' Filtering for general cancer specific genes
+#' Fusions with genes in either onco
+#'
+#' This notebook assumes you are in OpenPBTA-analysis project folder structure.
+#'
+#'
+## -----------------------------------------------------------------------------
 
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
@@ -74,6 +81,19 @@ suppressPackageStartupMessages(library("readr"))
 suppressPackageStartupMessages(library("tidyverse"))
 suppressPackageStartupMessages(library("reshape2"))
 suppressPackageStartupMessages(library("qdapRegex"))
+suppressPackageStartupMessages(library("optparse"))
+
+option_list <- list(
+  make_option(
+    opt_str = "--base_run",
+    type = "character",
+    help = "Flag for which histology file to use",
+    default = "0L"
+  )
+)
+
+opts <- parse_args(OptionParser(option_list = option_list))
+base_run <- opts$base_run
 
 #read filtFusion files
 strandedQCGeneFiltered_filtFusion<-readRDS(file.path(root_dir, params$dataStranded))
@@ -110,7 +130,7 @@ numCaller<-params$numCaller
 # Least number of samples per group
 numSample<-params$numSample
 
-# Max number of groups 
+# Max number of groups
 numGroup<-params$numGroup
 
 # Max number of times gene can be fused per sample
@@ -118,16 +138,16 @@ limitMultiFused<-params$limitMultiFused
 
 print("Raw calls from STARfusion and Arriba for PBTA")
 table(fusion_calls$Caller)
-```
 
-### Aggregate 
+#'
+#' ### Aggregate
+#'
+#' If FusionName is called by multiple callers we will have a column 'CalledBy'
+#' to specify that multiple callers "Caller1,Caller2" have called it
+#'
+## -----------------------------------------------------------------------------
 
-If FusionName is called by multiple callers we will have a column 'CalledBy'
-to specify that multiple callers "Caller1,Caller2" have called it
-
-```{r}
-
-# aggregate caller 
+# aggregate caller
 fusion_caller.summary <- fusion_calls %>%
   dplyr::select(Sample,FusionName,Caller,Fusion_Type) %>%
   group_by(FusionName, Sample ,Fusion_Type) %>%
@@ -136,28 +156,28 @@ fusion_caller.summary <- fusion_calls %>%
   dplyr::select(-Caller)
 
 #to add aggregated caller from fusion_caller.summary
-fusion_calls<-fusion_calls %>% 
+fusion_calls<-fusion_calls %>%
   left_join(fusion_caller.summary,by=(c("Sample","FusionName","Fusion_Type"))) %>%
   unique()
-```
 
-### Idenitify kinase domain retention status
-
-Kinase domainIDs are obtained pfam by a simple grep "kinase" in their Name
-
-```{r}
+#'
+#' ### Idenitify kinase domain retention status
+#'
+#' Kinase domainIDs are obtained pfam by a simple grep "kinase" in their Name
+#'
+## -----------------------------------------------------------------------------
 # identify kinase domain from bioMartPfam dataframe provided with annoFuse
 bioMartDataPfam <- readRDS(system.file("extdata", "pfamDataBioMart.RDS", package = "annoFuse"))
 
 # look for domains with "kinase" in their domain Name
 kinaseid<-unique(bioMartDataPfam[grep("kinase",bioMartDataPfam$NAME),
-                                 c("pfam_id","NAME")] ) 
+                                 c("pfam_id","NAME")] )
 
 kinaseid
-```
 
-Through annoFuse::fusion_driver domain retention status for given kinase pfamID is being added per Gene1A (5' Gene) and Gene1B (3' Gene)
-```{r}
+#'
+#' Through annoFuse::fusion_driver domain retention status for given kinase pfamID is being added per Gene1A (5' Gene) and Gene1B (3' Gene)
+## -----------------------------------------------------------------------------
 fusion_calls <- annoFuse::fusion_driver(fusion_calls,
                                   annotated = TRUE,
                                   checkDomainStatus=TRUE,
@@ -166,11 +186,11 @@ fusion_calls <- annoFuse::fusion_driver(fusion_calls,
                                   # we don't want to filter for putative driver fusion yet
                                   filterPutativeDriver = FALSE
                                   )
-```
 
-### Adding check to see if reciprocal fusion exists
-
-```{r}
+#'
+#' ### Adding check to see if reciprocal fusion exists
+#'
+## -----------------------------------------------------------------------------
 
 # check for fusions have reciprocal fusions in the same Sample
 # works only for GeneY -- GeneX ; GeneX -- GeneY matches
@@ -192,11 +212,11 @@ is_reciprocal<-data.frame(Reduce(rbind, is_reciprocal))
 fusion_calls <- fusion_calls %>%
   dplyr::left_join(is_reciprocal,by=c("Sample","FusionName"))
 
-```
 
-### Filter Putative Oncogene fusions
-
-``` {r}
+#'
+#' ### Filter Putative Oncogene fusions
+#'
+## -----------------------------------------------------------------------------
 #merge with histology file
 fusion_calls<-merge(fusion_calls,clinical,by.x="Sample",by.y="Kids_First_Biospecimen_ID")
 
@@ -208,11 +228,11 @@ putative_driver_annotated_fusions <- fusion_calls %>%
   unique()
 
 
-```
 
-### Other non-Oncogenic fusions filtering
-
-```{r}
+#'
+#' ### Other non-Oncogenic fusions filtering
+#'
+## -----------------------------------------------------------------------------
 # remove local rearrangements
 fusion_calls<-fusion_calls %>%
   # remove local rearrangement/adjacent genes
@@ -221,8 +241,8 @@ fusion_calls<-fusion_calls %>%
   unique()
 
 
-# Gene fusion should be in-frame/frameshift 
-fusion_calls<-fusion_calls %>% 
+# Gene fusion should be in-frame/frameshift
+fusion_calls<-fusion_calls %>%
   dplyr::filter(Fusion_Type != "other")
 # AND
 #
@@ -247,22 +267,22 @@ sample.count <- fusion_calls %>%
   as.data.frame()
 
 
-```
 
-#### Keep recurrent non-oncogenic fusions specific to a broad_histology
-
-```{r}
+#'
+#' #### Keep recurrent non-oncogenic fusions specific to a broad_histology
+#'
+## -----------------------------------------------------------------------------
 #filter QCGeneFiltered_filtFusion to keep recurrent fusions from above sample.count and fusion_calls.summary
 
 QCGeneFiltered_recFusion<-fusion_calls %>%
   dplyr::filter(FusionName %in% unique(c(sample.count$FusionName,fusion_calls.summary$FusionName)))
 
-```
 
-
-### Remove non-oncogenic fusions found in multiple histologies
-
-```{r}
+#'
+#'
+#' ### Remove non-oncogenic fusions found in multiple histologies
+#'
+## -----------------------------------------------------------------------------
 # remove fusions that are in > numGroup
 group.count <- fusion_calls %>%
   dplyr::select(FusionName, group) %>%
@@ -284,19 +304,19 @@ fusion_recurrent5_per_sample <- fusion_calls  %>%
   dplyr::arrange(Sample, FusionName) %>%
   # Retain only distinct rows
   dplyr::distinct() %>%
-  group_by(Sample,GeneSymbol) %>% 
-  dplyr::summarise(Gene.ct = n()) %>% 
+  group_by(Sample,GeneSymbol) %>%
+  dplyr::summarise(Gene.ct = n()) %>%
   dplyr::filter(Gene.ct>limitMultiFused) %>%
   mutate(note=paste0("multfused " ,limitMultiFused, " times per sample"))
 
 
 
-```
 
+#'
+#'
+## -----------------------------------------------------------------------------
 
-```{r}
-
-# filter QCGeneFiltered_recFusion to remove fusions found in more than 1 group 
+# filter QCGeneFiltered_recFusion to remove fusions found in more than 1 group
 
 recurrent_symbols <- fusion_recurrent5_per_sample$GeneSymbol
 
@@ -304,26 +324,24 @@ QCGeneFiltered_recFusionUniq<-QCGeneFiltered_recFusion %>%
   dplyr::filter(!FusionName %in% group.count$FusionName) %>%
   dplyr::filter(!Gene1A %in% recurrent_symbols |
                   !Gene2A %in% recurrent_symbols |
-                  !Gene1B %in% recurrent_symbols | 
+                  !Gene1B %in% recurrent_symbols |
                   !Gene2B %in% recurrent_symbols) %>%
   unique()
 
 
 
 
-```
 
+#'
+#'
+#'
+#'
+#'
+## -----------------------------------------------------------------------------
 
-
-
-
-```{r}
-  
 # merge putative annotated oncogenic and scavenged back non-oncogenic annotated, recurrent fusions
 putative_driver_fusions<-rbind(QCGeneFiltered_recFusionUniq,putative_driver_annotated_fusions) %>%
   unique() %>% dplyr::select (-group) %>%
   as.data.frame()
 
 write.table(putative_driver_fusions,file.path(root_dir,"scratch","pbta-fusion-putative-oncogenic-preQC.tsv"),sep="\t",quote=FALSE,row.names = FALSE)
-
-```

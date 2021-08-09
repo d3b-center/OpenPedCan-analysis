@@ -1,21 +1,21 @@
----
-title: "Generate Fusion Summary Files"
-output: html_notebook
-author: Daniel Miller (D3b), Jaclyn Taroni (CCDL), Jo Lynne Rokita (D3b)
-date: January 2020, November 2020
----
-
-Generate fusion files specifically for consumption by molecular subtyping analyses
-
-## Set up
-
-### Libraries and functions
-
-```{r}
+#' ---
+#' title: "Generate Fusion Summary Files"
+#' output: html_notebook
+#' author: Daniel Miller (D3b), Jaclyn Taroni (CCDL), Jo Lynne Rokita (D3b)
+#' date: January 2020, November 2020
+#' ---
+#' 
+#' Generate fusion files specifically for consumption by molecular subtyping analyses
+#' 
+#' ## Set up
+#' 
+#' ### Libraries and functions
+#' 
+## -----------------------------------------------------------------------------
 library(tidyverse)
-```
 
-```{r}
+#' 
+## -----------------------------------------------------------------------------
 #' Generate filtered fusion frame
 #' @param df Unfiltered fusion data frame
 #' @param bioid List of biospecimen IDs
@@ -61,11 +61,11 @@ prepareOutput <- function(fuseDF, bioid) {
     replace(is.na(.), 0) %>%
     rename(Kids_First_Biospecimen_ID = Sample)
 }
-```
 
-### Read in data
-
-```{r}
+#' 
+#' ### Read in data
+#' 
+## -----------------------------------------------------------------------------
 dataDir <- file.path("..", "..", "data")
 fusDir <- file.path("..", "..", "analyses", "fusion_filtering", "results")
 annotDir <- file.path("..", "..", "analyses", "fusion_filtering", "references")
@@ -79,11 +79,11 @@ putativeOncogenicDF <-
 #' "missing" in the final files for consumption which could mislead analysts.
 arribaDF <- read_tsv(file.path(dataDir, "pbta-fusion-arriba.tsv.gz"))
 starfusionDF <- read_tsv(file.path(dataDir, "pbta-fusion-starfusion.tsv.gz"))
-```
 
-### Output
-
-```{r}
+#' 
+#' ### Output
+#' 
+## -----------------------------------------------------------------------------
 resultsDir <- "results"
 if (!dir.exists(resultsDir)) {
   dir.create(resultsDir)
@@ -92,13 +92,13 @@ ependFile <- file.path(resultsDir, "fusion_summary_ependymoma_foi.tsv")
 embryFile <- file.path(resultsDir, "fusion_summary_embryonal_foi.tsv")
 ewingsFile <- file.path(resultsDir, "fusion_summary_ewings_foi.tsv")
 lgatFile <- file.path(resultsDir, "fusion_summary_lgat_foi.tsv")
-```
 
-## Fusions and genes of interest
-
-Taken from [`AlexsLemonade/OpenPBTA-analysis#245`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/245), [`AlexsLemonade/OpenPBTA-analysis#251`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/251), [`AlexsLemonade/OpenPBTA-analysis#623`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/623) respectively, and [`AlexsLemonade/OpenPBTA-analysis#808`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/808) 
-
-```{r}
+#' 
+#' ## Fusions and genes of interest
+#' 
+#' Taken from [`AlexsLemonade/OpenPBTA-analysis#245`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/245), [`AlexsLemonade/OpenPBTA-analysis#251`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/251), [`AlexsLemonade/OpenPBTA-analysis#623`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/623) respectively, and [`AlexsLemonade/OpenPBTA-analysis#808`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/808) 
+#' 
+## -----------------------------------------------------------------------------
 #' **Filters**
 #'
 #' *Fusions Filters*
@@ -158,11 +158,11 @@ lgatGenes <- c(
   "RAF1"
 )
 
-```
 
-### Filter putative oncogenic fusions list
-
-```{r}
+#' 
+#' ### Filter putative oncogenic fusions list
+#' 
+## -----------------------------------------------------------------------------
 allFuseEpend <- filterFusion(df = putativeOncogenicDF,
                              fuses = ependFuses,
                              genes = ependGenes)
@@ -175,19 +175,19 @@ allFuseLGAT <- filterFusion(df = putativeOncogenicDF,
                              fuses = lgatFuses,
                              genes = lgatGenes)
 
-```
 
-Get the biospecimen IDs that are present in *either* caller file (Arriba, STARFusion).
-The fusions in the putative oncogenic fusion file can be retained even if they are not in both callers: https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/8fba1753608d8ac0aa3d5d7d63c480b8f00ff0e9/analyses/fusion_filtering/04-project-specific-filtering.Rmd#L242
-We use the putative oncogenic file here, therefore any sample that is in either file but does not have a fusion that is relevant to the subtyping tickets is not _missing_ but instead has no evidence of the relevant fusions.
-
-```{r}
+#' 
+#' Get the biospecimen IDs that are present in *either* caller file (Arriba, STARFusion).
+#' The fusions in the putative oncogenic fusion file can be retained even if they are not in both callers: https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/8fba1753608d8ac0aa3d5d7d63c480b8f00ff0e9/analyses/fusion_filtering/04-project-specific-filtering.Rmd#L242
+#' We use the putative oncogenic file here, therefore any sample that is in either file but does not have a fusion that is relevant to the subtyping tickets is not _missing_ but instead has no evidence of the relevant fusions.
+#' 
+## -----------------------------------------------------------------------------
 specimensUnion<- union(arribaDF$tumor_id, starfusionDF$tumor_id)
-```
 
-#### Write non-MB, non-ATRT embryonal fusions to file
-
-```{r}
+#' 
+#' #### Write non-MB, non-ATRT embryonal fusions to file
+#' 
+## -----------------------------------------------------------------------------
 allFuseEmbry <- allFuseEmbry %>%
   prepareOutput(specimensUnion)
 
@@ -199,11 +199,11 @@ allFuseEmbry[, missingEmbryFusion] <- 0
 # Write to file
 allFuseEmbry %>%
   write_tsv(embryFile)
-```
 
-#### Write ependymoma fusions to file
-
-```{r}
+#' 
+#' #### Write ependymoma fusions to file
+#' 
+## -----------------------------------------------------------------------------
 allFuseEpend <- allFuseEpend %>%
   prepareOutput(specimensUnion) 
 
@@ -214,12 +214,12 @@ allFuseEpend[, missingEpendFusion] <- 0
 
 allFuseEpend %>%
   write_tsv(ependFile)
-```
 
-
-#### Write ewings sarcoma fusions to file
-
-```{r}
+#' 
+#' 
+#' #### Write ewings sarcoma fusions to file
+#' 
+## -----------------------------------------------------------------------------
 allFuseEwing <- allFuseEwing %>%
   prepareOutput(specimensUnion)
 
@@ -230,11 +230,11 @@ allFuseEwing[, missingEwingFusion] <- 0
 
 allFuseEwing %>%
   write_tsv(ewingsFile)
-```
 
-#### Perform selection for LGAT fusions
-First pull the fusions or genes from the goi list which are not kinases for the final output file, since these will not need further interrogation.
-```{r}
+#' 
+#' #### Perform selection for LGAT fusions
+#' First pull the fusions or genes from the goi list which are not kinases for the final output file, since these will not need further interrogation.
+## -----------------------------------------------------------------------------
 # Which genes/fusions are not kinases, but in the list?
 # Separate LGAT fusions into genes, combine with gene list, check for not kinase
 lgatFuses_df <- as.data.frame(lgatFuses) %>%
@@ -261,11 +261,11 @@ nonkinaseLGAT <- filterFusion(df = putativeOncogenicDF,
                              fuses = nonkinase_lgatFuses,
                              genes = nonkinase_lgatGenes) %>%
   distinct()
-```
 
-Next, collect fusions which contain 3' kinases which are in-frame and retain the kinase domain. 
-Keep these for the final output file.
-```{r}
+#' 
+#' Next, collect fusions which contain 3' kinases which are in-frame and retain the kinase domain. 
+#' Keep these for the final output file.
+## -----------------------------------------------------------------------------
 three_prime_kinase_inframe <- allFuseLGAT %>%
   filter(grepl("Kinase", Gene1B_anno) & Fusion_Type == "in-frame" & DomainRetainedGene1B == "Yes") %>%
   select(Sample, FusionName, Gene1A, Gene1B) %>%
@@ -278,36 +278,36 @@ three_prime_kinase_outframe <- allFuseLGAT %>%
   distinct()
 
 three_prime_kinase_outframe
-```
 
-Let's look at these just to be sure the results are as expected.
-```{r}
+#' 
+#' Let's look at these just to be sure the results are as expected.
+## -----------------------------------------------------------------------------
 # `BS_KE56MMY0 ARHGEF2--NTRK1` one does and will be captured in the `three_prime_kinase_inframe` list, but `BS_B1C6GZ84 CHIC2--PDGFRA2` does not retain the kinase domain, so we do not want to add it.
 intersect(three_prime_kinase_outframe[,c("Sample", "FusionName")], three_prime_kinase_inframe[,c("Sample", "FusionName")])
-```
 
-```{r}
+#' 
+## -----------------------------------------------------------------------------
 # Which fusions are not in-frame?
 three_prime_kinase_outframe <- allFuseLGAT %>%
   filter(grepl("Kinase", Gene1B_anno) & Fusion_Type != "in-frame") %>%
   distinct()
 # Check they don't retain the kinase domain. They do not, so leave out.
 table(three_prime_kinase_outframe$DomainRetainedGene1B)
-```
 
-Next, filter all fusions for 5' kinase fusions which have reciprocal fusions and retain the kinase domain.
-Keep these for the final output file.
-```{r}
+#' 
+#' Next, filter all fusions for 5' kinase fusions which have reciprocal fusions and retain the kinase domain.
+#' Keep these for the final output file.
+## -----------------------------------------------------------------------------
 # Keep those with kinase domain retained and fusion in-frame - keep this list
 five_prime_domain_intact <- allFuseLGAT %>%
   filter(grepl("Kinase", Gene1A_anno) & DomainRetainedGene1A == "Yes" & Fusion_Type == "in-frame") %>%
   select(Sample, FusionName) %>%
   distinct()
-```
 
-Next, filter all fusions for 5' kinase fusions which have lost the kinase domain for reciprocal fusions which have a kinase domain intact and are in-frame.
-Keep these for the final output file.
-```{r}
+#' 
+#' Next, filter all fusions for 5' kinase fusions which have lost the kinase domain for reciprocal fusions which have a kinase domain intact and are in-frame.
+#' Keep these for the final output file.
+## -----------------------------------------------------------------------------
 # First, get fusions with 5' kinases which lost the kinase domain and have a reciprocal, then add the reciprocal fusion.
 five_prime_domain_lost <- allFuseLGAT %>%
   filter(grepl("Kinase", Gene1A_anno) & reciprocal_exists == "TRUE") %>%
@@ -323,10 +323,10 @@ five_prime_kinase_keep <- five_prime_domain_lost %>%
   filter(Fusion_Type == "in-frame" & DomainRetainedGene1B == "Yes") %>%
   select(Sample, FusionName = five_prime_kinase) %>%
   distinct()
-```
 
-Rbind lists for final table of LGAT fusions of interest
-```{r}
+#' 
+#' Rbind lists for final table of LGAT fusions of interest
+## -----------------------------------------------------------------------------
 # Rbind lists for final table of LGAT fusions of interest
 subsetFuseLGAT <- bind_rows(nonkinaseLGAT,
                             three_prime_kinase_inframe, 
@@ -334,11 +334,11 @@ subsetFuseLGAT <- bind_rows(nonkinaseLGAT,
                             five_prime_kinase_keep) %>%
   select(Sample, FusionName) %>%
   distinct()
-```
 
-#### Write LGAT fusions to file
-
-```{r}
+#' 
+#' #### Write LGAT fusions to file
+#' 
+## -----------------------------------------------------------------------------
 subsetFuseLGAT <- subsetFuseLGAT %>%
   prepareOutput(specimensUnion)
 
@@ -349,10 +349,10 @@ subsetFuseLGAT[, missingLgatFusion] <- 0
 
 subsetFuseLGAT %>%
   write_tsv(lgatFile)
-```
 
-## Session Info
-
-```{r}
+#' 
+#' ## Session Info
+#' 
+## -----------------------------------------------------------------------------
 sessionInfo()
-```
+
