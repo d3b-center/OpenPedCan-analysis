@@ -33,6 +33,8 @@ option_list <- list(
               help = "ENSG Hugo codes file (.tsv)"),
   make_option(c("-m", "--efo_mondo_file"), type = "character",
               help = "MONDO and EFO codes file (.tsv)"),
+  make_option(c("-u", "--gtex_subgroup_uberon"), type = "character",
+              help = "UBERON codes file (.tsv)"),
   make_option(c("-o", "--outdir"), type = "character",
               help = "Output Directory"),
   make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
@@ -73,6 +75,11 @@ TPMData <- readRDS(opt$tpm_file)
 #EFO_MONDO <- read.delim("../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
+#Load UBERON code map file for GTEx subgroup
+#GTEx_SubGroup_UBERON <- read.delim("../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
+GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
+
+
 #Load gene symbol-gene ID RMTL file
 #ENSG_Hugo <- read.delim("../data/ensg-hugo-rmtl-mapping.tsv", header =T)
 ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
@@ -82,7 +89,7 @@ hist.filtered <- unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames
 
 
 # Create an array of unique cancer_group found in histologies.tsv
-cancerGroup <- unique(hist.filtered$cancer_group )
+cancerGroup <- unique(hist.filtered$cancer_group)
 cancerGroup <- cancerGroup[which(!is.na(cancerGroup))]
 
 # Create an array of unique research cohorts found in histologies.tsv
@@ -124,6 +131,9 @@ hist.filtered_final <- hist.filtered[which((hist.filtered$cancer_group %in% pati
 
 #length(hist.filtered_final$gtex_subgroup) --> 19848
 #length(unique(hist.filtered_final$gtex_subgroup)) --> 54
+#length(unique(hist.filtered_final$gtex_subgroup[which(!is.na(hist.filtered_final$gtex_subgroup))])) --> 53
+#length(unique(hist.filtered_final$gtex_group)) -->32
+#length(unique(hist.filtered_final$gtex_group[which(!is.na(hist.filtered_final$gtex_group))])) --> 31
 #unique(hist.filtered_final$cancer_group) --> 29
 
 
@@ -243,7 +253,7 @@ for(I in 1:length(histology_filtered))
 #Save subset of table with samples representing the histology in the DEG comparison to a variable.
 HIST_sample_type_df_filtered <- sample_type_df_filtered[which(sample_type_df_filtered$Type %in% c(histology_filtered[I])),]
  
-#Define study ID as all cohorts represented by the pateints involved in DEG comparison
+#Define study ID as all cohorts represented by the patients involved in DEG comparison
 STUDY_ID <- paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]),collapse=";",sep=";")
 
 #Record number of samples represnt the GTEX tissue used in the comparison
@@ -281,13 +291,14 @@ Final_Data_Table <- data.frame(
   datatypeId = "rna_expression",
   cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
                  ,collapse=";",sep=";"),
-  gene_symbol = rownames(Result),
-  gene_id = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  Gene_symbol = rownames(Result),
+  Gene_Ensembl_ID = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
   RMTL = ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
   EFO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
                , EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
   MONDO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
                  ,EFO_MONDO$mondo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))],""),
+  GTEx_tissue_subgroup_UBERON = GTEx_SubGroup_UBERON$uberon_code[which(GTEx_SubGroup_UBERON$gtex_subgroup %in% GTEX_filtered[J])],
   comparisonId = gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))),
   cancer_group = paste(gsub("all-cohorts","all_cohorts",unlist(strsplit(histology_filtered[I],split="_"))[-1]),collapse=" "),
   cancer_group_Count = Cancer.Hist_Hits,
@@ -305,7 +316,9 @@ Final_Data_Table <- data.frame(
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
 FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")))
 write.table(Final_Data_Table,file=paste(opt$outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-write_json(Final_Data_Table,paste(opt$outdir,"/Results_",FILENAME,".json",sep=""),pretty=TRUE)
+Final_Data_Table.json = jsonlite::toJSON(Final_Data_Table, pretty = TRUE)
+Final_Data_Table.jsonl = gsub("},\\{" ,"}\n\\{", gsub("^\\[|\\]$","",Final_Data_Table.json))
+write(Final_Data_Table.jsonl,paste(opt$outdir,"/Results_",FILENAME,".jsonl",sep=""))
 
 
    }
