@@ -20,4 +20,4 @@ if [ "$SUBSET" -gt "0" ]; then
   Rscript --vanilla 00-subset-files-for-chordoma.R
 fi
 
-Rscript -e "rmarkdown::render('01-Subtype-chordoma.Rmd', clean = TRUE)"
+Rscript --vanilla 01-Subtype-chordoma.R

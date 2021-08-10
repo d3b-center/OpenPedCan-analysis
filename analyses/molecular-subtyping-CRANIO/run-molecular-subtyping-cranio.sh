@@ -6,4 +6,4 @@ set -o pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Run notebook
-Rscript -e "rmarkdown::render('00-craniopharyngiomas-molecular-subtype.Rmd')"
+Rscript --vanilla 00-craniopharyngiomas-molecular-subtype.R

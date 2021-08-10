@@ -19,5 +19,5 @@ if [ "$SUBSET" -gt "0" ]; then
   Rscript --vanilla 00-subset-files-for-ATRT.R
 fi
 
-Rscript -e "rmarkdown::render('01-ATRT-molecular-subtyping-data-prep.Rmd', clean = TRUE)"
+Rscript --vanilla 01-ATRT-molecular-subtyping-data-prep.R
 Rscript --vanilla 02-ATRT-molecular-subtyping-plotting.R

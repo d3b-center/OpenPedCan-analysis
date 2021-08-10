@@ -29,4 +29,4 @@ Rscript --vanilla 02-classify-mb.R \
 --output_prefix mb-classified
 
 # summarize output from both classifiers and expected classification
-Rscript -e "rmarkdown::render('03-compare-classes.Rmd', clean = TRUE)"
+Rscript --vanilla 03-compare-classes.R

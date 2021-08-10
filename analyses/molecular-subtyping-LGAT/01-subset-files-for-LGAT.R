@@ -1,0 +1,335 @@
+#' ---
+#' title: "Annotate SNV subtype status for LGAT biospecimens"
+#' output: html_notebook
+#' author: K S Gaonkar
+#' date: 2020
+#' ---
+#' 
+#' In this PR we will use identify LGAT biospecimens from pathology diagnosis and annotate subtype specific SNV status per biospecimen.
+#' 
+#' As per [issue](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/790) we will be subtyping LGAT based on SNV in the following genes:
+#' 
+#' - LGG, NF1
+#' somatic loss of NF1 via either missense, nonsense mutation
+#' 
+#' - LGG, BRAF V600E
+#' contains BRAF V600E or V599 SNV or non-canonical BRAF alterations such as p.V600ins or p.D594N
+#' 
+#' - LGG, other MAPK
+#' contains KRAS, NRAS, HRAS, MAP2K1, MAP2K2, MAP2K1, ARAF SNV or indel
+#' 
+#' - LGG, RTK
+#' harbors a MET SNV
+#' harbors a KIT SNV or
+#' harbors a PDGFRA SNV
+#' 
+#' - LGG, FGFR
+#' harbors FGFR1 p.N546K, p.K656E, p.N577, or p. K687 hotspot mutations or
+#' 
+#' - LGG, IDH
+#' harbors an IDH R132 mutation
+#' 
+#' - LGG, H3.3
+#' harbors an H3F3A or H3F3B K28M or G35R/V mutation
+#' 
+#' -  LGG, H3.1
+#' harbors an HIST1H3B K28M
+#' harbors and HIST1H3C  K28M
+#' 
+#' 
+#' ### Setup
+## -----------------------------------------------------------------------------
+library(tidyverse)
+
+# Look for git root folder
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+
+# Get subset folder
+subset_dir <- file.path(root_dir,
+                        "analyses",
+                        "molecular-subtyping-LGAT",
+                        "lgat-subset")
+
+# create if doesn't exist
+if (!dir.exists(subset_dir)) {
+  dir.create(subset_dir)
+}
+
+#' 
+#' ### Input
+#' 
+## -----------------------------------------------------------------------------
+# File from 00-LGAT-select-pathology-dx that is used for the pathology diagnosis
+# inclusion/exclusion criteria
+path_dx_list <- jsonlite::fromJSON(file.path(root_dir,
+            "analyses",
+            "molecular-subtyping-LGAT",
+            "input",
+            "lgat_subtyping_path_dx_strings.json"))
+
+
+# clinical file
+clinical <- read_tsv(file.path(root_dir,
+                               "data",
+                               "pbta-histologies-base.tsv"),
+                     guess_max = 10000)
+
+# consensus mutation data
+consensusMutation <- read_tsv(file.path(root_dir,
+                                        "data",
+                                        "pbta-snv-consensus-mutation.maf.tsv.gz"))
+
+
+#' 
+#' Filter to tumor samples that should be included on the basis of pathology diagnosis
+## -----------------------------------------------------------------------------
+lgat_specimens_df <- clinical %>%
+  dplyr::filter(str_detect(str_to_lower(pathology_diagnosis),  # Inclusion criteria
+                           paste(path_dx_list$include_path_dx, collapse = "|")),
+                # Exclusion criteria for pathology diagnosis
+                str_detect(str_to_lower(pathology_diagnosis),
+                           paste(path_dx_list$exclude_path_dx, collapse = "|"),
+                           negate = TRUE),
+                # Tumors
+                sample_type == "Tumor",
+                composition == "Solid Tissue")
+
+# We only exclude on the basis of the strings in pathology free text diagnosis
+# when pathology diagnosis indicates LGG because ganglioglioma tumors are
+# glial-neuronal tumors that should be subtyped in this module
+# See: https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/995#issuecomment-822744120
+lgat_specimens_df <- lgat_specimens_df %>%
+  dplyr::filter(
+    # If the pathology diagnosis is LGG, exclude samples with matching pathology free text
+    # diagnosis but retain samples if pathology free text is NA!
+    (pathology_diagnosis == "Low-grade glioma/astrocytoma (WHO grade I/II)" &
+       (str_detect(str_to_lower(pathology_free_text_diagnosis),
+                   paste(path_dx_list$exclude_path_free_text,
+                         collapse = "|"),
+                   negate = TRUE) |
+          is.na(pathology_free_text_diagnosis))) |
+      # Or if the pathology diagnosis is one of these three entries, include the samples
+      pathology_diagnosis %in% c("Ganglioglioma",
+                                 "Ganglioglioma;Low-grade glioma/astrocytoma (WHO grade I/II)",
+                                 "Low-grade glioma/astrocytoma (WHO grade I/II);Other"))
+
+# Write this intermediate file to the subset directory as it allows for
+# inspection
+write_tsv(lgat_specimens_df, file.path(subset_dir, "lgat_metadata.tsv"))
+
+# Filter to dna samples
+lgat_dna_df <- lgat_specimens_df %>%
+  dplyr::filter(experimental_strategy != "RNA-Seq") %>%
+  # will keep Kids_First_Biospecimen_ID
+  # sample_id is kept to be able to match with RNA-Seq in the later step
+  dplyr::select(Kids_First_Biospecimen_ID,sample_id)
+
+#' 
+#' 
+#' Gather gene(s) that define LGAT subtypes
+#' Additional information for genes with known hotspots/canonical mutation is also provided in the list.
+#' If the gene has multiple hotspots we will gather the protein hotspots site to use it in the below chunks to grep the HGVSp_Short column.
+#' 
+## -----------------------------------------------------------------------------
+# combined list for SNV of interest per subtype
+#
+snvOI <- jsonlite::fromJSON(file.path(root_dir,
+                                      "analyses",
+                                      "molecular-subtyping-LGAT",
+                                      "input",
+                                      "snvOI_list.json"))
+
+# Collapse multiple hotspots in genes with "|" so easy grep calls
+BRAF_hotspot <-paste(snvOI$BRAF_V600E$hotspot[!is.na( snvOI$BRAF_V600E$hotspot)],collapse = "|")
+FGFR_hotspot <-paste(snvOI$FGFR$hotspot[!is.na( snvOI$FGFR$hotspot)],collapse = "|")
+IDH1_hotspot<- paste(snvOI$IDH1$hotspot[!is.na( snvOI$IDH1$hotspot)],collapse = "|")
+
+#' 
+#' 
+#' ### Subset consensus maf and annotate per subtype based on SNV
+#' 
+#' We will remove synonymous variant calls from the list above. The Variant_Classification terms for synonymous SNV are selected as per [interaction-plots/scripts/02-process_mutations.R](https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/analyses/interaction-plots/scripts/02-process_mutations.R).
+## -----------------------------------------------------------------------------
+# Variant Classification with Low/Modifier variant consequences
+#  from maftools http://asia.ensembl.org/Help/Glossary?id=535
+synonymous <- c(
+  "Silent",
+  "Start_Codon_Ins",
+  "Start_Codon_SNP",
+  "Stop_Codon_Del",
+  "De_novo_Start_InFrame",
+  "De_novo_Start_OutOfFrame"
+)
+
+consensusMutation <- consensusMutation %>%
+  dplyr::filter(!Variant_Classification %in% synonymous)
+
+#' 
+#'  We are removing the LOW/MODIFIER IMPACT annotated by [VEP](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/#impact-categories)
+#' 
+#'  - LOW (L): Assumed to be mostly harmless or unlikely to change protein behavior
+#'  - MODIFIER (MO): Usually non-coding variants or variants affecting non-coding genes, where predictions are difficult or there is no evidence of impact
+#' 
+## -----------------------------------------------------------------------------
+consensusMutation <- consensusMutation %>%
+  dplyr::filter(!IMPACT %in% c("MODIFIER","LOW"))
+
+#' 
+#' ### Gather status of all SNVs per biospecimen
+#' 
+#' We will gather SNV calls that satisfy the conditions per subtype and save the subset along with the HGVSp_Short, DOMAINS and Variant_Classification
+#' and recode them as subtypes
+## -----------------------------------------------------------------------------
+# Filter consensus mutation files for LGAT subset
+consensusMutationSubset <- consensusMutation %>%
+  # find lgat samples
+  dplyr::filter(Tumor_Sample_Barcode %in% lgat_dna_df$Kids_First_Biospecimen_ID) %>%
+  # select tumor sample barcode, gene, short protein annotation, domains, and variant classification
+  dplyr::select(Tumor_Sample_Barcode,
+                Hugo_Symbol,
+                HGVSp_Short,
+                DOMAINS,
+                Variant_Classification,
+                IMPACT,
+                SIFT,
+                PolyPhen)
+
+
+# Get BRAF mutation status
+# canonical mutations V600E
+lgat_braf_V600 <- consensusMutationSubset %>%
+  dplyr::filter(
+    HGVSp_Short %in% snvOI$BRAF_V600E$canonical[!is.na(snvOI$BRAF_V600E$canonical)] &
+      Hugo_Symbol=="BRAF" | # OR
+      # hotspot mutations in p.600 and p.599
+      grepl(BRAF_hotspot,HGVSp_Short) &
+      Hugo_Symbol=="BRAF" | # OR
+      # and kinase domain mutation for non-canonical mutation
+      # Family: PK_Tyr_Ser-Thr https://pfam.xfam.org/family/PF07714
+      grepl("PF07714",DOMAINS) &
+      Hugo_Symbol=="BRAF") %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get other MAPK mutation status
+# all mutations in MAPK genes
+lgat_mapk <- consensusMutationSubset %>%
+  dplyr::filter(
+    Hugo_Symbol %in% snvOI$MAPK$gene) %>%
+    # remove BRAF mutations in canonical V600E region
+    dplyr::filter(!(Hugo_Symbol=="BRAF" &
+                      HGVSp_Short %in% lgat_braf_V600$HGVSp_Short)) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get NF1 mutation status
+lgat_nf1 <- consensusMutationSubset %>%
+  dplyr::filter(
+    Hugo_Symbol %in% snvOI$NF1$gene &
+      Variant_Classification %in% c("Missense_Mutation","Nonsense_Mutation")
+  ) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get RTK mutation status
+# all mutations in RTK genes
+lgat_rtk <- consensusMutationSubset %>%
+  dplyr::filter(
+    Hugo_Symbol %in% snvOI$RTK$gene
+  ) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get FGFR mutation status
+# canonical mutations     
+lgat_fgfr <- consensusMutationSubset %>%
+  dplyr::filter(
+    HGVSp_Short %in% snvOI$FGFR$canonical[!is.na(snvOI$FGFR$canonical)] &
+      Hugo_Symbol=="FGFR1" | # OR
+      # hotspot mutations
+      grepl(FGFR_hotspot,HGVSp_Short) &
+      Hugo_Symbol=="FGFR1"
+  ) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get IDH mutation status
+# hostspot mutations
+lgat_idh <- consensusMutationSubset %>%
+  dplyr::filter(
+    grepl(IDH1_hotspot,HGVSp_Short) &
+      Hugo_Symbol %in% snvOI$IDH1$gene
+  ) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+# Get histone mutation status
+# H3F3A canonical mutations
+lgat_histone <- consensusMutationSubset  %>%
+  dplyr::filter(
+    HGVSp_Short %in% snvOI$H3F3A$canonical & Hugo_Symbol %in% "H3F3A" | # OR
+      # H3F3B canonical mutations
+      HGVSp_Short %in% snvOI$H3F3B$canonical & Hugo_Symbol %in% "H3F3B" | # OR
+      # HIST1H3B canonical mutations
+      HGVSp_Short %in% snvOI$HIST1H3B$canonical & Hugo_Symbol %in% "HIST1H3B" | # OR
+      # HIST1H3C canonical mutations
+      HGVSp_Short %in% snvOI$HIST1H3C$canonical & Hugo_Symbol %in% "HIST1H3C" | # OR
+      # HIST2H3C canonical mutations     
+      HGVSp_Short %in% snvOI$HIST2H3C$canonical & Hugo_Symbol %in% "HIST2H3C"
+  ) %>%
+  right_join(lgat_dna_df,by=c("Tumor_Sample_Barcode"="Kids_First_Biospecimen_ID"))
+
+
+#' 
+#' 
+#' ### Recode mutations
+#' To gather the biospecimens, we will use all LGAT DNA biospecimen IDs and assign "Yes" or "No" to each subtype column depending on the presence or absence of SNV that define the subtype.
+#' 
+#' columnname  | description
+#'  --- | ---
+#' NF1_mut | somatic loss of NF1 via either missense, nonsense mutation
+#' BRAF_V600E_mut | contains BRAF V600E or V599 SNV or non-canonical BRAF alterations such as p.V600ins or p.D594N
+#' MAPK_mut | contains mutation in KRAS, NRAS, HRAS, MAP2K1, MAP2K2, MAP2K1, ARAF SNV or indel
+#' RTK_mut | harbors a MET, KIT, or PDGFRA SNV
+#' FGFR_mut | harbors FGFR1 p.N546K, p.K656E, p.N577, or p. K687 hotspot mutations
+#' IDH_mut | harbors an IDH R132 mutation
+#' H3.1_mut | harbors an HIST1H3B K28M or HIST1H3C  K28M
+#' H3.2_mut | harbors an HIST2H3C K28M
+#' H3.3_mut | harbors an H3F3A K28M or G35R/V mutation
+#' 
+## -----------------------------------------------------------------------------
+
+recode_mutations <- function(.data, genes, subtype) {
+  .data %>%
+  reshape2::dcast(Tumor_Sample_Barcode + sample_id~ Hugo_Symbol,
+                  fun.aggregate = length) %>%
+  dplyr::mutate(!!as.name(subtype) := if_else(any(colnames(.) %in% genes) & rowSums(dplyr::select(.,one_of(genes))) >= 1,
+          "Yes",
+          "No")
+          )
+}
+
+lgat_subtypes_list <- list(recode_mutations(lgat_braf_V600,genes = snvOI$BRAF_V600E$gene, subtype = "BRAF_V600E_mut"),
+                           recode_mutations(lgat_fgfr,genes = snvOI$FGFR$gene, subtype = "FGFR_mut"),
+                           recode_mutations(lgat_idh,genes = snvOI$IDH1$gene,subtype = "IDH_mut"),
+                           recode_mutations(lgat_histone,genes = c("HIST1H3B","HIST1H3C"),subtype = "H3.1_mut"),
+                           recode_mutations(lgat_histone,genes = snvOI$HIST2H3C$gene,subtype = "H3.2_mut"),
+                           recode_mutations(lgat_histone,genes = c("H3F3A","H3F3B") ,subtype  = "H3.3_mut"),
+                           recode_mutations(lgat_mapk,genes = snvOI$MAPK$gene, subtype = "MAPK_mut"),
+                           recode_mutations(lgat_rtk,genes = snvOI$RTK$gene, subtype = "RTK_mut"),
+                           recode_mutations(lgat_nf1,genes = snvOI$NF1$gene, subtype = "NF1_mut"))    
+
+lgat_subtypes <- lgat_subtypes_list %>%
+  reduce(inner_join, by = c("Tumor_Sample_Barcode","sample_id")) %>%  
+  dplyr::rename("Kids_First_Biospecimen_ID"="Tumor_Sample_Barcode")  %>%
+  dplyr::select("Kids_First_Biospecimen_ID","sample_id",ends_with("mut")) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID, sample_id)
+lgat_subtypes
+
+#' 
+## -----------------------------------------------------------------------------
+# remove consensusMutation
+rm(consensusMutation)
+
+# save to subset folder
+write_tsv(lgat_subtypes,file.path(subset_dir, "LGAT_snv_subset.tsv"))
+
+#' 
+#' 
+## -----------------------------------------------------------------------------
+sessionInfo()
+

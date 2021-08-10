@@ -1,0 +1,184 @@
+#' ---
+#' title: "High-Grade Glioma Molecular Subtyping - Defining Lesions"
+#' output: 
+#'   html_notebook:
+#'     toc: TRUE
+#'     toc_float: TRUE
+#' author: Chante Bethell for ALSF CCDL
+#' date: 2019
+#' ---
+#' 
+#' This notebook looks at the defining lesions for all samples for the issue of 
+#' molecular subtyping high-grade glioma samples in the OpenPBTA dataset. 
+#' 
+#' # Usage
+#' 
+#' This notebook is intended to be run via the command line from the top directory
+#' of the repository as follows:
+#' 
+#' ```
+#' Rscript -e "rmarkdown::render('analyses/molecular-subtyping-HGG/01-HGG-molecular-subtyping-defining-lesions.Rmd', clean = TRUE)"
+#' ```
+#' 
+#' # Set Up
+#' 
+## -----------------------------------------------------------------------------
+library(tidyverse)
+
+# Get `magrittr` pipe
+`%>%` <- dplyr::`%>%`
+
+#' 
+#' ## Directories and Files
+#' 
+## -----------------------------------------------------------------------------
+# Detect the ".git" folder -- this will in the project root directory.
+# Use this as the root directory to ensure proper sourcing of functions no
+# matter where this is called from
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+
+# Get lgat subset folder from the module in master
+lgat_subset_dir <- file.path(root_dir, 
+                        "analyses",
+                        "molecular-subtyping-LGAT",
+                        "lgat-subset")
+
+# File path to results directory
+results_dir <-
+  file.path(root_dir, "analyses", "molecular-subtyping-HGG", "results")
+
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+
+# Read in metadata
+metadata <-
+  readr::read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"), 
+                  guess_max = 10000) %>%
+  dplyr::filter(sample_type == "Tumor") 
+
+# File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
+path_dx_list_lgat <- jsonlite::fromJSON(
+  file.path(lgat_subset_dir, 
+            "lgat_subtyping_path_dx_strings.json")
+)
+
+#' 
+#' # Prepare Data
+#' 
+## -----------------------------------------------------------------------------
+# Get LGAT tumor samples on the basis of pathology diagnosis
+lgat_specimens <- metadata %>%
+  filter(str_detect(str_to_lower(pathology_diagnosis),  # Inclusion criteria
+                    paste0(path_dx_list_lgat$include_path_dx, collapse = "|")),
+         # Exclusion criteria
+         str_detect(str_to_lower(pathology_diagnosis),
+                    paste0(path_dx_list_lgat$exclude_path_dx, collapse = "|"),
+                    negate = TRUE),
+         # Tumors
+         sample_type == "Tumor",
+         composition == "Solid Tissue") %>%
+  pull(Kids_First_Biospecimen_ID)
+
+#' 
+#' # Read in snv consensus mutation data, filtering out LGAT
+## -----------------------------------------------------------------------------
+snv_df <-
+  data.table::fread(file.path(root_dir,
+                              "data",
+                              "pbta-snv-consensus-mutation.maf.tsv.gz")) %>%
+  filter(!Tumor_Sample_Barcode %in% lgat_specimens) 
+
+#' 
+#' 
+#' ## SNV consensus mutation data - defining lesions
+#' 
+## -----------------------------------------------------------------------------
+# Filter the snv consensus mutation data for the target lesions
+snv_lesions_df <- snv_df %>%
+  dplyr::filter(Hugo_Symbol %in% c("H3F3A", "HIST1H3B",
+                                   "HIST1H3C", "HIST2H3C") &
+                  HGVSp_Short %in% c("p.K28M", "p.G35R",
+                                     "p.G35V")) %>%
+  dplyr::select(Tumor_Sample_Barcode, Hugo_Symbol, HGVSp_Short) %>%
+  dplyr::mutate(
+    H3F3A.K28M = dplyr::case_when(Hugo_Symbol == "H3F3A" &
+                                    HGVSp_Short == "p.K28M" ~ "Yes",
+                                  TRUE ~ "No"),
+    HIST1H3B.K28M = dplyr::case_when(
+      Hugo_Symbol == "HIST1H3B" & HGVSp_Short == "p.K28M" ~ "Yes",
+      TRUE ~ "No"),
+    HIST1H3C.K28M = dplyr::case_when(
+      Hugo_Symbol == "HIST1H3C" & HGVSp_Short == "p.K28M" ~ "Yes",
+      TRUE ~ "No"),
+    HIST2H3C.K28M = dplyr::case_when(
+      Hugo_Symbol == "HIST2H3C" & HGVSp_Short == "p.K28M" ~ "Yes",
+      TRUE ~ "No"),
+    H3F3A.G35R = dplyr::case_when(Hugo_Symbol == "H3F3A" &
+                                    HGVSp_Short == "p.G35R" ~ "Yes",
+                                  TRUE ~ "No"),
+    H3F3A.G35V = dplyr::case_when(Hugo_Symbol == "H3F3A" &
+                                    HGVSp_Short == "p.G35V" ~ "Yes",
+                                  TRUE ~ "No")
+  ) %>%
+  dplyr::select(
+    -HGVSp_Short,
+    -Hugo_Symbol
+  )
+
+# add back in samples with no evidence of these specific mutations and are not LGAT
+snv_lesions_df <- snv_lesions_df %>%
+  dplyr::bind_rows(
+    data.frame(
+      Tumor_Sample_Barcode = setdiff(unique(snv_df$Tumor_Sample_Barcode),
+                                     snv_lesions_df$Tumor_Sample_Barcode)
+    )
+  ) %>%
+  dplyr::mutate_all(function(x) tidyr::replace_na(x, "No"))
+
+#' 
+#' Add a column that keeps track of the presence of any defining lesion.
+#' We'll use this to create subset files in the next step.
+#' 
+## -----------------------------------------------------------------------------
+snv_lesions_df <- snv_lesions_df %>%
+  dplyr::mutate(
+    defining_lesion = dplyr::case_when(
+      H3F3A.K28M == "Yes" ~ TRUE,
+      HIST1H3B.K28M == "Yes" ~ TRUE,
+      HIST1H3C.K28M == "Yes" ~ TRUE,
+      HIST2H3C.K28M == "Yes" ~ TRUE,
+      H3F3A.G35R == "Yes" ~ TRUE,
+      H3F3A.G35V == "Yes" ~ TRUE,
+      TRUE ~ FALSE
+    )
+  )
+
+#' 
+#' Add other identifiers and sort.
+#' 
+## -----------------------------------------------------------------------------
+snv_lesions_df <- metadata %>%
+  dplyr::select(Kids_First_Participant_ID, 
+                sample_id,
+                Kids_First_Biospecimen_ID) %>%
+  dplyr::inner_join(snv_lesions_df,
+                    by = c("Kids_First_Biospecimen_ID" = "Tumor_Sample_Barcode")) %>%
+  dplyr::arrange(Kids_First_Participant_ID, sample_id)
+
+#' 
+#' 
+#' ## Save final table of results
+#' 
+## -----------------------------------------------------------------------------
+# Save final data.frame to file
+readr::write_tsv(snv_lesions_df,
+                 file.path(results_dir, "HGG_defining_lesions.tsv"))
+
+#' 
+#' ## Session Info
+#' 
+## -----------------------------------------------------------------------------
+# Print the session information
+sessionInfo()
+

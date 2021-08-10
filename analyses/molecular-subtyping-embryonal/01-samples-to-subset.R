@@ -1,0 +1,228 @@
+#' ---
+#' title: "Molecularly Subtyping Embryonal Tumors - Which samples to include?"
+#' output: 
+#'   html_notebook:
+#'     toc: TRUE
+#'     toc_float: TRUE
+#' author: Stephanie J. Spielman and Jaclyn Taroni for ALSF CCDL
+#' date: 2019
+#' ---
+#' 
+#' This notebook identifies samples to include in subset files for the purpose of molecularly subtyping embryonal tumors ([`AlexsLemonade/OpenPBTA-analysis#251`](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/251)).
+#' 
+#' This closed pull request is also relevant to the task at hand: [`AlexsLemonade/OpenPBTA-analysis#401`](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/401).
+#' 
+#' To summarize - we will identify biospecimen IDs that should be included for downstream analysis using the following criteria:
+#' 
+#' 1. An RNA-seq biospecimen includes a _TTYH1_ fusion (5' partner).
+#'    We can consume the files from the [`fusion-summary` module](../fusion-summary/) for this step.
+#'    (See also: [this comment on `AlexsLemonade/OpenPBTA-analysis#401`](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/401#issuecomment-573669727).)
+#'    
+#' 2. An RNA-seq biospecimen sample includes a _MN1_ fusion (5' partner) [per this comment](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/785#issuecomment-695015488).
+#'   Note that the `MN1--PATZ1` fusion is excluded as it is an entity separate of CNS HGNET-MN1 tumors [per this comment](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/788#discussion_r495302880).
+#' 
+#' 3. Any sample with "Supratentorial or Spinal Cord PNET" in the `pathology_diagnosis` column of the metadata `pbta-histologies.tsv` (also [per this comment](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/752#issuecomment-697000066)).
+#' 
+#' 4. Any sample with "Neuroblastoma" in the `pathology_diagnosis` column, where `primary_site` does not contain "Other locations NOS", and `pathology_free_text_diagnosis` does not contain "peripheral" or "metastatic".
+#' 
+#' 5. Any sample with "Other" in the `pathology_diagnosis` column of the metadata, and with "embryonal tumor with multilayer rosettes, ros (who grade iv)", "embryonal tumor, nos, congenital type", "ependymoblastoma" or "medulloepithelioma" in the `pathology_free_text_diagnosis` column [per this comment](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/752#issuecomment-697000066).
+#' 
+#' ## Usage
+#' 
+#' This notebook is intended to be run via the command line from the top directory
+#' of the repository as follows:
+#' 
+#' ```
+#' Rscript -e "rmarkdown::render('analyses/molecular-subtyping-embryonal/01-samples-to-subset.Rmd', clean = TRUE)"
+#' ```
+#' 
+#' ## Set Up
+#' 
+#' ### Libraries and functions
+#' 
+## -----------------------------------------------------------------------------
+library(tidyverse)
+
+#' 
+#' ### Directories
+#' 
+## -----------------------------------------------------------------------------
+data_dir <- file.path("..", "..", "data")
+
+results_dir <- "results"
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+
+subset_dir <- "subset-files"
+
+#' 
+#' ### Read in relevant files
+#' 
+## ----message=FALSE------------------------------------------------------------
+histologies_df <- read_tsv(file.path(data_dir, "pbta-histologies-base.tsv"), guess_max = 10000)
+fusion_summary_df <- read_tsv(file.path(data_dir,
+                                        "fusion_summary_embryonal_foi.tsv"))
+# Read in the JSON file that contains the strings we'll use to include or
+# exclude samples for subtyping - see 00-embryonal-select-pathology-dx.Rmd
+path_dx_list <- jsonlite::fromJSON(
+  file.path(subset_dir, 
+            "embryonal_subtyping_path_dx_strings.json")
+)
+
+#' 
+#' ### Output file
+#' 
+## -----------------------------------------------------------------------------
+output_file <- file.path(results_dir, "biospecimen_ids_embryonal_subtyping.tsv")
+
+#' 
+#' ## Identify relevant samples
+#' 
+#' ### _TTYH1_ fusions
+#' 
+#' We'll use the fusion summary file to find samples that contain _TTYH1_.
+#' We're only interested in fusions where _TTYH1_ is the 5' fusion partner.
+#' 
+## -----------------------------------------------------------------------------
+ttyh1_fusions <- fusion_summary_df %>%
+  select(Kids_First_Biospecimen_ID, starts_with("TTYH1"))
+
+#' 
+#' Which samples have these fusions?
+#' 
+## -----------------------------------------------------------------------------
+ttyh1_fusion_biospecimens <- ttyh1_fusions %>%
+  # add a column that counts how many TTYH1 fusions are present
+  mutate(fusion_count = rowSums(select(., starts_with("TTYH1")))) %>%
+  # if there's any TTYH1 fusion - pull out the biospecimen ID
+  filter(fusion_count > 0) %>%
+  pull(Kids_First_Biospecimen_ID)
+
+#' 
+#' ### _MN1_ fusions
+#' 
+#' Now, we'll use the fusion summary file to find samples that contain _MN1_.
+#' We're only interested in fusions where _MN1_ is the 5' fusion partner.
+#' 
+## -----------------------------------------------------------------------------
+# We will also filter out the specific _MN1--PATZ1_ fusion based on github comment: https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/788#discussion_r495212879
+mn1_fusion_biospecimens <- fusion_summary_df %>%
+  select(Kids_First_Biospecimen_ID, starts_with("MN1"), -("MN1--PATZ1"))
+
+#' 
+#' Which samples have these fusions?
+#' 
+## -----------------------------------------------------------------------------
+fusion_biospecimens <- mn1_fusion_biospecimens %>%
+  # add a column that counts how many MN1 fusions are present
+  mutate(fusion_count = rowSums(select(., starts_with("MN1")))) %>%
+  # if there's any MN1 fusion - pull out the biospecimen ID
+  filter(fusion_count > 0) %>%
+  pull(Kids_First_Biospecimen_ID) %>%
+  # Add the TTYH1 fusion biospecimens to this object
+  c(ttyh1_fusion_biospecimens)
+
+#' 
+#' DNA-seq biospecimens associated with the samples that contain the relevant fusions.
+#' 
+## -----------------------------------------------------------------------------
+relevant_samples <- histologies_df %>%
+  filter(Kids_First_Biospecimen_ID %in% fusion_biospecimens) %>%
+  pull(sample_id)
+
+relevant_sample_df <- histologies_df %>%
+  filter(sample_id %in% relevant_samples,
+         experimental_strategy %in% c("WGS", "WXS"),
+         sample_type == "Tumor",
+         composition == "Solid Tissue")
+
+relevant_sample_df
+
+#' 
+#' We've captured a medulloblastoma tumor and a pineoblastoma tumor with the _TTYH1_ fusion criterion, and a low-grade glioma tumor with the _MN1_ fusion criterion.
+#' 
+## -----------------------------------------------------------------------------
+fusion_biospecimens <- c(
+  fusion_biospecimens,
+  relevant_sample_df %>% pull(Kids_First_Biospecimen_ID)
+)
+
+#' 
+#' ### Disease labels
+#' 
+#' First subset to solid **tumors**, excluding any derived cell lines.
+#' 
+## -----------------------------------------------------------------------------
+embryonal_df <- histologies_df %>%
+  filter(sample_type == "Tumor",
+         composition == "Solid Tissue")
+
+#' 
+#' Now filter to include and exclude using the `pathology_diagnosis` and `pathology_free_text_diagnosis` labels.
+#' 
+#' First, we will create an object filtered to include only samples with exact matches for the `path_dx_terms` (which is currently "Supratentorial or Spinal Cord PNET") in the `pathology_diagnosis` column.
+#' 
+## -----------------------------------------------------------------------------
+pnet_df <- embryonal_df %>%
+  # Filter for exact match of the defined pathology diagnosis term in `path_dx_list$include_path_dx`
+  filter(pathology_diagnosis %in% path_dx_list$include_path_dx)
+
+#' 
+#' Now we will create an objected filtered to include any sample with "Other" in the `pathology_diagnosis` column of the metadata, and with the `free_text_dx_terms` in the `pathology_free_text_diagnosis` column.
+#' 
+## -----------------------------------------------------------------------------
+pathology_free_text_df <- embryonal_df %>%
+  # Filter for exact matches of `pathology_diagnosis == "Other"` and defined pathology free text diagnosis terms in `free_text_dx_terms`
+  filter(pathology_diagnosis == "Other",
+         pathology_free_text_diagnosis %in% path_dx_list$include_free_text) 
+
+#' 
+#' Any sample with "Neuroblastoma" in the `pathology_diagnosis` column, where `primary_site` does not contain "Other locations NOS", and `pathology_free_text_diagnosis` does not contain "peripheral" or "metastatic".
+#' 
+## -----------------------------------------------------------------------------
+neuroblastoma_df <- embryonal_df %>%
+  filter(
+    pathology_diagnosis == "Neuroblastoma",
+    str_detect(str_to_lower(primary_site), "other locations nos", negate = TRUE),
+    str_detect(
+      str_to_lower(pathology_free_text_diagnosis),
+      "peripheral|metastatic",
+      negate = TRUE
+    )
+  )
+
+#' 
+#' Now let's bind all of the information in our filtered data frames together into one object.
+#' 
+## -----------------------------------------------------------------------------
+# Binding all of the rows
+filtered_embryonal_df <- bind_rows(pnet_df,
+                                   pathology_free_text_df,
+                                   neuroblastoma_df)
+filtered_embryonal_df
+
+#' 
+#' ### Combine biospecimen IDs
+#' 
+#' Now let's combine biospecimen IDs using the fusion information and the filtered clinical file.
+#' 
+## -----------------------------------------------------------------------------
+all_biospecimen_ids <- 
+  unique(c(filtered_embryonal_df %>% pull(Kids_First_Biospecimen_ID),
+           fusion_biospecimens))
+
+#' 
+#' Write to file.
+#' 
+## -----------------------------------------------------------------------------
+data.frame(Kids_First_Biospecimen_ID = all_biospecimen_ids) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  write_tsv(output_file)
+
+#' 
+#' ## Session Info
+#' 
+## -----------------------------------------------------------------------------
+sessionInfo()
+

@@ -10,16 +10,16 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 SUBSET=${OPENPBTA_SUBSET:-1}
 
 # subset by SNV
-Rscript -e "rmarkdown::render('01-subset-files-for-LGAT.Rmd')"
+Rscript --vanilla 01-subset-files-for-LGAT.R
 # subset by Fusion
-Rscript -e "rmarkdown::render('02-subset-fusion-files-LGAT.Rmd')"
+Rscript --vanilla 02-subset-fusion-files-LGAT.R
 
 
 if [ "$SUBSET" -gt "0" ]; then
 # subset by CNV
-  Rscript -e "rmarkdown::render('03-subset-cnv-files-LGAT.Rmd')"
+  Rscript --vanilla 03-subset-cnv-files-LGAT.R
 fi
 
 
 # compile subtypes
-Rscript -e "rmarkdown::render('04-LGAT-compile-subtypes.Rmd')"
+Rscript --vanilla 04-LGAT-compile-subtypes.R

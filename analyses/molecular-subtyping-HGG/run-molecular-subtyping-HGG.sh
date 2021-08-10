@@ -25,7 +25,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 Rscript 00-HGG-select-pathology-dx.R
 
 # Run the first script in this module that reclassifies high-grade gliomas
-Rscript -e "rmarkdown::render('01-HGG-molecular-subtyping-defining-lesions.Rmd', clean = TRUE)"
+Rscript --vanilla 01-HGG-molecular-subtyping-defining-lesions.R
 
 # Run the second script in this module that subset files using the samples in the output
 # file generated with `01-HGG-molecular-subtyping-defining-lesions.Rmd`.
@@ -36,7 +36,7 @@ fi
 #### Copy number data ----------------------------------------------------------
 
 # Run the copy number data cleaning notebook
-Rscript -e "rmarkdown::render('03-HGG-molecular-subtyping-cnv.Rmd', clean = TRUE)"
+Rscript --vanilla 03-HGG-molecular-subtyping-cnv.R
 
 #### Mutation data -------------------------------------------------------------
 
@@ -50,30 +50,30 @@ if [ ! -f "$exon_file" ]; then
 fi
 
 # Run notebook that cleans the mutation data
-Rscript -e "rmarkdown::render('04-HGG-molecular-subtyping-mutation.Rmd', clean = TRUE)"
+Rscript --vanilla 04-HGG-molecular-subtyping-mutation.R
 
 #### Fusion data ---------------------------------------------------------------
 
 # Run notebook that cleans the fusion data
-Rscript -e "rmarkdown::render('05-HGG-molecular-subtyping-fusion.Rmd', clean = TRUE)"
+Rscript --vanilla 05-HGG-molecular-subtyping-fusion.R
 
 #### Gene expression data ------------------------------------------------------
 
 # Run notebook that cleans the gene expression data
-Rscript -e "rmarkdown::render('06-HGG-molecular-subtyping-gene-expression.Rmd', clean = TRUE)"
+Rscript --vanilla 06-HGG-molecular-subtyping-gene-expression.R
 
 #### Combine DNA data ----------------------------------------------------------
 
-Rscript -e "rmarkdown::render('07-HGG-molecular-subtyping-combine-table.Rmd', clean = TRUE)"
+Rscript --vanilla 07-HGG-molecular-subtyping-combine-table.R
 
 #### 1p/19q co-deleted oligodendrogliomas notebook -----------------------------
 
-Rscript -e "rmarkdown::render('08-1p19q-codeleted-oligodendrogliomas.Rmd', clean = TRUE)"
+Rscript --vanilla 08-1p19q-codeleted-oligodendrogliomas.R
 
 #### HGAT with `BRAF V600E` mutations clustering ------------------------------
 
 # Run notebook that looks at how HGAT samples with `BRAF V600E` mutations cluster
-Rscript -e "rmarkdown::render('09-HGG-with-braf-clustering.Rmd', clean = TRUE)"
+Rscript --vanilla 09-HGG-with-braf-clustering.R
 
 # Add TP53 annotation
-Rscript -e "rmarkdown::render('10-HGG-TP53-annotation.Rmd',clean=TRUE)"
+Rscript --vanilla 10-HGG-TP53-annotation.Rmd',clean=TRUE)"
