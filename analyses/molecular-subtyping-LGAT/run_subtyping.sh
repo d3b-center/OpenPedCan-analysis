@@ -23,3 +23,5 @@ fi
 
 # compile subtypes
 Rscript --vanilla 04-LGAT-compile-subtypes.R
+
+echo "done in ${BASH_SOURCE[0]}"

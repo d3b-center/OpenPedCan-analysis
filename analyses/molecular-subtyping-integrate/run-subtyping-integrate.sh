@@ -14,3 +14,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # broad_histology and	Notes from `compiled_molecular_subtypes_with_clinical_pathology_feedback.tsv`.
 # Check for changes and duplicates and save a final file
 Rscript --vanilla 01-integrate-subtyping.R
+
+echo "done in ${BASH_SOURCE[0]}"

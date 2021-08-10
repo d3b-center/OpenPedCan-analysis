@@ -36,3 +36,5 @@ Rscript --vanilla pathology-harmonized-diagnosis-glialneuronal-tumors.R
 
 # Choroid plexus papilloma
 Rscript --vanilla pathology-subtyping-choroid-plexus-papilloma.R
+
+echo "done in ${BASH_SOURCE[0]}"

@@ -21,3 +21,5 @@ fi
 
 Rscript --vanilla 01-ATRT-molecular-subtyping-data-prep.R
 Rscript --vanilla 02-ATRT-molecular-subtyping-plotting.R
+
+echo "done in ${BASH_SOURCE[0]}"

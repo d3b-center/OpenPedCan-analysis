@@ -64,3 +64,5 @@ python3 02_ependymoma_generate_all_data.py \
 
 #jupyter nbconvert --to notebook --execute  03-subgrouping_samples.ipynb
 jupyter nbconvert --to html --execute  03-subgrouping_samples.ipynb
+
+echo "done in ${BASH_SOURCE[0]}"

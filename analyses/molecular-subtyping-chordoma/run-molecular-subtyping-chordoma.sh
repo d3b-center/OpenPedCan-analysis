@@ -21,3 +21,5 @@ if [ "$SUBSET" -gt "0" ]; then
 fi
 
 Rscript --vanilla 01-Subtype-chordoma.R
+
+echo "done in ${BASH_SOURCE[0]}"
