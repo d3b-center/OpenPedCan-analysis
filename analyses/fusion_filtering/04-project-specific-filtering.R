@@ -116,7 +116,7 @@ fusion_calls<-QCGeneFiltered_filtFusion %>% mutate(FusionName=rm_between(.data$F
 group<-params$group
 
 # get histology file
-if ( params$base_run ==0 ){
+if ( base_run ==0 ){
 clinical<-read.delim(file.path(root_dir, params$histology), stringsAsFactors = FALSE)
 clinical<-clinical[,c("Kids_First_Biospecimen_ID","Kids_First_Participant_ID",group)]
 } else {
