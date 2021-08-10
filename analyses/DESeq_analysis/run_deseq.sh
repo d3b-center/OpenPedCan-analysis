@@ -27,12 +27,12 @@ mkdir -p results
 
 
 Rscript --vanilla run-DESeq-analysis.R \
-        --hist_file ../../data/v7/histologies.tsv \
-        --counts_file ../../data/v7/gene-counts-rsem-expected_count-collapsed.rds \
-        --tpm_file ../../data/v7/gene-expression-rsem-tpm-collapsed.rds  \
-        --efo_mondo_file ../../data/v7/efo-mondo-map.tsv \
-        --gtex_subgroup_uberon ../../data/v7/uberon-map-gtex-subgroup.tsv \
-        --ensg_hugo_file ../../data/v7/ensg-hugo-rmtl-mapping.tsv \
+        --hist_file ../../data/histologies.tsv \
+        --counts_file ../../data/gene-counts-rsem-expected_count-collapsed.rds \
+        --tpm_file ../../data/gene-expression-rsem-tpm-collapsed.rds  \
+        --efo_mondo_file ../../data/efo-mondo-map.tsv \
+        --gtex_subgroup_uberon ../../data/uberon-map-gtex-subgroup.tsv \
+        --ensg_hugo_file ../../data/ensg-hugo-rmtl-mapping.tsv \
         --outdir results
 
 
