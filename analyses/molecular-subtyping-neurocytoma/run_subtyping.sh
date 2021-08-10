@@ -8,4 +8,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # Run notebook to get molecular subtype for Neurocytoma samples
 Rscript --vanilla 01-neurocytoma-subtyping.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

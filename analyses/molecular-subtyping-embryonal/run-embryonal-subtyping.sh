@@ -35,4 +35,4 @@ Rscript --vanilla 03-clean-c19mc-data.R
 # Run notebook that wrangles all the relevant data
 Rscript --vanilla 04-table-prep.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

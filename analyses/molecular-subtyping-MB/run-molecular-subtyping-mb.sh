@@ -31,4 +31,4 @@ Rscript --vanilla 02-classify-mb.R \
 # summarize output from both classifiers and expected classification
 Rscript --vanilla 03-compare-classes.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

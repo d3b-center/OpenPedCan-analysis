@@ -22,4 +22,4 @@ fi
 
 Rscript --vanilla 01-Subtype-chordoma.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

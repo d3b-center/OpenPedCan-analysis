@@ -36,14 +36,14 @@ mkdir -p epn-subset
 mkdir -p results
 
 if [ "$SUBSET" -gt "0" ]; then
-  echo "Subsetting  for CI"
+  >&2 echo "Subsetting  for CI"
   Rscript 00-subset-for-EPN.R -i $HISTOLOGIES -e $FULL_EXPRESSION -o $SUBSET_EXPRESSION
 fi
 
-echo "Generating analyses/molecular-subtyping-EPN/results/EPN_molecular_subtype.tsv that maps DNA and RNA ID's"
+>&2 echo "Generating analyses/molecular-subtyping-EPN/results/EPN_molecular_subtype.tsv that maps DNA and RNA ID's"
 python3 01-make_notebook_RNAandDNA.py -i $HISTOLOGIES -o $NOTEBOOK
 
-echo  "Generating analyses/molecular-subtyping-EPN/results/EPN_all_data.tsv  that has all the relevant data needed for subtyping"
+>&2 echo  "Generating analyses/molecular-subtyping-EPN/results/EPN_all_data.tsv  that has all the relevant data needed for subtyping"
 python3 02_ependymoma_generate_all_data.py \
     --notebook $NOTEBOOK \
     --gistic $GISTIC \
@@ -65,4 +65,4 @@ python3 02_ependymoma_generate_all_data.py \
 #jupyter nbconvert --to notebook --execute  03-subgrouping_samples.ipynb
 jupyter nbconvert --to html --execute  03-subgrouping_samples.ipynb
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

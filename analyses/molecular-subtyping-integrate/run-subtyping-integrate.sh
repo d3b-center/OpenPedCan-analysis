@@ -15,4 +15,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # Check for changes and duplicates and save a final file
 Rscript --vanilla 01-integrate-subtyping.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

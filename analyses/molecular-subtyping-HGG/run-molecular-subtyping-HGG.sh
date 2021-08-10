@@ -78,4 +78,4 @@ Rscript --vanilla 09-HGG-with-braf-clustering.R
 # Add TP53 annotation
 Rscript --vanilla 10-HGG-TP53-annotation.Rmd',clean=TRUE)"
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"

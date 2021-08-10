@@ -10,4 +10,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 Rscript --vanilla 01-run-subtyping-ewings.R
 
-echo "done in ${BASH_SOURCE[0]}"
+>&2 echo "done in ${BASH_SOURCE[0]}"
