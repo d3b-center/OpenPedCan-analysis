@@ -21,7 +21,7 @@ Rscript --vanilla 00-embryonal-select-pathology-dx.R
 # Run the first script in this module that identifies non-ATRT and non-MB
 # embryonal tumors and those tumors with TTYH1 fusions for the purposes of
 # subsetting files downstream
-Rscript --vanilla 01-samples-to-subset.Rmd
+Rscript --vanilla 01-samples-to-subset.R
 
 # Run the second script in this module that subset files using the samples in
 # the output file generated with `01-samples-to-subset.Rmd`.

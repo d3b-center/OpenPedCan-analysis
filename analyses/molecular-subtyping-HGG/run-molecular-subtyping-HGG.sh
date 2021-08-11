@@ -76,6 +76,6 @@ Rscript --vanilla 08-1p19q-codeleted-oligodendrogliomas.R
 Rscript --vanilla 09-HGG-with-braf-clustering.R
 
 # Add TP53 annotation
-Rscript --vanilla 10-HGG-TP53-annotation.Rmd',clean=TRUE)"
+Rscript --vanilla 10-HGG-TP53-annotation.R
 
 >&2 echo "done in ${BASH_SOURCE[0]}"
