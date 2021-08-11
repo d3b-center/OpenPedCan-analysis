@@ -30,7 +30,7 @@ download-data.sh
 
 ## Steps
 1) Set working directory to /deseq_analysis
-2) For testing with v7, run the script run_create_test_input.sh
+2) For testing with v7, run the script run_process_test_input.sh . 
 3) Review the path and file created as test data, and the subsequent result tables created
 4) In order to run the module for the entire set of data, run run_deseq.sh
 
