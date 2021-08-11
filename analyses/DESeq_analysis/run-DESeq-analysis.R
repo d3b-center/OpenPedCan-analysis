@@ -302,7 +302,7 @@ Final_Data_Table <- data.frame(
   comparisonId = gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))),
   cancer_group = paste(gsub("all-cohorts","all_cohorts",unlist(strsplit(histology_filtered[I],split="_"))[-1]),collapse=" "),
   cancer_group_Count = Cancer.Hist_Hits,
-  GTEx = GTEX_filtered[J],
+  GTEx_subgroup = GTEX_filtered[J],
   GTEx_Count = GTEX_Hits,
   cancer_group_MeanTpm = Histology_MEAN_TPMs,
   GTEx_MeanTpm = GTEX_MEAN_TPMs,
