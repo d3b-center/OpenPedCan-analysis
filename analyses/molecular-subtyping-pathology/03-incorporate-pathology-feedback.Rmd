@@ -93,8 +93,7 @@ When we run this locally, we want to tie it to a specific version of the histolo
 if (running_in_ci) {
   histologies_file <- file.path(data_dir, "pbta-histologies-base.tsv")
 } else {
-  histologies_file <- file.path(data_dir, "release-v18-20201123",
-                                "pbta-histologies-base.tsv")
+  histologies_file <- file.path(data_dir, "pbta-histologies-base.tsv")
 }
 ```
 
