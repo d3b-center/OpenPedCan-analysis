@@ -6,6 +6,6 @@ set -o pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Run notebook
-Rscript --vanilla 00-craniopharyngiomas-molecular-subtype.R
+Rscript --vanilla 00-craniopharyngiomas-molecular-subtype.R --conf $1
 
 >&2 echo "done in ${BASH_SOURCE[0]}"
