@@ -67,10 +67,15 @@ output_subtype <- file.path(results_dir, "CRANIO_molecular_subtype.tsv")
 histology <- conf$histology
 maf <- conf$snv_con_maf
 
+write(histology, stderr())
+write(maf, stderr())
+
 ## Read in metadata
+write("reading histology file", stderr())
 metadata <-
   read_tsv(file.path(histology)) %>%
   filter(pathology_diagnosis == "Craniopharyngioma")
+write("reading maf file", stderr())
 ## Read in snv consensus mutation data
 snv_df <-
   read_tsv(file.path(maf))
