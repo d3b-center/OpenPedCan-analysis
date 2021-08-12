@@ -1,6 +1,6 @@
 ---
 title: "High-Grade Glioma Molecular Subtyping - Defining Lesions"
-output: 
+output:
   html_notebook:
     toc: TRUE
     toc_float: TRUE
@@ -8,8 +8,8 @@ author: Chante Bethell for ALSF CCDL
 date: 2019
 ---
 
-This notebook looks at the defining lesions for all samples for the issue of 
-molecular subtyping high-grade glioma samples in the OpenPBTA dataset. 
+This notebook looks at the defining lesions for all samples for the issue of
+molecular subtyping high-grade glioma samples in the OpenPBTA dataset.
 
 # Usage
 
@@ -38,10 +38,10 @@ library(tidyverse)
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
 # Get lgat subset folder from the module in master
-lgat_subset_dir <- file.path(root_dir, 
+lgat_subset_dir <- file.path(root_dir,
                         "analyses",
                         "molecular-subtyping-LGAT",
-                        "lgat-subset")
+                        "input")
 
 # File path to results directory
 results_dir <-
@@ -53,13 +53,13 @@ if (!dir.exists(results_dir)) {
 
 # Read in metadata
 metadata <-
-  readr::read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"), 
+  readr::read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"),
                   guess_max = 10000) %>%
-  dplyr::filter(sample_type == "Tumor") 
+  dplyr::filter(sample_type == "Tumor")
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
 path_dx_list_lgat <- jsonlite::fromJSON(
-  file.path(lgat_subset_dir, 
+  file.path(lgat_subset_dir,
             "lgat_subtyping_path_dx_strings.json")
 )
 ```
@@ -87,7 +87,7 @@ snv_df <-
   data.table::fread(file.path(root_dir,
                               "data",
                               "pbta-snv-consensus-mutation.maf.tsv.gz")) %>%
-  filter(!Tumor_Sample_Barcode %in% lgat_specimens) 
+  filter(!Tumor_Sample_Barcode %in% lgat_specimens)
 ```
 
 
@@ -159,7 +159,7 @@ Add other identifiers and sort.
 
 ```{r}
 snv_lesions_df <- metadata %>%
-  dplyr::select(Kids_First_Participant_ID, 
+  dplyr::select(Kids_First_Participant_ID,
                 sample_id,
                 Kids_First_Biospecimen_ID) %>%
   dplyr::inner_join(snv_lesions_df,
