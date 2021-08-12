@@ -1,6 +1,6 @@
 ---
 title: "HGAT samples without histone mutations that have `BRAF V600E` mutations"
-output: 
+output:
   html_notebook:
     toc: TRUE
     toc_float: TRUE
@@ -97,17 +97,17 @@ mutation_df <- read_tsv(mutation_file)
 # Get lgat subset folder from the module in master
 lgat_subset_dir <- file.path("..",
                              "molecular-subtyping-LGAT",
-                             "lgat-subset")
+                             "input")
 
 # Read in metadata
 metadata <-
-  readr::read_tsv(file.path("..","..","data", "pbta-histologies-base.tsv"), 
+  readr::read_tsv(file.path("..","..","data", "pbta-histologies-base.tsv"),
                   guess_max = 10000) %>%
-  dplyr::filter(sample_type == "Tumor") 
+  dplyr::filter(sample_type == "Tumor")
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
 path_dx_list_lgat <- jsonlite::fromJSON(
-  file.path(lgat_subset_dir, 
+  file.path(lgat_subset_dir,
             "lgat_subtyping_path_dx_strings.json")
 )
 
@@ -131,7 +131,7 @@ lgat_specimens <- metadata %>%
 
 - Get broad_histology from histology file
 - check BRAF V600E from HGG_cleaned_mutation.tsv and add to `subtype_class` column
-- `HGAT_NO_HISTONE_BRAF` column will have "yes" if sample is HGAT with no HIST variant but has BRAF V600E mutation 
+- `HGAT_NO_HISTONE_BRAF` column will have "yes" if sample is HGAT with no HIST variant but has BRAF V600E mutation
 
 
 ```{r}
@@ -140,7 +140,7 @@ stranded_tsne_aligned_scores <- stranded_tsne_aligned_scores %>%
   dplyr::left_join(mutation_df) %>%
   mutate(subtype_class = case_when(
     BRAF_V600E == "p.V600E" &
-      H3F3A.K28M == "No" & 
+      H3F3A.K28M == "No" &
       HIST1H3B.K28M == "No" &
       HIST1H3C.K28M == "No" &
       HIST2H3C.K28M == "No" &
@@ -163,7 +163,7 @@ stranded_umap_aligned_scores <- stranded_umap_aligned_scores %>%
   dplyr::left_join(mutation_df) %>%
   mutate(subtype_class = case_when(
     BRAF_V600E == "p.V600E" &
-      H3F3A.K28M == "No" & 
+      H3F3A.K28M == "No" &
       HIST1H3B.K28M == "No" &
       HIST1H3C.K28M == "No" &
       HIST2H3C.K28M == "No" &
@@ -197,7 +197,7 @@ stranded_tsne_plot <-
   ) +
   scale_color_manual(values = c("#0a7fb2", "#799d10", "#F3E500")) +
   geom_text(aes(X1, X2, label = Kids_First_Biospecimen_ID),
-            data = filter(stranded_tsne_aligned_scores, 
+            data = filter(stranded_tsne_aligned_scores,
                           subtype_class == "HGAT_NO_HISTONE_BRAF"))
 
 stranded_umap_plot <-
@@ -211,7 +211,7 @@ stranded_umap_plot <-
   ) +
   scale_color_manual(values = c("#0a7fb2", "#799d10", "#F3E500")) +
   geom_text(aes(X1, X2, label = Kids_First_Biospecimen_ID),
-            data = filter(stranded_umap_aligned_scores, 
+            data = filter(stranded_umap_aligned_scores,
                           subtype_class == "HGAT_NO_HISTONE_BRAF"))
 
 # Put plots together in a list to satisfy function argument
@@ -236,4 +236,3 @@ In both aligned scores data frames (t-SNE and UMAP), the `Kids_First_Biospecimen
 ```{r}
 sessionInfo()
 ```
-
