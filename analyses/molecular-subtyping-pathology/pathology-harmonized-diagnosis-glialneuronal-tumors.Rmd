@@ -1,6 +1,6 @@
 ---
 title: "Using WHO 2016 CNS subtypes to improve neuronal and mixed neuronal-glial tumors harmonized diagnosis"
-output: 
+output:
   html_notebook:
     toc: true
     toc_float: true
@@ -8,7 +8,7 @@ author: JN Taroni for ALSF CCDL (code)
 date: 2021
 ---
 
-Neuronal and mixed neuronal-glial tumors have subtypes per the [WHO 2016 CNS subtypes](https://link.springer.com/content/pdf/10.1007/s00401-016-1545-1.pdf). 
+Neuronal and mixed neuronal-glial tumors have subtypes per the [WHO 2016 CNS subtypes](https://link.springer.com/content/pdf/10.1007/s00401-016-1545-1.pdf).
 However, these are not captured in our molecular data.
 Instead, we can use the pathology free text information in the histologies file to further classify neuronal and mixed neuronal-glial tumors.
 We will use this notebook to do so; see [#996](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/996) for more information.
@@ -30,9 +30,9 @@ histologies_file <- file.path(data_dir, "pbta-histologies-base.tsv")
 # The inclusion criteria for this notebook are the same as the exclusion
 # criteria for the LGAT subtyping -- these tumors were original included in that
 # module
-lgat_terms_file <- file.path("..", 
-                             "molecular-subtyping-LGAT", 
-                             "lgat-subset",
+lgat_terms_file <- file.path("..",
+                             "molecular-subtyping-LGAT",
+                             "input",
                              "lgat_subtyping_path_dx_strings.json")
 ```
 
@@ -110,11 +110,11 @@ glioneuronal_df <- subtype_df %>%
                     lgat_path_dx_list$exclude_path_free_text[2])) %>%
   mutate(
     harmonized_diagnosis = case_when(
-      str_detect(pathology_free_text_dx_lower, 
-                 "diffuse leptomeningeal glioneuronal tumor") ~ 
+      str_detect(pathology_free_text_dx_lower,
+                 "diffuse leptomeningeal glioneuronal tumor") ~
         "Diffuse leptomeningeal glioneuronal tumor",
       str_detect(pathology_free_text_dx_lower,
-                 "rosette forming glioneuronal tumor") ~ 
+                 "rosette forming glioneuronal tumor") ~
         "Rosette-forming glioneuronal tumor",
       TRUE ~ "Glial-neuronal tumor NOS"  # All others
     )
@@ -145,4 +145,3 @@ write_tsv(subtype_df, output_file)
 ```{r}
 sessionInfo()
 ```
-
