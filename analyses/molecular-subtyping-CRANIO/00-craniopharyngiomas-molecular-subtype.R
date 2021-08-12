@@ -53,7 +53,7 @@ opts <- parse_args(OptionParser(option_list = option_list))
 conf <- yaml.load_file(opts$conf, "r")
 
 # setup outputs
-resultsDir <- conf$out_dir
+results_dir <- conf$out_dir
 
 if (!dir.exists(results_dir)) {
   dir.create(results_dir)
