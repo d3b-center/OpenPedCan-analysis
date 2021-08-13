@@ -65,7 +65,7 @@ output_subtype <- file.path(results_dir, "CRANIO_molecular_subtype.tsv")
 
 # setup inputs
 histology <- conf$histology
-maf <- conf$snv_con_maf
+maf <- conf$maf
 
 write(histology, stderr())
 write(maf, stderr())
