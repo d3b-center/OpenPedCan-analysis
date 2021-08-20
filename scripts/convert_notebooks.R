@@ -8,7 +8,7 @@ option_list <- list(
   make_option(
     opt_str = "--file",
     type = "character",
-    help = "Filepaths of notebooks to convert",
+    help = "Text file with paths to notebooks to convert",
     metavar = "character"
   )
 )
