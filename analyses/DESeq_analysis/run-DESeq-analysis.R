@@ -4,85 +4,107 @@
 # 1. summarize Differential expression from RNASeq data
 # 2. tabulate corresponding P-value
 
-# Example run: DESeq
-# Rscript analyses/DESeq/run-DESeq-analysis.R 1 1
+# Example run: 
+
 # This was compares 1 cancer group (Combined or Cohort specific) with one GTEx tissue type. 
-# The input arguments are the indices of the comparison of the cancer groups and gtex sub tissues to be compared. 
-# In v6, there are 107 cancer groups vs 54 GTEx tissues
-# Read arguments from terminal
-#args <- commandArgs(trailingOnly = TRUE)
+
+
+
+
+#library.path1 <- "/cm/shared/apps_chop/R/4.1.0/lib64/R/library"
+#library.path2 <- "/home/shuklas1/R/x86_64-pc-linux-gnu-library/4.1/optparse/Meta/package.rds"
+
 
 # Load required libraries
 suppressPackageStartupMessages({
-  library(optparse)
+  #library(optparse)
   library(jsonlite)
-  library(ggplot2)
   library(DESeq2)
+  #library(foreach)
 })
 
 
 # read params
-option_list <- list(
-  make_option(c("-c", "--hist_file"), type = "character",
-              help = "Histology data file (.TSV)"),
-  make_option(c("-n", "--counts_file"), type = "character",
-              help = "Gene Counts file (.rds)"),
-  make_option(c("-t", "--tpm_file"), type = "character",
-              help = "Counts TPM file (.rds)"),
-  make_option(c("-e", "--ensg_hugo_file"), type = "character",
-              help = "ENSG Hugo codes file (.tsv)"),
-  make_option(c("-m", "--efo_mondo_file"), type = "character",
-              help = "MONDO and EFO codes file (.tsv)"),
-  make_option(c("-u", "--gtex_subgroup_uberon"), type = "character",
-              help = "UBERON codes file (.tsv)"),
-  make_option(c("-o", "--outdir"), type = "character",
-              help = "Output Directory"),
-  make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
-              help = "HIST_index"),
-  make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
-              help = "GTEX_index")
-)
+#option_list <- list(
+#  make_option(c("-c", "--hist_file"), type = "character",
+#              help = "Histology data file (.TSV)"),
+#  make_option(c("-n", "--counts_file"), type = "character",
+#              help = "Gene Counts file (.rds)"),
+#  make_option(c("-t", "--tpm_file"), type = "character",
+#              help = "Counts TPM file (.rds)"),
+#  make_option(c("-e", "--ensg_hugo_file"), type = "character",
+#              help = "ENSG Hugo codes file (.tsv)"),
+#  make_option(c("-m", "--efo_mondo_file"), type = "character",
+#              help = "MONDO and EFO codes file (.tsv)"),
+#  make_option(c("-u", "--gtex_subgroup_uberon"), type = "character",
+#              help = "UBERON codes file (.tsv)"),
+#  make_option(c("-o", "--outdir"), type = "character",
+#              help = "Output Directory")
+  #make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
+  #            help = "HIST_index"),
+  #make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
+  #            help = "GTEX_index")
+#)
 
 #script.dir <- this.path()
 #print(script.dir)
 #dir.create(file.path(dirname(dirname(script.dir)),"Results"), showWarnings = FALSE)
 
 # parse the parameters
-opt <- parse_args(OptionParser(option_list = option_list))
+#opt <- parse_args(OptionParser(option_list = option_list))
 
 
-#HIST_index <- args[1]   #assign first argument to Histology index
-#GTEX_index <- args[2]   #assign second argument to GTEx index
+#args <- commandArgs(trailingOnly = TRUE)
 
-    
-HIST_index <- opt$HIST_i   #assign first argument to Histology index
-GTEX_index <- opt$GTEX_i   #assign second argument to GTEx index
+# HIST_index <- args[1]
+# GTEX_index <- args[2]
+
+HIST_index <- read.delim("Hist_Index_limit.txt", header = FALSE, sep = "", quote = "", col.names = "Hist_Index")
+GTEX_index <- read.delim("GTEx_Index_limit.txt", header = FALSE, sep = "", quote = "", col.names = "GTEx_Index")
+
 
 
 #Load histology file
-#hist <- read.delim("../data/histologies.tsv", header=TRUE, sep = '\t')
-hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
+hist <- read.delim("histology_subset.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("../sample/histologies_original.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-#countData <- readRDS("../data/gene-counts-rsem-expected_count-collapsed.rds")
-countData <- readRDS(opt$counts_file)
+countData <- readRDS("countData_subset.rds")
+#countData <- readRDS("../sample/gene-counts-rsem-expected_count-collapsed.rds")
+#countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-#TPMData <- readRDS("../data/gene-expression-rsem-tpm-collapsed.rds")
-TPMData <- readRDS(opt$tpm_file)
+TPMData <- readRDS("../../data/gene-expression-rsem-tpm-collapsed.rds")
+#TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-#EFO_MONDO <- read.delim("../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
-EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
+EFO_MONDO <- read.delim("../../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+#EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load UBERON code map file for GTEx subgroup
-#GTEx_SubGroup_UBERON <- read.delim("../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
-GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
+GTEx_SubGroup_UBERON <- read.delim("../../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
+#GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
 
 
 #Load gene symbol-gene ID RMTL file
-#ENSG_Hugo <- read.delim("../data/ensg-hugo-rmtl-mapping.tsv", header =T)
-ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
+ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
+#ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
+
+
+
+Create_josnl <- function(DF){
+  DF_jsonl = suppressWarnings(
+    apply(DF, MARGIN=1, function(X)
+      paste("{",
+            paste(colnames(DF),":",sapply(X, function(Y)
+              ifelse(is.na(as.numeric(Y)),paste("\"",Y,"\"",sep=""),gsub(" ","",Y)) ),
+              collapse = ",",sep=""),"}",sep = "")
+    )#apply(DF, MARGIN=1, function(X)
+  )#DF_jsonl = suppressWarnings(
+  return(DF_jsonl)
+}#Create_josnl 
+
 
 # Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
 hist.filtered <- unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames(countData)),])
@@ -216,14 +238,14 @@ histology_filtered <- unique(sample_type_df_filtered$Type[-grep("^GTEX",sample_t
 GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df_filtered$Case_ID)])
 
 #Assign cmparison
- I <- as.numeric(HIST_index)   #assign first argument to Histology index
- J <- as.numeric(GTEX_index)   #assign second argument to GTEx index
+ I <- as.numeric(HIST_index$Hist_Index)   #assign first argument to Histology index
+ J <- as.numeric(GTEX_index$GTEx_Index)   #assign second argument to GTEx index
 
-for(I in 1:length(histology_filtered))
- {
-   for (J in 1:length(GTEX_filtered))
-   {
-    
+ 
+
+#foreach(I = 1:length(histology_filtered)) %do% {
+#  foreach(J = 1:length(GTEX_filtered)) %do% {
+
 #Subset countData_filtered_DEG dataframe for only the histology group and GTEx group being compared
     countData_filtered_DEG.hist <- data.matrix(countData_filtered_DEG[,which(colnames(countData_filtered_DEG) 
                                                                              %in% sample_type_df_filtered$Case_ID[
@@ -310,16 +332,33 @@ Final_Data_Table <- data.frame(
 )#Final_Data_Table = data.frame(
 
 
+#outdir = "/mnt/isilon/opentargets/DESeq2/shuklas1/deseq_analysis/SS_Slurm2"
+#system("mkdir /mnt/isilon/opentargets/DESeq2/shuklas1/deseq_analysis/SS_Slurm2")
+    
+outdir = "results"
+system("mkdir results")    
+
+
 #Save files
+FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")))
+write.table(Final_Data_Table,file=paste(outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
+result_jsonl = Create_josnl(Final_Data_Table)
+write(result_jsonl,paste(outdir,"/Results_",FILENAME,".jsonl",sep=""))
+#}
+
+#}
+
+
+##Save files
 
 
 #Define file name as Histoloy_v_Gtex.tsv and replacing all 'special symbols' with '_' for the filename
-FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")))
-write.table(Final_Data_Table,file=paste(opt$outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
-Final_Data_Table.json = jsonlite::toJSON(Final_Data_Table, pretty = TRUE)
-Final_Data_Table.jsonl = gsub("},\\{" ,"}\n\\{", gsub("^\\[|\\]$","",Final_Data_Table.json))
-write(Final_Data_Table.jsonl,paste(opt$outdir,"/Results_",FILENAME,".jsonl",sep=""))
+#FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")))
+#write.table(Final_Data_Table,file=paste(opt$outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
+#Final_Data_Table.json = jsonlite::toJSON(Final_Data_Table, pretty = TRUE)
+#Final_Data_Table.jsonl = gsub("},\\{" ,"}\n\\{", gsub("^\\[|\\]$","",Final_Data_Table.json))
+#write(Final_Data_Table.jsonl,paste(opt$outdir,"/Results_",FILENAME,".jsonl",sep=""))
 
 
-   }
- }   
+#   }
+# }   
