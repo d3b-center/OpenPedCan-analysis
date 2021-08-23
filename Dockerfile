@@ -402,9 +402,16 @@ RUN ./install_bioc.r \
 RUN ./install_bioc.r \
     RUVSeq
 
+# Packages for RNA-seq expression boxplots (tumor-gtex-plots)
+RUN ./install_bioc.r \
+    tidyr \
+    dplyr \
+    ggplot2
+
 # Package for querying gene IDs and symbols
 RUN ./install_bioc.r \
     mygene
+
 
 # Even though apt-get section at top, add installation here to avoid re-RUN
 # previous steps in docker build.
@@ -414,6 +421,10 @@ RUN ./install_bioc.r \
 # Install json processor jq
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     jq
+
+# Package for python pandas to read and write xlsx files
+RUN pip3 install \
+    "openpyxl==2.6.4"
 
 #### Please install your dependencies immediately above this comment.
 #### Add a comment to indicate what analysis it is required for
