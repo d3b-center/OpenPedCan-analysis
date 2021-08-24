@@ -3,14 +3,30 @@
 # This script also creates Histology and Counts data subsets which satisfy given clinical criteria 
 
 
+# Load required libraries
+suppressPackageStartupMessages({
+  library(optparse)
+})
+
+
+option_list <- list(
+    make_option(c("-c", "--hist_file"), type = "character",
+              help = "Histology data file (.TSV)"),
+    make_option(c("-n", "--counts_file"), type = "character",
+              help = "Gene Counts file (.rds)")
+)
+
+
+opt <- parse_args(OptionParser(option_list = option_list))
+
 
 #Load histology file
-hist <- read.delim("../../data/v7/histologies_original.tsv", header=TRUE, sep = '\t')
-#hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
+#hist <- read.delim("histologies.tsv", header=TRUE, sep = '\t')
+hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-countData <- readRDS("../../data/v7/gene-counts-rsem-expected_count-collapsed.rds")
-#countData <- readRDS(opt$counts_file)
+#countData <- readRDS("gene-counts-rsem-expected_count-collapsed.rds")
+countData <- readRDS(opt$counts_file)
 
 
 
