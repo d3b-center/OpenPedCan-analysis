@@ -17,7 +17,7 @@
 
 # Load required libraries
 suppressPackageStartupMessages({
-  #library(optparse)
+  library(optparse)
   library(jsonlite)
   library(DESeq2)
   #library(foreach)
@@ -25,33 +25,33 @@ suppressPackageStartupMessages({
 
 
 # read params
-#option_list <- list(
-#  make_option(c("-c", "--hist_file"), type = "character",
-#              help = "Histology data file (.TSV)"),
-#  make_option(c("-n", "--counts_file"), type = "character",
-#              help = "Gene Counts file (.rds)"),
-#  make_option(c("-t", "--tpm_file"), type = "character",
-#              help = "Counts TPM file (.rds)"),
-#  make_option(c("-e", "--ensg_hugo_file"), type = "character",
-#              help = "ENSG Hugo codes file (.tsv)"),
-#  make_option(c("-m", "--efo_mondo_file"), type = "character",
-#              help = "MONDO and EFO codes file (.tsv)"),
-#  make_option(c("-u", "--gtex_subgroup_uberon"), type = "character",
-#              help = "UBERON codes file (.tsv)"),
-#  make_option(c("-o", "--outdir"), type = "character",
-#              help = "Output Directory")
-  #make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
-  #            help = "HIST_index"),
-  #make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
-  #            help = "GTEX_index")
-#)
+option_list <- list(
+  make_option(c("-c", "--hist_file"), type = "character",
+              help = "Histology data file (.TSV)"),
+  make_option(c("-n", "--counts_file"), type = "character",
+              help = "Gene Counts file (.rds)"),
+  make_option(c("-t", "--tpm_file"), type = "character",
+              help = "Counts TPM file (.rds)"),
+  make_option(c("-e", "--ensg_hugo_file"), type = "character",
+              help = "ENSG Hugo codes file (.tsv)"),
+  make_option(c("-m", "--efo_mondo_file"), type = "character",
+              help = "MONDO and EFO codes file (.tsv)"),
+  make_option(c("-u", "--gtex_subgroup_uberon"), type = "character",
+              help = "UBERON codes file (.tsv)"),
+  make_option(c("-o", "--outdir"), type = "character",
+              help = "Output Directory"),
+  make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
+              help = "HIST_index file"),
+  make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
+              help = "GTEX_index file")
+)
 
 #script.dir <- this.path()
 #print(script.dir)
 #dir.create(file.path(dirname(dirname(script.dir)),"Results"), showWarnings = FALSE)
 
 # parse the parameters
-#opt <- parse_args(OptionParser(option_list = option_list))
+opt <- parse_args(OptionParser(option_list = option_list))
 
 
 #args <- commandArgs(trailingOnly = TRUE)
@@ -59,37 +59,37 @@ suppressPackageStartupMessages({
 # HIST_index <- args[1]
 # GTEX_index <- args[2]
 
-HIST_index <- read.delim("Hist_Index_limit.txt", header = FALSE, sep = "", quote = "", col.names = "Hist_Index")
-GTEX_index <- read.delim("GTEx_Index_limit.txt", header = FALSE, sep = "", quote = "", col.names = "GTEx_Index")
+HIST_index <- read.delim(opt$HIST_i, header = FALSE, sep = "", quote = "", col.names = "Hist_Index")
+GTEX_index <- read.delim(opt$GTEX_i, header = FALSE, sep = "", quote = "", col.names = "GTEx_Index")
 
 
 
 #Load histology file
-hist <- read.delim("histology_subset.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("histology_subset.tsv", header=TRUE, sep = '\t')
 #hist <- read.delim("../sample/histologies_original.tsv", header=TRUE, sep = '\t')
-#hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
+hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-countData <- readRDS("countData_subset.rds")
+#countData <- readRDS("countData_subset.rds")
 #countData <- readRDS("../sample/gene-counts-rsem-expected_count-collapsed.rds")
-#countData <- readRDS(opt$counts_file)
+countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-TPMData <- readRDS("../../data/gene-expression-rsem-tpm-collapsed.rds")
-#TPMData <- readRDS(opt$tpm_file)
+#TPMData <- readRDS("../../data/gene-expression-rsem-tpm-collapsed.rds")
+TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-EFO_MONDO <- read.delim("../../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
-#EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
+#EFO_MONDO <- read.delim("../../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load UBERON code map file for GTEx subgroup
-GTEx_SubGroup_UBERON <- read.delim("../../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
-#GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
+#GTEx_SubGroup_UBERON <- read.delim("../../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
+GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
 
 
 #Load gene symbol-gene ID RMTL file
-ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
-#ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
+#ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
+ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
 
 
