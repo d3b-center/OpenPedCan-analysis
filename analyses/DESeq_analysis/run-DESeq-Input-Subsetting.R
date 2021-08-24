@@ -8,28 +8,26 @@ suppressPackageStartupMessages({
   library(optparse)
 })
 
-
 option_list <- list(
-    make_option(c("-c", "--hist_file"), type = "character",
-              help = "Histology data file (.TSV)"),
-    make_option(c("-n", "--counts_file"), type = "character",
-              help = "Gene Counts file (.rds)")
+  make_option(
+    opt_str = "--count",
+    type = "character",
+    help = "rsem count rds file",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = "--hist",
+    type = "character",
+    help = "Base histology file",
+    metavar = "character"
+  )
 )
 
+opts <- parse_args(OptionParser(option_list = option_list))
 
-opt <- parse_args(OptionParser(option_list = option_list))
-
-
-#Load histology file
-#hist <- read.delim("histologies.tsv", header=TRUE, sep = '\t')
-hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
-
-#Load expression counts data
-#countData <- readRDS("gene-counts-rsem-expected_count-collapsed.rds")
-countData <- readRDS(opt$counts_file)
-
-
-
+# setup inputs
+hist <- read.delim(file.path(opts$hist), header = TRUE, sep = '\t')
+countData <- readRDS(file.path(opts$count))
 
 # Subset Histology file for samples only found in the current the countData file (To ensure no discepancies cause errors later in the code)
 hist.filtered <- unique(hist[which(hist$Kids_First_Biospecimen_ID %in%  colnames(countData)),])
@@ -46,17 +44,17 @@ resCohort <- resCohort[which(!is.na(resCohort))]
 # Combine the cancer_group and cohort as columns in a new array
 cancerGroup_cohort_set <- expand.grid(cancerGroup=cancerGroup,cohort=resCohort)
 
-# Create a new array which can take each combination of cancer_group+cohort 
+# Create a new array which can take each combination of cancer_group+cohort
 # Add another column with counts of patients whose data is available for that combination
 patientCount_set <- data.frame()
 
 for (I in 1:length(cancerGroup_cohort_set$cancerGroup))
 {
-  patientCount_set <- rbind(patientCount_set, 
-                            data.frame(cancerGroup=cancerGroup_cohort_set$cancerGroup[I], 
-                                       cohort=cancerGroup_cohort_set$cohort[I], 
+  patientCount_set <- rbind(patientCount_set,
+                            data.frame(cancerGroup=cancerGroup_cohort_set$cancerGroup[I],
+                                       cohort=cancerGroup_cohort_set$cohort[I],
                                        counts=length(unique(hist.filtered$Kids_First_Biospecimen_ID[
-                                         which(hist.filtered$cancer_group == cancerGroup_cohort_set$cancerGroup[I] 
+                                         which(hist.filtered$cancer_group == cancerGroup_cohort_set$cancerGroup[I]
                                                & hist.filtered$cohort == cancerGroup_cohort_set$cohort[I])
                                        ]
                                        )
@@ -101,7 +99,7 @@ Cancer_Histology <- unique(hist.filtered_final$cancer_group)
 Gtex_Tissue_subgroup <- sort(unique(hist.filtered_final$gtex_subgroup))
 
 
-#Save all the cohorts represented in the countsdata into a variable. Remove all 'NA's from the list. 
+#Save all the cohorts represented in the countsdata into a variable. Remove all 'NA's from the list.
 #And paste cohort to cancer groep (eg GMKF_Neuroblastoma)
 Cancer_Histology_COHORT <- unique(
   paste(hist.filtered_final$cohort[which(!is.na(hist.filtered_final$cancer_group))],
@@ -109,13 +107,13 @@ Cancer_Histology_COHORT <- unique(
         sep="_")
 )
 
-#Save all the histologies represented in the countsdata into a variable. 
-#Remove all 'NA's from the list. 
+#Save all the histologies represented in the countsdata into a variable.
+#Remove all 'NA's from the list.
 #This will be the basis of all the data from each histology combined regardless of cohort (eg all-cohorts_Neuroblastoma)
 Cancer_Histology <- paste("all-cohorts",Cancer_Histology[which(!is.na(Cancer_Histology))],sep="_")
 
 
-#Save all the GTEx subgroups represented in the countsdata into a variable. Remove all 'NA's 
+#Save all the GTEx subgroups represented in the countsdata into a variable. Remove all 'NA's
 Gtex_Tissue_subgroup <- Gtex_Tissue_subgroup[!is.na(Gtex_Tissue_subgroup)]
 
 #Create an empty df to populate with rbind of all normal Kids_First_Biospecimen_ID and gtex_subgroup
@@ -145,7 +143,7 @@ for(I in 1:length(Cancer_Histology_COHORT))
   Cancer_Histology_COHORT_cohort <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
   Cancer_Histology_COHORT_cancer_group <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][2]
   sample_type_df_tumor_cohort <- rbind(sample_type_df_tumor_cohort,
-                                       data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group 
+                                       data.frame(Case_ID = hist.filtered$Kids_First_Biospecimen_ID[which(hist.filtered$cancer_group == Cancer_Histology_COHORT_cancer_group
                                                                                                           & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)]
                                                   ,Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
 }
@@ -166,25 +164,18 @@ histology_filtered <- unique(sample_type_df_filtered$Type[-grep("^GTEX",sample_t
 #Define All GTEx groups as normal in the GTEX_filtered list
 GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df_filtered$Case_ID)])
 
-
+# write GTEX index size
 fileConn_GTEx<-file("GTEx_Index_limit.txt",open = "w")
 write.table(length(GTEX_filtered), file = fileConn_GTEx, append = FALSE, row.names = FALSE, col.names = FALSE)
-close(fileConn_GTEx) 
+close(fileConn_GTEx)
 
+# write hist index size
 fileConn_Hist<-file("Hist_Index_limit.txt",open = "w")
 write.table(length(hist.filtered), file = fileConn_Hist, append = FALSE, row.names = FALSE, col.names = FALSE)
-close(fileConn_Hist) 
+close(fileConn_Hist)
 
-
+# save subsetted histology file
 write.table(hist.filtered_final, file="histology_subset.tsv", sep="\t", col.names = T, row.names = F,quote = F)
+
+#save subsetted count data
 saveRDS(countData_filtered,file="countData_subset.rds")
-
-
-
-#Test --> Load histology_subset file
-hist_test <- read.delim("histology_subset.tsv", header=TRUE, sep = '\t')
-
-#Load expression counts data
-countData_test <- readRDS("countData_subset.rds")
-
-
