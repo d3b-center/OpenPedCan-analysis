@@ -19,6 +19,8 @@ inputs:
   hugo_file: {type: File, doc: "ENSG Hugo codes tsv file"}
   mondo_file: {type: File, doc: "MONDO and EFO codes tsv file"}
   uberon_file: {type: File, doc: "UBERON codes tsv file"}
+  ram: {type: 'int?', default: 32, doc: "In GB"}
+  cpus: {type: 'int?', default: 1, doc: "Number of CPUs to request"}
 
 outputs:
   results_dirs: {type: 'Directory[]', outputSource: run_deseq2/results_dir}
@@ -45,7 +47,7 @@ steps:
 
   run_deseq2:
     run: ../tools/run_deseq.cwl
-    scatter: [build_hist_array/index_array, build_gtex_array/index_array]
+    scatter: [histology_index, gtex_index]
     scatterMethod: flat_crossproduct
     in:
       count_file: subset_inputs/subsetted_count
@@ -57,6 +59,8 @@ steps:
       histology_index: build_hist_array/index_array
       gtex_index: build_gtex_array/index_array
       out_dir: output_basename
+      ram: ram
+      cpus: cpus
     out: [results_dir]
 
 $namespaces:
