@@ -59,9 +59,8 @@ opt <- parse_args(OptionParser(option_list = option_list))
 # HIST_index <- args[1]
 # GTEX_index <- args[2]
 
-HIST_index <- read.delim(opt$HIST_i, header = FALSE, sep = "", quote = "", col.names = "Hist_Index")
-GTEX_index <- read.delim(opt$GTEX_i, header = FALSE, sep = "", quote = "", col.names = "GTEx_Index")
-
+HIST_index <- opt$HIST_i
+GTEX_index <- opt$GTEX_i
 
 
 #Load histology file
@@ -240,8 +239,8 @@ histology_filtered <- unique(sample_type_df_filtered$Type[-grep("^GTEX",sample_t
 GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df_filtered$Case_ID)])
 
 #Assign cmparison
- I <- as.numeric(HIST_index$Hist_Index)   #assign first argument to Histology index
- J <- as.numeric(GTEX_index$GTEx_Index)   #assign second argument to GTEx index
+ I <- as.numeric(HIST_index)   #assign first argument to Histology index
+ J <- as.numeric(GTEX_index)   #assign second argument to GTEx index
 
 
 
@@ -338,7 +337,7 @@ Final_Data_Table <- data.frame(
 #system("mkdir /mnt/isilon/opentargets/DESeq2/shuklas1/deseq_analysis/SS_Slurm2")
 
 outdir = opt$outdir
-system("mkdir results")
+dir.create(outdir)
 
 
 #Save files
