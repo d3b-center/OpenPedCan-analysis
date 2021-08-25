@@ -6,7 +6,7 @@ doc: "Run subsetting to create inputs for DESeq2"
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'migbro/deseq2_ot'
+    dockerPull: 'sangeetashukla/deseq2_cavatica'
   - class: InlineJavascriptRequirement
   - class: InitialWorkDirRequirement
     listing:
