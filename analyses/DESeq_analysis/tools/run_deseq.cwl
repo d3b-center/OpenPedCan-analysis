@@ -23,7 +23,7 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     run-DESeq-Input-Subsetting.R --counts_file $(inputs.count_file.path)
+     run-DESeq-analysis.R --counts_file $(inputs.count_file.path)
      --hist_file $(inputs.histology_file.path)
      --tpm_file $(inputs.tpm_file.path)
      --ensg_hugo_file $(inputs.hugo_file.path)
