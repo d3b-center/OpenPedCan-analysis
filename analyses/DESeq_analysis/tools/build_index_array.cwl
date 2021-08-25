@@ -27,6 +27,7 @@ expression:
         range.push(start);
         start += step;
       }
+      return index_array;
     }
     return {'index_array': index_array};
   }"
