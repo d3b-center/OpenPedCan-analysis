@@ -21,6 +21,8 @@ inputs:
   uberon_file: {type: File, doc: "UBERON codes tsv file"}
   ram: {type: 'int?', default: 32, doc: "In GB"}
   cpus: {type: 'int?', default: 1, doc: "Number of CPUs to request"}
+  hist_max_index_test: {type: 'int?', doc: "Maximum number of histology groups to use for testing, this overrides the number of histology groups from the subsetting tool."}
+  gtex_max_index_test: {type: 'int?', doc: "Maximum number of gtex groups to use for testing, this overrides the number of gtex groups from the subsetting tool."}
 
 outputs:
   results_dirs: {type: 'Directory[]', outputSource: run_deseq2/results_dir}
@@ -37,12 +39,14 @@ steps:
     run: ../tools/build_index_array.cwl
     in:
       index_max_file: subset_inputs/histology_length_file
+      test_maximum: hist_max_index_test
     out: [index_array]
 
   build_gtex_array:
     run: ../tools/build_index_array.cwl
     in:
       index_max_file: subset_inputs/gtex_length_file
+      test_maximum: gtex_max_index_test
     out: [index_array]
 
   run_deseq2:

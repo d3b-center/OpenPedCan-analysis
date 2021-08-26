@@ -11,6 +11,7 @@ inputs:
     doc: "File with last number of array"
     inputBinding:
       loadContents: true
+  test_maximum: {type: 'int?', doc: "Max number to use for testing"}
 
 outputs:
   index_array:
@@ -20,6 +21,9 @@ expression:
   "${
     var start = 1;
     var end = inputs.index_max_file.contents.split('\\n')[0];
+    if (inputs.test_maximum) {
+      end = inputs.test_maximum
+    }
     var step = 1;
     var index_array = [];
     while (end >= start) {
