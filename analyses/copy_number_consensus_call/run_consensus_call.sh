@@ -20,9 +20,10 @@ mkdir -p results
 ## Each directory with individual sample files.
 
 python3 scripts/merged_to_individual_files.py \
-    --manta ../../data/pbta-sv-manta.tsv.gz \
-    --cnvkit ../../data/pbta-cnv-cnvkit.seg.gz \
-    --freec ../../data/pbta-cnv-controlfreec.tsv.gz \
+    --manta ../../data/sv-manta.tsv.gz \
+    --cnvkit ../../data/cnv-cnvkit.seg.gz \
+    --freec ../../data/cnv-controlfreec.tsv.gz \
+    --histologies ../../data/histologies.tsv \
     --snake $SCRATCHDIR/config_snakemake.yaml \
     --scratch $SCRATCHDIR \
     --uncalled results/uncalled_samples.tsv
@@ -47,5 +48,5 @@ snakemake \
     -s Snakefile \
     --configfile $SCRATCHDIR/config_snakemake.yaml \
     -j \
-    --restart-times 2
+    --restart-times 2 
 

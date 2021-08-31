@@ -11,10 +11,10 @@
 # This script is intended to be run via the command line.
 # This example assumes it is being run from the root of the repository.
 #
-# Rscript --vanilla analyses/focal-cn-file-preparation/03-prepare-cn-file.R \
-#   --cnv_file data/pbta-cnv-controlfreec.tsv.gz \
+# Rscript --vanilla analyses/focal-cn-file-preparation/04-prepare-cn-file.R \
+#   --cnv_file data/cnv-controlfreec.tsv.gz \
 #   --gtf_file data/gencode.v27.primary_assembly.annotation.gtf.gz \
-#   --metadata data/pbta-histologies.tsv \
+#   --metadata data/histologies.tsv \
 #   --filename_lead "controlfreec_annotated_cn"
 #   --controlfreec
 
@@ -44,16 +44,17 @@ process_annotate_overlaps <- function(cnv_df,
   #   A data.frame with the following columns:
   #     biospecimen_id, status, copy_number, ploidy, ensembl, gene_symbol,
   #     cytoband
-
-  # Make CNV data.frame a GRanges object
+  
+  
+  # make it into GRanges 
   cnv_gr <- cnv_df %>%
     GenomicRanges::makeGRangesFromDataFrame(keep.extra.columns = TRUE,
                                             starts.in.df.are.0based = FALSE)
-
+  
   # Create a data.frame with the overlaps between the CNV file and hg38 genome
   # annotations
-  overlaps <- IRanges::mergeByOverlaps(cnv_gr, tx_exons)
-
+  overlaps <- IRanges::mergeByOverlaps(cnv_gr, txdb_exons)
+  
   # Create a data.frame with selected columns from the `autosome_overlaps`
   # object
   annotated_cn <- data.frame(
@@ -68,7 +69,7 @@ process_annotate_overlaps <- function(cnv_df,
     # Discard the gene version information in order to get gene symbols and
     # cytoband mappings
     dplyr::mutate(ensembl = gsub("\\..*", "", ensembl))
-
+  
   annotated_cn <- annotated_cn %>%
     dplyr::mutate(
       gene_symbol = AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
@@ -80,13 +81,12 @@ process_annotate_overlaps <- function(cnv_df,
                                        column = "MAP",
                                        keytype = "ENSEMBL")
     )
-
+  
   # drop rows that have NA values for the gene symbol
   if (filt_na_symbol) {
     annotated_cn <- annotated_cn %>%
       dplyr::filter(!is.na(gene_symbol))
   }
-
   return(annotated_cn)
 }
 
@@ -110,7 +110,7 @@ option_list <- list(
     c("--metadata"),
     type = "character",
     default = NULL,
-    help = "file path to pbta-histologies.tsv"
+    help = "file path to histologies.tsv"
   ),
   optparse::make_option(
     c("--filename_lead"),
@@ -132,6 +132,14 @@ option_list <- list(
     default = FALSE,
     help = "flag used to indicate if the CNV file was original a SEG file that
             has been prepped by a notebook to include ploidy information"
+  ),
+  optparse::make_option(
+    c("--runWXSonly"),
+    type = "logical",
+    action = "store_true",
+    default = FALSE,
+    help = "flag used to indicate if the annotation was only ran on biospecimens
+            with experiemntal_strategy of WXS"
   ),
   optparse::make_option(
     c("--xy"),
@@ -198,7 +206,17 @@ if (opt$controlfreec) {
 
 #### Read in metadata file -----------------------------------------------------
 
-histologies_df <- readr::read_tsv(opt$metadata, guess_max = 10000)
+histologies_df <- readr::read_tsv(opt$metadata, guess_max = 100000)
+
+#### Subset the CNV files to contain only WXS specimens when runWXSonly parameter is set to TRUE
+
+if (opt$runWXSonly){
+  # find WXS specimens based on histology file
+  WXS_samples <- histologies_df %>% dplyr::filter(experimental_strategy == "WXS") %>% 
+    dplyr::pull(Kids_First_Biospecimen_ID) %>% unique()
+  # subset the cnv_df 
+  cnv_df <- cnv_df %>% dplyr::filter(Kids_First_Biospecimen_ID %in% WXS_samples)
+}
 
 #### Annotation file -----------------------------------------------------------
 
@@ -235,7 +253,7 @@ tx_exons <- GenomicFeatures::exons(txdb, columns = "gene_id")
 # Removing copy neutral segments saves on the RAM required to run this step
 # and file size
 cnv_no_xy <- cnv_df %>%
-  dplyr::filter(!(chr %in% c("chrX", "chrY")), status != "neutral")
+  dplyr::filter(!(chr %in% c("chrX", "chrY")))
 
 # Merge and annotated no X&Y
 autosome_annotated_cn <- process_annotate_overlaps(cnv_df = cnv_no_xy,
@@ -243,11 +261,17 @@ autosome_annotated_cn <- process_annotate_overlaps(cnv_df = cnv_no_xy,
   # mark possible amplifications in autosomes
   dplyr::mutate(status = dplyr::case_when(
     copy_number > (2 * ploidy) ~ "amplification",
-    TRUE ~ status
+    copy_number == 0 ~ "deep deletion",
+    TRUE ~ as.character(status)
   ))
 
 # Output file name
-autosome_output_file <- paste0(opt$filename_lead, "_autosomes.tsv.gz")
+if (opt$runWXSonly){
+  autosome_output_file <- paste0(opt$filename_lead, "_wxs_autosomes.tsv.gz")
+}else{
+  autosome_output_file <- paste0(opt$filename_lead, "_autosomes.tsv.gz")
+}
+
 
 # Save final data.frame to a tsv file
 readr::write_tsv(autosome_annotated_cn,
@@ -260,12 +284,18 @@ if (xy_flag) {
   # Removing copy neutral segments saves on the RAM required to run this step
   # and file size
   cnv_sex_chrom <- cnv_df %>%
-    dplyr::filter(chr %in% c("chrX", "chrY"), status != "neutral")
-
+    dplyr::filter(chr %in% c("chrX", "chrY"))
+  
   # Merge and annotated no X&Y
   sex_chrom_annotated_cn <- process_annotate_overlaps(cnv_df = cnv_sex_chrom,
-                                                      txdb_exons = tx_exons)
-
+                                                      txdb_exons = tx_exons) %>%
+    # mark possible deep loss in sex chromosome
+    dplyr::mutate(status = dplyr::case_when(
+      copy_number == 0  ~ "deep deletion",
+      TRUE ~ as.character(status)
+    ))
+  
+  
   # Add germline sex estimate into this data.frame
   sex_chrom_annotated_cn <- sex_chrom_annotated_cn %>%
     dplyr::inner_join(dplyr::select(histologies_df,
@@ -273,10 +303,14 @@ if (xy_flag) {
                                     germline_sex_estimate),
                       by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
     dplyr::select(-germline_sex_estimate, dplyr::everything())
-
+  
   # Output file name
-  sex_chrom_output_file <- paste0(opt$filename_lead, "_x_and_y.tsv.gz")
-
+  if (opt$runWXSonly){
+    sex_chrom_output_file <- paste0(opt$filename_lead, "_wxs_x_and_y.tsv.gz")
+  }else{
+    sex_chrom_output_file <- paste0(opt$filename_lead, "_x_and_y.tsv.gz")
+  }
+  
   # Save final data.frame to a tsv file
   readr::write_tsv(sex_chrom_annotated_cn,
                    file.path(results_dir, sex_chrom_output_file))

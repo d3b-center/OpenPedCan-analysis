@@ -10,7 +10,7 @@ rule all:
     input:
         "results/cnv_consensus.tsv",
         "results/cnv_neutral.bed",
-        "results/pbta-cnv-consensus.seg.gz"
+        "results/cnv-consensus.seg.gz"
 
 
 scratch_loc = config["scratch"] + '/'
@@ -98,13 +98,12 @@ rule manta_filter:
         ## the first awk also filters out for CNV length
         ## The sort command sorts the first digit of chromosome number numerically
         ## The last pipe is to introduce tab into the file and output file name.        
-        """awk '$6~/DEL/ {{if ($5 > {params.SIZE_CUTOFF}) {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
+        """awk '$6~/DEL/ {{if ($5 > {params.SIZE_CUTOFF} && $11 == 'PASS') {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
         """ | sort -k1,1 -k2,2n """
         """ | tr [:blank:] '\t' > {output.manta_del} && """
-        """awk '$6~/DUP/ {{if ($5 > {params.SIZE_CUTOFF}) {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
+        """awk '$6~/DUP/ {{if ($5 > {params.SIZE_CUTOFF}  && $11 == 'PASS') {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
         """ | sort -k1,1 -k2,2n """
         """ | tr [:blank:] '\t' > {output.manta_dup}"""
-
 
 rule generate_excluded:
     # Combine the sets of regions that are not well called by CNV algorithms for exclusion
@@ -324,7 +323,7 @@ rule make_segfile:
         neutral = "results/cnv_neutral.bed",
         uncalled = "results/uncalled_samples.tsv"
     output:
-        "results/pbta-cnv-consensus.seg.gz"
+        "results/cnv-consensus.seg.gz"
     shell:
         "Rscript {input.script}"
         " -i {input.consensus}"

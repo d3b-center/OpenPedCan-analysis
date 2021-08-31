@@ -143,8 +143,9 @@ We will update the default release number whenever we produce a new release.
 
 ### Data Access via CAVATICA
 
-For any user registered on CAVATICA, the OpenPBTA data can be accessed from the CAVATICA public project below:
+For any user registered on CAVATICA, the OpenPBTA and OpenTargets data can be accessed from the CAVATICA public project below:
 - [OpenPBTA Open Access](https://cavatica.sbgenomics.com/u/cavatica/openpbta/)
+- [OpenTargets Open Access](https://cavatica.sbgenomics.com/u/cavatica/opentarget)
 
 The release folder structure in CAVATICA mirrors that on AWS.
 Users downloading via CAVATICA should place the data files within the `data/release*` folder and then create symlinks to those files within `/data`.
@@ -285,8 +286,9 @@ Files that are intermediate, which means that they are useful within an analysis
 
 We build our project Docker image from a versioned [`tidyverse`](https://hub.docker.com/r/rocker/tidyverse) image from the [Rocker Project](https://www.rocker-project.org/) (v3.6.0).
 
-To add dependencies that are required for your analysis to the project Docker image, you must alter the project [`Dockerfile`](https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/Dockerfile).
-
+To add dependencies that are required for your analysis to the project Docker image, you must alter the project [`Dockerfile`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/Dockerfile).
+The `Dockerfile` can be directly edited to install dependencies, if you are developing using a branch on the [PediatricOpenTargets/OpenPedCan-analysis](https://github.com/PediatricOpenTargets/OpenPedCan-analysis) repository.
+If you are developing using a branch on your fork of the PediatricOpenTargets/OpenPedCan-analysis repository, create a branch on the PediatricOpenTargets/OpenPedCan-analysis repository to edit the `Dockerfile` to install dependencies, e.g. <https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/36>, so [the GitHub action for checking docker image build](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/workflows/build-docker.yml) can run with the Docker Hub credentials saved in the PediatricOpenTargets/OpenPedCan-analysis repository.
 
 * R packages installed on this image will be installed from an [MRAN snapshot](https://mran.microsoft.com/documents/rro/reproducibility#reproducibility) corresponding to the last day that R 3.6.0 was the most recent release ([ref](https://hub.docker.com/r/rocker/tidyverse)).
   * Installing most packages, from CRAN or Bioconductor, should be done  with our `install_bioc.R` script, which will ensure that the proper MRAN snapshot is used. `BiocManager::install()` should *not* be used, as it will not install from MRAN.
@@ -296,15 +298,25 @@ To add dependencies that are required for your analysis to the project Docker im
   * When adding a new package, make sure that all dependencies are also added; every package should appear with a specified version **both** in the `Dockerfile` and `requirements.txt`.
 * Other software can be installed with `apt-get`, but this should *never* be used for R packages.
 
-If you need assistance adding a dependency to the Dockerfile, [file a new issue on this repository](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/new) to request help.
+If you need assistance adding a dependency to the Dockerfile, [file a new issue on this repository](https://github.com/PediatricOpenTargets/ticket-tracker/issues/new) to request help.
 
 #### Development in the Project Docker Container
+
+If you are new user download Docker from [here](https://docs.docker.com/get-docker/)
 
 The most recent version of the project Docker image, which is pushed to Docker Hub after a pull request gets merged into the master branch, can be obtained via the command line with:
 
 ```
-docker pull ccdlopenpbta/open-pbta:latest
+docker pull pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
 ```
+
+Development should utilize the project Docker image. 
+An analysis that is developed using the project Docker image can be efficiently rerun by another developer or the original developer (after a long time since it is developed), without dependency or numerical issues. 
+This will significantly facilitate the following tasks that are constantly performed by all developers of the OpenPedCan-analysis project.
+
+- Review another developer's pull request, including code and results. For more information about pull request and review, see [the guideline for how to contribute to the OpenPedCan-analysis repository](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#contribution-guidelines-for-the-openpbta-analysis).
+- Update the results of an analysis module that is developed by another developer. For example, rerun the same analysis module with new data.
+- Update the code of an analysis module that is developed by another developer. For example, add a new feature to a module, or refactor a module.
 
 **If you are a Mac or Windows user, the default limit for memory available to Docker is 2 GB.
 You will likely need to increase this limit for local development.**
@@ -316,15 +328,24 @@ Using `rocker/tidyverse:3.6.0` as our base image allows for development via RStu
 If you'd like to develop in this manner, you may do so by running the following and changing `<password>` to a password of you choosing at the command line:
 
 ```
-docker run -e PASSWORD=<password> -p 8787:8787 ccdlopenpbta/open-pbta:latest
+docker run -e PASSWORD=<password> -p 8787:8787 pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
 ```
 
 You can change the volume that the Docker container points to either via the [Kitematic GUI](https://docs.docker.com/kitematic/userguide/) or the [`--volume` flag](https://docs.docker.com/storage/volumes/) to `docker run`.
 
+```
+docker run --name <CONTAINER_NAME> -d -e PASSWORD=pass -p 8787:8787 -v “$PWD”:/home/rstudio/OpenTARGET pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
+```
+
 Once you've set the volume, you can navigate to `localhost:8787` in your browser if you are a Linux or Mac OS X user.
 The username will for login will be `rstudio` and the password will be whatever password you set with the `docker run` command above.
 
-If you are a new user, you may find [these instructions](https://github.com/AlexsLemonade/RNA-Seq-Exercises/blob/master/docker-pull.md) for a setting up a different Docker container or [this guide](https://www.andrewheiss.com/blog/2017/04/27/super-basic-practical-guide-to-docker-and-rstudio/) from Andrew Heiss helpful.
+If you are a new user, you may find [these instructions](https://github.com/AlexsLemonade/RNA-Seq-Exercises/blob/master/docker-pull.md) for a setting up a different Docker [container](https://www.andrewheiss.com/blog/2017/04/27/super-basic-practical-guide-to-docker-and-rstudio/) or [this guide](https://www.andrewheiss.com/blog/2017/04/27/super-basic-practical-guide-to-docker-and-rstudio/) from Andrew Heiss helpful.
+
+You can also run the analysis on the terminal once you have a docker container running locally by running `docker exec` helpful information [here](https://buildvirtual.net/docker-exec-what-does-it-do/) 
+```
+docker exec -ti <CONTAINER_NAME> bash -c "echo a && echo b"
+```
 
 ### Local Development
 

@@ -6,7 +6,7 @@ output:
     toc_float: true
 params:
   base_run:
-    label: "1/0 to read pbta-histologies-base.tsv" 
+    label: "1/0 to read histologies.tsv" 
     value: 0
     input: integer
 ---
@@ -22,31 +22,33 @@ This is particularly important for analyses such as mutation co-occurence, where
 # load libraries
 library(dplyr)
 
-# source sample selection funciton
-source("independent-samples.R")
+# base directories
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+
+# source sample selection function
+source(file.path("util", "independent-samples.R"))
 
 set.seed(201910)
 ```
 
 
 ```{r load files}
-root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 if(params$base_run == 0) {
-sample_df <- readr::read_tsv(file.path(root_dir, "data", "pbta-histologies.tsv"), guess_max = 10000)
+sample_df <- readr::read_tsv(file.path(root_dir, "data", "histologies.tsv"), guess_max = 100000)
 } else {
-sample_df <- readr::read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"), guess_max = 10000)
+sample_df <- readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000)
 }
 ```
 
-## WGS and WXS samples
+## WGS and WXS and Panel samples
 Sort to just sequencing samples of tumors
 ```{r}
 seq_samples <- sample_df %>%
-  filter(experimental_strategy %in% c("WGS", "WXS"), 
+  filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
          sample_type == "Tumor")
 ```
 
-How many WGS, how many WXS, summarize #s of samples and participants by 
+How many WGS, how many WXS, how many panel, summarize #s of samples and participants by 
 ```{r}
 seq_samples %>%
   group_by(experimental_strategy, composition, tumor_descriptor) %>%
@@ -127,10 +129,10 @@ seq_samples %>%
 ~~In one case (`PT_N8W26H19`), we do have Solid Tissue samples, but not for the others.~~
 Should these samples be included in further analysis?
 
-## WGS vs WXS
+## WGS vs WXS+Panel
 ```{r}
-WXS_participants <- seq_samples %>%
-  filter(experimental_strategy == "WXS") %>%
+WXS_panel_participants <- seq_samples %>%
+  filter(!experimental_strategy == "WGS") %>%
   pull(Kids_First_Participant_ID) %>%
   unique() 
 
@@ -139,17 +141,17 @@ WGS_participants <- seq_samples %>%
   pull(Kids_First_Participant_ID) %>%
   unique() 
 
-No_WGS <- WXS_participants[!(WXS_participants %in% WGS_participants)]
+No_WGS <- WXS_panel_participants[!(WXS_panel_participants %in% WGS_participants)]
 
 length(No_WGS)
 ```
 
-So there are currently 16 samples with missing WGS data, but that may change in a future release.
+So there are currently 1071 samples with missing WGS data, but that may change in a future release.
 
 Just to check, is this still true when we restrict to early samples?
 ```{r}
-WXS_participants <- seq_samples %>%
-  filter(experimental_strategy == "WXS", 
+WXS_panel_participants <- seq_samples %>%
+  filter(!experimental_strategy == "WGS", 
          Kids_First_Biospecimen_ID %in% early_samples) %>%
   pull(Kids_First_Participant_ID) %>%
   unique() 
@@ -160,12 +162,12 @@ WGS_participants <- seq_samples %>%
   pull(Kids_First_Participant_ID) %>%
   unique() 
 
-No_WGS <- WXS_participants[!(WXS_participants %in% WGS_participants)]
+No_WGS <- WXS_panel_participants[!(WXS_panel_participants %in% WGS_participants)]
 
 length(No_WGS)
 ```
 
-No change. For now, we will look only at WGS samples, but this could be adjusted in future analysis.
+If we limit to early samples, there will be 1162 specimens that does not have WGS data.
 
 
 
@@ -199,7 +201,7 @@ An example of this function is below, applied to the WGS Solid Tissue tumor samp
 Note that in this case, only tumors designated as primary will be included, 
 though this can be adjusted with `tumor_types = "prefer_primary"` or 
 `tumor_types = "any"` if we want to be less presecriptive. As of v5, primary tumors
-are defined as those designated "Initial CNS Tumor" or "Diagnosis" in the
+are defined as those designated "Initial CNS Tumor" in the
 `tumor_descriptor` field.
 
 In the accompanying script, I will generate both `primary_only` and `primary_plus` 
@@ -211,7 +213,7 @@ sets using the `"primary"` and `"prefer_primary"` resepectively.
 independents <- sample_df %>%
   filter(experimental_strategy == "WGS",
          sample_type == "Tumor", 
-         composition == "Solid Tissue"
+         composition == "Solid Tissue" | composition == "Bone Marrow",
          ) %>%
   independent_samples(tumor_types = "primary")
 
