@@ -20,7 +20,7 @@ inputs:
   mondo_file: {type: File, doc: "MONDO and EFO codes tsv file"}
   uberon_file: {type: File, doc: "UBERON codes tsv file"}
   ram: {type: 'int?', default: 32, doc: "In GB"}
-  cpus: {type: 'int?', default: 1, doc: "Number of CPUs to request"}
+  cpus: {type: 'int?', default: 4, doc: "Number of CPUs to request"}
   hist_max_index_test: {type: 'int?', doc: "Maximum number of histology groups to use for testing, this overrides the number of histology groups from the subsetting tool."}
   gtex_max_index_test: {type: 'int?', doc: "Maximum number of gtex groups to use for testing, this overrides the number of gtex groups from the subsetting tool."}
 
@@ -71,6 +71,6 @@ $namespaces:
   sbg: https://sevenbridges.com
 hints:
   - class: 'sbg:maxNumberOfParallelInstances'
-    value: 60
+    value: 80
   - class: 'sbg:AWSInstanceType'
     value: r5.2xlarge
