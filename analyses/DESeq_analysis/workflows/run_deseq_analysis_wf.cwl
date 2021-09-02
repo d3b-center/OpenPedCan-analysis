@@ -25,7 +25,9 @@ inputs:
   gtex_max_index_test: {type: 'int?', doc: "Maximum number of gtex groups to use for testing, this overrides the number of gtex groups from the subsetting tool."}
 
 outputs:
-  results_dirs: {type: 'Directory[]', outputSource: run_deseq2/results_dir}
+  output_tsv: {type: File, outputSource: combine_output_files/combined_tsv}
+  output_jsonl: {type: File, outputSource: combine_output_files/combined_jsonl}
+
 steps:
 
   subset_inputs:
@@ -66,6 +68,14 @@ steps:
       ram: ram
       cpus: cpus
     out: [results_dir]
+
+  combine_output_files:
+    run: ../tools/combine_output_files.cwl
+    in:
+      results_dirs: run_deseq2/results_dir
+      output_basename: output_basename
+    out:
+      [combined_tsv, combined_jsonl]
 
 $namespaces:
   sbg: https://sevenbridges.com
