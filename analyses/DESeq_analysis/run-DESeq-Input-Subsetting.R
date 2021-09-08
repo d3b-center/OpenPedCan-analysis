@@ -67,11 +67,16 @@ for (I in 1:length(cancerGroup_cohort_set$cancerGroup))
 
 #colnames(patientCount_set)
 
-patientCount_set <- subset(patientCount_set,patientCount_set$counts>5)
+patientCount_set <- subset(patientCount_set,patientCount_set$counts>=3)
 
-hist.filtered_final <- hist.filtered[which((hist.filtered$cancer_group %in% patientCount_set$cancerGroup &
-                                              hist.filtered$cohort %in% patientCount_set$cohort )
-                                           | !is.na(hist.filtered$gtex_group)),]
+
+hist.filtered_final = data.frame()
+for(K in 1:nrow(patientCount_set))
+{
+  hist.filtered_final <- rbind(hist.filtered_final,hist.filtered[which(hist.filtered$cancer_group == patientCount_set$cancerGroup[K] &
+                                                                          hist.filtered$cohort == patientCount_set$cohort[K] ),])
+}
+hist.filtered_final <- rbind(hist.filtered_final,hist.filtered[which(!is.na(hist.filtered$gtex_group)),])
 
 
 #colnames(hist.filtered_final)
