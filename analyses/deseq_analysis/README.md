@@ -1,7 +1,7 @@
 ## Differential Expression of RNA-seq matrices
 
 
-This module takes histologies data and the corresponding gene counts and tpm data, and performs differential expression analysis for all combinations of GTEx subgroup and histology type.
+This module takes as input histologies and the RNA-Seq expression matrices data, and performs differential expression analysis for all combinations of GTEx subgroup and cancer histology type.
 
 
 
