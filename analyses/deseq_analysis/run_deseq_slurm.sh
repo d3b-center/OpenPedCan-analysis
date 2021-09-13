@@ -2,7 +2,7 @@
 #SBATCH --job-name=Run_Deseq2_auto              # Job Name
 #SBATCH --mail-type=END,FAIL                    # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=shuklas1@chop.edu,farrela@chop.edu           # Where to send mail
-#SBATCH -a 1-5000 				# number of threads you want to be run simultaneously, input is 2438, so 2438 threads
+#SBATCH -a 1-5000 				# number of threads you want to be run simultaneously, Hist_index times GTEx_index
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=32G
 #SBATCH -t 40:00:00
