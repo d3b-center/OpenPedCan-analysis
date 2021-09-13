@@ -34,8 +34,9 @@ download-data.sh
 ## Steps
 1) Load the data files, and script files on the cluster with a directory set up similar to the repository
 2) Set working directory to /deseq_analysis
-3) Run `run_Generate_Hist_GTEx_indices_file.sh`
-4) Run `run_deseq_slurm.sh` with sbatch command
+3) Create a new directory to capture messages from Slurm execution with the following command: `mkdir Logs_DESeq2`
+4) Run `run_Generate_Hist_GTEx_indices_file.sh`
+5) Run `run_deseq_slurm.sh` with sbatch command
 
 
 ## Results
