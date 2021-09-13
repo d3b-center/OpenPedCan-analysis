@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=32G
 #SBATCH -t 40:00:00
-#SBATCH --error=Logs_SS_Edition2/Run_DESeq2-%A_%a.error.out
-#SBATCH --output=Logs_SS_Edition2/Run_DESeq2-%A_%a.out
+#SBATCH --error=Logs_DESeq2/Run_DESeq2-%A_%a.error.out
+#SBATCH --output=Logs_DESeq2/Run_DESeq2-%A_%a.out
 
 
 declare -a input
