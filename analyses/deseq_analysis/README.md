@@ -17,10 +17,10 @@ download-data.sh
 ## Scripts 
 
 `run-Generate_Hist_GTEx_indices_file.R` - This script creates a subset of `histologies.tsv` and `gene-counts-rsem-expected_count-collapsed.rds` file. The script shortlists the cancer_group and cohort combinations that 3 or more participants with clinical data and prepares the histology and gene counts data subsets that can be used for downstream differential expression analysis by the other R script in this module. This script generates 5 output files as listed below:
-1) `histologies_subset.tsv` - Histology subset for cancer groups with sufficient clinical data from participants
-2) `countData_subset.rds` -   Gene counts data subset
-3) `GTEx_Index_limit.txt` - maximum count of GTEx tissues that have sufficient clinical data
-4) `Hist_Index_limit.txt` - maximum count of cancer histology
+1) `Input_Data/histologies_subset.tsv` - Histology subset for cancer groups with sufficient clinical data from participants
+2) `Input_Data/countData_subset.rds` -   Gene counts data subset
+3) `Input_Data/GTEx_Index_limit.txt` - maximum count of GTEx tissues that have sufficient clinical data
+4) `Input_Data/Hist_Index_limit.txt` - maximum count of cancer histology
 5) `indices.txt` - pairs of indices of cancer histology and GTEx tissue, to be used by the slurm set up for parallelization.
 
 `run_Generate_Hist_GTEx_indices_file.sh` - This script runs the `run-Generate_Hist_GTEx_indices_file.R` script.
