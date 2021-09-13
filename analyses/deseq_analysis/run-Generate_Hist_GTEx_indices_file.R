@@ -71,6 +71,7 @@ for (I in 1:length(cancerGroup_cohort_set$cancerGroup))
   )
 }
 
+#colnames(patientCount_set)
 
 patientCount_set <- subset(patientCount_set,patientCount_set$counts>=3)
 
@@ -81,6 +82,15 @@ for(K in 1:nrow(patientCount_set))
                                                                           hist.filtered$cohort == patientCount_set$cohort[K] ),])
 }
 hist.filtered_final <- rbind(hist.filtered_final,hist.filtered[which(!is.na(hist.filtered$gtex_group)),])
+
+#colnames(hist.filtered_final)
+
+#length(hist.filtered_final$gtex_subgroup) --> 19848
+#length(unique(hist.filtered_final$gtex_subgroup)) --> 54
+#length(unique(hist.filtered_final$gtex_subgroup[which(!is.na(hist.filtered_final$gtex_subgroup))])) --> 53
+#length(unique(hist.filtered_final$gtex_group)) -->32
+#length(unique(hist.filtered_final$gtex_group[which(!is.na(hist.filtered_final$gtex_group))])) --> 31
+#unique(hist.filtered_final$cancer_group) --> 29
 
 
 
@@ -162,12 +172,16 @@ GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df
 
 
 
+#outdir = "input_params"
+#system("mkdir input_params")
 
 
+#fileConn_GTEx<-file(paste(opt$outdir,"/GTEx_Index_limit.txt",sep=""),open = "w")
 fileConn_GTEx<-file(paste(outdir,"/GTEx_Index_limit.txt",sep=""),open = "w")
 write.table(length(GTEX_filtered), file = fileConn_GTEx, append = FALSE, row.names = FALSE, col.names = FALSE)
 close(fileConn_GTEx) 
 
+#fileConn_Hist<-file(paste(opt$outdir,"/Hist_Index_limit.txt",sep=""),open = "w")
 fileConn_Hist<-file(paste(outdir,"/Hist_Index_limit.txt",sep=""),open = "w")
 write.table(length(histology_filtered), file = fileConn_Hist, append = FALSE, row.names = FALSE, col.names = FALSE)
 close(fileConn_Hist) 
