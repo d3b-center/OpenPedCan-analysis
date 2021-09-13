@@ -47,3 +47,17 @@ Final step is to concatenate all the `.tsv` files into one big file with a singl
 
 `awk '(NR == 1) || (FNR > 1)' Results*.tsv > deseq_all_comparisons.tsv`
 
+
+
+Dockerfile
+
+To build Dockerfile, use below:
+`
+docker build -t deseq2_cavatica .
+`
+
+To run Docker image for executing the script to create histology and counts subset, use below:
+`
+docker run --volume $PWD:/analysis deseq2_cavatica bash -c "cd /analysis && Rscript --vanilla ./analysis/run-Generate_Hist_GTEx_indices_file.R  --hist_file ./data/histologies.tsv --counts_file ./data/gene-counts-rsem-expected_count-collapsed.rds --outdir Input_Data"
+`
+
