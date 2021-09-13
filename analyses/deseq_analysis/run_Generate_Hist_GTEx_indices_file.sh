@@ -18,6 +18,6 @@ cd "$script_directory" || exit
 
 module load R/4.1.0
 Rscript --vanilla run-Generate_Hist_GTex_indices_file_SS.R \
-        --hist_file data/histologies.tsv \
-        --counts_file data/gene-counts-rsem-expected_count-collapsed.rds \
+        --hist_file ../../data/histologies.tsv \
+        --counts_file ../../data/gene-counts-rsem-expected_count-collapsed.rds \
         --outdir Input_Data

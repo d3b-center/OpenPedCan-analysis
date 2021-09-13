@@ -22,10 +22,10 @@ function echoMe {
 	Rscript --vanilla run-DESeq-analysis_SS2.R \
                 --hist_file Input_Data/histologies_subset.tsv \
                 --counts_file Input_Data/countData_subset.rds \
-                --tpm_file data/gene-expression-rsem-tpm-collapsed.rds \
-                --ensg_hugo_file data/ensg-hugo-rmtl-mapping.tsv \
-                --efo_mondo_file data/efo-mondo-map.tsv \
-                --gtex_subgroup_uberon data/uberon-map-gtex-subgroup.tsv \
+                --tpm_file ../../data/gene-expression-rsem-tpm-collapsed.rds \
+                --ensg_hugo_file ../../data/ensg-hugo-rmtl-mapping.tsv \
+                --efo_mondo_file ../../data/efo-mondo-map.tsv \
+                --gtex_subgroup_uberon ../../data/uberon-map-gtex-subgroup.tsv \
 		--outdir results \
 		--HIST_i $1 \
 		--GTEX_i $2	
