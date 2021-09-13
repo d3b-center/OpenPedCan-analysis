@@ -43,5 +43,6 @@ When running on a high performance cluster, the module will create a `results` d
 Final step is to concatenate all the `.tsv` files into one big file with a single table for all the differential expression comparisons; and also concatenating all the `.jsonl` files into one big file. This can be done with the below code via command line on the cluster.
 
 `cat Results*.jsonl > deseq_all_comparisons.jsonl`
+
 `awk '(NR == 1) || (FNR > 1)' Results*.tsv > deseq_all_comparisons.tsv`
 
