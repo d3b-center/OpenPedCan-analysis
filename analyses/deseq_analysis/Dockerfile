@@ -14,7 +14,7 @@ ADD ./analysis/scripts/install_bioc.R install_bioc.R
 #ADD ./data/ensg-hugo-rmtl-mapping.tsv ensg-hugo-rmtl-mapping.tsv
 
 ADD ./analysis/run-Generate_Hist_GTEx_indices_file.R run-Generate_Hist_GTEx_indices_file.R
-ADD ./analysis/run-DESeq-analysis.R run-DESeq-analysis.R 
+ADD ./analysis/run-deseq-analysis.R run-deseq-analysis.R 
 ADD Dockerfile Dockerfile
 
 
@@ -31,12 +31,3 @@ RUN R -e "install.packages('jsonlite', dependencies = TRUE)"
 #RUN chmod +x run_deseq.sh
 #RUN ./run_deseq.sh
 
-
-#CMD Rscript --vanilla run-DESeq-Input-Subsetting.R
-#        --hist_file ./data/histologies.tsv \
-#        --counts_file ./data/gene-counts-rsem-expected_count-collapsed.rds \
-#        --tpm_file gene-expression-rsem-tpm-collapsed.rds  \
-#        --efo_mondo_file data/efo-mondo-map.tsv \
-#        --gtex_subgroup_uberon data/uberon-map-gtex-subgroup.tsv \
-#        --ensg_hugo_file data/ensg-hugo-rmtl-mapping.tsv \
-#        --outdir results

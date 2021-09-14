@@ -19,7 +19,7 @@ function echoMe {
 
     module load R/4.1.0
 
-	Rscript --vanilla run-DESeq-analysis_SS2.R \
+	Rscript --vanilla run-deseq-analysis.R \
                 --hist_file Input_Data/histologies_subset.tsv \
                 --counts_file Input_Data/countData_subset.rds \
                 --tpm_file ../../data/gene-expression-rsem-tpm-collapsed.rds \

@@ -1,9 +1,9 @@
 cwlVersion: v1.2
 class: Workflow
 id: run_deseq2_analysis
-label: Run DESeq2 Analysis comparing samples in histology groups to GTEX
+label: Run DESeq2 Analysis comparing samples in cancer histology groups to GTEX
 doc: |-
-  # Run DESeq2 Analysis comparing samples in histology groups to GTEX
+  # Run DESeq2 Analysis comparing samples in cancer histology groups to GTEX
 
 requirements:
   - class: ScatterFeatureRequirement

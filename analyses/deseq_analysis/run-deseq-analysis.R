@@ -4,8 +4,6 @@
 # 1. summarize Differential expression from RNASeq data
 # 2. tabulate corresponding P-value
 
-# Example run: DESeq
-# Rscript analyses/DESeq/run-DESeq-analysis.R 1 1
 # This was compares 1 cancer group (Combined or Cohort specific) with one GTEx tissue type. 
 # The input arguments are the indices of the comparison of the cancer groups and gtex sub tissues to be compared. 
 # In v6, there are 107 cancer groups vs 54 GTEx tissues

@@ -13,9 +13,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: InitialWorkDirRequirement
     listing:
-      - entryname: run-DESeq-analysis.R
+      - entryname: run-deseq-analysis.R
         entry:
-          $include: ../run-DESeq-analysis.R
+          $include: ../run-dseeq-analysis.R
 
 baseCommand: [Rscript]
 
@@ -23,7 +23,7 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     run-DESeq-analysis.R --counts_file $(inputs.count_file.path)
+     run-deseq-analysis.R --counts_file $(inputs.count_file.path)
      --hist_file $(inputs.histology_file.path)
      --tpm_file $(inputs.tpm_file.path)
      --ensg_hugo_file $(inputs.hugo_file.path)

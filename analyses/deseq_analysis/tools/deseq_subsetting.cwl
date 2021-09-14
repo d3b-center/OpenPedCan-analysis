@@ -10,9 +10,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: InitialWorkDirRequirement
     listing:
-      - entryname: run-DESeq-Input-Subsetting.R
+      - entryname: run-Generate_Hist_GTEx_indices_file.R
         entry:
-          $include: ../run-DESeq-Input-Subsetting.R
+          $include: ../run-Generate_Hist_GTEx_indices_file.R
 
 baseCommand: [Rscript]
 
@@ -20,7 +20,7 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     run-DESeq-Input-Subsetting.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path)
+     run-Generate_Hist_GTEx_indices_file.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path)
 
 inputs:
   count_file: {type: File, doc: "RSEM count rds file"}
@@ -47,3 +47,8 @@ outputs:
     outputBinding:
       glob: GTEx_Index_limit.txt
     doc: "Text file with count of gtex subgroups"
+  indices_file:
+    type: Directory
+    outputBinding:
+      glob: indices.txt
+    doc: "Text file with pairs of vakues for Hist_i and GTEx_i indices"
