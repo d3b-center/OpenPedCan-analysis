@@ -15,7 +15,7 @@ requirements:
     listing:
       - entryname: run-deseq-analysis.R
         entry:
-          $include: ../run-dseeq-analysis.R
+          $include: ../run-deseq-analysis.R
 
 baseCommand: [Rscript]
 
