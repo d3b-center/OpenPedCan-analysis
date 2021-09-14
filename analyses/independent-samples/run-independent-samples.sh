@@ -26,6 +26,7 @@ fi
 independent_DNA_each="results/independent-specimens.wgswxspanel.primary-plus.eachcohort.tsv"
 independent_DNA_all="results/independent-specimens.wgswxspanel.primary-plus.tsv"
 
+
 Rscript 01-generate-independent-specimens.R \
   -f $HISTOLOGY_FILE \
   -o results
@@ -35,7 +36,8 @@ Rscript 02-generate-independent-rnaseq.R \
   --histology_file $HISTOLOGY_FILE \
   --output_directory results \
   --independent_dna_sample_df_each $independent_DNA_each \
-  --independent_dna_sample_df_all $independent_DNA_all
+  --independent_dna_sample_df_all $independent_DNA_all 
+  
 
 # run report on outputs
 Rscript -e "rmarkdown::render('03-qc-independent-samples.Rmd', clean = TRUE)"

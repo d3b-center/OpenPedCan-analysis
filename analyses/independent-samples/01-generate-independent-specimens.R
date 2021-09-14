@@ -67,6 +67,14 @@ wgswxspanel_relapse_each_file <- file.path(out_dir,
 wgswxspanel_primplus_each_file <- file.path(out_dir, 
                               "independent-specimens.wgswxspanel.primary-plus.eachcohort.tsv")
 
+# generate independent samples that preferentially choose WXS when both WXS and WGS are available
+wgswxspanel_primary_each_file_prefer_wxs <- file.path(out_dir, 
+                                           "independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv")
+wgswxspanel_relapse_each_file_prefer_wxs <- file.path(out_dir, 
+                                           "independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv")
+wgswxspanel_primplus_each_file_prefer_wxs <- file.path(out_dir, 
+                                            "independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv")
+
 wgs_primary_all_file <- file.path(out_dir, 
                                    "independent-specimens.wgs.primary.tsv")
 wgs_relapse_all_file <- file.path(out_dir, 
@@ -79,6 +87,14 @@ wgswxspanel_relapse_all_file <- file.path(out_dir,
                                            "independent-specimens.wgswxspanel.relapse.tsv")
 wgswxspanel_primplus_all_file <- file.path(out_dir, 
                                             "independent-specimens.wgswxspanel.primary-plus.tsv")
+
+# generate independent samples that preferentially choose WXS when both WXS and WGS are available
+wgswxspanel_primary_all_file_prefer_wxs <- file.path(out_dir, 
+                                          "independent-specimens.wgswxspanel.primary.prefer.wxs.tsv")
+wgswxspanel_relapse_all_file_prefer_wxs <- file.path(out_dir, 
+                                          "independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv")
+wgswxspanel_primplus_all_file_prefer_wxs <- file.path(out_dir, 
+                                           "independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv")
 
 # Read histology file
 histology_df <- readr::read_tsv(opts$histology_file, 
@@ -121,6 +137,32 @@ wxs_panel_primary_plus_each <- independent_samples(wxs_panel_samples, tumor_type
 wxs_panel_primary_all <- independent_samples(wxs_panel_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
 wxs_panel_relapse_all <- independent_samples(wxs_panel_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
 wxs_panel_primary_plus_all <- independent_samples(wxs_panel_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+
+# Generate WXS independent samples
+wxs_samples <- tumor_samples %>%
+  dplyr::filter(experimental_strategy == "WXS")
+
+wxs_primary_each <- independent_samples(wxs_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+wxs_relapse_each <- independent_samples(wxs_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+wxs_primary_plus_each <- independent_samples(wxs_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+
+wxs_primary_all <- independent_samples(wxs_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+wxs_relapse_all <- independent_samples(wxs_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+wxs_primary_plus_all <- independent_samples(wxs_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+
+# Generate lists for WGS and Panel samples 
+# We need to generate a separate independent sample list where WXS is preferred - for that list, we need to use WGS+Panel when WXS is not available
+wgs_panel_samples <-  tumor_samples %>% 
+  dplyr::filter(!(Kids_First_Participant_ID %in% 
+                    wxs_samples$Kids_First_Participant_ID))
+
+wgs_panel_primary_each <- independent_samples(wgs_panel_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+wgs_panel_relapse_each <- independent_samples(wgs_panel_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+wgs_panel_primary_plus_each <- independent_samples(wgs_panel_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+
+wgs_panel_primary_all <- independent_samples(wgs_panel_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+wgs_panel_relapse_all <- independent_samples(wgs_panel_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+wgs_panel_primary_plus_all <- independent_samples(wgs_panel_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
 
 # write files for independent specimens considering cohort difference - for WGS specimens only 
 message(paste(nrow(wgs_primary_each), "WGS primary specimens for each cohort"))
@@ -181,4 +223,37 @@ dplyr::bind_rows(wgs_primary_plus_all, wxs_panel_primary_plus_all) %>%
   dplyr::arrange(Kids_First_Biospecimen_ID) %>%
   readr::write_tsv(wgswxspanel_primplus_all_file)
 
+
+# write files for independent specimens that prefere WXS samples considering cohort difference - for WGS+WXS+Panel specimens 
+message(paste(nrow(wxs_primary_each) + nrow(wgs_panel_primary_each), "WGS+WXS+Panel primary specimens prefer WXS for each cohort"))
+dplyr::bind_rows(wxs_primary_each, wgs_panel_primary_each) %>% 
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_primary_each_file_prefer_wxs)
+
+message(paste(nrow(wxs_relapse_each) + nrow(wgs_panel_relapse_each), "WGS+WXS+Panel relapse specimens prefer WXS for each cohort"))
+dplyr::bind_rows(wxs_relapse_each, wgs_panel_relapse_each) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_relapse_each_file_prefer_wxs)
+
+message(paste(nrow(wxs_primary_plus_each) + nrow(wgs_panel_primary_plus_each), "WGS+WXS+Panel specimens (including non-primary) prefer WXS for each cohort"))
+dplyr::bind_rows(wxs_primary_plus_each, wgs_panel_primary_plus_each) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_primplus_each_file_prefer_wxs)
+
+# write files for independent specimens that prefere WXS samples not considering cohort difference - for WGS+WXS+Panel specimens 
+
+message(paste(nrow(wxs_primary_all) + nrow(wgs_panel_primary_all), "WGS+WXS+Panel primary specimens prefer WXS for all cohort"))
+dplyr::bind_rows(wxs_primary_all, wgs_panel_primary_all) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_primary_all_file_prefer_wxs)
+
+message(paste(nrow(wxs_relapse_all) + nrow(wgs_panel_relapse_all), "WGS+WXS+Panel relapse specimens prefer WXS for all cohort"))
+dplyr::bind_rows(wxs_relapse_all, wgs_panel_relapse_all) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_relapse_all_file_prefer_wxs)
+
+message(paste(nrow(wxs_primary_plus_all) + nrow(wgs_panel_primary_plus_all), "WGS+WXS+Panel specimens (including non-primary) prefer WXS for all cohort"))
+dplyr::bind_rows(wxs_primary_plus_all, wgs_panel_primary_plus_all) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(wgswxspanel_primplus_all_file_prefer_wxs)
 

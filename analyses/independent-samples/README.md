@@ -34,6 +34,12 @@
 │   ├── independent-specimens.wgswxspanel.primary.tsv
 │   ├── independent-specimens.wgswxspanel.relapse.eachcohort.tsv
 │   └── independent-specimens.wgswxspanel.relapse.tsv
+│   ├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
+│   └── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
 ├── run-independent-samples.sh
 └── util
     ├── independent-samples.R
@@ -75,6 +81,21 @@ The following output are generated when we run with 'each-cohort'
 `independent-specimens.wgswxspanel.relapse.eachcohort.tsv`
 * Primary and relapse specimens with WGS or WXS or Panel:  
 `independent-specimens.wgswxspanel.primary-plus.eachcohort.tsv`
+
+Additionally, similar independent lists that consist of all DNA `experimental_strategy` were generated prioriting WXS specimens when both WXS and WGS samples were available - this independent list will be used for analyzing SNV datasets since WXS gives higher coverage for coding regions and hence, better chance of getting SNV.
+
+* Primary specimens only with either whole exome sequence (WXS) or WXS or Panel:  
+`independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
+* Relapse specimens only with either whole exome sequence (WXS) or WXS or Panel:  
+`independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
+* Primary and relapse specimens with WXS or WXS or Panel:  
+`independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv`
+* Primary specimens only with either whole exome sequence (WXS) or WXS or Panel:  
+`independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
+* Relapse specimens only with either whole exome sequence (WXS) or WXS or Panel:  
+`independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv`
+* Primary and relapse specimens with WXS or WXS or Panel:  
+`independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv`
 
 Simiarly, for independent RNA sapmles, we also run with either 'all-cohorts' or 'each-cohort'.
 When run with 'each-cohort', independent DNA samples ran with 'each-cohort' was used as starting point (see code for details) and when run with 'all-cohorts', independent DNA samples ran with 'all-cohorts' was used as starting point.
