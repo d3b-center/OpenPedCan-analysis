@@ -249,7 +249,7 @@ countData_filtered_DEG.hist <- data.matrix(countData_filtered_DEG[,which(colname
                                                colData <- sample_type_df_filtered.hist,
                                                design <- ~ Type)
     
-    sub.deseqdataset$Type <- factor(sub.deseqdataset$Type, levels=c(GTEX_filtered[J], histology_filtered[I]))
+    sub.deseqdataset$Type <- factor(sub.deseqdataset$Type, levels=c(histology_filtered[I], GTEX_filtered[J]))
     
     dds <- DESeq(sub.deseqdataset)
     res <- results(dds)
