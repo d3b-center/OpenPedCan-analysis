@@ -62,11 +62,11 @@ system(cmd_mkdir)
 
 
 #Load histology file
-#hist <- read.delim("input_params/histologies_subset.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("Input_data/histologies_subset.tsv", header=TRUE, sep = '\t')
 hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-#countData <- readRDS("input_params/countData_subset.rds")
+#countData <- readRDS("Input_data/countData_subset.rds")
 countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
@@ -295,8 +295,11 @@ GTEX_MEAN_TPMs <- round(GTEX_MEAN_TPMs,2)
 Final_Data_Table <- data.frame(
   datasourceId = paste(gsub("all-cohorts","all_cohorts",strsplit(histology_filtered[I],split="_")[[1]][1]),"vs_GTex",sep="_"),
   datatypeId = "rna_expression",
-  cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
-                 ,collapse=";",sep=";"),
+  #cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
+  #               ,collapse=";",sep=";"),
+  cohort = ifelse(strsplit(histology_filtered[I],split="_")[[1]][1]=="all-cohorts","All Cohorts",
+                  paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
+                        ,collapse=";",sep=";")),
   Gene_symbol = rownames(Result),
   Gene_Ensembl_ID = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
   RMTL = ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
