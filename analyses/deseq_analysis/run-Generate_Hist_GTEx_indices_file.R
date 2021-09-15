@@ -10,14 +10,13 @@ suppressPackageStartupMessages({
 })
 
 
-
 option_list <- list(
     make_option(c("-c", "--hist_file"), type = "character",
               help = "Histology data file (.TSV)"),
     make_option(c("-n", "--counts_file"), type = "character",
               help = "Gene Counts file (.rds)"),
     make_option(c("-o", "--outdir"), type = "character",
-              help = "Path to Output Directory")
+              help = "Path to Output Directory", default = ".")
 )
 
 
