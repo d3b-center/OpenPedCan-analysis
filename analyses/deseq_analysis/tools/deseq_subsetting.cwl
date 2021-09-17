@@ -30,7 +30,7 @@ outputs:
   subsetted_histology:
     type: File
     outputBinding:
-      glob: histology_subset.tsv
+      glob: histologies_subset.tsv
     doc: "Subsetted histology file"
   subsetted_count:
     type: Directory
