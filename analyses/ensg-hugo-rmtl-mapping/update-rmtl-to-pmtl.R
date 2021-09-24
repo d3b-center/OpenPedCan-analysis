@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Step 1: Read files
-ensg <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv")
+ensg <- read.delim("../../data/v9/ensg-hugo-rmtl-mapping.tsv")
 pmtl <- read.delim("input/PMTL_v1.1.tsv")
 
 
@@ -149,10 +149,6 @@ no_chg_ensg_no_na <- uniq_ensg_no_na %>%
 colnames(uniq_no_chg_ensg_na) <- c("ensg_id", "gene_symbol", "pmtl", "version")
 colnames(no_chg_ensg_no_na) <- c("ensg_id", "gene_symbol", "pmtl", "version")
 
-colnames(uniq_mapped_pmtl_no_na)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
-colnames(uniq_mapped_pmtl_na)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
-colnames(uniq_no_map_pmtl)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
-
 # Test
 #unique(uniq_no_chg_ensg_na$pmtl)
 #unique(no_chg_ensg_no_na$pmtl)
@@ -163,18 +159,22 @@ colnames(uniq_no_map_pmtl)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
 
 #Update value in pmtl and version columns
 
-no_chg_ensg_no_na$pmtl[no_chg_ensg_no_na$pmtl == "Relevant Molecular Target"] <- "Pediatric Molecular Target"
+#no_chg_ensg_no_na$pmtl[no_chg_ensg_no_na$pmtl == "Relevant Molecular Target"] <- "Pediatric Molecular Target"
 no_chg_ensg_no_na$version[no_chg_ensg_no_na$version == "RMTL version 1.0"] <- "PMTL version 1.1"
 
 
 # Add new columns in new arrays
-uniq_mapped_pmtl_no_na$pmtl <- "Pediatric Molecular Target"
-uniq_mapped_pmtl_na$pmtl <- "Pediatric Molecular Target"
-uniq_no_map_pmtl$pmtl <- "Pediatric Molecular Target"
+uniq_mapped_pmtl_no_na$pmtl <- "Relevant Molecular Target"
+uniq_mapped_pmtl_na$pmtl <- "Relevant Molecular Target"
+uniq_no_map_pmtl$pmtl <- "Relevant Molecular Target"
 
 uniq_mapped_pmtl_no_na$version <- "PMTL version 1.1"
 uniq_mapped_pmtl_na$version <- "PMTL version 1.1"
 uniq_no_map_pmtl$version <- "PMTL version 1.1"
+
+colnames(uniq_mapped_pmtl_no_na)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
+colnames(uniq_mapped_pmtl_na)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
+colnames(uniq_no_map_pmtl)  <- c("ensg_id", "gene_symbol", "pmtl", "version")
 
 
 # Final merge
