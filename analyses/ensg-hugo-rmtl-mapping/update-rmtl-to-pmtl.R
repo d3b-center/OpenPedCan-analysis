@@ -199,5 +199,5 @@ cmd_mkdir <- paste("mkdir", "results", sep=" ")
 system(cmd_mkdir)
 
 #Write to file
-filename <- "ensg-hugo-pmtl-mapping"
+filename <- "ensg-hugo-rmtl-mapping"
 write.table(uniq_new_ensg_hugo_rmtl_mapping, file=paste("results/",filename,".tsv",sep=""), sep="\t", col.names = T, row.names = F,quote = F)
