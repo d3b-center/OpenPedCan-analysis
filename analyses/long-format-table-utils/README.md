@@ -58,7 +58,7 @@ Check input long-format tables have required columns for adding annotation colum
 | Column name            | Required for adding which annotation column(s)           | Description                                                                                                                                              |
 | ---------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Gene_symbol`          | `Gene_type`, `OncoKB_cancer_gene`, `OncoKB_oncogene_TSG` | HUGO symbols, e.g. PHLPP1, TM6SF1, and DNAH5.                                                                                                            |
-| `Gene_Ensembl_ID`      | `RMTL`, `Gene_full_name`, `Protein_RefSeq_ID`            | Ensembl ENSG IDs without `.#` versions, e.g. ENSG00000039139, ENSG00000111261, and ENSG00000169710                                                       |
+| `Gene_Ensembl_ID`      | `PMTL`, `Gene_full_name`, `Protein_RefSeq_ID`            | Ensembl ENSG IDs without `.#` versions, e.g. ENSG00000039139, ENSG00000111261, and ENSG00000169710                                                       |
 | `Disease`              | `EFO`, `MONDO`                                           | The `cancer_group` in the `histologies.tsv`, e.g. Adamantinomatous Craniopharyngioma, Atypical Teratoid Rhabdoid Tumor, and Low-grade glioma/astrocytoma |
 | `GTEx_tissue_group`    | `GTEx_tissue_group_UBERON`                               | The `gtex_group` in the `histologies.tsv`, e.g. Adipose, Kidney, and Thyroid                                                                             |
 | `GTEx_tissue_subgroup` | `GTEx_tissue_subgroup_UBERON`                            | The `gtex_subgroup` in the `histologies.tsv`, e.g. Adipose - Subcutaneous, Kidney - Cortex, and Thyroid                                                  |
@@ -67,7 +67,7 @@ Add one or more of the following gene, disease (/`cancer_group`), and tissue ann
 
 | Annotation column name        | `join_by` column name  | Non-missing value                                                                                                                                                                                                                                                       | Annotation data file                                                                                | Source                                                                                                                                                                                        |
 | ----------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `RMTL`                        | `Gene_Ensembl_ID`      | `Relevant Molecular Target (RMTL version 1.0)` or `Non-Relevant Molecular Target (RMTL version 1.0)`                                                                                                                                                                    | `data/ensg-hugo-rmtl-mapping.tsv`                                                                   | PediatricOpenTargets/OpenPedCan-analysis data release                                                                                                                                         |
+| `PMTL`                        | `Gene_Ensembl_ID`      | `Relevant Molecular Target (PMTL version 1.1)` or `Non-Relevant Molecular Target (PMTL version 1.1)`                                                                                                                                                                    | `data/ensg-hugo-pmtl-mapping.tsv`                                                                   | PediatricOpenTargets/OpenPedCan-analysis data release                                                                                                                                         |
 | `Gene_type`                   | `Gene_symbol`          | A sorted comma separated list of one or more of the following gene types: `CosmicCensus`, `Kinase`, `Oncogene`, `TranscriptionFactor`, and `TumorSuppressorGene`. Example values: `CosmicCensus`, `CosmicCensus,Kinase`, and `CosmicCensus,Kinase,TumorSuppressorGene`. | `analyses/fusion_filtering/references/genelistreference.txt`                                        | Described at [https://github.com/d3b-center/annoFuse](https://github.com/d3b-center/annoFuse/blob/92cdd6975d6db84a692ad1bd631fa7db9834003d/README.md#prerequisites-for-cohort-level-analysis) |
 | `OncoKB_cancer_gene`          | `Gene_symbol`          | `Y` or `N`                                                                                                                                                                                                                                                              | `analyses/long-format-table-utils/annotator/annotation-data/oncokb-cancer-gene-list.tsv`            | Downloaded from <https://www.oncokb.org/cancerGenes>                                                                                                                                          |
 | `OncoKB_oncogene_TSG`         | `Gene_symbol`          | `Oncogene`, or `TumorSuppressorGene`, or `Oncogene,TumorSuppressorGene`                                                                                                                                                                                                 | `analyses/long-format-table-utils/annotator/annotation-data/oncokb-cancer-gene-list.tsv`            | Downloaded from <https://www.oncokb.org/cancerGenes>                                                                                                                                          |
@@ -83,8 +83,8 @@ Note: only add `Gene_type` to gene-level tables, which can be implemented by lea
 Notes on requiring `Gene_symbol` and `Gene_Ensembl_ID`:
 
 - Certain annotation files use `Gene_symbol` as key columns, and certain other annotation files use `Gene_Ensembl_ID` as key columns.
-- Some `Gene_symbol`s are mapped to multiple `Gene_Ensembl_ID`s, so adding `Gene_Ensembl_ID`s by mapping `Gene_symbol`s with `data/ensg-hugo-rmtl-mapping.tsv` may implicitly introduce duplicated rows. Therefore, adding `Gene_Ensembl_ID`s by mapping `Gene_symbol`s is left to users with cautions for potentially introducing unwanted duplicates.
-- Similarly, some `Gene_Ensembl_ID`s are mapped to multiple `Gene_symbol`s, so adding `Gene_symbol`s by mapping `Gene_Ensembl_ID`s with `data/ensg-hugo-rmtl-mapping.tsv` may implicitly introduce duplicated rows. Therefore, adding `Gene_symbol`s by mapping `Gene_Ensembl_ID`s is left to users with cautions for potentially introducing unwanted duplicates.
+- Some `Gene_symbol`s are mapped to multiple `Gene_Ensembl_ID`s, so adding `Gene_Ensembl_ID`s by mapping `Gene_symbol`s with `data/ensg-hugo-pmtl-mapping.tsv` may implicitly introduce duplicated rows. Therefore, adding `Gene_Ensembl_ID`s by mapping `Gene_symbol`s is left to users with cautions for potentially introducing unwanted duplicates.
+- Similarly, some `Gene_Ensembl_ID`s are mapped to multiple `Gene_symbol`s, so adding `Gene_symbol`s by mapping `Gene_Ensembl_ID`s with `data/ensg-hugo-pmtl-mapping.tsv` may implicitly introduce duplicated rows. Therefore, adding `Gene_symbol`s by mapping `Gene_Ensembl_ID`s is left to users with cautions for potentially introducing unwanted duplicates.
 
 Notes on annotation data versions:
 
@@ -129,12 +129,12 @@ Following is an example usage in the `rna-seq-expression-summary-stats` module `
  [7] "tpm_mean_cancer_group_wise_zscore"    "tpm_mean_gene_wise_zscore"
  [9] "tpm_mean_cancer_group_wise_quantiles" "n_samples"
 >
-> # Gene_Ensembl_ID column is required for adding RMTL column
+> # Gene_Ensembl_ID column is required for adding PMTL column
 > # Disease column is required for adding EFO and MONDO columns
 > renamed_m_tpm_ss_long_tbl <- dplyr::rename(
 +   m_tpm_ss_long_tbl, Gene_Ensembl_ID = gene_id, Disease = cancer_group)
 >
-> annotation_columns_to_add <- c("MONDO", "RMTL", "EFO")
+> annotation_columns_to_add <- c("MONDO", "PMTL", "EFO")
 > # Assert all columns to be added are not already present in the
 > # colnames(renamed_m_tpm_ss_long_tbl)
 > stopifnot(
@@ -147,7 +147,7 @@ Following is an example usage in the `rna-seq-expression-summary-stats` module `
 +   annotated_renamed_m_tpm_ss_long_tbl,
 +   gene_id = Gene_Ensembl_ID, cancer_group = Disease)
 > m_tpm_ss_long_tbl <- dplyr::select(
-+   m_tpm_ss_long_tbl, gene_symbol, RMTL, gene_id,
++   m_tpm_ss_long_tbl, gene_symbol, PMTL, gene_id,
 +   cancer_group, EFO, MONDO, n_samples, cohort,
 +   tpm_mean, tpm_sd,
 +   tpm_mean_cancer_group_wise_zscore, tpm_mean_gene_wise_zscore,
@@ -184,7 +184,7 @@ Following is an example usage in the `rna-seq-expression-summary-stats` module `
  [7] "tpm_mean_cancer_group_wise_zscore"    "tpm_mean_gene_wise_zscore"
  [9] "tpm_mean_cancer_group_wise_quantiles" "n_samples"
 >
-> # Gene_Ensembl_ID column is required for adding RMTL column
+> # Gene_Ensembl_ID column is required for adding PMTL column
 > # Disease column is required for adding EFO and MONDO columns
 > renamed_m_tpm_ss_long_tbl <- dplyr::rename(
 +   m_tpm_ss_long_tbl, Gene_Ensembl_ID = gene_id, Disease = cancer_group)
@@ -195,7 +195,7 @@ Following is an example usage in the `rna-seq-expression-summary-stats` module `
 >
 > system(paste(
 +   "Rscript --vanilla ../long-format-table-utils/annotator/annotator-cli.R",
-+   "-r -v -c MONDO,RMTL,EFO",
++   "-r -v -c MONDO,PMTL,EFO",
 +   "-i ../../scratch/renamed_m_tpm_ss_long_tbl.tsv",
 +   "-o ../../scratch/annotated_renamed_m_tpm_ss_long_tbl.tsv"))
 Read ../../scratch/renamed_m_tpm_ss_long_tbl.tsv...
@@ -212,7 +212,7 @@ Done.
 +   annotated_renamed_m_tpm_ss_long_tbl,
 +   gene_id = Gene_Ensembl_ID,  cancer_group = Disease)
 > m_tpm_ss_long_tbl <- dplyr::select(
-+   m_tpm_ss_long_tbl, gene_symbol, RMTL, gene_id,
++   m_tpm_ss_long_tbl, gene_symbol, PMTL, gene_id,
 +   cancer_group, EFO, MONDO, n_samples, cohort,
 +   tpm_mean, tpm_sd,
 +   tpm_mean_cancer_group_wise_zscore, tpm_mean_gene_wise_zscore,
