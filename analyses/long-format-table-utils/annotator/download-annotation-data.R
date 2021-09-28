@@ -137,20 +137,20 @@ if (!dir.exists(output_data_dir)) {
 
 
 # Read input data --------------------------------------------------------------
-# ensg hugo rmtl mappings
-ensg_hugo_rmtl_df <- dplyr::distinct(
-  readr::read_tsv(file.path(input_data_dir, "ensg-hugo-rmtl-mapping.tsv"),
+# ensg hugo pmtl mappings
+ensg_hugo_pmtl_df <- dplyr::distinct(
+  readr::read_tsv(file.path(input_data_dir, "ensg-hugo-pmtl-mapping.tsv"),
                   col_types = readr::cols(.default = readr::col_guess())))
 
 # assert all ensg_ids and gene_symbols are not NA
-if (!identical(sum(is.na(ensg_hugo_rmtl_df$ensg_id)), as.integer(0))) {
-  stop(paste0("Found NA in ensg-hugo-rmtl-mapping.tsv ensg_id.\n",
+if (!identical(sum(is.na(ensg_hugo_pmtl_df$ensg_id)), as.integer(0))) {
+  stop(paste0("Found NA in ensg-hugo-pmtl-mapping.tsv ensg_id.\n",
               "Check if PedOT release data are downloaded properly.\n",
               "If data is downloaded properly, submit a GitHub data issue."))
 }
 
-if (!identical(sum(is.na(ensg_hugo_rmtl_df$gene_symbol)), as.integer(0))) {
-  stop(paste0("Found NA in ensg-hugo-rmtl-mapping.tsv gene_symbol.\n",
+if (!identical(sum(is.na(ensg_hugo_pmtl_df$gene_symbol)), as.integer(0))) {
+  stop(paste0("Found NA in ensg-hugo-pmtl-mapping.tsv gene_symbol.\n",
               "Check if PedOT release data are downloaded properly.\n",
               "If data is downloaded properly, submit a GitHub data issue."))
 }
@@ -159,7 +159,7 @@ if (!identical(sum(is.na(ensg_hugo_rmtl_df$gene_symbol)), as.integer(0))) {
 
 # Download data from https://mygene.info/ --------------------------------------
 message("Retrieve Gene_full_name and Protein_RefSeq_ID from mygene.info...")
-ens_gids <- unique(ensg_hugo_rmtl_df$ensg_id)
+ens_gids <- unique(ensg_hugo_pmtl_df$ensg_id)
 
 mg_qres_list <- mygene::queryMany(
   ens_gids, scopes = "ensembl.gene", fields = c("refseq", "name"),
