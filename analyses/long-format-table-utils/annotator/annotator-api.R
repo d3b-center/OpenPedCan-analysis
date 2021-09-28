@@ -11,7 +11,7 @@
 #   - Gene_Ensembl_ID: Ensembl ENSG IDs without `.#` versions, e.g.
 #     ENSG00000039139, ENSG00000111261, and ENSG00000169710. The Gene_Ensembl_ID
 #     column is required for adding the following annotation columns:
-#     - RMTL
+#     - PMTL
 #     - Gene_full_name
 #     - Protein_RefSeq_ID
 #   - Disease: The `cancer_group` in the `histologies.tsv`, e.g.
@@ -31,10 +31,10 @@
 #     - GTEx_tissue_subgroup_UBERON
 # - columns_to_add: a character vector of unique names of the columns to be
 #   added to the input table. The vector can contain zero or more of the
-#   following column names: "RMTL", "Gene_type", "OncoKB_cancer_gene",
+#   following column names: "PMTL", "Gene_type", "OncoKB_cancer_gene",
 #   "OncoKB_oncogene_TSG", "Gene_full_name", "Protein_RefSeq_ID", "EFO",
 #   "MONDO", "GTEx_tissue_group_UBERON", "GTEx_tissue_subgroup_UBERON". Default
-#   value is to add "RMTL", "Gene_type", "OncoKB_cancer_gene",
+#   value is to add "PMTL", "Gene_type", "OncoKB_cancer_gene",
 #   "OncoKB_oncogene_TSG", "Gene_full_name", "Protein_RefSeq_ID", "EFO", and
 #   "MONDO".
 #   - Notes:
@@ -51,12 +51,12 @@
 # Notes on requiring Gene_symbol and Gene_Ensembl_ID:
 # - Some Gene_symbols are mapped to multiple Gene_Ensembl_IDs, so adding
 #   Gene_Ensembl_IDs by mapping Gene_symbols with
-#   data/ensg-hugo-rmtl-mapping.tsv may implicitly introduce duplicated rows.
+#   data/ensg-hugo-pmtl-mapping.tsv may implicitly introduce duplicated rows.
 #   Therefore, adding Gene_Ensembl_IDs by mapping Gene_symbols is left to users
 #   with cautions for potentially introducing unwanted duplicates.
 # - Similarly, some Gene_Ensembl_IDs are mapped to multiple Gene_symbols, so
 #   adding Gene_symbols by mapping Gene_Ensembl_IDs with
-#   data/ensg-hugo-rmtl-mapping.tsv may implicitly introduce duplicated rows.
+#   data/ensg-hugo-pmtl-mapping.tsv may implicitly introduce duplicated rows.
 #   Therefore, adding Gene_symbols by mapping Gene_Ensembl_IDs is left to users
 #   with cautions for potentially introducing unwanted duplicates.
 # - Certain annotation files use Gene_symbol as key columns, and certain other
@@ -75,7 +75,7 @@
 #   tests/test_annotator_cli.R for new annotation columns
 annotate_long_format_table <- function(
   long_format_table,
-  columns_to_add = c("RMTL", "Gene_type", "OncoKB_cancer_gene",
+  columns_to_add = c("PMTL", "Gene_type", "OncoKB_cancer_gene",
                      "OncoKB_oncogene_TSG", "Gene_full_name",
                      "Protein_RefSeq_ID", "EFO", "MONDO"),
   replace_na_with_empty_string = TRUE) {
@@ -118,7 +118,7 @@ annotate_long_format_table <- function(
     # no column to add, so return the input table
     return(long_format_table)
   }
-  available_ann_columns <- c("RMTL", "Gene_type", "OncoKB_cancer_gene",
+  available_ann_columns <- c("PMTL", "Gene_type", "OncoKB_cancer_gene",
                              "OncoKB_oncogene_TSG", "Gene_full_name",
                              "Protein_RefSeq_ID", "EFO", "MONDO",
                              "GTEx_tissue_group_UBERON",
@@ -326,24 +326,24 @@ annotate_long_format_table <- function(
       dplyr::rename(Gene_symbol = Gene_Symbol)
   }
 
-  if ("RMTL" %in% columns_to_add) {
-    ann_tbl_l$fda_rmtl <- init_ann_tbl_l_element(
-      file_path = file.path(root_dir, "data", "ensg-hugo-rmtl-mapping.tsv"),
+  if ("PMTL" %in% columns_to_add) {
+    ann_tbl_l$fda_pmtl <- init_ann_tbl_l_element(
+      file_path = file.path(root_dir, "data", "ensg-hugo-pmtl-mapping.tsv"),
       join_by_column = "Gene_Ensembl_ID")
-    # Asert all rmtl NAs have version NAs, vice versa
-    if (!identical(is.na(ann_tbl_l$fda_rmtl$tibble$rmtl),
-                  is.na(ann_tbl_l$fda_rmtl$tibble$version))) {
-      stop(paste0("ensg-hugo-rmtl-mapping.tsv ",
-                  "has rmtl column NAs with version column non-NAs, or",
-                  "version column NAs with rmtl column non-NAs\n",
+    # Asert all pmtl NAs have version NAs, vice versa
+    if (!identical(is.na(ann_tbl_l$fda_pmtl$tibble$pmtl),
+                  is.na(ann_tbl_l$fda_pmtl$tibble$version))) {
+      stop(paste0("ensg-hugo-pmtl-mapping.tsv ",
+                  "has pmtl column NAs with version column non-NAs, or",
+                  "version column NAs with pmtl column non-NAs\n",
                   "Check data integrity. Submit a data question GitHub issue."))
     }
     # Process tibble for joining
-    ann_tbl_l$fda_rmtl$tibble <- ann_tbl_l$fda_rmtl$tibble %>%
-      dplyr::select(ensg_id, rmtl, version) %>%
-      dplyr::filter(!is.na(rmtl), !is.na(version)) %>%
-      dplyr::mutate(RMTL = paste0(rmtl, " (", version, ")")) %>%
-      dplyr::select(ensg_id, RMTL) %>%
+    ann_tbl_l$fda_pmtl$tibble <- ann_tbl_l$fda_pmtl$tibble %>%
+      dplyr::select(ensg_id, pmtl, version) %>%
+      dplyr::filter(!is.na(pmtl), !is.na(version)) %>%
+      dplyr::mutate(PMTL = paste0(pmtl, " (", version, ")")) %>%
+      dplyr::select(ensg_id, PMTL) %>%
       dplyr::rename(Gene_Ensembl_ID = ensg_id) %>%
       dplyr::distinct()
   }
