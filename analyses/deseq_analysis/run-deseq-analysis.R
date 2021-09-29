@@ -70,22 +70,26 @@ hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-#TPMData <- readRDS("data/gene-expression-rsem-tpm-collapsed.rds")
+#TPMData <- readRDS("../../data/gene-expression-rsem-tpm-collapsed.rds")
 TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-#EFO_MONDO <- read.delim("data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
+#EFO_MONDO <- read.delim("../../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load UBERON code map file for GTEx subgroup
-#GTEx_SubGroup_UBERON <- read.delim("data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
+#GTEx_SubGroup_UBERON <- read.delim("../../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
 GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-#ENSG_Hugo <- read.delim("data/ensg-hugo-rmtl-mapping.tsv", header =T)
+#ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
 ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
+#Load list of independent specimens for across all cohorts
+ind_spec_all_cohorts <- read.delim("../../data/independent-specimens.rnaseq.primary.tsv")
 
+#Load list of independent specimens for each cohort
+#ind_spec_each_cohort <- read.delim("../../data/independent-specimens.rnaseq.primary.eachcohort.tsv")
 
 Create_josnl <- function(DF){
   DF_jsonl = suppressWarnings(
@@ -193,6 +197,9 @@ for(I in 1:length(Cancer_Histology))
                                                                                                                             ,Type=Cancer_Histology[I], stringsAsFactors = FALSE))
 }
 
+#Only use samples that are independent/unique across all cohorts
+sample_type_df_tumor <- subset(sample_type_df_tumor,sample_type_df_tumor$Case_ID %in% ind_spec_all_cohorts$Kids_First_Biospecimen_ID)
+
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
 #Create DF that list all Kids_First_Biospecimen_IDs by Cohort - Cancer groups
 sample_type_df_tumor_cohort <- data.frame()
@@ -206,9 +213,14 @@ for(I in 1:length(Cancer_Histology_COHORT))
                                                   ,Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
 }
 
+#Only use samples that are independent/unique for each cohort
+sample_type_df_tumor_cohort <- subset(sample_type_df_tumor_cohort,sample_type_df_tumor_cohort$Case_ID %in% ind_spec_each_cohort$Kids_First_Biospecimen_ID)
+
 #Combine the rows from the normal and tumor sample df
 sample_type_df <- rbind(sample_type_df_tumor,sample_type_df_tumor_cohort,sample_type_df_normal)
 
+#Filter TPMdata to also only include specimens that are independent
+TPMData_filtered_final <- TPMData_filtered[,which(colnames(TPMData_filtered) %in% sample_type_df$Case_ID)]
 
 #Filter one more to ensure the rownames in the countsdata file match the sample dataframe for DEG just created
 countData_filtered_DEG <- countData_filtered[,which(colnames(countData_filtered) %in% sample_type_df$Case_ID)]
