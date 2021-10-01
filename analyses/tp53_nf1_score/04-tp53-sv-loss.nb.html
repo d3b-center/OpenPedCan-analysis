@@ -248,26 +248,46 @@ if (!dir.exists(results_dir)) {
 <h3>Input files</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICB0eGRiIDwtIEFubm90YXRpb25EYmk6OmxvYWREYihhbm5vdGF0aW9uX2ZpbGUpXG5cbmBgYCJ9 -->
-<pre class="r"><code>  txdb &lt;- AnnotationDbi::loadDb(annotation_file)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHV0YXRpdmVfb25jb19mdXNpb24gPC0gcmVhZF90c3YoZmlsZS5wYXRoKGRhdGFfZGlyLCBcXHYxMC9mdXNpb24tcHV0YXRpdmUtb25jb2dlbmljLnRzdlxcKSlcbm1hbnRhX3N2IDwtIHJlYWRfdHN2KGZpbGUucGF0aChkYXRhX2RpciwgXFx2MTAvc3YtbWFudGEudHN2Lmd6XFwpLCBndWVzc19tYXggPSA1MDAwMDAwKVxucm5hX2V4cHIgPC0gcmVhZFJEUyhmaWxlLnBhdGgoZGF0YV9kaXIsIFxcdjEwL2dlbmUtZXhwcmVzc2lvbi1yc2VtLXRwbS1jb2xsYXBzZWQucmRzXFwpKVxuXG5pZiAoIHBhcmFtcyRiYXNlX3J1biA9PTAgKXtcbiAgY2xpbmljYWw8LXJlYWQuZGVsaW0oZmlsZS5wYXRoKGRhdGFfZGlyLFxcaGlzdG9sb2dpZXMudHN2XFwpLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpXG59IGVsc2V7XG4gIGNsaW5pY2FsPC1yZWFkLmRlbGltKGZpbGUucGF0aChkYXRhX2RpcixcXGhpc3RvbG9naWVzLWJhc2UudHN2XFwpLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICBcbn1cblxuaGlzdG9sb2d5IDwtIGRwbHlyOjpzZWxlY3QoY2xpbmljYWwsYyhcXEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSURcXCwgXFxzYW1wbGVfaWRcXCkpXG5cbiMgaGlnaCBjb25maWRlbmNlIGNudiBsb3NzZXMgZnJvbSBgMDMtdHA1My1jbnYtbG9zcy1kb21haW4uUm1kYFxuY252X3RwNTNfbG9zcyA8LSByZWFkX3RzdihmaWxlLnBhdGgocmVzdWx0c19kaXIsIFxcbG9zc19vdmVybGFwX2RvbWFpbnNfdHA1My50c3ZcXCkpXG4jIGdlbmVyYXRlIHR4ZGIgb2JsZWN0IGZyb20gZ3RmIGZpbGUgdG8gZ2F0aGVyIGV4b24gYW5kIGludHJvbiBsb2NhdGlvbnNcbmFubm90YXRpb25fZGlyZWN0b3J5IDwtIGZpbGUucGF0aChyb290X2RpcixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcXGFuYWx5c2VzXFwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXFxmb2NhbC1jbi1maWxlLXByZXBhcmF0aW9uXFwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXFxhbm5vdGF0aW9uX2ZpbGVzXFwpXG5hbm5vdGF0aW9uX2ZpbGUgPC0gZmlsZS5wYXRoKGFubm90YXRpb25fZGlyZWN0b3J5LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcXHR4ZGJfZnJvbV9nZW5jb2RlLnYyNy5ndGYuZGJcXClcbmlmICghZmlsZS5leGlzdHMoYW5ub3RhdGlvbl9maWxlKSkge1xuICAjIERlZmluZSB0aGUgYW5ub3RhdGlvbnMgZm9yIHRoZSBoZzM4IGdlbm9tZVxuICB0eGRiIDwtIEdlbm9taWNGZWF0dXJlczo6bWFrZVR4RGJGcm9tR0ZGKFxuICAgIGZpbGUgPSBmaWxlLnBhdGgoZGF0YV9kaXIsXFxnZW5jb2RlLnYyNy5wcmltYXJ5X2Fzc2VtYmx5LmFubm90YXRpb24uZ3RmLmd6XFwpLFxuICAgIGZvcm1hdCA9IFxcZ3RmXFxcbiAgKVxuICAjIGNhbiBkbyB0aGlzIGV2ZW4gaWYgdGhlIGRpcmVjdG9yeSBleGlzdHNcbiAgZGlyLmNyZWF0ZShhbm5vdGF0aW9uX2RpcmVjdG9yeSwgc2hvd1dhcm5pbmdzID0gRkFMU0UpXG4gICMgd3JpdGUgdGhpcyB0byBmaWxlIHRvIHNhdmUgdGltZSBuZXh0IHRpbWVcbiAgQW5ub3RhdGlvbkRiaTo6c2F2ZURiKHR4ZGIsIGFubm90YXRpb25fZmlsZSlcbn0gZWxzZSB7XG4gIHR4ZGIgPC0gQW5ub3RhdGlvbkRiaTo6bG9hZERiKGFubm90YXRpb25fZmlsZSlcbn1cbiMgZXhvbiByZWdpb25zXG5leG9uIDwtIEdlbm9taWNGZWF0dXJlczo6ZXhvbmljUGFydHModHhkYiwgbGlua2VkLnRvLnNpbmdsZS5nZW5lLm9ubHk9RkFMU0UpXG4jIGludHJvbiByZWdpb25zXG5pbnRyb24gPC0gR2Vub21pY0ZlYXR1cmVzOjppbnRyb25pY1BhcnRzKHR4ZGIsIGxpbmtlZC50by5zaW5nbGUuZ2VuZS5vbmx5PUZBTFNFKVxuYGBgIn0= -->
+<pre class="r"><code>putative_onco_fusion &lt;- read_tsv(file.path(data_dir, \v10/fusion-putative-oncogenic.tsv\))
+manta_sv &lt;- read_tsv(file.path(data_dir, \v10/sv-manta.tsv.gz\), guess_max = 5000000)
+rna_expr &lt;- readRDS(file.path(data_dir, \v10/gene-expression-rsem-tpm-collapsed.rds\))
+
+if ( params$base_run ==0 ){
+  clinical&lt;-read.delim(file.path(data_dir,\histologies.tsv\), stringsAsFactors = FALSE)
+} else{
+  clinical&lt;-read.delim(file.path(data_dir,\histologies-base.tsv\), stringsAsFactors = FALSE)  
+}
+
+histology &lt;- dplyr::select(clinical,c(\Kids_First_Biospecimen_ID\, \sample_id\))
+
+# high confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd`
+cnv_tp53_loss &lt;- read_tsv(file.path(results_dir, \loss_overlap_domains_tp53.tsv\))
+# generate txdb oblect from gtf file to gather exon and intron locations
+annotation_directory &lt;- file.path(root_dir,
+                                  \analyses\,
+                                  \focal-cn-file-preparation\,
+                                  \annotation_files\)
+annotation_file &lt;- file.path(annotation_directory,
+                             \txdb_from_gencode.v27.gtf.db\)
+if (!file.exists(annotation_file)) {
+  # Define the annotations for the hg38 genome
+  txdb &lt;- GenomicFeatures::makeTxDbFromGFF(
+    file = file.path(data_dir,\gencode.v27.primary_assembly.annotation.gtf.gz\),
+    format = \gtf\
+  )
+  # can do this even if the directory exists
+  dir.create(annotation_directory, showWarnings = FALSE)
+  # write this to file to save time next time
+  AnnotationDbi::saveDb(txdb, annotation_file)
+} else {
+  txdb &lt;- AnnotationDbi::loadDb(annotation_file)
+}
+# exon regions
+exon &lt;- GenomicFeatures::exonicParts(txdb, linked.to.single.gene.only=FALSE)
+# intron regions
+intron &lt;- GenomicFeatures::intronicParts(txdb, linked.to.single.gene.only=FALSE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBHZW5vbWljRmVhdHVyZXNcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogQW5ub3RhdGlvbkRiaVxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBCaW9iYXNlXG5XZWxjb21lIHRvIEJpb2NvbmR1Y3RvclxuXG4gICAgVmlnbmV0dGVzIGNvbnRhaW4gaW50cm9kdWN0b3J5IG1hdGVyaWFsOyB2aWV3IHdpdGggJ2Jyb3dzZVZpZ25ldHRlcygpJy4gVG8gY2l0ZSBCaW9jb25kdWN0b3IsIHNlZVxuICAgICdjaXRhdGlvbihcIkJpb2Jhc2VcIiknLCBhbmQgZm9yIHBhY2thZ2VzICdjaXRhdGlvbihcInBrZ25hbWVcIiknLlxuXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhBbm5vdGF0aW9uRGJp4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZHBseXLigJk6XG5cbiAgICBzZWxlY3RcbiJ9 -->
-<pre><code>Loading required package: GenomicFeatures
-Loading required package: AnnotationDbi
-Loading required package: Biobase
-Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
-
-
-Attaching package: ‘AnnotationDbi’
-
-The following object is masked from ‘package:dplyr’:
-
-    select</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -303,50 +323,48 @@ manta_sv_tp53 %&gt;%
 <p>We will also add exon and intron information to this fusion call.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHV0YXRpdmVfb25jb190cDUzX2Z1c2lvbiA8LSBwdXRhdGl2ZV9vbmNvX2Z1c2lvbiAlPiVcbiAgZmlsdGVyKHN0aW5ncjo6c3RyX2RldGVjdChGdXNpb25OYW1lLFwiXlRQNTMtLXwtLVRQNTMkXCIpKSAlPiVcbiAgbGVmdF9qb2luKGhpc3RvbG9neSxcbiAgICAgICAgICAgIGJ5ID0gYyhcIlNhbXBsZVwiID0gXCJLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEXCIpXG4gICkgJT4lXG4gIGRwbHlyOjpzZWxlY3QoXCJTYW1wbGVcIixcbiAgICAgICAgICAgICAgICBcInNhbXBsZV9pZFwiLFxuICAgICAgICAgICAgICAgIFwiRnVzaW9uTmFtZVwiLFxuICAgICAgICAgICAgICAgIFwiUmlnaHRCcmVha3BvaW50XCIsXG4gICAgICAgICAgICAgICAgXCJMZWZ0QnJlYWtwb2ludFwiKSAlPiVcbiAgcmVzaGFwZTI6Om1lbHQoYyhcIlNhbXBsZVwiLFwic2FtcGxlX2lkXCIsXCJGdXNpb25OYW1lXCIpKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHV0YXRpdmVfb25jb190cDUzX2Z1c2lvbiA8LSBwdXRhdGl2ZV9vbmNvX2Z1c2lvbiAlPiVcbiAgZmlsdGVyKHN0cmluZ3I6OnN0cl9kZXRlY3QoRnVzaW9uTmFtZSxcXF5UUDUzLS18LS1UUDUzJFxcKSkgJT4lXG4gIGxlZnRfam9pbihoaXN0b2xvZ3ksXG4gICAgICAgICAgICBieSA9IGMoXFxTYW1wbGVcXCA9IFxcS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRFxcKVxuICApICU+JVxuICBkcGx5cjo6c2VsZWN0KFxcU2FtcGxlXFwsXG4gICAgICAgICAgICAgICAgXFxzYW1wbGVfaWRcXCxcbiAgICAgICAgICAgICAgICBcXEZ1c2lvbk5hbWVcXCxcbiAgICAgICAgICAgICAgICBcXFJpZ2h0QnJlYWtwb2ludFxcLFxuICAgICAgICAgICAgICAgIFxcTGVmdEJyZWFrcG9pbnRcXCkgJT4lXG4gIHJlc2hhcGUyOjptZWx0KGMoXFxTYW1wbGVcXCxcXHNhbXBsZV9pZFxcLFxcRnVzaW9uTmFtZVxcKSlcbmBgYCJ9 -->
 <pre class="r"><code>putative_onco_tp53_fusion &lt;- putative_onco_fusion %&gt;%
-  filter(stingr::str_detect(FusionName,&quot;^TP53--|--TP53$&quot;)) %&gt;%
+  filter(stringr::str_detect(FusionName,\^TP53--|--TP53$\)) %&gt;%
   left_join(histology,
-            by = c(&quot;Sample&quot; = &quot;Kids_First_Biospecimen_ID&quot;)
+            by = c(\Sample\ = \Kids_First_Biospecimen_ID\)
   ) %&gt;%
-  dplyr::select(&quot;Sample&quot;,
-                &quot;sample_id&quot;,
-                &quot;FusionName&quot;,
-                &quot;RightBreakpoint&quot;,
-                &quot;LeftBreakpoint&quot;) %&gt;%
-  reshape2::melt(c(&quot;Sample&quot;,&quot;sample_id&quot;,&quot;FusionName&quot;))
-</code></pre>
+  dplyr::select(\Sample\,
+                \sample_id\,
+                \FusionName\,
+                \RightBreakpoint\,
+                \LeftBreakpoint\) %&gt;%
+  reshape2::melt(c(\Sample\,\sample_id\,\FusionName\))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFByb2JsZW0gd2l0aCBgZmlsdGVyKClgIGlucHV0IGAuLjFgLlxu4oS5IElucHV0IGAuLjFgIGlzIGBzdGluZ3I6OnN0cl9kZXRlY3QoRnVzaW9uTmFtZSwgXCJeVFA1My0tfC0tVFA1MyRcIilgLlxueCB0aGVyZSBpcyBubyBwYWNrYWdlIGNhbGxlZCDigJhzdGluZ3LigJlcblJ1biBgcmxhbmc6Omxhc3RfZXJyb3IoKWAgdG8gc2VlIHdoZXJlIHRoZSBlcnJvciBvY2N1cnJlZC5cbiJ9 -->
-<pre><code>Error: Problem with `filter()` input `..1`.
-ℹ Input `..1` is `stingr::str_detect(FusionName, &quot;^TP53--|--TP53$&quot;)`.
-x there is no package called ‘stingr’
-Run `rlang::last_error()` to see where the error occurred.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="generate-granges-and-overlaps" class="section level3">
 <h3>Generate Granges and overlaps</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICAjIENoZWNrIGZvciBleG9uIG92ZXJsYXBcbiAgYmtfb3ZlcmxhcHNfZXhvbiA8LSBJUmFuZ2VzOjptZXJnZUJ5T3ZlcmxhcHMocHV0YXRpdmVfb25jb190cDUzX2Z1c2lvbl9ncixleG9uKSAlPiVcbiAgICBhcy5kYXRhLmZyYW1lKCkgJT4lXG4gICAgZHBseXI6OmZpbHRlcihncmVwbChcIkVOU0cwMDAwMDE0MTUxMFwiLGdlbmVfaWQpKSAlPiVcbiAgICBkcGx5cjo6bXV0YXRlKGV4b25fcmFuayA9IHN0cnNwbGl0KGV4b25fcmFuaywgXCIsIFwiKSkgJT4lIFxuICAgIHRpZHlyOjp1bm5lc3QoZXhvbl9yYW5rKSAlPiUgIyBzcGxpdCBpbnRvIG5ldyByb3dzXG4gICAgZHBseXI6OmZpbHRlcihleG9uX3Jhbms9PVwiMVwiKSAlPiVcbiAgICBkcGx5cjo6c2VsZWN0KHN0YXJ0c193aXRoKFwicHV0YXRpdmVfb25jb1wiKSkgJT4lXG4gICAgZHBseXI6OnJlbmFtZV9hdCh2YXJzKHN0YXJ0c193aXRoKFwicHV0YXRpdmVfb25jb1wiKSksfnN0cmluZ3I6OnN0cl9yZW1vdmUoLixcInB1dGF0aXZlX29uY29fdHA1M19mdXNpb25fZ3IuXCIpKVxuXG5gYGAifQ== -->
-<pre class="r"><code>  # Check for exon overlap
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWYobnJvdyhwdXRhdGl2ZV9vbmNvX3RwNTNfZnVzaW9uKSA+IDApIHtcbiAgcHV0YXRpdmVfb25jb190cDUzX2Z1c2lvbl9nciA8LSBwdXRhdGl2ZV9vbmNvX3RwNTNfZnVzaW9uICU+JVxuICAgIG11dGF0ZShcbiAgICAgIEJyZWFrcG9pbnRDaHIgPSBwYXN0ZTAoXFxjaHJcXCxnc3ViKFxcOi4qJFxcLCBcXFxcLCB2YWx1ZSkpLFxuICAgICAgQnJlYWtwb2ludCA9IGdzdWIoXFxeLio6XFwsIFxcXFwsIHZhbHVlKSkgJT4lXG4gICAgR2Vub21pY1Jhbmdlczo6bWFrZUdSYW5nZXNGcm9tRGF0YUZyYW1lKHNlcW5hbWVzLmZpZWxkID0gXFxCcmVha3BvaW50Q2hyXFwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0YXJ0LmZpZWxkID0gXFxCcmVha3BvaW50XFwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVuZC5maWVsZCA9IFxcQnJlYWtwb2ludFxcLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAga2VlcC5leHRyYS5jb2x1bW5zID0gVFJVRSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhcnRzLmluLmRmLmFyZS4wYmFzZWQgPSBGQUxTRSlcbiAgXG4gICMgQ2hlY2sgZm9yIGV4b24gb3ZlcmxhcFxuICBia19vdmVybGFwc19leG9uIDwtIElSYW5nZXM6Om1lcmdlQnlPdmVybGFwcyhwdXRhdGl2ZV9vbmNvX3RwNTNfZnVzaW9uX2dyLGV4b24pICU+JVxuICAgIGFzLmRhdGEuZnJhbWUoKSBcbiAgXG4gIGJrX292ZXJsYXBzX2V4b24kZXhvbl9yYW5rIDwtIGFzLmNoYXJhY3Rlcihia19vdmVybGFwc19leG9uJGV4b25fcmFuaylcbiAgXG4gIGJrX292ZXJsYXBzX2V4b24gPC0gYmtfb3ZlcmxhcHNfZXhvbiAlPiVcbiAgICBkcGx5cjo6ZmlsdGVyKGdyZXBsKFxcRU5TRzAwMDAwMTQxNTEwXFwsZ2VuZV9pZCkpICU+JVxuICAgIGRwbHlyOjptdXRhdGUoZXhvbl9yYW5rID0gc3Ryc3BsaXQoZXhvbl9yYW5rLCBcXFxuYGBgIn0= -->
+<pre class="r"><code>if(nrow(putative_onco_tp53_fusion) &gt; 0) {
+  putative_onco_tp53_fusion_gr &lt;- putative_onco_tp53_fusion %&gt;%
+    mutate(
+      BreakpointChr = paste0(\chr\,gsub(\:.*$\, \\, value)),
+      Breakpoint = gsub(\^.*:\, \\, value)) %&gt;%
+    GenomicRanges::makeGRangesFromDataFrame(seqnames.field = \BreakpointChr\,
+                                            start.field = \Breakpoint\,
+                                            end.field = \Breakpoint\,
+                                            
+                                            keep.extra.columns = TRUE,
+                                            starts.in.df.are.0based = FALSE)
+  
+  # Check for exon overlap
   bk_overlaps_exon &lt;- IRanges::mergeByOverlaps(putative_onco_tp53_fusion_gr,exon) %&gt;%
-    as.data.frame() %&gt;%
-    dplyr::filter(grepl(&quot;ENSG00000141510&quot;,gene_id)) %&gt;%
-    dplyr::mutate(exon_rank = strsplit(exon_rank, &quot;, &quot;)) %&gt;% 
-    tidyr::unnest(exon_rank) %&gt;% # split into new rows
-    dplyr::filter(exon_rank==&quot;1&quot;) %&gt;%
-    dplyr::select(starts_with(&quot;putative_onco&quot;)) %&gt;%
-    dplyr::rename_at(vars(starts_with(&quot;putative_onco&quot;)),~stringr::str_remove(.,&quot;putative_onco_tp53_fusion_gr.&quot;))
-</code></pre>
+    as.data.frame() 
+  
+  bk_overlaps_exon$exon_rank &lt;- as.character(bk_overlaps_exon$exon_rank)
+  
+  bk_overlaps_exon &lt;- bk_overlaps_exon %&gt;%
+    dplyr::filter(grepl(\ENSG00000141510\,gene_id)) %&gt;%
+    dplyr::mutate(exon_rank = strsplit(exon_rank, \</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFByb2JsZW0gd2l0aCBgbXV0YXRlKClgIGNvbHVtbiBgZXhvbl9yYW5rYC5cbuKEuSBgZXhvbl9yYW5rID0gc3Ryc3BsaXQoZXhvbl9yYW5rLCBcIiwgXCIpYC5cbnggbm9uLWNoYXJhY3RlciBhcmd1bWVudFxuUnVuIGBybGFuZzo6bGFzdF9lcnJvcigpYCB0byBzZWUgd2hlcmUgdGhlIGVycm9yIG9jY3VycmVkLlxuIn0= -->
-<pre><code>Error: Problem with `mutate()` column `exon_rank`.
-ℹ `exon_rank = strsplit(exon_rank, &quot;, &quot;)`.
-x non-character argument
-Run `rlang::last_error()` to see where the error occurred.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
