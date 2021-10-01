@@ -26,7 +26,7 @@ cd "$analysis_dir" || exit
 # if POLYA=1, poly-A steps will be run
 POLYA=${OPENPBTA_POLYAPLOT:-1}
 
-data_dir="../../data"
+data_dir="../../data/v10"
 scratch_dir="../../scratch"
 # cds gencode bed file  
 cds_file="${scratch_dir}/gencode.v27.primary_assembly.annotation.bed"
@@ -41,46 +41,39 @@ else
 fi
 
 
-# Convert GTF to BED file
-# Here we are only extracting lines with as a CDS i.e. are coded in protein
-gunzip -c ${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz \
-  | awk '$3 ~ /CDS/' \
-  | convert2bed --do-not-sort --input=gtf - \
-  > $cds_file
-
-# Prep the SNV consensus data for evaluation downstream
-Rscript --vanilla ${analysis_dir}/00-tp53-nf1-alterations.R \
-  --snvConsensus ${snvconsensus_file} \
-  --cnvConsensus ${cnvconsensus_file} \
-  --histologyFile ${histology_file} \
-  --outputFolder ${analysis_dir}/results \
-  --cohort "PBTA" \
-  --gencode ${cds_file}
-
-if [[ RUN_FOR_SUBTYPING == "0" ]]
-then
-   # expression files for prediction
-   collapsed_rna="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
-else
-   # expression files for prediction
-   collapsed_rna="../collapse-rnaseq/results/gene-expression-rsem-tpm-collapsed.rds"
-fi
-
-
-# Run classifier and ROC plotting for RNA data
-python3 ${analysis_dir}/01-apply-classifier.py -f ${collapsed_rna} -t ${histology_file} -c "PBTA"
-
-# check correlation expression and scores
-Rscript -e "rmarkdown::render('${analysis_dir}/02-qc-rna_expression_score.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
-
-# subset cnv where tp53 is lost
-Rscript -e "rmarkdown::render('${analysis_dir}/03-tp53-cnv-loss-domain.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
-
-# subset SV where tp53 is lost
-Rscript -e "rmarkdown::render('${analysis_dir}/04-tp53-sv-loss.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
-
-# gather TP53 altered status
-Rscript -e "rmarkdown::render('${analysis_dir}/05-tp53-altered-annotation.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# # Convert GTF to BED file
+# # Here we are only extracting lines with as a CDS i.e. are coded in protein
+# gunzip -c ${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz \
+#   | awk '$3 ~ /CDS/' \
+#   | convert2bed --do-not-sort --input=gtf - \
+#   > $cds_file
+# 
+# # Prep the SNV consensus data for evaluation downstream
+# Rscript --vanilla ${analysis_dir}/00-tp53-nf1-alterations.R \
+#   --snvConsensus ${snvconsensus_file} \
+#   --cnvConsensus ${cnvconsensus_file} \
+#   --histologyFile ${histology_file} \
+#   --outputFolder ${analysis_dir}/results \
+#   --cohort "PBTA" \
+#   --gencode ${cds_file}
+# 
+# # now only one RNA file is available
+# collapsed_rna="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
+# 
+# # Run classifier and ROC plotting for RNA data
+# python3 ${analysis_dir}/01-apply-classifier.py -f ${collapsed_rna} -t ${histology_file} -c "PBTA"
+# 
+# # check correlation expression and scores
+# Rscript -e "rmarkdown::render('${analysis_dir}/02-qc-rna_expression_score.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# 
+# # subset cnv where tp53 is lost
+# Rscript -e "rmarkdown::render('${analysis_dir}/03-tp53-cnv-loss-domain.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# 
+# # subset SV where tp53 is lost
+# Rscript -e "rmarkdown::render('${analysis_dir}/04-tp53-sv-loss.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
+# 
+# # gather TP53 altered status
+# Rscript -e "rmarkdown::render('${analysis_dir}/05-tp53-altered-annotation.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 
 # evaluate classifer scores for stranded data
 python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp53_altered_status.tsv -f ${analysis_dir}/results/gene-expression-rsem-tpm-collapsed_classifier_scores.tsv -c ${histology_file} -r "PBTA"
@@ -89,4 +82,11 @@ python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp5
 if [ "$POLYA" -gt "0" ]; then
   python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp53_altered_status.tsv -f ${analysis_dir}/results/gene-expression-rsem-tpm-collapsed_classifier_scores.tsv -c ${histology_file} -r "PBTA"
 fi
+
+# plot ROC curves for poly-A and stranded data
+Rscript 07-plot-roc.R
+
+# create violin plots of TP53 scores across molecular subtypes per broad histology
+Rscript 08-compare-molecularsubtypes-tp53scores.R
+
 

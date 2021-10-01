@@ -38,7 +38,7 @@ if (!dir.exists(results_dir)) {
 
 ### Input files
 ```{r}
-
+putative_onco_fusion <- read_tsv(file.path(data_dir, "fusion-putative-oncogenic.tsv"))
 manta_sv <- read_tsv(file.path(data_dir, "sv-manta.tsv.gz"), guess_max = 5000000)
 rna_expr <- readRDS(file.path(data_dir, "gene-expression-rsem-tpm-collapsed.rds"))
 
@@ -52,6 +52,32 @@ histology <- dplyr::select(clinical,c("Kids_First_Biospecimen_ID", "sample_id"))
 
 # high confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd`
 cnv_tp53_loss <- read_tsv(file.path(results_dir, "loss_overlap_domains_tp53.tsv"))
+
+# generate txdb oblect from gtf file to gather exon and intron locations
+annotation_directory <- file.path(root_dir,
+                                  "analyses",
+                                  "focal-cn-file-preparation",
+                                  "annotation_files")
+annotation_file <- file.path(annotation_directory,
+                             "txdb_from_gencode.v27.gtf.db")
+if (!file.exists(annotation_file)) {
+  # Define the annotations for the hg38 genome
+  txdb <- GenomicFeatures::makeTxDbFromGFF(
+    file = file.path(data_dir,"gencode.v27.primary_assembly.annotation.gtf.gz"),
+    format = "gtf"
+  )
+  # can do this even if the directory exists
+  dir.create(annotation_directory, showWarnings = FALSE)
+  # write this to file to save time next time
+  AnnotationDbi::saveDb(txdb, annotation_file)
+} else {
+  txdb <- AnnotationDbi::loadDb(annotation_file)
+}
+# exon regions
+exon <- GenomicFeatures::exonicParts(txdb, linked.to.single.gene.only=FALSE)
+# intron regions
+intron <- GenomicFeatures::intronicParts(txdb, linked.to.single.gene.only=FALSE)
+
 ```
 
 ## SV breakpoints associated with TP53 loss 
@@ -75,6 +101,78 @@ manta_sv_tp53 <- manta_sv %>%
 manta_sv_tp53 %>%
   arrange(Kids.First.Biospecimen.ID.Tumor) %>%
   knitr::kable()
+```
+
+
+## Fusion breakpoints within TP53 
+We will also add exon and intron information to this fusion call.
+
+```{r}
+putative_onco_tp53_fusion <- putative_onco_fusion %>%
+  filter(stringr::str_detect(FusionName,"^TP53--|--TP53$")) %>%
+  left_join(histology,
+            by = c("Sample" = "Kids_First_Biospecimen_ID")
+  ) %>%
+  dplyr::select("Sample",
+                "sample_id",
+                "FusionName",
+                "RightBreakpoint",
+                "LeftBreakpoint") %>%
+  reshape2::melt(c("Sample","sample_id","FusionName"))
+```
+
+### Generate Granges and overlaps
+```{r}
+if(nrow(putative_onco_tp53_fusion) > 0) {
+  putative_onco_tp53_fusion_gr <- putative_onco_tp53_fusion %>%
+    mutate(
+      BreakpointChr = paste0("chr",gsub(":.*$", "", value)),
+      Breakpoint = gsub("^.*:", "", value)) %>%
+    GenomicRanges::makeGRangesFromDataFrame(seqnames.field = "BreakpointChr",
+                                            start.field = "Breakpoint",
+                                            end.field = "Breakpoint",
+                                            
+                                            keep.extra.columns = TRUE,
+                                            starts.in.df.are.0based = FALSE)
+  
+  # Check for exon overlap
+  bk_overlaps_exon <- IRanges::mergeByOverlaps(putative_onco_tp53_fusion_gr,exon) %>%
+    as.data.frame() 
+  
+  bk_overlaps_exon$exon_rank <- as.character(bk_overlaps_exon$exon_rank)
+  
+  bk_overlaps_exon <- bk_overlaps_exon %>%
+    dplyr::filter(grepl("ENSG00000141510",gene_id)) %>%
+    dplyr::mutate(exon_rank = strsplit(exon_rank, ", ")) %>% 
+    tidyr::unnest(exon_rank) %>% # split into new rows
+    dplyr::filter(exon_rank=="1") %>%
+    dplyr::select(starts_with("putative_onco")) %>%
+    dplyr::rename_at(vars(starts_with("putative_onco")),~stringr::str_remove(.,"putative_onco_tp53_fusion_gr."))
+  
+  # Check for intron overlap
+  bk_overlaps_intron <- IRanges::mergeByOverlaps(putative_onco_tp53_fusion_gr,intron) %>%
+    as.data.frame() %>%
+    dplyr::filter(grepl("ENSG00000141510",gene_id)) %>%
+    dplyr::select(starts_with("putative_onco")) %>%
+    dplyr::rename_at(vars(starts_with("putative_onco")),~str_remove(.,"putative_onco_tp53_fusion_gr.")) 
+  
+  # Save
+  if (nrow(bk_overlaps_intron) == 0) {
+    # only saving fusion calls overlapping exon 1
+    bk_overlaps_exon %>% 
+      write_tsv(file.path(results_dir, "fusion_bk_tp53_loss.tsv"))
+  }else if (nrow(bk_overlaps_exon) == 0) {
+    # only saving fusion calls overlapping intron 1
+    bk_overlaps_intron %>% 
+      write_tsv(file.path(results_dir, "fusion_bk_tp53_loss.tsv"))
+  } else {
+    # bind calls overlapping exon1 or intron1
+    bind_rows(bk_overlaps_exon,
+              bk_overlaps_intron) %>%
+      write_tsv(file.path(results_dir, "fusion_bk_tp53_loss.tsv"))
+  }
+  
+}
 ```
 
 ## Filter SV calls that are associated with sample with TP53 CNV loss
