@@ -31,7 +31,15 @@ hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 #countData <- readRDS("data/gene-counts-rsem-expected_count-collapsed.rds")
 countData <- readRDS(opt$counts_file)
 
+#Load list of independent specimens for across all cohorts
+ind_spec_all_cohorts <- read.delim("../../data/independent-specimens.rnaseq.primary.tsv")
+
+#Load list of independent specimens for each cohort
+ind_spec_each_cohort <- read.delim("../../data/independent-specimens.rnaseq.primary.eachcohort.tsv")
+
+
 outdir <- opt$outdir
+#outdir <- "Input_Data"
 cmd_mkdir <- paste("mkdir",outdir,sep=" ")
 system(cmd_mkdir)
 
@@ -84,12 +92,12 @@ hist.filtered_final <- rbind(hist.filtered_final,hist.filtered[which(!is.na(hist
 
 #colnames(hist.filtered_final)
 
-#length(hist.filtered_final$gtex_subgroup) --> 19848
+#length(hist.filtered_final$gtex_subgroup) --> 19889
 #length(unique(hist.filtered_final$gtex_subgroup)) --> 54
 #length(unique(hist.filtered_final$gtex_subgroup[which(!is.na(hist.filtered_final$gtex_subgroup))])) --> 53
 #length(unique(hist.filtered_final$gtex_group)) -->32
 #length(unique(hist.filtered_final$gtex_group[which(!is.na(hist.filtered_final$gtex_group))])) --> 31
-#unique(hist.filtered_final$cancer_group) --> 29
+#length(unique(hist.filtered_final$cancer_group)) --> 41
 
 
 
@@ -105,7 +113,7 @@ Gtex_Tissue_subgroup <- sort(unique(hist.filtered_final$gtex_subgroup))
 
 
 #Save all the cohorts represented in the countsdata into a variable. Remove all 'NA's from the list. 
-#And paste cohort to cancer groep (eg GMKF_Neuroblastoma)
+#And paste cohort to cancer group (eg GMKF_Neuroblastoma)
 Cancer_Histology_COHORT <- unique(
   paste(hist.filtered_final$cohort[which(!is.na(hist.filtered_final$cancer_group))],
         hist.filtered_final$cancer_group[which(!is.na(hist.filtered_final$cancer_group))],
@@ -140,6 +148,11 @@ for(I in 1:length(Cancer_Histology))
                                                                 ,Type=Cancer_Histology[I], stringsAsFactors = FALSE))
 }
 
+#Only use samples that are independent/unique across all cohorts
+sample_type_df_tumor <- subset(sample_type_df_tumor,sample_type_df_tumor$Case_ID %in% ind_spec_all_cohorts$Kids_First_Biospecimen_ID)
+
+
+
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
 #Create DF that list all Kids_First_Biospecimen_IDs by Cohort - Cancer groups
 sample_type_df_tumor_cohort <- data.frame()
@@ -152,6 +165,11 @@ for(I in 1:length(Cancer_Histology_COHORT))
                                                                                                           & hist.filtered$cohort == Cancer_Histology_COHORT_cohort)]
                                                   ,Type=Cancer_Histology_COHORT[I], stringsAsFactors = FALSE))
 }
+
+
+#Only use samples that are independent/unique for each cohort
+sample_type_df_tumor_cohort <- subset(sample_type_df_tumor_cohort,sample_type_df_tumor_cohort$Case_ID %in% ind_spec_each_cohort$Kids_First_Biospecimen_ID)
+
 
 #Combine the rows from the normal and tumor sample df
 sample_type_df <- rbind(sample_type_df_tumor,sample_type_df_tumor_cohort,sample_type_df_normal)

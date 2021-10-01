@@ -62,11 +62,11 @@ system(cmd_mkdir)
 
 
 #Load histology file
-#hist <- read.delim("Input_data/histologies_subset.tsv", header=TRUE, sep = '\t')
+#hist <- read.delim("Input_Data/histologies_subset.tsv", header=TRUE, sep = '\t')
 hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-#countData <- readRDS("Input_data/countData_subset.rds")
+#countData <- readRDS("Input_Data/countData_subset.rds")
 countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
@@ -82,14 +82,14 @@ EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-#ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
+#ENSG_Hugo <- read.delim("../../data/v9/ensg-hugo-rmtl-mapping.tsv", header =T)
 ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
 #Load list of independent specimens for across all cohorts
 ind_spec_all_cohorts <- read.delim("../../data/independent-specimens.rnaseq.primary.tsv")
 
 #Load list of independent specimens for each cohort
-#ind_spec_each_cohort <- read.delim("../../data/independent-specimens.rnaseq.primary.eachcohort.tsv")
+ind_spec_each_cohort <- read.delim("../../data/independent-specimens.rnaseq.primary.eachcohort.tsv")
 
 Create_josnl <- function(DF){
   DF_jsonl = suppressWarnings(
@@ -162,7 +162,7 @@ Cancer_Histology <- unique(hist.filtered_final$cancer_group)
 Gtex_Tissue_subgroup <- sort(unique(hist.filtered_final$gtex_subgroup))
 
 #Save all the cohorts represented in the countsdata into a variable. Remove all 'NA's from the list. 
-#And paste cohort to cancer groep (eg GMKF_Neuroblastoma)
+#And paste cohort to cancer group (eg GMKF_Neuroblastoma)
 Cancer_Histology_COHORT <- unique(
   paste(hist.filtered_final$cohort[which(!is.na(hist.filtered_final$cancer_group))],
         hist.filtered_final$cancer_group[which(!is.na(hist.filtered_final$cancer_group))],
@@ -202,7 +202,7 @@ sample_type_df_tumor <- subset(sample_type_df_tumor,sample_type_df_tumor$Case_ID
 
 #Create an empty df to populate with rbind of all tumor Kids_First_Biospecimen_ID and cancer_group by cohort
 #Create DF that list all Kids_First_Biospecimen_IDs by Cohort - Cancer groups
-sample_type_df_tumor_cohort <- data.frame()
+sample_type_df_tumor_cohort <- xdata.frame()
 for(I in 1:length(Cancer_Histology_COHORT))
 {
   Cancer_Histology_COHORT_cohort <- strsplit(Cancer_Histology_COHORT[I],split="_")[[1]][1]
@@ -305,7 +305,7 @@ GTEX_MEAN_TPMs <- round(GTEX_MEAN_TPMs,2)
 
 ##Create Final Dataframe with all the info calculated and extracted from histology file Including EFO/MONDO codes where available and RMTL status
 Final_Data_Table <- data.frame(
-  datasourceId = paste(gsub("all-cohorts","all_cohorts",strsplit(histology_filtered[I],split="_")[[1]][1]),"vs_GTex",sep="_"),
+  datasourceId = paste(gsub("all-cohorts","all_cohorts",strsplit(histology_filtered[I],split="_")[[1]][1]),"vs_GTEx",sep="_"),
   datatypeId = "rna_expression",
   #cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
   #               ,collapse=";",sep=";"),
