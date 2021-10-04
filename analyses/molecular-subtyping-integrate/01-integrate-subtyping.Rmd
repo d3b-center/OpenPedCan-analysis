@@ -9,9 +9,9 @@ date: 2020
 ---
 
 The purpose of this notebook is to integrate molecular subtyping results from 
-[molecular-subtyping-pathology](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/molecular-subtyping-pathology) with `pbta-histologies-base.tsv`.
+[molecular-subtyping-pathology](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/molecular-subtyping-pathology) with `histologies-base.tsv`.
 
-Here we will use `pbta-histologies-base.tsv` in which integrated_diagnosis,Notes and molecular_subtype are all NA. Through all the following molecular subtyping modules:
+Here we will use `histologies-base.tsv` in which integrated_diagnosis,Notes and molecular_subtype are all NA. Through all the following molecular subtyping modules:
 
 - molecular-subtyping-MB
 - molecular-subtyping-CRANIO
@@ -26,7 +26,7 @@ Here we will use `pbta-histologies-base.tsv` in which integrated_diagnosis,Notes
 
 We gathered and updated molecular-subtype AND integrated_diagnosis AND broad_histology AND short_histology for these histologies.
 
-In this notebook we will add the molecular subtyping information compiled and updated by pathology review in `molecular-subtyping-pathology/compiled_molecular_subtypes_with_clinical_pathology_feedback.tsv` to create the `pbta-histologies.tsv` for the same release. If samples are not processed by a molecular-subtyping-* module then the br
+In this notebook we will add the molecular subtyping information compiled and updated by pathology review in `molecular-subtyping-pathology/compiled_molecular_subtypes_with_clinical_pathology_feedback.tsv` to create the `histologies.tsv` for the same release. If samples are not processed by a molecular-subtyping-* module then the br
 
 In adddition, for samples that where pathology_diagnosis is "Other" we also update the file broad_histology and short_histology from a manual review of WHO terms.
 
@@ -39,11 +39,12 @@ library(tidyverse)
 data_dir <- "../../data/"
 
 
-base_histology <- read_tsv(file.path(data_dir,"pbta-histologies-base.tsv"),
+base_histology <- read_tsv(file.path(data_dir,"histologies-base.tsv"),
                            col_types = readr::cols(molecular_subtype = readr::col_character(),
                                                    short_histology = readr::col_character(),
                            broad_histology = readr::col_character(),
-                           Notes = readr::col_character())) %>%
+                           Notes = readr::col_character()), 
+                           guess_max=100000) %>%
   unique()
 ```
 
@@ -249,5 +250,5 @@ histology %>%
          - short_histology.base,
          -short_histology.subtyped) %>%
   arrange(Kids_First_Biospecimen_ID) %>%
-  write_tsv("results/pbta-histologies.tsv")
+  write_tsv("results/histologies.tsv")
 ```

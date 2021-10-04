@@ -29,9 +29,13 @@ tp53_status <- read_tsv(file.path(
   "analyses",
   "tp53_nf1_score",
   "results",
-  "tp53_altered_status.tsv"))
+  "tp53_altered_status.tsv"), guess_max = 100000)
+
+tp53_status$Kids_First_Biospecimen_ID_RNA <- as.character(tp53_status$Kids_First_Biospecimen_ID_RNA)
+
 
 hgg_subtypes <- read_tsv(file.path(results_dir,"HGG_molecular_subtype.tsv")) 
+hgg_subtypes$Kids_First_Biospecimen_ID_RNA <- as.character(hgg_subtypes$Kids_First_Biospecimen_ID_RNA)
 
 ```
 

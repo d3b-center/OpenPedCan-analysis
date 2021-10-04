@@ -53,9 +53,10 @@ if (!dir.exists(results_dir)) {
 
 # Read in metadata
 metadata <-
-  readr::read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"), 
-                  guess_max = 10000) %>%
-  dplyr::filter(sample_type == "Tumor") 
+  readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), 
+                  guess_max = 100000) %>%
+  dplyr::filter(sample_type == "Tumor") %>%
+  dplyr::filter(cohort == "PBTA")
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
 path_dx_list_lgat <- jsonlite::fromJSON(
@@ -81,13 +82,30 @@ lgat_specimens <- metadata %>%
   pull(Kids_First_Biospecimen_ID)
 ```
 
-# Read in snv consensus mutation data, filtering out LGAT
+# Read in snv consensus and hotspots mutation data, filtering out LGAT
+ - We will use the `snv-consensus-plus-hotspots.maf.tsv.gz` which contains consensus SNV calls that are present in all 3 callers (strelka2, mutect2, and lancet) and with hotspot rescued. 
+ - Calls that overlap MSKCC hotspots found in any caller are included (except if only vardict calls the site as variant, we remove these calls since we have a lot of calls unique to vardict which we consider as false positive as discussed [here](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/snv-callers#snv-caller-comparison-analysis))
+
 ```{r}
-snv_df <-
-  data.table::fread(file.path(root_dir,
-                              "data",
-                              "pbta-snv-consensus-mutation.maf.tsv.gz")) %>%
-  filter(!Tumor_Sample_Barcode %in% lgat_specimens) 
+
+# select tumor sample barcode, gene, short protein annotation and variant classification
+keep_cols <- c("Chromosome",
+             "Start_Position",
+             "End_Position",
+             "Strand",
+             "Variant_Classification",
+             "IMPACT",
+             "Tumor_Sample_Barcode",
+             "Hugo_Symbol",
+             "HGVSp_Short",
+             "Exon_Number")
+
+snv_consensus_hotspot_maf <- data.table::fread(
+  file.path(root_dir, "data" , "snv-consensus-plus-hotspots.maf.tsv.gz"),
+                                   select = keep_cols,
+                                   data.table = FALSE) %>%
+  dplyr::filter(!Tumor_Sample_Barcode %in% lgat_specimens) 
+
 ```
 
 
@@ -95,7 +113,7 @@ snv_df <-
 
 ```{r}
 # Filter the snv consensus mutation data for the target lesions
-snv_lesions_df <- snv_df %>%
+snv_lesions_df <- snv_consensus_hotspot_maf  %>%
   dplyr::filter(Hugo_Symbol %in% c("H3F3A", "HIST1H3B",
                                    "HIST1H3C", "HIST2H3C") &
                   HGVSp_Short %in% c("p.K28M", "p.G35R",
@@ -130,7 +148,7 @@ snv_lesions_df <- snv_df %>%
 snv_lesions_df <- snv_lesions_df %>%
   dplyr::bind_rows(
     data.frame(
-      Tumor_Sample_Barcode = setdiff(unique(snv_df$Tumor_Sample_Barcode),
+      Tumor_Sample_Barcode = setdiff(unique(snv_consensus_hotspot_maf$Tumor_Sample_Barcode),
                                      snv_lesions_df$Tumor_Sample_Barcode)
     )
   ) %>%
