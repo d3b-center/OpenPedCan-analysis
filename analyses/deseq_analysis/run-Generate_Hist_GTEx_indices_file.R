@@ -32,10 +32,10 @@ hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 countData <- readRDS(opt$counts_file)
 
 #Load list of independent specimens for across all cohorts
-ind_spec_all_cohorts <- read.delim("../../data/independent-specimens.rnaseq.primary.tsv")
+ind_spec_all_cohorts <- read.delim("data/independent-specimens.rnaseq.primary.tsv")
 
 #Load list of independent specimens for each cohort
-ind_spec_each_cohort <- read.delim("../../data/independent-specimens.rnaseq.primary.eachcohort.tsv")
+ind_spec_each_cohort <- read.delim("data/independent-specimens.rnaseq.primary.eachcohort.tsv")
 
 
 outdir <- opt$outdir
