@@ -15,14 +15,14 @@ output_file <- file.path(root_dir,
                          "hgg_subtyping_path_dx_strings.json")
 
 # The `pathology_diagnosis` fields for HGG
-# as we identified in 00-v17-HGG-select-pathology-dx.Rmd are:
+# as we identified in 00-v9-HGG-select-pathology-dx.Rmd are:
 exact_path_dx<- c(
   "High-grade glioma/astrocytoma (WHO grade III/IV)",
   "Brainstem glioma- Diffuse intrinsic pontine glioma"
 )
 
 # Gliomatosis Cerebri can be high grade glioma or low grade 
-# glioma so we will add an inclusion criteria for v18 release 
+# glioma so we will add an inclusion criteria for v9 release 
 # to only keep `Gliomatosis Cerebri` samples if pathology_free_text_diagnosis
 # as `anaplastic gliomatosis cerebri (who grade 4)`
 gliomatosis_path_free_text_exact <- "anaplastic gliomatosis cerebri (who grade 4)"

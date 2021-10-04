@@ -2,7 +2,7 @@
 
 **Module authors:** Chante Bethell ([@cbethell](https://github.com/cbethell)), Stephanie J. Spielman([@sjspielman](https://github.com/sjspielman)), and Jaclyn Taroni ([@jaclyn-taroni](https://github.com/jaclyn-taroni))
 
-**Note: The files in the `hgg-subset` directory were generated via `02-HGG-molecular-subtyping-subset-files.R` using the the files in the version 17 data release.
+**Note: The files in the `hgg-subset` directory were generated via `02-HGG-molecular-subtyping-subset-files.R` using the the files in the version 9 data release.
 When re-running this module, you may want to regenerate the HGG subset files using the most recent data release.**
 
 ## Usage
@@ -17,17 +17,18 @@ When run in this manner, `02-HGG-molecular-subtyping-subset-files.R` will genera
 
 `run-molecular-subtyping-HGG.sh` is designed to be run as if it was called from this module directory even when called from outside of this directory.
 
-`00-HGG-select-pathology-dx.Rmd` is not run via this shell script, as it should be run locally, tied to `release-v17-20200908`, and should not be re-rendered when there are changes to the underlying `pbta-histologies.tsv` file in future releases (see [Folder content](#folder-content) and [#748](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/748)).
+`00-HGG-select-pathology-dx.Rmd` is not run via this shell script, as it should be run locally, tied to `v9`, and should not be re-rendered when there are changes to the underlying `histologies.tsv` file in future releases (see [Folder content](#folder-content) and [#748](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/748)).
 
 ## Folder content
 
 This folder contains scripts tasked to molecularly subtype High-grade Glioma samples in the PBTA dataset.
 
-[`00-v17-HGG-select-pathology-dx.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/00-v17-HGG-select-pathology-dx.nb.html) is a notebook used to explore the `pathology_diagnosis` and `pathology_free_text_diagnosis` fields in the `release-v17-20200908` version of `pbta-histologies.tsv`. 
-Prior to `release-v17-20200908`, this module used `short_histology == "HGAT"` to identify samples to be included for subtyping. 
+[`00-v17-HGG-select-pathology-dx.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/00-v17-HGG-select-pathology-dx.nb.html) is a notebook used to explore the `pathology_diagnosis` and `pathology_free_text_diagnosis` fields in the `v9` version of `histologies.tsv`. 
+Previously, this module used `short_histology == "HGAT"` to identify samples to be included for subtyping. 
 In future releases, the `short_histology` values will be derived from the `pathology_diagnosis` and `molecular_subtype` values (see [#748](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/748)); this module generates the latter.
 Thus, we needed to identify the samples to included for subtyping on the basis of the `pathology_diagnosis` and `pathology_free_text_diagnosis` values.
-This notebook looks at what `pathology_diagnosis` and `pathology_free_text_diagnosis` values are associated with samples where `short_histology == "HGAT"` in `release-v17-20200908`.
+This notebook looks at what `pathology_diagnosis` and `pathology_free_text_diagnosis` values are associated with samples with `cancer_group` associated with HGAT in `v9`.
+
 
 [`00-HGG-select-pathology-dx.R`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/00-HGG-select-pathology-dx.R) gathers the exact matches for inclusion in the `pathology_diagnosis` and `pathology_free_text_diagnosis` which are saved in [`hgg-subset/hgg_subtyping_path_dx_strings.json`](hgg-subset/hgg_subtyping_path_dx_strings.json), which is used downstream in `02-HGG-molecular-subtyping-subset-files` to generate subset files.
 
@@ -39,7 +40,8 @@ This script produces the relevant subset files that can be found in the `hgg-sub
 
 [`03-HGG-molecular-subtyping-cnv.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/03-HGG-molecular-subtyping-cnv.nb.html) is a notebook written to prepare the copy number data relevant to HGG molecular subtyping.
 The CNVkit focal copy number file generated in the [`focal-cn-file-preparation`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/focal-cn-file-preparation/) module is used as this CNVkit was also used to produce the GISTIC `broad_values_by_arm.txt` file that is also implemented in this module.
-GISTIC arm values are coded as `"loss"` when arm values are negative, `"gain"` when arm values are positive, and `"neutral"` when arm value = 0.
+GISTIC arm values are coded as `"loss"` when arm values are negative, `"gain"` when arm values are positive, and `"neutral"` when arm value = 0. 
+For samples that do not have GISTIC results, arm value = NA is given - this will apply to all WXS and panel data since now GISTIC is only run on WGS samples.
 (Tumor ploidy is not taken into account.)
 This notebook produces a CNV results table with cleaned CNVkit and GISTIC data found at `results/HGG_cleaned_cnv.tsv`.
 
@@ -62,7 +64,7 @@ This notebook produces a fusion results table found at `results/HGG_cleaned_fusi
 
 [`06-HGG-molecular-subtyping-gene-expression.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/06-HGG-molecular-subtyping-gene-expression.nb.html) is a notebook written to prepare the gene expression data relevant to HGG molecular subtyping.
 Per [issue #249](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/249), we filtered the z-scored gene expression to genes of interest: _OLIG2_ and _FOXG1_ should be highly expressed in IDH mutants, and _TP73-AS1_ methylation and downregulation cooccurs with _TP53_ mutations.
-This notebook produces two expression results table (one for each selection strategy) found at `results/HGG_cleaned_expression.polya.tsv` and `HGG_cleaned_expression.stranded.tsv`.
+This notebook produces two expression results table (one for each selection strategy) found at `results/HGG_cleaned_expression.tsv`.
 
 [`07-HGG-molecular-subtyping-combine-table.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/07-HGG-molecular-subtyping-combine-table.nb.html) is a notebook written to combine the cleaned copy number, mutation, fusion, and gene expression data (prepared in this module's previous notebooks) into one final table of results.
 This notebook produces one table with the cleaned data found at `results/HGG_cleaned_all_table.tsv`.
@@ -76,6 +78,7 @@ A table with the molecular subtype information for each HGG sample at `results/H
 [`08-1p19q-codeleted-oligodendrogliomas.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/08-1p19q-codeleted-oligodendrogliomas.nb.html) is a notebook written to identify samples in the OpenPBTA dataset that should be classified as 1p/19q co-deleted oligodendrogliomas.
 The GISTIC `broad_values_by_arm.txt` file is used to identify samples with `1p` and `19q` loss, then the consensus mutation file is filtered to the identified samples in order to check for _IDH1_ mutations.
 **Note:** Per [this comment](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/435#issuecomment-576898275), very few samples in the OpenPBTA dataset, if any, are expected to fit into the `1p/19q co-deleted oligodendrogliomas` subtype.
+Also please **NOTE**: we currently only have GISTIC scores for WGS so we cannot tell whether a sample is `1p/19q co-deleted oligodendrogliomas` if they are sequenced with WXS or targeted sequencing.
 
 [`09-HGG-with-braf-clustering.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/09-HGG-with-braf-clustering.nb.html) is a notebook written to identify high grade glioma samples without histone mutations that have `BRAF V600E` mutations and observe how they cluster alongside low grade gliomas and high grade gliomas without the `BRAF V600E` mutation in the stranded RNA-seq data (which contains both histologies) in RNA-seq data.
 We plotted the t-SNE and UMAP results from the `transcriptomic-dimension-reduction`, highlighting samples without histone mutations and with a _BRAF_ V600E mutation. 
@@ -115,16 +118,14 @@ The structure of this folder is as follows:
 │   ├── hgg_metadata.tsv
 │   ├── hgg_snv_maf.tsv.gz
 │   ├── hgg_subtyping_path_dx_strings.json
-│   ├── hgg_zscored_expression.polya.RDS
-│   └── hgg_zscored_expression.stranded.RDS
+│   └── hgg_zscored_expression.RDS
 ├── plots
 │   ├── HGG_stranded.pdf
 │   └── HGG_stranded.png
 ├── results
 │   ├── HGG_cleaned_all_table.tsv
 │   ├── HGG_cleaned_cnv.tsv
-│   ├── HGG_cleaned_expression.polya.tsv
-│   ├── HGG_cleaned_expression.stranded.tsv
+│   ├── HGG_cleaned_expression.tsv
 │   ├── HGG_cleaned_fusion.tsv
 │   ├── HGG_cleaned_mutation.tsv
 │   ├── HGG_defining_lesions.tsv

@@ -50,7 +50,7 @@ cell_line_composition <- read_tsv(file.path("..",
 
 # histology
 if ( params$base_run ==0 ){
-  clinical<-read.delim(file.path(data_dir,"histologies.tsv"), stringsAsFactors = FALSE)
+  clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)
 } else{
   clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)  
 }

@@ -58,14 +58,14 @@ bind_exp_strategies <- function(results_df) {
   # Returns:
   #   A data.frame where each biospecimen is a row
   rna_df <- results_df %>%
-    select(-Kids_First_Biospecimen_ID_DNA) %>%
-    filter(!is.na(Kids_First_Biospecimen_ID_RNA)) %>%
-    rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA)
+    dplyr::select(-Kids_First_Biospecimen_ID_DNA) %>%
+    dplyr::filter(!is.na(Kids_First_Biospecimen_ID_RNA)) %>%
+    dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA)
   
   dna_df <- results_df %>%
-    select(-Kids_First_Biospecimen_ID_RNA) %>%
-    filter(!is.na(Kids_First_Biospecimen_ID_DNA)) %>%
-    rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA)
+    dplyr::select(-Kids_First_Biospecimen_ID_RNA) %>%
+    dplyr::filter(!is.na(Kids_First_Biospecimen_ID_DNA)) %>%
+    dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA)
   
   # sometimes there will be multiple RNA-seq assays per single DNA-seq assay
   # or vice versa, which is why this distinct is necessary
@@ -104,10 +104,10 @@ When we run this locally, we want to tie it to a specific version of the histolo
 
 ```{r}
 if (running_in_ci) {
-  histologies_file <- file.path(data_dir, "pbta-histologies-base.tsv")
+  histologies_file <- file.path(data_dir, "histologies-base.tsv")
 } else {
-  histologies_file <- file.path(data_dir, "release-v18-20201123",
-                                "pbta-histologies-base.tsv")
+  histologies_file <- file.path(data_dir, "v9",
+                                "histologies-base.tsv")
 }
 
 join_cols <- c("Kids_First_Biospecimen_ID",
@@ -144,7 +144,7 @@ output_file <- file.path(results_dir, "compiled_molecular_subtypes.tsv")
 
 ```{r message=FALSE}
 # split 
-histologies_df <- read_tsv(histologies_file, guess_max = 10000,col_types = cols(.default = "c"))
+histologies_df <- read_tsv(histologies_file, guess_max = 100000,col_types = cols(.default = "c"))
 cranio_results_df <- read_tsv(cranio_results_file)
 ews_results_df <- read_tsv(ews_results_file)
 epn_results_df <- read_tsv(epn_results_file)
@@ -191,7 +191,7 @@ ews_results_df <- bind_exp_strategies(ews_results_df) %>%
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = "Ewing sarcoma",
          broad_histology = "Mesenchymal non-meningothelial tumor",
-         short_histology = "EWS",
+         short_histology = "Mesenchymal non-meningothelial tumor",
          Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes))
 ```
 
@@ -207,6 +207,7 @@ hgg_results_df <- bind_exp_strategies(hgg_results_df) %>%
                                           molecular_subtype == "DMG, H3 K28, TP53 activated"~ "Diffuse midline glioma, H3 K28-mutant",
                                           molecular_subtype == "DMG, H3 K28, TP53 loss"~ "Diffuse midline glioma, H3 K28-mutant",
                                           molecular_subtype == "HGG, H3 G35" ~ "High-grade glioma/astrocytoma, H3 G35-mutant",
+                                          molecular_subtype == "HGG, H3 G35, TP53 activated" ~ "High-grade glioma/astrocytoma, H3 G35-mutant",
                                           molecular_subtype == "HGG, H3 G35, TP53 loss" ~ "High-grade glioma/astrocytoma, H3 G35-mutant",
                                           molecular_subtype == "HGG, H3 wildtype" ~ "High-grade glioma/astrocytoma, H3 wildtype",
                                           molecular_subtype == "HGG, H3 wildtype, TP53 activated" ~ "High-grade glioma/astrocytoma, H3 wildtype",
@@ -216,25 +217,33 @@ hgg_results_df <- bind_exp_strategies(hgg_results_df) %>%
                                           molecular_subtype == "HGG, IDH, TP53 activated"~ "High-grade glioma/astrocytoma, IDH-mutant",
                                           TRUE~ NA_character_),
                   broad_histology = "Diffuse astrocytic and oligodendroglial tumor",
-                  short_histology = "HGAT",
+                  short_histology = "Diffuse astrocytic and oligodendroglial tumor",
          Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes))
 ```
 
 ### Handling LGAT
-
+Within LGAT, we will add integrated_diagnosis,broad_histology and short_histology for Ganglioglioma (GNG) and Subependymal Giant Cell Astrocytoma (SEGA) samples.
+For Glial neuronal tumors (GNT) will be updated these values using pathology_free_text_diagnosis in the next step.
 
 ```{r}
 lgat_results_df <- bind_exp_strategies(lgat_results_df) %>%
   inner_join(select(histologies_df,c(join_cols,
-                    pathology_diagnosis)),
+                                     pathology_diagnosis)),
              by = "Kids_First_Biospecimen_ID") %>%
-mutate(integrated_diagnosis = case_when(
-            str_detect(molecular_subtype, "To be classified") ~ NA_character_,
-            TRUE ~ str_replace(molecular_subtype, "LGG, ", "Low-grade glioma/astrocytoma, ")
-          ),
-         broad_histology = "Low-grade astrocytic tumor",
-         short_histology = if_else(pathology_diagnosis == "Ganglioglioma", "Ganglioglioma", "LGAT"),
-         Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes)
+  ## Integrated diagnosis update
+  mutate(integrated_diagnosis = case_when(
+    str_detect(molecular_subtype, "To be classified") ~ NA_character_,
+    grepl("^GNG, ",molecular_subtype) ~ str_replace(molecular_subtype, "GNG, ", "Ganglioglioma, "),
+    grepl("^SEGA, ",molecular_subtype) ~ str_replace(molecular_subtype, "SEGA, ", "Subependymal Giant Cell Astrocytoma, "),
+    TRUE ~ str_replace(molecular_subtype, "LGG, ", "Low-grade glioma/astrocytoma, ")
+  ),
+  ## Broad histology update
+  broad_histology = "Low-grade astrocytic tumor",
+  ## Short histology update
+  short_histology = case_when(
+    grepl("^GNG, ",molecular_subtype) ~ "Ganglioglioma",
+    TRUE ~ "Low-grade astrocytic tumor"),
+  Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes)
   )
 
 ```
@@ -279,7 +288,7 @@ mb_results_df <- bind_exp_strategies(mb_results_df) %>%
 cranio_results_df <- bind_exp_strategies(cranio_results_df) %>%
   inner_join(select(histologies_df,join_cols),
              by = "Kids_First_Biospecimen_ID") %>%
-  mutate(integrated_diagnosis = case_when(molecular_subtype == "CRANIO, ADAM" ~"Adamantimomatous craniopharyngioma",
+  mutate(integrated_diagnosis = case_when(molecular_subtype == "CRANIO, ADAM" ~"Adamantinomatous craniopharyngioma",
                                           molecular_subtype == "CRANIO, PAP" ~"Papillary craniopharyngioma", 
                                           TRUE ~ NA_character_),
          broad_histology = "Tumors of sellar region",
@@ -292,12 +301,12 @@ cranio_results_df <- bind_exp_strategies(cranio_results_df) %>%
 neurocytoma_results_df <- neurocytoma_results_df %>%
   inner_join(select(histologies_df,join_cols),
             by = "Kids_First_Biospecimen_ID") %>%
-  mutate(integrated_diagnosis = case_when(molecular_subtype == "CNC"~ "Central Neurocytoma",
+  mutate(harmonized_diagnosis = case_when(molecular_subtype == "CNC"~ "Central Neurocytoma",
                                           molecular_subtype == "EVN" ~"Extraventricular Neurocytoma", 
                                         TRUE ~ NA_character_),
          broad_histology = "Neuronal and mixed neuronal-glial tumor",
          short_histology = "Neurocytoma",
-         Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes))
+         Notes = if_else(!is.na(harmonized_diagnosis), "Updated via OpenPBTA subtyping", Notes))
 ```
 
 ### Handling Chordoma
