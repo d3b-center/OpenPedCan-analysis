@@ -77,6 +77,12 @@ steps:
     out:
       [combined_tsv, combined_jsonl]
 
+  convert_tsv_to_rds:
+    run: ../tools/convert_tsv_to_rds.cwl
+    in:
+      tsv_file: merged_results_tsv_file
+    out: [merged_results_rds]
+
 $namespaces:
   sbg: https://sevenbridges.com
 hints:
