@@ -12,7 +12,7 @@ dir.create(out_dir, showWarnings = F, recursive = T)
 source(file.path(analysis_dir, "util", "independent-samples.R"))
 
 # read histology file
-histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies.tsv'))
+histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies.tsv'), guess_max=100000)
 
 # randomize rows of histology file to avoid selection bias
 set.seed(100)
