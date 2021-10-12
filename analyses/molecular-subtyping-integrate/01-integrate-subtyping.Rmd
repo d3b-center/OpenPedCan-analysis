@@ -192,15 +192,7 @@ histology<- histology %>%
   # remove short forms in the brackets
   dplyr::mutate(cancer_group = str_extract(cancer_group, "[^(]*")) %>%
   # remove space at the ends
-  dplyr::mutate(cancer_group = gsub(" $","",cancer_group)) %>%
-  # updates so that terms are readable/usable in plots
-  dplyr::mutate(
-    # change "/" to `space`to avoid Unix environments using the "/" 
-    # in the term as sub-folder when the term is used in output plots
-    cancer_group = gsub("/"," ", cancer_group),
-    # change ";" to "-" 
-    cancer_group = gsub(";","-", cancer_group)            
-  )
+  dplyr::mutate(cancer_group = gsub(" $","",cancer_group)) 
 
 ```
 

@@ -4,14 +4,17 @@ PAUIJR	BS_00PH2T1P	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATXKG	BS_01BDZ0TW	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_CYVVA9AB	BS_01DQH017	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_QK4XB83F	BS_01Y5F4PN	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_E4TXAYR6	BS_02QV7ZWP	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_J06X17XH	BS_02W5H7K5	PBTA	Rosai-Dorfman disease	WGS	Initial CNS Tumor
 PT_3KK1F95W	BS_03SSN1N2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_ATE3YRH5	BS_04B8X54S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_6PJ126FF	BS_05CHNS17	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_23NZGSRJ	BS_05S9WJW6	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_TKWTTRQ7	BS_06GEF6DB	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_Y8HSH496	BS_06GPPDHZ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUSUV	BS_08127AYS	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_8WNA6M94	BS_090GV72Q	PBTA	Schwannoma	WGS	Initial CNS Tumor
+PT_C5FKRB1P	BS_0AK4F99X	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_BQ8BQ01J	BS_0DKPGQWD	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_M1RYN7B0	BS_0EN5R1AP	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_XX2VW3D9	BS_0J5GC803	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
@@ -21,30 +24,32 @@ PATZZJ	BS_0QTY32QA	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASMIU	BS_0RBGK29M	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_45P9F9MD	BS_0RF0G9SQ	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_EQ5C5TEA	BS_0S617SMM	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_NEB4WEAT	BS_0SFXXBQ5	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_NEB4WEAT	BS_0SFXXBQ5	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PAVHWG	BS_0T5A16N2	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAVFAP	BS_0TER803R	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_6H8X6RZ1	BS_0TKQP4XJ	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_06H29FCG	BS_0W8AWY10	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_E66N7YBN	BS_0XD58YD9	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_XHYBZKCX	BS_0XR7GYAV	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PATVKG	BS_0Y4VHCMS	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_R0M1QBY4	BS_0YVR8Q4E	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_7VSY72EK	BS_0ZR4XA69	PBTA	Primary CNS lymphoma	WGS	Initial CNS Tumor
+PT_R0M1QBY4	BS_0YVR8Q4E	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
+PT_7VSY72EK	BS_0ZR4XA69	PBTA	CNS Burkitt's lymphoma	WGS	Initial CNS Tumor
 PT_3T3VGWC6	BS_10AD3EFX	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_DV8XECKA	BS_10HD18B8	PBTA	Teratoma	WGS	Initial CNS Tumor
 PT_YFS3AWC0	BS_10V9SAG8	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_TRXF649Z	BS_11322HD1	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
-PT_7JQ24F35	BS_1135HC0V	PBTA	NA	WGS	Initial CNS Tumor
 PT_CW0BJE0Y	BS_12ZB7R6A	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
+PT_G395P98S	BS_13DJ6WHW	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_NGDW8WVP	BS_154FP4ZQ	PBTA	Hemangioblastoma	WGS	Initial CNS Tumor
 PT_7BJBEBZT	BS_164KRQJ0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_VZTTTP3Q	BS_16FT8V4B	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_HV6C0T34	BS_16TBX6G5	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_2PRV78FX	BS_17AXPP1Y	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_GY99ZJHV	BS_17FVWMNV	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
+PT_GY99ZJHV	BS_17FVWMNV	PBTA	Atypical choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_PABK01H0	BS_185Q218S	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_T5KEXCK7	BS_19EJ85F8	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_R6WWH1QX	BS_1AZ8YJSH	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_S7JCQ3TH	BS_1B00Q25Y	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_EF398HVC	BS_1B4Q7CNG	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUGVU	BS_1BR81RGD	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_7MZRW1DH	BS_1C4WCNQF	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
@@ -57,10 +62,11 @@ PATMRZ	BS_1GQJVG9Q	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATYXS	BS_1HXG4A7B	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_E4ECAFEN	BS_1JMTTKMK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_NK8A49X5	BS_1MME7FBS	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
-PT_7F485CXV	BS_1RF75MK2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_1AAYYGGY	BS_1RTE2KEX	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
+PT_7F485CXV	BS_1RF75MK2	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
+PT_K8ZV7APT	BS_1RFBH1SP	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
 PT_S4A0R1PM	BS_1S2BHJ8K	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_QTDY0Y9A	BS_1S5V7WWC	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_CQS4V67V	BS_1SDWBXX8	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_9C2G356W	BS_1VMBA3BN	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASKCS	BS_1YD0ZQ4R	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUIRD	BS_20HSXMYQ	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -77,15 +83,15 @@ PAUPNR	BS_2ABKFT99	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_V0TQ0P66	BS_2AWCKNB3	PBTA	Meningioma	WGS	Initial CNS Tumor
 PT_3PSG2DQT	BS_2CD1XWVP	PBTA	NA	WGS	Initial CNS Tumor
 PT_962TCBVR	BS_2CQ6K2JW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_6VD8J6FB	BS_2DNGDW0A	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PATFPK	BS_2F5KDZ93	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_V07ZH5JS	BS_2F70R10Z	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUUHY	BS_2FPVHEQS	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_G16VK7FR	BS_2HDEZFTW	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_GCKT4FJX	BS_2HNHCSNB	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_XA98HG1C	BS_2J4FG4HV	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_HMY997GX	BS_2JDVY4F7	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_NWYSD53S	BS_2KMB51YF	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PASXIE	BS_2N95EW0G	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_RE6AXQM1	BS_2NDRETB2	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PAVBLT	BS_2NPW3A08	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATGLU	BS_2P6MH05V	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_EG7PH32E	BS_2P7MJGM7	PBTA	Ependymoma	WGS	Initial CNS Tumor
@@ -93,36 +99,37 @@ PAUKLK	BS_2R0QBATZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZVV78QP5	BS_2RJN5Z4W	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASVXS	BS_2SFR8Z1P	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_02J5CWN5	BS_2VB8649B	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_2GPH62JS	BS_2VHFP7M8	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_2GPH62JS	BS_2VHFP7M8	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_MQHST8YC	BS_2VSN5YC5	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASFKX	BS_2X9EVKZ0	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_CAYBADQC	BS_2Z9JQDPV	PBTA	NA	WGS	Initial CNS Tumor
+PT_CAYBADQC	BS_2Z9JQDPV	PBTA	Juvenile xanthogranuloma	WGS	Initial CNS Tumor
 PASIIB	BS_30NT6PNA	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_0CE0HFYB	BS_30W38X77	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_K6G6BE6G	BS_3108RS7G	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_EN2RN5Y1	BS_328C4BW5	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_EZEMVRVT	BS_32HAVF6S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_G8DRDA33	BS_32VQRFDS	PBTA	NA	WGS	Initial CNS Tumor
 PT_0F3RHT8J	BS_354DTKHE	PBTA	Meningioma	WGS	Initial CNS Tumor
 PASNUI	BS_3564XTTK	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATMZJ	BS_35DBPYMN	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_T5CR5HQZ	BS_36HCZ3KW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_SGJK5KSB	BS_35DRDAFV	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_T5CR5HQZ	BS_36HCZ3KW	PBTA	Diffuse fibrillary astrocytoma	WGS	Initial CNS Tumor
 PT_1DY2TP9N	BS_376Q9QKG	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_W5GP3F6B	BS_38CD519Z	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PATLBP	BS_38SSRZJ1	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_RQ21EBK9	BS_39Q80NT3	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_E79807KT	BS_3A0CJMRH	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_CK41DW03	BS_3AERRZQT	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATLFX	BS_3AKS23A0	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_YGN06RPZ	BS_3C4YAMKJ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_YGN06RPZ	BS_3C4YAMKJ	PBTA	Glial-neuronal tumor NOS	WGS	Initial CNS Tumor
 PASLMN	BS_3CVTNBQ3	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_E78NHRWQ	BS_3DYRAZE7	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_59D00MBQ	BS_3E5C1PN1	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_T93J9EGZ	BS_3J4T2YYW	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_04YTK82N	BS_3JE2T7AR	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAVIZV	BS_3KPKZVGX	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_S4YNE17X	BS_3MYQP7P5	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_YKVK5HTK	BS_3QDRWJCF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_6E8JYRXM	BS_3R0KN6Z4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_KTRJ8TFY	BS_3VKW5988	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_D7FS86D8	BS_3ZASRA3A	PBTA	NA	WGS	Initial CNS Tumor
 PT_GQZ84ACS	BS_3ZMH8578	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_MSBPMJ56	BS_40FX713C	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
@@ -135,26 +142,31 @@ PT_SDK91A16	BS_47454JJ6	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_PX4E85V1	BS_47X3VAM0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_3CVMBGD7	BS_49JD1V3S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATNZJ	BS_4D9SK48F	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_1ZAWNGWT	BS_4DTX295Z	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_1ZAWNGWT	BS_4DTX295Z	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_WE1CHTWK	BS_4DY83R02	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
+PT_A06JR0E5	BS_4DYW3T2A	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASXVW	BS_4G4PK2D4	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_8CZ6ANE0	BS_4G9Y2VC6	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PAVIAZ	BS_4GHFYCWZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATMVN	BS_4J4MVGTR	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUJEJ	BS_4J8JK335	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_3QFBAXAN	BS_4K7SDXC7	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_TPSMT960	BS_4M0ZMCDC	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_50ZFWMZE	BS_4P25NNZD	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_67R1AF5R	BS_4PAE19ZC	PBTA	Ependymoma	WGS	Initial CNS Tumor
-PT_CWD717Q0	BS_4RS1SC48	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_NWYSD53S	BS_4PM2QG9C	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_CWD717Q0	BS_4RS1SC48	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PARTRP	BS_4RX1AAVV	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_FKCPVY7V	BS_4SCDT7M9	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_QH9H491G	BS_4T8J7JEP	PBTA	Meningioma	WGS	Initial CNS Tumor
 PATLSY	BS_4VKRBRJC	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATKPD	BS_4WSW3X49	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_EXJAEW1M	BS_4XPPZTGG	PBTA	NA	WGS	Initial CNS Tumor
+PT_EXJAEW1M	BS_4XPPZTGG	PBTA	Juvenile xanthogranuloma	WGS	Initial CNS Tumor
 PT_6PFFSB6D	BS_4Z6F1HJZ	PBTA	Myxoid spindle cell tumor	WGS	Initial CNS Tumor
 PAUDEK	BS_4ZE1R1FW	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_7YGZ526E	BS_4ZKN0WGS	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_5M8A47WW	BS_50XV7CTQ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_D9A6G154	BS_53JGYCCZ	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_HVZTF42R	BS_53TV75NN	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PAUIHH	BS_55AHFCX4	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_S8E3281G	BS_55N7KFHW	PBTA	Ependymoma	WGS	Initial CNS Tumor
@@ -169,7 +181,6 @@ PAUPWN	BS_5BB8J64W	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASFWL	BS_5BFNH9S6	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_M0AP3Z15	BS_5BMNK8SY	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_JMW6Q6NH	BS_5BNV7MCF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_KAQMYFYB	BS_5CCAC8TZ	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PAUUWG	BS_5CR48ZM7	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_164RNWTT	BS_5D24XV4T	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PAUJTY	BS_5DXK26YF	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -178,18 +189,18 @@ PT_16EJ7BZ9	BS_5KK9P7XD	PBTA	NA	WGS	Initial CNS Tumor
 PT_J0SZ1SX5	BS_5NAKYS1S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASBPN	BS_5PEA35TB	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUPMU	BS_5QFRPR61	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_EYWDFKA7	BS_5S8VXASX	PBTA	Schwannoma	WGS	Initial CNS Tumor
-PT_AWBPNFM5	BS_5V2FBYQG	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_AWBPNFM5	BS_5V2FBYQG	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_3KWSRWZN	BS_5V2XCW17	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_E6FTW238	BS_5WK2KXYW	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
-PT_K8ZV7APT	BS_5XZP7F4Q	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
+PT_M8MDJNZB	BS_5XC635HW	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_7YSCM82T	BS_5Y2Q63Y4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_JJZ5PN64	BS_5YTKXXBY	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_Y74CVASJ	BS_5Z0GA574	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_TXFYRDP4	BS_5Z4XQC9X	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_WKNKNYHH	BS_5ZRZC3ZM	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_K2YDNZDA	BS_62XRDTM6	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PATFIK	BS_64P50TAP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUWTC	BS_65F8T6N7	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_RE6AXQM1	BS_6687ZNGS	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_M9XXJ4GR	BS_682Z7WH6	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASMUB	BS_69KVWAWK	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_DQT78GS5	BS_69VS8PS1	PBTA	Embryonal tumor with multilayer rosettes	WGS	Initial CNS Tumor
@@ -205,21 +216,20 @@ PT_NFDHYPGT	BS_6KEYD1S4	PBTA	NA	WGS	Initial CNS Tumor
 PASLIH	BS_6KH6CXMH	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_KXB1PJV0	BS_6Q9PMNWY	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATVKI	BS_6S50RDHT	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_XY404K0D	BS_6SA5B35V	PBTA	Extraventricular Neurocytoma	WGS	Initial CNS Tumor
+PT_XY404K0D	BS_6SA5B35V	PBTA	Neurocytoma	WGS	Initial CNS Tumor
 PT_ZWY04DCR	BS_6T87HSPX	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_NESAQHB1	BS_6TMPZKSZ	PBTA	CNS neuroblastoma	WGS	Initial CNS Tumor
 PT_VGXHFMND	BS_6X3Z0AVR	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_DEYCW197	BS_6XP91JM2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_A594A46X	BS_6Y7FX7QJ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_A594A46X	BS_6Y7FX7QJ	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_Z4GS3ZQQ	BS_6ZP2KRPW	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_GH6HM5QF	BS_70FKSKM9	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_41RR5FQD	BS_71HPXFE7	PBTA	Teratoma	WGS	Initial CNS Tumor
-PT_C9YDTZPA	BS_74SJ7YV4	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
-PT_1YQH5NSH	BS_74TZJTW0	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PARXDW	BS_75HW641M	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3R0P995B	BS_75VHXMZN	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PATXTF	BS_76SQJSHP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZZTQQVCT	BS_78TQS4Y3	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_FWD7NZQ0	BS_797V83YM	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_FWD7NZQ0	BS_797V83YM	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAVINE	BS_7BJQNVK8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZGWYMRV8	BS_7F07M7JG	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_1E3E6GMF	BS_7GKF6M85	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
@@ -229,6 +239,7 @@ PT_5VAKED5F	BS_7M5272WN	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_VJZN69T9	BS_7M6F9GQD	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASAGA	BS_7MXT22QP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATJGB	BS_7NXB23C9	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_TVJ5EGMR	BS_7PAAZQE6	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_QA9WJ679	BS_7PF3C1P7	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_D1WJ3BJX	BS_7PKPNFFK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_V3Q78E6F	BS_7RQCH5Y7	PBTA	Ependymoma	WGS	Initial CNS Tumor
@@ -246,6 +257,7 @@ PT_3KM9W8S8	BS_859AV1DB	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tu
 PT_JNEV57VK	BS_85Q5P8GF	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_124TTG01	BS_85Y70BHE	PBTA	Adenoma	WGS	Initial CNS Tumor
 PAVNLK	BS_87J6X9KJ	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_7JQ24F35	BS_895FJ34T	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_NZFFMZ0B	BS_89RCN9PF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATHJZ	BS_89V49XKJ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_48N4Y6YP	BS_8B1YF57H	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -271,16 +283,18 @@ PT_WG2Z95B5	BS_8WJR4AA3	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tu
 PASWYR	BS_8XDZQKSD	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_HM2GMT2H	BS_8YQGSMDK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAUFSZ	BS_8ZFK0D8Z	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_V482NWB8	BS_91HP99HY	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PARYRJ	BS_92YFTG9R	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_2ZXR2PDN	BS_93B38HPS	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_2ZXR2PDN	BS_93B38HPS	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_GCXG7800	BS_947CK40E	PBTA	NA	WGS	Initial CNS Tumor
-PT_DDFAZ345	BS_94AP61Q5	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_DDFAZ345	BS_94AP61Q5	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAVKRF	BS_95PV1RRY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_SRWZDG3N	BS_95RRF4NE	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_S2ASFBP7	BS_969K7ZM1	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_S2ASFBP7	BS_969K7ZM1	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_BNARR0N6	BS_99PPRCW4	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_BG7GAFK6	BS_9BF58P80	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_D9NTSYSC	BS_9BGCH82S	PBTA	Glial-neuronal tumor NOS	WGS	Initial CNS Tumor
+PT_QD6KKKJH	BS_9BN45DFK	PBTA	Pineoblastoma	WGS	Initial CNS Tumor
 PAUNTY	BS_9BZBCZHK	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_RFGZ2JGP	BS_9CMJ3QF6	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASUMK	BS_9CPZ5R1T	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -288,24 +302,26 @@ PT_H6E09982	BS_9D39MFHT	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_SYHB12RN	BS_9DM8H1RX	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_GAM3E6M3	BS_9E632VPJ	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_EYZ25B99	BS_9E6Q11G2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_0XN6EYXZ	BS_9F2J6VS1	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_0XN6EYXZ	BS_9F2J6VS1	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASVCU	BS_9G2RB0V8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3VQEVNDD	BS_9G7ETYHR	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_MT27S7S4	BS_9GJHMA3J	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_K30AWQ8A	BS_9GSWPZ44	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_Q25V9Y6M	BS_9HDPJT21	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_W6AWJJK7	BS_9HEMB7RK	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_W6AWJJK7	BS_9HEMB7RK	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_KVFS3Z2Q	BS_9JVGXA2W	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_5CKDR2SF	BS_9KDA3HG6	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
-PT_4EDBZRM2	BS_9M49SGAQ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_4EDBZRM2	BS_9M49SGAQ	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PASUEZ	BS_9ND96NYZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_4XVA57J7	BS_9NF39QAW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_KBFM551M	BS_9P4NDTKJ	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATPFG	BS_9PEJSEZG	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_N9KYV4WB	BS_9PQPZPGM	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PASUVU	BS_9PRG9CJC	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_E546ZRXA	BS_9QMVZ4C0	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PT_YT70KJ5P	BS_9R82A3VT	PBTA	NA	WGS	Initial CNS Tumor
-PT_CGWPWSXM	BS_9W6FK6X4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_ZTWCA9HX	BS_9W04ZPRR	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_CGWPWSXM	BS_9W6FK6X4	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAUCYI	BS_9YMT5HB4	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_CWA1405H	BS_9YPJANGX	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASXSJ	BS_9ZDR2H7D	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -317,15 +333,14 @@ PATYWG	BS_A3K94FCY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_QW5VW2PY	BS_A4KYP5H0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATZRF	BS_A527Y2QF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATLKI	BS_A5AQFAFA	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_C5FKRB1P	BS_A6YJ3WG2	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_YCMH9SQP	BS_A70G7S2W	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_9XAA8PF6	BS_A9S5HT6P	PBTA	Adenoma	WGS	Initial CNS Tumor
 PT_N9CGVG02	BS_ABENB1H2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATTTS	BS_ABZC437A	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASPGB	BS_ACCE0MEA	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATSUL	BS_ACDQRWMY	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_7RMS6K08	BS_ACE6QKVF	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
-PT_WYR1DVHX	BS_ACTR13BQ	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_7RMS6K08	BS_ACE6QKVF	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
+PT_WYR1DVHX	BS_ACTR13BQ	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASLTC	BS_AE718N55	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_4TASAQKA	BS_AEMRNSQX	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_PSX2CSYX	BS_AFAHY6HP	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
@@ -336,29 +351,30 @@ PT_0T2EWNYR	BS_AHT9PKVE	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
 PT_5ABCFCSK	BS_APAQ2X2S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASWEE	BS_APY3G22J	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3A87PCQK	BS_AQECMDPP	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
-PT_2BTC5TEN	BS_AQQY8HMR	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_2BTC5TEN	BS_AQQY8HMR	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_FAPEH6R1	BS_ARE4EM81	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_JEA0AEMZ	BS_ASXY97FK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_N9W4GT6D	BS_AVS4DSZW	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_M2J30CF7	BS_AWDQEKK1	PBTA	Sarcoma	WGS	Initial CNS Tumor
 PT_54MH6Q46	BS_AXM96K20	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_CR2YBSPT	BS_AXW0XBH8	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_CR2YBSPT	BS_AXW0XBH8	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_Y5KY6KN9	BS_AYPBAHJ6	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASAEJ	BS_AZ6KVKC4	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_C9YDTZPA	BS_B19AWBBW	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_06ERX8Z7	BS_B1X2SB4P	PBTA	Subependymal Giant Cell Astrocytoma	WGS	Initial CNS Tumor
 PATTHB	BS_B2RYV4GG	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_2FK75B27	BS_B3RH9V17	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_W17NV5YG	BS_B4DY7ET3	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PASYVV	BS_B4GBBM0J	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3VCS1PPF	BS_B4P1NP87	PBTA	Ependymoma	WGS	Initial CNS Tumor
-PT_E8XM8JFZ	BS_B558FJXC	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_7P6J57H3	BS_B4PPG3X5	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_E8XM8JFZ	BS_B558FJXC	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAUPNE	BS_B5MDTA3Q	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASDYT	BS_B6E0477K	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_NA8NZ0BN	BS_B6K0N6HS	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_NPHZQW6A	BS_B6KCJF2B	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_NPHZQW6A	BS_B6KCJF2B	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PASUTC	BS_B80Z459E	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_QD6KKKJH	BS_B91XGSA5	PBTA	Pineoblastoma	WGS	Initial CNS Tumor
-PT_R9V5R1SY	BS_B94G701Q	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_R9V5R1SY	BS_B94G701Q	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAULBY	BS_B95NMCYN	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_2JDDX6TJ	BS_B9QP40ER	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_BCWGRGDB	BS_BA0M71QZ	PBTA	Meningioma	WGS	Initial CNS Tumor
@@ -372,31 +388,32 @@ PT_5BWZA0NT	BS_BFDEZK1C	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASZYY	BS_BHKAK446	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUSJB	BS_BJCTR4C8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_SCBMTG0S	BS_BM95DGCQ	PBTA	NA	WGS	Initial CNS Tumor
-PT_X0FPPTMT	BS_BMHYK93N	PBTA	Central Neurocytoma	WGS	Initial CNS Tumor
+PT_X0FPPTMT	BS_BMHYK93N	PBTA	Neurocytoma	WGS	Initial CNS Tumor
 PT_KHX1WQ4H	BS_BNFCXVYZ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATMDE	BS_BPXHZ3Y0	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_KTRJ8TFY	BS_BQ81D2BP	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_ZN1F7RMP	BS_BR1X3R68	PBTA	Adenoma	WGS	Initial CNS Tumor
 PT_K5KH69Q1	BS_BS5X4H0Y	PBTA	NA	WGS	Initial CNS Tumor
 PT_6TMT65YA	BS_BSM3ZHW4	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_8HZN8J7C	BS_BT83BCEE	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PAULZB	BS_BTRGQHM4	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUYFR	BS_BVAVPKKN	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_203ZY782	BS_BVD7PWP5	PBTA	Choroid plexus cyst	WGS	Initial CNS Tumor
 PT_F1086Z0A	BS_BWZTMWTM	PBTA	Chordoma	WGS	Initial CNS Tumor
 PT_FN4GEEFR	BS_BX8AR74E	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_B0JFCN5W	BS_BZ4GKDP4	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
-PT_44HPG5YT	BS_BZWM455T	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_44HPG5YT	BS_BZWM455T	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_1EB5KHZX	BS_C0YDDQKB	PBTA	NA	WGS	Initial CNS Tumor
 PT_X5TQR8V2	BS_C19DFVR5	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_E3ADF4ZB	BS_C1RRDNF5	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUUTW	BS_C2FYP4KW	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_YQWG98Z5	BS_C3KDA5ZC	PBTA	Dysplasia/Gliosis;Glial-neuronal tumor NOS	WGS	Initial CNS Tumor
 PASTWY	BS_C3KT9THS	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_R10BSB9F	BS_C5RDMCCS	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_R10BSB9F	BS_C5RDMCCS	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_MBAXTJET	BS_C6GBYR17	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PARWEV	BS_C8T56CWR	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASSMV	BS_C9YD10Y4	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASRRY	BS_CD6KRB1K	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_8P368R5B	BS_CD7AXQM8	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_2D1KGV99	BS_CFEWVDG1	PBTA	NA	WGS	Initial CNS Tumor
 PASTHB	BS_CG9KDK95	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_1TGKS073	BS_CGCNC41M	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -416,9 +433,8 @@ PAVAHC	BS_CQC29CK5	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_EGGY1XC0	BS_CSY11X7E	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAUYJS	BS_CWPHVM94	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_6DB7B9WV	BS_CWQ35N2K	PBTA	NA	WGS	Initial CNS Tumor
-PT_CSKHQB16	BS_CX6KACX6	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_13MKXR8G	BS_CXCKHP3Z	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
-PT_EC8R84NM	BS_CXDKK6KS	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_EC8R84NM	BS_CXDKK6KS	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_DEKWG1QG	BS_CXN0498B	PBTA	NA	WGS	Initial CNS Tumor
 PT_27FDWCVZ	BS_D09VWF8H	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_6N1QWCXE	BS_D2BZ25FW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -427,14 +443,18 @@ PT_5KP2E0DS	BS_D3ZV6MMY	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial 
 PATBMM	BS_D7442ACV	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASFHI	BS_D8H43Q28	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATTWT	BS_D9BP1QN2	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_EYWDFKA7	BS_DAEM3WRX	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PAUXPT	BS_DAX3YVG0	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_66XN3MT1	BS_DC7XYYG8	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_MV5WXTQV	BS_DD2N8CEX	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_HV1DFFQ1	BS_DD69EB5S	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PASJTA	BS_DFJYRYV1	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_NCDHZ8H8	BS_DGG7YE8R	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASZTC	BS_DGV11G69	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUTRA	BS_DHC9SHF6	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_DFXQFYPV	BS_DJEVCH34	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_7T13FDWK	BS_DMBNB0EP	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
+PT_1AAYYGGY	BS_DRVEFVQ5	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_76Q72M5T	BS_DT92H1MJ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_WWZ2Q14R	BS_DVQYQSVW	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASCWD	BS_DWYR5CTE	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -446,12 +466,12 @@ PT_3AWKWXEV	BS_E42SSQGJ	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATUBI	BS_E4N511ZX	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATIYD	BS_E4V8XN3G	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3A0B29QT	BS_E5B2YZJH	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
-PT_6Q0NPVP3	BS_E5H6CFYT	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_6Q0NPVP3	BS_E5H6CFYT	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PATXHB	BS_E7CRT00M	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_KMHGNCNR	BS_E7HEQZ1K	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_2E552BAR	BS_E8MC6R2K	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
 PT_J4MWGQFQ	BS_E8SJ36A6	PBTA	Meningioma	WGS	Initial CNS Tumor
-PT_R1DHB0ZT	BS_E9ATGWME	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_R1DHB0ZT	BS_E9ATGWME	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
 PT_H45M7M2T	BS_E9M7TDB6	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUNZM	BS_E9YW2KHS	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATVHJ	BS_EDGSP4V6	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -463,7 +483,7 @@ PT_PY4QFHHV	BS_EKR4NSNW	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial 
 PT_N3205P0D	BS_EPM623G4	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_K63972GG	BS_EQE19CB0	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASGRL	BS_EQE447QB	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_17W3GJPT	BS_ETTZM63Y	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_17W3GJPT	BS_ETTZM63Y	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAUAFH	BS_EWNSDJ7V	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUEKP	BS_EXDY4JFF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_387VK1T9	BS_F064HMTP	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -474,6 +494,7 @@ PT_DW6V5V8E	BS_F4D169Q7	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_92YX7KK9	BS_F5KRHGKC	PBTA	Germinoma	WGS	Initial CNS Tumor
 PT_3PK66TJY	BS_F5V8CWXT	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PARZBH	BS_F6MNG2S0	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_E9PS2A96	BS_F6YJDSXZ	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_4RJ2EATN	BS_F7KYPE79	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_J5NSRW1Y	BS_F8K4VQMF	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_9YMRNZHH	BS_F8KR1QWE	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
@@ -486,20 +507,21 @@ PT_WVAJN6WR	BS_FBP5NZNR	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PT_SABHZ7XX	BS_FCXEAPJ1	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PT_VJ0M4E8Y	BS_FFD25TTK	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_YY7CRV21	BS_FG649AWK	PBTA	NA	WGS	Initial CNS Tumor
-PT_4ADZ9F53	BS_FHE6Z73G	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_4ADZ9F53	BS_FHE6Z73G	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_N9SG16EC	BS_FHFVCQ41	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUJRW	BS_FJP95JXF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_HGM20MW7	BS_FK3B5SDH	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASPIU	BS_FK3DPAWA	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_Y660CKCB	BS_FKQ7F6D1	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
-PT_Z9QE51C3	BS_FNF1TCSW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_Z9QE51C3	BS_FNF1TCSW	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_VHS5RM2K	BS_FNM4BB83	PBTA	Ewing sarcoma	WGS	Initial CNS Tumor
 PT_XSS1ANXD	BS_FQ2ZBMPA	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUCIK	BS_FR9R7VFY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATYGV	BS_FSNCPJJF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_NDVJE438	BS_FT95T4YP	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASJUU	BS_FV0C303D	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_GY0QSY4H	BS_FWCKP4X1	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_9DMMZ08D	BS_FVYBGMG1	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
+PT_GY0QSY4H	BS_FWCKP4X1	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_7F3ZPZB7	BS_FXDY881S	PBTA	Germinoma	WGS	Initial CNS Tumor
 PATSNC	BS_FXG6F3NN	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_XCCV6CW2	BS_FYJMNRGK	PBTA	Teratoma	WGS	Initial CNS Tumor
@@ -508,7 +530,9 @@ PT_7E3V3JFX	BS_G16NM5WJ	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_TB8HPJBN	BS_G2016BE5	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_R63RHJWX	BS_G4EX0H98	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATTNX	BS_G4W213NW	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_WY8REZ3P	BS_G61CN2V0	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_C86SGM7B	BS_G5VS97AD	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_WY8REZ3P	BS_G61CN2V0	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
+PT_EN2RN5Y1	BS_G65EA38C	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PAUCXG	BS_G6ASNYWP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_89XRZBSG	BS_G9MQM1KK	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_0EWY6S6S	BS_GAA327FP	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -528,12 +552,11 @@ PT_GKSABESN	BS_GRECE8Q9	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_ZMKMKCFQ	BS_GRS3T427	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_J302B8Y5	BS_GTAJFTTR	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_1DRAVX4S	BS_GWPJKM7G	PBTA	Rhabdomyosarcoma	WGS	Initial CNS Tumor
-PT_8ECE2D92	BS_GXACEYKB	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_8ECE2D92	BS_GXACEYKB	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAVDAS	BS_GZ39V8AK	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUNST	BS_GZG7GH62	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_JSFBMK5V	BS_H0638GZT	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PAVALS	BS_H0MVFRCE	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_9DMMZ08D	BS_H174820R	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASDNT	BS_H18ZNTNR	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_V8714N9H	BS_H1K33JVK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_GNKRMTQY	BS_H1MNXNHB	PBTA	Pineoblastoma	WGS	Initial CNS Tumor
@@ -548,6 +571,8 @@ PATIYR	BS_H915DJY3	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_WYVMWYVA	BS_HC4T1EEP	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PATBFN	BS_HCWEF4QN	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATTDY	BS_HEP8QTNN	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_T9F17G9F	BS_HF1TR0QN	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_0FGS6YME	BS_HGKDT5AJ	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_MSQ6GSVP	BS_HJ95JNFN	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_GYJ97915	BS_HM5N78GV	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PT_3WA7SBQ6	BS_HN8DE43A	PBTA	Choroid plexus carcinoma	WGS	Initial CNS Tumor
@@ -555,7 +580,7 @@ PT_CTSQ5FHH	BS_HPMX6CT4	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAUAEE	BS_HQC1EKZ8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUCMD	BS_HQYHVPC9	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_1T7WF5S1	BS_HSYF7G2D	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
-PT_4159VCJY	BS_HTGDSPQA	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_4159VCJY	BS_HTGDSPQA	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_EYHJQQ8E	BS_HW4J7JM8	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_409Y4N1N	BS_HW4MYBZ2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PASCGM	BS_HYX0M8VM	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -565,19 +590,22 @@ PT_CXT81GRM	BS_HZNKSQ17	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_GERCQ0JG	BS_HZV4WDTB	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PARUFS	BS_J2DA5W77	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASAVJ	BS_J3707KE2	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_T8V9ES93	BS_J4E9SW51	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_T8V9ES93	BS_J4E9SW51	PBTA	Pleomorphic xanthoastrocytoma	WGS	Initial CNS Tumor
 PAUPSP	BS_J5C6FMYZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAVFNX	BS_J6FPW4H0	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_0MHKP408	BS_J6VRW67C	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATXGG	BS_J8YAY1HM	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_7WT6P5M8	BS_JB3J82ZK	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_JWW33RTB	BS_JBHQ6G3J	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_JWW33RTB	BS_JBHQ6G3J	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_VQDNSYXM	BS_JBY9S5D4	PBTA	Glial-neuronal tumor NOS	WGS	Initial CNS Tumor
 PT_2CJ31SBX	BS_JC2187NA	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_R5T773FS	BS_JC7E55BV	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_98QMQZY7	BS_JC8YV5V9	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
-PT_DMAF1J4A	BS_JCWD4DMA	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
+PT_DMAF1J4A	BS_JD05XR6E	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_YRNATR8Q	BS_JD5FE0V5	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_32J909WM	BS_JDMM2XG4	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_17NG0KW3	BS_JDS0SYST	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
+PT_G16VK7FR	BS_JDZX545X	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PASBDN	BS_JGVTE14P	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_RRT2E7HK	BS_JHGFJR3D	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_3SW2VHD5	BS_JJNSP29S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -587,7 +615,7 @@ PT_G1QNGVCZ	BS_JK5GTHVG	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_1TB2V1PH	BS_JM979K1M	PBTA	Germinoma	WGS	Initial CNS Tumor
 PT_M0FVZ88D	BS_JNS7Q60A	PBTA	Meningioma	WGS	Initial CNS Tumor
 PASKFM	BS_JQ0XD1K9	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_FAD8FQ6S	BS_JQNF0FQP	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_FAD8FQ6S	BS_JQNF0FQP	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_9GKVQ9QS	BS_JRFVST47	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_V2F0865M	BS_JSMAT49K	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_YV2S3ES7	BS_JSNJZERZ	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
@@ -595,11 +623,13 @@ PT_WTMSD2WB	BS_JTBM5TSE	PBTA	Chordoma	WGS	Initial CNS Tumor
 PAUWBU	BS_JTP91S1A	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAVGYW	BS_JV1GTZ1Q	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_8V3360DR	BS_JVTQD8HH	PBTA	Schwannoma	WGS	Initial CNS Tumor
-PT_38FS37DP	BS_JX1PK0VW	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
+PT_WMWFCG6J	BS_JWDK21ED	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_38FS37DP	BS_JX1PK0VW	PBTA	Ewing sarcoma	WGS	Initial CNS Tumor
 PATHYD	BS_JXVVZ2S8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_3WA1XB8G	BS_K049HVGR	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_00G007DM	BS_K07KNTFY	PBTA	Embryonal tumor with multilayer rosettes	WGS	Initial CNS Tumor
-PT_6MB6RED3	BS_K14VJ1E3	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_6MB6RED3	BS_K14VJ1E3	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
+PT_SW4Q1HZP	BS_K24D4BGK	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PARUTJ	BS_K2K5YSDS	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_BWFTKJXT	BS_K3PPH522	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PT_F0N89D15	BS_K3Y06EKR	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
@@ -617,19 +647,19 @@ PASFEU	BS_KE5D12KG	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_YBJYA2CD	BS_KFRBXXV7	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_ADTP7EHN	BS_KG1YMTA4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_TH18S0JQ	BS_KH0NFCWF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_DTP4MMRA	BS_KH3859M5	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PT_7FZ8SE69	BS_KHSYAB3J	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_FF0MSK4D	BS_KJQXZ8GK	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
-PT_NESAQHB1	BS_KJTW1RBN	PBTA	CNS neuroblastoma	WGS	Initial CNS Tumor
 PT_GVDMG7KC	BS_KM878Y43	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_Y74CVASJ	BS_KPG4WCHS	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_F822DBA0	BS_KPWRDRFP	PBTA	Ewing sarcoma	WGS	Initial CNS Tumor
 PT_RH59ET3M	BS_KRYYDC2X	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_VAJN5QP8	BS_KSHETTQC	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_S7YHNHSS	BS_KSRYKCDE	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
+PT_4B34NTJB	BS_KT3GAAQV	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_6DW5NFKX	BS_KT9H4B1N	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUCNL	BS_KTHF096D	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_S2CXXZCF	BS_KVV3G6NP	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_DXF7ZZQZ	BS_KVYCH9PB	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_DXF7ZZQZ	BS_KVYCH9PB	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PASXRJ	BS_KXRFQF5N	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_MPRBGGEJ	BS_KYG3H6C6	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_7TEHW6VQ	BS_KYPZRS4S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -639,7 +669,6 @@ PT_NSXP8AWV	BS_M18CDDGK	PBTA	Meningioma	WGS	Initial CNS Tumor
 PT_90W4HCNR	BS_M1TDS9CT	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_HBT0C66Y	BS_M1YHV93N	PBTA	NA	WGS	Initial CNS Tumor
 PT_PAW18EK3	BS_M2MSWKBC	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
-PT_KBFM551M	BS_M5FM63EB	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUVPT	BS_M7D3Q30Z	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_DA4WFQ96	BS_M9YZK3SP	PBTA	NA	WGS	Initial CNS Tumor
 PAUTLP	BS_MA4DE9P2	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -667,19 +696,18 @@ PT_6SH7PV1N	BS_MW63FCZC	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_YZME6QCY	BS_MW6YMRBJ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_02MVZZSW	BS_MW74GF38	PBTA	Meningioma	WGS	Initial CNS Tumor
 PT_JXGMAHHN	BS_MWKJF6XH	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_CEWNZVKF	BS_MWXDJFWW	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_CEWNZVKF	BS_MWXDJFWW	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASTVV	BS_MYVQ8YDT	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_2YCHME6S	BS_MZB884N9	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_1BV6ND1D	BS_MZJJRDZF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_C2VY5NM6	BS_N0Z6V2YG	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_3NM45TQ8	BS_N2JD3VX6	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_3NM45TQ8	BS_N2JD3VX6	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_RFB07MZS	BS_N4B3WB8W	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_WG5PHHSQ	BS_N5VYY66W	PBTA	NA	WGS	Initial CNS Tumor
 PT_EW604JB3	BS_N8D9FH6M	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_4JG5KWE8	BS_N9N1X78X	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_DTP4MMRA	BS_NASADC3P	PBTA	Schwannoma	WGS	Initial CNS Tumor
 PATTCU	BS_NB0ESCXK	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_EPFX7V9H	BS_NB509KST	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_EPFX7V9H	BS_NB509KST	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_GH693TT8	BS_NDSWS9TS	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_N56EYD4Z	BS_NFT9VHMJ	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATVYZ	BS_NGBKDYFB	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -713,11 +741,11 @@ PATSSG	BS_P69A72G2	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASXRG	BS_P6FPBJM8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZS2YDFBE	BS_P6NWC51S	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_RRG1V7EP	BS_P7CY04E7	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
-PT_W5GP3F6B	BS_P7VR731D	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PASGGI	BS_P8X3GAEP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_GR8P8NY5	BS_P99S85CY	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATNZR	BS_P9FWPEYY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_YJBPEF4V	BS_PC2YQ4F6	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_5SKQHRC5	BS_PCVV9GJG	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_0FKQ3XGV	BS_PDRNE606	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
 PATVVB	BS_PDWEETXG	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_RKECV80K	BS_PEDGRK8S	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -755,6 +783,9 @@ PASVYV	BS_QDMDQ3E3	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASKIS	BS_QDRHQSPZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_H0HWHRPB	BS_QE5B0T7R	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAUALH	BS_QEKBZRMD	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_G9A050X1	BS_QF7M4SHH	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
+PT_KAQMYFYB	BS_QFH9XM6Q	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_59D00MBQ	BS_QG6V29H7	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_P4ZEFY19	BS_QGX93WPF	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_BRTVGGRK	BS_QHTDJG77	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_WVC247PK	BS_QK61ST4T	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -769,11 +800,10 @@ PATYNP	BS_QSTNH2MJ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUIWS	BS_QWC51APP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_0DXHDZJR	BS_QWS88QXE	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PAVKZC	BS_QWX24M4X	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_5KRVE8E4	BS_QX754ADQ	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_5KRVE8E4	BS_QX754ADQ	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PAUDFJ	BS_QXZZY4SJ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_2Z7GVDTM	BS_QYWGB52C	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATSUB	BS_QZAV7XVF	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_RYMG3M91	BS_QZPGVNBB	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_26V72ZXB	BS_QZT3SPY7	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_3V5GTCJR	BS_QZTPJ8YW	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATNWM	BS_R0WH31Q0	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -784,6 +814,7 @@ PT_HQ89KPKT	BS_R1RMKH1B	PBTA	Ganglioneuroma	WGS	Initial CNS Tumor
 PAUFKP	BS_R2G2TPBV	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_XRQHMBHB	BS_R5G3QP11	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PATWIL	BS_R66Z3ENM	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_83ECX0KT	BS_R7H6ZV8M	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_RM5S859Q	BS_R7YMKNJN	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_FHDZNN40	BS_R82MYPKB	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_YXZPWFVB	BS_R8ZKDFWH	PBTA	Ependymoma	WGS	Initial CNS Tumor
@@ -799,23 +830,24 @@ PT_C4F1HPH5	BS_RH9PMH3G	PBTA	Langerhans Cell histiocytosis	WGS	Initial CNS Tumor
 PT_9A6RPJ97	BS_RHEBGZF8	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_G3AVDN4E	BS_RQ5Z7KNW	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASTRD	BS_RQZZ6T97	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_Q38AT6JY	BS_RR3DKGKY	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_Q38AT6JY	BS_RR3DKGKY	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PAVAEE	BS_RR3T675W	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_RYMG3M91	BS_RWJ0571Q	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_WYF217NZ	BS_RZNNEX1Y	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATBBF	BS_S0T1WT6R	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_63HDZHCN	BS_S0T3CQ97	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_TVK2KY36	BS_S34SCYW4	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATNVA	BS_S4R97RNZ	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_8GBF5MTD	BS_S7S6YEHA	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_8GBF5MTD	BS_S7S6YEHA	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PAVJEG	BS_S8Q6R8MX	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUFIT	BS_S8STY9B1	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_H8Z52K09	BS_SCQNN2A2	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tumor
 PT_N3HVMV06	BS_SD28E0SC	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_9AHA6KW3	BS_SDT1J3A7	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_9AHA6KW3	BS_SDT1J3A7	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_TD6ST5MG	BS_SE82EQF8	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_D215EQAP	BS_SFH8TGKT	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAUNBM	BS_SFQWVZ4N	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_6TZR2DH1	BS_SFZ3A07S	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_6TZR2DH1	BS_SFZ3A07S	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASYJF	BS_SGRCCAVT	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_RSDTCFDA	BS_SK4H5MJQ	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_E1TRJP8V	BS_SK949N33	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -864,14 +896,15 @@ PATDKL	BS_TWN989ZD	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_KCTZZA3G	BS_TX2WGF8K	PBTA	Neurofibroma/Plexiform	WGS	Initial CNS Tumor
 PT_N8W26H19	BS_TZPJHKQR	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_7DP91QDJ	BS_V3SC6NWH	PBTA	Cavernoma	WGS	Initial CNS Tumor
-PT_GDDWPDMC	BS_V3ZNXRHK	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_GDDWPDMC	BS_V3ZNXRHK	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PASXHE	BS_V4VGG98Y	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_V9WP047R	BS_V6HKXX1Z	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASLPG	BS_V7B79J5R	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_8GW4J4TD	BS_V8G6BZRR	PBTA	Glial-neuronal tumor NOS	WGS	Initial CNS Tumor
 PT_GHHY5AAE	BS_VA07453Z	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_1YQH5NSH	BS_VCE73HPW	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PAUDFR	BS_VCXG53E7	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_HGHV85PZ	BS_VDSR4X6N	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_HGHV85PZ	BS_VDSR4X6N	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PAUVML	BS_VE90VKZY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZCXS29JJ	BS_VF099E8S	PBTA	Sarcoma	WGS	Initial CNS Tumor
 PASJWG	BS_VGAKW5G6	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -897,6 +930,7 @@ PT_K94ZVZMX	BS_W3R2DQ86	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASKRS	BS_W41Y820G	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_25Z2NX27	BS_W50WEJE7	PBTA	NA	WGS	Initial CNS Tumor
 PT_NPETR8RY	BS_W5P7SPDH	PBTA	Ependymoma	WGS	Initial CNS Tumor
+PT_TWAHK62W	BS_W60PB1DS	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_GPQJYAW4	BS_W6B48DD5	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PT_JP1FDKN9	BS_W74D279Q	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_S7WJ99PC	BS_W9P0PFDH	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -908,15 +942,16 @@ PT_FYECBRPP	BS_WCNPE0AC	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Initial CNS Tu
 PT_XNTFM9XY	BS_WD37M8SD	PBTA	Cavernoma	WGS	Initial CNS Tumor
 PT_HXDCHQ9Y	BS_WEGGXVYA	PBTA	Subependymal Giant Cell Astrocytoma	WGS	Initial CNS Tumor
 PATEEE	BS_WFZG82XZ	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_FC0EF5ZT	BS_WJ7GMQTF	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_FC0EF5ZT	BS_WJ7GMQTF	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_59FJRPVX	BS_WJB33V17	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_DJ106XYS	BS_WJF6ZXWN	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PAUAKC	BS_WKPJ7S74	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_PNED3GG3	BS_WMEYJGDC	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_PNED3GG3	BS_WMEYJGDC	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PASJRT	BS_WMM0MP1J	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_EDWA0XTP	BS_WP2D11SK	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_SZJ7WZZW	BS_WP9J88EB	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_Z4PJA6KT	BS_WPCBK1EG	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
+PT_C71G98K3	BS_WPV7N6NQ	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_FXPJM0MW	BS_WQ19Z6MD	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_6TKJRSPW	BS_WRJNMEX2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATLFF	BS_WRZATZQF	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -928,35 +963,39 @@ PT_5GQ76YZJ	BS_WXKCR17Q	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_9S6WMQ92	BS_WY5KYSHJ	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_BBHAD51D	BS_WYF8NGSD	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Initial CNS Tumor
 PAUXSV	BS_WZXHZN97	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_5R8EWT55	BS_X0KN4VVW	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_EZS4SRH6	BS_X1R0N8QS	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
+PT_8ATS9ATC	BS_X1TRW9RH	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PAURFH	BS_X242DJMF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASEWZ	BS_X2D8S1HY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATSIJ	BS_X3AFTRNM	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_CX58G6P6	BS_X6361T19	PBTA	Meningioma	WGS	Initial CNS Tumor
 PASSZI	BS_X6BEG5J1	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_CSKHQB16	BS_X6H86RTA	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_NV584F7Q	BS_X7QJCVJB	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PAVHEU	BS_X8H38ZNB	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_Z2KHR3GQ	BS_X8YB5G5J	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PASDDP	BS_XA3KEKC6	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_D3AN5M5W	BS_XBE002WV	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_5D3AVPCW	BS_XCFNEZ8E	PBTA	NA	WGS	Initial CNS Tumor
-PT_YVG4H0F1	BS_XCNGQ25H	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_YVG4H0F1	BS_XCNGQ25H	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PATSSA	BS_XDH1Y1TQ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_VT6PJVQN	BS_XDY9BYRK	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PT_7TRGHZBK	BS_XEVMEYFS	PBTA	Choroid plexus carcinoma	WGS	Initial CNS Tumor
 PT_Q90R6M3E	BS_XGMXJKFX	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_6GDPNFA6	BS_XGVSX8BX	PBTA	High-grade glioma/astrocytoma	WGS	Initial CNS Tumor
-PT_T1FV709B	BS_XH5JP8DB	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_T1FV709B	BS_XH5JP8DB	PBTA	Desmoplastic infantile astrocytoma and ganglioglioma	WGS	Initial CNS Tumor
 PASYIP	BS_XH6P7BY8	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_PFA762TK	BS_XHAQXDR0	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_B54PH840	BS_XJZQA3AP	PBTA	Pineoblastoma	WGS	Initial CNS Tumor
 PT_HJMP6PH2	BS_XKM2EAT4	PBTA	Ewing sarcoma	WGS	Initial CNS Tumor
 PT_CGPJY881	BS_XKP747AS	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_5SNX4PMK	BS_XKXDH0YJ	PBTA	NA	WGS	Initial CNS Tumor
-PT_SCCDBETQ	BS_XM302FF4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_SCCDBETQ	BS_XM302FF4	PBTA	Ganglioglioma	WGS	Initial CNS Tumor
 PT_H876VB6R	BS_XMNBSBGN	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PT_X1XVE1XX	BS_XNTQBZAJ	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
+PT_5K5CZXYB	BS_XNYH7VK6	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_AKQZZPH8	BS_XPSD2NRJ	PBTA	Meningioma	WGS	Initial CNS Tumor
-PT_A06JR0E5	BS_XPZAD9PP	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PATFTR	BS_XQC9PNZP	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASYYZ	BS_XQSEQPAZ	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_SMDEQVHJ	BS_XSWF2MR1	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -966,7 +1005,6 @@ PT_BK92NM09	BS_XVYRXN8J	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PATDWR	BS_XWKDJ2M6	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_WP871F5S	BS_XWQTX5HH	PBTA	Hemangioblastoma	WGS	Initial CNS Tumor
 PATUAI	BS_XX68G6KE	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_7P6J57H3	BS_Y0DGBKTY	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_N4PR21ME	BS_Y3472DYJ	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PAUILS	BS_Y35YEDFF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAVDFW	BS_Y3KBY0FY	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -979,6 +1017,7 @@ PT_PHKSYE6Q	BS_Y9GHDZKS	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
 PT_A325EYR2	BS_YB99Q6TN	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_EV71W1JW	BS_YETTZ1NC	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_K39HM2JF	BS_YEWX69X4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
+PT_KX1QQQRC	BS_YGDHJ68W	PBTA	High-grade glioma/astrocytoma	WXS	Initial CNS Tumor
 PT_B7QRTN72	BS_YH60H2FS	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATKGB	BS_YK9W04XG	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_KQK98ZVP	BS_YMDPFK0V	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -994,10 +1033,13 @@ PT_VBNP6JFB	BS_YZ2YNEJJ	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_QQ9JGEY9	BS_Z1BBZ01F	PBTA	Malignant peripheral nerve sheath tumor	WGS	Initial CNS Tumor
 PASAHC	BS_Z2G9EG1X	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_HN0AXSZ0	BS_Z34PQDYT	PBTA	Choroid plexus papilloma	WGS	Initial CNS Tumor
+PT_814K3T0D	BS_Z3AB3KMP	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_0K0DPVF6	BS_Z4Q8RH5M	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_39HBKSGG	BS_Z5D6G1S6	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_5X061J42	BS_Z5VJCFNP	PBTA	Germinoma	WGS	Initial CNS Tumor
+PT_0EBP2PBD	BS_Z61JVJ03	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PARVPD	BS_Z862V8M7	GMKF	Neuroblastoma	WGS	Primary Tumor
+PT_8SF8D0M9	BS_Z8GRJ71M	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_NBY8PZR9	BS_Z9NCH2XA	PBTA	CNS Embryonal tumor	WGS	Initial CNS Tumor
 PT_PFP1ZVHD	BS_Z9PKZ4RT	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_9M4CQX3M	BS_ZAH4FHV2	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
@@ -1017,63 +1059,486 @@ PAUIDD	BS_ZQEDB5RA	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASZJB	BS_ZRG2V7T2	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_MNSEJCDM	BS_ZSH09N84	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_VY45XTT7	BS_ZV21J6YW	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
-PT_W6CW60K9	BS_ZX1YPQ88	PBTA	Adamantinomatous Craniopharyngioma	WGS	Initial CNS Tumor
+PT_W6CW60K9	BS_ZX1YPQ88	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PATPIU	BS_ZYXTC212	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_ZA95JQEB	BS_ZZJF26C4	PBTA	Ependymoma	WGS	Initial CNS Tumor
 PANSHK	TARGET-10-PANSHK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANSIZ	TARGET-10-PANSIZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANSTA	TARGET-10-PANSTA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANSYA	TARGET-10-PANSYA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTBB	TARGET-10-PANTBB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTCR	TARGET-10-PANTCR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTRY	TARGET-10-PANTRY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTTB	TARGET-10-PANTTB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTUZ	TARGET-10-PANTUZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTVC	TARGET-10-PANTVC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTWC	TARGET-10-PANTWC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTXA	TARGET-10-PANTXA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTYP	TARGET-10-PANTYP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANTZE	TARGET-10-PANTZE-09B-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANUSL	TARGET-10-PANUSL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANUXS	TARGET-10-PANUXS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANUYZ	TARGET-10-PANUYZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVAW	TARGET-10-PANVAW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVCM	TARGET-10-PANVCM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVDH	TARGET-10-PANVDH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVDV	TARGET-10-PANVDV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVFF	TARGET-10-PANVFF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVGZ	TARGET-10-PANVGZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVIB	TARGET-10-PANVIB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVIX	TARGET-10-PANVIX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVJI	TARGET-10-PANVJI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVKF	TARGET-10-PANVKF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVKH	TARGET-10-PANVKH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVMT	TARGET-10-PANVMT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVTB	TARGET-10-PANVTB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVUD	TARGET-10-PANVUD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVUU	TARGET-10-PANVUU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANVXF	TARGET-10-PANVXF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWDL	TARGET-10-PANWDL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWDN	TARGET-10-PANWDN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWDS	TARGET-10-PANWDS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWES	TARGET-10-PANWES-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWGG	TARGET-10-PANWGG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWIM	TARGET-10-PANWIM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWJM	TARGET-10-PANWJM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWJR	TARGET-10-PANWJR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWJS	TARGET-10-PANWJS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWKM	TARGET-10-PANWKM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWKP	TARGET-10-PANWKP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWSP	TARGET-10-PANWSP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PANWYH	TARGET-10-PANWYH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWYM	TARGET-10-PANWYM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANWZG	TARGET-10-PANWZG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXAM	TARGET-10-PANXAM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXCX	TARGET-10-PANXCX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXEE	TARGET-10-PANXEE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXGD	TARGET-10-PANXGD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXGM	TARGET-10-PANXGM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXLP	TARGET-10-PANXLP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXLR	TARGET-10-PANXLR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXSF	TARGET-10-PANXSF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXTP	TARGET-10-PANXTP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXXD	TARGET-10-PANXXD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANXZK	TARGET-10-PANXZK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PANYGB	TARGET-10-PANYGB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PANYZE	TARGET-10-PANYZE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANZFN	TARGET-10-PANZFN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANZGN	TARGET-10-PANZGN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANZUI	TARGET-10-PANZUI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANZYY	TARGET-10-PANZYY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PANZZI	TARGET-10-PANZZI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPADT	TARGET-10-PAPADT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAGB	TARGET-10-PAPAGB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAGF	TARGET-10-PAPAGF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAGS	TARGET-10-PAPAGS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAGV	TARGET-10-PAPAGV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAGW	TARGET-10-PAPAGW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAKJ	TARGET-10-PAPAKJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAMH	TARGET-10-PAPAMH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAMS	TARGET-10-PAPAMS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPANB	TARGET-10-PAPANB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAPC	TARGET-10-PAPAPC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAPX	TARGET-10-PAPAPX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPART	TARGET-10-PAPART-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAVR	TARGET-10-PAPAVR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAXH	TARGET-10-PAPAXH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAZA	TARGET-10-PAPAZA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPAZD	TARGET-10-PAPAZD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBAI	TARGET-10-PAPBAI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBAN	TARGET-10-PAPBAN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBCK	TARGET-10-PAPBCK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBLU	TARGET-10-PAPBLU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBPC	TARGET-10-PAPBPC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBVD	TARGET-10-PAPBVD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBYM	TARGET-10-PAPBYM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPBZW	TARGET-10-PAPBZW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCED	TARGET-10-PAPCED-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCJR	TARGET-10-PAPCJR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCNP	TARGET-10-PAPCNP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCPB	TARGET-10-PAPCPB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCRD	TARGET-10-PAPCRD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCRJ	TARGET-10-PAPCRJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCSZ	TARGET-10-PAPCSZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCUI	TARGET-10-PAPCUI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCVI	TARGET-10-PAPCVI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPCVR	TARGET-10-PAPCVR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDBX	TARGET-10-PAPDBX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDCS	TARGET-10-PAPDCS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDDA	TARGET-10-PAPDDA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDFS	TARGET-10-PAPDFS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDHA	TARGET-10-PAPDHA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDKD	TARGET-10-PAPDKD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDKR	TARGET-10-PAPDKR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDLN	TARGET-10-PAPDLN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDMU	TARGET-10-PAPDMU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDRP	TARGET-10-PAPDRP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDSW	TARGET-10-PAPDSW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PAPDUV	TARGET-10-PAPDUV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDUX	TARGET-10-PAPDUX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDVG	TARGET-10-PAPDVG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPDYE	TARGET-10-PAPDYE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEJA	TARGET-10-PAPEJA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEJL	TARGET-10-PAPEJL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEJM	TARGET-10-PAPEJM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PAPEJN	TARGET-10-PAPEJN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEMC	TARGET-10-PAPEMC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEMZ	TARGET-10-PAPEMZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPERM	TARGET-10-PAPERM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPERN	TARGET-10-PAPERN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPERU	TARGET-10-PAPERU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPERW	TARGET-10-PAPERW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPESB	TARGET-10-PAPESB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPESY	TARGET-10-PAPESY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPESZ	TARGET-10-PAPESZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPETC	TARGET-10-PAPETC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEZL	TARGET-10-PAPEZL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPEZR	TARGET-10-PAPEZR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFAT	TARGET-10-PAPFAT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFBR	TARGET-10-PAPFBR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFBX	TARGET-10-PAPFBX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFFW	TARGET-10-PAPFFW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFHH	TARGET-10-PAPFHH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFHR	TARGET-10-PAPFHR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFHX	TARGET-10-PAPFHX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFIX	TARGET-10-PAPFIX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFKA	TARGET-10-PAPFKA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFNV	TARGET-10-PAPFNV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFPZ	TARGET-10-PAPFPZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFTJ	TARGET-10-PAPFTJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFUF	TARGET-10-PAPFUF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFZF	TARGET-10-PAPFZF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFZL	TARGET-10-PAPFZL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPFZX	TARGET-10-PAPFZX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGEE	TARGET-10-PAPGEE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGFD	TARGET-10-PAPGFD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGKP	TARGET-10-PAPGKP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGLD	TARGET-10-PAPGLD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGLS	TARGET-10-PAPGLS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGMT	TARGET-10-PAPGMT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPGWN	TARGET-10-PAPGWN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHAM	TARGET-10-PAPHAM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHBW	TARGET-10-PAPHBW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHCA	TARGET-10-PAPHCA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHDN	TARGET-10-PAPHDN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHDX	TARGET-10-PAPHDX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHED	TARGET-10-PAPHED-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHHP	TARGET-10-PAPHHP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHIG	TARGET-10-PAPHIG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PAPHJF	TARGET-10-PAPHJF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHLH	TARGET-10-PAPHLH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHNM	TARGET-10-PAPHNM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHNR	TARGET-10-PAPHNR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHRV	TARGET-10-PAPHRV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHWE	TARGET-10-PAPHWE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHXJ	TARGET-10-PAPHXJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHYM	TARGET-10-PAPHYM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPHYV	TARGET-10-PAPHYV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPICC	TARGET-10-PAPICC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIEW	TARGET-10-PAPIEW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIGD	TARGET-10-PAPIGD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIGV	TARGET-10-PAPIGV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIHH	TARGET-10-PAPIHH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIHT	TARGET-10-PAPIHT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIHU	TARGET-10-PAPIHU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIIB	TARGET-10-PAPIIB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIIX	TARGET-10-PAPIIX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPIJD	TARGET-10-PAPIJD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPILF	TARGET-10-PAPILF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPILG	TARGET-10-PAPILG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZPJ	TARGET-10-PAPZPJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZPZ	TARGET-10-PAPZPZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZRA	TARGET-10-PAPZRA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZRB	TARGET-10-PAPZRB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZTD	TARGET-10-PAPZTD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZTL	TARGET-10-PAPZTL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZTS	TARGET-10-PAPZTS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZUW	TARGET-10-PAPZUW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZVI	TARGET-10-PAPZVI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZXI	TARGET-10-PAPZXI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAPZZJ	TARGET-10-PAPZZJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARABL	TARGET-10-PARABL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARABU	TARGET-10-PARABU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARACE	TARGET-10-PARACE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAFH	TARGET-10-PARAFH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAFI	TARGET-10-PARAFI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAGW	TARGET-10-PARAGW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAJY	TARGET-10-PARAJY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARANN	TARGET-10-PARANN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAPT	TARGET-10-PARAPT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARASC	TARGET-10-PARASC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARASN	TARGET-10-PARASN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARASZ	TARGET-10-PARASZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARATY	TARGET-10-PARATY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAUE	TARGET-10-PARAUE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAXH	TARGET-10-PARAXH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARAYM	TARGET-10-PARAYM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARAZN	TARGET-10-PARAZN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBBV	TARGET-10-PARBBV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBCW	TARGET-10-PARBCW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBDP	TARGET-10-PARBDP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBGG	TARGET-10-PARBGG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBHI	TARGET-10-PARBHI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBKG	TARGET-10-PARBKG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBKP	TARGET-10-PARBKP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBLL	TARGET-10-PARBLL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBLS	TARGET-10-PARBLS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBND	TARGET-10-PARBND-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBNY	TARGET-10-PARBNY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBPX	TARGET-10-PARBPX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBRV	TARGET-10-PARBRV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBRX	TARGET-10-PARBRX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBSP	TARGET-10-PARBSP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBSW	TARGET-10-PARBSW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBTA	TARGET-10-PARBTA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBWN	TARGET-10-PARBWN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBXX	TARGET-10-PARBXX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBYS	TARGET-10-PARBYS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARBYU	TARGET-10-PARBYU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCAX	TARGET-10-PARCAX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCBE	TARGET-10-PARCBE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCBK	TARGET-10-PARCBK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCCM	TARGET-10-PARCCM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCDS	TARGET-10-PARCDS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCDV	TARGET-10-PARCDV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCDX	TARGET-10-PARCDX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCDZ	TARGET-10-PARCDZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCFM	TARGET-10-PARCFM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCHU	TARGET-10-PARCHU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCKD	TARGET-10-PARCKD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCKV	TARGET-10-PARCKV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCLU	TARGET-10-PARCLU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCLW	TARGET-10-PARCLW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCTN	TARGET-10-PARCTN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCUM	TARGET-10-PARCUM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCUW	TARGET-10-PARCUW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCVB	TARGET-10-PARCVB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCVT	TARGET-10-PARCVT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCWB	TARGET-10-PARCWB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARCZY	TARGET-10-PARCZY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDAK	TARGET-10-PARDAK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDBN	TARGET-10-PARDBN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDBT	TARGET-10-PARDBT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDCY	TARGET-10-PARDCY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDDM	TARGET-10-PARDDM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDDV	TARGET-10-PARDDV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDDW	TARGET-10-PARDDW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDEG	TARGET-10-PARDEG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDEJ	TARGET-10-PARDEJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDEP	TARGET-10-PARDEP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDEY	TARGET-10-PARDEY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDFB	TARGET-10-PARDFB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDFH	TARGET-10-PARDFH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDFN	TARGET-10-PARDFN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDHK	TARGET-10-PARDHK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDKG	TARGET-10-PARDKG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDLJ	TARGET-10-PARDLJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDLP	TARGET-10-PARDLP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDLR	TARGET-10-PARDLR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDLZ	TARGET-10-PARDLZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDMI	TARGET-10-PARDMI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDNF	TARGET-10-PARDNF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDRI	TARGET-10-PARDRI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDRS	TARGET-10-PARDRS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDSP	TARGET-10-PARDSP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDST	TARGET-10-PARDST-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDUM	TARGET-10-PARDUM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDVD	TARGET-10-PARDVD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDWM	TARGET-10-PARDWM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDXG	TARGET-10-PARDXG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARDXS	TARGET-10-PARDXS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREAA	TARGET-10-PAREAA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREAL	TARGET-10-PAREAL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREBH	TARGET-10-PAREBH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREEX	TARGET-10-PAREEX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREGE	TARGET-10-PAREGE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PAREGZ	TARGET-10-PAREGZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREHN	TARGET-10-PAREHN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREIE	TARGET-10-PAREIE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREIV	TARGET-10-PAREIV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREJA	TARGET-10-PAREJA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREJZ	TARGET-10-PAREJZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREKH	TARGET-10-PAREKH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREKM	TARGET-10-PAREKM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARENT	TARGET-10-PARENT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARENU	TARGET-10-PARENU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARENW	TARGET-10-PARENW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREPB	TARGET-10-PAREPB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREPF	TARGET-10-PAREPF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARERM	TARGET-10-PARERM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARERS	TARGET-10-PARERS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARESP	TARGET-10-PARESP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREST	TARGET-10-PAREST-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARETC	TARGET-10-PARETC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARETH	TARGET-10-PARETH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARETV	TARGET-10-PARETV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREUH	TARGET-10-PAREUH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREWE	TARGET-10-PAREWE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREWM	TARGET-10-PAREWM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREWZ	TARGET-10-PAREWZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREYJ	TARGET-10-PAREYJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREYW	TARGET-10-PAREYW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PAREZM	TARGET-10-PAREZM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFAP	TARGET-10-PARFAP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFDB	TARGET-10-PARFDB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFDG	TARGET-10-PARFDG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARFDL	TARGET-10-PARFDL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFDW	TARGET-10-PARFDW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFEH	TARGET-10-PARFEH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFHH	TARGET-10-PARFHH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARFIH	TARGET-10-PARFIH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFIZ	TARGET-10-PARFIZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFJK	TARGET-10-PARFJK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFJM	TARGET-10-PARFJM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFKD	TARGET-10-PARFKD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARFPJ	TARGET-10-PARFPJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARFSF	TARGET-10-PARFSF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARFXJ	TARGET-10-PARFXJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGBK	TARGET-10-PARGBK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGBR	TARGET-10-PARGBR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGBT	TARGET-10-PARGBT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARGFL	TARGET-10-PARGFL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGGI	TARGET-10-PARGGI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGJH	TARGET-10-PARGJH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGJY	TARGET-10-PARGJY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGKD	TARGET-10-PARGKD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGLE	TARGET-10-PARGLE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGLW	TARGET-10-PARGLW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGMW	TARGET-10-PARGMW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARGUZ	TARGET-10-PARGUZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARHAN	TARGET-10-PARHAN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARHBI	TARGET-10-PARHBI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARHBT	TARGET-10-PARHBT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARHEA	TARGET-10-PARHEA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARHES	TARGET-10-PARHES-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARHFF	TARGET-10-PARHFF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARHLM	TARGET-10-PARHLM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARHSD	TARGET-10-PARHSD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARIBB	TARGET-10-PARIBB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARIIA	TARGET-10-PARIIA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARILG	TARGET-10-PARILG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARIYD	TARGET-10-PARIYD-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARIZN	TARGET-10-PARIZN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARJAY	TARGET-10-PARJAY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJBB	TARGET-10-PARJBB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJLF	TARGET-10-PARJLF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJMY	TARGET-10-PARJMY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJNL	TARGET-10-PARJNL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJNR	TARGET-10-PARJNR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARJNX	TARGET-10-PARJNX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARJPL	TARGET-10-PARJPL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJRT	TARGET-10-PARJRT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJWB	TARGET-10-PARJWB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARJXW	TARGET-10-PARJXW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARJYV	TARGET-10-PARJYV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARKEU	TARGET-10-PARKEU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARKFN	TARGET-10-PARKFN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARKFU	TARGET-10-PARKFU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARKLK	TARGET-10-PARKLK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARKLL	TARGET-10-PARKLL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARKZX	TARGET-10-PARKZX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLBP	TARGET-10-PARLBP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLDF	TARGET-10-PARLDF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLFI	TARGET-10-PARLFI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARLJA	TARGET-10-PARLJA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLMI	TARGET-10-PARLMI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLPA	TARGET-10-PARLPA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLPB	TARGET-10-PARLPB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARLST	TARGET-10-PARLST-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLSU	TARGET-10-PARLSU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLTU	TARGET-10-PARLTU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARLTX	TARGET-10-PARLTX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARMEG	TARGET-10-PARMEG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMFF	TARGET-10-PARMFF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMIH	TARGET-10-PARMIH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMKK	TARGET-10-PARMKK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARMMA	TARGET-10-PARMMA-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMMV	TARGET-10-PARMMV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMRF	TARGET-10-PARMRF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARMSB	TARGET-10-PARMSB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMSP	TARGET-10-PARMSP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARMWH	TARGET-10-PARMWH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARMWZ	TARGET-10-PARMWZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARMYP	TARGET-10-PARMYP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNBN	TARGET-10-PARNBN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNDB	TARGET-10-PARNDB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNDY	TARGET-10-PARNDY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNEH	TARGET-10-PARNEH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNGI	TARGET-10-PARNGI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNIZ	TARGET-10-PARNIZ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNJB	TARGET-10-PARNJB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNLW	TARGET-10-PARNLW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNMV	TARGET-10-PARNMV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNSP	TARGET-10-PARNSP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARNSW	TARGET-10-PARNSW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARNXJ	TARGET-10-PARNXJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPDP	TARGET-10-PARPDP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARPET	TARGET-10-PARPET-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPFF	TARGET-10-PARPFF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPGJ	TARGET-10-PARPGJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPGL	TARGET-10-PARPGL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPGW	TARGET-10-PARPGW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARPHB	TARGET-10-PARPHB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPIF	TARGET-10-PARPIF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPPV	TARGET-10-PARPPV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARPUL	TARGET-10-PARPUL-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPXV	TARGET-10-PARPXV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPYH	TARGET-10-PARPYH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARPYJ	TARGET-10-PARPYJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPYS	TARGET-10-PARPYS-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPZI	TARGET-10-PARPZI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARPZR	TARGET-10-PARPZR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRJV	TARGET-10-PARRJV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARRKK	TARGET-10-PARRKK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRMU	TARGET-10-PARRMU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRSR	TARGET-10-PARRSR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRVI	TARGET-10-PARRVI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRVK	TARGET-10-PARRVK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARRYW	TARGET-10-PARRYW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARSET	TARGET-10-PARSET-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSGM	TARGET-10-PARSGM-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSHV	TARGET-10-PARSHV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARSJG	TARGET-10-PARSJG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSJH	TARGET-10-PARSJH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSKH	TARGET-10-PARSKH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSKV	TARGET-10-PARSKV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSKY	TARGET-10-PARSKY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARSNX	TARGET-10-PARSNX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSRI	TARGET-10-PARSRI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSSV	TARGET-10-PARSSV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSTB	TARGET-10-PARSTB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARSUV	TARGET-10-PARSUV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTAK	TARGET-10-PARTAK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTAY	TARGET-10-PARTAY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARTBP	TARGET-10-PARTBP-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTEF	TARGET-10-PARTEF-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTGB	TARGET-10-PARTGB-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTGW	TARGET-10-PARTGW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTID	TARGET-10-PARTID-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTIK	TARGET-10-PARTIK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTJJ	TARGET-10-PARTJJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARTLY	TARGET-10-PARTLY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARTPW	TARGET-10-PARTPW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTSC	TARGET-10-PARTSC-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTWH	TARGET-10-PARTWH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTZE	TARGET-10-PARTZE-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARTZJ	TARGET-10-PARTZJ-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUBN	TARGET-10-PARUBN-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUBU	TARGET-10-PARUBU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUBX	TARGET-10-PARUBX-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUCI	TARGET-10-PARUCI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUCT	TARGET-10-PARUCT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARUEU	TARGET-10-PARUEU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUGV	TARGET-10-PARUGV-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUIT	TARGET-10-PARUIT-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUKK	TARGET-10-PARUKK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARUKW	TARGET-10-PARUKW-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARURK	TARGET-10-PARURK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARUYH	TARGET-10-PARUYH-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARUYU	TARGET-10-PARUYU-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARVAK	TARGET-10-PARVAK-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARVBY	TARGET-10-PARVBY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
+PARVCG	TARGET-10-PARVCG-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARVEI	TARGET-10-PARVEI-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARVHY	TARGET-10-PARVHY-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
 PARVMR	TARGET-10-PARVMR-09A-01D	TARGET	Acute Lymphoblastic Leukemia	WXS	Primary Tumor
@@ -1992,7 +2457,7 @@ PAVEZM	TARGET-30-PAVEZM-01A-01D	TARGET	Neuroblastoma	Targeted Sequencing	Primary
 0A4HLD	TARGET-40-0A4HLD-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 0A4HMC	TARGET-40-0A4HMC-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 0A4HX8	TARGET-40-0A4HX8-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
-0A4HXS	TARGET-40-0A4HXS-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
+0A4HXS	TARGET-40-0A4HXS-01A-01Y	TARGET	Osteosarcoma	WXS	Primary Tumor
 0A4HY5	TARGET-40-0A4HY5-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 0A4I0W	TARGET-40-0A4I0W-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 0A4I3S	TARGET-40-0A4I3S-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
@@ -2017,7 +2482,7 @@ PALKGN	TARGET-40-PALKGN-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PALWWX	TARGET-40-PALWWX-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PALZGU	TARGET-40-PALZGU-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PAMEKS	TARGET-40-PAMEKS-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
-PAMHLF	TARGET-40-PAMHLF-01A-02D	TARGET	Osteosarcoma	WXS	Primary Tumor
+PAMHLF	TARGET-40-PAMHLF-01A-01Y	TARGET	Osteosarcoma	WXS	Primary Tumor
 PAMHYN	TARGET-40-PAMHYN-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PAMJXS	TARGET-40-PAMJXS-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PAMLKS	TARGET-40-PAMLKS-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
@@ -2026,7 +2491,7 @@ PAMTCM	TARGET-40-PAMTCM-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PAMYYJ	TARGET-40-PAMYYJ-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PANGPE	TARGET-40-PANGPE-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PANGRW	TARGET-40-PANGRW-01A-02D	TARGET	Osteosarcoma	WXS	Primary Tumor
-PANMIG	TARGET-40-PANMIG-01A-01Y	TARGET	Osteosarcoma	WXS	Primary Tumor
+PANMIG	TARGET-40-PANMIG-01A-02D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PANPUM	TARGET-40-PANPUM-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PANSEN	TARGET-40-PANSEN-01A-01D	TARGET	Osteosarcoma	WXS	Primary Tumor
 PANVJJ	TARGET-40-PANVJJ-01A-01Y	TARGET	Osteosarcoma	WXS	Primary Tumor
