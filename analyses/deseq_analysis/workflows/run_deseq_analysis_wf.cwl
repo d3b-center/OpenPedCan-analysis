@@ -19,6 +19,8 @@ inputs:
   hugo_file: {type: File, doc: "ENSG Hugo codes tsv file"}
   mondo_file: {type: File, doc: "MONDO and EFO codes tsv file"}
   uberon_file: {type: File, doc: "UBERON codes tsv file"}
+  indspecall_file: {type: File, doc: "Independent specimens for all cohorts file"}
+  indspeceach_file: {type: File, doc: "Independent specimens for each cohort file"}
   ram: {type: 'int?', default: 32, doc: "In GB"}
   cpus: {type: 'int?', default: 4, doc: "Number of CPUs to request"}
   hist_max_index_test: {type: 'int?', doc: "Maximum number of histology groups to use for testing, this overrides the number of histology groups from the subsetting tool."}
@@ -35,6 +37,8 @@ steps:
     in:
       count_file: gene_count_file
       histology_file: histology_file
+      indspecall_file: indspecall_file
+      indspeceach_file: indspeceach_file
     out: [subsetted_histology, subsetted_count, histology_length_file, gtex_length_file]
 
   build_hist_array:
@@ -62,6 +66,8 @@ steps:
       hugo_file: hugo_file
       mondo_file: mondo_file
       uberon_file: uberon_file
+      indspecall_file: indspecall_file
+      indspeceach_file: indspeceach_file
       histology_index: build_hist_array/index_array
       gtex_index: build_gtex_array/index_array
       out_dir: output_basename
@@ -80,7 +86,7 @@ steps:
   convert_tsv_to_rds:
     run: ../tools/convert_tsv_to_rds.cwl
     in:
-      tsv_file: merged_results_tsv_file
+      tsv_file: combined_tsv
     out: [merged_results_rds]
 
 $namespaces:

@@ -1,12 +1,10 @@
 # Author: Sangeeta Shukla and Alvin Farrel
-# Date: June 2021
 # Function: 
 # 1. summarize Differential expression from RNASeq data
 # 2. tabulate corresponding P-value
 
 # This was compares 1 cancer group (Combined or Cohort specific) with one GTEx tissue type. 
 # The input arguments are the indices of the comparison of the cancer groups and gtex sub tissues to be compared. 
-# In v6, there are 107 cancer groups vs 54 GTEx tissues
 # Read arguments from terminal
 
 
@@ -35,6 +33,10 @@ option_list <- list(
               help = "UBERON codes file (.tsv)"),
   make_option(c("-o", "--outdir"), type = "character",
               help = "Output Directory"),
+  make_option(c("-y", "--ind_allcohorts"), type = "character",
+              help = "Independent specimens for all cohorts"),
+  make_option(c("-z", "--ind_eachcohort"), type = "character",
+              help = "Independent specimens for each cohort"),
   make_option(c("-i", "--HIST_i"), type = "numeric", default = as.integer(1),
               help = "HIST_index"),
   make_option(c("-g", "--GTEX_i"), type = "numeric", default = as.integer(1),
@@ -48,8 +50,6 @@ opt <- parse_args(OptionParser(option_list = option_list))
 
 #args <- commandArgs(trailingOnly = TRUE)
 
-#HIST_index <- args[1]
-#GTEX_index <- args[2]
 
 HIST_index <- opt$HIST_i
 GTEX_index <- opt$GTEX_i
@@ -62,34 +62,28 @@ system(cmd_mkdir)
 
 
 #Load histology file
-#hist <- read.delim("Input_Data/histologies_subset.tsv", header=TRUE, sep = '\t')
 hist <- read.delim(opt$hist_file, header=TRUE, sep = '\t')
 
 #Load expression counts data
-#countData <- readRDS("Input_Data/countData_subset.rds")
 countData <- readRDS(opt$counts_file)
 
 #Load expression TPM data
-#TPMData <- readRDS("../../data/gene-expression-rsem-tpm-collapsed.rds")
 TPMData <- readRDS(opt$tpm_file)
 
 #Load EFO-MONDO map file
-#EFO_MONDO <- read.delim("../../data/efo-mondo-map.tsv", header =T, stringsAsFactors = FALSE)
 EFO_MONDO <- read.delim(opt$efo_mondo_file, header =T, stringsAsFactors = FALSE)
 
 #Load UBERON code map file for GTEx subgroup
-#GTEx_SubGroup_UBERON <- read.delim("../../data/uberon-map-gtex-subgroup.tsv", header =T, stringsAsFactors = FALSE)
 GTEx_SubGroup_UBERON <- read.delim(opt$gtex_subgroup_uberon, header =T, stringsAsFactors = FALSE)
 
 #Load gene symbol-gene ID RMTL file
-#ENSG_Hugo <- read.delim("../../data/ensg-hugo-rmtl-mapping.tsv", header =T)
 ENSG_Hugo <- read.delim(opt$ensg_hugo_file, header =T)
 
 #Load list of independent specimens for across all cohorts
-ind_spec_all_cohorts <- read.delim("data/independent-specimens.rnaseq.primary.tsv")
+ind_spec_all_cohorts <- read.delim(opt$ind_allcohorts, header=T,stringsAsFactors = FALSE)
 
 #Load list of independent specimens for each cohort
-ind_spec_each_cohort <- read.delim("data/independent-specimens.rnaseq.primary.eachcohort.tsv")
+ind_spec_each_cohort <- read.delim(opt$ind_eachcohort, header=T, stringsAsFactors = FALSE)
 
 Create_josnl <- function(DF){
   DF_jsonl = suppressWarnings(
@@ -318,14 +312,12 @@ print(GTEX_Hits)
 Final_Data_Table <- data.frame(
   datasourceId = paste(gsub("all-cohorts","all_cohorts",strsplit(histology_filtered[I],split="_")[[1]][1]),"vs_GTEx",sep="_"),
   datatypeId = "rna_expression",
-  #cohort = paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
-  #               ,collapse=";",sep=";"),
   cohort = ifelse(strsplit(histology_filtered[I],split="_")[[1]][1]=="all-cohorts","All Cohorts",
                   paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
                         ,collapse=";",sep=";")),
   Gene_symbol = rownames(Result),
   Gene_Ensembl_ID = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
-  PMTL = ENSG_Hugo$rmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  PMTL = ENSG_Hugo$pmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
   EFO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
                , EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
   MONDO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
@@ -350,14 +342,7 @@ FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(hist
 
 
 
-#write.table(Final_Data_Table,file=paste(outdir,"/Results_",FILENAME,".tsv",sep=""),sep="\t",col.names = T, row.names = F,quote = F)
 write.table(Final_Data_Table, file=paste(outdir,"/Results_",FILENAME,".tsv",sep=""), sep="\t", col.names = T, row.names = F,quote = F)
 result_jsonl = Create_josnl(Final_Data_Table)
 write(result_jsonl,paste(outdir,"/Results_",FILENAME,".jsonl",sep=""))
-
-
-
-#write.table(hist.filtered_final, file=paste(outdir,"/histologies_subset.tsv",sep=""), sep="\t", col.names = T, row.names = F,quote = F)
-#saveRDS(countData_filtered,file=paste(outdir,"/countData_subset.rds",sep=""))
-
 

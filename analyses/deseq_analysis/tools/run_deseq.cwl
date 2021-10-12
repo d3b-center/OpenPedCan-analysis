@@ -29,6 +29,8 @@ arguments:
      --ensg_hugo_file $(inputs.hugo_file.path)
      --efo_mondo_file $(inputs.mondo_file.path)
      --gtex_subgroup_uberon $(inputs.uberon_file.path)
+     --indspecall_file $(inputs.indspecall_file.path)
+     --indspeceach_file $(inputs.indspeceach_file.path)
      --HIST_i $(inputs.histology_index)
      --GTEX_i $(inputs.gtex_index)
      -o ./$(inputs.out_dir)
@@ -40,6 +42,8 @@ inputs:
   hugo_file: {type: File, doc: "ENSG Hugo codes tsv file"}
   mondo_file: {type: File, doc: "MONDO and EFO codes tsv file"}
   uberon_file: {type: File, doc: "UBERON codes tsv file"}
+  indspecall_file: {type: File, doc: "Independent specimens for all cohorts file"}
+  indspeceach_file: {type: File, doc: "Independent specimens for each cohort file"}
   histology_index: {type: int, doc: "Index of the histology group to use"}
   gtex_index: {type: int, doc: "Index of the GTEX group to use"}
   out_dir: {type: string, doc: "Name of the output directory"}

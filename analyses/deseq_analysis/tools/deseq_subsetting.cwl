@@ -10,9 +10,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: InitialWorkDirRequirement
     listing:
-      - entryname: run-Generate_Hist_GTEx_indices_file.R
+      - entryname: run-generate-Hist-GTEx-indices-file.R
         entry:
-          $include: ../run-Generate_Hist_GTEx_indices_file.R
+          $include: ../run-generate-Hist-GTEx-indices-file.R
 
 baseCommand: [Rscript]
 
@@ -20,11 +20,13 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     run-Generate_Hist_GTEx_indices_file.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path)
+     run-generate-Hist-GTEx-indices-file.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path) --indspecall $(inputs.indspecall.path) --indspeceach $(inputs.indspeceach.path)
 
 inputs:
   count_file: {type: File, doc: "RSEM count rds file"}
   histology_file: {type: File, doc: "Histology file, should be the base histology file"}
+  indspecall_file: {type: File, doc: "Independent specimens for all for cohorts file"}
+  indspeceach_file: {type: File, doc: "Independenct specimens for each cohort file"}
 
 outputs:
   subsetted_histology:

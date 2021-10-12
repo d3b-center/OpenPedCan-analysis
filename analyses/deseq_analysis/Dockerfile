@@ -13,8 +13,9 @@ ADD ./analysis/scripts/install_bioc.R install_bioc.R
 #ADD ./data/uberon-map-gtex-subgroup.tsv uberon-map-gtex-subgroup.tsv
 #ADD ./data/ensg-hugo-rmtl-mapping.tsv ensg-hugo-rmtl-mapping.tsv
 
-ADD ./analysis/run-Generate_Hist_GTEx_indices_file.R run-Generate_Hist_GTEx_indices_file.R
+ADD ./analysis/run-generate-Hist-GTEx-indices-file.R run-generate-Hist-GTEx-indices-file.R
 ADD ./analysis/run-deseq-analysis.R run-deseq-analysis.R 
+ADD ./analysis/convert_tsv_to_rds.R convert_tsv_to_rds.R
 ADD Dockerfile Dockerfile
 
 
