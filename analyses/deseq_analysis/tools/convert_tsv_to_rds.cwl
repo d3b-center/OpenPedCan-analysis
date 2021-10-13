@@ -20,7 +20,10 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     convert_tsv_to_rds..R
+     Rscript convert_tsv_to_rds.R --tsv_file $(inputs.combined_tsv.path)
+
+inputs:
+  combined_tsv: {type: 'File', doc: "Merged results from all comparisons"}
 
 outputs:
   merged_rds:

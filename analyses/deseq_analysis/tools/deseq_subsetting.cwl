@@ -20,13 +20,13 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     run-generate-Hist-GTEx-indices-file.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path) --indspecall $(inputs.indspecall.path) --indspeceach $(inputs.indspeceach.path)
+     run-generate-Hist-GTEx-indices-file.R --count $(inputs.count_file.path) --hist $(inputs.histology_file.path) --ind_allcohorts $(inputs.ind_allcohorts.path) --ind_eachcohort $(inputs.ind_eachcohort.path)
 
 inputs:
   count_file: {type: File, doc: "RSEM count rds file"}
   histology_file: {type: File, doc: "Histology file, should be the base histology file"}
-  indspecall_file: {type: File, doc: "Independent specimens for all for cohorts file"}
-  indspeceach_file: {type: File, doc: "Independenct specimens for each cohort file"}
+  ind_allcohorts: {type: File, doc: "Independent specimens for all for cohorts file"}
+  ind_eachcohort: {type: File, doc: "Independenct specimens for each cohort file"}
 
 outputs:
   subsetted_histology:
