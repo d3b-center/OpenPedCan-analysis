@@ -34,7 +34,7 @@ Issues addressed:
 
 Subset `snv-consensus-plus-hotspots.maf.tsv.gz` to keep only samples with `sample_type == 'Tumor'` and non-NA `cancer_group` and `cohort` values in `histologies.tsv`.
 
-Subset `histologies.tsv`, `../../data/independent-specimens.wgswxspanel.primary.tsv` and `../../data/independent-specimens.wgswxspanel.relapse.tsv` for `all cohorts` independent samples, and ../../data/independent-specimens.wgswxspanel.primary.eachcohort.tsv` and `../../data/independent-specimens.wgswxspanel.relapse.eachcohort.tsv` for each cohort independent samples to keep only samples that are in the `snv-consensus-plus-hotspots.maf.tsv.gz` subset.
+Subset `histologies.tsv`, `../../data/independent-specimens.wgswxspanel.primary.prefer.wxs.tsv` and `../../data/independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv` for `all cohorts` independent samples, and ../../data/independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv` and `../../data/independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv` for each cohort independent samples to keep only samples that are in the `snv-consensus-plus-hotspots.maf.tsv.gz` subset.
 
 #### Subset non-synonymous variants
 
@@ -101,7 +101,7 @@ Add the following annotation columns to variant-level and gene-level tables usin
 - `Protein_RefSeq_ID`
 - `EFO`
 - `MONDO`
-- `RMTL`
+- `PMTL`
 - `OncoKB_cancer_gene`
 - `OncoKB_oncogene_TSG`
 
@@ -159,10 +159,10 @@ Input:
 
 - `../../data/histologies.tsv`
 - `../../data/snv-consensus-plus-hotspots.maf.tsv.gz`
-- `../../data/independent-specimens.wgswxspanel.primary.tsv`
-- `../../data/independent-specimens.wgswxspanel.relapse.tsv`
-- `../../data/independent-specimens.wgswxspanel.primary.eachcohort.tsv`
-- `../../data/independent-specimens.wgswxspanel.relapse.eachcohort.tsv`
+- `../../data/independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
+- `../../data/independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
+- `../../data/independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
+- `../../data/independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv`
 - `input/ped_opentargets_2021_pedcbio_case_set_ids.json`
 
 Output:

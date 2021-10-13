@@ -647,28 +647,28 @@ stopifnot(identical(sum(is.na(maf_df$Tumor_Sample_Barcode)), as.integer(0)))
 # primary all cohorts independent sample data frame
 primary_ac_indp_sdf <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.wgswxspanel.primary.tsv'),
+            'independent-specimens.wgswxspanel.primary.prefer.wxs.tsv'),
   col_types = cols(
     .default = col_guess()))
 
 # primary each cohorts independent sample data frame
 primary_ec_indp_sdf <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.wgswxspanel.primary.eachcohort.tsv'),
+            'independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv'),
   col_types = cols(
     .default = col_guess()))
 
 # relapse all cohorts independent sample data frame
 relapse_ac_indp_sdf <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.wgswxspanel.relapse.tsv'),
+            'independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv'),
   col_types = cols(
     .default = col_guess()))
 
 # relapse each cohorts independent sample data frame
 relapse_ec_indp_sdf <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.wgswxspanel.relapse.eachcohort.tsv'),
+            'independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv'),
   col_types = cols(
     .default = col_guess()))
 
@@ -858,14 +858,14 @@ var_level_mut_freq_tbl <- annotate_long_format_table(
   var_level_mut_freq_tbl,
   columns_to_add = c(
     'EFO', 'MONDO',
-    'RMTL', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
+    'PMTL', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
     'Gene_full_name', 'Protein_RefSeq_ID'))
 
 gene_level_mut_freq_tbl <- annotate_long_format_table(
   gene_level_mut_freq_tbl,
   columns_to_add = c(
     'EFO', 'MONDO',
-    'RMTL', 'Gene_type', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
+    'PMTL', 'Gene_type', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
     'Gene_full_name', 'Protein_RefSeq_ID'))
 
 
@@ -876,7 +876,7 @@ stopifnot(identical(sum(is.na(var_level_mut_freq_tbl)), as.integer(0)))
 stopifnot(identical(sum(is.na(gene_level_mut_freq_tbl)), as.integer(0)))
 # reorder for output
 var_level_mut_freq_tbl <- var_level_mut_freq_tbl %>%
-  select(Gene_symbol, RMTL, Dataset, Disease, EFO, MONDO, Variant_ID, dbSNP_ID,
+  select(Gene_symbol, PMTL, Dataset, Disease, EFO, MONDO, Variant_ID, dbSNP_ID,
          VEP_impact, SIFT_impact, PolyPhen_impact, Variant_classification,
          Variant_type, Gene_full_name, Protein_RefSeq_ID,
          Gene_Ensembl_ID, Protein_Ensembl_ID, Protein_change,
@@ -891,7 +891,9 @@ var_level_mut_freq_tbl <- var_level_mut_freq_tbl %>%
          targetFromSourceId = Gene_Ensembl_ID,
          diseaseFromSourceMappedId = EFO) %>%
   mutate(datatypeId = "somatic_mutation",
-         datasourceId = "chop_variant_level_snv")
+         datasourceId = "chop_variant_level_snv") %>%
+  mutate(Dataset = replace(Dataset,
+         Dataset == "all_cohorts", "All Cohorts"))
 
 # generate UUID for each row of the table
 uuid_string <- uuid(nrow(var_level_mut_freq_tbl))
@@ -903,7 +905,7 @@ var_level_mut_freq_tbl <- var_level_mut_freq_tbl %>%
   dplyr::mutate(chop_uuid = uuid_string)
 
 gene_level_mut_freq_tbl <- gene_level_mut_freq_tbl %>%
-  select(Gene_symbol, RMTL, Dataset, Disease, EFO, MONDO,
+  select(Gene_symbol, PMTL, Dataset, Disease, EFO, MONDO,
          Gene_full_name, Gene_type, Protein_RefSeq_ID,
          Gene_Ensembl_ID, Protein_Ensembl_ID,
          Total_mutations_Over_Patients_in_dataset,
@@ -917,7 +919,9 @@ gene_level_mut_freq_tbl <- gene_level_mut_freq_tbl %>%
   rename(targetFromSourceId = Gene_Ensembl_ID,
          diseaseFromSourceMappedId = EFO) %>%
   mutate(datatypeId = "somatic_mutation",
-         datasourceId = "chop_gene_level_snv")
+         datasourceId = "chop_gene_level_snv") %>%
+  mutate(Dataset = replace(Dataset,
+         Dataset == "all_cohorts", "All Cohorts"))
 
 # generate UUID for each row of the table
 uuid_string_2 <- uuid(nrow(gene_level_mut_freq_tbl))
