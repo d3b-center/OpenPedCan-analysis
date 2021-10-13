@@ -98,18 +98,19 @@ relapse_indp_sdf_each <- read_tsv(relapse_independence_each,
                                  col_types = cols(
                                    .default = col_guess()))
 
-# read ENSEMBL, Hugo Symbol and RMTL mapping file
-ensg_hugo_rmtl_df <- read_tsv(file.path(data_dir,'ensg-hugo-rmtl-mapping.tsv'),
+# read ENSEMBL, Hugo Symbol and PMTL mapping file
+ensg_hugo_pmtl_df <- read_tsv(file.path(data_dir,'ensg-hugo-pmtl-mapping.tsv'),
                               col_types = cols(.default = col_guess())) %>%
+  filter(ensg_id != "Symbol_Not_Found") %>% 
   distinct()
 # assert all ensg_ids and gene_symbols are not NA
-stopifnot(identical(sum(is.na(ensg_hugo_rmtl_df$ensg_id)), as.integer(0)))
-stopifnot(identical(sum(is.na(ensg_hugo_rmtl_df$gene_symbol)), as.integer(0)))
+stopifnot(identical(sum(is.na(ensg_hugo_pmtl_df$ensg_id)), as.integer(0)))
+stopifnot(identical(sum(is.na(ensg_hugo_pmtl_df$gene_symbol)), as.integer(0)))
 # assert all ensg_id are unique
 
 # ENSG IDs are assigned to multiple gene symbols in d3b-center/D3b-codes#48. The annotator does not map ENSG ID to gene symbols.
-# stopifnot(identical(length(unique(ensg_hugo_rmtl_df$ensg_id)),
-#                    nrow(ensg_hugo_rmtl_df)))
+# stopifnot(identical(length(unique(ensg_hugo_pmtl_df$ensg_id)),
+#                    nrow(ensg_hugo_pmtl_df)))
 
 
 # Subset independent samples in histology table --------------------------------
@@ -278,23 +279,23 @@ m_fus_freq_tbl <- m_fus_freq_tbl %>%
 
 ### Adding annotation ###
 
-# asert all rmtl NAs have version NAs, vice versa
-stopifnot(identical(is.na(ensg_hugo_rmtl_df$rmtl),
-                    is.na(ensg_hugo_rmtl_df$version)))
+# asert all pmtl NAs have version NAs, vice versa
+stopifnot(identical(is.na(ensg_hugo_pmtl_df$pmtl),
+                    is.na(ensg_hugo_pmtl_df$version)))
 
-ann_ensg_hugo_rmtl_df <- ensg_hugo_rmtl_df %>%
+ann_ensg_hugo_pmtl_df <- ensg_hugo_pmtl_df %>%
   # select ensg_id and gene_symbol only
   select(ensg_id, gene_symbol) %>%
   dplyr::rename(Gene_Ensembl_ID = ensg_id,
          Gene_Symbol=gene_symbol) 
 
 m_fus_freq_tbl <- m_fus_freq_tbl %>%
-  left_join(ann_ensg_hugo_rmtl_df, by = "Gene_Symbol") %>%
+  left_join(ann_ensg_hugo_pmtl_df, by = "Gene_Symbol") %>%
   replace_na(list(Gene_Ensembl_ID = ''))
 stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 
-annotation_columns_to_add <- c("Gene_full_name", "MONDO", "RMTL", "EFO")
+annotation_columns_to_add <- c("Gene_full_name", "MONDO", "PMTL", "EFO")
 # Assert all columns to be added are not already present in the
 # colnames(m_fus_freq_tbl)
 stopifnot(
@@ -308,7 +309,7 @@ stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 # write to tsv
 annotated_m_fus_freq_tbl <- annotated_m_fus_freq_tbl %>%
-  select(keep_cols, Gene_Ensembl_ID, Disease, MONDO, RMTL, EFO,Dataset,
+  select(keep_cols, Gene_Ensembl_ID, Disease, MONDO, PMTL, EFO,Dataset,
          Total_alterations_Over_Patients_in_dataset,
          Frequency_in_overall_dataset,
          Total_primary_tumors_mutated_Over_Primary_tumors_in_dataset,
@@ -320,7 +321,9 @@ annotated_m_fus_freq_tbl <- annotated_m_fus_freq_tbl %>%
                 targetFromSourceId = Gene_Ensembl_ID,
                 diseaseFromSourceMappedId = EFO) %>% 
   dplyr::mutate(datatypeId = "somatic_mutation",
-                datasourceId = data_source_id) 
+                datasourceId = data_source_id) %>% 
+  dplyr::mutate(Dataset = replace(Dataset,
+         Dataset == "all_cohorts", "All Cohorts"))
 
 # generate UUID for each row of the table
 uuid_string <- uuid(nrow(annotated_m_fus_freq_tbl))

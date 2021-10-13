@@ -45,18 +45,17 @@ rna_expression_file="${data_path}/gene-expression-rsem-tpm-collapsed.rds"
 normal_expression_adrenal_gland="${references_path}/gtex_adrenal_gland_TPM_hg38.rds"
 normal_expression_brain="${references_path}/gtex_brain_TPM_hg38.rds"
 
+# independent sample list
+independent_RNA_primary="${data_path}/independent-specimens.rnaseq.primary.tsv"
+independent_RNA_relapse="${data_path}/independent-specimens.rnaseq.relapse.tsv"
+   
 # metadata files
 if [[ RUN_FOR_SUBTYPING -eq "0" ]]
 then
    histologies_file="${data_path}/histologies.tsv" 
-   independent_RNA_primary="../independent-samples/results/independent-specimens.rnaseq.primary.tsv"
-   independent_RNA_relapse="../independent-samples/results/independent-specimens.rnaseq.relapse.tsv"
 else 
    histologies_file="${data_path}/histologies-base.tsv"  
-   independent_RNA_primary="../independent-samples/results/independent-specimens.rnaseq.primary.tsv"
-   independent_RNA_relapse="../independent-samples/results/independent-specimens.rnaseq.relapse.tsv"
 fi
-
 
 # data release files to use for recurrent fusion/fused genes detection
 

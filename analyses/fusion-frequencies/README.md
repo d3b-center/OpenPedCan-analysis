@@ -73,7 +73,7 @@ Three additional columns added:
 - `datasourceId` column with `chop_putative_oncogene_fusion` in each row
 
 The combined table was written out as `putative-oncogene-fusion-freq.jsonl.gz`.
-Table fields for this table include: `FusionName`, `Fusion_Type`, `Gene_symbol`, `Gene_Position`, `Fusion_anno`, `BreakpointLocation`,`annots`, `Kinase_domain_retained_Gene1A`, `Kinase_domain_retained_Gene1B`, `Reciprocal_exists_either_gene_kinase`, `Gene1A_anno`, `Gene1B_anno`, `Gene2A_anno`, `Gene2B_anno`, `targetFromSourceId`, `Disease`, `MONDO`, `RMTL`, `diseaseFromSourceMappedId`, `Dataset`, `Total_alterations_Over_Patients_in_dataset`, `Frequency_in_overall_dataset`, `Total_primary_tumors_mutated_Over_Primary_tumors_in_dataset`, `Frequency_in_primary_tumors`, `Total_relapse_tumors_mutated_Over_Relapse_tumors_in_dataset`, `Frequency_in_relapse_tumors`, `chop_uuid`, `datatypeId` and `datasourceId`.
+Table fields for this table include: `FusionName`, `Fusion_Type`, `Gene_symbol`, `Gene_Position`, `Fusion_anno`, `BreakpointLocation`,`annots`, `Kinase_domain_retained_Gene1A`, `Kinase_domain_retained_Gene1B`, `Reciprocal_exists_either_gene_kinase`, `Gene1A_anno`, `Gene1B_anno`, `Gene2A_anno`, `Gene2B_anno`, `targetFromSourceId`, `Disease`, `MONDO`, `PMTL`, `diseaseFromSourceMappedId`, `Dataset`, `Total_alterations_Over_Patients_in_dataset`, `Frequency_in_overall_dataset`, `Total_primary_tumors_mutated_Over_Primary_tumors_in_dataset`, `Frequency_in_primary_tumors`, `Total_relapse_tumors_mutated_Over_Relapse_tumors_in_dataset`, `Frequency_in_relapse_tumors`, `chop_uuid`, `datatypeId` and `datasourceId`.
 
 Table two - `putative-oncogene-fused-gene-freq.jsonl.gz`
 The overall calculation logic is identical to table one. 
@@ -88,11 +88,11 @@ Three additional columns added:
 
 the combined table was written out as `putative-oncogene-fused-gene-freq.jsonl.gz`.
 Table fields for this table include:
-`Gene_symbol`,`targetFromSourceId`, `Disease`, `MONDO`, `RMTL`, `diseaseFromSourceMappedId`, `Dataset`, `Total_alterations_Over_Patients_in_dataset`, `Frequency_in_overall_dataset`, `Total_primary_tumors_mutated_Over_Primary_tumors_in_dataset`, `Frequency_in_primary_tumors`, `Total_relapse_tumors_mutated_Over_Relapse_tumors_in_dataset`, `Frequency_in_relapse_tumors`, `chop_uuid`, `datatypeId` and `datasourceId`.
+`Gene_symbol`,`targetFromSourceId`, `Disease`, `MONDO`, `PMTL`, `diseaseFromSourceMappedId`, `Dataset`, `Total_alterations_Over_Patients_in_dataset`, `Frequency_in_overall_dataset`, `Total_primary_tumors_mutated_Over_Primary_tumors_in_dataset`, `Frequency_in_primary_tumors`, `Total_relapse_tumors_mutated_Over_Relapse_tumors_in_dataset`, `Frequency_in_relapse_tumors`, `chop_uuid`, `datatypeId` and `datasourceId`.
 
 #### Additional annotation
 
-[long-format-table-utils](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/long-format-table-utils) provides the annotation for columns  EFO, MONDO, RMTL and Gene_full_name.
+[long-format-table-utils](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/long-format-table-utils) provides the annotation for columns  EFO, MONDO, PMTL and Gene_full_name.
 
 ### Analysis scripts
 

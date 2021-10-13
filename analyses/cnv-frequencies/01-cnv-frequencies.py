@@ -193,15 +193,15 @@ def get_annotations(cnv_frequency_df, CNV_FILE):
      cnv_frequency_df.to_csv(cnv_freq_tsv, sep="\t", index=False, encoding="utf-8")
 
      # annotate full gene names, OncoKB categories, EFO and MONDO disease accessions, 
-     # and Relevant Molecular Target (RMTL) from the long-format-table-utils analysis module
+     # and Relevant Molecular Target (PMTL) from the long-format-table-utils analysis module
      log_file = "{}/annotator.log".format(results_dir)
      cnv_annot_freq_tsv = "{}/gene-level-cnv-consensus-annotated-mut-freq.tsv".format(results_dir)
      with open(log_file, "w") as log:
-          subprocess.run(["Rscript", "--vanilla", "analyses/long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,RMTL,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
+          subprocess.run(["Rscript", "--vanilla", "analyses/long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,PMTL,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
 
      # columns changes proposed by the FNL:
      cnv_annot_freq_df = pd.read_csv(cnv_annot_freq_tsv, sep="\t", na_filter=False, dtype=str)
-     #1 rename "Gene_Ensembl_Id" to "targetFromSourceId" and "EFO" to "diseaseFromSourceMappedId"
+     #1 rename "Gene_Ensembl_Id" to "targetFromSourceId", "EFO" to "diseaseFromSourceMappedId"
      cnv_annot_freq_df.rename(columns={"Gene_Ensembl_ID": "targetFromSourceId", "EFO": "diseaseFromSourceMappedId"}, inplace=True)
      #2 add "datatypeId" column  with value for every row set to "somatic_mutation"
      cnv_annot_freq_df["datatypeId"] = "somatic_mutation"
@@ -209,6 +209,8 @@ def get_annotations(cnv_frequency_df, CNV_FILE):
      cnv_annot_freq_df["chop_uuid"] = [uuid.uuid4() for x in range(len(cnv_annot_freq_df))]
      #4 add "datasourceId" column with value for each row set to "chop_gene_level_cnv"
      cnv_annot_freq_df["datasourceId"] = "chop_gene_level_cnv"
+     # rename "all_cohorts" entry for "Dataset" column to "All Cohorts" to improve the view in the final PedOT table to the end user
+     cnv_annot_freq_df["Dataset"].replace({"all_cohorts": "All Cohorts"}, inplace=True)
      cnv_annot_freq_df.to_csv(cnv_annot_freq_tsv, sep="\t", index=False, encoding="utf-8")
 
      # transform annotated CNV frequencies results from TSV to JSONL file
