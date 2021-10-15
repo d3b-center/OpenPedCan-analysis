@@ -72,13 +72,14 @@ source(
 ```
 
 
-
 ### Read in data
 
 ```{r}
 # Read in expression files. Note: only the relevant stranded expression score files
 # are used here as the polyA expression score files do not retain information
 # regarding low grade glioma samples.
+
+# for additional samples, this part can be modified to include all RNA library types later
 stranded_tsne_aligned_scores <- read_tsv(
   file.path(data_dir,
             "rsem_stranded_log_tsne_scores_aligned.tsv")) %>%
@@ -101,9 +102,10 @@ lgat_subset_dir <- file.path("..",
 
 # Read in metadata
 metadata <-
-  readr::read_tsv(file.path("..","..","data", "pbta-histologies-base.tsv"), 
-                  guess_max = 10000) %>%
-  dplyr::filter(sample_type == "Tumor") 
+  readr::read_tsv(file.path("..","..","data", "histologies-base.tsv"), 
+                  guess_max = 100000) %>%
+  dplyr::filter(sample_type == "Tumor") %>% 
+  dplyr::filter(cohort == "PBTA")
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
 path_dx_list_lgat <- jsonlite::fromJSON(

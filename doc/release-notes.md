@@ -1,6 +1,127 @@
 # release notes
 
 ## current release
+### release-v10
+- release date: 2021-10-11
+- status: available
+- overview of changes:
+  - This particular releae added 438 tumor/nomral pairs of TARGET ALL WXS samples as well as a total of 144 samples (including WGS, WXS, RNA-Seq for both tumor and normal) from PNOC clinical trials. 
+  - Usable TCGA RNA-Seq data from diseaseXpress with GDC clinical information are added to (n=10414) were added to the release
+  - `cnv-consensus-gistic.zip` from `run-gistic` module was added to the release 
+  - `ensg-hugo-rmtl-mapping.tsv` is replaced with `ensg-hugo-pmtl-mapping.tsv` after we switch from RMTL v1.0 to PMTL v1.1
+  - All additional changes as well as details about the above 3 changes are as followed.
+
+- Update histologies file:
+    - Add 120 samples from PNOC_dataset_2 (40 WXS tumor, 40 WXS normal and 40 RNA-Seq from 40 patients) and additional 24 PNOC_dataset_1 tumor WGS from 18 samples to release
+       - Details see [ticket 174](https://github.com/PediatricOpenTargets/ticket-tracker/issues/174)
+       - After `tp53-nf1-scores` and `run-gistic` modules were ran with the base histology file, these samples then ran through `molecular-subtyping-HGG`, `molecular-subtyping-pathology` and `molecular-subtyping-integrate` modules to get their subtype (details also captured below)
+        - See [ticket 210](https://github.com/PediatricOpenTargets/ticket-tracker/issues/210) for details
+    - Add 438 tumor/normal pairs of TARGET ALL WXS samples
+       - Details see [ticket 158](https://github.com/PediatricOpenTargets/ticket-tracker/issues/158)
+    - Change "Known" to "Unknown" in the histologies file since it was mis-coded before
+       - Details see [ticket 192](https://github.com/PediatricOpenTargets/ticket-tracker/issues/192)
+    - Fixed TCGA and GMKF/TARGET OS_days in histology file - see [ticket 199](https://github.com/PediatricOpenTargets/ticket-tracker/issues/199)
+       - For TCGA samples, `OS_days` column is now populated this way: `days_to_death` column is preferentially used for `OS_days`; when it is `NA`,  `days_to_last_follow_up` is used as long as the value is not negative
+       - For TARGET samples that are also present in GMKF cohort, `OS_days` in TARGET cohort are replaced with `OS_days` in GMKF cohort since GMKF has more up-to-date records
+    - Remove TCGA samples in histology file that is not in the expression matrix or does not have clinical information from GDC portal 
+       -  Details see [ticket 202](https://github.com/PediatricOpenTargets/ticket-tracker/issues/202)
+    - Additional changes to TCGA histology file - `RNA-library` of `poly-A `and `sample_type` of `Tumor `(a total of 9551 samples) all have NA composition:
+       - For these samples, `composition` is modified to `Solid Tissue` as long as `primary_site` is not NA or `Bone Marrow` 
+    - Additionally, there are `normal` samples in TARGET cohort with `broad_histology`, `short_histology`, `tumor_descriptor` and `cancer_group` that are not `NA`
+       - For those samples, these fields are changed to `NA` 
+
+- Use PMTL v1.1 instead of RMTL v1.0 for gene annotation - `ensg-hugo-pmtl-mapping.tsv` will now be the included in the data release and `ensg-hugo-rmtl-mapping.tsv` will not longer be used.
+       - Details see [ticket 206](https://github.com/PediatricOpenTargets/ticket-tracker/issues/206)
+       
+- Run molecular subtyping for new PNOC clinical trials samples 
+    - Use the merged `snv-consensus-plus-hotspots.maf.tsv.gz`, `consensus_wgs_plus_cnvkit_wxs.tsv.gz`, `gene-expression-rsem-tpm-collapsed.rds` and base histology file to re-run TP53-NF1 module 
+      - Details see [ticket 209](https://github.com/PediatricOpenTargets/ticket-tracker/issues/209)
+    - Use the new `cnv-consensus.seg.gz` and run through GISTIC module
+      - Details see [ticket 211](https://github.com/PediatricOpenTargets/ticket-tracker/issues/211)
+    - Run molecular subtyping for new PNOC sample through HGG, pathology and integrate modules 
+      - Details see [ticket 210](https://github.com/PediatricOpenTargets/ticket-tracker/issues/210)
+
+- Update `cnv-cnvkit.seg.gz`, `cnv-controlfreec.tsv.gz`,`consensus_wgs_plus_cnvkit_wxs.tsv.gz`,  `snv-consensus-plus-hotspots.maf.tsv.gz` and `sv-manta.tsv` to include 438 tumor/normal pairs of TARGET ALL WXS samples as well as a total of 144 samples (including WGS, WXS, RNA-Seq for both tumor and normal) from PNOC clinical samples.
+    - Details for merging PNOC clinical samples see [ticket 174](https://github.com/PediatricOpenTargets/ticket-tracker/issues/174)
+    - Details for merging 438 tumor/normal pairs of TARGET ALL WXS samples see [ticket 194](https://github.com/PediatricOpenTargets/ticket-tracker/issues/194)
+    
+- Update EFO-MONDO mapped file to remove trailing white space that is causing error
+    - Details for merging 438 tumor/nomral pairs of TARGET ALL WXS samples see [ticket 208](https://github.com/PediatricOpenTargets/ticket-tracker/issues/208)
+    
+- Update `gene-counts-rsem-expected_count-collapsed.rds`, `gene-expression-rsem-tpm-collapsed.rds`, `fusion-arriba.tsv.gz` and `fusion-starfusion.tsv.gz` with 40 RNA-Seq tumor sample from PNOC_dataset_2 results merged 
+    - Details see [ticket 203](https://github.com/PediatricOpenTargets/ticket-tracker/issues/203) 
+- Two TCGA gene expression files, `tcga-gene-counts-rsem-expected_count-collapsed.rds` and `tcga-gene-expression-rsem-tpm-collapsed.rds`, for all TCGA in diseaseXpress and has GDC clinical information (n=10414) were now include in data release 
+    - Details see [ticket 200](https://github.com/PediatricOpenTargets/ticket-tracker/issues/200) 
+
+- Update `consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz`, `consensus_wgs_plus_cnvkit_wxs_x_and_y.tsv.gz` and  `consensus_wgs_plus_cnvkit_wxs.tsv.gz` files with the following changes:
+    - When annotating CNV status, for WXS samples, if WGS was performed on the same sample, we use the `germline_sex_estimate` from the WGS as the `germline_sex_estimate` for the WXS samples. Details see [ticket 177](https://github.com/PediatricOpenTargets/ticket-tracker/issues/177) 
+    - When matching WGS samples were not available, `gender` is used as `germline_sex_estimate. Details see [ticket 177](https://github.com/PediatricOpenTargets/ticket-tracker/issues/177)  
+    - Additionally, `focal-cn-file-preparation` module was re-run to include 438 tumor/normal pairs of TARGET ALL WXS samples as well as a total of 144 samples (including WGS, WXS, RNA-Seq for both tumor and normal) from PNOC clinical samples. Details see [ticket 196](https://github.com/PediatricOpenTargets/ticket-tracker/issues/196)  
+
+- `cnv-consensus-gistic.zip` will now be added to data release after 24 WGS PNOC tumor samples were merged and the module re-run
+    - Details see [ticket 218](https://github.com/PediatricOpenTargets/ticket-tracker/issues/218) 
+
+- Independent sample lists were re-generated with the following changes:
+    - In addition to what are currently in data release, we added scripts to preferentially select WXS tumor when available and the following files will now be added to data release for use by `snv-frequencies` module - Details see [ticket 193](https://github.com/PediatricOpenTargets/ticket-tracker/issues/193) 
+      - `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
+      - `independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
+      - `independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv`
+      - `independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
+    - The independent lists are re-generated with 438 tumor/normal pairs of TARGET ALL WXS samples as well as a total of 144 samples (including WGS, WXS, RNA-Seq for both tumor and normal) from PNOC clinical samples added to the histology file
+      - Details see [ticket 215](https://github.com/PediatricOpenTargets/ticket-tracker/issues/215)  
+
+- Regenerate `fusion-putative-oncogenic.tsv` to include results from 40 RNA-Seq tumor samples from PNOC clinical trials
+      - Details see [ticket 214](https://github.com/PediatricOpenTargets/ticket-tracker/issues/214)  
+
+```
+v10
+├── WGS.hg38.lancet.300bp_padded.bed
+├── WGS.hg38.lancet.unpadded.bed
+├── WGS.hg38.mutect2.vardict.unpadded.bed
+├── WGS.hg38.strelka2.unpadded.bed
+├── WGS.hg38.vardict.100bp_padded.bed
+├── cnv-cnvkit.seg.gz
+├── cnv-controlfreec.tsv.gz
+├── cnv-consensus.seg.gz
+├── cnv-consensus-gistic.zip
+├── consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz
+├── consensus_wgs_plus_cnvkit_wxs_x_and_y.tsv.gz
+├── consensus_wgs_plus_cnvkit_wxs.tsv.gz
+├── data-files-description.md
+├── efo-mondo-map.tsv
+├── ensg-hugo-pmtl-mapping.tsv
+├── fusion-arriba.tsv.gz
+├── fusion-starfusion.tsv.gz
+├── fusion-putative-oncogenic.tsv
+├── gene-counts-rsem-expected_count-collapsed.rds
+├── gene-expression-rsem-tpm-collapsed.rds
+├── tcga-gene-counts-rsem-expected_count-collapsed.rds
+├── tcga-gene-expression-rsem-tpm-collapsed.rds
+├── histologies.tsv
+├── independent-specimens.wgswxspanel.primary.eachcohort.tsv
+├── independent-specimens.wgswxspanel.relapse.eachcohort.tsv
+├── independent-specimens.rnaseq.primary.eachcohort.tsv
+├── independent-specimens.rnaseq.relapse.eachcohort.tsv
+├── independent-specimens.wgswxspanel.primary.tsv
+├── independent-specimens.wgswxspanel.relapse.tsv
+├── independent-specimens.rnaseq.primary.tsv
+├── independent-specimens.rnaseq.relapse.tsv
+├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.primary.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
+├── intersect_cds_lancet_strelka_mutect_WGS.bed
+├── intersect_strelka_mutect_WGS.bed
+├── release-notes.md
+├── snv-consensus-plus-hotspots.maf.tsv.gz
+├── sv-manta.tsv.gz
+├── uberon-map-gtex-group.tsv
+└── uberon-map-gtex-subgroup.tsv
+
+```
+
+## archived release
+### release-v9
 - release date: 2021-09-01
 - status: available
 - overview of changes:
@@ -45,8 +166,8 @@ v9
 └── uberon-map-gtex-subgroup.tsv
 
 ```
-
 ## archived release
+### release-v8
 - release date: 2021-08-20
 - status: available
 - overview of changes:
@@ -132,6 +253,8 @@ v8
 
 ```
 
+## archived release
+### release-v7
 - release date: 2021-07-23
 - status: available
 - changes:
@@ -159,6 +282,7 @@ v8
       - gene-expression-rsem-tpm-collapsed.rds
 
 ## archived release
+### release-v6
 - release date: 2021-06-29
 - status: available
 - changes:
@@ -180,6 +304,7 @@ v8
 
 
 ## archived release
+### release-v5
 - release date: 2021-06-17
 - status: available
 - changes:
@@ -216,8 +341,8 @@ v5
 
 ```
 
-
 ## archived release
+### release-v4
 - release date: 2021-06-01
 - status: available
 - changes:
@@ -255,9 +380,8 @@ v4
 
 ```
 
-
-
 ## archived release
+### release-v3
 - release date: 2021-05-21
 - status: available
 - changes:

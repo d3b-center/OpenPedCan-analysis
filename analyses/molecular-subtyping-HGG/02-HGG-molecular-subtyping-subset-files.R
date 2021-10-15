@@ -8,7 +8,7 @@
 # This script is intended to be run via the command line from the top directory
 # of the repository as follows:
 #
-# Rscript 'analyses/molecular-subtyping-ATRT/02-HGG-molecular-subtyping-subset-files.R'
+# Rscript 'analyses/molecular-subtyping-HGG/02-HGG-molecular-subtyping-subset-files.R'
 
 
 #### Set Up --------------------------------------------------------------------
@@ -34,8 +34,9 @@ if (!dir.exists(subset_dir)) {
 
 # Read in metadata
 metadata <-
-  read_tsv(file.path(root_dir, "data", "pbta-histologies-base.tsv"),
-           guess_max = 10000)
+  read_tsv(file.path(root_dir, "data", "histologies-base.tsv"),
+           guess_max = 100000) %>% 
+  dplyr::filter(cohort == "PBTA")
 
 # Select wanted columns in metadata for merging and assign to a new object
 select_metadata <- metadata %>%
@@ -44,67 +45,14 @@ select_metadata <- metadata %>%
          Kids_First_Biospecimen_ID)
 
 # Read in RNA expression data
-stranded_expression <-
+rna_expression <-
   read_rds(
     file.path(
       root_dir,
-      "analyses",
-      "collapse-rnaseq",
-      "results",
-      "pbta-gene-expression-rsem-fpkm-collapsed.stranded.rds"
+      "data",
+      "gene-expression-rsem-tpm-collapsed.rds"
     )
   )
-
-polya_expression <-
-  read_rds(
-    file.path(
-      root_dir,
-      "analyses",
-      "collapse-rnaseq",
-      "results",
-      "pbta-gene-expression-rsem-fpkm-collapsed.polya.rds"
-    )
-  )
-
-
-# Read in focal CN data
-## TODO: If annotated files get included in data download
-cn_df <- read_tsv(file.path(
-  root_dir,
-  "data",
-  "consensus_seg_annotated_cn_autosomes.tsv.gz"
-))
-
-# Read in fusion data
-fusion_df <- read_tsv(
-  file.path(root_dir, "analyses","fusion_filtering", "results", "pbta-fusion-putative-oncogenic.tsv"))
-
-# Read in GISTIC `broad_values_by_arm.txt` file
-unzip(file.path(root_dir, "data", "pbta-cnv-consensus-gistic.zip"),
-      exdir = file.path(root_dir, "data"),
-      files = file.path("pbta-cnv-consensus-gistic", "broad_values_by_arm.txt"))
-
-gistic_df <- data.table::fread(file.path(root_dir,
-                                         "data",
-                                         "pbta-cnv-consensus-gistic",
-                                         "broad_values_by_arm.txt"),
-                               data.table = FALSE)
-
-
-# Read in snv consensus mutation data
-snv_maf_df <-
-  data.table::fread(file.path(root_dir,
-                              "data",
-                              "pbta-snv-consensus-mutation.maf.tsv.gz"),
-                    select = c("Chromosome",
-                               "Start_Position",
-                               "End_Position",
-                               "Strand",
-                               "Variant_Classification",
-                               "Tumor_Sample_Barcode",
-                               "Hugo_Symbol",
-                               "HGVSp_Short"),
-                    data.table = FALSE)
 
 # Read in output file from `01-HGG-molecular-subtyping-defining-lesions.Rmd`
 hgg_lesions_df <- read_tsv(
@@ -193,16 +141,23 @@ filter_process_expression <- function(expression_mat) {
 }
 
 # Save matrix with all genes to file for downstream plotting
-filter_process_expression(stranded_expression) %>%
+filter_process_expression(rna_expression) %>%
   write_rds(file.path(subset_dir,
-                      "hgg_zscored_expression.stranded.RDS"))
-filter_process_expression(polya_expression) %>%
-  write_rds(file.path(subset_dir,
-                      "hgg_zscored_expression.polya.RDS"))
+                      "hgg_zscored_expression.RDS"))
+
+rm(rna_expression)
 
 #### Filter focal CN data ------------------------------------------------------
 
-# Filter focal CN to ATRT samples only
+# Read in focal CN data
+## TODO: If annotated files get included in data download
+cn_df <- read_tsv(file.path(
+  root_dir,
+  "data",
+  "consensus_wgs_plus_cnvkit_wxs.tsv.gz"
+))
+
+# Filter focal CN to HGG samples only
 cn_metadata <- cn_df %>%
   left_join(select_metadata,
             by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
@@ -219,8 +174,13 @@ cn_metadata <- cn_df %>%
 
 # Write to file
 write_tsv(cn_metadata, file.path(subset_dir, "hgg_focal_cn.tsv.gz"))
+rm(cn_df)
+rm(cn_metadata)
 
 #### Filter fusion data --------------------------------------------------------
+# Read in fusion data
+fusion_df <- read_tsv(
+  file.path(root_dir, "data","fusion-putative-oncogenic.tsv"))
 
 fusion_df <- fusion_df %>%
   select(Sample, FusionName) %>%
@@ -231,8 +191,20 @@ fusion_df <- fusion_df %>%
 
 # Write to file
 write_tsv(fusion_df, file.path(subset_dir, "hgg_fusion.tsv"))
+rm(fusion_df)
 
 #### Filter GISTIC data --------------------------------------------------------
+
+# Read in GISTIC `broad_values_by_arm.txt` file
+unzip(file.path(root_dir, "data", "cnv-consensus-gistic.zip"),
+      exdir = file.path(root_dir, "data"),
+      files = file.path("cnv-consensus-gistic", "broad_values_by_arm.txt"))
+
+gistic_df <- data.table::fread(file.path(root_dir,
+                                         "data",
+                                         "cnv-consensus-gistic",
+                                         "broad_values_by_arm.txt"),
+                               data.table = FALSE)
 
 gistic_df <- gistic_df %>%
   tibble::column_to_rownames("Chromosome Arm") %>%
@@ -257,12 +229,31 @@ write_tsv(gistic_df,
 
 #### Filter SNV consensus maf data ---------------------------------------------
 
-snv_maf_df <- snv_maf_df %>%
+# Read in snv consensus mutation data
+# select tumor sample barcode, gene, short protein annotation and variant classification
+keep_cols <- c("Chromosome",
+               "Start_Position",
+               "End_Position",
+               "Strand",
+               "Variant_Classification",
+               "IMPACT",
+               "Tumor_Sample_Barcode",
+               "Hugo_Symbol",
+               "HGVSp_Short",
+               "Exon_Number")
+
+snv_consensus_hotspot_maf <- data.table::fread(
+  file.path(root_dir, "data" , "snv-consensus-plus-hotspots.maf.tsv.gz"),
+  select = keep_cols,
+  data.table = FALSE) 
+
+snv_consensus_hotspot_maf <- snv_consensus_hotspot_maf %>%
   left_join(select_metadata,
             by = c("Tumor_Sample_Barcode" = "Kids_First_Biospecimen_ID")) %>%
   filter(Tumor_Sample_Barcode %in% hgg_metadata_df$Kids_First_Biospecimen_ID) %>%
   arrange(Kids_First_Participant_ID, sample_id)
 
 # Write to file
-write_tsv(snv_maf_df,
+write_tsv(snv_consensus_hotspot_maf,
           file.path(subset_dir, "hgg_snv_maf.tsv.gz"))
+rm(snv_consensus_hotspot_maf)

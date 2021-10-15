@@ -63,7 +63,7 @@ then
    collapsed_rna="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
 else
    # expression files for prediction
-   collapsed_rna="../collapse-rnaseq/results/gene-expression-rsem-tpm-collapsed.rds"
+   collapsed_rna="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
 fi
 
 
@@ -82,11 +82,7 @@ Rscript -e "rmarkdown::render('${analysis_dir}/04-tp53-sv-loss.Rmd',params=list(
 # gather TP53 altered status
 Rscript -e "rmarkdown::render('${analysis_dir}/05-tp53-altered-annotation.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 
-# evaluate classifer scores for stranded data
+# evaluate classifer scores
 python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp53_altered_status.tsv -f ${analysis_dir}/results/gene-expression-rsem-tpm-collapsed_classifier_scores.tsv -c ${histology_file} -r "PBTA"
 
-# Skip poly-A steps in CI
-if [ "$POLYA" -gt "0" ]; then
-  python3 ${analysis_dir}/06-evaluate-classifier.py -s ${analysis_dir}/results/tp53_altered_status.tsv -f ${analysis_dir}/results/gene-expression-rsem-tpm-collapsed_classifier_scores.tsv -c ${histology_file} -r "PBTA"
-fi
 

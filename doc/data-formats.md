@@ -29,7 +29,7 @@ Somatic Copy Number Variant (CNV) data are provided in a modified [SEG format](h
 
   * `cnv-cnvkit.seg.gz` is the the CNVkit SEG file. This file contains an additional column `copy.num` to denote copy number of each segment, derived from the CNS file output of the algorithm [described here](https://cnvkit.readthedocs.io/en/stable/fileformats.html).
   * `cnv-controlfreec.tsv.gz` is the ControlFreeC TSV file. It is a merge of `*_CNVs` files produced from the algorithm, and columns are [described here](http://boevalab.inf.ethz.ch/FREEC/tutorial.html#OUTPUT).
-
+  
 #### A Note on Ploidy
 
 The _copy number_ annotated in the CNVkit SEG file is annotated with respect to ploidy 2, however, the _status_ annotated in the ControlFreeC TSV file is annotated with respect to inferred ploidy from the algorithm, which is recorded in the `histologies.tsv` file. 
@@ -44,6 +44,7 @@ Gene expression are available in multiple forms in the following files:
 
 See [the data description file](data-description.md) for more information about the individual gene expression files.
 
+
 If your analysis requires de-duplicated gene symbols as row names, please use the collapsed matrices provided as part of the data download ([see below](#collapsed-expression-matrices)).
 
 ### Gene Fusion Data
@@ -53,6 +54,9 @@ These files are denoted with the prefix `fusion`.
 
 * `fusion-arriba.tsv.gz`
 * `fusion-starfusion.tsv.gz`
+
+The above gene fusions results were then filtered by the [fusion filtering module](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/v10-release/analyses/fusion_filtering) to contain only putative oncogenic fusions.
+* `fusion-putative-oncogenic.tsv.gz`
 
 ### Structural Variant Data
 
@@ -69,12 +73,25 @@ provided as:
 
 ### Independent Sample List
 
-[Independent sample list](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples) are released as tab separated values in the following file. `wgswxspanel` indicates it includes all experimental strategy for DNA sequencing, `RNA` includes all RNA samples and `primary` and `relapse` specifies which tumor type the samples are from. `eachcohort` indicates the selection is cohort-based.
+[Independent sample list](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples) are released as tab separated values in the following file. 
+`wgswxspanel` indicates it includes all experimental strategy for DNA sequencing, 
+`RNA` includes all RNA samples and `primary` and `relapse` specifies which tumor type the samples are from.
+`eachcohort` indicates the selection is cohort-based. 
+Additionally, `.prefer.wxs` indicates WXS samples were preferentially select when both WGS and WXS are available for a particular participant. 
+All files without `.prefer.wxs` preferentially select WGS amples were preferentially select when both WGS and WXS are available for a particular participant. 
 
 * `independent-specimens.wgswxspanel.primary.eachcohort.tsv`
 * `independent-specimens.wgswxspanel.relapse.eachcohort.tsv`
 * `independent-specimens.rnaseq.primary.eachcohort.tsv`
 * `independent-specimens.rnaseq.relapse.eachcohort.tsv`
+* `independent-specimens.wgswxspanel.primary.tsv`
+* `independent-specimens.wgswxspanel.relapse.tsv`
+* `independent-specimens.rnaseq.primary.tsv`
+* `independent-specimens.rnaseq.relapse.tsv`
+* `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.relapse.eachcohort.tprefer.wxs.sv`
+* `independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
 
 ## Analysis Files
 
@@ -88,6 +105,10 @@ In cases where more than one Ensembl gene identifier maps to the same gene symbo
 
 * `gene-counts-rsem-expected_count-collapsed.rds`  
 * `gene-expression-rsem-tpm-collapsed.rds`
+
+Additionally, available TCGA gene expression files with same format are included:
+* `tcga-gene-counts-rsem-expected_count.rds`
+* `tcga-gene-expression-rsem-tpm.rds`
 
 ### Derived Copy Number Files
 

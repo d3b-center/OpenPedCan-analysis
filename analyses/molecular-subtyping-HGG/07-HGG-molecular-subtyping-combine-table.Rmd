@@ -56,12 +56,11 @@ data_dir <- file.path(root_dir, "data")
 ```{r message=FALSE}
 cn_gistic_df <- read_tsv(file.path(results_dir, "HGG_cleaned_cnv.tsv"))
 mutation_df <- read_tsv(file.path(results_dir, "HGG_cleaned_mutation.tsv"))
-histologies_df <- read_tsv(file.path(data_dir, "pbta-histologies-base.tsv"), guess_max = 10000)
+histologies_df <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max = 100000) %>% 
+  dplyr::filter(cohort == "PBTA")
 fusion_df <- read_tsv(file.path(results_dir, "HGG_cleaned_fusion.tsv"))
-polya_exp <- read_tsv(file.path(results_dir,
-                                "HGG_cleaned_expression.polya.tsv"))
-stranded_exp <- read_tsv(file.path(results_dir,
-                                   "HGG_cleaned_expression.stranded.tsv"))
+exp_df <- read_tsv(file.path(results_dir,
+                                "HGG_cleaned_expression.tsv"))
 
 # the cell line composition file comes from #610 in OpenPBTA_analysis repo
 cell_line_composition <- read_tsv(file.path("input","cell-line-composition.tsv"),
@@ -138,14 +137,7 @@ rm(mutation_df, cn_gistic_df)
 
 ### Join RNA-seq Data (Fusion, Gene Expression)
 
-We have two cleaned gene expression data files corresponding to the stranded and poly-A datasets.
-The (z-scored) distributions for the 3 genes of interest look pretty similar: https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-HGG/06-HGG-molecular-subtyping-gene-expression.nb.html#density_plots
-Therefore, we'll put all of this in the same table.
-
-```{r}
-exp_df <- bind_rows(polya_exp, stranded_exp)
-rm(polya_exp, stranded_exp)
-```
+We used a combined gene expressoin file in the previous module and we will continue using combined one here.
 
 #### Digging into Fusion Data
 
@@ -167,10 +159,8 @@ Are these samples present in the files prior to subsetting in [`02-HGG-molecular
 # read in full file
 putative_oncogenic_df <-
   read_tsv(file.path(root_dir,
-    "analyses",
-    "fusion_filtering",
-    "results",
-    "pbta-fusion-putative-oncogenic.tsv"))
+    "data",
+    "fusion-putative-oncogenic.tsv"))
 ```
 
 ```{r}
@@ -187,7 +177,7 @@ What about the unfiltered fusion files?
 STARFusion first.
 
 ```{r}
-starfusion_df <- read_tsv(file.path(data_dir, "pbta-fusion-starfusion.tsv.gz"))
+starfusion_df <- read_tsv(file.path(data_dir, "fusion-starfusion.tsv.gz"))
 ```
 
 ```{r}
@@ -195,7 +185,7 @@ all(missing_bsids %in% starfusion_df$tumor_id)
 ```
 
 ```{r}
-arriba_df <- read_tsv(file.path(data_dir, "pbta-fusion-arriba.tsv.gz"))
+arriba_df <- read_tsv(file.path(data_dir, "fusion-arriba.tsv.gz"))
 ```
 
 ```{r}
