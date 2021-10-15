@@ -95,4 +95,4 @@ hints:
   - class: 'sbg:maxNumberOfParallelInstances'
     value: 80
   - class: 'sbg:AWSInstanceType'
-    value: r5.2xlarge
+    value: r5.24xlarge
