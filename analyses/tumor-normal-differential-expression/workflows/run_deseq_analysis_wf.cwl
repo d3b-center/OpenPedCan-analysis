@@ -29,6 +29,7 @@ inputs:
 outputs:
   output_tsv: {type: File, outputSource: combine_output_files/combined_tsv}
   output_jsonl: {type: File, outputSource: combine_output_files/combined_jsonl}
+  output_rds: {type: File, outputSource: convert_tsv_to_rds/merged_rds}
 
 steps:
 
@@ -87,7 +88,7 @@ steps:
     run: ../tools/convert_tsv_to_rds.cwl
     in:
       combined_tsv: combine_output_files/combined_tsv
-    out: [merged_results_rds]
+    out: [merged_rds]
 
 $namespaces:
   sbg: https://sevenbridges.com
