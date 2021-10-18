@@ -29,5 +29,5 @@ outputs:
   merged_rds:
     type: File
     outputBinding:
-      glob: deseq_all_comparisons.rds
+      glob: '*.rds
     doc: "Merged RDS file"
