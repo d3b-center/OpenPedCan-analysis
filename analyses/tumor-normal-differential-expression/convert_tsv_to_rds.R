@@ -29,7 +29,7 @@ print(paste("File name:", tsv_file, sep=" "))
 tsv_data <- read.delim(tsv_file, header = TRUE, sep="\t")
 
 # Create file handle for rds similar to tsv
-rds_file <- paste(tsv_file,".rds",sep="")
+rds_file <- gsub("tsv","rds",tsv_file)
 
 # Save an object to rds file with same name as tsv file
 saveRDS(tsv_data, file = paste(outdir,"/",rds_file,sep=""))
