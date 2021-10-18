@@ -88,6 +88,7 @@ steps:
     run: ../tools/convert_tsv_to_rds.cwl
     in:
       combined_tsv: combine_output_files/combined_tsv
+      output_basename: output_basename
     out: [merged_rds]
 
 $namespaces:

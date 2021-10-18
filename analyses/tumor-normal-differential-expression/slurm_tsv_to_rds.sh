@@ -9,4 +9,4 @@
 
 module load R/4.1.0
 
-Rscript convert_tsv_to_rds.R --tsv_file deseq_all_comparisons.tsv
+Rscript convert_tsv_to_rds.R --outdir results --tsv_file deseq_all_comparisons

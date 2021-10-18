@@ -20,14 +20,15 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     convert_tsv_to_rds.R --tsv_file $(inputs.combined_tsv.path)
+     convert_tsv_to_rds.R --outdir $(inputs.output_basename) --tsv_file $(inputs.combined_tsv.path)
 
 inputs:
   combined_tsv: {type: 'File', doc: "Merged results from all comparisons"}
+  output_basename: {type: string, doc: "Output files basename"}
 
 outputs:
   merged_rds:
     type: File
     outputBinding:
-      glob: '*.rds
+      glob: '*.rds'
     doc: "Merged RDS file"
