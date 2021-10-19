@@ -20,7 +20,7 @@ arguments:
   - position: 1
     shellQuote: false
     valueFrom: >-
-     convert_tsv_to_rds.R --outdir $(inputs.output_basename) --tsv_file $(inputs.combined_tsv.path)
+     convert_tsv_to_rds.R --basename $(inputs.output_basename) --tsv_file $(inputs.combined_tsv.path)
 
 inputs:
   combined_tsv: {type: 'File', doc: "Merged results from all comparisons"}
