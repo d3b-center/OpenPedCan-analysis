@@ -10,9 +10,6 @@ The classifiers were trained on TCGA PanCan data ([Way et al. _Cell Reports._ 20
 See [`01-apply-classifier.py`](01-apply-classifier.py) for more information about the procedure.
 To evaluate the classifier scores, we use [`02-evaluate-classifier.py`](02-evaluate-classifier.py) and input SNV data to identify true TP53/NF1 loss samples and compare scores of shuffled data to true calls and plot ROC curves. 
 
-**This module is in progress.** 
-Copy number aberrations are not currently considered when evaluating the classifiers.
-
 #### Running the analysis
 
 The analysis can be run with the following (assuming you are in the root repository of the project):
@@ -21,6 +18,14 @@ The analysis can be run with the following (assuming you are in the root reposit
 bash analyses/tp53_nf1_score/run_classifier.sh
 ```
 
+#### Inputs from data download
+
+`snv-consensus-plus-hotspots.maf.tsv.gz`: from consensus SNV calls that are present in all 3 callers (strelka2,mutect2 and lancet) plus hotspot rescued
+`gene-expression-rsem-tpm-collapsed.rds` : TPM values per gene in biospecimen_id
+`consensus_seg_with_status.tsv` : created by `analyses/focal-cn-file-preparation/02-add-ploidy-consensus.Rmd` - moved from scratch to input folder 
+`cnvkit_with_status.tsv`: created by `analyses/focal-cn-file-preparation/01-add-ploidy-cnvkit.Rmd` - moved from scratch to input folder 
+`sv-manta.tsv.gz` : Structural Variants called by manta
+
 ### Order of analysis
 
 `00-tp53-nf1-alterations.R` produces `TP53_NF1_snv_alteration.tsv`, which contains information about the presence or absence of coding SNVs in _TP53_ and _NF1_ for the purpose of evaluating the classifier results.
@@ -28,15 +33,19 @@ For evaluation purposes, a coding SNV 1) is found in a CDS region and 2) is not 
 _NF1_ positive examples are additionally filtered to remove missense mutations, as these are not annotated with OncoKB ([#381 (comment)](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/381#issuecomment-570748578)).
 
 `01-apply-classifier.py` produces  `results/gene-expression-rsem-fpkm-collapsed.stranded_classifier_scores.tsv`, which contains all 3 classifier scores for all RNA data and for shuffled RNA (e.g., random) data.
+- output file of this notebook: `TP53_NF1_snv_alteration.tsv`
 
 `02-qc-rna_expression_score.Rmd` here expression of TP53 gene was compared to TP53 classifier score. This script runs comparison for all different types of RNA library in the datasets. Currently, two RNA library type, `stranded` and `polya stranded` generated strong negative correlation between TP53 expression and TP53 inactivation score, while `polya` samples do not seem to have strong correlation. Thus, for `stranded` and `polya stranded`, expression and classifier score together might be able to predict function; however, for polya, the correlation is not statistically significant.
+- output file of this notebook: `gene-expression-rsem-tpm-collapsed_classifier_scores.tsv`
 
 `03-tp53-cnv-loss-domain.Rmd` here copy_number of regions overlapping TP53 functional domains were compared to TP53 classifier score. We find tumors with TP53 copies <=1 have higher TP53 classifier scores, so we only retain biospecimens with <= 1 copy TP53 as high confidence TP53 loss. **NOTE**: since now WGS and WXS have their CNV calls processed different (WGS uses 2/3 consensus workflow and WXS only uses WXS samples) - the inputs were read-in, subsetted and then merged for analyses.
+- output file of this notebook: `loss_overlap_domains_tp53.tsv`
 
 `04-tp53-sv-loss.Rmd` here structural variant breakpoints overlapping TP53 are investigated for CNV loss or low expression to gather high confidence TP53 loss via Structural Variants. 
+- output files of this notebook: `fusion_bk_tp53_loss.tsv` and `sv_overlap_tp53.tsv`
 
 `05-tp53-altered-annotation.Rmd` here we take a deeper look into tp53 altered status with respect to number of SNVs/CNVs suggesting bi-allelic mutations or with respect to cancer_predisposition and tp53 classifier scores.
-
+- output file of this notebook: `tp53_altered_status.tsv`
 
 Columns | Description
 -- | --
@@ -61,6 +70,6 @@ Because some of the classifier genes are not present in the OpenPedCan dataset, 
 ROC curve for TP53 classifier scores are saved in the results folder. We iterate through all possible RNA library types and print out the graphs accordingly. With TARGET samples, we have 3 RNA library types and 3 plots were generated:
 `poly-A_TP53.png`
 `stranded_TP53.png`
-`poly-A_stranded_TP53.png`
+`exome_capture_TP53.png`
 
 

@@ -48,6 +48,10 @@ gencodeBed <- opt$gencode
 cnvConsesusFile <- opt$cnvConsensus
 cohort_interest<-unlist(strsplit(opt$cohort,","))
 
+if(!dir.exists(outputFolder)){
+  dir.create(outputFolder)
+}
+
 #### Generate files with TP53, NF1 mutations -----------------------------------
 
 # read in consensus SNV files

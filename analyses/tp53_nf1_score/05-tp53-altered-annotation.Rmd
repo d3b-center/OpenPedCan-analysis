@@ -107,6 +107,12 @@ sv_overlap <- read_tsv(
     results_dir,
     "sv_overlap_tp53.tsv"))
 
+# Structural variant as a fusion in exon1/intron1
+fusion_overlap <- read_tsv(
+  file.path(
+    results_dir,
+    "fusion_bk_tp53_loss.tsv"))
+
 ```
 
 ### Check if all function sites are in hotspots
@@ -177,7 +183,7 @@ We will gather values per sample_id since DNA and RNA samples can be only matche
 
 ```{r}
 
-tp53_alterations_dna <- histology %>%
+tp53_alterations <- histology %>%
   filter(experimental_strategy != "RNA-Seq") %>%
   # merge cell line composition
   left_join(cell_line_composition) %>%
@@ -192,9 +198,11 @@ tp53_alterations_dna <- histology %>%
   # join SV 
   left_join(sv_overlap,by=c("Kids_First_Biospecimen_ID"="Kids.First.Biospecimen.ID.Tumor",
                             "sample_id")) %>%
-  dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID) 
+  dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID) %>%
+  # join fusion
+  left_join(fusion_overlap,by="sample_id") 
 
-tp53_alterations_score <- tp53_alterations_dna %>%
+tp53_alterations_score <- tp53_alterations %>%
   # add classifier score
   full_join(classifier_score,by=c("sample_id",
                                   "cell_line_composition",
@@ -203,7 +211,7 @@ tp53_alterations_score <- tp53_alterations_dna %>%
                                   "Kids_First_Participant_ID")) %>%
   # select useful columns
   select(sample_id,Kids_First_Biospecimen_ID_RNA,Kids_First_Biospecimen_ID_DNA,
-         tp53_score,cancer_predispositions,HGVSp_Short,copy_number,SV.type,hotspot,activating) %>%
+         tp53_score,cancer_predispositions,HGVSp_Short,copy_number,SV.type,FusionName,hotspot,activating) %>%
   arrange(sample_id) %>%
   unique() %>%
   replace_na(list(hotspot = 0, activating = 0))
@@ -228,12 +236,14 @@ tp53_alterations_score_wide <- tp53_alterations_score %>%
   # and hotspot/activating mutation annotation  
   summarise(
     # summarize length of SNV and CNV alterations 
-    SNV_indel_counts= length(unique(HGVSp_Short[!is.na(HGVSp_Short)])), 
+   SNV_indel_counts= length(unique(HGVSp_Short[!is.na(HGVSp_Short)])), 
     CNV_loss_counts = length(unique(copy_number[!is.na(copy_number)])),
     SV_counts = length(unique(SV.type[!is.na(SV.type)])),
+    Fusion_counts = length(unique(FusionName[!is.na(FusionName)])),
     HGVSp_Short = toString(unique(HGVSp_Short)),
     CNV_loss_evidence = toString(unique(copy_number)),
     SV_type = toString(unique(SV.type)),
+    Fusion_evidence = toString(unique(FusionName)),
     # summarize unique hotspot values per sample_id
     hotspot = max(unique(hotspot[!is.na(hotspot) ])),
     activating = max(unique(activating[!is.na(activating)]))) 
