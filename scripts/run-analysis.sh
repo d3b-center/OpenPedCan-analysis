@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e
-set -o pipefail
-
 error() {
   echo "$@" 1>&2
 }
