@@ -3,6 +3,15 @@
 set -e
 set -o pipefail
 
+error() {
+  echo "$@" 1>&2
+}
+
+fail() {
+  error "$@"
+  exit 1
+}
+
 script_directory="$(perl -e 'use File::Basename;
  use Cwd "abs_path";
  print dirname(abs_path(@ARGV[0]));' -- "$0")"
