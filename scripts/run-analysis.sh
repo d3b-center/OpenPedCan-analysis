@@ -23,4 +23,4 @@ env | grep "OPENPBTA_.*" > open_pbta_envs.txt
 docker run \
        --env-file=open_pbta_envs.txt \
        --volume "$(pwd)":/rocker-build/ \
-       -it "openpedcan-analysis:latest" "$@"
+       "openpedcan-analysis:latest" "$@"
