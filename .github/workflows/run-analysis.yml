@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: false
-          tags: openpedcan-analysis:latest
+          tags: openpedcan-analysis
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
