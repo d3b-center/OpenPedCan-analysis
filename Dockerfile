@@ -31,14 +31,14 @@ RUN apt-get -y --no-install-recommends install \
 RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 RUN pip3 install \
-  "Cython==0.29.15" \
-  "setuptools==46.3.0" \
-  "six==1.14.0" \
-  "wheel==0.34.2" 
+    "Cython==0.29.15" \
+    "setuptools==46.3.0" \
+    "six==1.14.0" \
+    "wheel==0.34.2" 
 
 # Install java
 RUN apt-get -y --no-install-recommends install \
-   default-jdk
+    default-jdk
 
 # Standalone tools and libraries
 ################################
@@ -382,7 +382,7 @@ RUN R -e "remotes::install_github('jtleek/sva-devel@123be9b2b9fd7c7cd495fab7d7d9
 
 # Packages required for de novo mutational signatures
 RUN install2.r --error --deps TRUE \
-  lsa
+    lsa
 
 # To install sigfit, we need a more recent version of rstantools than we can obtain via the MRAN snapshot route
 # We're using the ref for the most recent release on GitHub (2.0.0)
@@ -393,8 +393,8 @@ RUN R -e "remotes::install_github('kgori/sigfit', ref = '209776ee1d2193ad4b682b2
 
 # Package for kinase domain retention for fusions
 RUN ./install_bioc.r \
-     EnsDb.Hsapiens.v86 \
-     ensembldb
+    EnsDb.Hsapiens.v86 \
+    ensembldb
 
 RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = 'c6a2111b5949ca2aae3853f7f34de3d0db4ffa33', dependencies = TRUE)"
 
@@ -440,3 +440,5 @@ RUN pip3 install \
 
 
 WORKDIR /rocker-build/
+
+ENTRYPOINT [ "scripts/run-analysis.sh" ]

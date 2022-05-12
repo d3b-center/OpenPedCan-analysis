@@ -20,7 +20,4 @@ cd ..
 
 env | grep "OPENPBTA_.*" > open_pbta_envs.txt
 
-docker run \
-       --env-file=open_pbta_envs.txt \
-       --volume "$(pwd)":/rocker-build/ \
-       "openpedcan-analysis" "$@"
+./scripts/run-analysis.sh bash download-data.sh

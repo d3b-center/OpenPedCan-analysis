@@ -1,0 +1,5 @@
+name: "Run OpenPedCan Analysis"
+description: "Run analysis workflow"
+runs:
+  using: "docker"
+  image: "Dockerfile"
