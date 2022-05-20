@@ -20,4 +20,4 @@ cd ..
 
 env | grep "OPENPBTA_.*" > open_pbta_envs.txt
 
-./scripts/run-analysis.sh bash download-data.sh
+echo "./scripts/run-analysis.sh bash download-data.sh

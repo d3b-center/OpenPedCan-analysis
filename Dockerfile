@@ -440,5 +440,3 @@ RUN pip3 install \
 
 
 WORKDIR /rocker-build/
-
-ENTRYPOINT [ "scripts/run-analysis.sh" ]
