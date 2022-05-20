@@ -21,7 +21,6 @@
 # env | grep "OPENPBTA_.*" > open_pbta_envs.txt
 
 echo "************************************************************************************"
-OPENPBTA_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/data 
-OPENPBTA_RELEASE=testing bash download-data.sh
+OPENPBTA_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/data OPENPBTA_RELEASE=testing bash download-data.sh
 OPENPBTA_ALL=0 bash analyses/interaction-plots/01-create-interaction-plots.sh
 bash analyses/telomerase-activity-prediction/RUN-telomerase-activity-prediction.sh
