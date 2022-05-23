@@ -21,7 +21,7 @@ jobs:
 
       - name: Run 01-create-interaction-plots in container
         uses: ./
-        id: 01-create-interaction-plots
+        id: create-interaction-plots
         with:
           script: |
             OPENPBTA_ALL=0 bash analyses/interaction-plots/01-create-interaction-plots.sh
@@ -38,11 +38,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `#### Download OpenPBTA Data \`${{ steps.download-data.outcome }}\`
-            #### 01-create-interaction-plots \`${{ steps.01-create-interaction-plots.outcome }}\`
+            #### 01-create-interaction-plots \`${{ steps.create-interaction-plots.outcome }}\`
 
-            <details><summary>01-create-interaction-plots</summary>
+            <details><summary>create-interaction-plots</summary>
 
-            \`\`\`${steps.01-create-interaction-plots.outputs.stdout}\`\`\`
+            \`\`\`${steps.create-interaction-plots.outputs.stdout}\`\`\`
 
             </details>
 
