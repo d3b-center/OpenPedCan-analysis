@@ -12,6 +12,53 @@ jobs:
       - uses: actions/checkout@v3
         name: Checkout repo
 
-      - name: Run analysis in container
+      - name: Download Data
         uses: ./
-        id: analysis
+        id: download-data
+        with:
+          script: |
+            OPENPBTA_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/data OPENPBTA_RELEASE=testing bash download-data.sh
+
+      - name: Run 01-create-interaction-plots in container
+        uses: ./
+        id: 01-create-interaction-plots
+        with:
+          script: |
+            OPENPBTA_ALL=0 bash analyses/interaction-plots/01-create-interaction-plots.sh
+
+      - name: Run RUN-telomerase-activity-prediction in container
+        uses: ./
+        id: RUN-telomerase-activity-prediction
+        with:
+          script: |
+            bash analyses/telomerase-activity-prediction/RUN-telomerase-activity-prediction.sh
+
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Download OpenPBTA Data \`${{ steps.download-data.outcome }}\`
+            #### 01-create-interaction-plots \`${{ steps.01-create-interaction-plots.outcome }}\`
+
+            <details><summary>01-create-interaction-plots</summary>
+
+            \`\`\`${steps.01-create-interaction-plots.outputs.stdout}\`\`\`
+
+            </details>
+
+            #### RUN-telomerase-activity-prediction \`${{ steps.RUN-telomerase-activity-prediction.outcome }}\`
+
+            <details><summary>RUN-telomerase-activity-prediction</summary>
+
+            \`\`\`${steps.RUN-telomerase-activity-prediction.outputs.stdout}\`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
+              
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
