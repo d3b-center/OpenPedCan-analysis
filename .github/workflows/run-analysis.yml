@@ -24,6 +24,25 @@ jobs:
         with:
           args: OPENPBTA_ALL=0 bash analyses/interaction-plots/01-create-interaction-plots.sh
 
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### 01-create-interaction-plots \`${{ steps.create-interaction-plots.outcome }}\`
+
+            <details><summary>create-interaction-plots</summary>
+
+            \`\`\`${{ steps.create-interaction-plots.outputs.stdout }}\`\`\`
+
+            </details>;
+              
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
       - name: Run RUN-telomerase-activity-prediction in container
         uses: ./
         id: RUN-telomerase-activity-prediction
@@ -34,24 +53,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Download OpenPBTA Data \`${{ steps.download-data.outcome }}\`
-            #### 01-create-interaction-plots \`${{ steps.create-interaction-plots.outcome }}\`
-
-            <details><summary>create-interaction-plots</summary>
-
-            \`\`\`${{ steps.create-interaction-plots.outputs.stdout }}\`\`\`
-
-            </details>
-
-            #### RUN-telomerase-activity-prediction \`${{ steps.RUN-telomerase-activity-prediction.outcome }}\`
+            const output = `#### RUN-telomerase-activity-prediction \`${{ steps.RUN-telomerase-activity-prediction.outcome }}\`
 
             <details><summary>RUN-telomerase-activity-prediction</summary>
 
             \`\`\`${{ steps.RUN-telomerase-activity-prediction.outputs.stdout }}\`\`\`
 
-            </details>
-
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            </details>;
               
             github.issues.createComment({
               issue_number: context.issue.number,
