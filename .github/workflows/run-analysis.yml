@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
         name: Checkout repo
 
-      - name: Download Data
+      - name: Build container and download data
         uses: ./
         id: download-data
         with:
@@ -39,7 +39,7 @@ jobs:
 
             <details><summary>create-interaction-plots</summary>
 
-            \`\`\`${steps.create-interaction-plots.outputs.stdout}\`\`\`
+            \`\`\`${{ steps.create-interaction-plots.outputs.stdout }}\`\`\`
 
             </details>
 
@@ -47,7 +47,7 @@ jobs:
 
             <details><summary>RUN-telomerase-activity-prediction</summary>
 
-            \`\`\`${steps.RUN-telomerase-activity-prediction.outputs.stdout}\`\`\`
+            \`\`\`${{ steps.RUN-telomerase-activity-prediction.outputs.stdout }}\`\`\`
 
             </details>
 
