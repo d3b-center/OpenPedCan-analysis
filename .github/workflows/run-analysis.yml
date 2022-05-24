@@ -25,6 +25,8 @@ jobs:
           args: OPENPBTA_ALL=0 bash analyses/interaction-plots/01-create-interaction-plots.sh
 
       - uses: actions/github-script@0.9.0
+        env:
+          LOGS: "\n${{ steps.create-interaction-plots.outputs.stdout }}\n"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -32,7 +34,7 @@ jobs:
 
             <details><summary>create-interaction-plots</summary>
 
-            \`\`\`${{ steps.create-interaction-plots.outputs.stdout }}\`\`\`
+            \`\`\`${process.env.LOGS}\`\`\`
 
             </details>;
               
@@ -50,6 +52,8 @@ jobs:
           args: bash analyses/telomerase-activity-prediction/RUN-telomerase-activity-prediction.sh
 
       - uses: actions/github-script@0.9.0
+        env:
+          LOGS: "\n${{ steps.RUN-telomerase-activity-prediction.outputs.stdout }}\n"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -57,7 +61,7 @@ jobs:
 
             <details><summary>RUN-telomerase-activity-prediction</summary>
 
-            \`\`\`${{ steps.RUN-telomerase-activity-prediction.outputs.stdout }}\`\`\`
+            \`\`\`${process.env.LOGS}\`\`\`
 
             </details>;
               
