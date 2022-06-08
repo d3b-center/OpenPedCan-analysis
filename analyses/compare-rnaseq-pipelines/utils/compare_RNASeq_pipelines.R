@@ -43,8 +43,6 @@ calculate_matrix_cor <- function(matrix1, matrix2, wf1_name, wf2_name){
   
   result_compare_all_genes <- data.frame()
   p1_p2_coef <- sapply(1:nrow(matrix1), function(i) cor(matrix1[i,], matrix2[i,]))
-  print(paste("coef_length=",length(p1_p2_coef)))
-  print(paste("m1_length=",length(rownames(matrix1)),"m2_length=",length(rownames(matrix2))))
   row_names <- rownames(matrix1)
   
   serr_r <- sapply(p1_p2_coef, function(r) (1 - (r^2))/length(p1_p2_coef))
