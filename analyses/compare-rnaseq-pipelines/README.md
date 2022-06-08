@@ -42,6 +42,8 @@ Output files:
 ```
 results/results_KF_JAX_comparison.tsv
 ```
+### Filtering genes based on homology
+The same comparison can be performed on only a subset of human genes that are homologous with mouse. `02-..` script will be added later to perform this analysis.
 
 ### Thresholds
 Additional comparison is performed setting a threshold on the TPM value used to calculate correlation coefficient. `02-..` script will be added once the data files are finalized
