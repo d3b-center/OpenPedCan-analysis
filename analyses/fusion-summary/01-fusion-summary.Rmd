@@ -198,6 +198,7 @@ allFuseEmbry[, missingEmbryFusion] <- 0
 
 # Write to file
 allFuseEmbry %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(embryFile)
 ```
 
@@ -213,6 +214,7 @@ missingEpendFusion <- setdiff(ependFuses, colnames(allFuseEpend)[-1])
 allFuseEpend[, missingEpendFusion] <- 0
 
 allFuseEpend %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(ependFile)
 ```
 
@@ -229,6 +231,7 @@ missingEwingFusion <- setdiff(ewingsFuses, colnames(allFuseEwing)[-1])
 allFuseEwing[, missingEwingFusion] <- 0
 
 allFuseEwing %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(ewingsFile)
 ```
 
@@ -348,6 +351,7 @@ missingLgatFusion <- setdiff(lgatFuses, colnames(subsetFuseLGAT)[-1])
 subsetFuseLGAT[, missingLgatFusion] <- 0
 
 subsetFuseLGAT %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(lgatFile)
 ```
 
