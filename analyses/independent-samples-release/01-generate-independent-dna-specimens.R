@@ -97,9 +97,8 @@ wxs_only_samples <-  tumor_samples %>%
 wxs_primary <- independent_samples(wxs_only_samples, tumor_types = "primary")
 wxs_primary_plus <- independent_samples(wxs_only_samples, tumor_types = "prefer_primary")
 
-# Generate lists for Targeted Sequencing only samples - currently, there are no panel only samples, 
-# so will comment out for now.
-# WGS is generally preferred, then WXS, so we will only include those where WGS or WXS is not available
+# Generate lists for Targeted Sequencing only samples
+# WGS is generally preferred, then WXS, then panel
 wgs_wxs_samples <- wgs_samples %>%
   bind_rows(wxs_only_samples)
 
