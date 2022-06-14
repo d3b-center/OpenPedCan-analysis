@@ -32,4 +32,4 @@ Rscript 01-generate-independent-dna-specimens.R \
 Rscript 02-generate-independent-rnaseq.R \
   --histology_file $HISTOLOGY_FILE \
   --output_directory results \
-  --independent_dna_sample_df results/independent-specimens.wgswxspanel.primary-plus.tsv
+  --independent_dna_sample_df results/independent-specimens-release.wgswxspanel.primary-plus.tsv

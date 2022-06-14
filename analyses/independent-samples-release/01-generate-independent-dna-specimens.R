@@ -55,17 +55,17 @@ if (!dir.exists(out_dir)){
 }
 
 wgs_primary_file <- file.path(out_dir, 
-                              "independent-specimens.wgs.primary.tsv")
+                              "independent-specimens-release.wgs.primary.tsv")
 wgs_primplus_file <- file.path(out_dir, 
-                               "independent-specimens.wgs.primary-plus.tsv")
+                               "independent-specimens-release.wgs.primary-plus.tsv")
 wgswxs_primary_file <- file.path(out_dir, 
-                                 "independent-specimens.wgswxs.primary.tsv")
+                                 "independent-specimens-release.wgswxs.primary.tsv")
 wgswxs_primplus_file <- file.path(out_dir, 
-                                  "independent-specimens.wgswxs.primary-plus.tsv")
+                                  "independent-specimens-release.wgswxs.primary-plus.tsv")
 wgswxspanel_primary_file <- file.path(out_dir, 
-                                 "independent-specimens.wgswxspanel.primary.tsv")
+                                 "independent-specimens-release.wgswxspanel.primary.tsv")
 wgswxspanel_primplus_file <- file.path(out_dir, 
-                                  "independent-specimens.wgswxspanel.primary-plus.tsv")
+                                  "independent-specimens-release.wgswxspanel.primary-plus.tsv")
 
 # Read histology file
 sample_df <- readr::read_tsv(opts$histology_file, 

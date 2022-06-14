@@ -55,7 +55,7 @@ if (!dir.exists(out_dir)){
 }
 
 rnaseq_primplus_file <- file.path(out_dir, 
-                                        "independent-specimens.rnaseq.primary-plus.tsv")
+                                        "independent-specimens-release.rnaseq.primary-plus.tsv")
 
 # Read histology file
 sample_df <- readr::read_tsv(opts$histology_file, 
