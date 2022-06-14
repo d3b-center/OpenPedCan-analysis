@@ -1,0 +1,133 @@
+# 01-generate-independent-specimens.R
+#
+# Josh Shapiro for CCDL 2019
+# 
+# Purpose: Generate tables of independent specimens where no two specimens are 
+#   chosen from the same individual.
+#
+# Option descriptions
+# -f, --histology_file : File path to where you would like the annotation_rds file to be
+#               stored
+# -o,--output_directory : Output directory
+# 
+# example invocation:
+# Rscript analyses/independent-samples/01-generate-independent-specimens.R \
+#   -f data/pbta-histologies.tsv \
+#   -o analyses/independent-samples/results
+
+
+# Base directories
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+analysis_dir <- file.path(root_dir, "analyses", "independent-samples-release")
+
+# Load the libraries
+library(magrittr)
+library(optparse)
+library(tidyverse)
+
+
+# source sample selection function
+source(file.path(analysis_dir, "util", "independent-dna-samples.R"))
+set.seed(201910)
+
+# Parse options
+option_list <- list(
+  make_option(
+    c("-f", "--histology_file"),
+    type = "character",
+    default = NULL,
+    help = "path to the histology tsv file",
+  ),
+  make_option(
+    c("-o", "--output_directory"),
+    type = "character",
+    default = NULL,
+    help = "path to output directory"
+  )
+)
+
+opts <- parse_args(OptionParser(option_list = option_list))
+
+# set output files
+out_dir <- opts$output_directory
+if (!dir.exists(out_dir)){
+  dir.create(out_dir, recursive = TRUE)
+}
+
+wgs_primary_file <- file.path(out_dir, 
+                              "independent-specimens.wgs.primary.tsv")
+wgs_primplus_file <- file.path(out_dir, 
+                               "independent-specimens.wgs.primary-plus.tsv")
+wgswxs_primary_file <- file.path(out_dir, 
+                                 "independent-specimens.wgswxs.primary.tsv")
+wgswxs_primplus_file <- file.path(out_dir, 
+                                  "independent-specimens.wgswxs.primary-plus.tsv")
+wgswxspanel_primary_file <- file.path(out_dir, 
+                                 "independent-specimens.wgswxspanel.primary.tsv")
+wgswxspanel_primplus_file <- file.path(out_dir, 
+                                  "independent-specimens.wgswxspanel.primary-plus.tsv")
+
+# Read histology file
+sample_df <- readr::read_tsv(opts$histology_file, 
+                             guess_max = 10000,
+                             col_types = readr::cols()) # suppress parse message
+
+
+# Filter to only samples from tumors, where composition is known to be Solid Tissue
+# Note that there are some samples with unknown composition, but these will be ignored for now.
+tumor_samples <- sample_df %>%
+  dplyr::filter(sample_type == "Tumor", 
+                composition != "Derived Cell Line", 
+                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"))
+
+# Generate WGS independent samples
+wgs_samples <- tumor_samples %>%
+  dplyr::filter(experimental_strategy == "WGS")
+
+wgs_primary <- independent_samples(wgs_samples, tumor_types = "primary")
+wgs_primary_plus <- independent_samples(wgs_samples, tumor_types = "prefer_primary")
+
+# Generate lists for WXS only samples 
+# WGS is generally preferred, so we will only include those where WGS is not available
+wxs_only_samples <-  tumor_samples %>% 
+  dplyr::filter(!(Kids_First_Participant_ID %in% 
+                  wgs_samples$Kids_First_Participant_ID))
+
+wxs_primary <- independent_samples(wxs_only_samples, tumor_types = "primary")
+wxs_primary_plus <- independent_samples(wxs_only_samples, tumor_types = "prefer_primary")
+
+# Generate lists for Targeted Sequencing only samples - currently, there are no panel only samples, 
+# so will comment out for now.
+# WGS is generally preferred, then WXS, so we will only include those where WGS or WXS is not available
+wgs_wxs_samples <- bind_rows(wgs_samples, wxs_only_samples)
+
+#panel_only_samples <- tumor_samples %>% 
+#  dplyr::filter(!(Kids_First_Participant_ID %in% 
+#                    wgs_wxs_samples$Kids_First_Participant_ID)) 
+
+#panel_primary <- independent_samples(panel_only_samples, tumor_types = "primary")
+#panel_primary_plus <- independent_samples(panel_only_samples, tumor_types = "prefer_primary")
+
+
+# write files
+message(paste(nrow(wgs_primary), "WGS primary specimens"))
+readr::write_tsv(wgs_primary, wgs_primary_file)
+
+message(paste(nrow(wgs_primary_plus), "WGS specimens (including non-primary)"))
+readr::write_tsv(wgs_primary_plus, wgs_primplus_file)
+
+message(paste(nrow(wgs_primary) + nrow(wxs_primary), "WGS+WXS primary specimens"))
+readr::write_tsv(dplyr::bind_rows(wgs_primary, wxs_primary),
+                 wgswxs_primary_file)
+
+message(paste(nrow(wgs_primary_plus) + nrow(wxs_primary_plus), "WGS+WXS specimens (including non-primary)"))
+readr::write_tsv(dplyr::bind_rows(wgs_primary_plus, wxs_primary_plus),
+                 wgswxs_primplus_file)
+
+#message(paste(nrow(wgs_primary) + nrow(wxs_primary), "WGS+WXS+Panel primary specimens"))
+#readr::write_tsv(dplyr::bind_rows(wgs_primary, wxs_primary, panel_primary),
+#                wgswxspanel_primary_file)
+
+#message(paste(nrow(wgs_primary_plus) + nrow(wxs_primary_plus), "WGS+WXS+Panel specimens (including non-primary)"))
+#readr::write_tsv(dplyr::bind_rows(wgs_primary_plus, wxs_primary_plus, panel_primary_plus),
+#                 wgswxspanel_primplus_file)
