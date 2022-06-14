@@ -8,15 +8,15 @@ This analysis creates lists of samples such that there are no cases where more t
 
 As different analyses may require different sets of data, we actually generate a few different sets, stored in the `results` subdirectory:
 * Primary specimens only with whole genome sequence (WGS):  
-`independent-specimens.wgs.primary.tsv`
+`independent-specimens-release.wgs.primary.tsv`
 * Primary and secondary specimens with WGS:  
-`independent-specimens.wgs.primary-plus.tsv`
+`independent-specimens-release.wgs.primary-plus.tsv`
 * Primary specimens only with WGS, whole exome sequence (WXS), or Targeted Sequencng (panel):  
-`independent-specimens.wgswxspanel.primary.tsv`
+`independent-specimens-release.wgswxspanel.primary.tsv`
 * Primary and secondary specimens with WGS, WXS, or panel:  
-`independent-specimens.wgswxspanel.primary-plus.tsv`
+`independent-specimens-release.wgswxspanel.primary-plus.tsv`
 * Primary and secondary specimens matching WGS, WXS, or panel independent `sample_id` plus only-RNA-Seq
-independent-specimens.rnaseq.primary-plus.tsv
+independent-specimens-release.rnaseq.primary-plus.tsv
 
 
 ## Generating sample lists
