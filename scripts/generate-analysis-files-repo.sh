@@ -27,14 +27,14 @@ mkdir -p ${compiled_dir}
 
 # Create the independent sample list using the *FULL* histology file
 echo "Create independent sample list"
-bash ${analyses_dir}/independent-samples/run-independent-samples.sh
+bash ${analyses_dir}/independent-samples-release/run-independent-samples.sh
 
 # Fusion summary
 echo "Run fusion summary for subtypes"
 bash ${analyses_dir}/fusion-summary/run-new-analysis.sh
 
 # Copy over independent specimen lists
-cp ${analyses_dir}/independent-samples/results/independent-specimens.*  ${compiled_dir}
+cp ${analyses_dir}/independent-samples-release/results/independent-specimens.*  ${compiled_dir}
 
 # Copy over fusion summary
 cp ${analyses_dir}/fusion-summary/results/* ${compiled_dir}

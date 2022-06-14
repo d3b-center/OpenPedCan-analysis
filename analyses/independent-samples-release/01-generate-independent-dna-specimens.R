@@ -12,7 +12,7 @@
 # 
 # example invocation:
 # Rscript analyses/independent-samples/01-generate-independent-specimens.R \
-#   -f data/pbta-histologies.tsv \
+#   -f data/histologies.tsv \
 #   -o analyses/independent-samples/results
 
 
@@ -89,7 +89,8 @@ wgs_primary_plus <- independent_samples(wgs_samples, tumor_types = "prefer_prima
 
 # Generate lists for WXS only samples 
 # WGS is generally preferred, so we will only include those where WGS is not available
-wxs_only_samples <-  tumor_samples %>% 
+wxs_only_samples <-  tumor_samples %>%
+  dplyr::filter(experimental_strategy == "WXS") %>%
   dplyr::filter(!(Kids_First_Participant_ID %in% 
                   wgs_samples$Kids_First_Participant_ID))
 
@@ -99,14 +100,16 @@ wxs_primary_plus <- independent_samples(wxs_only_samples, tumor_types = "prefer_
 # Generate lists for Targeted Sequencing only samples - currently, there are no panel only samples, 
 # so will comment out for now.
 # WGS is generally preferred, then WXS, so we will only include those where WGS or WXS is not available
-wgs_wxs_samples <- bind_rows(wgs_samples, wxs_only_samples)
+wgs_wxs_samples <- wgs_samples %>%
+  bind_rows(wxs_only_samples)
 
-#panel_only_samples <- tumor_samples %>% 
-#  dplyr::filter(!(Kids_First_Participant_ID %in% 
-#                    wgs_wxs_samples$Kids_First_Participant_ID)) 
+panel_only_samples <- tumor_samples %>% 
+  dplyr::filter(experimental_strategy == "Targeted Sequencing") %>%
+  dplyr::filter(!(Kids_First_Participant_ID %in% 
+                    wgs_wxs_samples$Kids_First_Participant_ID))
 
-#panel_primary <- independent_samples(panel_only_samples, tumor_types = "primary")
-#panel_primary_plus <- independent_samples(panel_only_samples, tumor_types = "prefer_primary")
+panel_primary <- independent_samples(panel_only_samples, tumor_types = "primary")
+panel_primary_plus <- independent_samples(panel_only_samples, tumor_types = "prefer_primary")
 
 
 # write files
@@ -124,10 +127,10 @@ message(paste(nrow(wgs_primary_plus) + nrow(wxs_primary_plus), "WGS+WXS specimen
 readr::write_tsv(dplyr::bind_rows(wgs_primary_plus, wxs_primary_plus),
                  wgswxs_primplus_file)
 
-#message(paste(nrow(wgs_primary) + nrow(wxs_primary), "WGS+WXS+Panel primary specimens"))
-#readr::write_tsv(dplyr::bind_rows(wgs_primary, wxs_primary, panel_primary),
-#                wgswxspanel_primary_file)
+message(paste(nrow(wgs_primary) + nrow(wxs_primary) + nrow(panel_primary), "WGS+WXS+Panel primary specimens"))
+readr::write_tsv(dplyr::bind_rows(wgs_primary, wxs_primary, panel_primary),
+                wgswxspanel_primary_file)
 
-#message(paste(nrow(wgs_primary_plus) + nrow(wxs_primary_plus), "WGS+WXS+Panel specimens (including non-primary)"))
-#readr::write_tsv(dplyr::bind_rows(wgs_primary_plus, wxs_primary_plus, panel_primary_plus),
-#                 wgswxspanel_primplus_file)
+message(paste(nrow(wgs_primary_plus) + nrow(wxs_primary_plus) + nrow(panel_primary_plus), "WGS+WXS+Panel specimens (including non-primary)"))
+readr::write_tsv(dplyr::bind_rows(wgs_primary_plus, wxs_primary_plus, panel_primary_plus),
+                 wgswxspanel_primplus_file)
