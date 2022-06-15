@@ -70,7 +70,8 @@ wgswxspanel_primplus_file <- file.path(out_dir,
 # Read histology file
 sample_df <- readr::read_tsv(opts$histology_file, 
                              guess_max = 10000,
-                             col_types = readr::cols()) # suppress parse message
+                             col_types = readr::cols()) %>%
+  dplyr::mutate(age_at_diagnosis_days = as.numeric(age_at_diagnosis_days)) 
 
 
 # Filter to only samples from tumors, where composition is known to be Solid Tissue

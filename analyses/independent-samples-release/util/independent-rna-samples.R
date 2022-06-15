@@ -44,16 +44,19 @@ independent_rna_samples <- function(independent_dna_sample_df,
   # conditions "independent_dna" "independent_dna_plus_only_rna"
   # 
   independent_dna <- histology_df %>%
+    dplyr::mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_")) %>%
     # include matched independent_dna samples
     dplyr::filter(Kids_First_Biospecimen_ID %in%
                     independent_dna_sample_df$Kids_First_Biospecimen_ID)
   matched_rna <- histology_df %>%
+    dplyr::mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"),
+                  age_at_diagnosis_days = as.numeric(age_at_diagnosis_days)) %>%
     # keep rna from histology_df
     dplyr::filter(experimental_strategy == "RNA-Seq",
                   # find participants which have matching dna samples in independent_wgswxs
                   Kids_First_Participant_ID %in% independent_dna$Kids_First_Participant_ID,
                   # keep specific sample_ids since some participants might have multiple sample_ids
-                  sample_id %in% independent_dna$sample_id)
+                  match_id %in% independent_dna$match_id)
   
   # has rna samples which match the independent samples provided
   sample_df <- matched_rna
@@ -108,7 +111,7 @@ independent_rna_samples <- function(independent_dna_sample_df,
   
   # Choose randomly among specimens from the same participant
   early_ind <- early_samples %>%
-    dplyr::group_by(Kids_First_Participant_ID) %>%
+    dplyr::group_by(Kids_First_Participant_ID, match_id) %>%
     dplyr::summarize(Kids_First_Biospecimen_ID = sample(Kids_First_Biospecimen_ID, 1)) 
   
   return(early_ind)

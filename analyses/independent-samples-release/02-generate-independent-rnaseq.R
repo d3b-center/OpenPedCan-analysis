@@ -60,7 +60,8 @@ rnaseq_primplus_file <- file.path(out_dir,
 # Read histology file
 sample_df <- readr::read_tsv(opts$histology_file, 
                              guess_max = 10000,
-                             col_types = readr::cols()) # suppress parse message
+                             col_types = readr::cols()) %>%
+  dplyr::mutate(age_at_diagnosis_days = as.numeric(age_at_diagnosis_days)) 
 
 # Read in dna independent sample list to match to rna samples
 # So that independent RNA samples match the DNA samples
@@ -79,5 +80,9 @@ independent_rna_primary_plus <- sample_df %>%
                             independent_dna_sample_df,
                           histology_df = .,
                           match_type = "independent_dna_plus_only_rna",
-                          tumor_description_rna_only = "primary_plus",seed = 2020) %>%
+                          tumor_description_rna_only = "primary_plus",seed = 2020) 
+
+message(paste(nrow(independent_rna_primary_plus), "RNA specimens (including non-primary)"))
+independent_rna_primary_plus %>% 
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(rnaseq_primplus_file)

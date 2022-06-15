@@ -27,7 +27,7 @@ independent_samples <- function(sample_df,
   primary_descs <- c("Initial CNS Tumor", "Diagnosis", "Primary Tumor")
   
   sample_df <- sample_df %>%
-    dplyr::mutate(age_at_diagnosis_days = as.numeric(age_at_diagnosis_days))
+    dplyr::mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
     
   if(tumor_types == "prefer_primary"){
     # find cases where non-primary is the only option
@@ -60,7 +60,7 @@ independent_samples <- function(sample_df,
 
   # Choose randomly among specimens from the same participant
   early_ind <- early_samples %>%
-    dplyr::group_by(Kids_First_Participant_ID) %>%
+    dplyr::group_by(Kids_First_Participant_ID, match_id) %>%
     dplyr::summarize(Kids_First_Biospecimen_ID = sample(Kids_First_Biospecimen_ID, 1)) 
   
   return(early_ind)
