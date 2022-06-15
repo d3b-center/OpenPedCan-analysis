@@ -30,12 +30,15 @@ To generate the independent sample lists and associated analysis of redundancies
 Use `OPENPBTA_BASE_RELEASE=1` to run this module using the `histologies-base.tsv` from data folder while preparing analysis files for release:
 
 ```sh
-OPENPBTA_BASE_RELEASE=1 ../analyses/independent-samples-release/run-independent-samples.sh 
+OPENPBTA_BASE_RELEASE=1 analyses/independent-samples-release/run-independent-samples.sh 
 ```
 
-OR by default uses pbta-histologies.tsv from data folder
+The default value of `OPENPBTA_BASE_RELEASE` in `analyses/independent-samples-release/run-independent-samples.sh` is `1`.
+
+OR uses histologies.tsv from data folder
+
 ```sh
-bash analyses/independent-samples-release/run-independent-samples.sh
+OPENPBTA_BASE_RELEASE=0 bash analyses/independent-samples-release/run-independent-samples.sh
 ```
 
 
