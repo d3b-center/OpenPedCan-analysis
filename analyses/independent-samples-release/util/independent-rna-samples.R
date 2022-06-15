@@ -102,7 +102,7 @@ independent_rna_samples <- function(independent_dna_sample_df,
   # leaving this in for future use in case we get specimen order data 
   early_samples <- sample_df %>%
     dplyr::group_by(Kids_First_Participant_ID) %>%
-    dplyr::summarize(age_at_diagnosis_days = min(age_at_diagnosis_days)) %>%
+    dplyr::summarize(age_at_diagnosis_days = min(as.numeric(age_at_diagnosis_days))) %>%
     dplyr::left_join(sample_df, by = c("Kids_First_Participant_ID",
                                        "age_at_diagnosis_days"))
   
