@@ -25,6 +25,10 @@ As different analyses may require different sets of data, we actually generate a
 
 ## Generating sample lists
 
+There are two modules for generating independent specimens:
+1. `independent-samples-release` - in this module, independent sample lists above are generated using the `histologies-base.tsv` file and these lists are used to run modules specific to release (eg: fusion filtering)
+2. `independent-samples` - in this module, independent sample lists above are generated per cohort and per cohort and cancer group, which requirs `histolologies.tsv`
+
 To generate the independent sample lists and associated analysis of redundancies in the overall data set, run the following script from the project root directory:
 
 Use `OPENPBTA_BASE_RELEASE=1` to run this module using the `histologies-base.tsv` from data folder while preparing analysis files for release:
