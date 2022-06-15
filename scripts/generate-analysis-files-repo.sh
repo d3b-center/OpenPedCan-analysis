@@ -27,7 +27,7 @@ mkdir -p ${compiled_dir}
 
 # Create the independent sample list using the *FULL* histology file
 echo "Create independent sample list"
-bash ${analyses_dir}/independent-samples-release/run-independent-samples.sh
+bash ${analyses_dir}/independent-samples-release/run-independent-samples-release.sh
 
 # Fusion summary
 echo "Run fusion summary for subtypes"
