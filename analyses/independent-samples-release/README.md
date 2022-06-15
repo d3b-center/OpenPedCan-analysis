@@ -11,12 +11,16 @@ As different analyses may require different sets of data, we actually generate a
 `independent-specimens-release.wgs.primary.tsv`
 * Primary and secondary specimens with WGS:  
 `independent-specimens-release.wgs.primary-plus.tsv`
-* Primary specimens only with WGS, whole exome sequence (WXS), or Targeted Sequencng (panel):  
+* Primary specimens only with WGS or whole exome sequence (WXS):  
+`independent-specimens-release.wgswxs.primary.tsv`
+* Primary and secondary specimens only with WGS or WXS:  
+`independent-specimens-release.wgswxs.primary-plus.tsv`
+* Primary specimens only with WGS, WXS, or Targeted Sequencng (panel):  
 `independent-specimens-release.wgswxspanel.primary.tsv`
 * Primary and secondary specimens with WGS, WXS, or panel:  
 `independent-specimens-release.wgswxspanel.primary-plus.tsv`
 * Primary and secondary specimens matching WGS, WXS, or panel independent `sample_id` plus only-RNA-Seq
-independent-specimens-release.rnaseq.primary-plus.tsv
+`independent-specimens-release.rnaseq.primary-plus.tsv`
 
 
 ## Generating sample lists
@@ -41,7 +45,7 @@ bash analyses/independent-samples-release/run-independent-samples.sh
 For WGS-preferred lists, when a `Kids_First_Participant_ID` is associated with multiple `experimental_strategy` values i.e. `WGS`, `WXS` or `Targeted Sequencing`, priority is given to a single randomly chosen `WGS` biospecimen first, followed by either a single randomly chosen `WXS` or `Targeted Sequencing` sample.
 There is also a preference for the earliest collected samples, but as this data is not currently available, that code is not currently relevant.
 
-When multiple RNA-Seq samples exist per participant, the script matches the independent whole genome or whole exome sample_ids to gather matched RNA-Seq sample. If participant has onle RNA-Seq sample then a primary (and secondary if applicable) sample is randomly selected per participant  
+When multiple RNA-Seq samples exist per participant, the script matches the independent whole genome or whole exome sample_ids to gather matched RNA-Seq sample. If participant has only RNA-Seq samples then a primary (and secondary if applicable) sample is randomly selected per participant.  
 
 ## Relevant links
 The methods are described in the manuscript here:
