@@ -1,6 +1,7 @@
 #!/bin/bash
+
 # Module author: Jo Lynne Rokita
-# 
+
 
 # Usage: bash run-collapse-transcripts.sh
 
@@ -23,7 +24,7 @@ mkdir -p results
 # generate collapsed matrices
 
 
-Rscript --vanilla 01-collapse-transcripts-test.R \
+Rscript --vanilla 01-collapse-transcripts.R \
   -i ../../data/rna-isoform-expression-rsem-tpm.rds \
   -g ../../data/gencode.v27.primary_assembly.annotation.gtf.gz \
   -m results/rna-isoform-expression-rsem-tpm-collapsed.rds \
