@@ -16,10 +16,14 @@ cd "$script_directory" || exit
 data_path="../../data"
 
 # Independent sample lists needed 
-isl_primary_each="${data_path}/independent-specimens.rnaseq.primary.eachcohort.tsv"
-isl_relapse_each="${data_path}/independent-specimens.rnaseq.relapse.eachcohort.tsv"
-isl_primary_all="${data_path}/independent-specimens.rnaseq.primary.tsv"
-isl_relapse_all="${data_path}/independent-specimens.rnaseq.relapse.tsv"
+#isl_primary_each="${data_path}/independent-specimens.rnaseq.primary.eachcohort.tsv"
+isl_primary_each="${data_path}/independent-specimens.rnaseqpanel.primary.eachcohort.tsv"
+#isl_relapse_each="${data_path}/independent-specimens.rnaseq.relapse.eachcohort.tsv"
+isl_relapse_each="${data_path}/independent-specimens.rnaseqpanel.relapse.eachcohort.tsv"
+#isl_primary_all="${data_path}/independent-specimens.rnaseq.primary.tsv"
+isl_primary_all="${data_path}/independent-specimens.rnaseqpanel.primary.tsv"
+#isl_relapse_all="${data_path}/independent-specimens.rnaseq.relapse.tsv"
+isl_relapse_all="${data_path}/independent-specimens.rnaseqpanel.relapse.tsv"
 
 # Filtered Fusion file 
 fusion_file="${data_path}/fusion-putative-oncogenic.tsv"
