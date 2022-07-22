@@ -17,7 +17,7 @@ Other input must also include the names of the workflows to compare and a file c
 
 
 ### Correlation Coefficient
-Generates the correlation matrix along with standard and probably error of the correlation coefficient
+Generates the correlation matrix along with standard and probable error of the correlation coefficient
 The probable error can be used to interpret if the correlation coefficient is significant for using the data for any downstream analysis.
 
 
