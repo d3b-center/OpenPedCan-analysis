@@ -40,7 +40,8 @@ qc_matrix_input <- function(matrix1, matrix2){
   
   #Validate all rows/genes and all columns/sample_ids match across matrices
   stopifnot(setequal(colnames(mat1_final),colnames(mat2_final)) == TRUE)
-  
+  stopifnot(setequal((rownames(mat1_final), rownames(mat2_final)) == TRUE))
+
   calc_cor_input <- list(mat1_final,mat2_final)
   return(calc_cor_input)
   
