@@ -12,11 +12,18 @@ suppressPackageStartupMessages(
 # Output_note: Each result matrix can be accessed as calc_cor_input[[mat1]]
 # Output_note: , calc_cor_input[[mat2]]
 qc_matrix_input <- function(matrix1, matrix2){
+  
+  #Remove rows with all zeros
+  #Essentially, remove samples with no expression
+  matrix1 <- matrix1[rowSums(matrix1[])>0,]
+  matrix2 <- matrix2[rowSums(matrix2[])>0,]
+  
   #rownames must refer to gene names
   common_genes <- intersect(rownames(matrix1),rownames(matrix2)) %>%
     sort()
   mat1_all_genes <- matrix1[common_genes,]
   mat2_all_genes <- matrix2[common_genes,]
+  
   
   #colnames must refer to sample ids
   common_samples <- intersect(colnames(mat1_all_genes), colnames(mat2_all_genes)) %>%
@@ -25,10 +32,14 @@ qc_matrix_input <- function(matrix1, matrix2){
   mat2_final <- mat2_all_genes[, common_samples]
   
   #Validate all rows/genes and all columns/sample_ids match across matrices
-  mat1_col_extra <- setdiff(colnames(mat1_final),colnames(mat2_final))
+  #mat1_col_extra <- setdiff(colnames(mat1_final),colnames(mat2_final))
   # character(0)
-  mat2_col_extra <- setdiff(colnames(mat2_final),colnames(mat1_final))
+  #mat2_col_extra <- setdiff(colnames(mat2_final),colnames(mat1_final))
   # character(0)
+  
+  
+  #Validate all rows/genes and all columns/sample_ids match across matrices
+  stopifnot(setequal(colnames(mat1_final),colnames(mat2_final)) == TRUE)
   
   calc_cor_input <- list(mat1_final,mat2_final)
   return(calc_cor_input)
@@ -41,18 +52,18 @@ qc_matrix_input <- function(matrix1, matrix2){
 # correlation coefficient, standard error, and probable error of correlation coefficient
 calculate_matrix_cor <- function(matrix1, matrix2, wf1_name, wf2_name){
   
-  result_compare_all_genes <- data.frame()
-  p1_p2_coef <- sapply(1:nrow(matrix1), function(i) cor(matrix1[i,], matrix2[i,]))
+  #result_compare_all_genes <- data.frame()
+  p1_p2_coef <- sapply(1:nrow(matrix1), function(i) cor(matrix1[i,], matrix2[i,], method = "pearson", use = "pairwise.complete.obs"))
   row_names <- rownames(matrix1)
   
-  serr_r <- sapply(p1_p2_coef, function(r) (1 - (r^2))/length(p1_p2_coef))
+  serr_r <- sapply(p1_p2_coef, function(r) (1 - (r^2))/sqrt(length(p1_p2_coef)))
   perr_r <- sapply(p1_p2_coef, function(r) 0.6745*((1 - (r^2))/sqrt(length(p1_p2_coef))))
   
   final_result <- data.frame()
   final_result <- cbind(row_names, p1_p2_coef, serr_r, perr_r)
   rownames(final_result) <- row_names
   colnames(final_result) <- c("gene_id", paste("coeff",wf1_name,wf2_name,sep = "_"), "stderr_coef", "proberr_coef")
-  na.omit(final_result)
+  #na.omit(final_result)
   return(final_result)
   
 }

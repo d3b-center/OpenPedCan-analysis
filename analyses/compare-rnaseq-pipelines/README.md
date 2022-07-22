@@ -20,6 +20,26 @@ Other input must also include the names of the workflows to compare and a file c
 Generates the correlation matrix along with standard and probably error of the correlation coefficient
 The probable error can be used to interpret if the correlation coefficient is significant for using the data for any downstream analysis.
 
+
+### Standard error of Correlation Coefficient
+The standard error of correlation coeffiecient is defined by below formula
+```
+s_err = 1 - (r^2))/sqrt(n)
+where r=correlation coeffiecient, n=number of samples
+```
+
+### Probable error of Correlation Coefficient
+The standard error of correlation coeffiecient is defined by below formula
+```
+p_err = 0.6745*((1 - (r^2))/sqrt(n))
+where r=correlation coeffiecient, n=number of samples
+```
+
+### Interpretation
+Probable error determines the limits for correlation coefficient for the population as [r-p_err, r+p_err]
+
+Additionally, if r > 6p_err, it can be concluded that there is a definitely significant correlation between the two samples.
+
 ```
 
 Required flags:
