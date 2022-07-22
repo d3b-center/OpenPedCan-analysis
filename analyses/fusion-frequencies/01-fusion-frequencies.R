@@ -196,7 +196,6 @@ fusion_df <- fusion_df  %>%
   # replace NA to "" in columns that have NA
   replace_na(list("Kinase_domain_retained_Gene1A"="",
                   "Kinase_domain_retained_Gene1B"="",
-                  #"Reciprocal_exists_either_gene_kinase"="",
                   "Gene1A_anno"="",
                   "Gene1B_anno"="",
                   "Gene2A_anno"="",
