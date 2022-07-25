@@ -240,6 +240,7 @@ no_need_for_tiebreaks <- histology_df %>%
   dplyr::filter(!Kids_First_Biospecimen_ID %in% all_tiebreaks$Kids_First_Biospecimen_ID) %>%
   dplyr::mutate(formatted_sample_id = case_when(
     cohort == "PBTA" ~ sample_id,
+    cohort == "DGD" ~ sample_id,
     TRUE ~ Kids_First_Participant_ID
 ))
 
@@ -248,8 +249,4 @@ histology_all_fixed <- bind_rows(all_tiebreaks, no_need_for_tiebreaks)
 
 # write out the results
 histology_all_fixed %>% 
-  dplyr::filter(cohort != "TCGA") %>%
   readr::write_tsv(file.path(results_dir, "histologies-formatted-id-added.tsv"))
-
-
-
