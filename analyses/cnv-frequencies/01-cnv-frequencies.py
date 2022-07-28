@@ -30,10 +30,10 @@ def read_parameters():
      p = argparse.ArgumentParser(description=("The 01-snv-frequencies.py scripts creates copy number variation (CNV) cancer type and study gene-level alterations frequencies table for the OPenPedCan analyses modules."), formatter_class=argparse.RawTextHelpFormatter)
      p.add_argument('HISTOLOGY_FILE', type=str, default=None, help="OPenPedCan histology file (histologies.tsv)\n\n")
      p.add_argument('CNV_FILE', type=str, default=None, help="OPenPedCan CNV consensus file (consensus_wgs_plus_cnvkit_wxs.tsv.gz)\n\n")
-     p.add_argument('AC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent primary tumor samples file (independent-specimens.wgswxspanel.primary.tsv)\n\n")
-     p.add_argument('AC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.tsv)\n\n")
-     p.add_argument('EC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent primary tumor samples file (independent-specimens.wgswxspanel.primary.eachcohort.tsv)\n\n")
-     p.add_argument('EC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.eachcohort.tsv)\n\n")
+     p.add_argument('AC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent primary tumor samples file (independent-specimens.wgswxspanel.primary.prefer.wgs.tsv)\n\n") # Filename in v10: independent-specimens.wgswxspanel.primary.tsv 
+     p.add_argument('AC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv)\n\n") # Filename in v10: independent-specimens.wgswxspanel.relapse.tsv 
+     p.add_argument('EC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent primary tumor samples file (independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv)\n\n") # Filename in v10: independent-specimens.wgswxspanel.primary.eachcohort.tsv 
+     p.add_argument('EC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv))\n\n") # Filename in v10: independent-specimens.wgswxspanel.relapse.eachcohort.tsv 
      p.add_argument('-v', '--version', action='version', version="01-cnv-frequencies.py version {} ({})".format(__version__, __date__), help="Print the current 01-cnv-frequencies.py version and exit\n\n")
      return p.parse_args()
 
