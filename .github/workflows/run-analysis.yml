@@ -4,34 +4,25 @@ name: Run Analysis
 on:
   workflow_dispatch:
   pull_request:
+        branches: [ dev ]
 
 jobs:
-  build:
+  build_and_download_data:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        name: Checkout repo
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
+# Build docker container and download testing data
+      - name: Build container and download data
+        uses: ./
+        id: download-data
         with:
-          context: .
-          file: ./Dockerfile
-          tags: myimage:latest
-          outputs: type=docker,dest=/tmp/myimage.tar
+          args: OPENPEDCAN_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets OPENPEDCAN_RELEASE=testing bash download-data.sh
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: myimage
-          path: /tmp/myimage.tar
-
-  download_data:
+  run_analysis:
     runs-on: ubuntu-18.04
-    needs: build
+    needs: build_and_download_data
     steps:
 
       - name: Set up Docker Buildx
@@ -47,35 +38,8 @@ jobs:
         run: |
           docker load --input /tmp/myimage.tar
           docker image ls -a
-          OPENPEDCAN_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets OPENPEDCAN_RELEASE=testing bash download-data.sh
 
-    run_analysis:
-      runs-on: ubuntu-18.04
-      needs: |
-          build
-          download_data
-      steps:
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Download artifact
-          uses: actions/download-artifact@v2
-          with:
-            name: myimage
-            path: /tmp
-
-        - name: Load Docker image
-          run: |
-            docker load --input /tmp/myimage.tar
-            docker image ls -a
-
-        - name: Load Docker image
-          run: |
-            docker load --input /tmp/myimage.tar
-            docker image ls -a
-
-        - name: Run Molecular Subtyping - MB
-          id: RUN-molecular-subtyping-MB
-          run: |
+      - name: Run Molecular Subtyping - MB
+        id: RUN-molecular-subtyping-MB
+        run: |
             OPENPBTA_SUBSET=0 bash analyses/molecular-subtyping-MB/run-molecular-subtyping-mb.sh
