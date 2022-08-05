@@ -16,19 +16,23 @@ cd "$script_directory" || exit
 data_path="../../data"
 
 # Independent sample lists needed 
-isl_primary_each="${data_path}/independent-specimens.rnaseqpanel.primary.eachcohort.tsv"
-isl_relapse_each="${data_path}/independent-specimens.rnaseqpanel.relapse.eachcohort.tsv"
 isl_primary_all="${data_path}/independent-specimens.rnaseqpanel.primary.tsv"
 isl_relapse_all="${data_path}/independent-specimens.rnaseqpanel.relapse.tsv"
+isl_primary_each="${data_path}/independent-specimens.rnaseqpanel.primary.eachcohort.tsv"
+isl_relapse_each="${data_path}/independent-specimens.rnaseqpanel.relapse.eachcohort.tsv"
 
 # Filtered Fusion file 
 fusion_file="${data_path}/fusion-putative-oncogenic.tsv"
+
+# Fusion DGD file
+fusion_dgd_file="${data_path}/fusion-dgd.tsv.gz"
 
 # Histology file
 histology_file="${data_path}/histologies.tsv"
 
 # gather frequencies at FusionName and Fusion_Type level
 Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
+  --fusion_dgd_file $fusion_dgd_file \
 	--alt_id "FusionName,Fusion_Type" \
 	--input_histologies $histology_file \
 	--primary_independence_all $isl_primary_all \
@@ -46,6 +50,7 @@ rm results/putative-oncogene-fusion-freq.json
 
 # gather frequencies at Fused Gene level
 Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
+        --fusion_dgd_file $fusion_dgd_file \
         --alt_id "Gene_Symbol" \
         --input_histologies $histology_file \
         --primary_independence_all $isl_primary_all \
@@ -58,6 +63,25 @@ Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
 jq --compact-output '.[]' \
   results/putative-oncogene-fused-gene-freq.json \
   > results/putative-oncogene-fused-gene-freq.jsonl
+
+
+# gather frequencies at gene level DGD fusion calls
+Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
+        --fusion_dgd_file $fusion_dgd_file \
+        --alt_id "Fusion_DGD" \
+        --input_histologies $histology_file \
+        --primary_independence_all $isl_primary_all \
+        --relapse_independence_all $isl_relapse_all \
+      	--primary_independence_each $isl_primary_each \
+      	--relapse_independence_each $isl_relapse_each \
+      	--data_source_id "chop_putative_oncogene_fused_gene" \
+        --output_filename "putative-oncogene-dgd-gene-freq" 
+
+jq --compact-output '.[]' \
+  results/putative-oncogene-dgd-gene-freq.json \
+  > results/putative-oncogene-dgd-gene-freq.jsonl
+
+
 
 rm results/putative-oncogene-fused-gene-freq.json
 gzip results/putative-oncogene*        

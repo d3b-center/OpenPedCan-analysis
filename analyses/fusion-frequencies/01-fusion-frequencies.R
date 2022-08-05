@@ -10,6 +10,8 @@ suppressPackageStartupMessages(library(ids))
 option_list <- list(
   make_option(c("-i", "--fusion_file"), type = "character",
               help = "Input filtered fusion from `fusion_filtering` module "),
+  make_option(c("-j", "--fusion_dgd_file"), type = "character",
+              help = "Input filtered dgd fusion from `fusion_filtering` module "),
   make_option(c("-a", "--alt_id"), type = "character",
               help = "columnname from fusion_file to be used as Alt_ID or multiple comma separated columnames"),
   make_option(c("-c", "--input_histologies"), type  = "character",
@@ -32,6 +34,7 @@ option_list <- list(
 # parse the parameters
 opt <- parse_args(OptionParser(option_list = option_list))
 fusion_file <- opt$fusion_file
+fusion_dgd_file <- opt$fusion_dgd_file
 input_histologies <- opt$input_histologies
 primary_independence_all <- opt$primary_independence_all
 relapse_independence_all <- opt$relapse_independence_all
@@ -75,8 +78,12 @@ stopifnot(identical(
   as.integer(0)))
 
 fusion_df <- read_tsv(fusion_file, guess_max = 100000)
+
+fusion_dgd_df <- read_tsv(fusion_dgd_file, guess_max = 100000)
+
 # assert all records have Sample
 stopifnot(identical(sum(is.na(fusion_df$Sample)), as.integer(0)))
+stopifnot(identical(sum(is.na(fusion_dgd_df$Tumor_Sample_Barcode)), as.integer(0)))
 
 # get TCGA samples IDs in the histlogies file
 tcga_bs_id <- htl_df %>% 
@@ -84,9 +91,12 @@ tcga_bs_id <- htl_df %>%
   pull(Kids_First_Biospecimen_ID) %>% 
   unique()
 
+
 # filter TCGA samples out of the histologies df
 htl_df <- htl_df %>%  
   filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+
+
 
 # primary independent sample data frame for all cohorts
 primary_indp_sdf_all <- read_tsv(primary_independence_all,
@@ -113,6 +123,7 @@ ensg_hugo_pmtl_df <- read_tsv(file.path(data_dir,'ensg-hugo-pmtl-mapping.tsv'),
                               col_types = cols(.default = col_guess())) %>%
   filter(ensg_id != "Symbol_Not_Found") %>% 
   distinct()
+
 # assert all ensg_ids and gene_symbols are not NA
 stopifnot(identical(sum(is.na(ensg_hugo_pmtl_df$ensg_id)), as.integer(0)))
 stopifnot(identical(sum(is.na(ensg_hugo_pmtl_df$gene_symbol)), as.integer(0)))
@@ -179,14 +190,14 @@ fusion_df <- fusion_df  %>%
                 annots,
                 BreakpointLocation,
                 ends_with("anno")) %>%
-  # Update reciprocal_exits to fusion with atleast 1 kinase gene involved
+  # Update reciprocal_exists to fusion with at least 1 kinase gene involved
   mutate(
          reciprocal_exists_kinase = 
            # if either gene are kinase we will have "Yes" or "No" values
            # in DomainRetainedGene1A and DomainRetainedGene1B
            if_else(is.na(DomainRetainedGene1A) &
                      is.na(DomainRetainedGene1B) ,
-                   # reciprocl_exists is a logical column
+                   # reciprocal_exists is a logical column
                    FALSE,
                    reciprocal_exists)) %>%
   dplyr::rename("Kids_First_Biospecimen_ID"="Sample",
@@ -196,6 +207,7 @@ fusion_df <- fusion_df  %>%
   # replace NA to "" in columns that have NA
   replace_na(list("Kinase_domain_retained_Gene1A"="",
                   "Kinase_domain_retained_Gene1B"="",
+                  #"Reciprocal_exists_either_gene_kinase"="",
                   "Gene1A_anno"="",
                   "Gene1B_anno"="",
                   "Gene2A_anno"="",
@@ -207,6 +219,15 @@ fusion_df <- fusion_df  %>%
   filter(!is.na(gene_symbol)) %>%
   dplyr::rename(Gene_Position = gene_position,
                 Gene_Symbol = gene_symbol)
+
+fusion_dgd_df <- fusion_dgd_df %>%
+  dplyr::rename("Kids_First_Biospecimen_ID"="Tumor_Sample_Barcode",
+                "Gene_Symbol"="Hugo_Symbol",
+                "FusionName"="Fusion") %>%
+  left_join(., htl_df, by = c('Kids_First_Biospecimen_ID' = 'Kids_First_Biospecimen_ID')) %>%
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, Gene_Symbol, FusionName)
+  
+
 
 print(alt_id)
 
@@ -225,6 +246,12 @@ if (identical(alt_id, c("FusionName", "Fusion_Type"))) {
     mutate( Alt_ID = Gene_Symbol )
   keep_cols <-c("Gene_Symbol")
 
+} else if (identical(alt_id, "Fusion_DGD")) {
+  fusion_df <- fusion_dgd_df %>%
+    mutate( Alt_ID = Gene_Symbol ,
+            cohort = alt_id)
+  keep_cols <-c("Gene_Symbol")
+  
 }
 
 rm(tumor_kfbids)
@@ -286,6 +313,12 @@ m_fus_freq_tbl <- m_fus_freq_tbl %>%
   mutate(Dataset = if_else(str_detect(Dataset, '&'),
                            true = 'all_cohorts', false = Dataset))
 
+
+if (identical(alt_id, "Fusion_DGD")) {
+  m_fus_freq_tbl <- m_fus_freq_tbl %>%
+    filter(Dataset == "Fusion_DGD")
+}
+
 ### Adding annotation ###
 
 # assert all pmtl NAs have version NAs, vice versa
@@ -298,9 +331,17 @@ ann_ensg_hugo_pmtl_df <- ensg_hugo_pmtl_df %>%
   dplyr::rename(Gene_Ensembl_ID = ensg_id,
          Gene_Symbol=gene_symbol) 
 
+not_any_na <- function(x) all(!is.na(x))
+
+
 m_fus_freq_tbl <- m_fus_freq_tbl %>%
+  #select(where(not_any_na)) %>%
   left_join(ann_ensg_hugo_pmtl_df, by = "Gene_Symbol") %>%
+  #inner_join(ann_ensg_hugo_pmtl_df, by = "Gene_Symbol") %>%
   replace_na(list(Gene_Ensembl_ID = ''))
+
+#test <- m_fus_freq_tbl[rowSums(is.na(m_fus_freq_tbl)) > 0,]
+
 stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 
