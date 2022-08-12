@@ -1,5 +1,6 @@
 #!/bin/bash
 # J. Taroni for CCDL 2019
+# Updated by Eric Wafula for Pediatric Open Targets 2022
 # Create subset files for continuous integration
 
 set -e
@@ -7,7 +8,7 @@ set -o pipefail
 
 # Set defaults for release and biospecimen file name
 BIOSPECIMEN_FILE=${BIOSPECIMEN_FILE:-biospecimen_ids_for_subset.RDS}
-RELEASE=${RELEASE:-release-v19-20210423}
+RELEASE=${RELEASE:-v11}
 NUM_MATCHED=${NUM_MATCHED:-15}
 
 # This option controls whether or not the two larger MAF files are skipped as
@@ -31,61 +32,59 @@ cd "$script_directory" || exit
 # generated via these scripts
 FULL_DIRECTORY=../../data/$RELEASE
 SUBSET_DIRECTORY=../../data/testing/$RELEASE
+# If run subsetting only, we need to make this directory
+if [ ! -d ${SUBSET_DIRECTORY} ]; then
+    mkdir -p ${SUBSET_DIRECTORY}
+fi
 
 #### generate subset files -----------------------------------------------------
+
+# overide system /tmp directory and create ./tmp directory for the R script
+# in some case system /tmp directory is too small
+RTMP_DIRECTORY=./tmp
+if [ ! -d ${RTMP_DIRECTORY} ]; then
+    mkdir -m777 ${RTMP_DIRECTORY}
+fi
 
 if [ "$SKIP_SUBSETTING" -lt "1" ]; then
 
   # get list of biospecimen ids for subset files
-  Rscript --vanilla 01-get_biospecimen_identifiers.R \
+  TMPDIR=./tmp Rscript --vanilla 01-get_biospecimen_identifiers.R \
       --data_directory $FULL_DIRECTORY \
       --output_file $BIOSPECIMEN_FILE \
       --num_matched $NUM_MATCHED \
       --local $RUN_LOCAL
 
   # subset the files
-  Rscript --vanilla 02-subset_files.R \
+  TMPDIR=./tmp Rscript --vanilla 02-subset_files.R \
     --biospecimen_file $BIOSPECIMEN_FILE \
     --output_directory $SUBSET_DIRECTORY
 
 fi
 
+rm -rf $RTMP_DIRECTORY
+
 #### copy files that are not being subset --------------------------------------
 
 # histologies file
-cp $FULL_DIRECTORY/pbta-histologies.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/histologies.tsv $SUBSET_DIRECTORY
 
 # base histologies file
-cp $FULL_DIRECTORY/pbta-histologies-base.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/histologies-base.tsv $SUBSET_DIRECTORY
 
-# recurrently fused genes by histologies file
-cp $FULL_DIRECTORY/pbta-fusion-recurrently-fused-genes-byhistology.tsv $SUBSET_DIRECTORY
+# annotation files
+cp $FULL_DIRECTORY/uberon-map-gtex-*.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/efo-mondo-map.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/ensg-hugo-pmtl-mapping.tsv $SUBSET_DIRECTORY
 
 # GISTIC output
-cp $FULL_DIRECTORY/pbta-cnv-cnvkit-gistic.zip $SUBSET_DIRECTORY
-cp $FULL_DIRECTORY/pbta-cnv-consensus-gistic.zip $SUBSET_DIRECTORY
-
-# independent specimen files
-cp $FULL_DIRECTORY/independent-specimens*.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/cnv-consensus-gistic.zip $SUBSET_DIRECTORY
 
 # all bed files
 cp $FULL_DIRECTORY/*.bed $SUBSET_DIRECTORY
 
 # data file description
 cp $FULL_DIRECTORY/data-files-description.md $SUBSET_DIRECTORY
-
-# TCGA related files
-cp $FULL_DIRECTORY/pbta-tcga* $SUBSET_DIRECTORY
-cp $FULL_DIRECTORY/tcga-snv* $SUBSET_DIRECTORY
-
-# STAR logs
-cp $FULL_DIRECTORY/pbta-star* $SUBSET_DIRECTORY
-
-# MEND QC files
-cp $FULL_DIRECTORY/pbta-mend* $SUBSET_DIRECTORY
-
-# fusion summary files
-cp $FULL_DIRECTORY/fusion_summary* $SUBSET_DIRECTORY
 
 # if the md5sum.txt file already exists, get rid of it
 cd $SUBSET_DIRECTORY
@@ -94,5 +93,5 @@ rm -f md5sum.txt
 md5sum * > md5sum.txt
 cd "$script_directory" || exit
 
-# the release notes and not included in md5sum.txt
+# the release notes are not included in md5sum.txt
 cp $FULL_DIRECTORY/release-notes.md $SUBSET_DIRECTORY

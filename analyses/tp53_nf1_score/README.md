@@ -22,8 +22,8 @@ bash run_classifier.sh
 
 `snv-consensus-plus-hotspots.maf.tsv.gz`: from consensus SNV calls that are present in all 3 callers (strelka2,mutect2 and lancet) plus hotspot rescued
 `gene-expression-rsem-tpm-collapsed.rds` : TPM values per gene in biospecimen_id
-`consensus_seg_with_status.tsv` : created by `analyses/focal-cn-file-preparation/02-add-ploidy-consensus.Rmd` - moved from scratch to input folder 
-`cnvkit_with_status.tsv`: created by `analyses/focal-cn-file-preparation/01-add-ploidy-cnvkit.Rmd` - moved from scratch to input folder 
+`consensus_seg_with_status.tsv` : created by `analyses/focal-cn-file-preparation/02-add-ploidy-consensus.Rmd` - available through data download
+`cnvkit_with_status.tsv`: created by `analyses/focal-cn-file-preparation/01-add-ploidy-cnvkit.Rmd` -available through data download
 `sv-manta.tsv.gz` : Structural Variants called by manta
 
 ### Order of analysis

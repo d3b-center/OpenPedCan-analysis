@@ -1,0 +1,213 @@
+name: Run Analysis
+
+# Controls when the action will run.
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build_and_run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout repo
+
+# Build docker container and download testing data
+      - name: Build container and download data
+        uses: ./
+        id: download-data
+        with:
+          args: OPENPEDCAN_URL=https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets OPENPEDCAN_RELEASE=testing bash download-data.sh
+
+# Molecular subtyping modules
+      - name: Run Molecular Subtyping - MB
+        uses: ./
+        id: RUN-molecular-subtyping-MB
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-MB/run-molecular-subtyping-mb.sh
+
+      - name: Run Molecular Subtyping - CRANIO
+        uses: ./
+        id: RUN-molecular-subtyping-CRANIO
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-CRANIO/run-molecular-subtyping-cranio.sh
+
+      - name: Run Molecular Subtyping - EPN
+        uses: ./
+        id: RUN-molecular-subtyping-EPN
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-EPN/run-molecular-subtyping-EPN.sh
+
+      - name: Run Molecular Subtyping - EMBRYONAL in container
+        uses: ./
+        id: RUN-molecular-subtyping-embryonal
+        with:
+          args: OPENPBTA_TESTING=1 OPENPBTA_SUBSET=0 analyses/molecular-subtyping-embryonal/run-embryonal-subtyping.sh
+
+      - name: Run Molecular Subtyping - CHORDOMA in container
+        uses: ./
+        id: RUN-molecular-subtyping-chordoma
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-chordoma/run-molecular-subtyping-chordoma.sh
+
+      - name: Run Molecular Subtyping - EWS in container
+        uses: ./
+        id: RUN-molecular-subtyping-EWS
+        with:
+          args: analyses/molecular-subtyping-EWS/run_subtyping.sh
+
+      - name: Run Molecular Subtyping - NEUROCYTOMA in container
+        uses: ./
+        id: RUN-molecular-subtyping-neurocytoma
+        with:
+          args: analyses/molecular-subtyping-neurocytoma/run_subtyping.sh
+
+      - name: Run Molecular Subtyping - HGG
+        uses: ./
+        id: RUN-molecular-subtyping-HGG
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-HGG/run-molecular-subtyping-HGG.sh
+
+      - name: Run Molecular Subtyping - LGG
+        uses: ./
+        id: RUN-molecular-subtyping-LGAT
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/molecular-subtyping-LGAT/run_subtyping.sh
+
+      - name: Run Molecular Subtyping - PATHOLOGY/COMPILE
+        uses: ./
+        id: RUN-molecular-subtyping-pathology
+        with:
+          args: OPENPBTA_TESTING=1 analyses/molecular-subtyping-pathology/run-subtyping-aggregation.sh
+
+      - name: Run Molecular Subtyping - INTEGRATE (+ add cancer groups)
+        uses: ./
+        id: RUN-molecular-subtyping-integrate
+        with:
+          args: analyses/molecular-subtyping-integrate/run-subtyping-integrate.sh
+
+
+# Analysis modules
+
+      - name: Run Independent Specimens
+        uses: ./
+        id: RUN-independent-samples
+        with:
+          args: analyses/independent-samples/run-independent-samples.sh
+
+      - name: Run Independent Specimens pre-release
+        uses: ./
+        id: RUN-independent-samples-pre-release
+        with:
+          args: RUN_FOR_SUBTYPING=1 analyses/independent-samples/run-independent-samples.sh
+
+      - name: Run TP53/NF1 scores
+        uses: ./
+        id: RUN-tp53_nf1_score
+        with:
+          args: OPENPEDCAN_POLYA_STRAND=0 analyses/tp53_nf1_score/run_classifier.sh
+
+      - name: Run Fusion filtering
+        uses: ./
+        id: RUN-fusion_filtering
+        with:
+          args: analyses/fusion_filtering/run_fusion_merged.sh
+
+      - name: Run Fusion summary
+        uses: ./
+        id: RUN-fusion-summary
+        with:
+          args: OPENPBTA_SUBSET=0 analyses/fusion-summary/run-new-analysis.sh
+
+# Come back to this - current results not in repo, does not use data folder
+#      - name: Run GISTIC
+#        uses: ./
+#        id: RUN-run-gistic
+#        with:
+#          args: analyses/run-gistic/scripts/run-gistic-opentargets.sh
+
+
+      - name: Run Consensus CN
+        uses: ./
+        id: RUN-focal-cn-file-preparation
+        with:
+          args: OPENPBTA_TESTING=1 analyses/focal-cn-file-preparation/run-prepare-cn-OpenTarget.sh
+
+      - name: Run TMB calculation
+        uses: ./
+        id: RUN-tmb-calculation
+        with:
+          args: analyses/tmb-calculation/run_tmb_calculation.sh
+
+#      - name: Run Immune Deconvolution
+#        uses: ./
+#        id: RUN-immune-Deconvolution
+#        with:
+#          args: analyses/immune-deconv/run-immune-deconv.sh
+
+
+# MTP-specific modules
+
+      - name: Run EFO/MONDO annotation
+        uses: ./
+        id: RUN-efo-mondo-mapping
+        with:
+          args: analyses/efo-mondo-mapping/run_qc.sh
+
+      - name: Run ENSEMBL Gene matching
+        uses: ./
+        id: RUN-gene_match
+        with:
+          args: analyses/gene_match/run-gene-mapping.sh
+
+      - name: Run Update table annotation data
+        uses: ./
+        id: RUN-long-format-table-utils
+        with:
+          args: analyses/long-format-table-utils/run-update-long-format-table-utils.sh
+
+#      - name: Run CNV frequency tables
+#        uses: ./
+#        id: RUN-cnv-frequencies
+#        with:
+#          args: analyses/cnv-frequencies/run-cnv-frequencies-analysis.sh
+
+#      - name: Run Fusion frequency tables
+#        uses: ./
+#        id: RUN-fusion-frequencies
+#        with:
+#          args: analyses/fusion-frequencies/run-frequencies.sh
+
+#      - name: Run SNV frequency tables
+#        uses: ./
+#        id: RUN-snv-frequencies
+#        with:
+#          args: analyses/snv-frequencies/run-snv-frequencies.sh
+
+#      - name: Run Filter MTP tables
+#        uses: ./
+#        id: RUN-filter-mutation-frequencies-tables
+#        with:
+#          args: analyses/filter-mutation-frequencies-tables/run-filter-mutation-frequencies-tables.sh
+
+#      - name: Run Drop columns from MTP tables
+#        uses: ./
+#        id: RUN-pedot-table-column-display-order-name
+#        with:
+#          args: analyses/pedot-table-column-display-order-name/run-pedot-table-column-display-order-name.sh
+
+# Pedcbio-specific modules
+
+# This needs some update/revamp/is in PR
+#      - name: Run Prepare CNV for pedcbio
+#        uses: ./
+#        id: RUN-pedcbio-cnv-prepare
+#        with:
+#          args: analyses/pedcbio-cnv-prepare/run-cnv-pedcbio.sh
+
+# This will not pass now that we removed parental_aliquot_id
+#      - name: Run Create pedcbio sample file
+#        uses: ./
+#        id: RUN-pedcbio-sample-name
+#        with:
+#          args: analyses/pedcbio-sample-name/run_add_name.sh

@@ -20,7 +20,7 @@ while [ $finished != 0 ] && [ $attempts -lt 3 ]; do
     fi
 
     docker build \
-           --tag "open-pbta" \
+           --tag "open-pedcan" \
            --file "Dockerfile" .
     finished=$?
     attempts=$((attempts+1))
@@ -36,4 +36,4 @@ env | grep "OPENPBTA_.*" > open_pbta_envs.txt
 docker run \
        --env-file=open_pbta_envs.txt \
        --volume "$(pwd)":/rocker-build/ \
-       -it "open-pbta" "$@"
+       -it "open-pedcan" "$@"

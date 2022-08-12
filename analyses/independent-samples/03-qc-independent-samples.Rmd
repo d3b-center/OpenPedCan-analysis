@@ -27,12 +27,12 @@ wgs_only_files <- c("independent-specimens.wgs.primary.eachcohort.tsv",
 ```
 
 ```{r wgs_preferred}
-wgs_preferred_files <- c("independent-specimens.wgswxspanel.primary.eachcohort.tsv",
-                         "independent-specimens.wgswxspanel.primary.tsv",
-                         "independent-specimens.wgswxspanel.relapse.eachcohort.tsv",
-                         "independent-specimens.wgswxspanel.relapse.tsv",
-                         "independent-specimens.wgswxspanel.primary-plus.eachcohort.tsv",
-                         "independent-specimens.wgswxspanel.primary-plus.tsv")
+wgs_preferred_files <- c("independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv",
+                         "independent-specimens.wgswxspanel.primary.prefer.wgs.tsv",
+                         "independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv",
+                         "independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv",
+                         "independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wgs.tsv",
+                         "independent-specimens.wgswxspanel.primary-plus.prefer.wgs.tsv")
 ```
 
 ```{r wxs_preferred}
@@ -42,6 +42,21 @@ wxs_preferred_files <- c("independent-specimens.wgswxspanel.primary.eachcohort.p
                          "independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv",
                          "independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv",
                          "independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv")
+```
+
+```{r rnaseq}
+rnaseq_files <- c("independent-specimens.rnaseqpanel.primary.eachcohort.tsv",
+                         "independent-specimens.rnaseqpanel.primary.tsv",
+                         "independent-specimens.rnaseqpanel.relapse.eachcohort.tsv",
+                         "independent-specimens.rnaseqpanel.relapse.tsv",
+                         "independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv",
+                         "independent-specimens.rnaseqpanel.primary-plus.tsv")
+```
+
+```{r methyl}
+methyl_files <- c("independent-specimens.methyl.primary.tsv",
+                         "independent-specimens.methyl.relapse.tsv",
+                         "independent-specimens.methyl.primary-plus.tsv")
 ```
 
 ## Functions
@@ -72,5 +87,19 @@ DT::datatable(map_df(wgs_preferred_files, .f = function(x)
 
 ```{r wxs_pref_file_summary}
 DT::datatable(map_df(wxs_preferred_files, .f = function(x) 
+  count_num(file.path('results', x))))
+```
+
+### RNA-Seq File summary
+
+```{r rnaseq_file_summary}
+DT::datatable(map_df(rnaseq_files, .f = function(x) 
+  count_num(file.path('results', x))))
+```
+
+### Methylation File summary
+
+```{r methyl_file_summary}
+DT::datatable(map_df(methyl_files, .f = function(x) 
   count_num(file.path('results', x))))
 ```

@@ -5,20 +5,10 @@ A table with brief descriptions for each data file is provided in the `data-file
 
 ## Processed Data Files
 
-Processed data files are all files derived from samples (e.g., tumors, cell lines) that are processed upstream of this repository and are not the product of any analysis code in the `AlexsLemonade/OpenPBTA-analysis` repository.
-
-
-### Somatic Single Nucleotide Variant (SNV) Data
-
-Somatic Single Nucleotide Variant (SNV) data are provided in [Annotated MAF format](format/vep-maf.md) files for each of the [applied software packages](https://alexslemonade.github.io/OpenPBTA-manuscript/#somatic-single-nucleotide-variant-calling) and denoted with the `snv` prefix. Briefly, VCFs are VEP annotated and converted to MAF format via [vcf2maf](https://github.com/mskcc/vcf2maf/blob/master/maf2vcf.pl) to produce the MAF files. 
-
-* `snv-lancet.vep.maf.gz`
-* `snv-mutect2.vep.maf.gz`
-* `snv-strelka2.vep.maf.gz`
-* `snv-vardict.vep.maf.gz`
+Processed data files are all files derived from samples (e.g., tumors, cell lines) that are processed upstream of this repository and are not the product of any analysis code in the `AlexsLemonade/OpenPBTA-analysis` or `PediatricOpenTargets/OpenPedCan-analysis` repository.
 
 ### Consensus Somatic Variant Data
-Somatic calls that are retained if they are supported by atleast 2 callers OR marked as `HotSpotAllele` because they overlap SNV/INDELs considered as [Cancer Hotspots](https://www.cancerhotspots.org/#/download) OR are TERT promoter SNVs. Please find additional information [here](https://github.com/kids-first/kf-somatic-workflow/blob/master/docs/kfdrc-consensus-calling.md) 
+Somatic calls that are retained if they are supported by atleast 2 callers OR marked as `HotSpotAllele` because they overlap SNV/INDELs considered as [Cancer Hotspots](https://www.cancerhotspots.org/#/download) OR are TERT promoter SNVs. Please find additional information [here](https://github.com/kids-first/kf-somatic-workflow/blob/master/docs/kfdrc-consensus-calling.md)
 
 * `snv-consensus-plus-hotspots.maf.tsv.gz`
 
@@ -27,8 +17,8 @@ Somatic calls that are retained if they are supported by atleast 2 callers OR ma
 Somatic Copy Number Variant (CNV) data are provided in a modified [SEG format](https://software.broadinstitute.org/software/igv/SEG) for each of the [applied software packages](https://alexslemonade.github.io/OpenPBTA-manuscript/#somatic-copy-number-variant-calling) and denoted with the `cnv` prefix.
 **Somatic copy number data is only generated for whole genome sequencing (WGS) samples.**
 
-  * `cnv-cnvkit.seg.gz` is the the CNVkit SEG file. This file contains an additional column `copy.num` to denote copy number of each segment, derived from the CNS file output of the algorithm [described here](https://cnvkit.readthedocs.io/en/stable/fileformats.html).
-  * `cnv-controlfreec.tsv.gz` is the ControlFreeC TSV file. It is a merge of `*_CNVs` files produced from the algorithm, and columns are [described here](http://boevalab.inf.ethz.ch/FREEC/tutorial.html#OUTPUT).
+* `cnv-cnvkit.seg.gz` is the the CNVkit SEG file. This file contains an additional column `copy.num` to denote copy number of each segment, derived from the CNS file output of the algorithm [described here](https://cnvkit.readthedocs.io/en/stable/fileformats.html).
+* `cnv-controlfreec.tsv.gz` is the ControlFreeC TSV file. It is a merge of `*_CNVs` files produced from the algorithm, and columns are [described here](http://boevalab.inf.ethz.ch/FREEC/tutorial.html#OUTPUT).
   
 #### A Note on Ploidy
 
@@ -47,51 +37,82 @@ See [the data description file](data-description.md) for more information about 
 
 If your analysis requires de-duplicated gene symbols as row names, please use the collapsed matrices provided as part of the data download ([see below](#collapsed-expression-matrices)).
 
-### Gene Fusion Data
+### Derived Fusion Files
 
-Gene Fusions produced by the [applied software packages](https://alexslemonade.github.io/OpenPBTA-manuscript/#rna-fusion-calling-and-prioritization) are provided as [Arriba TSV](format/arriba-tsv-header.md) and [STARFusion TSV](./format/starfusion-tsv-header.md) respectively.
-These files are denoted with the prefix `fusion`.
+The filtered and prioritized fusion and downstream files are a product of the [`analyses/fusion_filtering`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion_filtering) analysis module. 
 
-* `fusion-arriba.tsv.gz`
-* `fusion-starfusion.tsv.gz`
+  * `fusion-putative-oncogenic.tsv` contains the filtered and prioritized fusions. 
 
-The above gene fusions results were then filtered by the [fusion filtering module](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/v10-release/analyses/fusion_filtering) to contain only putative oncogenic fusions.
-* `fusion-putative-oncogenic.tsv.gz`
+Binary matrices for the presence of tumor-specific fusions across all RNA biospecimens are the product of [`fusion-summary`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion-summary).
+
+  * `fusion_summary_embryonal_foi.tsv` contains a binary matrix that denotes the presence or absence of a recurrent embryonal tumor fusions of interest per individual RNA-seq specimen.
+  * `fusion_summary_ependymoma_foi.tsv` contains a binary matrix that denotes the presence or absence of a recurrent ependymal tumor fusions of interest per individual RNA-seq specimen.
+  * `fusion_summary_ewings_foi.tsv` contains a binary matrix that denotes the presence or absence of a recurrent Ewing's sarcoma tumor fusions of interest per individual RNA-seq specimen.
+  * `fusion_summary_lgat_foi.tsv` contains a binary matrix that denotes the presence or absence of a recurrent LGAT tumor fusions of interest per individual RNA-seq specimen.
+
 
 ### Structural Variant Data
 
-Structural Variants data produced by the [`MANTA` package](https://pubmed.ncbi.nlm.nih.gov/26647377/; https://github.com/Illumina/manta) is 
+Structural Variants data produced by the [`MANTA` package](https://github.com/Illumina/manta) is 
 provided as:
 
 * `sv-manta.tsv.gz`
 
 ### Harmonized Clinical Data
 
-[Harmonized clinical data](https://alexslemonade.github.io/OpenPBTA-manuscript/#clinical-data-harmonization) are released as tab separated values in the following file:
+[Harmonized clinical data](https://alexslemonade.github.io/OpenPBTA-manuscript/#clinical-data-harmonization) are released as tab separated values in the following files:
 
 * `histologies.tsv`
+* `histologies-base.tsv`
 
-### Independent Sample List
+### Independent Sample Lists
 
-[Independent sample list](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples) are released as tab separated values in the following file. 
-`wgswxspanel` indicates it includes all experimental strategy for DNA sequencing, 
-`RNA` includes all RNA samples and `primary` and `relapse` specifies which tumor type the samples are from.
+[Independent sample list](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples) are released as tab separated values in the following files. 
+`wgswxspanel` indicates it includes all experimental strategies for DNA sequencing, `rnaseqpanel` indicates it includes all experimental strategies for RNA sequencing.
 `eachcohort` indicates the selection is cohort-based. 
-Additionally, `.prefer.wxs` indicates WXS samples were preferentially select when both WGS and WXS are available for a particular participant. 
-All files without `.prefer.wxs` preferentially select WGS amples were preferentially select when both WGS and WXS are available for a particular participant. 
+Additionally, `.prefer.wxs` (or `.prefer.wgs`) indicates WXS (or WGS) samples were preferentially select when both WGS and WXS are available for a particular participant. 
 
-* `independent-specimens.wgswxspanel.primary.eachcohort.tsv`
-* `independent-specimens.wgswxspanel.relapse.eachcohort.tsv`
+* `independent-specimens.methyl.primary-plus.tsv`
+* `independent-specimens.methyl.primary.tsv`
+* `independent-specimens.methyl.relapse.tsv`
+* `independent-specimens.rnaseq.primary-plus-pre-release.tsv`
+* `independent-specimens.rnaseq.primary-pre-release.tsv`
 * `independent-specimens.rnaseq.primary.eachcohort.tsv`
-* `independent-specimens.rnaseq.relapse.eachcohort.tsv`
-* `independent-specimens.wgswxspanel.primary.tsv`
-* `independent-specimens.wgswxspanel.relapse.tsv`
 * `independent-specimens.rnaseq.primary.tsv`
+* `independent-specimens.rnaseq.relapse-pre-release.tsv`
+* `independent-specimens.rnaseq.relapse.eachcohort.tsv`
 * `independent-specimens.rnaseq.relapse.tsv`
+* `independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv`
+* `independent-specimens.rnaseqpanel.primary-plus.pre-release.tsv`
+* `independent-specimens.rnaseqpanel.primary-plus.tsv`
+* `independent-specimens.rnaseqpanel.primary.eachcohort.tsv`
+* `independent-specimens.rnaseqpanel.primary.pre-release.tsv`
+* `independent-specimens.rnaseqpanel.primary.tsv`
+* `independent-specimens.rnaseqpanel.relapse.eachcohort.tsv`
+* `independent-specimens.rnaseqpanel.relapse.pre-release.tsv`
+* `independent-specimens.rnaseqpanel.relapse.tsv`
+* `independent-specimens.wgs.primary-plus.eachcohort.tsv`
+* `independent-specimens.wgs.primary-plus.tsv`
+* `independent-specimens.wgs.primary.eachcohort.tsv`
+* `independent-specimens.wgs.primary.tsv`
+* `independent-specimens.wgs.relapse.eachcohort.tsv`
+* `independent-specimens.wgs.relapse.tsv`
+* `independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wgs.tsv`
+* `independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.primary-plus.prefer.wgs.tsv`
+* `independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv`
 * `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
-* `independent-specimens.wgswxspanel.relapse.eachcohort.tprefer.wxs.sv`
+* `independent-specimens.wgswxspanel.primary.eachcohort.tsv`
+* `independent-specimens.wgswxspanel.primary.prefer.wgs.tsv`
 * `independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.primary.tsv`
+* `independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv`
+* `independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.relapse.eachcohort.tsv`
+* `independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv`
 * `independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
+* `independent-specimens.wgswxspanel.relapse.tsv`
 
 ## Analysis Files
 
@@ -105,6 +126,7 @@ In cases where more than one Ensembl gene identifier maps to the same gene symbo
 
 * `gene-counts-rsem-expected_count-collapsed.rds`  
 * `gene-expression-rsem-tpm-collapsed.rds`
+* `rna-isoform-expression-rsem-tpm.rds`
 
 Additionally, available TCGA gene expression files with same format are included:
 * `tcga-gene-counts-rsem-expected_count.rds`
@@ -117,6 +139,8 @@ Additionally, available TCGA gene expression files with same format are included
 Copy number consensus calls from the copy number and structural variant callers are a product of the [`analyses/copy_number_consensus_call`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/copy_number_consensus_call) analysis module. 
 
 * `cnv-consensus.seg.gz` contains consensus segments and segment means (log R ratios) from two or more callers, as described in the [analysis README](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/copy_number_consensus_call/README.md) - contains only WGS samples. 
+
+* `cnvkit_with_status.tsv` and `consensus_seg_with_status.tsv` contain CNVkit calls for WXS or CNV consensus calls for WGS with gain/loss status, respectively
 
 ##### Focal Copy Number Files
 

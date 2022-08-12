@@ -3,29 +3,15 @@
 set -e
 set -o pipefail
 
-# This script runs RNA-seq summary modules 
-# when new RNA samples are added to OpenPBTA
-# Subtyping modules then need to be re-run for 
-# these new samples when needed for data release
+# This scripts runs after all data for release were generated using 
+#`generate-analysis-files-toolkit.sh` and `generate-analysis-files-repo.sh`
+
+# GSEA and TP53 module are then run with those new files
+# After that, molecular subtyping would be run
 
 OPENPBTA_BASE_SUBTYPING=1
 
 ## Step 1. Generate summary files needed for subtyping
-
-echo "Create collapse rsem files"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/collapse-rnaseq/run-collapse-rnaseq.sh
-
-echo "Create independent sample list"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/independent-samples/run-independent-samples.sh 
-
-echo "Create fusion filtered list" 
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/fusion_filtering/run_fusion_merged.sh
-
-echo "Run fusion summary for subtypes"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/fusion-summary/run-new-analysis.sh
-
-echo "Run tsne"
-OPENPBTA_BASE_SUBTYPING=1 ../analyses/transcriptomic-dimension-reduction/dimension-reduction-plots.sh
 
 echo "Run gsea"
 OPENPBTA_BASE_SUBTYPING=1 ../analyses/gene-set-enrichment-analysis/run-gsea.sh

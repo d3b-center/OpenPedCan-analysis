@@ -37,6 +37,8 @@ from sklearn.metrics import average_precision_score, roc_auc_score
 from sklearn.metrics import roc_curve, precision_recall_curve
 
 import seaborn as sns
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from optparse import OptionParser
 
@@ -46,29 +48,36 @@ parser.add_option(
 )
 parser.add_option("-f", "--file", dest="filename", help="scores output file ")
 parser.add_option(
-    "-c", "--clinical", dest="clinical", help="histologies.tsv clinical file"
+    "-c", "--clinical", dest="clinical", help="pbta-histologies.tsv clinical file"
 )
 parser.add_option(
-    "-r", "--cohorts", type ='string', dest="cohorts", help="list of cohorts of interest"
+    "-o",
+    "--output_basename",
+    dest="outputfile",
+    help="output plots basename for TP53 and NF1 ROC curves",
 )
-
 
 (options, args) = parser.parse_args()
 status_file = options.status_file
 scores_file = options.filename
 clinical = options.clinical
-cohort_list = options.cohorts.split(",")
+outputfilename = options.outputfile
+
+# create module plots directory
+plots_dir = "plots".format(os.path.dirname(__file__))
+if not os.path.exists(plots_dir):
+    os.mkdir(plots_dir)
 
 np.random.seed(123)
 
 # read TP53/NF1 alterations
 full_status_df = pd.read_table(status_file, low_memory=False)
 # read in clinical file
-clinical_df = pd.read_table(clinical, low_memory=False)
-clinical_df = clinical_df[clinical_df['cohort'].isin(cohort_list)]
-clinical_df = clinical_df[clinical_df.cohort != "TCGA"]
-clinical_df = clinical_df[clinical_df.cohort != "GTEx"]
-clinical_df = clinical_df[clinical_df['RNA_library'].notnull()]
+clinical_df = pd.read_table(clinical)
+# select only IDs
+clinical_df = clinical_df[
+    ["Kids_First_Biospecimen_ID", "sample_id", "Kids_First_Participant_ID"]
+]
 
 # Obtain a binary status matrix
 for idx, val in enumerate(full_status_df.itertuples()):
@@ -86,13 +95,37 @@ for idx, val in enumerate(full_status_df.itertuples()):
     else:
         full_status_df.loc[idx,'tp53_status']=0
 
+
 print("drop tp53_score columns from tp53 annotation file")
 full_status_df = full_status_df.drop("tp53_score" , axis = "columns")
+
+
 
 # read in scores from 01
 file = os.path.join(scores_file)
 scores_df = pd.read_table(file)
 scores_df = scores_df.rename(str.upper, axis="columns")
+
+scores_df = scores_df.merge(
+    full_status_df,
+    how="left",
+    left_on="SAMPLE_ID",
+    right_on="Kids_First_Biospecimen_ID_RNA",
+)
+
+print("scores df shape")
+print(scores_df.shape)
+scores_df.tp53_status.value_counts()
+
+scores_df = scores_df.assign(SAMPLE_ID=scores_df.loc[:, "sample_id"])
+
+
+gene_status = ["tp53_status"]
+# binary counts for tp53 loss status
+print("TP53 status")
+print(scores_df.tp53_status.value_counts())
+
+print(scores_df.head())
 
 def get_roc_plot(scores_df, gene, outputfilename, color):
     """
@@ -107,7 +140,8 @@ def get_roc_plot(scores_df, gene, outputfilename, color):
     lower_gene = gene.lower()
     scores_df = scores_df.rename(str.lower, axis="columns")
     # Obtain Metrics
-    sample_status = scores_df.loc[:, "{}_status".format(lower_gene)]
+    scores_df = scores_df[-scores_df.tp53_status.isnull()]
+    sample_status = scores_df.loc[:, "{}_status".format(lower_gene)].astype(int)
     sample_score = scores_df.loc[:, "{}_score".format(lower_gene)]
     shuffle_score = scores_df.loc[:, "{}_shuffle".format(lower_gene)]
     print(sample_status.head())
@@ -132,8 +166,20 @@ def get_roc_plot(scores_df, gene, outputfilename, color):
     roc_df = (
         pd.DataFrame([fpr_pbta, tpr_pbta, thresh_pbta], index=["fpr", "tpr", "threshold"])
         .transpose()
-        .assign(gene=gene, shuffled=False)
+        .assign(gene=gene, shuffled=False, auroc=auroc_pbta)
     )
+    # save the dataframe for plotting in R
+    roc_df.to_csv(os.path.join("results", outputfilename + "_" + gene + "_roc_threshold_results.tsv"), sep="\t", index=False)
+    
+    # save shuffled data
+    roc_shuff_df = (
+        pd.DataFrame([fpr_shuff, tpr_shuff, thresh_shuff], index=["fpr", "tpr", "threshold"])
+        .transpose()
+        .assign(gene=gene, shuffled=True, auroc=auroc_shuff)
+    )
+    
+    roc_shuff_df.to_csv(os.path.join("results", outputfilename + "_" + gene + "_roc_threshold_results_shuffled.tsv"), sep="\t", index=False)
+
     plt.subplots(figsize=(5, 5))
     plt.axis("equal")
     plt.plot([0, 1], [0, 1], "k--")
@@ -161,45 +207,6 @@ def get_roc_plot(scores_df, gene, outputfilename, color):
     plt.tick_params(labelsize=10)
 
     lgd = plt.legend(bbox_to_anchor=(0.3, 0.15), loc=2, borderaxespad=0.0, fontsize=10)
-    plt.savefig(outputfilename + "_" + gene + ".png")
-    
-# find distinct RNA library type
-possible_rna_library = list(set(clinical_df['RNA_library']))
-possible_rna_library = [x for x in possible_rna_library if pd.isnull(x) == False]
+    plt.savefig(os.path.join("plots", outputfilename + "_" + gene + "_roc.png"))
 
-# for each library type, run the analyses:
-
-for rna_library in possible_rna_library:
-
-  rna_library_filtered =  clinical_df[clinical_df['RNA_library'].str.contains(rna_library)]
-  rna_library_filtered_samples = list(set(rna_library_filtered['Kids_First_Biospecimen_ID']))
-  
-  scores_df_filtered = scores_df[scores_df.SAMPLE_ID.isin(rna_library_filtered_samples)]
-  full_status_df_filtered = full_status_df[full_status_df.Kids_First_Biospecimen_ID_RNA.isin(rna_library_filtered_samples)]
-  
-  # subset the socre_df and full_status to specific RNA_library type 
-  scores_df_filtered = scores_df_filtered.merge(
-      full_status_df_filtered,
-      how="left",
-      left_on="SAMPLE_ID",
-      right_on="Kids_First_Biospecimen_ID_RNA",
-  )
-
-  print("scores df filtered shape")
-  print(scores_df_filtered.shape)
-  scores_df_filtered.tp53_status.value_counts()
-
-  scores_df_filtered = scores_df_filtered.assign(SAMPLE_ID=scores_df_filtered.loc[:, "sample_id"])
-
-  gene_status = ["tp53_status"]
-  # binary counts for tp53 loss status
-  print("TP53 status")
-  print(scores_df_filtered.tp53_status.value_counts())
-
-  print(scores_df_filtered.head())
-
-  rna_library_fixed = rna_library.replace(" ", "_")
-  outputfilename = os.path.join("results", rna_library_fixed)
-  
-  get_roc_plot(scores_df_filtered, gene="TP53", outputfilename=outputfilename, color="#7570b3")
-  
+get_roc_plot(scores_df, gene="TP53", outputfilename=outputfilename, color="#7570b3")

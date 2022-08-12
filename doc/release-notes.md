@@ -1,6 +1,177 @@
 # release notes
 
 ## current release
+- release date: 2022-07-07
+- status: available
+- overview of changes (See [PR 188](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/188) for additional details):
+  - This release adds the following data:
+    - 11 RNA-Seq and WXS PBTA samples (plus 2 WXS PBTA results from previous release)
+    - 1799 DGD tumor samples (929 DNA, 870 RNA)
+    - methylation array data from
+      - normal samples: 
+        - 5 PBTA samples
+        - 12 TARGET samples
+      - tumor samples: [Ticket 278](https://github.com/PediatricOpenTargets/ticket-tracker/issues/278) and [Ticket 269](https://github.com/PediatricOpenTargets/ticket-tracker/issues/269)
+        - 1146 PBTA samples
+        - 751 TARGET samples
+      - RNA isoform merged TPM samples
+  - Update TCGA RNA-Seq data to use GENCODE v36 GDC
+    - [Ticket 285](https://github.com/PediatricOpenTargets/ticket-tracker/issues/285)
+    - [Ticket 308](https://github.com/PediatricOpenTargets/ticket-tracker/issues/308)
+  - All additional changes as well as details about the above changes are as followed.
+
+- Add base histologies file to data release, see [ticket 333](https://github.com/PediatricOpenTargets/ticket-tracker/issues/333)
+- Update histologies file - key changes noted here (other tickets can be found in OpenPedCan repo)
+    - Change cancer_group of `Metastatic secondary tumors;Neuroblastoma` to `Neuroblastoma`
+            - See discussion in [ticket 232](https://github.com/PediatricOpenTargets/ticket-tracker/issues/232)
+            - [Ticket 234](https://github.com/PediatricOpenTargets/ticket-tracker/issues/234)
+    - Update `primary_site` for some GMKF and TARGET NBL samples to resolve lumped together `primary_site` issues
+            - [Ticket 257](https://github.com/PediatricOpenTargets/ticket-tracker/issues/257)
+    - Update histologies file to use `pathology_diagnosis` (when available) or `cancer_group` (when path dx not available) to fill in `harmonized_diagnosis`  for non-PBTA samples
+            - [Ticket 259](https://github.com/PediatricOpenTargets/ticket-tracker/issues/259)
+     - DGD histologies cleanup: [ticket 325](https://github.com/PediatricOpenTargets/ticket-tracker/issues/325)
+     - Fix `short_histology` for PBTA cohort: [ticket 309](https://github.com/PediatricOpenTargets/ticket-tracker/issues/309)
+     - Add extent of tumor resection: [ticket 298](https://github.com/PediatricOpenTargets/ticket-tracker/issues/298)
+
+- Update EFO MONDO file 
+    - Create `efo-mondo-map-prefill.tsv` file based on `cancer_group` generated in `molecular-subtyping-integrate`: [PR 176](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/176)
+    - Update EFO MONDO map file to contain new cancer group in v10 histologies file: [ticket 237](https://github.com/PediatricOpenTargets/ticket-tracker/issues/237)
+    - Add NCIT column to the EFO MONDO map file: [ticket 261](https://github.com/PediatricOpenTargets/ticket-tracker/issues/261)
+- Update `ensg-hugo-pmtl-mapping.tsv` to remove NA line: [ticket 231](https://github.com/PediatricOpenTargets/ticket-tracker/issues/231)
+
+- Re-run independent samples module to accommodate new cancer groups and additional samples: [ticket 370](https://github.com/PediatricOpenTargets/ticket-tracker/issues/304) and [Ticket 370](https://github.com/PediatricOpenTargets/ticket-tracker/issues/370)
+- Add pre-release RNA-Seq only independent specimens 
+- Add concatenated DGD MAF files to data release as `snv-dgd.maf.tsv.gz`: [ticket 248](https://github.com/PediatricOpenTargets/ticket-tracker/issues/248)
+- Add concatenated DGD fusion files as `fusion-dgd.tsv.gz`: [ticket 249](https://github.com/PediatricOpenTargets/ticket-tracker/issues/249)
+- Update DNA and RNA delivery data files with new PBTA samples: [ticket 253](https://github.com/PediatricOpenTargets/ticket-tracker/issues/253)
+- Re-run fusion filtering: [ticket 316](https://github.com/PediatricOpenTargets/ticket-tracker/issues/316)
+- Update focal CN preparation module to fine tune ENSEMBL, gene symbol, and cytoband matching
+   - [Ticket 320](https://github.com/PediatricOpenTargets/ticket-tracker/issues/320)
+   - [Ticket 318](https://github.com/PediatricOpenTargets/ticket-tracker/issues/318)
+- Rerun `focal-cn-preparation`: [ticket 254](https://github.com/PediatricOpenTargets/ticket-tracker/issues/254)
+- Run molecular subtyping for all samples
+    - [Ticket 299](https://github.com/PediatricOpenTargets/ticket-tracker/issues/299)
+    - [Ticket 303](https://github.com/PediatricOpenTargets/ticket-tracker/issues/303)
+    - Updates:
+        - Added DGD samples to medulloblastoma and craniopharyngioma subtyping
+        - Modified EPN subtyping per [Ticket 365](https://github.com/PediatricOpenTargets/ticket-tracker/issues/365)
+        - Add methylation bs_ids in neurocytoma subtyping
+
+- Update the download script to change from v10 to v11 and GENCODE file: [ticket 270](https://github.com/PediatricOpenTargets/ticket-tracker/issues/270)
+- Add bed files for TMB calculation and TMB results to data release 
+    - [Ticket 250](https://github.com/PediatricOpenTargets/ticket-tracker/issues/250)
+    - [Ticket 258](https://github.com/PediatricOpenTargets/ticket-tracker/issues/258)
+- Run GISTIC module and upload zip file for data release: [Ticket 302](https://github.com/PediatricOpenTargets/ticket-tracker/issues/302)
+- Merge all RNA isoform files into one for data release and downstream analyses: [Ticket 341](https://github.com/PediatricOpenTargets/ticket-tracker/issues/341)
+
+- Add fusion summary files required for subtyping modules [Ticket 239](https://github.com/PediatricOpenTargets/ticket-tracker/issues/239):
+  - `fusion_summary_embryonal_foi.tsv`
+  - `fusion_summary_ependymoma_foi.tsv`
+  - `fusion_summary_ewings_foi.tsv`
+  - `fusion_summary_lgat_foi.tsv`
+
+```
+v11
+├── ashion_exome_v2_targets_hg38_padded100.bed
+├── biospecimen_id_to_bed_map.txt
+├── cnv-cnvkit.seg.gz
+├── cnv-controlfreec.tsv.gz
+├── cnv-consensus.seg.gz
+├── cnv-consensus-gistic.zip
+├── cnvkit_with_status.tsv
+├── consensus_seg_with_status.tsv
+├── consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz
+├── consensus_wgs_plus_cnvkit_wxs_x_and_y.tsv.gz
+├── consensus_wgs_plus_cnvkit_wxs.tsv.gz
+├── data-files-description.md
+├── efo-mondo-map.tsv
+├── ensg-hugo-pmtl-mapping.tsv
+├── fusion-arriba.tsv.gz
+├── fusion-starfusion.tsv.gz
+├── fusion-putative-oncogenic.tsv
+├── gene-counts-rsem-expected_count-collapsed.rds
+├── gene-expression-rsem-tpm-collapsed.rds
+├── histologies.tsv
+├── histologies-base.tsv
+├── independent-specimens.methyl.primary-plus.tsv
+├── independent-specimens.methyl.primary.tsv
+├── independent-specimens.methyl.relapse.tsv
+├── independent-specimens.rnaseq.primary-plus-pre-release.tsv
+├── independent-specimens.rnaseq.primary-pre-release.tsv
+├── independent-specimens.rnaseq.primary.eachcohort.tsv
+├── independent-specimens.rnaseq.primary.tsv
+├── independent-specimens.rnaseq.relapse-pre-release.tsv
+├── independent-specimens.rnaseq.relapse.eachcohort.tsv
+├── independent-specimens.rnaseq.relapse.tsv
+├── independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv
+├── independent-specimens.rnaseqpanel.primary-plus.pre-release.tsv
+├── independent-specimens.rnaseqpanel.primary-plus.tsv
+├── independent-specimens.rnaseqpanel.primary.eachcohort.tsv
+├── independent-specimens.rnaseqpanel.primary.pre-release.tsv
+├── independent-specimens.rnaseqpanel.primary.tsv
+├── independent-specimens.rnaseqpanel.relapse.eachcohort.tsv
+├── independent-specimens.rnaseqpanel.relapse.pre-release.tsv
+├── independent-specimens.rnaseqpanel.relapse.tsv
+├── independent-specimens.wgs.primary-plus.eachcohort.tsv
+├── independent-specimens.wgs.primary-plus.tsv
+├── independent-specimens.wgs.primary.eachcohort.tsv
+├── independent-specimens.wgs.primary.tsv
+├── independent-specimens.wgs.relapse.eachcohort.tsv
+├── independent-specimens.wgs.relapse.tsv
+├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.primary-plus.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.primary.eachcohort.tsv
+├── independent-specimens.wgswxspanel.primary.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.primary.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.primary.tsv
+├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.relapse.eachcohort.tsv
+├── independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv
+├── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
+├── independent-specimens.wgswxspanel.relapse.tsv
+├── md5sum.txt
+├── intersect_cds_lancet_strelka_mutect_WGS.bed
+├── intersect_strelka_mutect_WGS.bed
+├── nexterarapidcapture_exome_targetedregions_v1.2_hg38_100.bed
+├── release-notes.md
+├── rna-isoform-expression-rsem-tpm.rds
+├── S0274956_Padded_HG38.merged.bed
+├── S02972011_Covered_hg38_100.bed
+├── S04380110_Regions_hg38_100.bed
+├── S07604715_100bp_Padded.bed
+├── SeqCap_EZ_Exome_v2_Padded_HG38.merged.bed
+├── StrexomeLite_hg38_liftover_100bp_padded.bed
+├── Strexome_targets_intersect_sorted_padded100.GRCh38.bed
+├── TARGET_AML_NBL_WT_SeqVal79_attempt06_AllTracks_HG38_bed_expanded100.bed
+├── tcga-gene-counts-rsem-expected_count-collapsed.rds
+├── tcga-gene-expression-rsem-tpm-collapsed.rds
+├── truseq-exome-targeted-regions-manifest-v1-2_hg38_100.bed
+├── WGS.hg38.lancet.300bp_padded.bed
+├── WGS.hg38.lancet.unpadded.bed
+├── WGS.hg38.mutect2.vardict.unpadded.bed
+├── WGS.hg38.strelka2.unpadded.bed
+├── WGS.hg38.vardict.100bp_padded.bed
+├── snv-consensus-plus-hotspots.maf.tsv.gz
+├── sv-manta.tsv.gz
+├── methyl-beta-values.rds
+├── methyl-m-values.rds
+├── snv-dgd.maf.tsv.gz
+├── fusion-dgd.tsv
+├── snv-mutation-tmb-all.tsv
+├── snv-mutation-tmb-coding.tsv
+├── uberon-map-gtex-group.tsv
+├── uberon-map-gtex-subgroup.tsv
+├── wgs_canonical_calling_regions.hg38.bed
+└── xgen-exome-research-panel-targets_hg38_ucsc_liftover.100bp_padded.sort.merged.bed
+
+```
+
+## archived release
 ### release-v10
 - release date: 2021-10-11
 - status: available
@@ -120,7 +291,6 @@ v10
 
 ```
 
-## archived release
 ### release-v9
 - release date: 2021-09-01
 - status: available

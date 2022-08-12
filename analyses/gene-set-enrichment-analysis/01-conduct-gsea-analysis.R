@@ -16,6 +16,8 @@
 # Rscript --vanilla 'analyses/gene-set-enrichment-analysis/01-conduct-gsea-analysis.R --input <expression input file> --output <output file for writing scores>
 #     --input_file: The name of the input expression data file to use for calculating scores.
 #     --output_file: The name of the TSV-formatted output file of GSVA scores.
+#     --hist_file: Histology file used.
+
 #
 # Reference:
 # 1. Sonja Hänzelmann, Robert Castelo, and Justin Guinney. 2013. “GSVA: Gene Set Variation Analysis for Microarray and RNA-Seq Data.” BMC Bioinformatics 14 (1): 7. https://doi.org/10.1186/1471-2105-14-7.
@@ -100,7 +102,7 @@ human_hallmark_list    <- base::split(human_hallmark_twocols$human_gene_symbol, 
 # filter to RNA and exclude TCGA and GTEx
 histology_rna_df <- histology_df %>% 
   dplyr::filter(experimental_strategy == "RNA-Seq") %>% 
-  dplyr::filter(!cohort %in% c("GTEx", "TCGA")) %>%
+  dplyr::filter(cohort == "PBTA") %>%
   dplyr::filter(!is.na(RNA_library))
 
 # First filter expression data to exclude GTEx and TCGA
@@ -131,6 +133,10 @@ for(i in 1:length(rna_library_list)){
   ### Rownames are genes and column names are samples
   expression_data_each_log2_matrix <- as.matrix( log2(expression_data_each + 1) )
   
+  # Renmove genes with 0 variance
+  #keep <- apply(expression_data_each_log2_matrix, 1, function(x) var(x, na.rm = TRUE)) > 0 
+  #expression_data_each_log2_matrix_keep <- data.matrix(expression_data_each_log2_matrix[keep,])
+                
   #We then calculate the Gaussian-distributed scores
   gsea_scores_each <- GSVA::gsva(expression_data_each_log2_matrix,
                                  human_hallmark_list,
@@ -161,4 +167,7 @@ for(i in 1:length(rna_library_list)){
 
 #### Export GSEA scores to TSV --------------------------------------------------------------------
 write_tsv(gsea_scores_df_tidy, scores_output_file)
+
+#### Session info
+sessionInfo()
 

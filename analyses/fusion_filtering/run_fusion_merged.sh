@@ -46,15 +46,15 @@ normal_expression_adrenal_gland="${references_path}/gtex_adrenal_gland_TPM_hg38.
 normal_expression_brain="${references_path}/gtex_brain_TPM_hg38.rds"
 
 # independent sample list
-independent_RNA_primary="${data_path}/independent-specimens.rnaseq.primary.tsv"
-independent_RNA_relapse="${data_path}/independent-specimens.rnaseq.relapse.tsv"
+independent_RNA_primary="${data_path}/independent-specimens.rnaseqpanel.primary.pre-release.tsv"
+independent_RNA_relapse="${data_path}/independent-specimens.rnaseqpanel.relapse.pre-release.tsv"
    
 # metadata files
-if [[ RUN_FOR_SUBTYPING -eq "0" ]]
+if [[ "$RUN_FOR_SUBTYPING" -eq "0" ]]
 then
-   histologies_file="${data_path}/histologies.tsv" 
-else 
-   histologies_file="${data_path}/histologies-base.tsv"  
+   histologies_file="${data_path}/histologies.tsv"
+else
+   histologies_file="${data_path}/histologies-base.tsv"
 fi
 
 # data release files to use for recurrent fusion/fused genes detection
@@ -66,12 +66,13 @@ putative_oncogenic_fusion="${results_path}/fusion-putative-oncogenic.tsv"
 #                                        --clinicalFile $histologies_file \
 #                                        --specimenType "Adrenal Gland" \
 #                                        --outputFile $normal_expression_adrenal_gland
-# 
-# 
+#
+#
 # Rscript 00-normal-matrix-generation.R  --expressionMatrix $rna_expression_file \
 #                                        --clinicalFile $histologies_file \
 #                                        --specimenType "Brain" \
 #                                        --outputFile $normal_expression_brain
+
 
 # Run Fusion standardization for arriba caller
 Rscript 01-fusion-standardization.R --fusionfile $arriba_file \
@@ -112,10 +113,10 @@ Rscript -e "rmarkdown::render('04-project-specific-filtering.Rmd',params=list(ba
 Rscript -e "rmarkdown::render('05-QC_putative_onco_fusion_distribution.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"
 
 # Recurrent fusion/fused genes
-Rscript 06-recurrent-fusions-per-cancer-group.R --standardFusionCalls $putative_oncogenic_fusion \
-                                                --clinicalFile $histologies_file \
-                                                --cohortInterest "PBTA,GMKF,TARGET" \
-                                                --outputfolder $results_path \
-                                                --independentPrimary $independent_RNA_primary \
-                                                --independentRelapse $independent_RNA_relapse
+Rscript 06-recurrent-fusions-sample-group.R --standardFusionCalls $putative_oncogenic_fusion \
+                                            --clinicalFile $histologies_file \
+                                            --cohortInterest "PBTA,GMKF,TARGET" \
+                                            --outputfolder $results_path \
+                                            --independentPrimary $independent_RNA_primary \
+                                            --independentRelapse $independent_RNA_relapse
 

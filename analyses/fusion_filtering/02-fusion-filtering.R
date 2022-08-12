@@ -78,6 +78,7 @@ spanningFragCountFilter<-opt$spanningFragCountFilter
 referenceFolder<-opt$referenceFolder
 readingFrameFilter<-opt$readingFrameFilter
 
+
 # standardFusioncallsSTARFusion<-readr::read_tsv(standardFusionFileSTARFusion)
 # standardFusioncallsArriba<-readr::read_tsv(standardFusionFileArriba)
 # 
@@ -178,17 +179,9 @@ saveRDS(QCFiltered,paste0(opt$outputFile,"_QC_filtered.RDS"))
 ########### Expression filtering ###########
 
 # load expressionMatrix RDS for expression based filtering for less than given threshold
-expressionMatrix<-readRDS(expressionMatrix)
-# find the list of cohorts and sample type of interest
-matched_samples <- read.delim(clinicalFile, header = TRUE, sep = "\t", stringsAsFactors = FALSE) %>%
-  filter(cohort %in% cohortInterest) %>%
-  filter(experimental_strategy == "RNA-Seq") %>%
-  tibble::column_to_rownames("Kids_First_Biospecimen_ID")
-# filter the expression to only the ones that are in the cohort and sample type of interest
-expressionMatrix <- expressionMatrix %>%
-  select(rownames(matched_samples)) %>%
-  tibble::rownames_to_column("GeneSymbol")
-
+expressionMatrix<-readRDS(expressionMatrix) %>%
+tibble::rownames_to_column("GeneSymbol")
+  
 # The idea from @jaclyn-taroni
 # Generate two data frames that keep track of all gene symbols involved for each sample-fusion name pair and contain a sample's expression value for a gene symbol in long format. Use these to  filter all the available fusions to just the ones with either gene from the fusion pair to have expression above the threshold.
 

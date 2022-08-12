@@ -11,6 +11,10 @@ params:
     label: "Grouping variable"
     value: cancer_group
     input: string
+  group_base:
+    label: "Grouping variable with base histology file"
+    value: broad_histology
+    input: string
   dataRNA:
     label: "Input filtered fusion dataframe"
     value: scratch/standardFusionExp_QC_expression_filtered_annotated.RDS
@@ -41,7 +45,7 @@ params:
     input: integer
   base_histology:
     label: "Base histology file"
-    value: data/histologies.tsv
+    value: data/histologies-base.tsv
     input: file
 ---
 
@@ -82,15 +86,19 @@ write.table(QCGeneFiltered_filtFusion, file.path(outputfolder, "FilteredFusion.t
 # subset for recurrent fusion detection and multifused genes QC
 fusion_calls<-QCGeneFiltered_filtFusion %>% mutate(FusionName=rm_between(.data$FusionName,"(",")",extract = F))
 
-# get grouping column id
-group<-params$group
 
 # get histology file
 if ( params$base_run ==0 ){
 clinical<-read.delim(file.path(root_dir, params$histology), stringsAsFactors = FALSE)
+# get grouping column id
+group<-params$group
+# subset to group
 clinical<-clinical[,c("Kids_First_Biospecimen_ID","Kids_First_Participant_ID",group)]
 } else {
 clinical<-read.delim(file.path(root_dir, params$base_histology), stringsAsFactors = FALSE)
+# get grouping column id
+group<-params$group_base
+# subset to group
 clinical<-clinical[,c("Kids_First_Biospecimen_ID","Kids_First_Participant_ID",group)]
 }
 
@@ -239,7 +247,7 @@ sample.count <- fusion_calls %>%
 
 ```
 
-#### Keep recurrent non-oncogenic fusions specific to a cancer_group
+#### Keep recurrent non-oncogenic fusions specific to a grouping variable of interest 
 
 ```{r}
 #filter QCGeneFiltered_filtFusion to keep recurrent fusions from above sample.count and fusion_calls.summary
@@ -250,7 +258,7 @@ QCGeneFiltered_recFusion<-fusion_calls %>%
 ```
 
 
-### Remove non-oncogenic fusions found in multiple cancer groups
+### Remove non-oncogenic fusions found in multiple grouping variable of interest 
 
 ```{r}
 # remove fusions that are in > numGroup

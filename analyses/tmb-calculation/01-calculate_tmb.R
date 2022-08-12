@@ -10,6 +10,7 @@
 suppressPackageStartupMessages(library(optparse))
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(GenomicRanges))
 
 # set up optparse options
 option_list <- list(
@@ -90,13 +91,16 @@ required_cols <- c(
   "Match_Norm_Seq_Allele1",
   "Match_Norm_Seq_Allele2",
   "Tumor_Sample_Barcode",
-  "Variant_Classification"
+  "Variant_Classification",
+  "t_depth",
+  "t_alt_count",
+  "t_ref_count"
 )
+
 # read consensus maf file
-consensus_maf_df <- 
-  data.table::fread(consensus_maf_file, skip=1, select = required_cols, 
-                    showProgress = FALSE) %>% 
-  tibble()
+consensus_maf_df <- readr::read_delim(consensus_maf_file, comment = "#", delim = "\t") %>%
+  select(required_cols) %>%
+  dplyr::mutate(vaf = (t_alt_count / (t_ref_count + t_alt_count)))
 
 message("Spliting MNV calls and merging with SNV calls...\n")
 
@@ -122,6 +126,11 @@ focr_nonsynonymous <- c(
   "In_Frame_Del"
 )
 
+# variant filters
+vaf_cutoff = 0.05
+var_count = 3
+tumor_depth = 25
+
 # filter create the consensus MAF for SNV calls (non-MNV)
 snv_maf_df <- consensus_maf_df %>%  
   dplyr::filter(!Variant_Type %in% c("DNP", "TNP", "ONP"))
@@ -138,21 +147,27 @@ snv_mnv_maf_df <- rbind(snv_maf_df, split_mnv_maf_df) %>%
 # If the maftools non-synonymous filter is on, filter out synonymous mutations
 if (nonsynfilter_maf) {
   snv_mnv_maf_df <- snv_mnv_maf_df %>%
-    dplyr::filter(Variant_Classification %in% maf_nonsynonymous)
+    dplyr::filter(Variant_Classification %in% maf_nonsynonymous,
+                  t_depth >= tumor_depth,
+                  vaf >= vaf_cutoff,
+                  t_alt_count >= var_count)
 }
 
 # If the FoCR non-synonymous filter is on, filter out synonymous mutations 
 # according to that definition
 if (nonsynfilter_focr) {
   snv_mnv_maf_df <- snv_mnv_maf_df %>%
-    dplyr::filter(Variant_Classification %in% focr_nonsynonymous)
+    dplyr::filter(Variant_Classification %in% focr_nonsynonymous,
+                  t_depth >= tumor_depth,
+                  vaf >= vaf_cutoff,
+                  t_alt_count >= var_count)
 }
 
 ########################### Set up metadata columns ############################
 message("Setting up metadata...\n")
 
 # load samples to target BED mapping file 
-bed_df <- readr::read_tsv(bed_files, show_col_types = FALSE)
+bed_df <- readr::read_tsv(bed_files)
 # assert all sample ids are not NA
 stopifnot(identical(sum(is.na(bed_df$Kids_First_Biospecimen_ID)), 
                     as.integer(0)))
@@ -160,8 +175,7 @@ stopifnot(identical(sum(is.na(bed_df$Kids_First_Biospecimen_ID)),
 stopifnot(identical(length(bed_df$Kids_First_Biospecimen_ID), 
                     length(unique(bed_df$Kids_First_Biospecimen_ID))))
 # load histologies file  
-hist_df <- readr::read_tsv(histologies_file, guess_max = 10000, 
-                           show_col_types = FALSE)
+hist_df <- readr::read_tsv(histologies_file, guess_max = 10000)
 
 # merge samples to target BED mapping file with select metadata from
 # histologies file
@@ -169,8 +183,7 @@ metadata_df <- bed_df %>%
   dplyr::inner_join(hist_df %>% 
                       dplyr::select(
                         Kids_First_Biospecimen_ID, 
-                        experimental_strategy, 
-                        cancer_group), 
+                        experimental_strategy), 
                     by = "Kids_First_Biospecimen_ID") %>% 
   dplyr::rename(
     Tumor_Sample_Barcode = Kids_First_Biospecimen_ID,
@@ -187,10 +200,10 @@ metadata_df <- metadata_df %>% dplyr::filter(
       dplyr::recode(target_bed,
                     "intersect_strelka_mutect2_vardict_WGS.bed" = 
                       file.path(root_dir, "scratch/intersect_strelka_mutect2_vardict_WGS.bed"),
-                    .default = file.path(input_dir, target_bed)))
+                    .default = file.path(data_dir, target_bed)))
 
 # exclude samples in that are in the mutation dataset and not the metadata
-# ideally the should not happen but is currently the case in the v10 
+# ideally this should not happen but is currently the case in the v10 
 # mutation dataset
 snv_mnv_maf_df <- snv_mnv_maf_df %>%
   dplyr::filter(Tumor_Sample_Barcode %in% metadata_df$Tumor_Sample_Barcode)
@@ -201,7 +214,6 @@ snv_mnv_maf_df <- snv_mnv_maf_df %>%
                       dplyr::select(
                         Tumor_Sample_Barcode,
                         experimental_strategy,
-                        cancer_group,
                         target_bed,
                         target_bed_path
                       ),
@@ -228,7 +240,7 @@ bed_ranges_list <- lapply(bed_file_paths, function(bed_file) {
 
   # Read in BED file as data.frame
   bed_df <- readr::read_tsv(bed_file,
-    col_names = c("chr", "start", "end"), show_col_types = FALSE)
+    col_names = c("chr", "start", "end"))
 
   # Make into a GenomicRanges object
   bed_ranges <- GenomicRanges::GRanges(
@@ -246,7 +258,7 @@ message("Setting up coding regions BED ranges...\n")
 
 # Read in the coding regions BED file
 coding_regions_df <- readr::read_tsv(coding_regions,
-  col_names = c("chr", "start", "end"), show_col_types = FALSE)
+  col_names = c("chr", "start", "end"))
 
 # Make into a GenomicRanges object
 coding_ranges <- GenomicRanges::GRanges(

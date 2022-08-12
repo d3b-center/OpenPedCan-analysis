@@ -147,7 +147,7 @@ add_status_df %>%
 ### Write to file
 
 ```{r}
-output_file <- file.path("..", "..", "scratch", "consensus_seg_with_status.tsv")
+output_file <- file.path("results", "consensus_seg_with_status.tsv")
 write_tsv(add_status_df, output_file)
 ```
 

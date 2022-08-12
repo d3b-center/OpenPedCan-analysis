@@ -61,11 +61,8 @@ subset_dir <- "subset-files"
 ### Read in relevant files
 
 ```{r message=FALSE}
-histologies_df <- read_tsv(file.path(data_dir, "histologies-base-adapt.tsv"), guess_max = 10000)
-fusion_summary_df <- read_tsv(file.path(root_dir, 
-                                        "analyses", 
-                                        "fusion-summary", 
-                                        "results",
+histologies_df <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max = 100000)
+fusion_summary_df <- read_tsv(file.path(data_dir, 
                                         "fusion_summary_embryonal_foi.tsv"))
 # Read in the JSON file that contains the strings we'll use to include or
 # exclude samples for subtyping - see 00-embryonal-select-pathology-dx.Rmd
@@ -220,8 +217,10 @@ all_biospecimen_ids <-
 Write to file.
 
 ```{r}
-data.frame(Kids_First_Biospecimen_ID = all_biospecimen_ids) %>%
-  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+histologies_df %>%
+  dplyr::filter(Kids_First_Biospecimen_ID %in% all_biospecimen_ids) %>%
+  dplyr::filter(!cohort %in% c("GMKF", "TARGET")) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID) %>%
   write_tsv(output_file)
 ```
 

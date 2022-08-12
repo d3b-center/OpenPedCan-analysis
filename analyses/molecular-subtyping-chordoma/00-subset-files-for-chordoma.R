@@ -33,7 +33,7 @@ if (!dir.exists(results_dir)) {
 
 # Read in metadata
 metadata <-
-  readr::read_tsv(file.path(root_dir, "data", "histologies-base-adapt.tsv"), guess_max = 10000)
+  readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000)
 
 #### Filter metadata -----------------------------------------------------------
 # Select wanted columns in metadata for merging and assign to a new object

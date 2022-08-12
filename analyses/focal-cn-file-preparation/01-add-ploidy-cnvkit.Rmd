@@ -137,6 +137,6 @@ add_status_df <- dplyr::bind_rows(add_autosomes_df, add_xy_df) %>%
 ### Write to `scratch`
 
 ```{r}
-output_file <- file.path("..", "..", "scratch", "cnvkit_with_status.tsv")
+output_file <- file.path("results", "cnvkit_with_status.tsv")
 readr::write_tsv(add_status_df, output_file)
 ```

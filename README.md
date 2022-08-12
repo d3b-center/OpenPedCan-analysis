@@ -425,9 +425,9 @@ bash scripts/download-ci-files.sh
 
 Running this will change the symlinks in `data` to point to the files in `data/testing`.
 
-#### Adding Analyses to CI
+#### Adding Analyses to Circle CI
 
-For an analysis to be run in CI, it must be added to the Circle CI configuration file, [`.circleci/config.yml`](https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/.circleci/config.yml).
+For an analysis to be run in CI, it must be added to the Circle CI configuration file, [`.circleci/config.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.circleci/config.yml).
 A new analysis should be added as the last step of the `run_analyses` section.
 
 Here is an example analysis that simply lists the contents of the data directory that contains the files for the test:
@@ -449,6 +449,41 @@ If you wanted to add running an Rscript called `cluster-samples.R` that was in a
 ```
 
 This would run the `cluster-samples.R` on the subset files that are specifically designed to be used for CI.
+
+#### Adding Analyses to Github Actions workflow
+
+For an analysis to be run in a Github Actions workflow, it must be added to [`.github/run-analysis.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/workflows/run-analysis.yml). Here is an example of a step in that workflow:
+
+```yaml
+      - name: Run RUN-telomerase-activity-prediction in container
+        uses: ./
+        id: RUN-telomerase-activity-prediction
+        with:
+          args: bash analyses/telomerase-activity-prediction/RUN-telomerase-activity-prediction.sh
+```
+
+The `uses:` tag specifies for the step to run using the action defined in the [`action.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/action.yml) file.
+
+```yaml
+name: "Run OpenPedCan Analysis"
+description: "Run analysis workflow"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  entrypoint: "scripts/run-analysis.sh"
+```
+
+In this file, the workflow is run in the docker container defined in [`Dockerfile`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/Dockerfile) using [`scripts/run-analysis.sh`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-analysis.sh) as an entrypoint script. Any commands defined under the `with: args:` tags in [`.github/run-analysis.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/run-analysis.yml) will run as commands inside of the docker container when the action is run.
+
+To add a new analysis job, take the template below and value each missing prompt, then add it to [`.github/run-analysis.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/run-analysis.yml)
+
+```yaml
+      - name: Run <Name of analysis to run> in container
+        uses: ./
+        id: <Name of analysis to run, cannot include numbers>
+        with:
+          args: <Command to run>
+```
 
 #### Adding Analyses with Multiple Steps
 

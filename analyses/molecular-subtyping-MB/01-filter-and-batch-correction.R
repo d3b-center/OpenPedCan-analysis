@@ -28,7 +28,7 @@ data_dir <- file.path(root_dir, "data")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # input files
-clin_file <- file.path(data_dir, "histologies.tsv")
+clin_file <- file.path(data_dir, "histologies-base.tsv")
 exprs_file <- file.path(data_dir, "gene-expression-rsem-tpm-collapsed.rds")
 terms_file <- file.path("input", "mb_subtyping_path_dx_strings.json")
 
