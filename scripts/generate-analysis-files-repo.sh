@@ -20,6 +20,8 @@ analyses_dir="$BASEDIR/analyses"
 data_dir="$BASEDIR/data"
 scratch_dir="$BASEDIR/scratch"
 
+OPENPBTA_BASE_SUBTYPING=0
+
 # Compile all the files that need to be included in the release in one place
 # in the scratch directory
 compiled_dir=${scratch_dir}/analysis_files_for_release

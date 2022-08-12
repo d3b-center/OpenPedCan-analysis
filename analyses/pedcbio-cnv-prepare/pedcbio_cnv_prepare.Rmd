@@ -12,11 +12,13 @@ library(readr)
 ```{r define directories}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 data_dir <- file.path(root_dir, "data")
-analysis_dir <- file.path(root_dir, "analylsis", "pedcbio-cnv-prepare")
+analysis_dir <- file.path(root_dir, "analylses", "pedcbio-cnv-prepare")
 results_dir <- file.path(analysis_dir, "results")
-if(!dir.exists(results_dir){
-  dir.create(results_dir, recursive = TRUE)
-})
+
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+
 ```
 
 ### Read in files

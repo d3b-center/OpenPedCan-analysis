@@ -1,13 +1,14 @@
 # J. Taroni for CCDL 2019
+# Updated by Eric Wafula for Pediatric Open Targets 2022
 # This script is the second step in generating subset files for continous
 # integration. It takes the output of 01-get_biospecimen_identifiers.R and
-# subsets the OpenPBTA files and writes the new subset files to a user-specified
-# directory.
+# subsets the OpenPedCan files and writes the new subset files to a 
+# user-specified directory.
 #
 # EXAMPLE USAGE:
 #   Rscript analyses/create-subset-files/02-subset_files.R \
 #     --biospecimen_file analyses/create-subset-files/biospecimen_ids_for_subset.RDS \
-#     --output_directory data/testing/release-v5-20190924
+#     --output_directory data/testing/v11
 
 #### Libraries and functions ---------------------------------------------------
 
@@ -68,17 +69,12 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
 
   # filtering strategy depends on the file type, mostly because how the sample
   # IDs change based on the file type -- that's why this logic is required
-  if (grepl("pbta-snv", filename)) {
-    if (grepl("consensus-mutation", filename)) {
-      snv_file <- data.table::fread(filename, data.table = FALSE)
-      snv_file %>%
-        dplyr::filter(Tumor_Sample_Barcode %in% biospecimen_ids) %>%
-        readr::write_tsv(output_file)
-    } else {
-      # in a column 'Tumor_Sample_Barcode'
+  if (grepl("snv", filename)) {
+    if (grepl("hotspots", filename)) {
       snv_file <- data.table::fread(filename,
                                     skip = 1,  # skip version string
-                                    data.table = FALSE)
+                                    data.table = FALSE,
+                                    showProgress = FALSE)
       # we need to obtain the version string from the first line of the MAF file
       version_string <- readLines(filename, n = 1)
       # filter + write to file with custom function
@@ -86,23 +82,41 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
         dplyr::filter(Tumor_Sample_Barcode %in% biospecimen_ids) %>%
         write_maf_file(file_name = output_file,
                        version_string = version_string)
+      snv_file %>%
+        dplyr::filter(Tumor_Sample_Barcode %in% biospecimen_ids) %>%
+        readr::write_tsv(output_file)
+    } else {
+      # in a column 'Tumor_Sample_Barcode'
+      snv_file <- data.table::fread(filename, data.table = FALSE, 
+                                    showProgress = FALSE)
+      snv_file %>%
+        dplyr::filter(Tumor_Sample_Barcode %in% biospecimen_ids) %>%
+        readr::write_tsv(output_file)
     }
-  } else if (grepl("pbta-cnv", filename)) {
-
-    # in a column 'ID'
-    cnv_file <- readr::read_tsv(filename)
-    biospecimen_column <- intersect(colnames(cnv_file),
-                                    c("ID", "Kids_First_Biospecimen_ID"))
+  } else if (grepl("biospecimen", filename)) {
+    # in a column 'Kids_First_Biospecimen_ID'
+    bed_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    bed_file %>% 
+      dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
+      readr::write_tsv(output_file)
+  } else if (grepl("cnv", filename)) {
+    # in a column 'ID', 'Kids_First_Biospecimen_ID', and 'biospecimen_id'
+    cnv_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    biospecimen_column <- 
+      intersect(colnames(cnv_file), 
+                c("ID", "Kids_First_Biospecimen_ID", "biospecimen_id"))
     cnv_file %>%
       dplyr::filter(!!rlang::sym(biospecimen_column) %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
-  } else if (grepl("consensus_seg_annotated", filename)) {
-    annotated_cn_file <- readr::read_tsv(filename)
-    annotated_cn_file %>%
-      dplyr::filter(biospecimen_id %in% biospecimen_ids) %>%
+  } else if (grepl("consensus_seg_with_status", filename)) {
+    # in a column Kids_First_Biospecimen_ID',
+    cn_seg_status_file <- readr::read_tsv(filename, 
+                                          show_col_types = FALSE)
+    cn_seg_status_file %>%
+      dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
-  } else if (grepl("pbta-fusion", filename)) {
-    fusion_file <- readr::read_tsv(filename)
+  } else if (grepl("fusion", filename)) {
+    fusion_file <- readr::read_tsv(filename, show_col_types = FALSE)
     # original files contain the biospecimen IDs in a column called 'tumor_id',
     # the filtered/prioritized list biospecimen IDs are in 'Sample'
     if (grepl("putative-oncogenic", filename)) {
@@ -111,45 +125,49 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
                         # this is required for the the fusion-summary module
                         grepl("RELA|MN1|EWSR1|FGFR1--TACC1|MYB--QKI|BRAF", FusionName)) %>%
         readr::write_tsv(output_file)
-    } else if (grepl("bysample", filename)) {
+    } else if (grepl("dgd", filename)) {
       fusion_file %>%
-        dplyr::filter(Sample %in% biospecimen_ids) %>%
+        dplyr::filter(Tumor_Sample_Barcode %in% biospecimen_ids) %>%
+        readr::write_tsv(output_file)
+    } else if (grepl("fusion_summary", filename)) {
+      fusion_file %>%
+        dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
         readr::write_tsv(output_file)
     } else {
       fusion_file %>%
         dplyr::filter(tumor_id %in% biospecimen_ids) %>%
         readr::write_tsv(output_file)
     }
-
-  } else if (grepl("pbta-sv", filename)) {
-
+  } else if (grepl("sv-manta", filename)) {
     # in a column 'Kids.First.Biospecimen.ID.Tumor'
-    sv_file <- data.table::fread(filename, data.table = FALSE)
+    sv_file <- data.table::fread(filename, data.table = FALSE, 
+                                 showProgress = FALSE)
     sv_file %>%
       dplyr::filter(Kids.First.Biospecimen.ID.Tumor %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
-
-  } else if (grepl("cnv_consensus", filename)) {
-    cnv_consensus <- readr::read_tsv(filename)
-    cnv_consensus %>%
-      dplyr::filter(Biospecimen %in% biospecimen_ids) %>%
-      readr::write_tsv(output_file)
   } else if (grepl(".rds", filename)) {
-
-    # any column name that contains 'BS_' is a biospecimen ID
+    # RNA-Seq matrices column names
     expression_file <- readr::read_rds(filename)
     # because we're selecting columns, we have to include this steps
     biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
-    expression_file %>%
-      dplyr::select(dplyr::ends_with("_id"),
-                    !!!rlang::quos(biospecimen_ids)) %>%
-      readr::write_rds(output_file)
-
+    if (grepl("rna-isoform", filename)) {
+      expression_file %>% dplyr::select(transcript_id, gene_symbol,
+                                        all_of(!!!rlang::quos(biospecimen_ids))) %>% 
+        readr::write_rds(output_file)
+    } else {
+      expression_file %>% dplyr::select(all_of(!!!rlang::quos(biospecimen_ids))) %>% 
+        readr::write_rds(output_file)
+    }
+  } else if (grepl("independent", filename)) {
+    # in a column 'Kids_First_Biospecimen_ID'
+    independent_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    independent_file %>% 
+      dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
+      readr::write_tsv(output_file)
   } else {
     # error-handling
     stop("File type unrecognized by 'subset_files'")
   }
-
 }
 
 #### command line arguments ----------------------------------------------------
@@ -175,7 +193,7 @@ opt <- parse_args(opt_parser)
 
 #### subset the files ----------------------------------------------------------
 
-# read in list of biospeciment idefinters
+# read in list of biospecimen idefinters
 biospecimen_ids_list <- readr::read_rds(opt$biospecimen_file)
 
 output_directory <- opt$output_directory
@@ -188,7 +206,9 @@ if (!dir.exists(output_directory)) {
 filename_list <- as.list(names(biospecimen_ids_list))
 
 # "loop" through the files to create subset files
-purrr::map2(filename_list, biospecimen_ids_list,
+invisible(purrr::map2(filename_list, biospecimen_ids_list,
             ~ subset_files(filename = .x,
                            biospecimen_ids = .y,
                            output_directory = output_directory))
+)
+

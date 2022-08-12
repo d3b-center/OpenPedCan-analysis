@@ -1916,23 +1916,22 @@ output_file &lt;- file.path(results_dir, &quot;compiled_molecular_subtypes_and_r
 clinical &lt;- readr::read_tsv(file.path(data_dir,
                                 &quot;histologies-base.tsv&quot;), guess_max=100000) </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgY25zX3JlZ2lvbiA9IGNvbF9sb2dpY2FsKCksXG4gIGludGVncmF0ZWRfZGlhZ25vc2lzID0gY29sX2xvZ2ljYWwoKSxcbiAgc2hvcnRfaGlzdG9sb2d5ID0gY29sX2xvZ2ljYWwoKSxcbiAgYnJvYWRfaGlzdG9sb2d5ID0gY29sX2xvZ2ljYWwoKSxcbiAgYnJvYWRfY29tcG9zaXRpb24gPSBjb2xfbG9naWNhbCgpLFxuICBOb3RlcyA9IGNvbF9sb2dpY2FsKCksXG4gIGdlcm1saW5lX3NleF9lc3RpbWF0ZSA9IGNvbF9sb2dpY2FsKCksXG4gIGFnZV9sYXN0X3VwZGF0ZV9kYXlzID0gY29sX2RvdWJsZSgpLFxuICBub3JtYWxfZnJhY3Rpb24gPSBjb2xfbG9naWNhbCgpLFxuICB0dW1vcl9mcmFjdGlvbiA9IGNvbF9sb2dpY2FsKCksXG4gIHR1bW9yX3Bsb2lkeSA9IGNvbF9sb2dpY2FsKCksXG4gIG1vbGVjdWxhcl9zdWJ0eXBlID0gY29sX2xvZ2ljYWwoKSxcbiAga2ZfdmlzaWJpbGl0eSA9IGNvbF9sb2dpY2FsKClcbilcbiJ9 -->
+<!-- rnb-message-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgaW50ZWdyYXRlZF9kaWFnbm9zaXMgPSBjb2xfbG9naWNhbCgpLFxuICBPU19kYXlzID0gY29sX2RvdWJsZSgpLFxuICBhZ2VfbGFzdF91cGRhdGVfZGF5cyA9IGNvbF9kb3VibGUoKSxcbiAgbW9sZWN1bGFyX3N1YnR5cGUgPSBjb2xfbG9naWNhbCgpLFxuICBjbnNfbWV0aHlsYXRpb25fY2xhc3Nfc2NvcmUgPSBjb2xfZG91YmxlKCksXG4gIGNuc19tZXRoeWxhdGlvbl9zdWJjbGFzc19zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgUkZfcHVyaXR5X0FCU09MVVRFID0gY29sX2RvdWJsZSgpLFxuICBSRl9wdXJpdHlfRVNUSU1BVEUgPSBjb2xfZG91YmxlKCksXG4gIFJGX3B1cml0eV9MVU1QID0gY29sX2RvdWJsZSgpLFxuICBub3JtYWxfZnJhY3Rpb24gPSBjb2xfZG91YmxlKCksXG4gIHR1bW9yX2ZyYWN0aW9uID0gY29sX2RvdWJsZSgpLFxuICB0dW1vcl9wbG9pZHkgPSBjb2xfZG91YmxlKClcbilcbiJ9 -->
 <pre><code>Parsed with column specification:
 cols(
   .default = col_character(),
-  cns_region = col_logical(),
   integrated_diagnosis = col_logical(),
-  short_histology = col_logical(),
-  broad_histology = col_logical(),
-  broad_composition = col_logical(),
-  Notes = col_logical(),
-  germline_sex_estimate = col_logical(),
+  OS_days = col_double(),
   age_last_update_days = col_double(),
-  normal_fraction = col_logical(),
-  tumor_fraction = col_logical(),
-  tumor_ploidy = col_logical(),
   molecular_subtype = col_logical(),
-  kf_visibility = col_logical()
+  cns_methylation_class_score = col_double(),
+  cns_methylation_subclass_score = col_double(),
+  RF_purity_ABSOLUTE = col_double(),
+  RF_purity_ESTIMATE = col_double(),
+  RF_purity_LUMP = col_double(),
+  normal_fraction = col_double(),
+  tumor_fraction = col_double(),
+  tumor_ploidy = col_double()
 )</code></pre>
 <!-- rnb-message-end -->
 <!-- rnb-message-begin eyJkYXRhIjoiU2VlIHNwZWMoLi4uKSBmb3IgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbnMuXG4ifQ== -->

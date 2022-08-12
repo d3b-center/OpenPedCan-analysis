@@ -1,0 +1,119 @@
+cancer_group	efo_code	mondo_code
+Acute Lymphoblastic Leukemia	EFO_0000220	MONDO_0004967
+Acute Myeloid Leukemia	EFO_0000222	MONDO_0018874
+Adamantinomatous Craniopharyngioma	EFO_1000069	MONDO_0002787
+Adenocarcinoma	NA	NA
+Adrenocortical Carcinoma	NA	NA
+Anaplastic Large Cell Lymphoma	NA	NA
+Angiosarcoma	NA	NA
+Atypical Teratoid Rhabdoid Tumor	EFO_1002008	MONDO_0020560
+B Acute Lymphoblastic Leukemia/Lymphoma	NA	NA
+Bladder Urothelial Carcinoma	NA	NA
+Breast Invasive Carcinoma	NA	NA
+Burkitt Leukemia/Lymphoma	NA	NA
+Cavernoma	EFO_1000151	MONDO_0003155
+Central neurocytoma	NA	NA
+Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	NA	NA
+Cholangiocarcinoma	NA	NA
+Chordoma	Orphanet_178	MONDO_0008978
+Choroid plexus carcinoma	MONDO_0016718	MONDO_0016718
+Choroid plexus tumor	NA	NA
+Chromophobe renal cell carcinoma	NA	NA
+Chronic Myelogenous Leukemia	NA	NA
+CIC-DUX4 Sarcoma	NA	NA
+Clear cell sarcoma of the kidney	EFO_0000350	MONDO_0005006
+CNS Burkitt's lymphoma	NA	NA
+CNS Embryonal tumor	EFO_0005784	MONDO_0018843
+CNS Melanoma	NA	NA
+CNS neuroblastoma	EFO_0000621	MONDO_0006130
+Colon Adenocarcinoma	NA	NA
+Craniopharyngioma	EFO_1000209	MONDO_0002787
+Cutaneous Melanoma	NA	NA
+Desmoid-type fibromatosis	NA	NA
+Desmoplastic infantile astrocytoma and ganglioglioma	NA	NA
+Diffuse fibrillary astrocytoma	NA	NA
+Diffuse intrinsic pontine glioma	EFO_1000026	MONDO_0006033
+Diffuse leptomeningeal glioneuronal tumor	NA	NA
+Diffuse midline glioma	MONDO_0003869	MONDO_0006033
+Dysembryoplastic neuroepithelial tumor	EFO_0005551	MONDO_0005505
+Dysgerminoma	NA	NA
+Embryonal tumor	NA	NA
+Embryonal Tumor NOS	NA	NA
+Embryonal tumor with multilayer rosettes	MONDO_0016715	MONDO_0016715
+Ependymoma	EFO_1000028	MONDO_0016698
+Esophageal Carcinoma	NA	NA
+Ewing sarcoma	EFO_0000174	MONDO_0012817
+Extraventricular neurocytoma	NA	NA
+Fibromyxoid lesion	MONDO_0037745	MONDO_0037745
+Ganglioglioma	EFO_0003094	MONDO_0016733
+Ganglioneuroblastoma	EFO_0000502	MONDO_0005035
+Ganglioneuroma	EFO_0000500	MONDO_0005033A31
+Germ Cell Tumor	NA	NA
+Germinoma	EFO_0000514	MONDO_0005040
+Glial-neuronal tumor NOS	MONDO_0016729	MONDO_0016729
+Glioblastoma Multiforme	NA	NA
+Gliomatosis Cerebri	NA	NA
+Gliosarcoma	NA	NA
+Head and Neck Squamous Cell Carcinoma	NA	NA
+Hemangioblastoma	MONDO_0016748	MONDO_0016748
+Hepatoblastoma	NA	NA
+Hepatocellular Carcinoma	NA	NA
+High-grade glioma/astrocytoma	MONDO_0016680	MONDO_0100342
+Histiocytic tumor	NA	NA
+Hodgkin's lymphoma	NA	NA
+Infantile Fibrosarcoma	NA	NA
+Inflammatory Myofibroblastic Tumor	NA	NA
+Intrahepatic Cholangiocarcinoma	NA	NA
+Juvenile xanthogranuloma	NA	NA
+Langerhans Cell histiocytosis	EFO_1000318	MONDO_0009519
+Low-grade glioma/astrocytoma	MONDO_0016685	MONDO_0016685
+Lung Adenocarcinoma	NA	NA
+Lung Squamous Cell Carcinoma	NA	NA
+Lymphoid Neoplasm Diffuse Large B-cell Lymphoma	NA	NA
+Malignant peripheral nerve sheath tumor	EFO_0000760	MONDO_0018078
+Medulloblastoma	EFO_0002939	MONDO_0007959
+Melanocytic tumor	MONDO_0003222	MONDO_0003222
+Melanoma	NA	NA
+Meningioma	Orphanet_2495	MONDO_0016642
+Mesothelioma	NA	NA
+Metastatic secondary tumors	EFO_0009812	MONDO_0024883
+Mixed germ cell tumor	NA	NA
+Myeloid Neoplasm	NA	NA
+Neuroblastoma	EFO_0000621	MONDO_0005072
+Neuroepithelial neoplasm	NA	NA
+Neurofibroma/Plexiform	EFO_0000658	MONDO_0003304
+Non-Hodgkin Lymphoma	NA	NA
+Oligodendroglioma	EFO_0000632	NA
+Osteosarcoma	EFO_0000637	MONDO_0009807
+Ovarian Serous Cystadenocarcinoma	NA	NA
+Pancreatic Adenocarcinoma	NA	NA
+Pheochromocytoma and Paraganglioma	NA	NA
+Pilocytic astrocytoma	NA	NA
+Pineal tumor	NA	NA
+Pineoblastoma	EFO_1000475	MONDO_0016722
+Pineocytoma	NA	NA
+Pleomorphic xanthoastrocytoma	NA	NA
+Prostate Adenocarcinoma	NA	NA
+Rectum Adenocarcinoma	NA	NA
+Renal Clear Cell Carcinoma	NA	NA
+Renal Papillary Cell Carcinoma	NA	NA
+Retinoblastoma	NA	NA
+Rhabdoid tumor of the kidney	NA	NA
+Rhabdomyosarcoma	EFO_0002918	MONDO_0002847
+Rosai-Dorfman disease	MONDO_0006412	MONDO_0006412
+Rosette-forming glioneuronal tumor	NA	NA
+Sarcoma	EFO_0000691	MONDO_0005089
+Schwannoma	EFO_0000693	MONDO_0002546
+Stomach Adenocarcinoma	NA	NA
+Subependymal Giant Cell Astrocytoma	MONDO_0016693	MONDO_0016693
+T Acute Lymphoblastic Leukemia/Lymphoma	NA	NA
+Teratoma	MONDO_0002601	MONDO_0002601
+Testicular Germ Cell Tumor	NA	NA
+Thymoma	NA	NA
+Thyroid Carcinoma	NA	NA
+Thyroid Gland Follicular Carcinoma	NA	NA
+Thyroid Gland Papillary Carcinoma	NA	NA
+Uterine Carcinosarcoma	NA	NA
+Uterine Corpus Endometrial Carcinoma	NA	NA
+Uveal Melanoma	NA	NA
+Wilms tumor	MONDO_0019004	MONDO_0006058

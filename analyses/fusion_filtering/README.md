@@ -77,4 +77,4 @@ We removed the non-oncogenic fusions with genes fused more than 5 times in a sam
 
 `05-QC_putative_onco_fusion_distribution.Rmd` : Plots fusions found in multiple (more than 4) cancer groups in scratch/fusion-putative-oncogenic-preQC.tsv from 04-project-specific-filtering.Rmd. For final filtering, fusion calls found in more than 4 broad_histology groups are removed as QC filtering.
 
-`06-recurrent-fusions-per-cancer-group.R` : Identifies recurrent fusions and genes that are recurrently observed in fusions. We identified RNA-seq samples that can be used independently for each patient. After the selection of samples we identify which fusions and genes are recurrent (found in >3 participants per cancer group) in our `fusion-putative-oncogenic.tsv` dataset.
+`06-recurrent-fusions-sample-group.R` : Identifies recurrent fusions and genes that are recurrently observed in fusions. We identified RNA-seq samples that can be used independently for each patient. After the selection of samples we identify which fusions and genes are recurrent (found in >3 participants per cancer group) in our `fusion-putative-oncogenic.tsv` dataset.

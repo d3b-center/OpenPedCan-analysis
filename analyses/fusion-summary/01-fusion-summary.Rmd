@@ -3,6 +3,11 @@ title: "Generate Fusion Summary Files"
 output: html_notebook
 author: Daniel Miller (D3b), Jaclyn Taroni (CCDL), Jo Lynne Rokita (D3b)
 date: January 2020, November 2020
+params:
+  ci_run:
+    label: "1/0 to run in CI"
+    value: 1
+    input: integer
 ---
 
 Generate fusion files specifically for consumption by molecular subtyping analyses
@@ -24,25 +29,25 @@ library(tidyverse)
 #' @return the filtered fusion data frame
 filterFusion <- function(df, bioid, fuses, genes) {
   if (!missing(bioid)) {
-    df <- filter(df, Sample %in% bioid)
+    df <- dplyr::filter(df, Sample %in% bioid)
   }
   if (!missing(fuses) & !missing(genes)) {
-    df <- filter(df, FusionName %in% fuses |
+    df <- dplyr::filter(df, FusionName %in% fuses |
                    Gene1A %in% genes |
                    Gene2A %in% genes |
                    Gene1B %in% genes |
                    Gene2B %in% genes)
   } else if (!missing(fuses)) {
-    df <- filter(df, FusionName %in% fuses)
+    df <- dplyr::filter(df, FusionName %in% fuses)
   } else if (!missing(genes)) {
-    df <- filter(df,
+    df <- dplyr::filter(df,
                  Gene1A %in% genes |
                    Gene2A %in% genes |
                    Gene1B %in% genes |
                    Gene2B %in% genes)
   }
   return(df %>% 
-           select(Sample, FusionName, Fusion_Type, Gene1A, Gene1B, Gene2A, Gene2B, Gene1A_anno, Gene1B_anno, reciprocal_exists, DomainRetainedGene1A, DomainRetainedGene1B) %>%
+           dplyr::select(Sample, FusionName, Fusion_Type, Gene1A, Gene1B, Gene2A, Gene2B, Gene1A_anno, Gene1B_anno, reciprocal_exists, DomainRetainedGene1A, DomainRetainedGene1B) %>%
            distinct())
 }
 
@@ -72,13 +77,37 @@ annotDir <- file.path("..", "..", "analyses", "fusion_filtering", "references")
 #' Annotation file to be used for identifying kinase genes
 annot <- read_tsv(file.path(annotDir, "genelistreference.txt"))
 #' The putative oncogenic fusion file is what we'll use to check for the #' presence or absence of the fusions.
+
+# This needs to come from the data directory when running in CI
+if ( params$ci_run == 1 ){
 putativeOncogenicDF <- 
   read_tsv(file.path(fusDir, "fusion-putative-oncogenic.tsv"))
+} else{
+putativeOncogenicDF <- 
+  read_tsv(file.path(dataDir, "fusion-putative-oncogenic.tsv"))
+}
+
 #' However, some biospecimens are not represented in this filtered, prioritized
 #' file but *are* present in the original files -- this will cause them to be
 #' "missing" in the final files for consumption which could mislead analysts.
 arribaDF <- read_tsv(file.path(dataDir, "fusion-arriba.tsv.gz"))
 starfusionDF <- read_tsv(file.path(dataDir, "fusion-starfusion.tsv.gz"))
+```
+
+### Read in DGD and arrange as fusion filtering df 
+```{r}
+# read in DGD data 
+dgd_fusion <- readr::read_tsv(file.path(dataDir, "fusion-dgd.tsv.gz"))
+
+# organize column
+dgd_fusion <- dgd_fusion %>%
+  dplyr::rename("Sample" = "Tumor_Sample_Barcode") %>%
+  dplyr::mutate(FusionName = gsub("-", "--", Fusion)) %>%
+  tidyr::separate(Fusion, c("Gene1A", "Gene1B"), sep = "-") %>%
+  dplyr::select(Sample, FusionName, Gene1A, Gene1B)
+
+# combine the two dataframes
+putativeOncogenicDF <- bind_rows(putativeOncogenicDF, dgd_fusion)
 ```
 
 ### Output
@@ -182,7 +211,12 @@ The fusions in the putative oncogenic fusion file can be retained even if they a
 We use the putative oncogenic file here, therefore any sample that is in either file but does not have a fusion that is relevant to the subtyping tickets is not _missing_ but instead has no evidence of the relevant fusions.
 
 ```{r}
-specimensUnion<- union(arribaDF$tumor_id, starfusionDF$tumor_id)
+# combine star and arriba samples
+specimensUnion<- union(arribaDF$tumor_id, 
+                       starfusionDF$tumor_id)
+# add dgd samples here 
+specimensUnion<- union(specimensUnion,
+                       dgd_fusion$Sample)
 ```
 
 #### Write non-MB, non-ATRT embryonal fusions to file
@@ -198,6 +232,7 @@ allFuseEmbry[, missingEmbryFusion] <- 0
 
 # Write to file
 allFuseEmbry %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(embryFile)
 ```
 
@@ -213,6 +248,7 @@ missingEpendFusion <- setdiff(ependFuses, colnames(allFuseEpend)[-1])
 allFuseEpend[, missingEpendFusion] <- 0
 
 allFuseEpend %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(ependFile)
 ```
 
@@ -229,6 +265,7 @@ missingEwingFusion <- setdiff(ewingsFuses, colnames(allFuseEwing)[-1])
 allFuseEwing[, missingEwingFusion] <- 0
 
 allFuseEwing %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(ewingsFile)
 ```
 
@@ -348,6 +385,7 @@ missingLgatFusion <- setdiff(lgatFuses, colnames(subsetFuseLGAT)[-1])
 subsetFuseLGAT[, missingLgatFusion] <- 0
 
 subsetFuseLGAT %>%
+  arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv(lgatFile)
 ```
 

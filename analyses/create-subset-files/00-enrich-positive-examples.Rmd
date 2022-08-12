@@ -14,7 +14,7 @@ library(tidyverse)
 ```
 
 ```{r}
-set.seed(2020)
+set.seed(2022)
 ```
 
 The table prepped in `tp53_nf1_score` contains all of the information we need regarding positive examples.
@@ -24,7 +24,7 @@ The histologies file contains the information we need for identifying samples th
 mutations_table <- read_tsv(file.path("..", "tp53_nf1_score", "results", 
                                       "TP53_NF1_snv_alteration.tsv"))
 histologies_df <- read_tsv(file.path("..", "..", "data", 
-                                     "pbta-histologies.tsv"),
+                                     "histologies.tsv"),
                            col_types = cols(
                              molecular_subtype = col_character()
                            ))
@@ -44,45 +44,157 @@ nf1_examples <- mutations_table %>%
 ### _TP53_ positive examples
 
 ```{r}
-# randomly select samples that also have stranded RNA-seq data
+# samples that also have RNA-seq data
 tp53_samples <- histologies_df %>%
   filter(Kids_First_Biospecimen_ID %in% tp53_examples) %>%
+  group_by(group_id = paste(sample_id, Kids_First_Participant_ID, sep ="-")) %>%
+  ungroup() %>% 
   inner_join(histologies_df %>%
-               filter(RNA_library == "stranded",
-                      sample_type == "Tumor") %>%
-               select(sample_id)) %>%
+               filter(RNA_library == "stranded" | 
+                        RNA_library == "poly-A stranded" |
+                        RNA_library == "poly-A",
+                      sample_type == "Tumor", 
+                      experimental_strategy != "Methylation") %>%
+               group_by(group_id = paste(sample_id, 
+                                         Kids_First_Participant_ID, sep ="-")) %>%
+               ungroup() %>% 
+               select(group_id)) %>%
   distinct()
-
-tp53_samples <- sample(tp53_samples$sample_id, size = 3)
 ```
 
+#### PBTA _TP53_ positive examples
+
 ```{r}
+# randomly selected PBTA positive examples
 histologies_df %>%
-  filter(sample_id %in% tp53_samples,
-         sample_type == "Tumor") %>%
-  arrange(sample_id)
+  filter(cohort == "PBTA",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>% 
+  filter(group_id %in% sample(tp53_samples %>% 
+                                 filter(cohort == "PBTA") %>% 
+                                 pull(group_id) %>% unique(),
+                                 size = 3)
+         ) %>% 
+  arrange(group_id)
+```
+
+#### GMKF _TP53_ positive examples
+
+```{r}
+# randomly selected GMKF positive examples
+histologies_df %>%
+  filter(cohort == "GMKF",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>% 
+  filter(group_id %in% sample(tp53_samples %>% 
+                                 filter(cohort == "GMKF") %>% 
+                                 pull(group_id) %>% unique(),
+                                 size = 1)
+         ) %>% 
+  arrange(group_id)
+```
+
+#### TARGET _TP53_ positive examples
+
+```{r}
+# randomly selected TARGET positive examples
+histologies_df %>%
+  filter(cohort == "TARGET",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>% 
+  filter(group_id %in% sample(tp53_samples %>% 
+                                 filter(cohort == "TARGET") %>% 
+                                 pull(group_id) %>% unique(),
+                                 size = 3)
+         ) %>% 
+  arrange(group_id)
 ```
 
 ### _NF1_ positive examples
 
 ```{r}
 # randomly select samples that also have stranded RNA-seq data
+# samples that also have RNA-seq data
 nf1_samples <- histologies_df %>%
   filter(Kids_First_Biospecimen_ID %in% nf1_examples) %>%
+  group_by(group_id = paste(sample_id, Kids_First_Participant_ID, sep ="-")) %>%
+  ungroup() %>% 
   inner_join(histologies_df %>%
-               filter(RNA_library == "stranded",
-                      sample_type == "Tumor") %>%
-               select(sample_id)) %>%
+               filter(RNA_library == "stranded" | 
+                        RNA_library == "poly-A stranded" |
+                        RNA_library == "poly-A",
+                      sample_type == "Tumor", 
+                      experimental_strategy != "Methylation") %>%
+               group_by(group_id = paste(sample_id, 
+                                         Kids_First_Participant_ID, sep ="-")) %>% 
+               ungroup() %>% 
+               select(group_id)) %>%
   distinct()
-
-nf1_samples <- sample(nf1_samples$sample_id, size = 3)
 ```
 
+#### PBTA _NF1_ positive examples
+
 ```{r}
+# randomly selected PBTA positive examples
 histologies_df %>%
-  filter(sample_id %in% nf1_samples,
-         sample_type == "Tumor") %>%
-  arrange(sample_id)
+  filter(cohort == "PBTA",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>%
+  filter(group_id %in% sample(nf1_samples %>% 
+                                 filter(cohort == "PBTA") %>% 
+                                 pull(group_id) %>% unique(),
+                                 size = 3)
+         ) %>% 
+  arrange(group_id)
+```
+
+#### GMKF _NF1_ positive examples
+
+```{r}
+# randomly selected GMKF positive examples
+histologies_df %>%
+  filter(cohort == "GMKF",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>%
+  filter(group_id %in% (nf1_samples %>% 
+                                 filter(cohort == "GMKF") %>% 
+                                 pull(group_id) %>% unique())
+         ) %>% 
+  arrange(group_id)
+```
+
+#### TARGET _NF1_ positive examples
+
+```{r}
+# randomly selected TARGET positive examples
+histologies_df %>%
+  filter(cohort == "TARGET",
+         sample_type == "Tumor",
+         experimental_strategy != "Methylation") %>% 
+  group_by(group_id = paste(sample_id, 
+                            Kids_First_Participant_ID, sep ="-")) %>% 
+  ungroup() %>%
+  filter(group_id %in% sample(nf1_samples %>% 
+                                 filter(cohort == "TARGET") %>% 
+                                 pull(group_id) %>% unique(),
+                                 size = 3)
+         ) %>% 
+  arrange(group_id)
 ```
 
 ### Session Info

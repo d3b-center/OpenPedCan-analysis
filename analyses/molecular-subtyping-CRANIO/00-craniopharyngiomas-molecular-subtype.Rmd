@@ -1,7 +1,7 @@
 ---
 title: "Molecularly Subtype Craniopharyngiomas into Adamantinomatous or Papillary"
 author: "Daniel Miller <millerd15@email.chop.edu> and Jo Lynne Rokita <rokita@chop.edu> for D3B"
-date: "October 2020"
+date: 2020, 2022
 output:
   html_notebook:
     toc: TRUE
@@ -63,11 +63,18 @@ output_subtype <- file.path(results_dir, "CRANIO_molecular_subtype.tsv")
 # Inputs
 ## Read in metadata
 metadata <-
-  read_tsv(file.path(root_dir, "data", "histologies-base-adapt.tsv")) %>%
+  read_tsv(file.path(root_dir, "data", "histologies-base.tsv")) %>%
   filter(pathology_diagnosis == "Craniopharyngioma")
-## Read in snv consensus mutation data
+## Read in snv consensus mutation data, subset for samples of interest
+dgd_maf_file <- file.path(root_dir, "data", "snv-dgd.maf.tsv.gz")
 snv_file <- file.path(root_dir, "data", "snv-consensus-plus-hotspots.maf.tsv.gz")
-snv_df <- read_tsv(snv_file, comment = '#')
+
+dgd_df <- read_tsv(dgd_maf_file, comment = '#') %>%
+    filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID)
+snv_df <- read_tsv(snv_file, comment = '#') %>%
+  filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID) %>%
+  bind_rows(dgd_df)
+
 ```
 
 # Process Data
@@ -98,18 +105,23 @@ First, make a frame with DNA and RNA samples per patient as well as age at diagn
 ```{r allmeta-table}
 dnameta <-
   metadata %>%
-  filter(experimental_strategy %in% c("WGS","WXS")) %>%
+  filter(experimental_strategy %in% c("WGS","WXS", "Targeted Sequencing"),
+         is.na(RNA_library)) %>%
+  #group_by(Kids_First_Participant_ID, sample_id, age_at_diagnosis_days) %>%
+   #  summarise(Kids_First_Biospecimen_ID = str_c(Kids_First_Biospecimen_ID, collapse=",")) %>%
   select(Kids_First_Participant_ID,sample_id,Kids_First_Biospecimen_ID,age_at_diagnosis_days)
 
 rnameta <-
   metadata %>%
-  filter(experimental_strategy == "RNA-Seq") %>%
-  select(Kids_First_Participant_ID,sample_id,Kids_First_Biospecimen_ID,age_at_diagnosis_days)
+  filter(!is.na(RNA_library)) %>%
+  #group_by(Kids_First_Participant_ID, sample_id, age_at_diagnosis_days) %>%
+   #  summarise(Kids_First_Biospecimen_ID = str_c(Kids_First_Biospecimen_ID, collapse=",")) %>%
+  select(Kids_First_Participant_ID,sample_id,Kids_First_Biospecimen_ID)
 
 allmeta <-
   full_join(dnameta,
             rnameta,
-            by=c("Kids_First_Participant_ID","sample_id", "age_at_diagnosis_days"),
+            by=c("Kids_First_Participant_ID","sample_id"),
             suffix = c("_DNA", "_RNA"))
 ```
 
@@ -151,6 +163,7 @@ snv_subtype <-
            case_when(
              (BRAF.V600E & fourty_or_older) & !(CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, PAP",
              !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, ADAM",
+              !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3) ~ "CRANIO, ADAM",
              (BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, ADAM;CRANIO, PAP",
              !(BRAF.V600E & fourty_or_older) & !(CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, To be classified",
             is.na(Kids_First_Biospecimen_ID_DNA) ~ "CRANIO, To be classified"
@@ -161,6 +174,14 @@ meta_subtype <-
   full_join(allmeta,
             snv_subtype,
             by=c("Kids_First_Participant_ID","sample_id")) %>%
+  group_by(Kids_First_Participant_ID, sample_id, age_at_diagnosis_days) %>%
+     summarise(Kids_First_Biospecimen_ID_DNA = str_c(unique(Kids_First_Biospecimen_ID_DNA), collapse=","),
+               Kids_First_Biospecimen_ID_RNA = str_c(unique(Kids_First_Biospecimen_ID_RNA), collapse=","),
+               # Add this to combine and fix subtypes if subtyped as ADAM + To be classified
+               molecular_subtype = str_c(unique(molecular_subtype), collapse=";")) %>%
+  dplyr::mutate(molecular_subtype = case_when(molecular_subtype == "CRANIO, To be classified;CRANIO, ADAM" ~ "CRANIO, ADAM",
+                                              molecular_subtype == "CRANIO, ADAM;CRANIO, To be classified" ~ "CRANIO, ADAM",
+                                              TRUE ~ as.character(molecular_subtype))) %>%
   dplyr::arrange(Kids_First_Participant_ID, sample_id)
 ```
 

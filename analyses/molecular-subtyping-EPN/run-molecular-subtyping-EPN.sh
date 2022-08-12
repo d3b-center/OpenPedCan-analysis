@@ -11,14 +11,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 SUBSET=${OPENPBTA_SUBSET:-1}
 
 # Define needed files
-HISTOLOGIES=../../data/histologies-base-adapt.tsv
+HISTOLOGIES=../../data/histologies-base.tsv
 FULL_EXPRESSION=../../data/gene-expression-rsem-tpm-collapsed.rds
 SUBSET_EXPRESSION=epn-subset/epn-gene-expression-rsem-tpm-collapsed.tsv.gz
 DISEASE_GROUP_FILE=../../scratch/EPN_molecular_subtype.tsv
 GISTIC=../../data/cnv-consensus-gistic.zip
 GISTIC_SUBFILE_BROAD=cnv-consensus-gistic/broad_values_by_arm.txt
 GSVA=../gene-set-enrichment-analysis/results/gsva_scores.tsv
-FUSION=../fusion-summary/results/fusion_summary_ependymoma_foi.tsv
+FUSION=../../data/fusion_summary_ependymoma_foi.tsv
 BREAKPOINTS_CNV=../chromosomal-instability/breakpoint-data/cnv_breaks_densities.tsv
 BREAKPOINTS_SV=../chromosomal-instability/breakpoint-data/sv_breaks_densities.tsv
 FOCAL_GENE_CN=../../data/consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz

@@ -1,0 +1,54 @@
+cancer_group	tumor_descriptor	n
+Acute Myeloid Leukemia	Primary Tumor	147
+Adrenocortical Carcinoma	Primary Tumor	77
+Bladder Urothelial Carcinoma	Primary Tumor	413
+Breast Invasive Carcinoma	Metastatic	7
+Breast Invasive Carcinoma	Primary Tumor	1099
+Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	Metastatic	2
+Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	Primary Tumor	304
+Cholangiocarcinoma	Primary Tumor	36
+Chromophobe renal cell carcinoma	Primary Tumor	65
+Colon Adenocarcinoma	Metastatic	1
+Colon Adenocarcinoma	Primary Tumor	305
+Colon Adenocarcinoma	Recurrence	1
+Cutaneous Melanoma	Metastatic	366
+Cutaneous Melanoma	Primary Tumor	102
+Esophageal Carcinoma	Metastatic	1
+Esophageal Carcinoma	Primary Tumor	158
+Glioblastoma Multiforme	Primary Tumor	154
+Glioblastoma Multiforme	Recurrence	13
+Head and Neck Squamous Cell Carcinoma	Metastatic	2
+Head and Neck Squamous Cell Carcinoma	Primary Tumor	498
+Hepatocellular Carcinoma	Primary Tumor	369
+Hepatocellular Carcinoma	Recurrence	3
+Low-grade glioma/astrocytoma	Primary Tumor	507
+Low-grade glioma/astrocytoma	Recurrence	18
+Lung Adenocarcinoma	Primary Tumor	531
+Lung Adenocarcinoma	Recurrence	2
+Lung Squamous Cell Carcinoma	Primary Tumor	499
+Lymphoid Neoplasm Diffuse Large B-cell Lymphoma	Primary Tumor	47
+Mesothelioma	Primary Tumor	86
+Ovarian Serous Cystadenocarcinoma	Primary Tumor	373
+Ovarian Serous Cystadenocarcinoma	Recurrence	5
+Pancreatic Adenocarcinoma	Metastatic	1
+Pancreatic Adenocarcinoma	Primary Tumor	177
+Pheochromocytoma and Paraganglioma	Metastatic	2
+Pheochromocytoma and Paraganglioma	Primary Tumor	179
+Prostate Adenocarcinoma	Metastatic	1
+Prostate Adenocarcinoma	Primary Tumor	497
+Rectum Adenocarcinoma	Primary Tumor	92
+Rectum Adenocarcinoma	Recurrence	1
+Renal Clear Cell Carcinoma	Primary Tumor	536
+Renal Papillary Cell Carcinoma	Primary Tumor	287
+Sarcoma	Metastatic	1
+Sarcoma	Primary Tumor	258
+Sarcoma	Recurrence	3
+Stomach Adenocarcinoma	Primary Tumor	373
+Testicular Germ Cell Tumor	Primary Tumor	154
+Thymoma	Primary Tumor	118
+Thyroid Carcinoma	Metastatic	8
+Thyroid Carcinoma	Primary Tumor	501
+Uterine Carcinosarcoma	Primary Tumor	56
+Uterine Corpus Endometrial Carcinoma	Primary Tumor	182
+Uterine Corpus Endometrial Carcinoma	Recurrence	1
+Uveal Melanoma	Primary Tumor	79

@@ -1,5 +1,6 @@
 # J. Taroni for CCDL 2019
-# This script takes a directory of OpenPBTA files to subset and produces a list
+# Updated by Eric Wafula for Pediatric Open Targets 2022
+# This script takes a directory of OpenPedCan files to subset and produces a list
 # of biospecimen IDs, saved as an RDS file, to use to subset the files for
 # use in continuous integration.
 #
@@ -9,12 +10,14 @@
 #   - Some number of biospecimen IDs that correspond to participant IDs that
 #     are represented across experimental strategies. The number of participant
 #     IDs used to accomplish this is specified with the num_matched parameter.
-#     Poly-A samples will be somewhat overrepresented vs. the portion of total
-#     RNA-seq samples they make up.
+#     Participant IDs are selected proportional to the composition of RNA-Seq 
+#     libraries in each cohorts.
 #   - Some number of biospecimen IDs that correspond to participant IDs that
 #     are *not* represented across strategies but are present in the file under
 #     consideration. This number will be 10% of num_matched.
-#   - We stratify based on `reported_gender`.
+#   - We stratify based on `reported_gender`. The gender composition in all v11
+#     cohorts is approximately balanced except for GTEx where the samples for
+#     female participants are 50% of those for male participants. 
 #   - We include (and hardcode) a set of biospecimen IDs for samples that have
 #     TP53 and NF1 mutations that meet the criteria in the tp53_nf1_module and
 #     are represented in the stranded RNA-seq dataset.
@@ -23,94 +26,214 @@
 # EXAMPLE USAGE:
 #
 #   Rscript analyses/create-subset-files/01-get_biospecimen_identifiers.R \
-#     --data_directory data/release-v5-20190924 \
+#     --data_directory data/v11 \
 #     --output_file analyses/create-subset-files/biospecimen_ids_for_subset.RDS \
-#     --supported_string "pbta-snv|pbta-cnv|pbta-fusion|pbta-isoform|pbta-sv|pbta-gene" \
+#     --supported_string "snv|biospecimen|cnv|consensus_seg_with_status|fusion|sv-manta|.rds|independent" \
 #     --num_matched 25 \
 #     --seed 2019
 
 #### Library and functions -----------------------------------------------------
 
-library(readr)
-library(optparse)
+suppressWarnings(
+  suppressPackageStartupMessages(library(tidyverse))
+)
+suppressPackageStartupMessages(library(optparse))
 
 `%>%` <- dplyr::`%>%`
 
 get_biospecimen_ids <- function(filename, id_mapping_df) {
-  # Given a supported OpenPBTA file, return the participant IDs corresponding
+  # Given a supported OpenPedCan file, return the participant IDs corresponding
   # to the biospecimen IDs contained within that file
   #
   # Args:
-  #   filename: the full path to a supported OpenPBTA file
+  #   filename: the full path to a supported OpenPedCan file
   #   id_mapping_df: the data.frame that contains mapping between biospecimen
   #                  IDs and participant IDs
   #
   # Returns:
   #   a vector of unique participant IDs
-
+  
   message(paste("Reading in", filename, "..."))
-
-  # where the biospecimen IDs come from in each file depends on the file
-  # type -- that is why we need all of this logic
-  if (grepl("pbta-snv", filename)) {
+  
+  if (grepl("snv", filename)) {
     # all SNV variant files keep the biospecimen identifiers in a column called
     # 'Tumor_Sample_Barcode'
     # if the files have consensus in the name, the first line of the file does
     # not contain MAF version information
-    if (grepl("consensus", filename)) {
-      snv_file <- data.table::fread(filename, data.table = FALSE)
-    } else {
+    if (grepl("hotspots", filename)) {
       snv_file <- data.table::fread(filename,
                                     skip = 1,  # skip version string
-                                    data.table = FALSE)
+                                    data.table = FALSE,
+                                    showProgress = FALSE)
+    } else {
+      snv_file <- data.table::fread(filename, data.table = FALSE, 
+                                    showProgress = FALSE)
     }
     # both kinds (original, consensus)
     biospecimen_ids <- unique(snv_file$Tumor_Sample_Barcode)
-  } else if (grepl("pbta-cnv", filename)) {
+  } else if (grepl("biospecimen", filename)) {
+    # list of sample IDs with their corresponding bed files
+    bed_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    biospecimen_ids <- unique(bed_file$Kids_First_Biospecimen_ID)
+  } else if (grepl("cnv", filename)) {
     # the two CNV files now have different structures
-    cnv_file <- read_tsv(filename)
-    if (grepl("controlfreec", filename)) {
+    cnv_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    if (grepl("controlfreec|cnvkit_with_status", filename)) {
       biospecimen_ids <- unique(cnv_file$Kids_First_Biospecimen_ID)
+    } else if (grepl("consensus_wgs_plus_cnvkit_wxs", filename)) {
+      biospecimen_ids <- unique(cnv_file$biospecimen_id)
     } else {
       biospecimen_ids <- unique(cnv_file$ID)
     }
-  } else if (grepl("consensus_seg_annotated", filename)) {
-    annotated_cn_file <- read_tsv(filename)
-    biospecimen_ids <- unique(annotated_cn_file$biospecimen_id)
-  } else if (grepl("pbta-fusion", filename)) {
-    fusion_file <- read_tsv(filename)
+  } else if (grepl("consensus_seg_with_status", filename)) {
+    cn_seg_status_file <- readr::read_tsv(filename, 
+                                          show_col_types = FALSE)
+    biospecimen_ids <- unique(cn_seg_status_file$Kids_First_Biospecimen_ID)
+  } else if (grepl("fusion", filename)) {
+    fusion_file <- readr::read_tsv(filename, show_col_types = FALSE)
     # the biospecimen IDs in the filtered/prioritize fusion list included with
     # the download are in a column called 'Sample'
-    if (grepl("putative-oncogenic|bysample", filename)) {
+    if (grepl("putative-oncogenic", filename)) {
       biospecimen_ids <- unique(fusion_file$Sample)
+    } else if(grepl("dgd", filename)) {
+      biospecimen_ids <- unique(fusion_file$Tumor_Sample_Barcode)
+    } else if (grepl("fusion_summary", filename)) {
+      biospecimen_ids <- unique(fusion_file$Kids_First_Biospecimen_ID)
     } else {
       # the original files contain the relevant IDs in a column 'tumor_id'
       biospecimen_ids <- unique(fusion_file$tumor_id)
-    }
-  } else if (grepl("pbta-sv", filename)) {
+    }  
+  } else if (grepl("sv-manta", filename)) {
     # in a column 'Kids.First.Biospecimen.ID.Tumor'
-    sv_file <- data.table::fread(filename, data.table = FALSE)
+    sv_file <- data.table::fread(filename, data.table = FALSE, showProgress = FALSE)
     biospecimen_ids <- unique(sv_file$Kids.First.Biospecimen.ID.Tumor)
   } else if (grepl(".rds", filename)) {
-    # any column name that contains 'BS_' is a biospecimen ID
-    expression_file <- read_rds(filename) %>%
-      dplyr::select(dplyr::contains("BS_"))
-    biospecimen_ids <- unique(colnames(expression_file))
-  } else if (grepl("cnv_consensus", filename)) {
-    cnv_consensus <- read_tsv(filename)
-    biospecimen_ids <- unique(cnv_consensus$Biospecimen)
+    # RNA-Seq matrices column names
+    if (grepl("rna-isoform", filename)) {
+      expression_file <- readr::read_rds(filename) %>%
+        dplyr::select(-transcript_id, -gene_symbol)
+      biospecimen_ids <- unique(colnames(expression_file))
+    } else {
+      expression_file <- readr::read_rds(filename)
+      biospecimen_ids <- unique(colnames(expression_file))
+    }
+  } else if (grepl("independent", filename)) {
+    # in a column 'Kids_First_Biospecimen_ID'
+    independent_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
   } else {
     # error-handling
     stop("File type unrecognized by 'get_biospecimen_ids'")
   }
-
   # map from biospecimen ID to participant IDs and return unique participant IDs
   participant_ids <-  id_mapping_df %>%
     dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
     dplyr::pull(Kids_First_Participant_ID)
   return(unique(participant_ids))
-
 }
+
+
+select_participants_ids <- 
+  function(histology, library, study, participants, match_ratio, match_value) {
+    # Given a OpenPedCan histologies and participant IDs that are represented
+    # across experimental strategies, returns selected cohort matched participant
+    # IDs proportionally stratified by gender where applicable for subsetting
+    #
+    # Args:
+    #   histology: dataframe of OpenPedCan histologies 
+    #   library: RNA-Seq library type
+    #   study: OpenPedCan cohort 
+    #   participants: participant IDs that are represented across experimental 
+    #                 strategies
+    #   match_ratio: the proportion of the library cohort participant IDs to 
+    #                select from the required number of matched participants
+    #   match_value: the required number of matched participants per cohort 
+    #
+    # Returns:
+    #   a vector of unique selected cohort matched participant IDs stratified
+    #   by gender
+    if (library == "other" ) {
+      selected_participants <-  histology_df %>%
+        dplyr::filter(RNA_library != "poly-A" | 
+                        RNA_library != "stranded" | 
+                        RNA_library != "poly-A stranded" |
+                        RNA_library != "exome_capture",
+                      cohort == study,
+                      Kids_First_Participant_ID %in% participants)
+      if (length(selected_participants$Kids_First_Participant_ID) == 0) {
+        selected_participants <-  histology_df %>%
+          dplyr::filter(RNA_library != "poly-A" | 
+                          RNA_library != "stranded" |
+                          RNA_library != "poly-A stranded" |
+                          RNA_library != "exome_capture",
+                        cohort == study)
+        female <- selected_participants %>% 
+          filter(reported_gender == "Female") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(female) > ceiling(match_ratio * match_value)){
+          female <- female %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        male <- selected_participants %>% 
+          filter(reported_gender == "Male") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(male) > ceiling(match_ratio * match_value)){
+          male <- male %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        selected_participants <- c(female, male)
+      } else {
+        female <- selected_participants %>% 
+          filter(reported_gender == "Female") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(female) > ceiling(match_ratio * match_value)){
+          female <- female %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        male <- selected_participants %>% 
+          filter(reported_gender == "Male") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(male) > ceiling(match_ratio * match_value)){
+          male <- male %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        selected_participants <- c(female, male)
+      }
+      return(selected_participants)
+    } else { # library == "poly-A" | library == "stranded" | library == "poly-A stranded" | library == "exome_capture"
+      selected_participants <-  histology_df %>%
+        dplyr::filter(RNA_library == library, cohort == study,
+                      Kids_First_Participant_ID %in% participants) 
+      if (length(selected_participants$Kids_First_Participant_ID) == 0) {
+        selected_participants <-  histology_df %>%
+          dplyr::filter(RNA_library == library, cohort == study)
+        female <- selected_participants %>% 
+          filter(reported_gender == "Female") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(female) > ceiling(match_ratio * match_value)){
+          female <- female %>% sample(ceiling(0.5 * match_ratio *  match_value)) 
+        }
+        male <- selected_participants %>% 
+          filter(reported_gender == "Male") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(male) > ceiling(match_ratio * match_value)){
+          male <- male %>%sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        selected_participants <- c(female, male)
+      } else {
+        female <- selected_participants %>% 
+          filter(reported_gender == "Female") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(female) > ceiling(match_ratio * match_value)){
+          female <- female %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        male <- selected_participants %>% 
+          filter(reported_gender == "Male") %>% 
+          dplyr::pull(Kids_First_Participant_ID) %>% unique()
+        if (length(male) > ceiling(match_ratio * match_value)){
+          male <- male %>% sample(ceiling(0.5 * match_ratio * match_value)) 
+        }
+        selected_participants <- c(female, male)
+      }
+      return(selected_participants)
+    }
+  }
 
 #### Command line arguments/options --------------------------------------------
 
@@ -131,7 +254,7 @@ option_list <- list(
   make_option(
     c("-r", "--supported_string"),
     type = "character",
-    default = "pbta-snv|pbta-cnv|pbta-fusion|pbta-isoform|pbta-sv|pbta-gene|consensus_seg_annotated",
+    default = "snv|biospecimen|cnv|consensus_seg_with_status|fusion|sv-manta|.rds|independent",
     help = "string for pattern matching used to subset to only supported files"
   ),
   make_option(
@@ -179,23 +302,41 @@ supported_files_string <- opt$supported_string
 
 # get numbers of matched participants
 num_matched_participants <- opt$num_matched
-num_matched_polya <- ceiling(0.2 * num_matched_participants)
-num_matched_stranded <- num_matched_participants - num_matched_polya
 
 # extra non-matched samples -- this is a realistic scenario and will test for
 # brittleness of code up for review
-num_nonmatched <- ceiling(0.1 * num_matched_participants)
+num_nonmatched_participants <- ceiling(0.1 * num_matched_participants)
 
 # set the seed
 set.seed(opt$seed)
 
 #### Samples we need to include to run tp53_nf1_score --------------------------
-# For more information, see the 00-enrich-positive-examples notebook
 
-tp53_dnaseq <- c("BS_3E5C1PN1", "BS_KHSYAB3J", "BS_ZR75EKKX")
-tp53_stranded <- c("BS_TM9MH0RP", "BS_4B0BAVTX", "BS_FCAKKZ20")
-nf1_dnaseq <- c("BS_RXSBJ929", "BS_P3PF53V8", "BS_7M7JNG00")
-nf1_stranded <- c("BS_WJ9H4NZZ", "BS_Z8YZ6QGS", "BS_E0N3PTPN")
+# For more information, see the 00-enrich-positive-examples notebook
+tp53_dnaseq <- c("BS_16FT8V4B", "BS_B9QP40ER", "BS_7KR13R3P", "BS_K2K5YSDS", 
+                 "TARGET-30-PAPBGH-01A-01W", "TARGET-40-PARGTM-01A-01D",
+                 "TARGET-40-PATPBS-01A-01D")
+tp53_rnaseq <- c("BS_E4QK839R", "BS_XZM79E42", "BS_8ZY4GST0", "BS_S5KDWVEA",
+                 "TARGET-30-PAPBGH-01A-01R", "TARGET-40-PARGTM-01A-01R", 
+                 "TARGET-40-PATPBS-01A-01R")
+nf1_dnaseq <- c("BS_2J4FG4HV", "BS_QJHY513X", "BS_6DT506HY", 
+                "TARGET-50-PAKKNS-01A-01D", "TARGET-30-PAPVRN-01A-01D",
+                "TARGET-10-PANTSM-04A-01D")
+nf1_rnaseq <- c("BS_81SP2HX4", "BS_KFD5128N", "BS_YDEVMD24", 
+                "TARGET-50-PAKKNS-01A-01R", "TARGET-30-PAPVRN-01A-01R",
+                "TARGET-10-PANTSM-04A-01R")
+
+### Histologies and participants IDs mapping -----------------------------------
+
+# load histologies file
+histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"), 
+                         guess_max = 10000, show_col_types = FALSE) %>% 
+  dplyr::filter(experimental_strategy != "Methylation")
+
+# get the participant ID to biospecimen ID mapping
+id_mapping_df <- histology_df %>%
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID) %>%
+  dplyr::distinct()
 
 #### Get IDs -------------------------------------------------------------------
 
@@ -204,129 +345,130 @@ files_to_subset <- list.files(data_directory,
                               pattern = supported_files_string,
                               full.names = TRUE)
 
-# there are 6 RSEM files per library strategy, which we will assume contain the
-# same samples
-polya_rsem_files <- files_to_subset[grep("rsem.*polya", files_to_subset)]
-stranded_rsem_files <- files_to_subset[grep("rsem.*stranded", files_to_subset)]
-
-# we're going to remove 5 out of six of each set of files and use those samples
-# for each of the six files later
-kept_polya_rsem <- polya_rsem_files[1]
-kept_stranded_rsem <- stranded_rsem_files[1]
-
-# drop the unneeded files for each
-files_to_subset <-
-  files_to_subset[which(!(files_to_subset %in% c(polya_rsem_files[-1],
-                                                 stranded_rsem_files[-1])))]
-
-# drop recurrently fused genes by histology file -- it is small enough to
-# include the entire thing
-files_to_subset <-
-  files_to_subset[-grep("fused-genes-byhistology", files_to_subset)]
-
-# drop GISTIC zipped file from this list -- there are many files that are not
-# currently documented
-# we'll include the entire zipped folder
-files_to_subset <-
-  files_to_subset[-grep("gistic.zip", files_to_subset)]
-
-# if testing this locally, drop the 2 larger of the 4 MAF files
+# if testing this locally, drop the large consensus MAF file
 if (running_locally) {
-  files_to_subset <- files_to_subset[-grep("vardict|mutect2", files_to_subset)]
+  files_to_subset <- files_to_subset[-grep("hotspots", files_to_subset)]
 }
 
-# get the participant ID to biospecimen ID
-id_gender_df <- read_tsv(file.path(data_directory, "pbta-histologies.tsv"), guess_max = 10000) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID,
-                reported_gender) %>%
-  dplyr::distinct()
+# drop GISTIC zipped file from this list 
+files_to_subset <- files_to_subset[-grep("gistic.zip", files_to_subset)]
 
-# drop reported gender
-id_mapping_df <- id_gender_df %>%
-  dplyr::select(-reported_gender)
+# drop methylation RDS matrices. The "methylation-summary" module that produces
+# these matrices and consumes them alongside other data release files requires 
+# the super large output files produced by the "methylation-preprocessing"  
+# module that currently not part of the data release
+# Methylation modules won't be tested with CI
+files_to_subset <- files_to_subset[-grep("methyl", files_to_subset)]
 
 # for each file, extract the participant ID list by first obtaining the
-# biospecimen IDs and then mapping back to
+# biospecimen IDs and then mapping back to participant ID
+message("\nGetting participant IDs from all files...")
 participant_id_list <- purrr::map(files_to_subset,
                                   ~ get_biospecimen_ids(.x, id_mapping_df)) %>%
   purrr::set_names(files_to_subset)
 
-# explicitly perform garbage collection here
-gc(verbose = FALSE)
 
-# split up information for poly-A and stranded expression data vs. all else
-polya_participant_list <- purrr::keep(
-  participant_id_list,
-  grepl("polya",
-        names(participant_id_list))
+# list of matched participant IDs, not including cohort-specific 
+# file (TCGA and DGD)
+message("\nGetting matched participant IDs, exclduing cohort-specific files ...")
+other_participant_id_list <- 
+  participant_id_list[-grep("tcga|dgd", names(participant_id_list))]
+other_matched_participants <- purrr::reduce(other_participant_id_list,
+                                                intersect)
+
+# list of TCGA-specific rnaseq files and matched participant IDs for subsetting
+message("\nGetting TCGA rna-seq matched participant IDs...")
+tcga_participant_id_list <- 
+  participant_id_list[grep("tcga", names(participant_id_list))]
+tcga_matched_participants <- purrr::reduce(tcga_participant_id_list,
+                                               intersect)
+
+# list of DGD-specific panel files and matched participant IDs 
+# for subsetting 
+message("\nGetting DGD panel matched participant IDs...")
+dgd_participant_id_list <- 
+  participant_id_list[grep("dgd", names(participant_id_list))]
+dgd_matched_participants <- purrr::reduce(dgd_participant_id_list,
+                                              intersect)
+
+#### Selected matched participant IDs stratified by gender ---------------------
+
+# Participant IDs are selected proportionally to the composition of each 
+# cohort's RNA-Seq libraries
+
+# polya rnaseq matched participant IDs including a random set GTEx polya libraries
+message("\nSelecting polya rnaseq matched participant IDs...")
+polya_matched <- c(
+  select_participants_ids(histology_df, "poly-A",  "PBTA",
+                          other_matched_participants, 0.1, num_matched_participants),
+  select_participants_ids(histology_df, "poly-A", "TARGET",
+                          other_matched_participants, 0.1, num_matched_participants),
+  select_participants_ids(histology_df, "poly-A stranded", "TARGET",
+                          other_matched_participants, 0.6, num_matched_participants),
+  select_participants_ids(histology_df, "poly-A", "TCGA",
+                          tcga_matched_participants, 0.9, num_matched_participants),
+  # GTEx Famele:Male == 0.3:0.7, other cohorts ~0.5 (balanced)
+  histology_df %>% filter(cohort == "GTEx", reported_gender == "Female") %>%
+    pull(Kids_First_Participant_ID) %>% unique() %>%
+    sample(ceiling(0.3 * num_matched_participants)),
+  histology_df %>% filter(cohort == "GTEx", reported_gender == "Male") %>%
+    pull(Kids_First_Participant_ID) %>% unique() %>%
+    sample(ceiling(0.7 * num_matched_participants))
 )
 
-stranded_participant_list <- purrr::keep(
-  participant_id_list,
-  grepl("stranded",
-        names(participant_id_list))
+# stranded rnaseq matched participant IDs
+message("\nSelecting stranded rnaseq matched participant IDs...")
+stranded_matched <- c(
+  select_participants_ids(histology_df, "stranded",  "PBTA",
+                          other_matched_participants, 0.89, num_matched_participants),
+  select_participants_ids(histology_df, "stranded", "TARGET",
+                          other_matched_participants, 0.3, num_matched_participants),
+  select_participants_ids(histology_df, "stranded", "TCGA",
+                          tcga_matched_participants, 0.1, num_matched_participants),
+  select_participants_ids(histology_df, "stranded", "GMKF",
+                          other_matched_participants, 1.0, num_matched_participants)
 )
 
-other_strategy_participant_list <- purrr::discard(
-  participant_id_list,
-  grepl("polya|stranded",
-        names(participant_id_list))
+# exome_capture rnaseq matched participant IDs
+message("\nSelecting exome capture rnaseq matched participant IDs...")
+exome_capture_matched <- c(
+  select_participants_ids(histology_df, "exome_capture",  "PBTA",
+                          other_matched_participants, 0.01, num_matched_participants)
 )
 
-# find samples that are common to all files
-polya_in_all <- purrr::reduce(polya_participant_list, intersect)
-stranded_in_all <- purrr::reduce(stranded_participant_list, intersect)
-other_strategy_in_all <- purrr::reduce(other_strategy_participant_list,
-                                       intersect)
+# other cohort-specific library types matched participant IDs, including panels 
+# i.e., DGD exome capture rna sequencing and exome sequencing
+message("\nSelecting other library types matched participant IDs...")
+other_matched <- 
+  select_participants_ids(histology_df, "other", "DGD",
+                          dgd_matched_participants, 1.0, num_matched_participants)
 
-# find RNA-seq samples that have matched samples in other strategies
-polya_matched <- intersect(polya_in_all, other_strategy_in_all)
-stranded_matched <- intersect(stranded_in_all, other_strategy_in_all)
+#### Combining selected matched and nonmatched participant IDs for subsetting---
 
-# find identifiers for matched participants!
-# first consider the poly-A samples
-polya_for_subset <- sample(polya_matched, num_matched_polya)
+message("\nCombining selected matched and nonmatched participant IDs...")
+# combine all matched participant IDs for subsetting
+matched_participants_ids <- 
+  unique(c(polya_matched, stranded_matched, exome_capture_matched, other_matched))
 
-# we need to sample the stranded participants keeping the reported gender in
-# mind -- currently this is only for the sex prediction from RNA-seq data
-id_gender_df <- id_gender_df %>%
-  dplyr::filter(Kids_First_Participant_ID %in% stranded_matched)
-
-# get the number of samples for each reported gender - we'll split 54% males
-# which is what the 'matched' cohort is like
-num_male <- ceiling(0.54 * num_matched_stranded)
-num_female <- num_matched_stranded - num_male
-
-stranded_for_subset <- c(
-  id_gender_df %>%
-    dplyr::filter(reported_gender == "Male") %>%
-    dplyr::pull(Kids_First_Participant_ID) %>%
-    unique() %>%
-    sample(num_male),
-  id_gender_df %>%
-    dplyr::filter(reported_gender == "Female") %>%
-    dplyr::pull(Kids_First_Participant_ID) %>%
-    unique() %>%
-    sample(num_female)
+matched_participant_id_list <- purrr::map(
+  participant_id_list, 
+  function(x) { 
+    x[x %in% matched_participants_ids] 
+  }
 )
 
-# intersect with the other strategies
-matched_for_subset <- purrr::map(participant_id_list,
-                                 ~ intersect(.x, c(polya_for_subset,
-                                                   stranded_for_subset)))
-
-# get a list of samples that are not in these matched lists to use to subset
-nonmatched_for_subset <-
+# get a list of participants that are not in the matched lists
+nonmatched_participant_id_list <-
   purrr::map(participant_id_list,
-             ~ setdiff(.x, c(polya_matched, stranded_matched))) %>%
-  purrr::map(~ sample(.x, num_nonmatched))
+             ~ setdiff(.x, matched_participant_id_list)) %>%
+  purrr::map(~ sample(.x, num_nonmatched_participants))
 
-# combine the matched and nonmatched lists of ids for subsetting
-participant_ids_for_subset <- purrr::map2(matched_for_subset,
-                                          nonmatched_for_subset,
-                                          c)
+# combine matched and nonmatched lists of ids for subsetting
+participant_ids_for_subset <- 
+  purrr::map2(matched_participant_id_list, nonmatched_participant_id_list, c)
 
-# map back to biospecimen ids
+# map back matched participant IDs to biospecimen IDs
+message("\nRetrieving biospecimen IDs for selected matched and nonmatched participant IDs...")
 biospecimen_ids_for_subset <- purrr::map(
   participant_ids_for_subset,
   function(x) {
@@ -336,38 +478,29 @@ biospecimen_ids_for_subset <- purrr::map(
   }
 )
 
-# for each stranded instance, add in biospecimen IDs for samples we know have a
-# positive example of NF1 mutation and TP53 for tp53_nf1_score
-stranded_index <- stringr::str_which(names(biospecimen_ids_for_subset),
-                                     "stranded")
+message(paste0("\nAppending NF1 and TP53 mutations biospecimen IDs to rds and snv lists..."))
+
+# for each rnaseq rds instance, add in biospecimen IDs for samples we know have
+# a positive example of NF1 mutation and TP53 for tp53_nf1_score
+rds_files <- 
+  names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
+rds_files <- rds_files[-grep("tcga", rds_files)]
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(stranded_index, ~ append(.x, c(tp53_stranded, nf1_stranded)))
+  purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq)))
 
-# for each pbta-snv instance, add in biospecimen IDs for samples we know have a
+# for each snv instance, add in biospecimen IDs for samples we know have a
 # positive example of NF1 mutation and TP53 for tp53_nf1_score
-pbta_snv_index <- stringr::str_which(names(biospecimen_ids_for_subset),
-                                     "pbta-snv")
+snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(pbta_snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
+  purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
 
-# now for the other RSEM files, we need to use the same identifiers as the
-# same file we included
-polya_rsem_ids <-
-  biospecimen_ids_for_subset[[grep(kept_polya_rsem,
-                                   names(biospecimen_ids_for_subset))]]
-stranded_rsem_ids <-
-  biospecimen_ids_for_subset[[grep(kept_stranded_rsem,
-                                   names(biospecimen_ids_for_subset))]]
+# remove any redundant that might result combining and appending to the 
+# biospecimen IDs lists for subsetting 
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>% 
+  purrr::map(~ unique(.x))
 
-# create lists that contain the same identifiers
-rest_polya_rsem <- lapply(polya_rsem_files[-1], function(x) polya_rsem_ids) %>%
-  purrr::set_names(polya_rsem_files[-1])
-rest_stranded_rsem <- lapply(stranded_rsem_files[-1],
-                             function(x) stranded_rsem_ids) %>%
-  purrr::set_names(stranded_rsem_files[-1])
+# writing biospecimen IDs to file
+message(paste0("\nWriting biospecimen IDs to ", output_file, " file...\n"))
+biospecimen_ids_for_subset %>% write_rds(output_file)
 
-# append the other RSEM elements to the list of all ids and write to file
-biospecimen_ids_for_subset %>%
-  append(rest_polya_rsem) %>%
-  append(rest_stranded_rsem) %>%
-  write_rds(output_file)
+

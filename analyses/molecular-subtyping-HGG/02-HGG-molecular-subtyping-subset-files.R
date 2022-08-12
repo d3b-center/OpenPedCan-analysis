@@ -104,7 +104,9 @@ hgg_metadata_df <- bind_rows(
   lesions_df
 ) %>%
   # Remove duplicates
-  distinct()
+  distinct() %>%
+  # remove methylation 
+  dplyr::filter(experimental_strategy != "Methylation")
 
 # Add a TSV that's the metadata for the samples that will be included in
 # the subtyping

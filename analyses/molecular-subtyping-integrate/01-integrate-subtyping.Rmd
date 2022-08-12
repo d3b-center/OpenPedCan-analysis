@@ -4,8 +4,8 @@ output:
   html_notebook:
     toc: true
     toc_float: true
-author: Krutika Gaonkar for D3b
-date: 2020
+author: Krutika Gaonkar, Eric Wafula, Jo Lynne Rokita
+date: 2020, 2022
 ---
 
 The purpose of this notebook is to integrate molecular subtyping results from 
@@ -35,7 +35,9 @@ In adddition, for samples that where pathology_diagnosis is "Other" we also upda
 ## Set up
 
 ```{r}
+
 library(tidyverse)
+library(stringr)
 data_dir <- "../../data/"
 
 
@@ -61,27 +63,11 @@ compiled_subtyping<-read_tsv(file.path("..", "molecular-subtyping-pathology", "r
 Update "Other" sample broad/short histology and harmonized_diagnosis and add to `compiled_subtyping`
 
 ```{r}
-
-Other_subtypes <- read_tsv(file.path("input","pathology_dx\ and\ pathology_free_text_diagnosis\ to\ broad_histology\ for\ subtyping\ module\ -\ other_diagnosis_rules.tsv"))
-
 compiled_subtyping_other <- base_histology %>%
-  select(
-  Kids_First_Participant_ID ,
-  sample_id,
-  Kids_First_Biospecimen_ID,
-  molecular_subtype,
-  integrated_diagnosis,
-  pathology_diagnosis,
-  pathology_free_text_diagnosis,
-  tumor_descriptor
-) %>%
-  # remove Kids_First_Biospecimen_ID which are subtypes "ETMR/Embryonal"
-  filter(!Kids_First_Biospecimen_ID %in% compiled_subtyping$Kids_First_Biospecimen_ID) %>%
-  # get pathology_diagnosis=="Other"
   filter(pathology_diagnosis=="Other") %>%
-  left_join(Other_subtypes,by=c("pathology_free_text_diagnosis")) %>%
-  mutate(Notes = "Updated by manual curation of pathology_free_text_diagnosis") %>%
-select(
+# remove Kids_First_Biospecimen_ID which are already subtyped
+  filter(!Kids_First_Biospecimen_ID %in% compiled_subtyping$Kids_First_Biospecimen_ID) %>%
+  select(
   # gather only columns needed to format as `compiled_subtyping`
   Kids_First_Participant_ID ,
   sample_id,
@@ -94,10 +80,8 @@ select(
   Notes,
   # adding harmonized_diagnosis from manual review 
   # for pathology_diagnosis=="Other"
-  harmonized_diagnosis
-) %>%
+  harmonized_diagnosis) %>%
   unique()
-
 
 # combined OpenPBTA subtypes and manual "Other" subtypes
 compiled_subtyping <- compiled_subtyping_other %>%
@@ -116,10 +100,10 @@ short_histology and broad_histology will be added from base histology for sample
 ```{r}
 
 histology <- base_histology %>% 
-  select(-Notes,-molecular_subtype,-integrated_diagnosis) %>%
+  select(-Notes,-molecular_subtype,-integrated_diagnosis, -harmonized_diagnosis ) %>%
   left_join(compiled_subtyping,by=c("Kids_First_Biospecimen_ID","sample_id","Kids_First_Participant_ID","tumor_descriptor"),suffix=c(".base",".subtyped")) %>%
   unique() %>%
-  mutate(
+  dplyr::mutate(
     broad_histology = if_else(!is.na(broad_histology.subtyped),
                               broad_histology.subtyped,
                               broad_histology.base),
@@ -133,7 +117,13 @@ histology <- base_histology %>%
                 is.na(integrated_diagnosis) & 
                   is.na(harmonized_diagnosis) &
                   !is.na(pathology_diagnosis) ~ pathology_diagnosis
-    )) 
+    )) %>%
+  # Harmonize some harmonized diagnoses which will become cancer groups
+  dplyr::mutate(harmonized_diagnosis = case_when(harmonized_diagnosis %in% c("Ewings sarcoma", "Ewings Sarcoma") ~ "Ewing sarcoma",
+                                                 TRUE ~ as.character(harmonized_diagnosis))) %>%
+    dplyr::mutate(harmonized_diagnosis = case_when(molecular_subtype == "CNC" ~ "Central neurocytoma",
+                                                   molecular_subtype == "EVN" ~ "Extraventricular neurocytoma",
+                                                   TRUE ~ as.character(harmonized_diagnosis)))
 ```
 
 
@@ -156,8 +146,7 @@ Are there NA in broad_histology, short_histology or harmonized_diagnosis
 histology %>% 
   filter(sample_type=="Tumor",
          (is.na(broad_histology)| is.na(short_histology)| is.na(harmonized_diagnosis))) %>%
-  tally()
-
+  tally() 
 ```
 
 No NAs in broad_histology, short_histology or harmonized_diagnosis
@@ -170,30 +159,120 @@ This means no evidence was provided/available for these samples so we are not ab
 Provides a narrower grouping for samples that can be used in generating figures
 ```{r}
 
-histology<- histology %>%
+histology_cg <- histology %>%
   # remove subtype details
-  dplyr::mutate(cancer_group = str_extract(harmonized_diagnosis, "[^,]*")) %>%
-  
-  # update some values that come from pathology_diagnosis which are not standardized yet
+  dplyr::mutate(cancer_group = case_when(broad_histology %in% c("Benign tumor", "Other", "Non-tumor", "Pre-cancerous lesion") ~ NA_character_,
+                                         TRUE ~ str_extract(harmonized_diagnosis, "[^,]*"))) %>%
+   # update some values that come from pathology_diagnosis which are not standardized yet
   dplyr::mutate(cancer_group = case_when(
+    # if multiple cancers, make NA unless otherwise specified below
+    grepl(";", cancer_group) ~ NA_character_,
     cancer_group == "Brainstem glioma- Diffuse intrinsic pontine glioma" ~ "Diffuse intrinsic pontine glioma",
-    cancer_group == "Anaplastic (malignant) meningioma" ~ "Meningioma",
-    cancer_group == "Atypical meningioma" ~ "Meningioma",
-    cancer_group == "Neurofibroma/Plexiform;Other" ~ "Neurofibroma/Plexiform",
-    cancer_group == "Non-germinomatous germ cell tumor;Teratoma" ~ "Teratoma",
-    cancer_group %in% c("Meningothelial meningioma", "Clear cell meningioma") ~ "Meningioma",
-    cancer_group == "Embryonal Tumor with Multilayered Rosettes" ~ "Embryonal tumor with multilayer rosettes",
-    cancer_group == "Adamantinomatous craniopharyngioma" ~ "Craniopharyngioma",
-    sample_id == "7316-2577" ~ "Embryonal tumor with multilayer rosettes",
-    cancer_group %in% c("Benign tumor","Dysplasia/Gliosis","Other","Dysplasia/Gliosis-Glial-neuronal tumor NOS") ~ NA_character_,
+    cancer_group == "Non-germinomatous germ cell tumor;Teratoma" ~ "Mixed germ cell tumor",
+    cancer_group %in% c("Meningothelial meningioma", "Clear cell meningioma", "Atypical meningioma", "Anaplastic (malignant) meningioma") ~ "Meningioma",
+    cancer_group == "Supratentorial or Spinal Cord PNET" ~ "CNS Embryonal tumor",
+    cancer_group == "Embryonal tumor" ~ "Embryonal tumor",
+    cancer_group == "Embryonal Tumor with Multilayered Rosettes (ETMR)" ~ "Embryonal tumor with multilayer rosettes",
+    cancer_group %in% c("Wilms Tumor", "Juvenile Xanthogranuloma", "Clear Cell Sarcoma of the Kidney") ~ stringr::str_to_sentence(cancer_group),
+    cancer_group == "Ependymoma;Metastatic secondary tumors" ~ "Ependymoma",
+    cancer_group %in% c("Acute Promyelocytic Leukemia", "Therapy-Related Acute Myeloid Leukemia") ~ "Acute Myeloid Leukemia",
+    cancer_group %in% c("Mixed Lineage Leukemia") ~ "Acute Lymphoblastic Leukemia",
+    cancer_group == "Brain Lower Grade Glioma" ~ "Low-grade glioma/astrocytoma",
+    cancer_group == "congenital malignant brain tumor" ~ "High-grade glioma/astrocytoma",
+    cancer_group == "Kidney Chromophobe" ~ "Chromophobe renal cell carcinoma",
+    cancer_group == "Kidney Renal Clear Cell Carcinoma" ~ "Renal Clear Cell Carcinoma",
+    cancer_group == "Kidney Renal Papillary Cell Carcinoma" ~ "Renal Papillary Cell Carcinoma",    
+    cancer_group == "High Grade Sarcoma" ~ "Sarcoma",
+    # update cases for EFO/MONDO - need to work on this to not be manual
+    cancer_group %in% c("Adamantinomatous craniopharyngioma", "Gliomatosis cerebri") ~ str_to_title(cancer_group),
+    #typo
+    cancer_group == "Fibromixoid lesion" ~ "Fibromyxoid lesion",
+    cancer_group == "Glioneuronal tumor" ~ "Glial-neuronal tumor NOS",
+    cancer_group == "Histiocytic Tumor" ~ str_to_sentence(cancer_group),
+    cancer_group == "Melanocytoma" ~ "Melanocytic tumor",
+    cancer_group == "Myofibroblastic tumor" ~ "Inflammatory Myofibroblastic Tumor",
+    short_histology == "LIHC" ~ "Hepatocellular Carcinoma",
+    harmonized_diagnosis == "Rosai-dorfman" ~ "Rosai-Dorfman disease",
     TRUE ~ as.character(cancer_group))
   ) %>%
   # Additional update to clean up terms that we will use in plots
+  # harmonize myofibroblastic tumors - all inflammatory; take care of organ later
+    mutate(short_histology = case_when(short_histology == "Myofibroblastic tumor" ~ "Inflammatory Myofibroblastic Tumor", TRUE ~ as.character(short_histology)),
+           harmonized_diagnosis = case_when(short_histology == "Myofibroblastic tumor" ~ "Inflammatory Myofibroblastic Tumor", TRUE ~ as.character(harmonized_diagnosis))) %>%
   # remove short forms in the brackets
   dplyr::mutate(cancer_group = str_extract(cancer_group, "[^(]*")) %>%
   # remove space at the ends
-  dplyr::mutate(cancer_group = gsub(" $","",cancer_group)) 
+  dplyr::mutate(cancer_group = gsub(" $","",cancer_group))
+```
 
+#### Write out table for `harmonized_diagnosis` -> `cancer_group` mapping
+
+To make it easier for people to examine the mapping between these two fields, we'll write out a table to `results/`.
+We'll only include a subset of the mappings in the README (those that we think require the most explanation), so we'll save a separate table for that purpose.
+
+```{r}
+# We'll save this table in order to have a table of the mappings between the 
+# harmonized dx and cancer group. It will include additional columns that 
+# explain whether or not the subtype is stripped and whether not additional 
+# modifications beyond that have been performed.
+mapping_table <- histology_cg %>% 
+  # Consider removing this sample? -- seems to be a special case, see chunk above
+  # dplyr::filter(sample_id != "7316-2577") %>%
+  dplyr::select(cohort, harmonized_diagnosis, 
+                cancer_group) %>%
+  dplyr::distinct() %>%
+  dplyr::filter(!is.na(harmonized_diagnosis)) %>%
+  # This next step removes the subtypes from harmonized diagnosis
+  dplyr::mutate(stripped_subtype = str_extract(harmonized_diagnosis, 
+                                               "[^,]*")) %>%
+  # generate column `has_subtype_removed` to indicate whether cancer group equals 
+  # the harmonized diagnosis after stripping subtype
+  dplyr::mutate(has_subtype_removed = case_when(
+    stripped_subtype == harmonized_diagnosis ~ "No",
+    TRUE ~ "Yes"
+  )) %>%
+  # generate column `additional_modifications` to indicate whether additional 
+  # modifications were done after stripping subtype -- these go into the README!
+  dplyr::mutate(additional_modification = case_when(
+    stripped_subtype == cancer_group ~ "No",
+    TRUE ~ "Yes"
+  )) %>%
+  dplyr::arrange(cancer_group)
+# Write the whole table out for examination
+mapping_table %>%
+  # This column will mostly be used in the README (our next step) -- will drop
+  # it here to avoid confusion
+  dplyr::select(-stripped_subtype) %>%
+  readr::write_tsv("results/harmonized_diagnosis_cancer_group_table.tsv")
+
+# Add file of unique cancer groups - split by adult and pediatric
+ped_cancer_groups <- histology_cg %>%
+  filter(!is.na(pathology_diagnosis), !is.na(cancer_group), cohort != "TCGA") %>%
+  select(cancer_group, tumor_descriptor) %>%
+  group_by(cancer_group, tumor_descriptor) %>%
+  tally() %>%
+  arrange(cancer_group, tumor_descriptor) %>%
+  write_tsv("results/pediatric_cancer_groups.tsv")
+
+adult_cancer_groups <- histology_cg %>%
+  filter(!is.na(pathology_diagnosis), !is.na(cancer_group), cohort == "TCGA") %>%
+  select(cancer_group, tumor_descriptor) %>%
+  group_by(cancer_group, tumor_descriptor) %>%
+  tally() %>%
+  arrange(cancer_group, tumor_descriptor) %>%
+  write_tsv("results/tcga_cancer_groups.tsv")
+
+
+# Now specifically for the README, we'll want to display instances when 
+# additional modifications are made. We use the `stripped_subtype` column
+# because including the subtypes would muddy the picture in the README.
+mapping_table %>%
+  dplyr::filter(additional_modification == "Yes") %>%
+  dplyr::select(stripped_subtype,
+                cancer_group) %>%
+  dplyr::distinct() %>%
+  dplyr::arrange(stripped_subtype) %>%
+  readr::write_tsv("results/cancer_group_table_for_README.tsv")
 ```
 
 
@@ -202,7 +281,7 @@ Checking for differences in broad_histology to look for changes in molecular_sub
 
 
 ```{r}
-diff_broad_histology<- histology %>%
+diff_broad_histology<- histology_cg %>%
   filter(toupper(broad_histology.base) != toupper(broad_histology.subtyped)) %>%
   select(Kids_First_Biospecimen_ID,starts_with("broad_histology"),starts_with("short_histology")) %>%
   unique()
@@ -216,7 +295,7 @@ This will help us check what string assignment path_dx to short_histology mappin
 
 ```{r}
 
-histology %>% 
+histology_cg %>% 
   filter(!Kids_First_Biospecimen_ID %in% diff_broad_histology$Kids_First_Biospecimen_ID) %>%
    filter(toupper(short_histology.base) != toupper(short_histology.subtyped) 
          ) %>%
@@ -236,11 +315,32 @@ But first need to remove broad_histology.base, broad_histology.subtyped and shor
  and short_histology.subtyped
 
 ```{r}
-histology %>% 
+histology_final <- histology_cg %>% 
   select(-broad_histology.base,
          -broad_histology.subtyped,
          - short_histology.base,
          -short_histology.subtyped) %>%
   arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv("results/histologies.tsv")
+```
+
+### What do we need for EFO/MONDO/NCIT?
+```{r efo mondo update}
+all_cg  <- ped_cancer_groups %>%
+  bind_rows(adult_cancer_groups) %>%
+  select(cancer_group) %>%
+  unique() 
+
+efo_mondo <- read_tsv(file.path(data_dir, "efo-mondo-map.tsv"))
+
+efo_v11 <- all_cg %>%
+  left_join(efo_mondo) %>%
+  unique() %>%
+  arrange(cancer_group) %>%
+  write_tsv(file.path("..", "..", "analyses", "efo-mondo-mapping", "results", "efo-mondo-map-prefill.tsv"))
+```
+
+
+```{r session info}
+sessionInfo()
 ```
