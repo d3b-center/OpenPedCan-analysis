@@ -2954,12 +2954,6 @@ div.tocify {
 <!-- rnb-source-begin eyJkYXRhIjoiYCU+JWAgPC0gZHBseXI6OmAlPiVgIn0= -->
 <pre class="r"><code>`%&gt;%` &lt;- dplyr::`%&gt;%`</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICd0aWJibGUnOlxuICBtZXRob2QgICAgIGZyb20gIFxuICBmb3JtYXQudGJsIHBpbGxhclxuICBwcmludC50YmwgIHBpbGxhclxuIn0= -->
-<pre><code>Registered S3 methods overwritten by 'tibble':
-  method     from  
-  format.tbl pillar
-  print.tbl  pillar</code></pre>
-<!-- rnb-message-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We’ll take a similar approach to the <a href="../tp53_nf1_score/"><code>tp53_nf1_score</code></a> module and use functions from the <a href="../snv-callers/"><code>snv-callers</code></a> module.</p>
@@ -3259,6 +3253,10 @@ coding_summary_df &lt;- coding_summary_df %&gt;%
   )) %&gt;%
   replace(is.na(.), &quot;None&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBiaW5kX3Jvd3NfKHgsIC5pZCk6IGJpbmRpbmcgY2hhcmFjdGVyIGFuZCBmYWN0b3IgdmVjdG9yLFxuY29lcmNpbmcgaW50byBjaGFyYWN0ZXIgdmVjdG9yXG4ifQ== -->
+<pre><code>Warning in bind_rows_(x, .id): binding character and factor vector,
+coercing into character vector</code></pre>
+<!-- rnb-warning-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We’ll make a <code>data.frame</code> that indicates the <code>Variant_Classification</code> of any <em>TERT</em> mutation in a tumor biospecimen.</p>
@@ -3292,6 +3290,10 @@ head(tert_summary_df)</code></pre>
   )) %&gt;%
   replace(is.na(.), &quot;None&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBiaW5kX3Jvd3NfKHgsIC5pZCk6IGJpbmRpbmcgY2hhcmFjdGVyIGFuZCBmYWN0b3IgdmVjdG9yLFxuY29lcmNpbmcgaW50byBjaGFyYWN0ZXIgdmVjdG9yXG4ifQ== -->
+<pre><code>Warning in bind_rows_(x, .id): binding character and factor vector,
+coercing into character vector</code></pre>
+<!-- rnb-warning-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now a <code>data.frame</code> that contains the specific IDH1 mutations.</p>
@@ -3307,6 +3309,10 @@ head(tert_summary_df)</code></pre>
   )) %&gt;%
   replace(is.na(.), &quot;No R132 or R172&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBiaW5kX3Jvd3NfKHgsIC5pZCk6IGJpbmRpbmcgY2hhcmFjdGVyIGFuZCBmYWN0b3IgdmVjdG9yLFxuY29lcmNpbmcgaW50byBjaGFyYWN0ZXIgdmVjdG9yXG4ifQ== -->
+<pre><code>Warning in bind_rows_(x, .id): binding character and factor vector,
+coercing into character vector</code></pre>
+<!-- rnb-warning-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>And a <code>data.frame</code> that contains the specific <em>BRAF</em> mutation.</p>
@@ -3322,6 +3328,10 @@ head(tert_summary_df)</code></pre>
   )) %&gt;%
   replace(is.na(.), &quot;No V600E&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBiaW5kX3Jvd3NfKHgsIC5pZCk6IGJpbmRpbmcgY2hhcmFjdGVyIGFuZCBmYWN0b3IgdmVjdG9yLFxuY29lcmNpbmcgaW50byBjaGFyYWN0ZXIgdmVjdG9yXG4ifQ== -->
+<pre><code>Warning in bind_rows_(x, .id): binding character and factor vector,
+coercing into character vector</code></pre>
+<!-- rnb-warning-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3382,7 +3392,7 @@ head(final_mutations_df, n = 10)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoic2Vzc2lvbkluZm8oKSJ9 -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5sb2FkZWQgdmlhIGEgbmFtZXNwYWNlIChhbmQgbm90IGF0dGFjaGVkKTpcbiBbMV0gUmNwcF8xLjAuMSAgICAgICAgICAgICBYVmVjdG9yXzAuMjYuMCAgICAgICAgIEdlbm9tZUluZm9EYl8xLjIyLjEgICBcbiBbNF0gcGlsbGFyXzEuNi40ICAgICAgICAgICBjb21waWxlcl8zLjYuMCAgICAgICAgIHpsaWJiaW9jXzEuMzIuMCAgICAgICBcbiBbN10gYml0b3BzXzEuMC02ICAgICAgICAgICBiYXNlNjRlbmNfMC4xLTMgICAgICAgIHRvb2xzXzMuNi4wICAgICAgICAgICBcblsxMF0gZGlnZXN0XzAuNi4yMCAgICAgICAgICBqc29ubGl0ZV8xLjYgICAgICAgICAgIGV2YWx1YXRlXzAuMTQgICAgICAgICBcblsxM10gbGlmZWN5Y2xlXzEuMC4xICAgICAgICB0aWJibGVfMi4xLjMgICAgICAgICAgIHBrZ2NvbmZpZ18yLjAuMiAgICAgICBcblsxNl0gcmxhbmdfMC40LjEyICAgICAgICAgICBEQklfMS4wLjAgICAgICAgICAgICAgIHlhbWxfMi4yLjAgICAgICAgICAgICBcblsxOV0gcGFyYWxsZWxfMy42LjAgICAgICAgICB4ZnVuXzAuOCAgICAgICAgICAgICAgIEdlbm9tZUluZm9EYkRhdGFfMS4yLjJcblsyMl0gZHBseXJfMS4wLjcgICAgICAgICAgICBzdHJpbmdyXzEuNC4wICAgICAgICAgIGtuaXRyXzEuMjMgICAgICAgICAgICBcblsyNV0gZ2VuZXJpY3NfMC4wLjIgICAgICAgICB2Y3Ryc18wLjMuOCAgICAgICAgICAgIFM0VmVjdG9yc18wLjI0LjQgICAgICBcblsyOF0gaG1zXzAuNC4yICAgICAgICAgICAgICBJUmFuZ2VzXzIuMjAuMiAgICAgICAgIHN0YXRzNF8zLjYuMCAgICAgICAgICBcblszMV0gcnByb2pyb290XzEuMy0yICAgICAgICB0aWR5c2VsZWN0XzEuMS4xICAgICAgIGdsdWVfMS41LjAgICAgICAgICAgICBcblszNF0gUjZfMi40LjAgICAgICAgICAgICAgICBmYW5zaV8wLjQuMCAgICAgICAgICAgIHJtYXJrZG93bl8xLjEzICAgICAgICBcblszN10gcHVycnJfMC4zLjIgICAgICAgICAgICByZWFkcl8xLjMuMSAgICAgICAgICAgIG1hZ3JpdHRyXzEuNSAgICAgICAgICBcbls0MF0gYmFja3BvcnRzXzEuMS40ICAgICAgICBlbGxpcHNpc18wLjMuMiAgICAgICAgIGh0bWx0b29sc18wLjMuNiAgICAgICBcbls0M10gR2Vub21pY1Jhbmdlc18xLjM4LjAgICBCaW9jR2VuZXJpY3NfMC4zMi4wICAgIHV0ZjhfMS4xLjQgICAgICAgICAgICBcbls0Nl0gc3RyaW5naV8xLjQuMyAgICAgICAgICBSQ3VybF8xLjk1LTQuMTIgICAgICAgIGNyYXlvbl8xLjMuNCAgICAgICAgICBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5sb2FkZWQgdmlhIGEgbmFtZXNwYWNlIChhbmQgbm90IGF0dGFjaGVkKTpcbiBbMV0gUmNwcF8xLjAuMSAgICAgICAgICAgICBYVmVjdG9yXzAuMjYuMCAgICAgICAgIGtuaXRyXzEuMjMgICAgICAgICAgICBcbiBbNF0gbWFncml0dHJfMS41ICAgICAgICAgICB6bGliYmlvY18xLjMyLjAgICAgICAgIElSYW5nZXNfMi4yMC4yICAgICAgICBcbiBbN10gQmlvY0dlbmVyaWNzXzAuMzIuMCAgICBHZW5vbWljUmFuZ2VzXzEuMzguMCAgIGhtc18wLjQuMiAgICAgICAgICAgICBcblsxMF0gdGlkeXNlbGVjdF8wLjIuNSAgICAgICBSNl8yLjQuMCAgICAgICAgICAgICAgIHJsYW5nXzAuNC4wICAgICAgICAgICBcblsxM10gR2Vub21lSW5mb0RiXzEuMjIuMSAgICBzdHJpbmdyXzEuNC4wICAgICAgICAgIGRwbHlyXzAuOC4zICAgICAgICAgICBcblsxNl0gdG9vbHNfMy42LjAgICAgICAgICAgICBwYXJhbGxlbF8zLjYuMCAgICAgICAgIHhmdW5fMC44ICAgICAgICAgICAgICBcblsxOV0gaHRtbHRvb2xzXzAuMy42ICAgICAgICB5YW1sXzIuMi4wICAgICAgICAgICAgIGFzc2VydHRoYXRfMC4yLjEgICAgICBcblsyMl0gZGlnZXN0XzAuNi4yMCAgICAgICAgICBycHJvanJvb3RfMS4zLTIgICAgICAgIHRpYmJsZV8yLjEuMyAgICAgICAgICBcblsyNV0gY3JheW9uXzEuMy40ICAgICAgICAgICBHZW5vbWVJbmZvRGJEYXRhXzEuMi4yIHB1cnJyXzAuMy4yICAgICAgICAgICBcblsyOF0gcmVhZHJfMS4zLjEgICAgICAgICAgICBiaXRvcHNfMS4wLTYgICAgICAgICAgIFM0VmVjdG9yc18wLjI0LjQgICAgICBcblszMV0gYmFzZTY0ZW5jXzAuMS0zICAgICAgICBSQ3VybF8xLjk1LTQuMTIgICAgICAgIGdsdWVfMS4zLjEgICAgICAgICAgICBcblszNF0gZXZhbHVhdGVfMC4xNCAgICAgICAgICBybWFya2Rvd25fMS4xMyAgICAgICAgIHN0cmluZ2lfMS40LjMgICAgICAgICBcblszN10gY29tcGlsZXJfMy42LjAgICAgICAgICBwaWxsYXJfMS40LjIgICAgICAgICAgIGJhY2twb3J0c18xLjEuNCAgICAgICBcbls0MF0gc3RhdHM0XzMuNi4wICAgICAgICAgICBqc29ubGl0ZV8xLjYgICAgICAgICAgIHBrZ2NvbmZpZ18yLjAuMiAgICAgICBcbiJ9 -->
 <pre><code>R version 3.6.0 (2019-04-26)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Debian GNU/Linux 9 (stretch)
@@ -3402,22 +3412,20 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.1             XVector_0.26.0         GenomeInfoDb_1.22.1   
- [4] pillar_1.6.4           compiler_3.6.0         zlibbioc_1.32.0       
- [7] bitops_1.0-6           base64enc_0.1-3        tools_3.6.0           
-[10] digest_0.6.20          jsonlite_1.6           evaluate_0.14         
-[13] lifecycle_1.0.1        tibble_2.1.3           pkgconfig_2.0.2       
-[16] rlang_0.4.12           DBI_1.0.0              yaml_2.2.0            
-[19] parallel_3.6.0         xfun_0.8               GenomeInfoDbData_1.2.2
-[22] dplyr_1.0.7            stringr_1.4.0          knitr_1.23            
-[25] generics_0.0.2         vctrs_0.3.8            S4Vectors_0.24.4      
-[28] hms_0.4.2              IRanges_2.20.2         stats4_3.6.0          
-[31] rprojroot_1.3-2        tidyselect_1.1.1       glue_1.5.0            
-[34] R6_2.4.0               fansi_0.4.0            rmarkdown_1.13        
-[37] purrr_0.3.2            readr_1.3.1            magrittr_1.5          
-[40] backports_1.1.4        ellipsis_0.3.2         htmltools_0.3.6       
-[43] GenomicRanges_1.38.0   BiocGenerics_0.32.0    utf8_1.1.4            
-[46] stringi_1.4.3          RCurl_1.95-4.12        crayon_1.3.4          </code></pre>
+ [1] Rcpp_1.0.1             XVector_0.26.0         knitr_1.23            
+ [4] magrittr_1.5           zlibbioc_1.32.0        IRanges_2.20.2        
+ [7] BiocGenerics_0.32.0    GenomicRanges_1.38.0   hms_0.4.2             
+[10] tidyselect_0.2.5       R6_2.4.0               rlang_0.4.0           
+[13] GenomeInfoDb_1.22.1    stringr_1.4.0          dplyr_0.8.3           
+[16] tools_3.6.0            parallel_3.6.0         xfun_0.8              
+[19] htmltools_0.3.6        yaml_2.2.0             assertthat_0.2.1      
+[22] digest_0.6.20          rprojroot_1.3-2        tibble_2.1.3          
+[25] crayon_1.3.4           GenomeInfoDbData_1.2.2 purrr_0.3.2           
+[28] readr_1.3.1            bitops_1.0-6           S4Vectors_0.24.4      
+[31] base64enc_0.1-3        RCurl_1.95-4.12        glue_1.3.1            
+[34] evaluate_0.14          rmarkdown_1.13         stringi_1.4.3         
+[37] compiler_3.6.0         pillar_1.4.2           backports_1.1.4       
+[40] stats4_3.6.0           jsonlite_1.6           pkgconfig_2.0.2       </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
