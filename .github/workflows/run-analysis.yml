@@ -203,11 +203,11 @@ jobs:
           args: analyses/cnv-frequencies/run-cnv-frequencies-analysis.sh
 
 
-#      - name: Run Fusion frequency tables
-#        uses: ./
-#        id: RUN-fusion-frequencies
-#        with:
-#          args: analyses/fusion-frequencies/run-frequencies.sh
+      - name: Run Fusion frequency tables
+        uses: ./
+        id: RUN-fusion-frequencies
+        with:
+          args: analyses/fusion-frequencies/run-frequencies.sh
 
       - name: Run SNV frequency tables
         uses: ./
@@ -215,11 +215,11 @@ jobs:
         with:
           args: analyses/snv-frequencies/run-snv-frequencies.sh
 
-#      - name: Run Filter MTP tables
-#        uses: ./
-#        id: RUN-filter-mutation-frequencies-tables
-#        with:
-#          args: analyses/filter-mutation-frequencies-tables/run-filter-mutation-frequencies-tables.sh
+      - name: Run Filter MTP tables
+        uses: ./
+        id: RUN-filter-mutation-frequencies-tables
+        with:
+          args: analyses/filter-mutation-frequencies-tables/run-filter-mutation-frequencies-tables.sh
 
 #      - name: Run Drop columns from MTP tables
 #        uses: ./
