@@ -1790,18 +1790,12 @@ $(document).ready(function () {
 <!-- rnb-source-begin eyJkYXRhIjoibGlicmFyeSh0aWR5dmVyc2UpIn0= -->
 <pre class="r"><code>library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICd0aWJibGUnOlxuICBtZXRob2QgICAgIGZyb20gIFxuICBmb3JtYXQudGJsIHBpbGxhclxuICBwcmludC50YmwgIHBpbGxhclxuIn0= -->
-<pre><code>Registered S3 methods overwritten by 'tibble':
-  method     from  
-  format.tbl pillar
-  print.tbl  pillar</code></pre>
-<!-- rnb-message-end -->
 <!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMi4xIOKUgOKUgFxuIn0= -->
 <pre><code>── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <!-- rnb-message-end -->
-<!-- rnb-message-begin eyJkYXRhIjoi4pyUIGdncGxvdDIgMy4yLjAgICAgIOKclCBwdXJyciAgIDAuMy4yXG7inJQgdGliYmxlICAyLjEuMyAgICAg4pyUIGRwbHlyICAgMS4wLjdcbuKclCB0aWR5ciAgIDAuOC4zICAgICDinJQgc3RyaW5nciAxLjQuMFxu4pyUIHJlYWRyICAgMS4zLjEgICAgIOKclCBmb3JjYXRzIDAuNC4wXG4ifQ== -->
+<!-- rnb-message-begin eyJkYXRhIjoi4pyUIGdncGxvdDIgMy4yLjAgICAgIOKclCBwdXJyciAgIDAuMy4yXG7inJQgdGliYmxlICAyLjEuMyAgICAg4pyUIGRwbHlyICAgMC44LjNcbuKclCB0aWR5ciAgIDAuOC4zICAgICDinJQgc3RyaW5nciAxLjQuMFxu4pyUIHJlYWRyICAgMS4zLjEgICAgIOKclCBmb3JjYXRzIDAuNC4wXG4ifQ== -->
 <pre><code>✔ ggplot2 3.2.0     ✔ purrr   0.3.2
-✔ tibble  2.1.3     ✔ dplyr   1.0.7
+✔ tibble  2.1.3     ✔ dplyr   0.8.3
 ✔ tidyr   0.8.3     ✔ stringr 1.4.0
 ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
 <!-- rnb-message-end -->
@@ -2221,7 +2215,7 @@ write_tsv(lgat_subtypes,file.path(subset_dir, &quot;LGAT_snv_subset.tsv&quot;))<
 <!-- rnb-source-begin eyJkYXRhIjoic2Vzc2lvbkluZm8oKSJ9 -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcblsxXSBmb3JjYXRzXzAuNC4wICAgc3RyaW5ncl8xLjQuMCAgIGRwbHlyXzEuMC43ICAgICBwdXJycl8wLjMuMiAgICBcbls1XSByZWFkcl8xLjMuMSAgICAgdGlkeXJfMC44LjMgICAgIHRpYmJsZV8yLjEuMyAgICBnZ3Bsb3QyXzMuMi4wICBcbls5XSB0aWR5dmVyc2VfMS4yLjFcblxubG9hZGVkIHZpYSBhIG5hbWVzcGFjZSAoYW5kIG5vdCBhdHRhY2hlZCk6XG4gWzFdIHRpZHlzZWxlY3RfMS4xLjEgIHhmdW5fMC44ICAgICAgICAgIHJlc2hhcGUyXzEuNC4zICAgXG4gWzRdIGhhdmVuXzIuMS4xICAgICAgIGxhdHRpY2VfMC4yMC0zOCAgIGNvbG9yc3BhY2VfMS40LTEgXG4gWzddIHZjdHJzXzAuMy44ICAgICAgIGdlbmVyaWNzXzAuMC4yICAgIGh0bWx0b29sc18wLjMuNiAgXG5bMTBdIHlhbWxfMi4yLjAgICAgICAgIGJhc2U2NGVuY18wLjEtMyAgIHV0ZjhfMS4xLjQgICAgICAgXG5bMTNdIHJsYW5nXzAuNC4xMiAgICAgIFIub29fMS4yMi4wICAgICAgIHBpbGxhcl8xLjYuNCAgICAgXG5bMTZdIFIudXRpbHNfMi45LjAgICAgIGdsdWVfMS41LjAgICAgICAgIHdpdGhyXzIuMS4yICAgICAgXG5bMTldIERCSV8xLjAuMCAgICAgICAgIG1vZGVscl8wLjEuNCAgICAgIHJlYWR4bF8xLjMuMSAgICAgXG5bMjJdIHBseXJfMS44LjQgICAgICAgIGxpZmVjeWNsZV8xLjAuMSAgIG11bnNlbGxfMC41LjAgICAgXG5bMjVdIGd0YWJsZV8wLjMuMCAgICAgIGNlbGxyYW5nZXJfMS4xLjAgIFIubWV0aG9kc1MzXzEuNy4xXG5bMjhdIHJ2ZXN0XzAuMy40ICAgICAgIGV2YWx1YXRlXzAuMTQgICAgIGtuaXRyXzEuMjMgICAgICAgXG5bMzFdIGZhbnNpXzAuNC4wICAgICAgIGJyb29tXzAuNS4yICAgICAgIFJjcHBfMS4wLjEgICAgICAgXG5bMzRdIHNjYWxlc18xLjAuMCAgICAgIGJhY2twb3J0c18xLjEuNCAgIGpzb25saXRlXzEuNiAgICAgXG5bMzddIGhtc18wLjQuMiAgICAgICAgIGRpZ2VzdF8wLjYuMjAgICAgIHN0cmluZ2lfMS40LjMgICAgXG5bNDBdIHJwcm9qcm9vdF8xLjMtMiAgIGdyaWRfMy42LjAgICAgICAgIGNsaV8xLjEuMCAgICAgICAgXG5bNDNdIHRvb2xzXzMuNi4wICAgICAgIG1hZ3JpdHRyXzEuNSAgICAgIGxhenlldmFsXzAuMi4yICAgXG5bNDZdIGNyYXlvbl8xLjMuNCAgICAgIHBrZ2NvbmZpZ18yLjAuMiAgIGVsbGlwc2lzXzAuMy4yICAgXG5bNDldIGRhdGEudGFibGVfMS4xMi4yIHhtbDJfMS4yLjAgICAgICAgIGx1YnJpZGF0ZV8xLjcuNCAgXG5bNTJdIGFzc2VydHRoYXRfMC4yLjEgIHJtYXJrZG93bl8xLjEzICAgIGh0dHJfMS40LjAgICAgICAgXG5bNTVdIHJzdHVkaW9hcGlfMC4xMCAgIFI2XzIuNC4wICAgICAgICAgIG5sbWVfMy4xLTE0MCAgICAgXG5bNThdIGNvbXBpbGVyXzMuNi4wICAgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcblsxXSBmb3JjYXRzXzAuNC4wICAgc3RyaW5ncl8xLjQuMCAgIGRwbHlyXzAuOC4zICAgICBwdXJycl8wLjMuMiAgICBcbls1XSByZWFkcl8xLjMuMSAgICAgdGlkeXJfMC44LjMgICAgIHRpYmJsZV8yLjEuMyAgICBnZ3Bsb3QyXzMuMi4wICBcbls5XSB0aWR5dmVyc2VfMS4yLjFcblxubG9hZGVkIHZpYSBhIG5hbWVzcGFjZSAoYW5kIG5vdCBhdHRhY2hlZCk6XG4gWzFdIHRpZHlzZWxlY3RfMC4yLjUgIHhmdW5fMC44ICAgICAgICAgIHJlc2hhcGUyXzEuNC4zICAgXG4gWzRdIGhhdmVuXzIuMS4xICAgICAgIGxhdHRpY2VfMC4yMC0zOCAgIGNvbG9yc3BhY2VfMS40LTEgXG4gWzddIGdlbmVyaWNzXzAuMC4yICAgIGh0bWx0b29sc18wLjMuNiAgIHlhbWxfMi4yLjAgICAgICAgXG5bMTBdIGJhc2U2NGVuY18wLjEtMyAgIHJsYW5nXzAuNC4wICAgICAgIFIub29fMS4yMi4wICAgICAgXG5bMTNdIHBpbGxhcl8xLjQuMiAgICAgIGdsdWVfMS4zLjEgICAgICAgIHdpdGhyXzIuMS4yICAgICAgXG5bMTZdIFIudXRpbHNfMi45LjAgICAgIG1vZGVscl8wLjEuNCAgICAgIHJlYWR4bF8xLjMuMSAgICAgXG5bMTldIHBseXJfMS44LjQgICAgICAgIG11bnNlbGxfMC41LjAgICAgIGd0YWJsZV8wLjMuMCAgICAgXG5bMjJdIGNlbGxyYW5nZXJfMS4xLjAgIHJ2ZXN0XzAuMy40ICAgICAgIFIubWV0aG9kc1MzXzEuNy4xXG5bMjVdIGV2YWx1YXRlXzAuMTQgICAgIGtuaXRyXzEuMjMgICAgICAgIGJyb29tXzAuNS4yICAgICAgXG5bMjhdIFJjcHBfMS4wLjEgICAgICAgIHNjYWxlc18xLjAuMCAgICAgIGJhY2twb3J0c18xLjEuNCAgXG5bMzFdIGpzb25saXRlXzEuNiAgICAgIGhtc18wLjQuMiAgICAgICAgIGRpZ2VzdF8wLjYuMjAgICAgXG5bMzRdIHN0cmluZ2lfMS40LjMgICAgIGdyaWRfMy42LjAgICAgICAgIHJwcm9qcm9vdF8xLjMtMiAgXG5bMzddIGNsaV8xLjEuMCAgICAgICAgIHRvb2xzXzMuNi4wICAgICAgIG1hZ3JpdHRyXzEuNSAgICAgXG5bNDBdIGxhenlldmFsXzAuMi4yICAgIGNyYXlvbl8xLjMuNCAgICAgIHBrZ2NvbmZpZ18yLjAuMiAgXG5bNDNdIGRhdGEudGFibGVfMS4xMi4yIHhtbDJfMS4yLjAgICAgICAgIGx1YnJpZGF0ZV8xLjcuNCAgXG5bNDZdIGFzc2VydHRoYXRfMC4yLjEgIHJtYXJrZG93bl8xLjEzICAgIGh0dHJfMS40LjAgICAgICAgXG5bNDldIHJzdHVkaW9hcGlfMC4xMCAgIFI2XzIuNC4wICAgICAgICAgIG5sbWVfMy4xLTE0MCAgICAgXG5bNTJdIGNvbXBpbGVyXzMuNi4wICAgXG4ifQ== -->
 <pre><code>R version 3.6.0 (2019-04-26)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Debian GNU/Linux 9 (stretch)
@@ -2241,31 +2235,29 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] forcats_0.4.0   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.2    
+[1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.2    
 [5] readr_1.3.1     tidyr_0.8.3     tibble_2.1.3    ggplot2_3.2.0  
 [9] tidyverse_1.2.1
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.1  xfun_0.8          reshape2_1.4.3   
+ [1] tidyselect_0.2.5  xfun_0.8          reshape2_1.4.3   
  [4] haven_2.1.1       lattice_0.20-38   colorspace_1.4-1 
- [7] vctrs_0.3.8       generics_0.0.2    htmltools_0.3.6  
-[10] yaml_2.2.0        base64enc_0.1-3   utf8_1.1.4       
-[13] rlang_0.4.12      R.oo_1.22.0       pillar_1.6.4     
-[16] R.utils_2.9.0     glue_1.5.0        withr_2.1.2      
-[19] DBI_1.0.0         modelr_0.1.4      readxl_1.3.1     
-[22] plyr_1.8.4        lifecycle_1.0.1   munsell_0.5.0    
-[25] gtable_0.3.0      cellranger_1.1.0  R.methodsS3_1.7.1
-[28] rvest_0.3.4       evaluate_0.14     knitr_1.23       
-[31] fansi_0.4.0       broom_0.5.2       Rcpp_1.0.1       
-[34] scales_1.0.0      backports_1.1.4   jsonlite_1.6     
-[37] hms_0.4.2         digest_0.6.20     stringi_1.4.3    
-[40] rprojroot_1.3-2   grid_3.6.0        cli_1.1.0        
-[43] tools_3.6.0       magrittr_1.5      lazyeval_0.2.2   
-[46] crayon_1.3.4      pkgconfig_2.0.2   ellipsis_0.3.2   
-[49] data.table_1.12.2 xml2_1.2.0        lubridate_1.7.4  
-[52] assertthat_0.2.1  rmarkdown_1.13    httr_1.4.0       
-[55] rstudioapi_0.10   R6_2.4.0          nlme_3.1-140     
-[58] compiler_3.6.0   </code></pre>
+ [7] generics_0.0.2    htmltools_0.3.6   yaml_2.2.0       
+[10] base64enc_0.1-3   rlang_0.4.0       R.oo_1.22.0      
+[13] pillar_1.4.2      glue_1.3.1        withr_2.1.2      
+[16] R.utils_2.9.0     modelr_0.1.4      readxl_1.3.1     
+[19] plyr_1.8.4        munsell_0.5.0     gtable_0.3.0     
+[22] cellranger_1.1.0  rvest_0.3.4       R.methodsS3_1.7.1
+[25] evaluate_0.14     knitr_1.23        broom_0.5.2      
+[28] Rcpp_1.0.1        scales_1.0.0      backports_1.1.4  
+[31] jsonlite_1.6      hms_0.4.2         digest_0.6.20    
+[34] stringi_1.4.3     grid_3.6.0        rprojroot_1.3-2  
+[37] cli_1.1.0         tools_3.6.0       magrittr_1.5     
+[40] lazyeval_0.2.2    crayon_1.3.4      pkgconfig_2.0.2  
+[43] data.table_1.12.2 xml2_1.2.0        lubridate_1.7.4  
+[46] assertthat_0.2.1  rmarkdown_1.13    httr_1.4.0       
+[49] rstudioapi_0.10   R6_2.4.0          nlme_3.1-140     
+[52] compiler_3.6.0   </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
