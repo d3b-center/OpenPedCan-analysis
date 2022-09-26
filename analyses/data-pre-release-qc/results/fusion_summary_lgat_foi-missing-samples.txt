@@ -1,0 +1,4 @@
+Kids_First_Biospecimen_ID	Kids_First_Participant_ID	experimental_strategy	sample_type	RNA_library	cohort
+BS_AND83V3S	PATTCU	RNA-Seq	Tumor	stranded	GMKF
+BS_NPG879ST	PATUWG	RNA-Seq	Tumor	stranded	GMKF
+TARGET-52-PASXGF-01A-01R	PASXGF	RNA-Seq	Tumor	poly-A stranded	TARGET

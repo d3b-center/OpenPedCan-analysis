@@ -25,7 +25,6 @@ PT_JV9G8MFD	BS_0Q1FFAM2	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initia
 PT_0SPKM4S8	BS_0QDG4N14	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_XXZHRPNM	BS_0RWY8M98	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_CB9PD1YP	BS_0T1E1YBD	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_XCX9W17B	BS_0TD5GMZ8	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_EW604JB3	BS_0TJDWPJT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_BWN251DF	BS_1048DHEA	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_YJBPEF4V	BS_109XBCVB	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -732,7 +731,6 @@ PT_7DP91QDJ	BS_X08QR472	PBTA	Cavernoma	Methylation	Initial CNS Tumor
 PT_VR8T8JX8	BS_X09QGCHP	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_5CKDR2SF	BS_X2FVRH45	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_MQHST8YC	BS_X2S37Y4C	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
-PT_W7FK539G	BS_X36SF91S	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_K2YDNZDA	BS_X3CRNZWC	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_BXXZE0CQ	BS_X3Q9E03X	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_CX58G6P6	BS_X4FED3TW	PBTA	Meningioma	Methylation	Initial CNS Tumor
@@ -755,7 +753,6 @@ PT_DESHZ91V	BS_XQ5CSC8B	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_RMK36R2E	BS_XT819MS0	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_K63972GG	BS_XVE841YY	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_PNED3GG3	BS_XVGVAJW4	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
-PT_EV71W1JW	BS_XVNPADPR	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_B38P3Y5T	BS_XWAT4JQM	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_409Y4N1N	BS_XWG2E2Z3	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_N56EYD4Z	BS_XYW5TDGJ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor

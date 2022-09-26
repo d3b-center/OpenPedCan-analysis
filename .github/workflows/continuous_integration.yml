@@ -1,0 +1,176 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_and_publish_image:
+    name: Build and Publish Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: pgc-images.sbgenomics.com/d3b-bixu/open-pedcan
+          tags: |
+            type=raw,value=analysisjob
+            # Only tag the image with latest if we're building on the default
+            # branch (e.g., dev).
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          registry: pgc-images.sbgenomics.com
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  run_analysis:
+    name: Run Analysis
+    needs: build_and_publish_image
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Molecular subtyping modules
+          - name: Molecular Subtyping - MB
+            entrypoint: molecular-subtyping-MB/run-molecular-subtyping-mb.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - CRANIO
+            entrypoint: molecular-subtyping-CRANIO/run-molecular-subtyping-cranio.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - EPN
+            entrypoint: molecular-subtyping-EPN/run-molecular-subtyping-EPN.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - EMBRYONAL
+            entrypoint: molecular-subtyping-embryonal/run-embryonal-subtyping.sh
+            openpbta_testing: 1
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - CHORDOMA
+            entrypoint: molecular-subtyping-chordoma/run-molecular-subtyping-chordoma.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - EWS
+            entrypoint: molecular-subtyping-EWS/run_subtyping.sh
+
+          - name: Molecular Subtyping - NEUROCYTOMA
+            entrypoint: molecular-subtyping-neurocytoma/run_subtyping.sh
+
+          - name: Molecular Subtyping - HGG
+            entrypoint: molecular-subtyping-HGG/run-molecular-subtyping-HGG.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - LGG
+            entrypoint: molecular-subtyping-LGAT/run_subtyping.sh
+            openpbta_subset: 0
+
+          - name: Molecular Subtyping - PATHOLOGY/COMPILE
+            entrypoint: molecular-subtyping-pathology/run-subtyping-aggregation.sh
+            openpbta_testing: 1
+
+          - name: Molecular Subtyping - INTEGRATE (+ add cancer groups)
+            entrypoint: molecular-subtyping-integrate/run-subtyping-integrate.sh
+
+          # Analysis modules
+          - name: Independent Specimens
+            entrypoint: independent-samples/run-independent-samples.sh
+
+          - name: Independent Specimens pre-release
+            entrypoint: independent-samples/run-independent-samples.sh
+            run_for_subtyping: 1
+
+          - name: TP53/NF1 scores
+            entrypoint: tp53_nf1_score/run_classifier.sh
+            openpedcan_polya_strand: 0
+
+          - name: Fusion filtering
+            entrypoint: fusion_filtering/run_fusion_merged.sh
+
+          - name: Fusion summary
+            entrypoint: fusion-summary/run-new-analysis.sh
+            openpbta_subset: 0
+
+          - name: Consensus CN
+            entrypoint: focal-cn-file-preparation/run-prepare-cn-OpenTarget.sh
+            openpbta_testing: 1
+
+          - name: TMB calculation
+            entrypoint: tmb-calculation/run_tmb_calculation.sh
+
+          - name: Immune Deconvolution
+            entrypoint: immune-deconv/run-immune-deconv.sh
+
+          - name: EFO/MONDO annotation
+            entrypoint: efo-mondo-mapping/run_qc.sh
+
+          - name: ENSEMBL Gene matching
+            entrypoint: gene_match/run-gene-mapping.sh
+
+          - name: Update table annotation data
+            entrypoint: long-format-table-utils/run-update-long-format-table-utils.sh
+
+          # MTP-specific modules
+          - name: Fusion frequency tables
+            entrypoint: fusion-frequencies/run-frequencies.sh
+            
+          - name: SNV frequency tables
+            entrypoint: snv-frequencies/run-snv-frequencies.sh
+            
+          - name: CNV frequency tables
+            entrypoint: cnv-frequencies/run-cnv-frequencies-analysis.sh
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache Data
+        uses: actions/cache@v3
+        with:
+          path: ./data
+          key: ${{ runner.os }}-data-${{ hashFiles('download-data.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-data-
+
+      - name: Download Data
+        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
+        with:
+          entrypoint: ./download-data.sh
+        env:
+          OPENPEDCAN_URL: https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets
+          OPENPEDCAN_RELEASE: testing
+
+      - name: Run Analysis
+        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
+        with:
+          entrypoint: analyses/${{ matrix.entrypoint }}
+        env:
+          OPENPBTA_SUBSET: ${{ matrix.openpbta_subset }}
+          OPENPBTA_TESTING: ${{ matrix.openpbta_testing }}
+          RUN_FOR_SUBTYPING: ${{ matrix.run_for_subtyping }}
+          OPENPEDCAN_POLYA_STRAND: ${{ matrix.openpedcan_polya_strand }}
+
+      # The container image runs as root which makes the cache upload fail.
+      - name: Change Owner of Data to Make It Cacheable
+        run: sudo chown -R $(id -u):$(id -g) ./data

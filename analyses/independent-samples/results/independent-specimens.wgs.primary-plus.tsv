@@ -80,7 +80,6 @@ PT_R4T1V1K4	BS_23ZE42Q3	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_ZD9AYB6F	BS_245CTSH9	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
 PATSTU	BS_255803B6	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
 PATWPC	BS_25EXB29C	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_W7FK539G	BS_25VZM81R	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PARXPD	BS_29DZNQYC	GMKF	Neuroblastoma	WGS	Primary Tumor
 PARYAG	BS_29MQMSCM	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUPNR	BS_2ABKFT99	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -356,7 +355,6 @@ PATYWG	BS_A3K94FCY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_QW5VW2PY	BS_A4KYP5H0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATZRF	BS_A527Y2QF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATLKI	BS_A5AQFAFA	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
-PT_YCMH9SQP	BS_A70G7S2W	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_9XAA8PF6	BS_A9S5HT6P	PBTA	NA	WGS	Initial CNS Tumor
 PT_N9CGVG02	BS_ABENB1H2	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
 PT_S2BEPYQ0	BS_ABZ3BK38	PBTA	High-grade glioma/astrocytoma	WGS	Progressive
@@ -1099,7 +1097,6 @@ PASZRF	BS_Y9BHAPG3	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_PHKSYE6Q	BS_Y9GHDZKS	PBTA	NA	WGS	Initial CNS Tumor
 PT_A325EYR2	BS_YB99Q6TN	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_2NQPX1R2	BS_YBCQBCQC	PBTA	Adamantinomatous Craniopharyngioma	WGS	Recurrence
-PT_EV71W1JW	BS_YETTZ1NC	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_K39HM2JF	BS_YEWX69X4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_S2SQJVGK	BS_YGQS4660	PBTA	Low-grade glioma/astrocytoma	WGS	Recurrence
 PT_4ZSR5DY8	BS_YH4DYNQ2	PBTA	Low-grade glioma/astrocytoma	WGS	Progressive

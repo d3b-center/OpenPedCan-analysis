@@ -23,7 +23,9 @@ histology_df <- histology_df[sample(nrow(histology_df)), ]
 methyl_samples <- histology_df %>%
   dplyr::filter(sample_type == "Tumor", 
                 composition != "Derived Cell Line", 
-                experimental_strategy == "Methylation")
+                experimental_strategy == "Methylation",
+                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+                       fixed = FALSE, useBytes = FALSE))
 
 # generate methylation independent samples for all cohorts
 methyl_primary_all <- independent_dna_samples(methyl_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)

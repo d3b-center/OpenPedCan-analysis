@@ -38,7 +38,6 @@ PT_PJSV0X4X	BS_4E8TKKHY	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_04V47WFC	BS_4FWWGMHC	PBTA	Ependymoma	Methylation	Progressive
 PT_PKYY553K	BS_4R2H7MWN	PBTA	Ependymoma	Methylation	Recurrence
 PT_Q3EP24V1	BS_4SJW4Q4Z	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
-PT_3A2Q62RD	BS_4Y7JTA35	PBTA	NA	Methylation	Progressive
 PT_8FWP7BR3	BS_4ZQMPNP5	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_7S5BVPE2	BS_548VV6P6	PBTA	Diffuse intrinsic pontine glioma	Methylation	Progressive
 PT_FCM7XPVR	BS_554AS76R	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
@@ -97,6 +96,7 @@ PT_Y8RNS9JE	BS_C4BJX2SA	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrenc
 PT_NPETR8RY	BS_C5CHG1S8	PBTA	Ependymoma	Methylation	Recurrence
 PT_TAFNV6T9	BS_CK0BY1MB	PBTA	Ependymoma	Methylation	Progressive
 PT_P9RT6693	BS_CN7NVE6K	PBTA	Low-grade glioma/astrocytoma	Methylation	Recurrence
+PT_3A2Q62RD	BS_CQMW2QGX	PBTA	Ependymoma	Methylation	Progressive
 PT_KBDP8ZCR	BS_CRWYJ73G	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
 PT_V5ASTHRH	BS_CTV7V6RC	PBTA	Mixed germ cell tumor	Methylation	Progressive
 PT_YMN5GV47	BS_CXV7X7WN	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
@@ -205,7 +205,6 @@ PT_1H2REHT2	BS_V1PQAKJT	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressiv
 PT_6NSPR99T	BS_V9YC31VQ	PBTA	Ependymoma	Methylation	Progressive
 PT_S2SQJVGK	BS_VBPNA1QT	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_9CSZBV2P	BS_VFF1Y8S7	PBTA	CNS Embryonal tumor	Methylation	Recurrence
-PT_XCX9W17B	BS_VGNRVJXF	PBTA	Metastatic secondary tumors	Methylation	Progressive
 PT_TP6GS00H	BS_VHZYZ8PF	PBTA	Ependymoma	Methylation	Progressive
 PT_2WA5PM32	BS_VMTD1WJJ	PBTA	Craniopharyngioma	Methylation	Recurrence
 PT_KMHGNCNR	BS_VQ4E0ZSM	PBTA	Low-grade glioma/astrocytoma	Methylation	Recurrence

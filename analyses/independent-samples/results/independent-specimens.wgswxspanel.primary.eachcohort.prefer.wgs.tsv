@@ -125,7 +125,6 @@ PT_3Z8ABX6B	BS_24JKMXHS	DGD	Ependymoma	Targeted Sequencing	Initial CNS Tumor
 PT_GKFQN9WV	BS_2504CVT7	DGD	Low-grade glioma/astrocytoma	Targeted Sequencing	Initial CNS Tumor
 PATSTU	BS_255803B6	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
 PATWPC	BS_25EXB29C	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_W7FK539G	BS_25VZM81R	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_H0PXZWJ6	BS_25ZA6DP6	DGD	Medulloblastoma	Targeted Sequencing	Initial CNS Tumor
 PT_MMT47BS8	BS_26VVJS4W	DGD	B Acute Lymphoblastic Leukemia/Lymphoma	Targeted Sequencing	Primary Tumor
 PT_773ZPTEB	BS_27572VKC	DGD	Low-grade glioma/astrocytoma	Targeted Sequencing	Initial CNS Tumor
@@ -532,7 +531,6 @@ PT_5R8KC1A1	BS_A3WGMJ3W	DGD	NA	Targeted Sequencing	Initial CNS Tumor
 PT_QW5VW2PY	BS_A4KYP5H0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATZRF	BS_A527Y2QF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATLKI	BS_A5AQFAFA	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
-PT_YCMH9SQP	BS_A70G7S2W	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_EQ0BRG88	BS_A7CVF48C	DGD	Low-grade glioma/astrocytoma	Targeted Sequencing	Initial CNS Tumor
 PT_9XAA8PF6	BS_A9S5HT6P	PBTA	NA	WGS	Initial CNS Tumor
 PT_N9CGVG02	BS_ABENB1H2	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
@@ -609,7 +607,6 @@ PT_QP1G00R9	BS_BDFYTZHD	DGD	Thyroid Gland Papillary Carcinoma	Targeted Sequencin
 PATSCT	BS_BF83XX7P	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_5BWZA0NT	BS_BFDEZK1C	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_6H0WGQ6E	BS_BGMFE63Q	DGD	Medulloblastoma	Targeted Sequencing	Initial CNS Tumor
-PT_S9M3JJVB	BS_BH45SCWY	DGD	Metastatic secondary tumors	Targeted Sequencing	Initial CNS Tumor
 PT_SMP5FPP6	BS_BHE8890A	DGD	Rhabdomyosarcoma	Targeted Sequencing	Primary Tumor
 PASZYY	BS_BHKAK446	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUSJB	BS_BJCTR4C8	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -1133,7 +1130,6 @@ PT_BZKJR4GK	BS_NTXHP7QR	PBTA	Craniopharyngioma	WGS	Initial CNS Tumor
 PAUKYI	BS_NV00B2Y5	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
 PAUHXD	BS_NV9ZB445	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASNHY	BS_NVJJJ7MT	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_E6BGSP51	BS_NW8WV3D1	DGD	Metastatic secondary tumors	Targeted Sequencing	Initial CNS Tumor
 PAUEWF	BS_NWCPQC60	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_EJA9RQXE	BS_NWPKZEJ1	DGD	NA	Targeted Sequencing	Primary Tumor
 PT_82A9SDRN	BS_NWYBD9CA	PBTA	Ependymoma	WGS	Initial CNS Tumor
@@ -1443,7 +1439,6 @@ PT_ERTJRQ37	BS_VS3R7XVV	PBTA	Diffuse midline glioma	WXS	Initial CNS Tumor
 PT_27YHK492	BS_VS8NWRB4	DGD	Ganglioglioma	Targeted Sequencing	Initial CNS Tumor
 PT_2189ZWKX	BS_VSFK563A	DGD	NA	Targeted Sequencing	Initial CNS Tumor
 PT_D4PT2V4V	BS_VSS3RJ0Y	DGD	Schwannoma	Targeted Sequencing	Initial CNS Tumor
-PT_XN1P30ZC	BS_VSXD69H3	DGD	Metastatic secondary tumors	Targeted Sequencing	Initial CNS Tumor
 PT_5FR2YA6E	BS_VTTTQYQA	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PT_TTQ3KXDH	BS_VV9Y36EM	DGD	Low-grade glioma/astrocytoma	Targeted Sequencing	Initial CNS Tumor
 PT_WWME595X	BS_VVD8TJNE	PBTA	NA	WGS	Initial CNS Tumor
@@ -1602,7 +1597,6 @@ PT_A325EYR2	BS_YB99Q6TN	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_K0YFKQ6V	BS_YBXM34XV	DGD	Neuroblastoma	Targeted Sequencing	Initial CNS Tumor
 PT_HXCQ9T79	BS_YC29WS4J	DGD	Hepatoblastoma	Targeted Sequencing	Primary Tumor
 PT_9MT2G8NE	BS_YDZ4J968	DGD	Medulloblastoma	Targeted Sequencing	Initial CNS Tumor
-PT_EV71W1JW	BS_YETTZ1NC	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_K39HM2JF	BS_YEWX69X4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_FMDSEFXH	BS_YF600H4D	DGD	Langerhans Cell histiocytosis	Targeted Sequencing	Initial CNS Tumor
 PT_WWR7NB5Q	BS_YFDRCQJ2	DGD	Low-grade glioma/astrocytoma	Targeted Sequencing	Initial CNS Tumor

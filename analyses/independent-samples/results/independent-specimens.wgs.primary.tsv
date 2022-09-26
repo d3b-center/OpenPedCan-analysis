@@ -71,7 +71,6 @@ PT_R4T1V1K4	BS_23ZE42Q3	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
 PT_ZD9AYB6F	BS_245CTSH9	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
 PATSTU	BS_255803B6	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
 PATWPC	BS_25EXB29C	GMKF	Neuroblastoma	WGS	Primary Tumor
-PT_W7FK539G	BS_25VZM81R	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PARXPD	BS_29DZNQYC	GMKF	Neuroblastoma	WGS	Primary Tumor
 PARYAG	BS_29MQMSCM	GMKF	Neuroblastoma	WGS	Primary Tumor
 PAUPNR	BS_2ABKFT99	GMKF	Neuroblastoma	WGS	Primary Tumor
@@ -319,7 +318,6 @@ PATYWG	BS_A3K94FCY	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_QW5VW2PY	BS_A4KYP5H0	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATZRF	BS_A527Y2QF	GMKF	Neuroblastoma	WGS	Primary Tumor
 PATLKI	BS_A5AQFAFA	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
-PT_YCMH9SQP	BS_A70G7S2W	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_9XAA8PF6	BS_A9S5HT6P	PBTA	NA	WGS	Initial CNS Tumor
 PT_N9CGVG02	BS_ABENB1H2	PBTA	Pilocytic astrocytoma	WGS	Initial CNS Tumor
 PATTTS	BS_ABZC437A	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
@@ -985,7 +983,6 @@ PT_7FQ6VECA	BS_Y7CA8B5R	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PASZRF	BS_Y9BHAPG3	GMKF	Neuroblastoma	WGS	Primary Tumor
 PT_PHKSYE6Q	BS_Y9GHDZKS	PBTA	NA	WGS	Initial CNS Tumor
 PT_A325EYR2	BS_YB99Q6TN	PBTA	Diffuse midline glioma	WGS	Initial CNS Tumor
-PT_EV71W1JW	BS_YETTZ1NC	PBTA	Metastatic secondary tumors	WGS	Initial CNS Tumor
 PT_K39HM2JF	BS_YEWX69X4	PBTA	Low-grade glioma/astrocytoma	WGS	Initial CNS Tumor
 PT_B7QRTN72	BS_YH60H2FS	PBTA	Medulloblastoma	WGS	Initial CNS Tumor
 PATKGB	BS_YK9W04XG	GMKF	Neuroblastoma	WGS	Primary Tumor

@@ -46,7 +46,9 @@ Sort to just sequencing samples of tumors
 ```{r}
 seq_samples <- sample_df %>%
   filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-         sample_type == "Tumor")
+         sample_type == "Tumor",
+         !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+               fixed = FALSE, useBytes = FALSE))
 ```
 
 How many WGS, how many WXS, how many panel, summarize #s of samples and participants by 
@@ -215,6 +217,8 @@ independents <- sample_df %>%
   filter(experimental_strategy == "WGS",
          sample_type == "Tumor", 
          composition != "Derived Cell Line",
+         !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+               fixed = FALSE, useBytes = FALSE)
          ) %>%
   independent_dna_samples(tumor_types = "primary")
 
