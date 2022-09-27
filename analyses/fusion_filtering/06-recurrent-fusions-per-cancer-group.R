@@ -49,12 +49,15 @@ rnaseq_primary_all_file <- read_tsv(independentPrimary)
 rnaseq_relapse_all_file <- read_tsv(independentRelapse)
 
 # bind WGS/WXS/panel matched RNA-Seq + RNAseq only samples initial tumor samples + RNAseq only recurrent/progressive samples + RNASeq matched to PNOC samples
-clinical_rna<-rbind(rnaseq_primary_all_file,rnaseq_relapse_all_file) %>% unique()
-clinical_rna<-clinical_rna %>% left_join(clinical,by=c("Kids_First_Participant_ID","Kids_First_Biospecimen_ID"))
+clinical_rna <- rbind(rnaseq_primary_all_file,rnaseq_relapse_all_file) %>% 
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID) %>%
+  unique()
+clinical_rna<-clinical_rna %>% 
+  left_join(clinical,by=c("Kids_First_Participant_ID","Kids_First_Biospecimen_ID"))
 
 # Putative Driver Fusions annotated with cancer_group
 standardFusionCalls<-standardFusionCalls %>% 
-  dplyr::filter( Sample%in% clinical_rna$Kids_First_Biospecimen_ID) %>%
+  dplyr::filter(Sample %in% clinical_rna$Kids_First_Biospecimen_ID) %>%
   left_join(clinical,by=c("Sample"="Kids_First_Biospecimen_ID","Kids_First_Participant_ID")) %>% 
   dplyr::filter(!is.na(cancer_group)) %>% as.data.frame()
 
