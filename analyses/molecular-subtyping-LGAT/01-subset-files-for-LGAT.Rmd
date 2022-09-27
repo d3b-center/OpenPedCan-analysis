@@ -69,7 +69,7 @@ path_dx_list <- jsonlite::fromJSON(
 # clinical file
 clinical <- read_tsv(file.path(root_dir, 
                                "data",
-                               "histologies.tsv"), 
+                               "histologies-base.tsv"), 
                      guess_max = 100000)
 ```
 
@@ -110,7 +110,8 @@ lgat_specimens_df <- clinical %>%
                            negate = TRUE),
                 # Tumors
                 sample_type == "Tumor",
-                composition == "Solid Tissue")
+                composition == "Solid Tissue",
+                experimental_strategy != "Methylation")
 
 # Write this intermediate file to the subset directory as it allows for
 # inspection

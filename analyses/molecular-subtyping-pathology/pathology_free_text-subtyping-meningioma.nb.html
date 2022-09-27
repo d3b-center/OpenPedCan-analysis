@@ -2987,12 +2987,25 @@ output_file &lt;- file.path(results_dir, &quot;meningioma_subtypes.tsv&quot;)</c
 <!-- rnb-source-begin eyJkYXRhIjoiaGlzdG9sb2dpZXNfZGYgPC0gcmVhZHI6OnJlYWRfdHN2KGhpc3RvbG9naWVzX2ZpbGUsIGd1ZXNzX21heCA9IDEwMDAwMCkifQ== -->
 <pre class="r"><code>histologies_df &lt;- readr::read_tsv(histologies_file, guess_max = 100000)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgT1NfZGF5cyA9IGNvbF9kb3VibGUoKSxcbiAgYWdlX2xhc3RfdXBkYXRlX2RheXMgPSBjb2xfZG91YmxlKCksXG4gIG5vcm1hbF9mcmFjdGlvbiA9IGNvbF9kb3VibGUoKSxcbiAgdHVtb3JfZnJhY3Rpb24gPSBjb2xfZG91YmxlKCksXG4gIHR1bW9yX3Bsb2lkeSA9IGNvbF9kb3VibGUoKVxuKVxuIn0= -->
+<!-- rnb-message-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICd0aWJibGUnOlxuICBtZXRob2QgICAgIGZyb20gIFxuICBmb3JtYXQudGJsIHBpbGxhclxuICBwcmludC50YmwgIHBpbGxhclxuIn0= -->
+<pre><code>Registered S3 methods overwritten by 'tibble':
+  method     from  
+  format.tbl pillar
+  print.tbl  pillar</code></pre>
+<!-- rnb-message-end -->
+<!-- rnb-message-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgaW50ZWdyYXRlZF9kaWFnbm9zaXMgPSBjb2xfbG9naWNhbCgpLFxuICBPU19kYXlzID0gY29sX2RvdWJsZSgpLFxuICBhZ2VfbGFzdF91cGRhdGVfZGF5cyA9IGNvbF9kb3VibGUoKSxcbiAgbW9sZWN1bGFyX3N1YnR5cGUgPSBjb2xfbG9naWNhbCgpLFxuICBjbnNfbWV0aHlsYXRpb25fY2xhc3Nfc2NvcmUgPSBjb2xfZG91YmxlKCksXG4gIGNuc19tZXRoeWxhdGlvbl9zdWJjbGFzc19zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgUkZfcHVyaXR5X0FCU09MVVRFID0gY29sX2RvdWJsZSgpLFxuICBSRl9wdXJpdHlfRVNUSU1BVEUgPSBjb2xfZG91YmxlKCksXG4gIFJGX3B1cml0eV9MVU1QID0gY29sX2RvdWJsZSgpLFxuICBub3JtYWxfZnJhY3Rpb24gPSBjb2xfZG91YmxlKCksXG4gIHR1bW9yX2ZyYWN0aW9uID0gY29sX2RvdWJsZSgpLFxuICB0dW1vcl9wbG9pZHkgPSBjb2xfZG91YmxlKClcbilcbiJ9 -->
 <pre><code>Parsed with column specification:
 cols(
   .default = col_character(),
+  integrated_diagnosis = col_logical(),
   OS_days = col_double(),
   age_last_update_days = col_double(),
+  molecular_subtype = col_logical(),
+  cns_methylation_class_score = col_double(),
+  cns_methylation_subclass_score = col_double(),
+  RF_purity_ABSOLUTE = col_double(),
+  RF_purity_ESTIMATE = col_double(),
+  RF_purity_LUMP = col_double(),
   normal_fraction = col_double(),
   tumor_fraction = col_double(),
   tumor_ploidy = col_double()
@@ -3015,7 +3028,7 @@ cols(
 <!-- rnb-source-end -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["pathology_free_text_diagnosis"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"meningioma"},{"1":"atypical cystic meningioma who gr 2"},{"1":"meningioangiomatosis with associated meningioma (grade i who)"},{"1":"atypical meningioma, who grade ii"},{"1":"clear cell meningioma, who grade ii"},{"1":"atypical meningioma"},{"1":"extra-axial meningioma grade ii who"},{"1":"recurrent/residual atypical meningioma"},{"1":"atypical cystic meningioma who grade 2"},{"1":"meningioma, meningothelial type, who grade i"},{"1":"anaplastic meningioma (who grade ii)"},{"1":"atypical meningioma (who ii)"},{"1":"meningioma, recurrent with nf2 sequence variant c.114+1g>a and cnvs including loss of chromosome 22"},{"1":"meningioma who ii"},{"1":"atypical meningiona (who gr ii)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["pathology_free_text_diagnosis"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"meningioma"},{"1":"clear cell meningioma, who grade ii"},{"1":"extra-axial meningioma grade ii who"},{"1":"atypical cystic meningioma who gr 2"},{"1":"meningioma who ii"},{"1":"meningioangiomatosis with associated meningioma (grade i who)"},{"1":"atypical meningioma, who grade ii"},{"1":"atypical meningioma who grade ii"},{"1":"atypical meningioma"},{"1":"atypical meningiona (who gr ii)"},{"1":"meningioma, recurrent with nf2 sequence variant c.114+1g>a and cnvs including loss of chromosome 22"},{"1":"recurrent/residual atypical meningioma"},{"1":"meningioma, meningothelial type, who grade i"},{"1":"atypical cystic meningioma who grade 2"},{"1":"atypical meningioma (who ii)"},{"1":"anaplastic meningioma (who grade ii)"},{"1":"intraorbital optic nerve sheath meningioma"},{"1":"meningioma atypical, spen mutant, loss of whole chromosome 22, who grade ii"},{"1":"meningioma with loss of whole chromosome 22 including nf2, who grade i"},{"1":"meningioma, who grade i"},{"1":"atypical meningioma with copy number variations, who grade ii"},{"1":"meningioma, atypical with copy number variation on chromosome 22 including nf2 gene and germline variant nf2,"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-chunk-end -->
@@ -3146,7 +3159,7 @@ cols(
 <!-- rnb-source-begin eyJkYXRhIjoic2Vzc2lvbkluZm8oKSJ9 -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcblsxXSBtYWdyaXR0cl8xLjVcblxubG9hZGVkIHZpYSBhIG5hbWVzcGFjZSAoYW5kIG5vdCBhdHRhY2hlZCk6XG4gWzFdIFJjcHBfMS4wLjEgICAgICAga25pdHJfMS4yMyAgICAgICBobXNfMC40LjIgICAgICAgIHRpZHlzZWxlY3RfMC4yLjVcbiBbNV0gUjZfMi40LjAgICAgICAgICBybGFuZ18wLjQuMCAgICAgIHN0cmluZ3JfMS40LjAgICAgZHBseXJfMC44LjMgICAgIFxuIFs5XSB0b29sc18zLjYuMCAgICAgIHhmdW5fMC44ICAgICAgICAgaHRtbHRvb2xzXzAuMy42ICB5YW1sXzIuMi4wICAgICAgXG5bMTNdIGRpZ2VzdF8wLjYuMjAgICAgYXNzZXJ0dGhhdF8wLjIuMSB0aWJibGVfMi4xLjMgICAgIGNyYXlvbl8xLjMuNCAgICBcblsxN10gcHVycnJfMC4zLjIgICAgICByZWFkcl8xLjMuMSAgICAgIGJhc2U2NGVuY18wLjEtMyAgZ2x1ZV8xLjMuMSAgICAgIFxuWzIxXSBldmFsdWF0ZV8wLjE0ICAgIHJtYXJrZG93bl8xLjEzICAgc3RyaW5naV8xLjQuMyAgICBjb21waWxlcl8zLjYuMCAgXG5bMjVdIHBpbGxhcl8xLjQuMiAgICAganNvbmxpdGVfMS42ICAgICBwa2djb25maWdfMi4wLjIgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcblsxXSBtYWdyaXR0cl8xLjVcblxubG9hZGVkIHZpYSBhIG5hbWVzcGFjZSAoYW5kIG5vdCBhdHRhY2hlZCk6XG4gWzFdIFJjcHBfMS4wLjEgICAgICAga25pdHJfMS4yMyAgICAgICBobXNfMC40LjIgICAgICAgIHRpZHlzZWxlY3RfMS4xLjFcbiBbNV0gUjZfMi40LjAgICAgICAgICBybGFuZ18wLjQuMTIgICAgIGZhbnNpXzAuNC4wICAgICAgZHBseXJfMS4wLjcgICAgIFxuIFs5XSBzdHJpbmdyXzEuNC4wICAgIHRvb2xzXzMuNi4wICAgICAgeGZ1bl8wLjggICAgICAgICB1dGY4XzEuMS40ICAgICAgXG5bMTNdIERCSV8xLjAuMCAgICAgICAgaHRtbHRvb2xzXzAuMy42ICBlbGxpcHNpc18wLjMuMiAgIHlhbWxfMi4yLjAgICAgICBcblsxN10gZGlnZXN0XzAuNi4yMCAgICB0aWJibGVfMi4xLjMgICAgIGxpZmVjeWNsZV8xLjAuMSAgY3JheW9uXzEuMy40ICAgIFxuWzIxXSBwdXJycl8wLjMuMiAgICAgIHJlYWRyXzEuMy4xICAgICAgYmFzZTY0ZW5jXzAuMS0zICB2Y3Ryc18wLjMuOCAgICAgXG5bMjVdIGdsdWVfMS41LjAgICAgICAgZXZhbHVhdGVfMC4xNCAgICBybWFya2Rvd25fMS4xMyAgIHN0cmluZ2lfMS40LjMgICBcblsyOV0gY29tcGlsZXJfMy42LjAgICBwaWxsYXJfMS42LjQgICAgIGdlbmVyaWNzXzAuMC4yICAganNvbmxpdGVfMS42ICAgIFxuWzMzXSBwa2djb25maWdfMi4wLjIgXG4ifQ== -->
 <pre><code>R version 3.6.0 (2019-04-26)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Debian GNU/Linux 9 (stretch)
@@ -3169,13 +3182,15 @@ other attached packages:
 [1] magrittr_1.5
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.1       knitr_1.23       hms_0.4.2        tidyselect_0.2.5
- [5] R6_2.4.0         rlang_0.4.0      stringr_1.4.0    dplyr_0.8.3     
- [9] tools_3.6.0      xfun_0.8         htmltools_0.3.6  yaml_2.2.0      
-[13] digest_0.6.20    assertthat_0.2.1 tibble_2.1.3     crayon_1.3.4    
-[17] purrr_0.3.2      readr_1.3.1      base64enc_0.1-3  glue_1.3.1      
-[21] evaluate_0.14    rmarkdown_1.13   stringi_1.4.3    compiler_3.6.0  
-[25] pillar_1.4.2     jsonlite_1.6     pkgconfig_2.0.2 </code></pre>
+ [1] Rcpp_1.0.1       knitr_1.23       hms_0.4.2        tidyselect_1.1.1
+ [5] R6_2.4.0         rlang_0.4.12     fansi_0.4.0      dplyr_1.0.7     
+ [9] stringr_1.4.0    tools_3.6.0      xfun_0.8         utf8_1.1.4      
+[13] DBI_1.0.0        htmltools_0.3.6  ellipsis_0.3.2   yaml_2.2.0      
+[17] digest_0.6.20    tibble_2.1.3     lifecycle_1.0.1  crayon_1.3.4    
+[21] purrr_0.3.2      readr_1.3.1      base64enc_0.1-3  vctrs_0.3.8     
+[25] glue_1.5.0       evaluate_0.14    rmarkdown_1.13   stringi_1.4.3   
+[29] compiler_3.6.0   pillar_1.6.4     generics_0.0.2   jsonlite_1.6    
+[33] pkgconfig_2.0.2 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

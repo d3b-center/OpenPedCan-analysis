@@ -11,12 +11,12 @@ params:
     label: "Input putative oncogene fusion dataframe"
     value: scratch/fusion-putative-oncogenic-preQC.tsv
     input: file
-  countBroadHistology:
-    label: "Integer cutoff of fusion found in more than N broad histology groups"
+  countBaseGroup:
+    label: "Integer cutoff of fusion found in more than N grouping variables for base histology"
     value: 4
     input: integer
-  countCancerGroup:
-    label: "Integer cutoff of fusion found in more than N cancer groups"
+  countGroup:
+    label: "Integer cutoff of fusion found in more than N grouping variables for histology"
     value: 4
     input: integer
   outputfolder:
@@ -31,6 +31,14 @@ params:
     label: "Base histology file"
     value: data/histologies-base.tsv
     input: file
+  group:
+    label: "Grouping variable"
+    value: cancer_group
+    input: string
+  group_base:
+    label: "Grouping variable with base histology file"
+    value: broad_histology
+    input: string
      
 ---
 
@@ -81,25 +89,29 @@ fusion_calls<-read_tsv(file.path(root_dir,params$dataPutativeFusion),guess_max =
 ####read files from results folder
 outputfolder<-params$outputfolder
 
+#### get grouping variable
+group <- params$group
+group_base <- params$group_base
+
 #### get histology file
 if ( params$base_run ==0 ){
 clinical<-read_tsv(file.path(root_dir, params$histology), guess_max = 100000) %>%
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, cancer_group, broad_histology)
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, group, group_base)
 } else {
 clinical<-read_tsv(file.path(root_dir, params$base_histology), guess_max = 100000) %>%
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, cancer_group, broad_histology)
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, group_base)
 }
 
 
-# add cancer_group to fusion
+# add grouping variables for full histology to fusion
 fusion_calls<-fusion_calls %>%
   left_join(clinical,by=c("Sample"="Kids_First_Biospecimen_ID","Kids_First_Participant_ID"))
 
-#### get count cutoff for cancer group
-countCancerGroup<-params$countCancerGroup
+#### get count cutoff for grouping variable for full histology
+countGroup<-params$countGroup
 
-#### get count cutoff for broad histology
-countBroadHistology<-params$countBroadHistology
+#### get count cutoff for grouping variable for base histology
+countBaseGroup<-params$countBaseGroup
 ```
 
 ##### We want to review subset of filtering options for putative-driver-fusions 
@@ -131,8 +143,8 @@ putative_driver_annotated_fusions_local<-fusion_calls %>%
 # @param plot_title: for plot title per subset of fusion
 
 plotNcg<-function(standardFusionCalls,filterN,plot_title){
-  # get count of number of cancer_group per FusionName
-  plotNcg<-standardFusionCalls %>% dplyr::select(FusionName,cancer_group) %>% unique() %>%
+  # get count of number of grouping variable of full histology per FusionName
+  plotNcg<-standardFusionCalls %>% dplyr::select(FusionName,group) %>% unique() %>%
     group_by(FusionName) %>% tally(name="count")
   # get count of number of times fusion is found in dataset 
   # this number helps with identifying how many calls will be reduced from final fusion set
@@ -156,67 +168,73 @@ plotNcg<-function(standardFusionCalls,filterN,plot_title){
 ```
 
 
-### plot "other" reading-frame fusion found in more than N (countCancerGroup) cancer groups which might indicate false calls
+### plot "other" reading-frame fusion found in more than N (countGroup) cancer groups which might indicate false calls
 x axis is number of cancer groups y axis is the fusion name (total number of calls in putative oncogene list)
 ```{r other reading-frame fusion}
 
 # total putative oncogene other fusion
 nrow(putative_driver_annotated_other_fusions)
-plotNcg(putative_driver_annotated_other_fusions,filterN = countCancerGroup,plot_title ="Total putative oncogene other fusion" )
-
+if ( params$base_run ==0 ){
+  plotNcg(putative_driver_annotated_other_fusions,filterN = countGroup,plot_title ="Total putative oncogene other fusion" )
+}
 ```
 
 
-### plot fusion annotated as local rearrangements found in more than N (countCancerGroup) cancer groups which might indicate false calls
+### plot fusion annotated as local rearrangements found in more than N (countGroup) cancer groups which might indicate false calls
 x axis is number of cancer groups y axis is the fusion name (total number of calls in putative oncogene list)
 
 ```{r local rearrangements fusions}
 
 # total putative oncogene local rearrangement fusion
 nrow(putative_driver_annotated_fusions_local)
-plotNcg(putative_driver_annotated_fusions_local,filterN = countCancerGroup,plot_title ="Total putative oncogene local rearrangement fusion" )
-
+if ( params$base_run ==0 ){
+  plotNcg(putative_driver_annotated_fusions_local,filterN = countGroup,plot_title ="Total putative oncogene local rearrangement fusion" )
+}
 ```
 
 
-### plot all putative oncogene fusion found in more than N (countCancerGroup) cancer groups which might indicate false calls
+### plot all putative oncogene fusion found in more than N (countGroup) cancer groups which might indicate false calls
 x axis is number of cancer groups y axis is the fusion name (total number of calls in putative oncogene list)
 
 ```{r All putative oncogene fusion }
 # total putative oncogene fusion
 nrow(fusion_calls)
-plotNcg(fusion_calls, filterN = countCancerGroup,plot_title = "Total putative oncogene fusion")
+if ( params$base_run ==0 ){
+  plotNcg(fusion_calls, filterN = countGroup,plot_title = "Total putative oncogene fusion")
+}
 ```
 
-### get fusions that are found in more than 4 cancer groups
+### get fusions that are found in more than 4 grouping variable of interest for full histology file
 
-```{r get fusions that are found in more than 4 cancer groups}
-# count number of fusions in putative oncogene annotated fused gene are in more than N (countCancerGroup) cancer groups
-FusionInNcg<-fusion_calls %>% dplyr::select(FusionName,cancer_group) %>% unique() %>% group_by(FusionName) %>% tally(name="count")
-
-FusionInNcg<-FusionInNcg[FusionInNcg$count>countCancerGroup,]
-FusionInNcg
-
-# plot cancer groups that have Fusions that are potential false positives and found in multiple cancer groups
-multiCGFusion<-fusion_calls %>% dplyr::filter(FusionName %in% FusionInNcg$FusionName) %>%
-  # we want to remove annots column since there is difference in arriba annotation (uniquely has duplication/translocation/deletion values) and StarFusion annotation which will be counted twice since they are not unique
-  dplyr::select(-annots) %>% 
-  unique() 
-
-ggplot(multiCGFusion,aes(x=multiCGFusion$FusionName,fill=multiCGFusion$cancer_group))+geom_bar()+theme(axis.text.x = element_text(angle=90))+coord_flip()+ylab("count")+xlab("FusionName(Total)")
-
+```{r get fusions that are found in more than 4 grouping variable of interest}
+if ( params$base_run ==0 ){
+  # count number of fusions in putative oncogene annotated fused gene are in more than N (countGroup) cancer groups
+  FusionInNcg<-fusion_calls %>% dplyr::select(FusionName,group) %>% unique() %>% group_by(FusionName) %>% tally(name="count")
+  
+  FusionInNcg<-FusionInNcg[FusionInNcg$count>countGroup,]
+  FusionInNcg
+  
+  # plot cancer groups that have Fusions that are potential false positives and found in multiple cancer groups
+  multiCGFusion<-fusion_calls %>% dplyr::filter(FusionName %in% FusionInNcg$FusionName) %>%
+    # we want to remove annots column since there is difference in arriba annotation (uniquely has duplication/translocation/deletion values) and StarFusion annotation which will be counted twice since they are not unique
+    dplyr::select(-annots) %>% 
+    unique() 
+  
+  ggplot(multiCGFusion,aes(x=multiCGFusion$FusionName))+geom_bar()+theme(axis.text.x = element_text(angle=90))+coord_flip()+ylab("count")+xlab("FusionName(Total)")
+} 
 ```
+
 
 ### Filtering fusions found in more than 4 broad histologies removes 1183 fusions.  
 
-We can assume these fusions to be potential false calls because it is highly unlikely that fusions of biological importance occur in these highly divese cancer groups. We (Krutika, Jo Lynne and Payal ) also manually reviewed "Total putative oncogene fusion" plots to look for genes that are found in more than 4 broad histology and none seemed to interesting/relevant.
+We can assume these fusions to be potential false calls because it is highly unlikely that fusions of biological importance occur in these highly divese cancer groups. We (Krutika, Jo Lynne and Payal ) also manually reviewed "Total putative oncogene fusion" plots to look for genes that are found in more than 4 grouping variables for base histology and none seemed to interesting/relevant.
 
 ```{r final filtering }
-# count number of fusions in putative oncogene annotated fused gene are in more than N (countBroadHistology) histology group
-FusionInNbh<-fusion_calls %>% dplyr::select(FusionName,broad_histology) %>% unique() %>% group_by(FusionName) %>% tally(name="count")
+# count number of fusions in putative oncogene annotated fused gene are in more than N (countBaseGroup) histology group
+FusionInNbh<-fusion_calls %>% dplyr::select(FusionName,group_base) %>% unique() %>% group_by(FusionName) %>% tally(name="count")
 
-# select fusions that will be filtered (found in more than 4 broad histology groups)
-FusionInNbh<-FusionInNcg[FusionInNcg$count>countBroadHistology,]
+# select fusions that will be filtered (found in more than 4 grouping variables for base histology)
+FusionInNbh<-FusionInNbh[FusionInNbh$count>countBaseGroup,]
 FusionInNbh
 
 putative_driver_fusions<-fusion_calls %>% dplyr::filter(!FusionName %in% FusionInNbh$FusionName) %>%
@@ -247,7 +265,7 @@ putative_driver_fusions<-fusion_calls %>% dplyr::filter(!FusionName %in% FusionI
   )
   )%>%
   ungroup() %>%
-  dplyr::select(-cancer_group) %>%
+  dplyr::select(-group_base) %>%
   unique() %>%
   mutate(
     BreakpointLocation = case_when(
@@ -258,7 +276,8 @@ putative_driver_fusions<-fusion_calls %>% dplyr::filter(!FusionName %in% FusionI
       TRUE ~ "Genic"
     )
   ) %>%
-  arrange(Sample, FusionName) 
+  arrange(Sample, FusionName) %>%
+  dplyr::mutate(annots = gsub("\\[], ", "", annots))
 
 write.table(putative_driver_fusions,file.path(outputfolder,"fusion-putative-oncogenic.tsv"),sep="\t",quote=FALSE,row.names = FALSE)
 

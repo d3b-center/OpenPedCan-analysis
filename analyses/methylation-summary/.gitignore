@@ -1,0 +1,3 @@
+results/*
+input/*
+!UCSC_hg19-GRCh37_Ensembl2RefSeq.tsv

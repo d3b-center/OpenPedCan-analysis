@@ -1,5 +1,5 @@
-# Author: Komal S. Rathi
-# script to perform immune characterization using immunedeconv
+# Author: Komal S. Rathi updated, 2020-07 Kelsey Keith
+# script to perform immune characterization using R package immunedeconv
 
 # load libraries
 suppressPackageStartupMessages({
@@ -16,37 +16,23 @@ option_list <- list(
               help = "histologies file (.tsv)"),
   make_option(c("--deconv_method"), type = "character",
               help = "deconvolution method"),
-  make_option(c("--cibersort_binary"), type = "character",
-              default = NA,
-              help = "path to CIBERSORT binary (CIBERSORT.R)"),
-  make_option(c("--cibersort_mat"), type = "character",
-              default = NA,
-              help = "path to CIBERSORT signature matrix (LM22.txt)"),
   make_option(c("--output_dir"), type = "character", 
               help = "output directory")
 )
+
 opt <- parse_args(OptionParser(option_list = option_list))
 expr_mat <- opt$expr_mat
 clin_file <- opt$clin_file
-deconv_method <- opt$deconv_method
-cibersort_binary <- opt$cibersort_binary
-cibersort_mat <- opt$cibersort_mat
+deconv_method <- tolower(opt$deconv_method)
 output_dir <- opt$output_dir
 
 # output file
 dir.create(output_dir, showWarnings = F, recursive = T)
 output_file <- file.path(output_dir, paste0(deconv_method, "_output.rds"))
 
-# method should be one of xcell or cibersort_abs
-stopifnot(deconv_method %in% c("xcell", "cibersort_abs"))
-
-# CIBERSORT needs a binary and signature matrix  
-if(deconv_method %in% c("cibersort", "cibersort_abs")){
-  stopifnot(!is.na(cibersort_binary) & !is.na(cibersort_mat))
-  print("Setting cibersort params...")
-  set_cibersort_binary(cibersort_binary)
-  set_cibersort_mat(cibersort_mat)
-}
+# method should be one of xcell or quantiseq
+if (!(deconv_method %in% c("xcell", "quantiseq")))
+  stop("Error: deconv_method must be one of xcell or quantiseq")
 
 # read expression data 
 expr_mat <- readRDS(expr_mat)
@@ -83,16 +69,12 @@ full_output <- plyr::dlply(.data = n_groups, .variables = "group", .fun = functi
   
   # deconvolute using specified method
   print("Starting deconvolution...")
-  if(deconv_method == "xcell"){
-    deconv_output <- deconvolute_xcell(gene_expression = as.matrix(expr_mat_sub), arrays = F)
-  } else if(deconv_method == "cibersort_abs"){
-    deconv_output <- deconvolute_cibersort(gene_expression = as.matrix(expr_mat_sub), arrays = F)
-  }
+  deconv_output <- deconvolute(gene_expression = as.matrix(expr_mat_sub), 
+                               method = deconv_method, arrays = F)
   
   # convert to long format
   deconv_output <- deconv_output %>%
     as.data.frame() %>%
-    rownames_to_column("cell_type") %>%
     gather(Kids_First_Biospecimen_ID, fraction, -c(cell_type)) %>%
     as.data.frame()
 })

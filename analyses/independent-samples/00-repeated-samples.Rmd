@@ -21,12 +21,13 @@ This is particularly important for analyses such as mutation co-occurence, where
 ```{r setup}
 # load libraries
 library(dplyr)
+library(readr)
 
 # base directories
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
 # source sample selection function
-source(file.path("util", "independent-samples.R"))
+source(file.path("util", "independent-dna-samples.R"))
 
 set.seed(201910)
 ```
@@ -45,7 +46,9 @@ Sort to just sequencing samples of tumors
 ```{r}
 seq_samples <- sample_df %>%
   filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-         sample_type == "Tumor")
+         sample_type == "Tumor",
+         !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+               fixed = FALSE, useBytes = FALSE))
 ```
 
 How many WGS, how many WXS, how many panel, summarize #s of samples and participants by 
@@ -213,9 +216,11 @@ sets using the `"primary"` and `"prefer_primary"` resepectively.
 independents <- sample_df %>%
   filter(experimental_strategy == "WGS",
          sample_type == "Tumor", 
-         composition == "Solid Tissue" | composition == "Bone Marrow",
+         composition != "Derived Cell Line",
+         !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+               fixed = FALSE, useBytes = FALSE)
          ) %>%
-  independent_samples(tumor_types = "primary")
+  independent_dna_samples(tumor_types = "primary")
 
 nrow(independents)
 ```

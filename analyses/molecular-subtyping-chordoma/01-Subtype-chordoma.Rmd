@@ -26,7 +26,7 @@ Set up metadata
 
 ```{r}
 # Read in non-subsetted metadata
-histologies_df <- readr::read_tsv(file.path("..", "..", "data", "histologies-base-adapt.tsv"), guess_max = 10000)
+histologies_df <- readr::read_tsv(file.path("..", "..", "data", "histologies-base.tsv"), guess_max = 100000)
 
 # Subset metadata
 subset_metadata <- histologies_df %>%
@@ -251,6 +251,7 @@ Write the table to file.
 ```{r}
 chordoma_smarcb1_df %>%
   arrange(Kids_First_Participant_ID, sample_id) %>%
+  distinct() %>% 
   write_tsv(output_file)
 ```
 

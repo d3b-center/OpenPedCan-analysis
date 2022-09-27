@@ -1,11 +1,12 @@
+#!/bin/bash
 
 set -e
 set -o pipefail
 
-# Use the OpenPBTA bucket as the default.
-URL=${OPENPBTA_URL:-https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets}
-RELEASE=${OPENPBTA_RELEASE:-v11}
-PREVIOUS=${OPENPBTA_RELEASE:-v10}
+# Use the OpenPedCan bucket as the default.
+URL=${OPENPEDCAN_URL:-https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets}
+RELEASE=${OPENPEDCAN_RELEASE:-v11}
+PREVIOUS=${OPENPEDCAN_RELEASE:-v10}
 
 # Remove old symlinks in data
 find data -type l -delete
@@ -47,21 +48,27 @@ do
 done
 
 # Download reference and gencode files from public ftp if do not already exist
-GENCODE27="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/gencode.v27.primary_assembly.annotation.gtf.gz"
+GENCODE27="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/gencode.v27.primary_assembly.annotation.gtf.gz"
 cd data
 if [ ! -e ${GENCODE27##*/} ]
 then
   echo "Downloading ${GENCODE27##*/}"
   curl -O $GENCODE27
 fi
-cd ../
 
 GENCODE38="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_38/gencode.v38.primary_assembly.annotation.gtf.gz"
-cd data
 if [ ! -e ${GENCODE38##*/} ]
 then
   echo "Downloading ${GENCODE38##*/}"
   curl -O $GENCODE38
+fi
+
+
+GENCODE39="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.primary_assembly.annotation.gtf.gz"
+if [ ! -e ${GENCODE39##*/} ]
+then
+  echo "Downloading ${GENCODE39##*/}"
+  curl -O $GENCODE39
 fi
 
 
@@ -71,7 +78,7 @@ fi
 if [ "$RELEASE" == "testing" ]; then
   Rscript -e "Biostrings::writeXStringSet(Biostrings::getSeq(BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38, c('chr21', 'chr22', 'chrX', 'chrY')), 'GRCh38.primary_assembly.genome.fa.gz', format = 'fasta', compress = 'gzip')"
 else
-  REFERENCE="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/GRCh38.primary_assembly.genome.fa.gz"
+  REFERENCE="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/GRCh38.primary_assembly.genome.fa.gz"
   if [ ! -e ${REFERENCE##*/} ]
   then
     echo "Downloading ${REFERENCE##*/}"

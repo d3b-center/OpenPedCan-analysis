@@ -71,9 +71,7 @@ lgat_rna_df <- lgat_specimens_df %>%
 
 # get putative oncogene fusion list
 putativeFusion <- readr::read_tsv(file.path(root_dir,
-                                            "analyses",
-                                            "fusion-summary",
-                                            "results",
+                                            "data",
                                             "fusion_summary_lgat_foi.tsv")) %>%
   # add sample_id for LGAT RNA-Seq biospecimen
   dplyr::left_join(lgat_rna_df, by=c("Kids_First_Biospecimen_ID")) %>%

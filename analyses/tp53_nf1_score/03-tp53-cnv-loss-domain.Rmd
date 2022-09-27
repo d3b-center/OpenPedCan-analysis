@@ -74,17 +74,17 @@ if ( params$base_run ==0 ){
 }
 
 histologies_df <- clinical %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, sample_id)
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor)
 
 # find the WGS samples + WXS samples and subset "_with_status.tsv" file with that
 wgs_samples <- histologies_wgs_df <- clinical %>% dplyr::filter(sample_type == "Tumor") %>%
-  dplyr::filter(experimental_strategy == "WGS") %>% 
-  dplyr::filter(cohort =="PBTA") %>% 
+  dplyr::filter(experimental_strategy == "WGS",
+                cohort == "PBTA") %>% 
   dplyr::pull("Kids_First_Biospecimen_ID")
 
 wxs_samples <- clinical %>% dplyr::filter(sample_type == "Tumor") %>%
-  dplyr::filter(experimental_strategy == "WXS") %>% 
-  dplyr::filter(cohort =="PBTA") %>% 
+  dplyr::filter(experimental_strategy == "WXS",
+                cohort == "PBTA") %>% 
   dplyr::pull("Kids_First_Biospecimen_ID")
   
 # Filter the consensus and the cnvkit seg files to contain only either WGS or WXS samples 
@@ -94,15 +94,9 @@ cnvkit_seg <- cnvkit_seg %>% dplyr::filter(Kids_First_Biospecimen_ID %in% wxs_sa
 # merge the seg files together
 combined_seg <- rbind(consensus_seg, cnvkit_seg)
   
-# Classifier score 
 # Read in scores from tp53-nf1-classifier 
-
-tp53_classifier_score <- readr::read_tsv(file.path(results_dir, "gene-expression-rsem-tpm-collapsed_classifier_scores.tsv")) %>%
-  dplyr::select(
-    "tp53_score",
-    "sample_id"
-  ) %>% 
-  dplyr::rename("Kids_First_Biospecimen_ID"="sample_id") %>%
+score_df <- read_tsv(file.path(results_dir, "combined_scores.tsv")) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID = sample_id) %>%
   left_join(histologies_df,by=c("Kids_First_Biospecimen_ID")) %>%
   as.data.frame()
 
@@ -157,7 +151,8 @@ annotated_cn <- data.frame(
   dplyr::summarise(
     domain=toString(NAME)) %>%
   left_join(histologies_df,by=c("biospecimen_id"="Kids_First_Biospecimen_ID")) %>%
-  left_join(tp53_classifier_score,by=c("sample_id"))
+  left_join(score_df,by=c("Kids_First_Participant_ID", "sample_id", "composition", "tumor_descriptor")) %>%
+  unique()
 ```
 
 ### Copy number overlapping TP53 domain

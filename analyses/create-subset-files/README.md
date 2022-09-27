@@ -25,8 +25,8 @@ See `create_subset_files.sh` for more information.
 
 Certain analysis modules have required modifications to the subset file creation steps beyond randomly selecting participants.
 
-* We have two RNA-seq datasets. The smaller of the two, `polya`, is overrepresented relative to the total proportion of the RNA-seq samples it contains.
-* [`sex-prediction-from-RNASeq`](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/sex-prediction-from-RNASeq) required that we specified `Male` and `Female` samples (`reported_gender`) were both represented in the `stranded` RNA-seq data.
+* We have four RNA-seq datasets, `stranded`, `poly-A stranded`, `poly-A`, and `exome_capture`. Participant are selected proportional to the composition of RNA-Seq libraries in each cohort.
+* [`sex-prediction-from-RNASeq`]https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/sex-prediction-from-RNASeq) required that we specified `Male` and `Female` samples (`reported_gender`). We stratify the subset data based on the proportions of `reported_gender` in each cohort where applicable. All cohorts are approximately balanced in gender composition (as of v11 data release) except for `GTEx` where sample for `Female` participants are ~50% of those for `Male` participants.
 * `tp53_nf1_module` requires us to include a set of biospecimen IDs for samples that have _TP53_ and _NF1_ mutations and are present in the `stranded` RNA-seq dataset.
 See the `00-enrich-positive-examples` notebook for more information.
 * `fusion-summary` requires us to include _FGFR1--TACC1_, _MYB--QKI_, fusions or fusions that involve _BRAF_, _MN1_, _RELA_, or _EWSR1_.
@@ -35,7 +35,7 @@ See the `00-enrich-positive-examples` notebook for more information.
 
 Some of the SNV files are quite large and are not amenable to subsetting with less than 128 GB of RAM.
 
-To skip the two larger MAF files (Vardict, Mutect2), you can set the `--local` option of `01-get_biospecimen_identifiers.R` to `1`. 
+To skip the larger MAF file (`consensus with hotspots`), you can set the `--local` option of `01-get_biospecimen_identifiers.R` to `1`. 
 
 To run the entire pipeline with skipping those files enabled, one can run (from the root directory of the repository):
 

@@ -56,7 +56,8 @@ if ( params$base_run ==0 ){
 }
 
 histology <- clinical %>%
-   select("Kids_First_Biospecimen_ID",
+  filter(cohort == "PBTA") %>%
+   dplyr::select("Kids_First_Biospecimen_ID",
           "sample_id",
           "cancer_predispositions",
           "sample_type",
@@ -84,14 +85,11 @@ if (!dir.exists(results_dir)) {
   dir.create(results_dir)
 }
 
-# classifier scores
-classifier_score <- read_tsv(
-  file.path(
-    results_dir,
-    "gene-expression-rsem-tpm-collapsed_classifier_scores.tsv"))%>%
-  select(sample_id,tp53_score) %>%
-  dplyr::rename(Kids_First_Biospecimen_ID_RNA=sample_id) %>%
-  left_join(histology ,by=c("Kids_First_Biospecimen_ID_RNA"="Kids_First_Biospecimen_ID")) 
+# Read in combined scores from tp53-nf1-classifier 
+classifier_score <- read_tsv(file.path(results_dir, "combined_scores.tsv")) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID_RNA = sample_id) %>%
+  filter(Kids_First_Biospecimen_ID_RNA %in% histology$Kids_First_Biospecimen_ID) %>%
+  left_join(histology, by=c("Kids_First_Biospecimen_ID_RNA"="Kids_First_Biospecimen_ID"))
 
 # Copy number per sample 
 # overlapping functional domain
@@ -185,8 +183,6 @@ We will gather values per sample_id since DNA and RNA samples can be only matche
 
 tp53_alterations <- histology %>%
   filter(experimental_strategy != "RNA-Seq") %>%
-  # merge cell line composition
-  left_join(cell_line_composition) %>%
   # filter for Tumors
   filter(sample_type=="Tumor") %>%
   # join consensus calls overlapping hotspots
@@ -194,7 +190,8 @@ tp53_alterations <- histology %>%
             by=c("Kids_First_Biospecimen_ID"="Tumor_Sample_Barcode")) %>%
   # join filtered cnv losses
   left_join(cnv_domain_overlap,by=c("Kids_First_Biospecimen_ID"="biospecimen_id",
-                                    "sample_id")) %>%
+                                    "sample_id", "Kids_First_Participant_ID", 
+                                    "composition")) %>%
   # join SV 
   left_join(sv_overlap,by=c("Kids_First_Biospecimen_ID"="Kids.First.Biospecimen.ID.Tumor",
                             "sample_id")) %>%
@@ -205,12 +202,13 @@ tp53_alterations <- histology %>%
 tp53_alterations_score <- tp53_alterations %>%
   # add classifier score
   full_join(classifier_score,by=c("sample_id",
+                                  "composition",
                                   "cell_line_composition",
                                   "cancer_predispositions",
                                   "sample_type",
                                   "Kids_First_Participant_ID")) %>%
   # select useful columns
-  select(sample_id,Kids_First_Biospecimen_ID_RNA,Kids_First_Biospecimen_ID_DNA,
+  dplyr::select(sample_id,Kids_First_Biospecimen_ID_RNA,Kids_First_Biospecimen_ID_DNA,
          tp53_score,cancer_predispositions,HGVSp_Short,copy_number,SV.type,FusionName,hotspot,activating) %>%
   arrange(sample_id) %>%
   unique() %>%
@@ -334,13 +332,11 @@ expr_combined <- readRDS(file.path(data_dir,"gene-counts-rsem-expected_count-col
 # iterate through all possible RNA library type 
 # first filter to 
 clinical_filtered <- clinical %>% 
-  filter(sample_type == "Tumor",
-         experimental_strategy == "RNA-Seq") %>%
-  filter(cohort =="PBTA") %>%
-  filter(!is.na(RNA_library))
+  filter(Kids_First_Biospecimen_ID %in% names(expr_combined))
 
 # generate list of all RNA library type
 rna_library_list <- clinical_filtered %>% 
+  filter(Kids_First_Biospecimen_ID %in% names(expr_combined)) %>%
   pull(RNA_library) %>% 
   unique()
 
@@ -353,7 +349,8 @@ for(i in 1:length(rna_library_list)) {
     pull(Kids_First_Biospecimen_ID) %>% 
     unique()
   # subset expression matrix using that
-  expr_each <- expr_combined %>% select(library_samples)
+  expr_each <- expr_combined %>% 
+    dplyr::select(library_samples)
 
   # subset to TP53
   subset_expr_each <- t(expr_each)[,"TP53"] %>% 

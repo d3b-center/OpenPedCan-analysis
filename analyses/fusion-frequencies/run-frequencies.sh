@@ -1,6 +1,6 @@
 #!/bin/bash
-# PediatricOpenTargets 2021
-# Yuanchao Zhang
+# PediatricOpenTargets 2021, 2022
+# Yuanchao Zhang, Jo Lynne Rokita
 set -e
 set -o pipefail
 
@@ -16,19 +16,23 @@ cd "$script_directory" || exit
 data_path="../../data"
 
 # Independent sample lists needed 
-isl_primary_each="${data_path}/independent-specimens.rnaseq.primary.eachcohort.tsv"
-isl_relapse_each="${data_path}/independent-specimens.rnaseq.relapse.eachcohort.tsv"
-isl_primary_all="${data_path}/independent-specimens.rnaseq.primary.tsv"
-isl_relapse_all="${data_path}/independent-specimens.rnaseq.relapse.tsv"
+isl_primary_each="${data_path}/independent-specimens.rnaseqpanel.primary.eachcohort.tsv"
+isl_relapse_each="${data_path}/independent-specimens.rnaseqpanel.relapse.eachcohort.tsv"
+isl_primary_all="${data_path}/independent-specimens.rnaseqpanel.primary.tsv"
+isl_relapse_all="${data_path}/independent-specimens.rnaseqpanel.relapse.tsv"
 
-# Filtered Fusion file 
+# Filtered Fusion files 
 fusion_file="${data_path}/fusion-putative-oncogenic.tsv"
+fusion_file_dgd="results/fusion-dgd-annotated.tsv"
 
 # Histology file
 histology_file="${data_path}/histologies.tsv"
 
+Rscript -e "rmarkdown::render('00-annotate-panel-fusions.Rmd')"
+
 # gather frequencies at FusionName and Fusion_Type level
 Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
+  --fusion_file_dgd $fusion_file_dgd \
 	--alt_id "FusionName,Fusion_Type" \
 	--input_histologies $histology_file \
 	--primary_independence_all $isl_primary_all \
@@ -42,10 +46,11 @@ jq --compact-output '.[]' \
   results/putative-oncogene-fusion-freq.json \
   > results/putative-oncogene-fusion-freq.jsonl
 
-rm results/putative-oncogene-fusion-freq.json
+rm -f results/putative-oncogene-fusion-freq.json
 
 # gather frequencies at Fused Gene level
 Rscript 01-fusion-frequencies.R --fusion_file $fusion_file \
+        --fusion_file_dgd $fusion_file_dgd \
         --alt_id "Gene_Symbol" \
         --input_histologies $histology_file \
         --primary_independence_all $isl_primary_all \
@@ -59,5 +64,6 @@ jq --compact-output '.[]' \
   results/putative-oncogene-fused-gene-freq.json \
   > results/putative-oncogene-fused-gene-freq.jsonl
 
-rm results/putative-oncogene-fused-gene-freq.json
-gzip results/putative-oncogene*        
+rm -f results/putative-oncogene-fused-gene-freq.json
+rm -f results/*gz
+gzip -f results/putative-oncogene*        

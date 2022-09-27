@@ -14,9 +14,18 @@ suppressPackageStartupMessages({
 ## Read efo-mondo-map.tsv and histologies file
 
 ```{r read the two files}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+integrte_dir <- file.path(root_dir, 
+                          "analyses", 
+                          "molecular-subtyping-integrate",
+                          "results")
+results_dir <- file.path(root_dir,
+                         "analyses",
+                         "efo-mondo-mapping",
+                         "results")
 
-histology_df <- readr::read_tsv('../../data/histologies.tsv', guess_max=100000)
-efo_mondo_map <- readr::read_tsv('results/efo-mondo-map.tsv')
+histology_df <- readr::read_tsv(file.path(integrte_dir, "histologies.tsv"), guess_max=100000)
+efo_mondo_map <- readr::read_tsv(file.path(results_dir, "efo-mondo-map.tsv"))
 
 ```
 
@@ -25,7 +34,6 @@ efo_mondo_map <- readr::read_tsv('results/efo-mondo-map.tsv')
 ```{r}
 cancer_group_summary <- histology_df %>% 
   dplyr::filter(!is.na(cancer_group)) %>% 
-  dplyr::filter(cohort %in% c("PBTA", "GMKF", "TARGET")) %>%
   dplyr::group_by(cancer_group) %>% 
   dplyr::mutate(n=n()) %>% 
   dplyr::select(cancer_group, n) %>%

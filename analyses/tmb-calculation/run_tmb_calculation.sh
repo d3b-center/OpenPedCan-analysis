@@ -12,35 +12,35 @@ script_directory="$(perl -e 'use File::Basename;
 cd "$script_directory" || exit
 
 # Set up paths to data files consumed by analysis
-data_path="../../data"
-scratch_path="../../scratch"
-bed_files_path="input"
+data_dir="../../data"
+scratch_dir="../../scratch"
+input_dir="input"
 
 # BED and GTF file paths
-cds_file="${scratch_path}/gencode.v27.primary_assembly.annotation.bed"
-wgs_bed="${scratch_path}/intersect_strelka_mutect2_vardict_WGS.bed"
+cds_file="${scratch_dir}/gencode.v27.primary_assembly.annotation.bed"
+wgs_bed="${scratch_dir}/intersect_strelka_mutect2_vardict_WGS.bed"
 
 # Filtered Fusion file 
-variant_file="${data_path}/snv-consensus-plus-hotspots.maf.tsv.gz"
+variant_file="${data_dir}/snv-consensus-plus-hotspots.maf.tsv.gz"
 
 # sample to BED mapping file
-mapping_file="${bed_files_path}/biospecimen_id_to_bed_map.txt"
+mapping_file="${input_dir}/biospecimen_id_to_bed_map.tsv"
 
 # Histology file
-histology_file="${data_path}/histologies.tsv"
+histology_file="${data_dir}/histologies-base.tsv"
 
 
 ############# Create intersection BED files for TMB calculations ###############
 # Make All mutations BED files
 bedtools intersect \
-  -a ${bed_files_path}/hg38_strelka.bed \
-  -b ${bed_files_path}/wgs_canonical_calling_regions.hg38.bed \
+  -a ${data_dir}/hg38_strelka.bed \
+  -b ${data_dir}/wgs_canonical_calling_regions.hg38.bed \
   > $wgs_bed
 
 #################### Make coding regions file
 # Convert GTF to BED file for use in bedtools
 # Here we are only extracting lines with as a CDS i.e. are coded in protein
-gunzip -c ${data_path}/gencode.v27.primary_assembly.annotation.gtf.gz \
+gunzip -c ${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz \
   | awk '$3 ~ /CDS/' \
   | convert2bed --do-not-sort --input=gtf - \
   | sort -k 1,1 -k 2,2n \

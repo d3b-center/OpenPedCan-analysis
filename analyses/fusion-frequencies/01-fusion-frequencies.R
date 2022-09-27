@@ -10,6 +10,8 @@ suppressPackageStartupMessages(library(ids))
 option_list <- list(
   make_option(c("-i", "--fusion_file"), type = "character",
               help = "Input filtered fusion from `fusion_filtering` module "),
+  make_option(c("-d", "--fusion_file_dgd"), type = "character",
+              help = "Input fusion panel data "),
   make_option(c("-a", "--alt_id"), type = "character",
               help = "columnname from fusion_file to be used as Alt_ID or multiple comma separated columnames"),
   make_option(c("-c", "--input_histologies"), type  = "character",
@@ -32,6 +34,7 @@ option_list <- list(
 # parse the parameters
 opt <- parse_args(OptionParser(option_list = option_list))
 fusion_file <- opt$fusion_file
+fusion_file_dgd <- opt$fusion_file_dgd
 input_histologies <- opt$input_histologies
 primary_independence_all <- opt$primary_independence_all
 relapse_independence_all <- opt$relapse_independence_all
@@ -67,7 +70,10 @@ if (!dir.exists(results_dir)) {
 # Read fusion, independent sample list, and histology data ------------------------
 message('Read data...')
 htl_df <- read_tsv(input_histologies, guess_max = 100000,
-                   col_types = cols(.default = col_guess()))
+                   col_types = cols(.default = col_guess())) %>%
+  dplyr::mutate(cohort = case_when(cohort == "DGD" ~ "CHOP P30 Panel",
+                                   TRUE ~ cohort))
+
 # assert no Kids_First_Biospecimen_ID or Kids_First_Participant_ID is NA
 stopifnot(identical(
   sum(is.na(select(htl_df, Kids_First_Biospecimen_ID,
@@ -78,35 +84,29 @@ fusion_df <- read_tsv(fusion_file, guess_max = 100000)
 # assert all records have Sample
 stopifnot(identical(sum(is.na(fusion_df$Sample)), as.integer(0)))
 
-# get TCGA samples IDs in the histlogies file
-tcga_bs_id <- htl_df %>% 
-  filter(cohort=="TCGA") %>%
-  pull(Kids_First_Biospecimen_ID) %>% 
-  unique()
+fusion_dgd_df <- read_tsv(fusion_file_dgd, guess_max = 5000)
+# assert all records have Sample
+stopifnot(identical(sum(is.na(fusion_dgd_df$Sample)), as.integer(0)))
 
-# filter TCGA samples out of the histologies df
-htl_df <- htl_df %>%  
-  filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+# bind dgd fusions into main fusion df
+fusion_df <- fusion_df %>%
+  bind_rows(fusion_dgd_df)
 
-# primary independent sample data frame for all cohorts
+# primary independent sample data frame for all cohorts - remove tcga+dgd
 primary_indp_sdf_all <- read_tsv(primary_independence_all,
-                                  col_types = cols(.default = col_guess())) %>% 
-  filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+                                  col_types = cols(.default = col_guess()))
 
-# relapse independent samples for all cohorts
+# relapse independent samples for all cohorts - remove tcga+dgd
 relapse_indp_sdf_all <- read_tsv(relapse_independence_all,
-                                  col_types = cols(.default = col_guess())) %>% 
-  filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+                                  col_types = cols(.default = col_guess()))
 
 # primary independent sample data frame for each cohort
 primary_indp_sdf_each <- read_tsv(primary_independence_each,
-                                  col_types = cols(.default = col_guess())) %>% 
-  filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+                                  col_types = cols(.default = col_guess()))
 
 # relapse independent samples for each cohort
 relapse_indp_sdf_each <- read_tsv(relapse_independence_each,
-                                  col_types = cols(.default = col_guess())) %>% 
-  filter(!Kids_First_Biospecimen_ID %in% tcga_bs_id)
+                                  col_types = cols(.default = col_guess()))
 
 # read ENSEMBL, Hugo Symbol and PMTL mapping file
 ensg_hugo_pmtl_df <- read_tsv(file.path(data_dir,'ensg-hugo-pmtl-mapping.tsv'),
@@ -197,19 +197,23 @@ fusion_df <- fusion_df  %>%
   replace_na(list("Kinase_domain_retained_Gene1A"="",
                   "Kinase_domain_retained_Gene1B"="",
                   "Reciprocal_exists_either_gene_kinase"="",
+                  "reciprocal_exists"="",
                   "Gene1A_anno"="",
                   "Gene1B_anno"="",
                   "Gene2A_anno"="",
                   "Gene2B_anno"="",
-                  "Fusion_anno"=""))%>%
+                  "Fusion_anno"="",
+                  "Gene_Position"="",
+                  "BreakpointLocation"="",
+                  "annots"="",
+                  "Frequency_in_primary_tumors"="",
+                  "Frequency_in_relapse_tumors"="")) %>%
   # We want a single column that contains the gene symbols
   tidyr::gather(Gene1A, Gene1B, Gene2A, Gene2B,
                 key = gene_position, value = gene_symbol) %>%
   filter(!is.na(gene_symbol)) %>%
   dplyr::rename(Gene_Position = gene_position,
                 Gene_Symbol = gene_symbol)
-
-print(alt_id)
 
 if (identical(alt_id, c("FusionName", "Fusion_Type"))) {
   fusion_df <- fusion_df %>%
@@ -230,9 +234,9 @@ if (identical(alt_id, c("FusionName", "Fusion_Type"))) {
 
 rm(tumor_kfbids)
 
-# Compute mutation frequencies -------------------------------------------------
-message('Compute mutation frequencies...')
-cancer_group_cohort_summary_df <- get_cg_cs_tbl(td_htl_dfs$overall_htl_df)
+# Compute fusion frequencies -------------------------------------------------
+message('Compute fusion frequencies...')
+cancer_group_cohort_summary_df <- get_cg_cs_tbl(td_htl_dfs$overall_htl_df, c("TARGET", "PBTA", "GMKF"))
 
 # nf = n_samples filtered
 nf_cancer_group_cohort_summary_df <- cancer_group_cohort_summary_df %>%
@@ -282,10 +286,11 @@ fus_freq_tbl_list <- lapply(
 
 m_fus_freq_tbl <- bind_rows(fus_freq_tbl_list) %>%
   distinct()
-
+ 
+# Add `All Cohorts` annotation
 m_fus_freq_tbl <- m_fus_freq_tbl %>%
   mutate(Dataset = if_else(str_detect(Dataset, '&'),
-                           true = 'all_cohorts', false = Dataset))
+                           true = "All Cohorts", false = Dataset))
 
 ### Adding annotation ###
 
@@ -302,8 +307,11 @@ ann_ensg_hugo_pmtl_df <- ensg_hugo_pmtl_df %>%
 m_fus_freq_tbl <- m_fus_freq_tbl %>%
   left_join(ann_ensg_hugo_pmtl_df, by = "Gene_Symbol") %>%
   replace_na(list(Gene_Ensembl_ID = ''))
-stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
+# which columns still have NA?
+names(which(colSums(is.na(m_fus_freq_tbl))>0))
+# stop if NA still exists in the df
+stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 annotation_columns_to_add <- c("Gene_full_name", "MONDO", "PMTL", "EFO")
 # Assert all columns to be added are not already present in the
@@ -314,7 +322,9 @@ stopifnot(
 annotated_m_fus_freq_tbl <- annotate_long_format_table(
    m_fus_freq_tbl, columns_to_add = annotation_columns_to_add)
 
-
+# which columns still have NA?
+names(which(colSums(is.na(m_fus_freq_tbl))>0))
+# stop if NA still exists in the df
 stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 # write to tsv
@@ -331,9 +341,8 @@ annotated_m_fus_freq_tbl <- annotated_m_fus_freq_tbl %>%
                 targetFromSourceId = Gene_Ensembl_ID,
                 diseaseFromSourceMappedId = EFO) %>% 
   dplyr::mutate(datatypeId = "somatic_mutation",
-                datasourceId = data_source_id) %>% 
-  dplyr::mutate(Dataset = replace(Dataset,
-         Dataset == "all_cohorts", "All Cohorts"))
+                datasourceId = data_source_id) %>%
+  arrange(Disease, Dataset)
 
 # generate UUID for each row of the table
 uuid_string <- uuid(nrow(annotated_m_fus_freq_tbl))

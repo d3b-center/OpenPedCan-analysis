@@ -2,6 +2,9 @@ FROM rocker/tidyverse:3.6.0
 MAINTAINER ccdl@alexslemonade.org
 WORKDIR /rocker-build/
 
+RUN RSPM="https://packagemanager.rstudio.com/cran/2019-07-07" \
+  && echo "options(repos = c(CRAN='$RSPM'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site
+
 COPY scripts/install_bioc.r .
 
 ### Install apt-getable packages to start
@@ -443,6 +446,18 @@ RUN pip3 install \
 # Package for generating UUIDs
 RUN ./install_bioc.r \
     ids
+
+WORKDIR /home/rstudio/
+# AWS sCLI installation
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    sudo ./aws/install && \
+    rm -rf aws*
+
+WORKDIR /rocker-build/
+# R package creating .xlsx
+RUN ./install_bioc.r \
+    openxlsx
 
 #### Please install your dependencies immediately above this comment.
 #### Add a comment to indicate what analysis it is required for

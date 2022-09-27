@@ -106,7 +106,7 @@ When we run this locally, we want to tie it to a specific version of the histolo
 if (running_in_ci) {
   histologies_file <- file.path(data_dir, "histologies-base.tsv")
 } else {
-  histologies_file <- file.path(data_dir, "v10",
+  histologies_file <- file.path(data_dir, 
                                 "histologies-base.tsv")
 }
 
@@ -191,7 +191,7 @@ ews_results_df <- bind_exp_strategies(ews_results_df) %>%
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = "Ewing sarcoma",
          broad_histology = "Mesenchymal non-meningothelial tumor",
-         short_histology = "Mesenchymal non-meningothelial tumor",
+         short_histology = "EWS",
          Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes))
 ```
 
@@ -217,7 +217,7 @@ hgg_results_df <- bind_exp_strategies(hgg_results_df) %>%
                                           molecular_subtype == "HGG, IDH, TP53 activated"~ "High-grade glioma/astrocytoma, IDH-mutant",
                                           TRUE~ NA_character_),
                   broad_histology = "Diffuse astrocytic and oligodendroglial tumor",
-                  short_histology = "Diffuse astrocytic and oligodendroglial tumor",
+                  short_histology = "HGAT",
          Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes))
 ```
 
@@ -242,7 +242,7 @@ lgat_results_df <- bind_exp_strategies(lgat_results_df) %>%
   ## Short histology update
   short_histology = case_when(
     grepl("^GNG, ",molecular_subtype) ~ "Ganglioglioma",
-    TRUE ~ "Low-grade astrocytic tumor"),
+    TRUE ~ "LGAT"),
   Notes = if_else(!is.na(integrated_diagnosis), "Updated via OpenPBTA subtyping", Notes)
   )
 

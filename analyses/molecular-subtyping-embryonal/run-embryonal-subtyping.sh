@@ -18,6 +18,8 @@ cd "$script_directory" || exit
 # This option controls whether on not the step that generates the subset
 # files gets run -- it will be turned off in CI
 SUBSET=${OPENPBTA_SUBSET:-1}
+# This controls plotting in the C19MC notebook
+IS_CI=${OPENPBTA_TESTING:-0}
 
 # Generate JSON file with strings for inclusion/exclusion criteria 
 Rscript --vanilla 00-embryonal-select-pathology-dx.R
