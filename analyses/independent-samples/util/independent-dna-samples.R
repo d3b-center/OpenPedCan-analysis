@@ -7,8 +7,10 @@
 #' should be pre-filtered by `experimental_strategy` and `sample_type`.  
 #' 
 #' 
-#' @param histology_df A data frame of samples, with columns corresponding to those
-#'   in `histologies.tsv`
+#' @param independent_dna_sample_df A data frame of samples, with columns corresponding to those
+#'   in `histologies.tsv`. It can also be filtered "Methyl samples".
+#'#' @param histology_df A data frame of samples, with columns corresponding 
+#' to those `histologies.tsv`
 #' @param independent_level Designates whether we want to count independent samples in 
 #'  different cohorts as independent or not. "all-cohorts" consider the same sample
 #'  in different cohorts as the same sample and "each-cohort" consider the same sample
@@ -19,13 +21,17 @@
 #'   randomly select among all available specimens. As of v9, primary tumors
 #'   are defined as those designated "Initial CNS Tumor" or "Primary Tumor" in the
 #'   `tumor_descriptor` field.
+#' @param cohort_shortlist A select cohort or list of cohorts with similar independent samples. 
+#'   This restricts the set of cohorts accounted for in the above independent_level 
 #' @param seed An optional random number seed. 
 #' 
 #' @return a data frame of Participant and Specimen IDs, each present only once.
-independent_dna_samples <- function(histology_df, 
-                                tumor_types = c("primary", "relapse", "prefer_primary", "any"), 
-                                independent_level = c("each-cohort", "all-cohorts", "all-cohorts-pre-release"),
-                                seed){
+independent_dna_samples <- function(independent_dna_sample_df = NULL, 
+                                    histology_df, 
+                                    tumor_types = c("primary", "relapse", "prefer_primary", "any"), 
+                                    independent_level = c("each-cohort", "all-cohorts", "all-cohorts-pre-release"),
+                                    cohort_shortlist = c("TARGET", "PBTA"), #Add more cohort names here as needed
+                                    seed){
   tumor_types <- match.arg(tumor_types)
   independent_level <- match.arg(independent_level)
   if(!missing(seed)){set.seed(seed)}
@@ -33,9 +39,50 @@ independent_dna_samples <- function(histology_df,
   primary_descs <- c("Initial CNS Tumor", "Primary Tumor")
   relapse_descs <- c("Recurrence", "Progressive", "Progressive Disease Post-Mortem")
   
+  # add dna-rna match_id column comprising of "Kids_First_Participant_ID" and "sample_id" to histology_df
+  # because some Kids_First_Participant_ID might have more than one sample_id
+  
+  histology_df <- histology_df %>%
+    dplyr::mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
+  
+  
+  # Find sample set for the dna independent samples in select cohorts
+  independent_dna <- histology_df %>%
+    # include matched independent_dna samples
+    dplyr::filter(Kids_First_Participant_ID %in%
+                    independent_dna_sample_df$Kids_First_Participant_ID)
+  
+  matched_rna <- histology_df %>%
+    # keep rna from histology_df
+    dplyr::filter(experimental_strategy == "RNA-Seq" | experimental_strategy == "Targeted Sequencing",
+                  # exome capture and RNA-Seq
+                  RNA_library %in% c("exome_capture", "stranded", "poly-A", "poly-A stranded"),
+                  # keep match_id that only present in independent_dna
+                  match_id %in% independent_dna$match_id,
+                  cohort %in% cohort_shortlist)
+  
+  matched_rna_primary <- histology_df %>%
+    # keep rna from histology_df
+    dplyr::filter(experimental_strategy == "RNA-Seq" | experimental_strategy == "Targeted Sequencing",
+                  RNA_library %in% c("exome_capture", "stranded", "poly-A", "poly-A stranded"),
+                  tumor_descriptor %in% primary_descs,
+                  match_id %in% independent_dna$match_id,
+                  cohort %in% cohort_shortlist)
+  
+  matched_rna_relapse <- histology_df %>%
+    # keep rna from histology_df
+    dplyr::filter(experimental_strategy == "RNA-Seq" | experimental_strategy == "Targeted Sequencing",
+                  RNA_library %in% c("exome_capture", "stranded", "poly-A", "poly-A stranded"),
+                  tumor_descriptor %in% relapse_descs,
+                  match_id %in% independent_dna$match_id,
+                  cohort %in% cohort_shortlist)
+  
+  
+  
   if(tumor_types %in% c("prefer_primary")){
     # find cases where non-primary is the only option
     no_primary <- histology_df %>% 
+      dplyr::filter(Kids_First_Participant_ID %in% matched_rna$Kids_First_Participant_ID) %>%
       dplyr::group_by(Kids_First_Participant_ID) %>%
       dplyr::summarize(n_primary = sum(tumor_descriptor %in% primary_descs)) %>%
       dplyr::filter(n_primary == 0) %>%
@@ -46,6 +93,7 @@ independent_dna_samples <- function(histology_df,
   
   if(tumor_types %in% c("primary", "prefer_primary")){
     primary_df <- histology_df %>%
+      dplyr::filter(Kids_First_Participant_ID %in% matched_rna_primary$Kids_First_Participant_ID) %>%
       dplyr::filter(tumor_descriptor %in% primary_descs)
     noprimary_df <- histology_df %>%
       dplyr::filter(Kids_First_Participant_ID %in% no_primary)
@@ -54,6 +102,7 @@ independent_dna_samples <- function(histology_df,
   
   if(tumor_types == "relapse"){
     sample_df <- histology_df %>%
+      dplyr::filter(Kids_First_Participant_ID %in% matched_rna_relapse$Kids_First_Participant_ID) %>%
       dplyr::filter(tumor_descriptor %in% relapse_descs)
   } 
   
@@ -63,7 +112,7 @@ independent_dna_samples <- function(histology_df,
     cohort_cancer_group_combo <- sample_df %>%
       dplyr::select(cohort, cancer_group) %>%
       unique()
-
+    
     # make an empty dataframe
     independent_each <- data.frame(Kids_First_Participant_ID = character(), 
                                    Kids_First_Biospecimen_ID = character(), 
@@ -103,7 +152,7 @@ independent_dna_samples <- function(histology_df,
   
   
   if(independent_level == "all-cohorts"){
-
+    
     independent_all <- sample_df %>%
       dplyr::distinct(Kids_First_Participant_ID, .keep_all = TRUE) %>%
       dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, cohort, cancer_group, experimental_strategy, tumor_descriptor)

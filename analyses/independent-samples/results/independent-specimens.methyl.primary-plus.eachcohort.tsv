@@ -1,7 +1,16 @@
 Kids_First_Participant_ID	Kids_First_Biospecimen_ID	cohort	cancer_group	experimental_strategy	tumor_descriptor
+PASXRJ	BS_1BKHK7AY	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
+PATGLU	BS_2P6MH05V	GMKF	Neuroblastoma	WGS	Primary Tumor
+PASSWW	BS_8S0EDFTP	GMKF	Neuroblastoma	WGS	Primary Tumor
+PASXIE	BS_9TKGBJH7	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
+PATCFL	BS_D3N3FG7Y	GMKF	Neuroblastoma	WGS	Primary Tumor
+PATBMM	BS_D7442ACV	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
 PARZCJ	BS_FHNTKFVJ	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
+PASWYR	BS_MPE34NYZ	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PASXRG	BS_P6FPBJM8	GMKF	Ganglioneuroblastoma	WGS	Primary Tumor
+PASXHE	BS_V4VGG98Y	GMKF	Neuroblastoma	WGS	Primary Tumor
 PASFIC	BS_W22EEJCZ	GMKF	Neuroblastoma	WGS	Primary Tumor
+PASZKE	BS_XPTREBJD	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PADYIR	TARGET-20-PADYIR-09A-01R	TARGET	Acute Myeloid Leukemia	RNA-Seq	Primary Tumor
 PADZCG	TARGET-20-PADZCG-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAECCE	TARGET-20-PAECCE-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -156,12 +165,14 @@ PARNNC	TARGET-30-PARNNC-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARSBI	TARGET-30-PARSBI-01A-01D	TARGET	Neuroblastoma	WXS	Primary Tumor
 PARVLK	TARGET-30-PARVLK-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
 PARYNK	TARGET-30-PARYNK-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
+PARZCJ	TARGET-30-PARZCJ-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
 PARZHA	TARGET-30-PARZHA-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
 PARZIP	TARGET-30-PARZIP-01A-01D	TARGET	Neuroblastoma	WXS	Primary Tumor
 PASCFC	TARGET-30-PASCFC-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
 PASCTR	TARGET-30-PASCTR-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASEGA	TARGET-30-PASEGA-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
 PASFGG	TARGET-30-PASFGG-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
+PASFIC	TARGET-30-PASFIC-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASGAP	TARGET-30-PASGAP-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
 PASGUT	TARGET-30-PASGUT-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
 PASHFA	TARGET-30-PASHFA-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
@@ -192,6 +203,7 @@ PASWYR	TARGET-30-PASWYR-01A-01D	TARGET	Neuroblastoma	WXS	Primary Tumor
 PASXGP	TARGET-30-PASXGP-01A-01R	TARGET	Ganglioneuroblastoma	RNA-Seq	Primary Tumor
 PASXHE	TARGET-30-PASXHE-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
 PASXIE	TARGET-30-PASXIE-01A-01D	TARGET	Neuroblastoma	WXS	Primary Tumor
+PASXRG	TARGET-30-PASXRG-01A-01D	TARGET	Ganglioneuroblastoma	WXS	Primary Tumor
 PASXRJ	TARGET-30-PASXRJ-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASYPX	TARGET-30-PASYPX-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor
 PASZKE	TARGET-30-PASZKE-01A-01R	TARGET	Neuroblastoma	RNA-Seq	Primary Tumor

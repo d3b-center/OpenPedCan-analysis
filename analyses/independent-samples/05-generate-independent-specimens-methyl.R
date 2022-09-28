@@ -28,9 +28,24 @@ methyl_samples <- histology_df %>%
                        fixed = FALSE, useBytes = FALSE))
 
 # generate methylation independent samples for all cohorts
-methyl_primary_all <- independent_dna_samples(methyl_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
-methyl_relapse_all <- independent_dna_samples(methyl_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
-methyl_primary_plus_all <- independent_dna_samples(methyl_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+methyl_primary_all <- independent_dna_samples(methyl_samples, 
+                                              histology_df = histology_df, 
+                                              tumor_types = "primary", 
+                                              independent_level = "all-cohorts", 
+                                              cohort_shortlist = "TARGET", 
+                                              seed = 2020)
+methyl_relapse_all <- independent_dna_samples(methyl_samples, 
+                                              histology_df = histology_df, 
+                                              tumor_types = "relapse", 
+                                              independent_level = "all-cohorts", 
+                                              cohort_shortlist = "TARGET", 
+                                              seed = 2020)
+methyl_primary_plus_all <- independent_dna_samples(methyl_samples, 
+                                                   histology_df = histology_df, 
+                                                   tumor_types = "prefer_primary", 
+                                                   independent_level = "all-cohorts", 
+                                                   cohort_shortlist = "TARGET", 
+                                                   seed = 2020)
 
 
 # save output for all cohorts
@@ -51,3 +66,46 @@ message(paste(nrow(methyl_primary_plus_all), "Methylation specimens (including n
 methyl_primary_plus_all %>% 
   dplyr::arrange(Kids_First_Biospecimen_ID) %>%
   readr::write_tsv(methyl_primplus_all_file)
+
+
+
+# generate methylation independent samples for each cohort
+methyl_primary_each <- independent_dna_samples(methyl_samples, 
+                                              histology_df = histology_df, 
+                                              tumor_types = "primary", 
+                                              independent_level = "each-cohort", 
+                                              cohort_shortlist = "TARGET", 
+                                              seed = 2020)
+methyl_relapse_each <- independent_dna_samples(methyl_samples, 
+                                              histology_df = histology_df, 
+                                              tumor_types = "relapse", 
+                                              independent_level = "each-cohort", 
+                                              cohort_shortlist = "TARGET", 
+                                              seed = 2020)
+methyl_primary_plus_each <- independent_dna_samples(methyl_samples, 
+                                                   histology_df = histology_df, 
+                                                   tumor_types = "prefer_primary", 
+                                                   independent_level = "each-cohort", 
+                                                   cohort_shortlist = "TARGET", 
+                                                   seed = 2020)
+
+
+# save output for each cohort
+methyl_primary_each_file <- file.path(out_dir, "independent-specimens.methyl.primary.eachcohort.tsv")
+message(paste(nrow(methyl_primary_each), "Methylation primary specimens for each cohort"))
+methyl_primary_each %>% 
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(methyl_primary_each_file)
+
+methyl_relapse_each_file <- file.path(out_dir, "independent-specimens.methyl.relapse.eachcohort.tsv")
+message(paste(nrow(methyl_relapse_each), "Methylation relapse specimens for each cohort"))
+methyl_relapse_each %>% 
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(methyl_relapse_each_file)
+
+methyl_primplus_each_file <- file.path(out_dir, "independent-specimens.methyl.primary-plus.eachcohort.tsv")
+message(paste(nrow(methyl_primary_plus_each), "Methylation specimens (including non-primary) for each cohort"))
+methyl_primary_plus_each %>% 
+  dplyr::arrange(Kids_First_Biospecimen_ID) %>%
+  readr::write_tsv(methyl_primplus_each_file)
+
