@@ -1,6 +1,0 @@
-name: "Run OpenPedCan Analysis"
-description: "Run analysis workflow"
-runs:
-  using: "docker"
-  image: "pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob"
-  entrypoint: "scripts/run-analysis.sh"

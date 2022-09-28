@@ -1,3 +1,4 @@
+#!/bin/bash
 # C. Bethell and C. Savonen for CCDL 2019
 # Run focal-cn-file-preparation module
 #
