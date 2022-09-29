@@ -13,7 +13,7 @@ source(file.path(analysis_dir, "util", "independent-rna-samples.R"))
 
 
 # read histology file
-histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies-base.tsv'), guess_max=100000, show_col_types = FALSE)
+histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies-base.tsv'), guess_max=100000)
 
 # randomize rows of histology file to avoid selection bias
 set.seed(100)

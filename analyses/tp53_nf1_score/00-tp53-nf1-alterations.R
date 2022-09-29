@@ -85,6 +85,9 @@ gencode_cds <- read_tsv(gencodeBed, col_names = FALSE)
 # histology file
 histology <- read_tsv(histologyFile, guess_max = 100000)
 
+# recording of "BS_ETC8R0TD" GMKF NBL sample; needs to be remove once updated in v12
+histology$RNA_library[histology$Kids_First_Biospecimen_ID == "BS_ETC8R0TD"] <- "stranded"
+
 
 # filter the MAF data.frame to only include entries that fall within the
 # CDS bed file regions
@@ -156,12 +159,12 @@ rna <- readRDS(expFile)
 # subset hist for those in rna matrix
 hist_rna <- histology %>%
   filter(Kids_First_Biospecimen_ID %in% names(rna),
-         cohort %in% cohort_interest)
+         cohort %in% cohort_interest) %>%
+  mutate(RNA_library = case_when(RNA_library == "poly-A stranded" ~ "poly-A-stranded",
+                                 TRUE ~ as.character(RNA_library)))
 
 # prepare rna-seq files
 library_list <- hist_rna %>%
-  mutate(RNA_library = case_when(RNA_library == "poly-A stranded" ~ "poly-A-stranded",
-                                 TRUE ~ as.character(RNA_library))) %>%
   pull(RNA_library) %>%
   unique()
 
@@ -178,7 +181,3 @@ for (each in library_list){
                                   paste0("gene-expression-rsem-tpm-collapsed-", each, ".rds"))
   )
 }
-
-
-
-

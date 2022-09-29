@@ -73,6 +73,9 @@ if ( params$base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)  
 }
 
+# recording of "BS_ETC8R0TD" GMKF NBL sample; needs to be remove once updated in v12
+clinical$RNA_library[clinical$Kids_First_Biospecimen_ID == "BS_ETC8R0TD"] <- "stranded"
+
 histologies_df <- clinical %>% 
   dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor)
 
