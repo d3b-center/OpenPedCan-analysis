@@ -1,0 +1,143 @@
+---
+title: "QC ensg-hugo-pmtl-mapping.tsv"
+output: html_notebook
+---
+
+## Load libraries
+
+```{r load_libraries}
+suppressPackageStartupMessages({
+  library(tidyverse)
+})
+```
+
+## Read ensg-hugo-pmtl-mapping.tsv and OpenPedCan SNV, CNV, TPM, and fusion data
+
+```{r read_open_ped_can_data}
+open_ped_can_data_path <- '../../data'
+
+snv <- file.path(open_ped_can_data_path, 'snv-consensus-plus-hotspots.maf.tsv.gz')
+cnv <- file.path(open_ped_can_data_path, 'consensus_wgs_plus_cnvkit_wxs.tsv.gz')
+tpm<- file.path(open_ped_can_data_path, 'gene-expression-rsem-tpm-collapsed.rds')
+fusion<- file.path(open_ped_can_data_path, 'fusion-putative-oncogenic.tsv')
+
+# Read in files for SNV, CNV, TPM and fusion
+snv_file <- readr::read_tsv(snv, comment ='#') %>% as.data.frame()  # 1.5 minutes
+cnv_file <- readr::read_tsv(cnv, col_types = cols())
+tpm_file <- readRDS(tpm)
+fusion_file <- readr::read_tsv(fusion, col_types = cols())
+
+
+# read in pmtl ensemble hugo mapped 
+ehr_df <- read_tsv('results/ensg-hugo-pmtl-mapping.tsv', col_types = cols())
+
+# make them to a list
+open_ped_can_data_dfs <- list(
+  snv=snv_file,
+  cnv=cnv_file,
+  tpm=tpm_file,
+  fusion=fusion_file
+)
+
+```
+
+## Check gene symbol overlap
+
+```{r check_gene_symbol_overlap}
+gene_symbols_list <- list(
+  snv = open_ped_can_data_dfs$snv$Hugo_Symbol,
+  cnv = open_ped_can_data_dfs$cnv$gene_symbol,
+  tpm = rownames(open_ped_can_data_dfs$tpm),
+  fusion = c(open_ped_can_data_dfs$fusion$Gene1A,
+             open_ped_can_data_dfs$fusion$Gene2A,
+             open_ped_can_data_dfs$fusion$Gene1B,
+             open_ped_can_data_dfs$fusion$Gene2B)
+)
+
+gene_symbols_list <- lapply(gene_symbols_list, function(x) {
+  x <- x[!is.na(x)]
+  x <- unique(x)
+  return(x)
+})
+
+map_dfr(gene_symbols_list, function(x) {
+  tibble(
+    n_uniq_symbols = length(x),
+    n_uniq_symbols_in_mapping_file = sum(x %in% ehr_df$gene_symbol),
+    n_uniq_symbols_not_in_mapping_file = sum(!x %in% ehr_df$gene_symbol))
+}, .id = 'Data type')
+```
+
+For gene symbols in data files that are not in mapping file, check whether their ENSG IDs are in mapping file.
+
+```{r check_symbol_ensg}
+dtype_vec <- c(snv = 'snv', cnv = 'cnv')
+symbol_not_in_mapping_file_list <- lapply(dtype_vec, function(x) {
+  gs_vec <- unique(gene_symbols_list[[x]])
+  gs_not_in_mapping_file_vec <- gs_vec[!gs_vec %in% ehr_df$gene_symbol]
+  if (x == 'snv') {
+    gs_ensg_not_in_mapping_file_df <- open_ped_can_data_dfs[[x]] %>%
+      select(Gene, Hugo_Symbol) %>%
+      filter(Hugo_Symbol %in% gs_not_in_mapping_file_vec) %>%
+      rename(ensg_id = Gene, data_file_gene_symbol = Hugo_Symbol)
+  } else {
+    gs_ensg_not_in_mapping_file_df <- open_ped_can_data_dfs[[x]] %>%
+      select(ensembl, gene_symbol) %>%
+      filter(gene_symbol %in% gs_not_in_mapping_file_vec) %>%
+      rename(ensg_id = ensembl, data_file_gene_symbol = gene_symbol)
+  }
+
+  gs_ensg_not_in_mapping_file_df <- gs_ensg_not_in_mapping_file_df %>%
+    filter(!is.na(ensg_id)) %>%
+    distinct()
+
+  ehr_join_df <- ehr_df %>%
+    select(ensg_id, gene_symbol) %>%
+    rename(mapping_file_gene_symbol = gene_symbol)
+
+  print(paste(
+    x, 'data file has',
+    sum(!unique(gs_ensg_not_in_mapping_file_df$ensg_id) %in% ehr_join_df$ensg_id),
+    'gene symbols that are not in mapping file and have associated ENSG IDs',
+    'that are also not in mapping file.'))
+
+  res_df <- gs_ensg_not_in_mapping_file_df %>%
+    left_join(ehr_join_df, by = 'ensg_id')
+
+  return(res_df)
+})
+```
+
+```{r snv}
+symbol_not_in_mapping_file_list$snv
+```
+
+```{r cnv}
+symbol_not_in_mapping_file_list$cnv
+```
+
+
+## Check gene ENSG ID overlap
+
+```{r check_gene_ensg_overlap}
+gene_ensg_list <- list(
+  snv = open_ped_can_data_dfs$snv$Gene,
+  cnv = open_ped_can_data_dfs$cnv$ensembl
+)
+
+gene_ensg_list <- lapply(gene_ensg_list, function(x) {
+  x <- x[!is.na(x)]
+  x <- unique(x)
+  return(x)
+})
+
+map_dfr(gene_ensg_list, function(x) {
+  tibble(
+    n_uniq_ensgs = length(x),
+    n_uniq_ensgs_in_mapping_file = sum(x %in% ehr_df$ensg_id),
+    n_uniq_ensgs_not_in_mapping_file = sum(!x %in% ehr_df$ensg_id),
+    uniq_ensgs_not_in_mapping_file = paste(
+      x[!x %in% ehr_df$ensg_id],
+      collapse = ','))
+}, .id = 'Data type')
+```
