@@ -33,14 +33,14 @@ wgs_samples <- tumor_samples %>%
   dplyr::filter(experimental_strategy == "WGS")
 
 # generate WGS independent samples for each cohort
-wgs_primary_each <- independent_dna_samples(wgs_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
-wgs_relapse_each <- independent_dna_samples(wgs_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
-wgs_primary_plus_each <- independent_dna_samples(wgs_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+wgs_primary_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+wgs_relapse_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+wgs_primary_plus_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
 
 # generate WGS independent samples for all cohorts
-wgs_primary_all <- independent_dna_samples(wgs_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
-wgs_relapse_all <- independent_dna_samples(wgs_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
-wgs_primary_plus_all <- independent_dna_samples(wgs_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+wgs_primary_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+wgs_relapse_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+wgs_primary_plus_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
 
 # subset to WXS samples only
 # WGS is preferred, include WXS samples where WGS is not available
@@ -48,14 +48,14 @@ wxs_samples <-  tumor_samples %>%
   dplyr::filter(experimental_strategy == "WXS")
 
 # each cohort
-wxs_primary_each <- independent_dna_samples(wxs_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
-wxs_relapse_each <- independent_dna_samples(wxs_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
-wxs_primary_plus_each <- independent_dna_samples(wxs_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+wxs_primary_each <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+wxs_relapse_each <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+wxs_primary_plus_each <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
 
 # all cohorts
-wxs_primary_all <- independent_dna_samples(wxs_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
-wxs_relapse_all <- independent_dna_samples(wxs_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
-wxs_primary_plus_all <- independent_dna_samples(wxs_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+wxs_primary_all <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+wxs_relapse_all <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+wxs_primary_plus_all <- independent_dna_samples(wxs_samples, histology_df = histology_df, cohort_shortlist = unique(wxs_samples$cohort), tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
 
 
 # subset to panel samples only
@@ -64,14 +64,14 @@ panel_samples <-  tumor_samples %>%
   dplyr::filter(experimental_strategy == "Targeted Sequencing")
 
 # each cohort
-panel_primary_each <- independent_dna_samples(panel_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
-panel_relapse_each <- independent_dna_samples(panel_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
-panel_primary_plus_each <- independent_dna_samples(panel_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+panel_primary_each <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+panel_relapse_each <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+panel_primary_plus_each <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
 
 # all cohorts
-panel_primary_all <- independent_dna_samples(panel_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
-panel_relapse_all <- independent_dna_samples(panel_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
-panel_primary_plus_all <- independent_dna_samples(panel_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+panel_primary_all <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+panel_relapse_all <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+panel_primary_plus_all <- independent_dna_samples(panel_samples, histology_df = histology_df, cohort_shortlist = unique(panel_samples$cohort), tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
 
 # save output for each cohort 
 # for each cohort we take distinct Kids_First_Participant_ID + cohort combination

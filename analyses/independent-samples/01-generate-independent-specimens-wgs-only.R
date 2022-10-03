@@ -28,14 +28,14 @@ wgs_samples <- histology_df %>%
                        fixed = FALSE, useBytes = FALSE))
 
 # generate WGS independent samples for each cohort
-wgs_primary_each <- independent_dna_samples(wgs_samples, tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
-wgs_relapse_each <- independent_dna_samples(wgs_samples, tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
-wgs_primary_plus_each <- independent_dna_samples(wgs_samples, tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
+wgs_primary_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "primary", independent_level = "each-cohort", seed = 2020)
+wgs_relapse_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "relapse", independent_level = "each-cohort", seed = 2020)
+wgs_primary_plus_each <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "prefer_primary", independent_level = "each-cohort", seed = 2020)
 
 # generate WGS independent samples for all cohorts
-wgs_primary_all <- independent_dna_samples(wgs_samples, tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
-wgs_relapse_all <- independent_dna_samples(wgs_samples, tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
-wgs_primary_plus_all <- independent_dna_samples(wgs_samples, tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
+wgs_primary_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "primary", independent_level = "all-cohorts", seed = 2020)
+wgs_relapse_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "relapse", independent_level = "all-cohorts", seed = 2020)
+wgs_primary_plus_all <- independent_dna_samples(wgs_samples, histology_df = histology_df, cohort_shortlist = unique(wgs_samples$cohort), tumor_types = "prefer_primary", independent_level = "all-cohorts", seed = 2020)
 
 # save output for each cohort
 wgs_primary_each_file <- file.path(out_dir, "independent-specimens.wgs.primary.eachcohort.tsv")

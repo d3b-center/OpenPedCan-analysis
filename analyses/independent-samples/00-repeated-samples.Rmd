@@ -220,7 +220,7 @@ independents <- sample_df %>%
          !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
                fixed = FALSE, useBytes = FALSE)
          ) %>%
-  independent_dna_samples(tumor_types = "primary")
+  independent_dna_samples(tumor_types = "primary", histology_df = sample_df)
 
 nrow(independents)
 ```
