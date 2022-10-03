@@ -125,7 +125,7 @@ jobs:
             entrypoint: immune-deconv/run-immune-deconv.sh
 
           - name: EFO/MONDO annotation
-            entrypoint: efo-mondo-mapping/run_qc.sh
+            entrypoint: efo-mondo-mapping/run_search_and_qc.sh
 
           - name: ENSEMBL Gene matching
             entrypoint: gene_match/run-gene-mapping.sh
