@@ -62,11 +62,11 @@ annotation_directory <- file.path(root_dir,
                                   "focal-cn-file-preparation",
                                   "annotation_files")
 annotation_file <- file.path(annotation_directory,
-                             "txdb_from_gencode.v27.gtf.db")
+                             "txdb_from_gencode.v39.gtf.db")
 if (!file.exists(annotation_file)) {
   # Define the annotations for the hg38 genome
   txdb <- GenomicFeatures::makeTxDbFromGFF(
-    file = file.path(data_dir,"gencode.v27.primary_assembly.annotation.gtf.gz"),
+    file = file.path(data_dir,"gencode.v39.primary_assembly.annotation.gtf.gz"),
     format = "gtf"
   )
   # can do this even if the directory exists

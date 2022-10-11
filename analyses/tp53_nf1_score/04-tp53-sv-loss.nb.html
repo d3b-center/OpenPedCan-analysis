@@ -1909,11 +1909,11 @@ annotation_directory &lt;- file.path(root_dir,
                                   &quot;focal-cn-file-preparation&quot;,
                                   &quot;annotation_files&quot;)
 annotation_file &lt;- file.path(annotation_directory,
-                             &quot;txdb_from_gencode.v27.gtf.db&quot;)
+                             &quot;txdb_from_gencode.v39.gtf.db&quot;)
 if (!file.exists(annotation_file)) {
   # Define the annotations for the hg38 genome
   txdb &lt;- GenomicFeatures::makeTxDbFromGFF(
-    file = file.path(data_dir,&quot;gencode.v27.primary_assembly.annotation.gtf.gz&quot;),
+    file = file.path(data_dir,&quot;gencode.v39.primary_assembly.annotation.gtf.gz&quot;),
     format = &quot;gtf&quot;
   )
   # can do this even if the directory exists
