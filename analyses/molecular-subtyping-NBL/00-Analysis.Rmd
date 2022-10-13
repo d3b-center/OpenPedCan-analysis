@@ -1,12 +1,27 @@
 ---
 title: "MYCN-NBL Subtyping"
-author: "Aditya Lahiri"
+author: "Aditya Lahiri, Eric Wafula, Jo Lynne Rokita"
 date: "10/13/2022"
-output: html_document
+output: html_notebook
 ---
+# Usage
+This notebook is intended to be run via the command line from the top directory
+of the repository as follows:
+```
+Rscript -e "rmarkdown::render('analyses/molecular-subtyping-NBL/00-Analysis.Rmd', clean = TRUE)"
+```
+# Directories and Files
+```{r}
+# to get root directory
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+# data directory
+dataDir <- file.path(root_dir, "data")
+```
+
+
 
 ```{r}
-setwd("~/OpenPedCan-analysis/analyses/molecular-subtyping-NBL")
+#setwd("~/OpenPedCan-analysis/analyses/molecular-subtyping-NBL")
 ```
 
 # Load Libraries
@@ -15,16 +30,14 @@ library(dplyr)
 library(data.table)
 ```
 
-
-# Load the data files 
 ```{r}
-consensus_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/consensus_wgs_plus_cnvkit_wxs.tsv.gz"))
-hist_df<- as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/histologies.tsv"))
-cnv_cnvkit_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/cnv-cnvkit.seg.gz"))
-cnv_controlfreec_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/cnv-controlfreec.tsv.gz"))
-gene_expression_df<-as.data.frame(readRDS("/home/rstudio/OpenPedCan-analysis/data/gene-expression-rsem-tpm-collapsed.rds"))
-```
+hist_df<-readr::read_tsv(file.path(dataDir, "histologies.tsv"),guess_max = 100000)
+consensus_df<-readr::read_tsv(file.path(dataDir, "consensus_wgs_plus_cnvkit_wxs.tsv.gz"),guess_max = 100000)
+cnv_cnvkit_df<-readr::read_tsv(file.path(dataDir, "cnv-cnvkit.seg.gz"),guess_max = 100000)
+cnv_controlfreec_df<-readr::read_tsv(file.path(dataDir, "cnv-controlfreec.tsv.gz"),guess_max = 100000)
+gene_expression_df<-as.data.frame(readRDS(paste(dataDir,"/","gene-expression-rsem-tpm-collapsed.rds",sep="")))
 
+```
 
 ```{r}
 
@@ -108,6 +121,5 @@ colnames(MYCN_DNA_RNA_FILTERED_DF)<-c("Kids_First_Biospecimen_ID_DNA","Kids_Firs
 
 
 ```{r}
-dir.create("results")
-write.table(MYCN_DNA_RNA_FILTERED_DF,file="results/Alteration_Table.csv")
+write.table(MYCN_DNA_RNA_FILTERED_DF,file="results/Alteration_Table.tsv")
 ```
