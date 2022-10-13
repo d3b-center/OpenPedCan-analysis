@@ -1,0 +1,113 @@
+---
+title: "MYCN-NBL Subtyping"
+author: "Aditya Lahiri"
+date: "10/13/2022"
+output: html_document
+---
+
+```{r}
+setwd("~/OpenPedCan-analysis/analyses/molecular-subtyping-NBL")
+```
+
+# Load Libraries
+```{r}
+library(dplyr)
+library(data.table)
+```
+
+
+# Load the data files 
+```{r}
+consensus_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/consensus_wgs_plus_cnvkit_wxs.tsv.gz"))
+hist_df<- as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/histologies.tsv"))
+cnv_cnvkit_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/cnv-cnvkit.seg.gz"))
+cnv_controlfreec_df<-as.data.frame(fread("/home/rstudio/OpenPedCan-analysis/data/cnv-controlfreec.tsv.gz"))
+gene_expression_df<-as.data.frame(readRDS("/home/rstudio/OpenPedCan-analysis/data/gene-expression-rsem-tpm-collapsed.rds"))
+```
+
+
+```{r}
+
+hist_filtered_df <- hist_df %>% filter(cancer_group=="Neuroblastoma"|
+                                       cancer_group=="Ganglioneuroblastoma"|
+                                        cancer_group=="Ganglioneuroma")
+
+consensus_filtered_df <- consensus_df %>% filter(gene_symbol=="MYCN")
+
+
+
+all_nbl_biospecimen_ID<- hist_filtered_df %>% select(Kids_First_Biospecimen_ID)
+MYCN_biospecimen_dna_ID <- consensus_filtered_df %>% select(biospecimen_id)
+
+# Get the IDs of MYCN corresponding to RNA
+MYCN_Index <- which(rownames(gene_expression_df)=="MYCN")
+TPM_MYCN_data <- gene_expression_df[MYCN_Index,]
+MYCN_biospecimen_rna_ID <- colnames(TPM_MYCN_data)
+MYCN_biospecimen_rna_ID<-as.data.frame(MYCN_biospecimen_rna_ID)
+```
+
+
+```{r}
+colnames(MYCN_biospecimen_dna_ID)<- "Kids_First_Biospecimen_ID"
+colnames(MYCN_biospecimen_rna_ID)<- "Kids_First_Biospecimen_ID"
+all_MYCN_biospecimen_ID <- rbind(MYCN_biospecimen_dna_ID,MYCN_biospecimen_rna_ID)
+```
+
+```{r}
+# Find which MYCN Biospecimen correspond to NBL
+MYCN_DF<- inner_join(hist_filtered_df,all_MYCN_biospecimen_ID,by="Kids_First_Biospecimen_ID")
+
+#Add the Status and Copy Number to these samples 
+MYCN_DF<- left_join(MYCN_DF,consensus_filtered_df, by= c("Kids_First_Biospecimen_ID" = "biospecimen_id")) # Some rows increased likely copies
+
+#Add TPM
+rownames(TPM_MYCN_data)<-"MYCN_TPM"
+TPM_MYCN_data<-t(TPM_MYCN_data)
+TPM_MYCN_data <-as.data.frame(TPM_MYCN_data)
+TPM_MYCN_data <- tibble::rownames_to_column(TPM_MYCN_data, "Kids_First_Biospecimen_ID")
+
+MYCN_DF<- left_join(MYCN_DF,TPM_MYCN_data, by="Kids_First_Biospecimen_ID") # rows remain the same
+
+
+# Create the MATCH ID
+MYCN_DF <- MYCN_DF %>%mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
+MYCN_dna_df<-MYCN_DF %>% filter(is.na(RNA_library),experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") ) 
+MYCN_rna_df<-MYCN_DF %>% filter(experimental_strategy == "RNA-Seq") 
+
+# Rename the columns
+colnames(MYCN_dna_df)[which(names(MYCN_dna_df) == "Kids_First_Biospecimen_ID")] <- "Kids_First_Biospecimen_ID_DNA"
+colnames(MYCN_rna_df)[which(names(MYCN_rna_df) == "Kids_First_Biospecimen_ID")] <- "Kids_First_Biospecimen_ID_RNA"
+MYCN_DNA_RNA_DF <- inner_join(MYCN_dna_df,MYCN_rna_df, by="match_id")
+MYCN_DNA_RNA_FILTERED_DF <- MYCN_DNA_RNA_DF %>% select(Kids_First_Biospecimen_ID_DNA,Kids_First_Biospecimen_ID_RNA,gene_symbol.x,gene_symbol.y,
+                                              cancer_group.x,cancer_group.y,
+                                              pathology_free_text_diagnosis.x,pathology_free_text_diagnosis.y,
+                                              copy_number.x,copy_number.y,MYCN_TPM.x,MYCN_TPM.y,status.x,status.y)
+# Remove columns with no info
+empty_columns <- colSums(is.na(MYCN_DNA_RNA_FILTERED_DF) | MYCN_DNA_RNA_FILTERED_DF == "") == nrow(MYCN_DNA_RNA_FILTERED_DF)
+# Logic for line 86 was reffered from: https://www.codingprof.com/3-easy-ways-to-remove-empty-columns-in-r/#:~:text=Identify%20the%20empty%20columns,empty%20values%20in%20a%20column.
+MYCN_DNA_RNA_FILTERED_DF<- MYCN_DNA_RNA_FILTERED_DF[!empty_columns]
+#Remove duplicated coulmns
+print(all.equal(MYCN_DNA_RNA_FILTERED_DF$cancer_group.x,MYCN_DNA_RNA_FILTERED_DF$cancer_group.y))
+print(all.equal(MYCN_DNA_RNA_FILTERED_DF$pathology_free_text_diagnosis.x,MYCN_DNA_RNA_FILTERED_DF$pathology_free_text_diagnosis.y))
+
+# The pathology free text diagnosis in row 114 of MYCN_DNA_RNA_FILTERED has differing values:
+print(which(mapply(identical,unlist(MYCN_DNA_RNA_FILTERED_DF$pathology_free_text_diagnosis.x),unlist(MYCN_DNA_RNA_FILTERED_DF$pathology_free_text_diagnosis.y))==FALSE))# Logic used from: https://stat.ethz.ch/pipermail/r-help/2010-April/234706.html
+
+#Since pathology_free_text_diagnosis.x is MYCN AMP and pathology_free_text_diagnosis.y is NA we will retain the information from pathology_free_text_diagnosis.x and r
+
+
+# Remove duplicate columns after inspection
+duplicate_columns <- c("cancer_group.y","pathology_free_text_diagnosis.y")
+MYCN_DNA_RNA_FILTERED_DF<-MYCN_DNA_RNA_FILTERED_DF[ , -which(names(MYCN_DNA_RNA_FILTERED_DF) %in% duplicate_columns)] # Reffered from the following code: https://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
+
+
+# Clean the table:
+colnames(MYCN_DNA_RNA_FILTERED_DF)<-c("Kids_First_Biospecimen_ID_DNA","Kids_First_Biospecimen_ID_RNA","gene_symbol",
+                                      "cancer_group","pathology_free_text_diagnosis","copy_number","MYCN_TPM","status")    
+```
+
+
+```{r}
+dir.create("results")
+write.table(MYCN_DNA_RNA_FILTERED_DF,file="results/Alteration_Table.csv")
+```
