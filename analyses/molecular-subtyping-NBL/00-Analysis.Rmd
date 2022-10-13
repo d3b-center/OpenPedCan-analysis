@@ -12,10 +12,16 @@ Rscript -e "rmarkdown::render('analyses/molecular-subtyping-NBL/00-Analysis.Rmd'
 ```
 # Directories and Files
 ```{r}
-# to get root directory
+# root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 # data directory
 dataDir <- file.path(root_dir, "data")
+#results directory
+results_dir <- "results"
+# create if doesn't exist
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
 ```
 
 
@@ -121,5 +127,6 @@ colnames(MYCN_DNA_RNA_FILTERED_DF)<-c("Kids_First_Biospecimen_ID_DNA","Kids_Firs
 
 
 ```{r}
-write.table(MYCN_DNA_RNA_FILTERED_DF,file="results/Alteration_Table.tsv")
+MYCN_DNA_RNA_FILTERED_DF%>%readr::write_tsv(file.path(results_dir, "Alteration_Table.tsv"))
+
 ```
