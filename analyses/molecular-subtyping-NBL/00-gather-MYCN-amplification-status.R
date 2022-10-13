@@ -36,6 +36,6 @@ MYCN_df <- inner_join(hist_filtered_df,consensus_filtered_df,by= c("Kids_First_B
 # DNA and RNA information are present in the Kids_First_Biospecimen_ID of column of Myc_df 
 
 ## Step 1: Create the DNA and RNA subset of MYC_df
-dna_myc_df <- is.na(RNA_library) and  experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing")
-dna_df <- Myc_df %>% filter(is.na(RNA_library),experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") )
-rna_df <- Myc_df %>% filter(experimental_strategy == "RNA-Seq") 
+# dna_myc_df <- is.na(RNA_library) and  experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing")
+# dna_df <- Myc_df %>% filter(is.na(RNA_library),experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") )
+# rna_df <- Myc_df %>% filter(experimental_strategy == "RNA-Seq") 

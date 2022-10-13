@@ -40,14 +40,23 @@ hist_filtered_df <- hist_df %>% filter(cancer_group=="Neuroblastoma"|
 
 # Step 2: Filter the MCYN records from consensus_wgs_plus_cnvkit_wxs.tsv.gz
 consensus_filtered_df <- consensus_df %>% filter(gene_symbol=="MYCN")
-
+dna_MYCN_IDs <-consensus_filtered_df$biospecimen_id
 # Step 3 Join the two data frames to get MYCN details with respect to the diagnosis. Joining with the intersection of the data frames.
 MYCN_df <- inner_join(hist_filtered_df,consensus_filtered_df,by= c("Kids_First_Biospecimen_ID" = "biospecimen_id"))
+MYCN_df_left <- left_join(hist_filtered_df,consensus_filtered_df,by= c("Kids_First_Biospecimen_ID" = "biospecimen_id"))
 
+# Get the IDs of MYCN corresponding to RNA
+MCYN_Index <- which(rownames(gene_expression_df)=="MYCN")
+TPM_MYCN_data <- gene_expression_df[MCYN_Index,]
+rna_MYCN_IDs <- colnames(TPM_MYCN_data)
+
+### USE (A INTERSECT B) U (A INTERSECT C) A- list of all biospecimen, B only Dna biospecimen, C only Rna biospecimen
 ```
 
 ```{r}
 print(unique(MYCN_df$experimental_strategy)) # No RNA-Seq
+print(unique(MYCN_df_left$experimental_strategy)) # No RNA-Seq
+
 ```
 ```{r}
 print(unique(MYCN_df$RNA_library)) # No RNA-Seq
