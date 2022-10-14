@@ -8,8 +8,6 @@ output: html_notebook
 To molecularly subtype neuroblastoma, ganglioneuroblastoma, and ganglioneuroma samples into MYCN amplified or MYCN non-amplified.
 
 
-
-
 # Usage
 This notebook is intended to be run via the command line from the top directory
 of the repository as follows:
@@ -17,7 +15,7 @@ of the repository as follows:
 Rscript -e "rmarkdown::render('analyses/molecular-subtyping-NBL/00-Analysis.Rmd', clean = TRUE)"
 ```
 # Directories
-```{r}
+```{r setup directories}
 # root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
@@ -33,13 +31,13 @@ if (!dir.exists(results_dir)) {
 ```
 
 # Load Libraries
-```{r}
+```{r load libraries}
 library(dplyr)
 library(data.table)
 ```
 
 # Load all the datafiles in the ticket
-```{r}
+```{r load the data files: this will take time}
 hist_df<-readr::read_tsv(file.path(dataDir, "histologies.tsv"),guess_max = 100000)
 consensus_df<-readr::read_tsv(file.path(dataDir, "consensus_wgs_plus_cnvkit_wxs.tsv.gz"),guess_max = 100000)
 cnv_cnvkit_df<-readr::read_tsv(file.path(dataDir, "cnv-cnvkit.seg.gz"),guess_max = 100000)
@@ -54,7 +52,7 @@ Code logic and background:
 NBL is defined as neuroblastoma, ganglioneuroblastoma, and ganglioneuroma. These diseases are mentioned in the histology.tsv file. consensus_wgs_plus_cnvkit_wxs.tsv.gz has information regarding copy number, status, and gene symbol (MYCN). The key idea in the following code chunks is to find the MYCN samples that belong to NBL. Specifically for part 2 we need to use gene-expression-rsem-tpm-collapsed.rds file. This file has Biospecimen_ID_RNA for MYCN samples, and consensus_wgs_plus_cnvkit_wxs.tsv.gz has Biospecimen_ID_DNA for MYCN samples. The histologies files contain both DNA and RNA Biospecimen_ID. 
 
 
-```{r}
+```{r Data filtering}
 # First filter the histology file based on diseases we are intereseted in neuroblastoma, ganglioneuroblastoma, and ganglioneuroma
 hist_filtered_df <- hist_df %>% filter(cancer_group=="Neuroblastoma"|
                                        cancer_group=="Ganglioneuroblastoma"|
@@ -78,14 +76,14 @@ MYCN_biospecimen_rna_ID<-as.data.frame(MYCN_biospecimen_rna_ID) # Converting to 
 ```
 
 
-```{r}
+```{r Changing column names}
 colnames(MYCN_biospecimen_dna_ID)<- "Kids_First_Biospecimen_ID" #change biospecimen_ID to Kids_First_Biospecimen_ID
 colnames(MYCN_biospecimen_rna_ID)<- "Kids_First_Biospecimen_ID" #change MYCN_biospecimen_rna_ID to Kids_First_Biospecimen_ID
 # Store all the biospecimen IDs for MYCN both DNA and RNA in the following variable
 all_MYCN_biospecimen_ID <- rbind(MYCN_biospecimen_dna_ID,MYCN_biospecimen_rna_ID)
 ```
 
-```{r}
+```{r Getting TPM, Copy Number and Status info}
 # Find which MYCN Biospecimen IDs in all_MYCN_biospecimen_ID correspond to NBL as defined in hist_filtered_df. Thus the intersection of biosepcimen in all_MYCN_biospecimen_ID  and hist_filtered_df will have the biospecimens IDs belonging to MYCN-NBL
 
 MYCN_DF<- inner_join(hist_filtered_df,all_MYCN_biospecimen_ID,by="Kids_First_Biospecimen_ID")
@@ -104,7 +102,7 @@ MYCN_DF<- left_join(MYCN_DF,TPM_MYCN_data, by="Kids_First_Biospecimen_ID") # row
 
 Code logic and background: 
 The data frame MYCN_DF has DNA and RNA specimen for a given sample, which will cause duplication, so we will find which DNA samples and RNA samples are related to each other in MYCN_DF. This is done by creating an extra column called Match_ID in in MYCN_DF. Match_ID is bascially : Kids_First_Participant_ID + Sample_ID.  Match_ID will be same for corresponging DNA/RNA Samples.
-```{r}
+```{r Find DNA/RNA Biospecimen}
 # Create the MATCH ID : adapated from independent_samples module [1] 
 
 MYCN_DF <- MYCN_DF %>%mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
@@ -119,7 +117,7 @@ colnames(MYCN_rna_df)[which(names(MYCN_rna_df) == "Kids_First_Biospecimen_ID")] 
 ```
 
 Now find the intersection of MYCN_dna_df and MYCN_rna_df, this will give you a table of DNA and RNA biospecimen IDs
-```{r}
+```{r Further filter the data to create alteration table}
 MYCN_DNA_RNA_DF <- inner_join(MYCN_dna_df,MYCN_rna_df, by="match_id") 
 
 # Retain the information of RNA/DNA Biospecimen ID, gene symbol, cancer group, pathology free text diagnosis, copy number, TPM and status
@@ -151,7 +149,7 @@ colnames(MYCN_DNA_RNA_FILTERED_DF)<-c("Kids_First_Biospecimen_ID_DNA","Kids_Firs
 ```
 
 
-```{r}
+```{r write alteration table}
 MYCN_DNA_RNA_FILTERED_DF%>%readr::write_tsv(file.path(results_dir, "Alteration_Table.tsv"))
 ```
 
