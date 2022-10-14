@@ -34,6 +34,8 @@ if (!dir.exists(results_dir)) {
 ```{r load libraries}
 library(dplyr)
 library(data.table)
+library(tidyverse)
+library(ggplot2)
 ```
 
 # Load all the datafiles in the ticket
@@ -45,8 +47,9 @@ cnv_controlfreec_df<-readr::read_tsv(file.path(dataDir, "cnv-controlfreec.tsv.gz
 gene_expression_df<-as.data.frame(readRDS(paste(dataDir,"/","gene-expression-rsem-tpm-collapsed.rds",sep="")))
 
 ```
-# Part 1: For each NBL sample, gather MYCN amplification status from consensus_wgs_plus_cnvkit_wxs.tsv.gz
-# Part 2: Create alterations/output table for matched DNA/RNA biospecimens. Match ID can be adapted from the independent-samples module
+# Part 1&2: 
+1. For each NBL sample, gather MYCN amplification status from consensus_wgs_plus_cnvkit_wxs.tsv.gz
+2. Create alterations/output table for matched DNA/RNA biospecimens. Match ID can be adapted from the independent-samples module
 
 Code logic and background: 
 NBL is defined as neuroblastoma, ganglioneuroblastoma, and ganglioneuroma.
@@ -109,12 +112,13 @@ The data frame MYCN_DF has DNA and RNA specimen for a given sample,
 which will cause duplication, so we will find which DNA samples and 
 RNA samples are related to each other in MYCN_DF. This is done by creating
 an extra column called Match_ID in in MYCN_DF. Match_ID is 
-bascially: Kids_First_Participant_ID + Sample_ID.  
-Match_ID will be same for corresponging DNA/RNA Samples.
+bascially: Kids_First_Participant_ID + Sample_ID + Cohort.  
+Match_ID will be same for corresponging DNA/RNA Samples. Cohort info is 
+added as Kids_First_Participant_ID + Sample_ID can be same accross cohort.
 ```{r Find DNA/RNA Biospecimen}
 # Create the MATCH ID : adapated from independent_samples module [1] 
 
-MYCN_DF <- MYCN_DF %>%mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
+MYCN_DF <- MYCN_DF %>%mutate(match_id = paste(Kids_First_Participant_ID, sample_id,cohort,sep = "_"))
 # If the Biospecimen IDs are of DNA then the RNA_Library must be empty and experimental strategy is WGS, WXS or Targeted Sequencing 
 MYCN_dna_df<-MYCN_DF %>% filter(is.na(RNA_library),experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") ) 
 # If the Biospecimen IDs are of DNA then experimental strategy is RNA-Seq
@@ -133,7 +137,7 @@ MYCN_DNA_RNA_DF <- inner_join(MYCN_dna_df,MYCN_rna_df, by="match_id")
 MYCN_DNA_RNA_FILTERED_DF <- MYCN_DNA_RNA_DF %>% select(Kids_First_Biospecimen_ID_DNA,Kids_First_Biospecimen_ID_RNA,gene_symbol.x,gene_symbol.y,
                                               cancer_group.x,cancer_group.y,
                                               pathology_free_text_diagnosis.x,pathology_free_text_diagnosis.y,
-                                              copy_number.x,copy_number.y,MYCN_TPM.x,MYCN_TPM.y,status.x,status.y)
+                                              copy_number.x,copy_number.y,MYCN_TPM.x,MYCN_TPM.y,status.x,status.y, match_id)
 # Remove columns with no info
 empty_columns <- colSums(is.na(MYCN_DNA_RNA_FILTERED_DF) | MYCN_DNA_RNA_FILTERED_DF == "") == nrow(MYCN_DNA_RNA_FILTERED_DF)
 # Logic in empty column is adapted from [2] 
@@ -154,14 +158,59 @@ MYCN_DNA_RNA_FILTERED_DF<-MYCN_DNA_RNA_FILTERED_DF[ , -which(names(MYCN_DNA_RNA_
 
 # Clean the table:
 colnames(MYCN_DNA_RNA_FILTERED_DF)<-c("Kids_First_Biospecimen_ID_DNA","Kids_First_Biospecimen_ID_RNA","gene_symbol",
-                                      "cancer_group","pathology_free_text_diagnosis","copy_number","MYCN_TPM","status")    
+                                      "cancer_group","pathology_free_text_diagnosis","copy_number","MYCN_TPM","status","Match_ID")    
 ```
-
+Find the duplicate rows of MYCN_DNA_RNA_FILTERED_DF
+```{r remove duplicate rows}
+MYCN_DNA_RNA_FILTERED_DF<-distinct(MYCN_DNA_RNA_FILTERED_DF)
+#MYCN_DNA_RNA_FILTERED_DF<- MYCN_DNA_RNA_FILTERED_DF%>%mutate(merged_id = paste(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA, sep = "_"))
+# biospecimen_count_df <-as.data.frame(table(MYCN_DNA_RNA_FILTERED_DF$Kids_First_Biospecimen_ID_DNA))
+# colnames(biospecimen_count_df)<- c("Kids_First_Biospecimen_ID_DNA", "Frequencies")
+# repeated_biospecimen_index <- which(biospecimen_count_df$Frequencies >1)
+# print("Repeated Biospecimens are: \n")
+# print(biospecimen_count_df[repeated_biospecimen_index,])
+```
 
 ```{r write alteration table}
 MYCN_DNA_RNA_FILTERED_DF%>%readr::write_tsv(file.path(results_dir, "Alteration_Table.tsv"))
 ```
 
+#Part 3
+Add MYCN TPM and MYCN copy number and status to table. It may also be useful to see a quick ascending barplot of MYCN TPM (y-axis) and sample (x-axis) colored by clinical status (see 4 below). See example plot here.
+
+```{r make plot}
+#Select relevant info
+MYCN_Plot_df <- MYCN_DNA_RNA_FILTERED_DF %>% select (Kids_First_Biospecimen_ID_DNA,MYCN_TPM,status)
+
+#Binarize status column into amplification and non amplification
+
+MYCN_Plot_df <- MYCN_Plot_df %>% mutate(status = str_replace(status, "neutral", "non-amplified"))
+MYCN_Plot_df <- MYCN_Plot_df %>% mutate(status = str_replace(status, "gain", "non-amplified"))
+MYCN_Plot_df <- MYCN_Plot_df %>% mutate(status = str_replace(status, "loss", "non-amplified"))
+
+# Plot the grouped bar graph
+ggplot(MYCN_Plot_df, aes(fill=status, y=MYCN_TPM, x=Kids_First_Biospecimen_ID_DNA)) + 
+    geom_bar(position="dodge", stat="identity")
+
+```
+
+
+
+```{r}
+# Refered code from [5]
+MYCN_Plot_df %>% 
+  arrange(status,MYCN_TPM) %>% 
+  mutate(Kids_First_Biospecimen_ID_DNA = factor(Kids_First_Biospecimen_ID_DNA, unique(Kids_First_Biospecimen_ID_DNA))) %>%
+  ggplot() +aes(x=Kids_First_Biospecimen_ID_DNA, y=MYCN_TPM, fill=status)+
+  geom_bar(position="dodge",stat="identity") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.title = element_text(hjust = 0.5))
+
+
+
+
+```
 
 # References
 [1]https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/analyses/independent-samples/util/independent-rna-samples.R
@@ -171,3 +220,5 @@ MYCN_DNA_RNA_FILTERED_DF%>%readr::write_tsv(file.path(results_dir, "Alteration_T
 [3] https://stat.ethz.ch/pipermail/r-help/2010-April/234706.html
 
 [4]https://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
+
+[5]https://stackoverflow.com/questions/64638958/grouped-bars-in-descending-order
