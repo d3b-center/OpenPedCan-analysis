@@ -8,12 +8,12 @@ This module describes the steps to download a filtered MTP tables from the Open 
 
 `update_EFO_MTP_filtered_tables.R`: This script performs the intended EFO code replacement and creates new tsv and json files with the updated data.
 
-`long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz` and `long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz` : These files were extracted from the `analyses/rna-seq-expr-summary-stats/results`. Since this module was recently updated and merged to the OPC repo, these files are not yet available on the OT S3 bucket for the script to download and thus automate the processing. 
+`long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz` and `long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz` : These files were extracted from the `analyses/rna-seq-expression-summary-stats/results`. Since this module was recently updated and merged to the OPC repo, these files are not yet available on the OT S3 bucket for the script to download and thus automate the processing. 
 
 ### Steps:
 
  - Download the bash script, R script
- - Copy the below files from `analyses/rna-seq-expr-summary-stats` into working directory 
+ - Copy the below files from `analyses/rna-seq-expression-summary-stats` into working directory 
   `long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz`, `long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz`
  - Execute the bash script as below:
 	 `bash update_EFO_MTP_filtered_tables.sh`
