@@ -24,10 +24,12 @@ done
 # Download reference and gencode file from public ftp
 GENCODE27="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/gencode.v27.primary_assembly.annotation.gtf.gz"
 GENCODE38="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_38/gencode.v38.primary_assembly.annotation.gtf.gz"
+GENCODE39="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.primary_assembly.annotation.gtf.gz"
 REFERENCE="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/GRCh38.primary_assembly.genome.fa.gz"
 cd data
 curl -JO $GENCODE27 -z gencode.v27.primary_assembly.annotation.gtf.gz
 curl -JO $GENCODE38 -z gencode.v38.primary_assembly.annotation.gtf.gz
+curl -JO $GENCODE39 -z gencode.v39.primary_assembly.annotation.gtf.gz
 curl -JO $REFERENCE -z GRCh38.primary_assembly.genome.fa.gz
 cd -
 

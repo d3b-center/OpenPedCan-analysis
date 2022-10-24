@@ -1,9 +1,9 @@
 
 ## Define the wildcards to use in the file names.
 wildcard_constraints:
-  caller = "cnvkit|freec|manta",
+  caller = "cnvkit|freec|gatk",
   dupdel = "dup|del",
-  combined_caller = "manta_cnvkit|manta_freec|cnvkit_freec"
+  combined_caller = "gatk_cnvkit|gatk_freec|cnvkit_freec"
 
 ## Define the first rule of the Snakefile. This rule determines what the final file is and which steps to be taken.
 rule all:
@@ -30,7 +30,7 @@ rule freec_filter:
         SIZE_CUTOFF=str(config["size_cutoff"]),
         FREEC_PVAL=str(config["freec_pval"]),
     shell:
-        ## The awk command line is to filter out the raw file. 
+        ## The awk command line is to filter out the raw file.
         ## The end result has 8 columns
         ## | chr# | start | end | CNV_length | copy_numbers | pval | seg.mean | CNV type |
         ## The first awk looks at column 6 to filter out for loss/gain.
@@ -59,15 +59,15 @@ rule cnvkit_filter:
         ## Take parameters from the config file and assign them into params for convinient use in the Shell section
         SIZE_CUTOFF=str(config["size_cutoff"]),
     shell:
-        ## The awk command line is to filter out the raw file. 
+        ## The awk command line is to filter out the raw file.
         ## The end result has 8 columns
         ## | chr# | start | end | CNV_length | copy_numbers | pval | seg.mean | CNV type |
-        ## The first awk filter out for loss/gain using column 7 ( < 2 == loss, > 2 == gain). 
-        ## It writes NA for p-value since the CNVkit results don't have p-vals. 
-        ## Then it prints out all 8 of the columns above. 
+        ## The first awk filter out for loss/gain using column 7 ( < 2 == loss, > 2 == gain).
+        ## It writes NA for p-value since the CNVkit results don't have p-vals.
+        ## Then it prints out all 8 of the columns above.
         ## The second awk filters the CNV length, and add in the CNV type
         ## The sort command sorts the first digit of chromosome number numerically
-        ## The last pipe is to introduce tab into the file and output file name.        
+        ## The last pipe is to introduce tab into the file and output file name.
         """awk '$7<2 {{print $2,$3,$4,($4-$3 + 1),$7,"NA",$6,"DEL"}}' {input.events} """
         """ | awk '{{if ($4 > {params.SIZE_CUTOFF}){{print}}}}' """
         """ | sort -k1,1 -k2,2n """
@@ -77,33 +77,36 @@ rule cnvkit_filter:
         """ | sort -k1,1 -k2,2n """
         """ | tr [:blank:] '\t' > {output.cnvkit_dup}"""
 
-rule manta_filter:
+rule gatk_filter:
     input:
         ## Define the location of the input file and take the extension from the config file
-         scratch_loc + "manta_manta/{sample}" + str(config["manta_ext"])
+         scratch_loc + "gatk_gatk/{sample}" + str(config["gatk_ext"])
     output:
         ## Define the output files' names
-        manta_del= scratch_loc + "interim/{sample}.manta.del.bed",
-        manta_dup= scratch_loc + "interim/{sample}.manta.dup.bed"
+        gatk_del= scratch_loc + "interim/{sample}.gatk.del.bed",
+        gatk_dup= scratch_loc + "interim/{sample}.gatk.dup.bed"
     params:
         ## Take parameters from the config file and assign them into params for convinient use in the Shell section
         SIZE_CUTOFF=str(config["size_cutoff"]),
     shell:
-        ## The awk command line is to filter out the raw file. 
+        ## The awk command line is to filter out the raw file.
         ## The end result has 8 columns
         ## | chr# | start | end | CNV_length | copy_numbers | pval | seg.mean | CNV type |
-        ## The first awk looks at column 6 to filter out for loss/gain (DEL/DUP). 
-        ## Then it prints out all 8 of the columns above. 
-        ## It writes NA for both p-value and copy number since MANTA results don't have these values.
-        ## the first awk also filters out for CNV length
+        ## The first awk looks at column 7 to filter out for loss/gain (-/+).
+        ## Then it prints out all 8 of the columns above.
+        ## It writes NA for both p-value and copy number since gatk results don't have these values.
+        ## The first awk command also changes -/+ to DEL/DUP to match the other callers formatting
+        ## The second awk filters the CNV length, and add in the CNV type
         ## The sort command sorts the first digit of chromosome number numerically
-        ## The last pipe is to introduce tab into the file and output file name.        
-        """awk '$6~/DEL/ {{if ($5 > {params.SIZE_CUTOFF} && $11 == 'PASS') {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
+        ## The last pipe is to introduce tab into the file and output file name.
+        """awk '$7~/\-/ {{print $2,$3,$4,($4-$3 + 1),"NA","NA",$6,"DEL"}}' {input} """
+        """ | awk '{{if ($4 > {params.SIZE_CUTOFF}){{print}}}}' """
         """ | sort -k1,1 -k2,2n """
-        """ | tr [:blank:] '\t' > {output.manta_del} && """
-        """awk '$6~/DUP/ {{if ($5 > {params.SIZE_CUTOFF}  && $11 == 'PASS') {{print "chr"$2,$3,$4,$5,"NA","NA","NA",$6}}}}' {input} """
+        """ | tr [:blank:] '\t' > {output.gatk_del} && """
+        """awk '$7~/\+/ {{print $2,$3,$4,($4-$3 + 1),"NA","NA",$6,"DUP"}}' {input} """
+        """ | awk '{{if ($4 > {params.SIZE_CUTOFF}){{print}}}}' """
         """ | sort -k1,1 -k2,2n """
-        """ | tr [:blank:] '\t' > {output.manta_dup}"""
+        """ | tr [:blank:] '\t' > {output.gatk_dup}"""
 
 rule generate_excluded:
     # Combine the sets of regions that are not well called by CNV algorithms for exclusion
@@ -160,7 +163,7 @@ rule first_merge:
     threads: 1
     shell:
         ## Call on bedtools to merge any overlapping segment. Merging done for any segments within a single file.
-        ## We considers any segments within 10,000 bp to be the same CNV. 
+        ## We considers any segments within 10,000 bp to be the same CNV.
         ## Merge but retain info from columns 2 (start pos), 3(end pos), 5(copy numbers), 7(seg.mean), 8(CNV type)
         "sort -k1,1 -k2,2n {input.filtered_bed}"
         "| bedtools merge -i stdin -d 10000"
@@ -187,27 +190,27 @@ rule compare_cnv_methods:
         script=os.path.join(config["scripts"], "compare_variant_calling_updated.py"),
         cnvkit= scratch_loc + "interim/{sample}.cnvkit.{dupdel}.filtered3.bed",
         freec= scratch_loc + "interim/{sample}.freec.{dupdel}.filtered3.bed",
-        manta= scratch_loc + "interim/{sample}.manta.{dupdel}.filtered3.bed"
+        gatk= scratch_loc + "interim/{sample}.gatk.{dupdel}.filtered3.bed"
 
     output:
         ## Define the output files' names
-        manta_cnvkit= scratch_loc + "interim/{sample}.manta_cnvkit.{dupdel}.bed",
-        manta_freec= scratch_loc + "interim/{sample}.manta_freec.{dupdel}.bed",
+        gatk_cnvkit= scratch_loc + "interim/{sample}.gatk_cnvkit.{dupdel}.bed",
+        gatk_freec= scratch_loc + "interim/{sample}.gatk_freec.{dupdel}.bed",
         cnvkit_freec= scratch_loc + "interim/{sample}.cnvkit_freec.{dupdel}.bed"
     threads: 1
     params:
         sample_name="{sample}"
     shell:
-        "python3 {input.script} --manta {input.manta} --cnvkit {input.cnvkit} --freec {input.freec} "
-        "--manta_cnvkit {output.manta_cnvkit} --manta_freec {output.manta_freec} --cnvkit_freec {output.cnvkit_freec} "
+        "python3 {input.script} --gatk {input.gatk} --cnvkit {input.cnvkit} --freec {input.freec} "
+        "--gatk_cnvkit {output.gatk_cnvkit} --gatk_freec {output.gatk_freec} --cnvkit_freec {output.cnvkit_freec} "
         "--sample {params.sample_name}"
 
 
 rule combine_merge_paired_cnv:
     input:
         ## Define the location of the input file
-        manta_cnvkit= scratch_loc + "interim/{sample}.manta_cnvkit.{dupdel}.bed",
-        manta_freec= scratch_loc + "interim/{sample}.manta_freec.{dupdel}.bed",
+        gatk_cnvkit= scratch_loc + "interim/{sample}.gatk_cnvkit.{dupdel}.bed",
+        gatk_freec= scratch_loc + "interim/{sample}.gatk_freec.{dupdel}.bed",
         cnvkit_freec= scratch_loc + "interim/{sample}.cnvkit_freec.{dupdel}.bed"
     output:
         ## Define the output files' names
@@ -215,12 +218,12 @@ rule combine_merge_paired_cnv:
     threads: 1
     shell:
         ## Combine the input file, sort and output to one file
-        ## Columns 4, 5, and 6 hold the original CNV calls from Manta, CNVkit, and Freec, respectively. 
+        ## Columns 4, 5, and 6 hold the original CNV calls from gatk, CNVkit, and Freec, respectively.
         ## We want to retain info in these columns when merging these files so we use COLLAPSE to keep the information in these columns
         ## Columns 7 and 8 are the CNVtype (DEL, DUP) and Sample_name, respectively.
         ## AT THIS POINT, these columns of the input files hold the same values, thus we perform DISTINCT, which is to take the unique of columns 7 and 8.
         ## As for column 9, this column holds the files that were merged to get a specific CNV. We want to keep all information here so we COLLAPSE it.
-        "cat {input.manta_cnvkit} {input.manta_freec} {input.cnvkit_freec} "
+        "cat {input.gatk_cnvkit} {input.gatk_freec} {input.cnvkit_freec} "
         "| sort -k1,1 -k2,2n "
         "| bedtools merge -c 4,5,6,7,8,9 -o collapse,collapse,collapse,distinct,distinct,collapse "
         "> {output.merged}"
@@ -230,7 +233,7 @@ rule remove_inset_calls:
     ## To fix this, we will use bedtools to subtract del calls from dup calls, which splits the dup into two (or more)
     ## segments and removes the overlap.
     ## This subtraction will remove any dup segments that lay entirely within a del segment, so those need to be added back.
-    ## We do this by finding the intersection of all dup and del segments, which includes regions where both are present, 
+    ## We do this by finding the intersection of all dup and del segments, which includes regions where both are present,
     ## but may remove the annotation of which original segment was 'fully enclosed' by a segment of the opposite call.
     ## To restore that inforamtion we intersect the original dup calls with those intersection calls,
     ## requiring full reciprocal coverage (-r 1) to find only those dup calls that are in the original set and NOT enclosed by a del call
@@ -301,8 +304,8 @@ rule merge_all:
     output:
         scratch_loc + "endpoints/all_CNVs_combined.tsv"
     run:
-        ## Add a header and combine all of the files. 
-        shell("echo -e 'chrom\tstart\tend\tmanta_CNVs\tcnvkit_CNVs\tfreec_CNVs\tCNV_type\tBiospecimen' > {output}")
+        ## Add a header and combine all of the files.
+        shell("echo -e 'chrom\tstart\tend\tgatk_CNVs\tcnvkit_CNVs\tfreec_CNVs\tCNV_type\tBiospecimen' > {output}")
         for file in input:
             shell("cut -f 1-8 {file} >> {output}")
 

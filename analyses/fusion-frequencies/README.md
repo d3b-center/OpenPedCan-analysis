@@ -1,12 +1,13 @@
-## Annotate SNV table with mutation frequencies
+## Annotate fusion tables with fusion frequencies and fused gene frequencies
 
-Adapted from [snv-frequencies](https://github.com/logstar/OpenPedCan-analysis/tree/snv-freq/analyses/snv-frequencies)
-**Module author:** Yuanchao Zhang ([@logstar](https://github.com/logstar))
+Adapted from [snv-frequencies](https://github.com/logstar/OpenPedCan-analysis/tree/snv-freq/analyses/snv-frequencies) authored by Yuanchao Zhang ([@logstar](https://github.com/logstar))
 
-Adapted by Krutika Gaonkar ([@kgaonkar6](https://github.com/kgaonkar6)) 
+**Module authors:** Krutika Gaonkar ([@kgaonkar6](https://github.com/kgaonkar6)) and Jo Lynne Rokita (@jharenza)[https://github.com/jharenza]
 
 ### Purpose
-Uses `fusion-putative-oncogenic.tsv` and a `Alt_ID` for each `FusionName` and `Fusion_Type` concatenated by "_" OR Fused Gene to count occurence in  each cancer_group in a given dataset, primary or relapse cohorts.
+Uses `fusion-putative-oncogenic.tsv` and `fusion-dgd.tsv.gz`, a `Alt_ID` for each `FusionName` and `Fusion_Type` concatenated by `"_"` OR Fused Gene to count occurence in  each `cancer_group` in a given dataset, primary or relapse cohorts.
+
+Note: DGD cohort is fusion panel data and is currently not included in "All cohorts" calculations.
 
 Each gene invloved in the fusion is annotated by a Gene_Position, for example:
  - In a genic fusion where both breakpoints are within gene body the Gene_Position `Gene1A` will be the 5' gene and Gene1B will be 3' gene
@@ -96,21 +97,24 @@ Table fields for this table include:
 
 ### Analysis scripts
 
-### `01-fusion-frequencies.R`
-This script annotates each FusionName with occurence of Fusion_Type OR Fused Gene and frequencies in each cancer_cohort in dataset, primary and relapse.
+### `00-annotate-panel-fusions.Rmd`
+This script annotates DGD panel fusions and genes using the ` annotate_fusion_calls` function, adapted from _annoFuse_.
 
+### `01-fusion-frequencies.R`
+This script calculates fusion and fused gene frequencies for each `cancer_group` and `cohort`, primary and relapse.
+For the above `cancer_group`, this script also calculates fusion and fused gene frequencies for `All cohorts`, except for `CHOP P30 Panel` (DGD). 
 
 Usage:
 
 ```bash
-Rscript --vanilla '01-fusion-frequencies.R'
-
+bash run-frequencies.sh
 ```
 
 Input:
 
 - `../../data/histologies.tsv`
 - `../../data/fusion-putative-oncogenic.tsv`
+- `input/fusion-dgd-tiers-FusionAnnotator.tsv`
 - `../../data/independent-specimens.rnaseq.primary.eachcohort.tsv`
 - `../../data/independent-specimens.rnaseq.relapse.eachcohort.tsv`
 - `../../data/independent-specimens.rnaseq.primary.tsv`
@@ -118,6 +122,7 @@ Input:
 
 ```
 results/
+├── fusion-dgd-annotated.tsv
 ├── putative-oncogene-fused-gene-freq.json.gz
 ├── putative-oncogene-fused-gene-freq.jsonl.gz
 ├── putative-oncogene-fused-gene-freq.tsv.gz

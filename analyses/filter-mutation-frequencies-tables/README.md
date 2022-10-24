@@ -1,7 +1,7 @@
 ## Filter Mutation Frequencies Tables
 
 ### Purpose
-Remove `Ensembl (ESNG)` gene identifier in the OPenPedCan mutation frequency tables, including [SNV](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/snv-frequencies), [CNV](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/cnv-frequencies) and [fusion](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion-frequencies) that are not in [GENCODE v38 and Ensembl package 104](http://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/rellease_38/).
+Remove `Ensembl (ESNG)` gene identifier in the OPenPedCan mutation frequency tables, including [SNV](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/snv-frequencies), [CNV](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/cnv-frequencies) and [fusion](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion-frequencies) that are not in [GENCODE v39 (Ensembl package 105)](http://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/).
 
 
 ### Analysis scripts
@@ -17,7 +17,7 @@ bash run-filter-mutation-frequencies-tables.sh
 ```
 
 ### `filter-mutation-frequencies-tables.Rmd`
-This R notebook filters SNV, CNV, and fusion mutation frequencies tables to exclude Ensembl gene identifier that are not in `GENCODE v38` and `Ensembl package 104` , and lists identifiers filtered out. 
+This R notebook filters SNV, CNV, and fusion mutation frequencies tables to exclude Ensembl gene identifier that are not in `GENCODE v39 (Ensembl package 104)` and in `Open Targets deprecated gene list` , and lists identifiers filtered out. 
 
 Usage:
 ```r
@@ -35,6 +35,7 @@ Input:
 - `../../data/consensus_wgs_plus_cnvkit_wxs.tsv.gz`
 - `../../data/fusion-putative-oncogenic.tsv`
 - `../../data/histologies.tsv`
+- `input/MTP_v11_InvalidENSG_20220831.txt`
 
 
 Results:

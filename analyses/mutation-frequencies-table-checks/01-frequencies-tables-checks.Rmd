@@ -1,0 +1,362 @@
+--- 
+title: "Mutation Frequencies Table Summary and QC Checks"
+output:
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 4
+author: Eric Wafula for Pediatric OpenTargets
+date: 2022-05-01
+params:
+  current_table:
+    label: "current mutation frequencies table"
+    value: current/gene-level-cnv-consensus-annotated-mut-freq.tsv.gz
+    input: file
+  previous_table:
+    label: "previous mutation frequencies table"
+    value: previous/gene-level-cnv-consensus-annotated-mut-freq.tsv.gz
+    input: file
+---
+
+
+### Purpose
+Performs summary and QC checks comparing the current and the previous OpenPedCan 
+mutation frequencies tables, including CNV, SNV, and Fusion. 
+
+
+### Usage
+
+To run this from the command line, use:
+```
+Rscript -e "rmarkdown::render('01-frequencies-tables-checks.Rmd', clean = TRUE)"
+```
+_This assumes you are in the analysis module directory of the repository,_
+_OpenPedCan-analysis/analyses/mutation-frequencies-tables-checks._
+
+
+### Load packages
+```{r load packages}
+# R packages
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(openxlsx))
+
+# Magrittr pipe
+`%>%` <- dplyr::`%>%`
+```
+
+
+### Set output directory
+```{r set output directory}
+# directories for input and output files
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+analyses_dir <- file.path(root_dir, "analyses", "mutation-frequencies-table-checks")
+results_dir <- file.path(analyses_dir, "results")
+
+# Create results folder if it doesn't exist
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+```
+
+
+### Functions
+```{r functions}
+# get number of patients in cohorts
+get_num_patients <- function(freq_df) {
+  return(freq_df %>% 
+           dplyr::filter(Dataset != "All Cohorts") %>%
+           dplyr::select(Dataset, Disease, 
+                         Total_alterations_over_subjects_in_dataset) %>%
+           tidyr::separate(Total_alterations_over_subjects_in_dataset, 
+                           c("alterations", "patients")) %>% 
+           dplyr::select(-alterations) %>% 
+           dplyr::distinct() %>% 
+           dplyr::select(-Disease) %>% 
+           dplyr::group_by(Dataset) %>%
+           dplyr::summarise(patients = sum(as.integer(patients, na.rm = TRUE)))
+         )
+}
+
+# get number of samples in cohorts
+get_num_samples <- function(freq_df) {
+  primary_samples <- freq_df %>% 
+    dplyr::filter(Dataset != "All Cohorts") %>%
+    dplyr::select(Dataset, Disease,
+                  Total_primary_tumors_mutated_over_primary_tumors_in_dataset) %>%
+    tidyr::separate(Total_primary_tumors_mutated_over_primary_tumors_in_dataset, 
+                    c("primary_mutations", "primary_samples")) %>%
+    dplyr::select(-primary_mutations) %>% 
+    dplyr::distinct() %>% 
+    dplyr::select(-Disease) %>%
+    dplyr::group_by(Dataset) %>% 
+    dplyr::summarise(primary_samples = 
+                       sum(as.integer(primary_samples, na.rm = TRUE)))
+  relapse_samples <- freq_df %>% 
+    dplyr::filter(Dataset != "All Cohorts") %>%
+    dplyr::select(Dataset, Disease,
+                  Total_relapse_tumors_mutated_over_relapse_tumors_in_dataset) %>%
+    tidyr::separate(Total_relapse_tumors_mutated_over_relapse_tumors_in_dataset, 
+                    c("relapse_mutations", "relapse_samples")) %>%
+    dplyr::select(-relapse_mutations) %>% 
+    dplyr::distinct() %>% 
+    dplyr::select(-Disease) %>%
+    dplyr::group_by(Dataset) %>% 
+    dplyr::summarise(relapse_samples = 
+                       sum(as.integer(relapse_samples, na.rm = TRUE)))
+    return(primary_samples %>% 
+             dplyr::full_join(relapse_samples, by = "Dataset"))
+}
+
+# changes in common columns among MPT mutation frequencies  between 
+# current and previous tables
+changes_in_columns <- function(current_tables, previous_table, column_name) {
+  # values specific to current table
+  specific_to_current <- current_table %>% 
+  dplyr::select(Dataset, column_name) %>% 
+  dplyr::distinct() %>% 
+    setdiff(previous_table %>% dplyr::select(Dataset, column_name) %>%
+              dplyr::distinct()) %>% 
+    dplyr::rename(current_dataset = Dataset)
+  # values specific to previous table
+  specific_to_previous <- previous_table %>% 
+    dplyr::select(Dataset, column_name) %>% 
+    dplyr::distinct() %>% 
+    setdiff(current_table %>% dplyr::select(Dataset, column_name) %>%
+              dplyr::distinct()) %>% 
+    dplyr::rename(previous_dataset = Dataset)
+  # combine differences 
+  changes_in_columns <- specific_to_current %>%
+    dplyr::full_join(specific_to_previous, by = column_name) %>% 
+    dplyr::select(column_name, current_dataset, previous_dataset)
+  return(changes_in_columns)
+}
+```
+
+### Read in current and previous mutation frequencies files
+```{r load files}
+# read current mutation frequencies files
+current_table <- data.table::fread(params$current_table, 
+                                    data.table = FALSE, 
+                                   showProgress = FALSE) %>% 
+  purrr::discard(~all(is.na(.))) 
+if (grepl("snv", params$current_table)) {
+  current_table <- current_table %>% 
+    dplyr::rename(Total_alterations_over_subjects_in_dataset = 
+                    Total_mutations_over_subjects_in_dataset)
+}
+
+# read previous mutation frequencies files
+previous_table <- data.table::fread(params$previous_table, 
+                                    data.table = FALSE, 
+                                    showProgress = FALSE) %>% 
+  purrr::discard(~all(is.na(.)))
+if (grepl("snv", params$previous_table)) {
+  previous_table <- previous_table %>% 
+    dplyr::rename(Total_alterations_over_subjects_in_dataset = 
+                    Total_mutations_over_subjects_in_dataset)
+}
+```
+
+
+### First 50 records from a static cancer group (GMKF Neuroblastoma) 
+
+Records from a static cancer_group should not change between the current and previous mutation frequencies tables. There should be no changes in computed mutation frequencies. But other fields in the table will likely change if annotations are updated. 
+
+#### Current table
+```{r current table}
+# ordered top 50 GMKF Neuroblastoma records from current table
+gmkf_nbl_current <- current_table %>% 
+  dplyr::filter(Dataset == "GMKF", Disease == "Neuroblastoma") %>% 
+  dplyr::arrange() %>% 
+  head(n = 50)
+
+# write to file
+gmkf_nbl_current %>% 
+  readr::write_tsv(file.path(results_dir, "current_static_cancer_group.tsv")) 
+
+# display      
+gmkf_nbl_current   
+```
+
+#### Previous table
+```{r previous table}
+# ordered top 50 GMKF Neuroblastoma records from previous table
+gmkf_nbl_previous <- previous_table %>% 
+  dplyr::filter(Dataset == "GMKF", Disease == "Neuroblastoma") %>% 
+  dplyr::arrange() %>% 
+  head(n = 50)
+
+# write to file
+gmkf_nbl_previous %>% 
+  readr::write_tsv(file.path(results_dir, "previous_static_cancer_group.tsv"))
+
+# display   
+gmkf_nbl_previous   
+```
+### Number of patients in each cohort
+```{r number of patients}
+# get number of patients in each cohort
+num_patients <- get_num_patients(current_table) %>% 
+  dplyr::rename(patients_in_current = patients) %>% 
+  dplyr::full_join(get_num_patients(previous_table) %>% 
+                    dplyr::rename(patients_in_previous = patients))
+
+# write to file
+num_patients %>% 
+  readr::write_tsv(file.path(results_dir, "number_of_patients.tsv"), na = "NA")
+
+# display   
+num_patients 
+```
+
+
+### Number of samples in each cohort
+```{r number of samples}
+# get number of samples in each cohort
+num_samples <- get_num_samples(current_table) %>% 
+  dplyr::rename(primary_samples_in_current = primary_samples, 
+                relapse_samples_in_current = relapse_samples) %>% 
+  dplyr::full_join(get_num_samples(previous_table) %>% 
+                    dplyr::rename(primary_samples_in_previous =
+                                    primary_samples, 
+                                  relapse_samples_in_previous = 
+                                     relapse_samples), by = "Dataset") %>% 
+  dplyr::select(Dataset, primary_samples_in_current, primary_samples_in_previous,
+               relapse_samples_in_current, relapse_samples_in_previous)
+
+# write to file
+num_samples %>% 
+  readr::write_tsv(file.path(results_dir, "number_of_samples.tsv"), na = "NA")
+
+# display   
+num_samples
+```
+
+
+### Cancer groups in the "All Cohorts" category
+```{r all cohorts cancer groups}
+# get All Cohorts" cancer groups
+all_cohorts_cancer_groups <- current_table %>% 
+  dplyr::select(Dataset, Disease) %>% 
+  dplyr::filter(Dataset == "All Cohorts") %>% 
+  dplyr::distinct() %>%
+  dplyr::rename(current_dataset = Dataset) %>% 
+  dplyr::full_join(previous_table %>% 
+                     dplyr::select(Dataset, Disease) %>% 
+                     dplyr::filter(Dataset == "All Cohorts") %>% 
+                     dplyr::distinct() %>% 
+                     dplyr::rename(previous_dataset = Dataset),
+                   by = "Disease") %>% 
+  dplyr::select(Disease, current_dataset, previous_dataset)
+
+# write to file
+all_cohorts_cancer_groups %>% 
+  readr::write_tsv(file.path(results_dir, 
+                             "all_cohorts_cancer_groups.tsv"), na = "NA")
+
+# display   
+all_cohorts_cancer_groups
+  
+```
+
+
+### Changes in common columns across mutation frequecies tables
+
+#### Check gene symbols
+```{r gene symbols}
+changes_gene_symbols <- 
+  changes_in_columns(current_tables, previous_table, "Gene_symbol")
+
+# write to file
+changes_gene_symbols %>% 
+  readr::write_tsv(file.path(results_dir, 
+                             "changes_in_gene_symbols.tsv"), na = "NA")
+
+# display   
+changes_gene_symbols
+```
+
+
+#### Check Ensembl IDs
+```{r ensembl ids}
+changes_ensembl_ids <- 
+  changes_in_columns(current_tables, previous_table, "targetFromSourceId")
+
+# write to file
+changes_ensembl_ids %>% 
+  readr::write_tsv(file.path(results_dir, 
+                             "changes_in_ensembl_ids.tsv"), na = "NA")
+
+# display   
+changes_ensembl_ids
+```
+
+
+#### Check cancer groups
+```{r cancer groups}
+changes_cancer_groups <- 
+  changes_in_columns(current_tables, previous_table, "Disease")
+
+# write to file
+changes_cancer_groups %>% 
+  readr::write_tsv(file.path(results_dir, 
+                             "changes_in_cancer_groups.tsv"), na = "NA")
+
+# display   
+changes_cancer_groups
+```
+
+
+#### Check EFO IDs
+```{r efo ids}
+changes_efo_ids <- 
+  changes_in_columns(current_tables, previous_table, "diseaseFromSourceMappedId")
+
+# write to file
+changes_efo_ids %>% 
+  readr::write_tsv(file.path(results_dir, "changes_in_efo_ids.tsv"), na = "NA")
+
+# display   
+changes_efo_ids
+```
+
+
+#### Check MONDO IDs
+```{r mondo ids}
+changes_mondo_ids <- 
+  changes_in_columns(current_tables, previous_table, "MONDO")
+
+# write to file
+changes_mondo_ids %>% 
+  readr::write_tsv(file.path(results_dir, "changes_in_mondo_ids.tsv"),na = "NA")
+
+# display   
+changes_mondo_ids
+```
+### Generate excel output for all QC checks and summaries
+```{r}
+# read all QC  checks and summaries files 
+qc_files <- list.files(results_dir, pattern = "tsv$")
+qc_files_list <- lapply(qc_files, function(x) {
+  # read each file
+  qc_file_df <- readr::read_tsv(file.path(results_dir, x))
+  return(qc_file_df)
+})
+# get file names
+qc_files_names <- gsub(".tsv", "", qc_files)
+names(qc_files_list) <- qc_files_names
+# write results to excel workbook 
+qc_files_list %>% 
+  openxlsx::write.xlsx(file.path(results_dir, 
+                                 paste0(gsub(".tsv.gz", "", 
+                                             basename(params$current_table)), 
+                                        ".xlsx")), 
+                       overwrite = TRUE, keepNA = TRUE, na.string = "NA")
+```
+
+
+```{r session info}
+sessionInfo()
+```
+

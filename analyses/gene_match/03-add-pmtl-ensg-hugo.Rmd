@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Load merged gene symbol + ENSG mapping file and PMTL file
+```{r}
+library(tidyverse)
+
+ens_map <- read_tsv("results/gencode_ensg_symbol_map_merged.tsv") %>%
+  rename(ensg_id = ensembl)
+pmtl <- read_tsv("input/PMTL_v1.1.tsv") %>%
+  rename(ensg_id = Ensembl_ID, pmtl = FDA_Designation)
+# add pmtl version
+pmtl$version <- "PMTL version 1.1"
+```
+## Are there all PMTL ensg ids included in the mapping file? 
+```{r}
+setdiff(pmtl$ensg_id, ens_map$ensg_id)
+#yes
+```
+
+##Merge the PMTL file with ENSG mapping file
+```{r}
+ens_pmtl_mer <- merge(pmtl, ens_map, all.x = T)
+
+# Do any gene IDs mismatch?
+ens_pmtl_mer$mismatches <- ifelse(ens_pmtl_mer$Approved_Symbol == ens_pmtl_mer$gene_symbol, "true", "false")
+table(ens_pmtl_mer$mismatches)
+ens_pmtl_mer %>%
+  filter(mismatches == "false") %>%
+  select(Approved_Symbol, gene_symbol)
+```
+## Keep the `gene_symbol` as in the RNA-Seq files
+```{r}
+ens_hugo_pmtl <- ens_map %>%
+  full_join(pmtl) %>%
+  select(ensg_id, gene_symbol, pmtl, version) %>%
+  distinct() %>%
+  filter(!ensg_id == "Symbol_Not_Found" | !gene_symbol == 'NA') %>%
+  write_tsv("results/ensg-hugo-pmtl-mapping.tsv")
+```

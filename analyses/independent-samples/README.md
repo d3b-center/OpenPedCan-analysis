@@ -1,7 +1,7 @@
 # Independent Samples
 
 ## Module authors
-Komal Rathi, Run Jin, Yuanchao Zhang, Eric Wafula, Jo Lynne Rokita
+Komal Rathi, Run Jin, Yuanchao Zhang, Eric Wafula, Sangeeta Shukla, Jo Lynne Rokita
 
 ## Generating sample lists
 
@@ -21,6 +21,7 @@ There are two modes for generating independent sample lists:
 * `02-generate-independent-rnaseq.R`: Generate tables of independent rna-seq specimens.
 * `03-qc-independent-samples.Rmd`: Markdown to tabulate number of biospecimen ids for same participant ids from each output file.
 * `04-generate-independent-specimens-rnaseq-pre-release.R`: Generate tables of RNA-Seq-only independent specimens where no two specimens are chosen from the same individual. 
+* `05-generate-independent-specimens-methyl.R`: Generate tables of Methylation-DNA independent specimens.
 (Note: these tables will only be used for the `fusion_filtering` module runs pre-release).
 
 ```
@@ -37,6 +38,12 @@ There are two modes for generating independent sample lists:
 ├── 05-generate-independent-specimens-methyl.R
 ├── README.md
 ├── results
+│   ├── independent-specimens.methyl.relapse.tsv
+│   ├── independent-specimens.methyl.primary.tsv
+│   ├── independent-specimens.methyl.relapse.eachcohort.tsv
+│   ├── independent-specimens.methyl.primary.eachcohort.tsv
+│   ├── independent-specimens.methyl.primary-plus.eachcohort.tsv
+│   ├── independent-specimens.methyl.primary-plus.tsv
 │   ├── independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv
 │   ├── independent-specimens.rnaseqpanel.primary-plus.tsv
 │   ├── independent-specimens.rnaseqpanel.primary-plus.pre-release.tsv
@@ -110,7 +117,9 @@ After randomizing the histology file subset to tumor samples:
 tumor_samples <- histology_df %>%
   dplyr::filter(sample_type == "Tumor", 
                 composition != "Derived Cell Line", 
-                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"))
+                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
+                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE, 
+                        fixed = FALSE, useBytes = FALSE))
 ```
 
 For WGS-preferred lists, we first subset the **tumor samples** to `WGS` samples only, pass the subsetted samples to the `independent-samples.R` function to generate a `WGS-specific` list. This list only contains a single occurence of `Kids_First_Participant_ID` associated to the `experimental_strategy = WGS`. Next, we subset the **tumor samples** to `WXS` and `Targeted Sequencing` samples only, pass the subsetted samples to the `independent-samples.R` function to generate a `WXS/Panel specific` list. This list only contains a single occurence of `Kids_First_Participant_ID` associated to either `experimental_strategy = WXS` or `experimental_strategy = Targeted Sequencing`. Then we merge the two lists (keeping `WGS` list first and `WXS/Panel` as second) and take a `dplyr::distinct` to only get the first occurence of `Kids_First_Participant_ID`. Because we keep the `WGS` specific list first when calling `dplyr::distinct`, the `WGS` associated biospecimens will be preferred over other biospecimens for multiple occurrences of `Kids_First_Participant_ID`.
@@ -145,7 +154,9 @@ After randomizing the histology file subset to tumor samples:
 tumor_samples <- histology_df %>%
   dplyr::filter(sample_type == "Tumor", 
                 composition != "Derived Cell Line", 
-                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"))
+                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
+                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE, 
+                        fixed = FALSE, useBytes = FALSE))
 ```
 
 For WXS-preferred lists, we first subset the **tumor samples** to `WXS` samples only, pass the subsetted samples to the `independent-samples.R` function to generate a `WXS-specific` list. This list only contains a single occurence of `Kids_First_Participant_ID` associated to the `experimental_strategy = WXS`. Next, we subset the **tumor samples** to `WGS` and `Targeted Sequencing` samples only, pass the subsetted samples to the `independent-samples.R` function to generate a `WGS/Panel specific` list. This list only contains a single occurence of `Kids_First_Participant_ID` associated to either `experimental_strategy = WGS` or `experimental_strategy = Targeted Sequencing`. Then we merge the two lists (keeping `WXS` list first and `WGS/Panel` as second) and take a `dplyr::distinct` to only get the first occurence of `Kids_First_Participant_ID`. Because we keep the `WXS` specific list first when calling `dplyr::distinct`, the `WXS` associated biospecimens will be preferred over other biospecimens for multiple occurrences of `Kids_First_Participant_ID`.
@@ -201,10 +212,13 @@ These lists contain independent methylation array samples:
 
 * Primary specimens:  
 `independent-specimens.methyl.primary.tsv`
+`independent-specimens.methyl.primary.eachcohort.tsv`
 * Relapse specimens:  
 `independent-specimens.methyl.relapse.tsv`
+`independent-specimens.methyl.relapse.eachcohort.tsv`
 * Primary and relapse:  
 `independent-specimens.methyl.primary-plus.tsv`
+`independent-specimens.methyl.primary-plus.eachcohort.tsv`
 
 ## Generating sample lists
 

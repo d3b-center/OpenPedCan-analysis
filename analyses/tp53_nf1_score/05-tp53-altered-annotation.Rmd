@@ -55,14 +55,18 @@ if ( params$base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)  
 }
 
+# recording of "BS_ETC8R0TD" GMKF NBL sample; needs to be remove once updated in v12
+clinical$RNA_library[clinical$Kids_First_Biospecimen_ID == "BS_ETC8R0TD"] <- "stranded"
+
 histology <- clinical %>%
-  filter(cohort == "PBTA") %>%
-   dplyr::select("Kids_First_Biospecimen_ID",
-          "sample_id",
-          "cancer_predispositions",
-          "sample_type",
-          "experimental_strategy",
-          "composition") %>%
+  dplyr::select("Kids_First_Biospecimen_ID",
+        "sample_id",
+        "Kids_First_Participant_ID",
+        "cancer_predispositions",
+        "sample_type",
+        "experimental_strategy",
+        "composition",
+        "cohort") %>%
    # merge cell line composition
   left_join(cell_line_composition)
  
@@ -206,7 +210,8 @@ tp53_alterations_score <- tp53_alterations %>%
                                   "cell_line_composition",
                                   "cancer_predispositions",
                                   "sample_type",
-                                  "Kids_First_Participant_ID")) %>%
+                                  "Kids_First_Participant_ID",
+                                  "cohort")) %>%
   # select useful columns
   dplyr::select(sample_id,Kids_First_Biospecimen_ID_RNA,Kids_First_Biospecimen_ID_DNA,
          tp53_score,cancer_predispositions,HGVSp_Short,copy_number,SV.type,FusionName,hotspot,activating) %>%

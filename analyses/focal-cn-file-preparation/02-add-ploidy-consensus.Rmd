@@ -42,7 +42,7 @@ if(!dir.exists(output_dir)) {
 
 ```{r}
 # read in the histology and consensus seg file from the data directory
-consensus_seg_file <- file.path("..", "..", "data", 
+consensus_seg_file <- file.path("..", "copy_number_consensus_call", "results", 
                                 "cnv-consensus.seg.gz")
 histologies_file <- file.path("..", "..", "data", "histologies.tsv")
 

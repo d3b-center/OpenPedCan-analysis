@@ -30,10 +30,10 @@ def read_parameters():
      p = argparse.ArgumentParser(description=("The 01-snv-frequencies.py scripts creates copy number variation (CNV) cancer type and study gene-level alterations frequencies table for the OPenPedCan analyses modules."), formatter_class=argparse.RawTextHelpFormatter)
      p.add_argument('HISTOLOGY_FILE', type=str, default=None, help="OPenPedCan histology file (histologies.tsv)\n\n")
      p.add_argument('CNV_FILE', type=str, default=None, help="OPenPedCan CNV consensus file (consensus_wgs_plus_cnvkit_wxs.tsv.gz)\n\n")
-     p.add_argument('AC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent primary tumor samples file (independent-specimens.wgswxspanel.primary.tsv)\n\n")
-     p.add_argument('AC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.tsv)\n\n")
-     p.add_argument('EC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent primary tumor samples file (independent-specimens.wgswxspanel.primary.eachcohort.tsv)\n\n")
-     p.add_argument('EC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.eachcohort.tsv)\n\n")
+     p.add_argument('AC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent primary tumor samples file (independent-specimens.wgswxspanel.primary.prefer.wgs.tsv)\n\n")
+     p.add_argument('AC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan all cohorts independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv)\n\n")
+     p.add_argument('EC_PRIMARY_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent primary tumor samples file (independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv)\n\n")
+     p.add_argument('EC_RELAPSE_TUMORS', type=str, default=None, help="OPenPedCan each cohort independent relapse tumor samples file (independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv)\n\n")
      p.add_argument('-v', '--version', action='version', version="01-cnv-frequencies.py version {} ({})".format(__version__, __date__), help="Print the current 01-cnv-frequencies.py version and exit\n\n")
      return p.parse_args()
 
@@ -47,6 +47,9 @@ def merge_histology_and_cnv_data(histology_file, cnv_consensus_file):
      
      # load CNV consensus file
      cnv_df = pd.read_csv(cnv_consensus_file, sep="\t", dtype=str)
+     mutations = ["gain", "neutral", "loss", "deep deletion", "amplification"]
+     cnv_df = cnv_df[cnv_df['status'].isin(mutations)]
+     
      
      # merge subset of histology dataframe to CNV dataframe keeping only sample present in the CNV table (left outer join)
      merged_df = pd.merge(cnv_df, histology_df, how="left", left_on="biospecimen_id", right_on="Kids_First_Biospecimen_ID")
@@ -127,17 +130,18 @@ def compute_variant_frequencies(all_tumors_df, all_cohorts_primary_tumors_file, 
                for df_name, tumor_df in tumor_dfs.items():
                     df = pd.DataFrame()
                     if row.cohort == "all_cohorts":
-                         if df_name == "all_cohorts_primary_tumors" or df_name == "all_cohorts_relapse_tumors" or "all_tumors":
+                         if df_name == "all_cohorts_primary_tumors" or df_name == "all_cohorts_relapse_tumors" or  df_name == "all_tumors":
                               df = tumor_df[(tumor_df["cancer_group"] == row.cancer_group)]
                     else:
-                         if df_name == "each_cohort_primary_tumors" or df_name == "each_cohort_relapse_tumors" or "all_tumors":
+                         if df_name == "each_cohort_primary_tumors" or df_name == "each_cohort_relapse_tumors" or  df_name == "all_tumors":
                               df = tumor_df[(tumor_df["cancer_group"] == row.cancer_group) & (tumor_df["cohort"] == row.cohort)]
                     if df.empty:
                          continue
                     num_samples = df["Kids_First_Biospecimen_ID"].nunique()
                     num_patients = df["Kids_First_Participant_ID"].nunique()
                     df = df.groupby(["ensembl", "status"]).apply(func)
-                    df = df.rename_axis(["Gene_Ensembl_ID", "Variant_type"]).reset_index()
+                    #df = df.rename_axis(["Gene_Ensembl_ID", "Variant_type"]).reset_index() # doesn't work Docker (python v3.5)
+                    df = df.rename_axis(index = {"ensembl": "Gene_Ensembl_ID", "status": "Variant_type"}).reset_index()
                     df["num_patients"] = num_patients
                     for i in df.itertuples():
                          if df_name == "all_tumors":
@@ -181,7 +185,7 @@ def get_annotations(cnv_frequency_df, CNV_FILE):
      cnv_frequency_df.fillna("", inplace=True)
 
      # create module results directory
-     results_dir = "{}/results".format(os.path.dirname(__file__))
+     results_dir = "results".format(os.path.dirname(__file__))
      if not os.path.exists(results_dir):
           os.mkdir(results_dir)
 
@@ -197,7 +201,7 @@ def get_annotations(cnv_frequency_df, CNV_FILE):
      log_file = "{}/annotator.log".format(results_dir)
      cnv_annot_freq_tsv = "{}/gene-level-cnv-consensus-annotated-mut-freq.tsv".format(results_dir)
      with open(log_file, "w") as log:
-          subprocess.run(["Rscript", "--vanilla", "analyses/long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,PMTL,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
+          subprocess.run(["Rscript", "--vanilla", "../long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,PMTL,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
 
      # columns changes proposed by the FNL:
      cnv_annot_freq_df = pd.read_csv(cnv_annot_freq_tsv, sep="\t", na_filter=False, dtype=str)

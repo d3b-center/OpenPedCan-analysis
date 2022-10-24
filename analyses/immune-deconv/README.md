@@ -1,6 +1,6 @@
 ## Immune Deconvolution
 
-**Module authors:** Komal S. Rathi ([@komalsrathi](https://github.com/komalsrathi))
+**Module authors:** Komal S. Rathi ([@komalsrathi](https://github.com/komalsrathi)), updated Kelsey Keith ([@kelseykeith](https://github.com/kelseykeith))
 
 ### Description
 
@@ -11,11 +11,20 @@ Both `CIBERSORT` and `CIBERSORT (abs.)` require two files i.e. `LM22.txt` and `C
 
 ### Method selection
 
-1. Between sample comparisons: If the user is interested in between-sample comparisons, we recommend using `xCell` and `CIBERSORT (abs.)`. `xCell` is our method of choice because it is the most comprehensive deconvolution method (with the largest representation of cell types) and widely used in literature vs other deconvolution methods. Reference for benchmarking between xCell and other methods: `PMID: 31641033`
 
-2. Between cell-type comparisons: If the user is interested in between-cell-type comparisons, it is recommended to use `CIBERSORT` and `CIBERSORT (abs.)`. 
+We use two methods: xCell and quanTIseq. 
 
-For our analysis, we will pick the top two methods that represent the most cell types i.e. `xCell` and `CIBERSORT`. `xCell` and `CIBERSORT (abs.)` output enrichment scores and `CIBERSORT` outputs actual cell fractions so we will use `xCell` and `CIBERSORT (abs.)` to enable comparisons across various samples or groups. Reference: `PMID: 31510660`
+
+We chose xCell because it: 
+1) is the most comprehensive deconvolution method and is able to deconvolute the maximum number of immune and non-immune cell types 
+2) is highly robust against background predictions and 
+3) can reliably identify the presence of immune cells at low abundances (0-1% infiltration depending on the immune cell type).
+
+xCell outputs immune scores as arbitrary scores that represent cell type abundance. 
+Importantly, these scores may be compared between samples (inter-sample comparisons), but _may not_ be compared across cell types or cancer types, as described in the [`immunedeconv` documentation](https://omnideconv.org/immunedeconv/articles/immunedeconv.html#interpretation-of-scores). This is in part because xCell is actually a signature-based method and not a deconvolution method, as is described in the [xCell Publication](https://doi.org/10.1186/s13059-017-1349-1):
+> Unlike signature-based methods, which output independent enrichment scores per cell type, the output from deconvolution-based methods is the inferred proportions of the cell types in the mixture.
+
+Therefore, we also use `quanTIseq` as a complementary method. Although `quanTIseq` looks at fewer cell types, the scores can be interpreted as absolute fractions, thereby allowing comparison _both_ across samples and cell types, [as described](https://omnideconv.org/immunedeconv/articles/immunedeconv.html#interpretation-of-scores).
 
 ### Analysis scripts
 
@@ -30,15 +39,15 @@ data/histologies.tsv
 
 2. Function
 
-This script deconvolutes immune cell types using the method of choice for e.g. `xCell` or `CIBERSORT (abs)`. Since, `xCell` uses the variability among the samples for a linear transformation of the output score, we split the expression matrix into individual `cohorts + cancer_group` or `cohort + gtex_group` and deconvolute them separately. Once processed, all data is combined into a single rds file which can be used to do comparisons across various groups.
+This script deconvolutes immune cell types using the method of choice, either `xCell` or `quanTIseq`. Since `xCell` uses the variability among the samples for a linear transformation of the output score, we split the expression matrix into individual `cohorts + cancer_group` or `cohort + gtex_group` and deconvolute them separately. Once processed, all data is combined into a single rds file which can be used to do comparisons across various groups.
 
 3. Output: 
 
 ```
 results/{deconv_method}_output.rds
-````
+```
 
-The results in the rds file are predicted immune scores per cell type per input sample. These scores are not actual cell fractions but arbitrary scores representing enrichment of the cell types which can be compared across various cancer/gtex groups. Depending on the user requirement, the output can be used to create various visualizations. 
+For `xCell`, the results in the rds file are predicted immune scores per cell type per input sample. These scores are not actual cell fractions but arbitrary scores representing enrichment of the cell types which can be compared across various cancer/gtex groups. The `quanTIseq` results, in contrast, provide an absolute score that can be interpreted as a cell fraction and the results in the rds file are the absolute scores per cell type per input sample. Depending on the user requirements, the output can also be used to create various visualizations. 
 
 #### 02-summary-plots.R 
 
@@ -58,13 +67,7 @@ This script creates heatmaps from predicted immune scores.
 
 ### Running the analysis
 
-The following script will run the full analysis using two methods of choice: `xCell` and `CIBERSORT (abs)`:
-
-```
-RUN_CIBERSORT=1 bash run-immune-deconv.sh
-```
-
-As we cannot make the `LM22.txt` and `CIBERSORT.R` publicly available, so we will not run CIBERSORT via CI:
+The following script will run the full analysis using either of the two methods of choice: `xCell` or `quanTIseq`. `xCell` is run by default, so to select `quanTIseq`, see code option in chunk below.
 
 ```
 bash run-immune-deconv.sh

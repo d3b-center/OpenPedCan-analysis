@@ -20,7 +20,6 @@ PT_9PJR0ZK7	BS_0E539XNH	PBTA	Neurofibroma/Plexiform	Methylation	Second Malignanc
 PT_6SH7PV1N	BS_0EXCT8V6	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_F1086Z0A	BS_0F6G5B4Q	PBTA	Chordoma	Methylation	Initial CNS Tumor
 PT_FZHGKJ0H	BS_0H08N9RR	PBTA	Ganglioneuroblastoma	Methylation	Initial CNS Tumor
-PT_JP1FDKN9	BS_0JV00K8V	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_0F3RHT8J	BS_0JZ4RSWQ	PBTA	Meningioma	Methylation	Initial CNS Tumor
 PT_H6E09982	BS_0K0R2RHX	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_XP8AM1CH	BS_0K182R15	PBTA	NA	Methylation	Initial CNS Tumor
@@ -31,7 +30,6 @@ PT_JV9G8MFD	BS_0Q1FFAM2	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initia
 PT_0SPKM4S8	BS_0QDG4N14	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_XXZHRPNM	BS_0RWY8M98	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_CB9PD1YP	BS_0T1E1YBD	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_XCX9W17B	BS_0TD5GMZ8	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_EW604JB3	BS_0TJDWPJT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_2YT37G8P	BS_0YB6N1PA	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_BWN251DF	BS_1048DHEA	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -44,12 +42,12 @@ PT_8BES19QQ	BS_16Q57NBD	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_SJEG0MKD	BS_19M1VYF8	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_2NPPEF7P	BS_1BCK5MAR	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_32J909WM	BS_1BDNZYMM	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
-PT_PR4YBBH3	BS_1CYD2ESS	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_MA0J8DSN	BS_1DH8SJ7B	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Initial CNS Tumor
 PT_3KK1F95W	BS_1DW2M2Y3	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_8VEQB03E	BS_1F0EJ0CG	PBTA	Ependymoma	Methylation	Progressive
 PT_H0HWHRPB	BS_1FQYBQ1P	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_YXJQGT69	BS_1G2DAFZY	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_FN4GEEFR	BS_1GB1R07D	PBTA	Medulloblastoma	Methylation	Progressive
 PT_3VVNQSB6	BS_1GQZ81B4	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_QN3R80MS	BS_1HY7YDZH	PBTA	Ependymoma	Methylation	Recurrence
 PT_K84J9401	BS_1JBHR7FM	PBTA	Ependymoma	Methylation	Progressive
@@ -60,16 +58,19 @@ PT_6PP78VNE	BS_1NRF8RFY	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrenc
 PT_H4H6RD7Y	BS_1PD8RD2N	PBTA	NA	Methylation	Initial CNS Tumor
 PT_HMF8J4EG	BS_1PTQFNW5	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_9ZY739FB	BS_1Q4DFV3T	PBTA	Neurofibroma/Plexiform	Methylation	Recurrence
+PT_JP1FDKN9	BS_1R8Y46A9	PBTA	Ependymoma	Methylation	Recurrence
 PT_YQWG98Z5	BS_1RDN5JVD	PBTA	NA	Methylation	Initial CNS Tumor
 PT_CWA1405H	BS_1SRBJ4WH	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_DW2XRPC9	BS_1TPEKAK9	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrence
 PT_84Q11Z5X	BS_1V5C9YRJ	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_ZD45GXZ0	BS_1WW4VNXC	PBTA	Ependymoma	Methylation	Progressive
+PT_BNARR0N6	BS_1X3HZXSC	PBTA	Ependymoma	Methylation	Progressive
 PT_XA98HG1C	BS_1Y8941MS	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_0CVRX4SJ	BS_1Z86DC87	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_Z9QE51C3	BS_1ZW0BTJ2	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
 PT_HJMP6PH2	BS_21KG9DWJ	PBTA	Ewing sarcoma	Methylation	Recurrence
 PT_7YSCM82T	BS_24K0FR7Q	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_Z4GS3ZQQ	BS_25EN3VC0	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Recurrence
 PT_XSS1ANXD	BS_2879S8VV	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_Q38AT6JY	BS_28PAF8VT	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_5Q52M9W8	BS_29G6HM88	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -115,7 +116,6 @@ PT_GD0TGXM3	BS_3HHCHAMR	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_KCTZZA3G	BS_3JKNWNKV	PBTA	Neurofibroma/Plexiform	Methylation	Initial CNS Tumor
 PT_RNHJMDVV	BS_3K04VX4H	PBTA	Ependymoma	Methylation	Recurrence
 PT_P5HHJJPH	BS_3MYH1TKQ	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
-PT_PFA762TK	BS_3ND4Q1HV	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_62VNQ8C4	BS_3NJKMKGA	PBTA	Medulloblastoma	Methylation	Progressive
 PT_5ABCFCSK	BS_3QQB1VAM	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_6PFFSB6D	BS_3RVF0WEC	PBTA	NA	Methylation	Initial CNS Tumor
@@ -140,6 +140,7 @@ PT_VBG3Z18B	BS_4B6613ZQ	PBTA	CNS Embryonal tumor	Methylation	Initial CNS Tumor
 PT_3PK66TJY	BS_4BYJ109R	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_90W4HCNR	BS_4CTSVRTB	PBTA	NA	Methylation	Initial CNS Tumor
 PT_PJSV0X4X	BS_4E8TKKHY	PBTA	Medulloblastoma	Methylation	Recurrence
+PT_04V47WFC	BS_4FWWGMHC	PBTA	Ependymoma	Methylation	Progressive
 PT_1FQFJ0V1	BS_4GKADZA8	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_QJ3144WH	BS_4K6Y2TEH	PBTA	NA	Methylation	Initial CNS Tumor
 PT_D1WJ3BJX	BS_4P6YCVEZ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
@@ -189,6 +190,7 @@ PT_MSQ6GSVP	BS_5TN2QNQK	PBTA	High-grade glioma/astrocytoma	Methylation	Initial C
 PT_JCECCFPB	BS_5V730EQB	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_NT4SS4QP	BS_5VRG5FS1	PBTA	Ependymoma	Methylation	Recurrence
 PT_37B5JRP1	BS_5W21AWMR	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_ESHACWF6	BS_5X8XV0CC	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_MRTHX2AQ	BS_5X9HJHRE	PBTA	Neuroblastoma	Methylation	Recurrence
 PT_02J5CWN5	BS_5XP7ZGRB	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_0EH5EP5Q	BS_5YKPW392	PBTA	Ependymoma	Methylation	Recurrence
@@ -238,13 +240,16 @@ PT_7T13FDWK	BS_7BQTBTHZ	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_V1PVYRHP	BS_7BRX0YCQ	PBTA	CNS Embryonal tumor	Methylation	Progressive
 PT_HN0AXSZ0	BS_7FDN6CJB	PBTA	NA	Methylation	Initial CNS Tumor
 PT_4A2H0KNR	BS_7FZA386P	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrence
+PT_67R1AF5R	BS_7GR7VZ1K	PBTA	Ependymoma	Methylation	Recurrence
 PT_TD6ST5MG	BS_7GRCE406	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_WP871F5S	BS_7HASJ8Z2	PBTA	Hemangioblastoma	Methylation	Progressive
 PT_GB8MNK85	BS_7HDY61AV	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_3AWKWXEV	BS_7JTWSDK1	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_NA8NZ0BN	BS_7KDV25PK	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_SBHN5F68	BS_7MFSD4VP	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_D9NTSYSC	BS_7MTTXKMM	PBTA	Glial-neuronal tumor NOS	Methylation	Initial CNS Tumor
 PT_ZZTQQVCT	BS_7MWSK2SH	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_7DTGJYA7	BS_7NPV770K	PBTA	Diffuse intrinsic pontine glioma	Methylation	Progressive
 PT_PAW18EK3	BS_7Q3AEAM5	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Initial CNS Tumor
 PT_SA94083W	BS_7R0ECRT8	PBTA	Ewing sarcoma	Methylation	Initial CNS Tumor
 PT_89XRZBSG	BS_7R0JWX21	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -252,15 +257,16 @@ PT_GHHY5AAE	BS_7SSM2WX4	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_50ZFWMZE	BS_7TZ3H638	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_06ERX8Z7	BS_7VBT9G8F	PBTA	Subependymal Giant Cell Astrocytoma	Methylation	Initial CNS Tumor
 PT_3WA1XB8G	BS_7Y1A2J3B	PBTA	NA	Methylation	Initial CNS Tumor
-PT_AP658JQV	BS_7YW8W58B	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_QZN7FZER	BS_7ZC1599X	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_1BV6ND1D	BS_80JJQ4NG	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_SABHZ7XX	BS_80KFQCBJ	PBTA	Schwannoma	Methylation	Initial CNS Tumor
 PT_F0N89D15	BS_80Z351WQ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
-PT_3T3VGWC6	BS_83A6CZNH	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_7KBMN6C2	BS_83V1GTVC	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_J5NSRW1Y	BS_83XZJWG0	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_59D00MBQ	BS_86MPXAX5	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
+PT_CYBYN18G	BS_871VFVQE	PBTA	Ependymoma	Methylation	Recurrence
 PT_PF9EC93Q	BS_884GB32R	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_JNEV57VK	BS_897FT64P	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
 PT_D7KMPYTZ	BS_8B8DKWD6	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_DPVW4M1W	BS_8B8KDQJJ	PBTA	Sarcoma	Methylation	Recurrence
 PT_NTV1B352	BS_8C1DRATT	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -272,7 +278,6 @@ PT_VY45XTT7	BS_8GB5AH2Z	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_C4P0F36E	BS_8GFRJ12Y	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_CZRDBM1Q	BS_8H4AWHDV	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_92YX7KK9	BS_8HSSAPP9	PBTA	Germinoma	Methylation	Initial CNS Tumor
-PT_XTVQB9S4	BS_8HTKD2CD	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_WGTQYN3K	BS_8HVVX41B	PBTA	Ependymoma	Methylation	Progressive
 PT_D8D108NY	BS_8JXYP5CV	PBTA	Schwannoma	Methylation	Initial CNS Tumor
 PT_9KH4MRBK	BS_8K4E6C7A	PBTA	NA	Methylation	Initial CNS Tumor
@@ -287,10 +292,10 @@ PT_13MKXR8G	BS_8R0WBGMK	PBTA	NA	Methylation	Initial CNS Tumor
 PT_BG7GAFK6	BS_8R7FB13G	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_ZRQQC2S9	BS_8RNAR5N3	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_EZEMVRVT	BS_8SPQ35BC	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_JNEV57VK	BS_8SWRSV8D	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_J06X17XH	BS_8TEAVCT6	PBTA	Rosai-Dorfman disease	Methylation	Initial CNS Tumor
 PT_6MWPJ96F	BS_8TRTBPW9	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_DMMKT7X1	BS_8VBXKGMD	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_T2M1338J	BS_8VGEX7DF	PBTA	Meningioma	Methylation	Second Malignancy
 PT_23NZGSRJ	BS_8VP3HW1B	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_X8S0H6TG	BS_910X6NM7	PBTA	Ewing sarcoma	Methylation	Initial CNS Tumor
 PT_0MJEAART	BS_93W1TAZP	PBTA	Diffuse intrinsic pontine glioma	Methylation	Progressive
@@ -324,14 +329,12 @@ PT_3V5GTCJR	BS_9WFPXJKV	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_0CE0HFYB	BS_9WWF3A2F	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_QT3MK7BZ	BS_9XBGGK0F	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_4JG5KWE8	BS_9YNS9WZJ	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_FN4GEEFR	BS_9Z5PWXZB	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_5JA1N2H4	BS_9ZTH8XZA	PBTA	Medulloblastoma	Methylation	Progressive
 PT_NFDHYPGT	BS_A1FZQGM1	PBTA	NA	Methylation	Initial CNS Tumor
 PT_EP0C760T	BS_A3AHDTEP	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_2YCHME6S	BS_A4771SDM	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_J302B8Y5	BS_A5BZYXKN	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_VBNP6JFB	BS_A6WE8FQS	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_3R0P995B	BS_A9QBBVXQ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_SYHB12RN	BS_AAVNFHHB	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_6MB6RED3	BS_ADB1BXB6	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_E1TRJP8V	BS_AEF61NYH	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -341,7 +344,6 @@ PT_HYXSSCJ5	BS_AGQ97WK5	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_MT27S7S4	BS_AGVA3E45	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_WWME595X	BS_AHHP55VR	PBTA	NA	Methylation	Initial CNS Tumor
 PT_TS0FW57Z	BS_AJP26WFT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_CYBYN18G	BS_AKJHQQG3	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_PKCTFSV2	BS_AN87J6X2	PBTA	Meningioma	Methylation	Second Malignancy
 PT_1DY2TP9N	BS_ASHZ8TDJ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_69C7CBFW	BS_ATVVVXCS	PBTA	Rhabdomyosarcoma	Methylation	Initial CNS Tumor
@@ -354,7 +356,6 @@ PT_K6G6BE6G	BS_B2WRBBC4	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_HV6C0T34	BS_B47HW960	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_829V3YNC	BS_B5K5M3KH	PBTA	Ependymoma	Methylation	Recurrence
 PT_2VSDT9CK	BS_B5V1MQ2M	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
-PT_67R1AF5R	BS_B5Y1FDFX	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_4RJ2EATN	BS_B7Y5KSZF	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_JPWVCTAJ	BS_B81HY49C	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_Y8HSH496	BS_B8KDVBBS	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -374,6 +375,7 @@ PT_H876VB6R	BS_BQB6NZWZ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_B5BANZD9	BS_BQJ7WV6J	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_EG7PH32E	BS_BQMMHHZH	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_T3REPTTC	BS_BRPND7SC	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
+PT_3T3VGWC6	BS_BV9N9E63	PBTA	Low-grade glioma/astrocytoma	Methylation	Recurrence
 PT_YQNXB5KV	BS_BVY22A4P	PBTA	Ependymoma	Methylation	Unavailable
 PT_9YMRNZHH	BS_BWY9FK7V	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_8SDJXNFR	BS_BZHNA3TX	PBTA	Ependymoma	Methylation	Recurrence
@@ -383,6 +385,7 @@ PT_HQ89KPKT	BS_C32A6KDR	PBTA	Ganglioneuroma	Methylation	Initial CNS Tumor
 PT_ABV3RS3T	BS_C471PQSC	PBTA	NA	Methylation	Initial CNS Tumor
 PT_C1M4YF1R	BS_C48B9VRK	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_Y8RNS9JE	BS_C4BJX2SA	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrence
+PT_NPETR8RY	BS_C5CHG1S8	PBTA	Ependymoma	Methylation	Recurrence
 PT_ZGWYMRV8	BS_C5MRD4QQ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_EB89G70N	BS_C6CAKG22	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_3A87PCQK	BS_C7X0GZHB	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Initial CNS Tumor
@@ -459,7 +462,6 @@ PT_ZD9AYB6F	BS_EWWYSVEB	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_ABMAQYY2	BS_EWZ127K2	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_WG2Z95B5	BS_EXTTYXYZ	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_HGHV85PZ	BS_EZ2DCDMA	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
-PT_9S6WMQ92	BS_EZZZ4AQH	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_NDVJE438	BS_F0A84A7J	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_JT9HH7M6	BS_F0FV7NE3	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_P4GDWHXA	BS_F0PJ864S	PBTA	Meningioma	Methylation	Recurrence
@@ -480,7 +482,6 @@ PT_PGVQ4XRZ	BS_FD842CQN	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_BRTVGGRK	BS_FENJEHZ7	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_SSE4AH59	BS_FF9N48KN	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Initial CNS Tumor
 PT_63F63QY0	BS_FG4HB896	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
-PT_AQWDQW27	BS_FGQRF6AT	PBTA	Meningioma	Methylation	Initial CNS Tumor
 PT_TF4YF4FJ	BS_FGRJS5SQ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_24DDXEB5	BS_FJCWXV37	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_NESAQHB1	BS_FJEQ3VXY	PBTA	CNS Embryonal tumor	Methylation	Initial CNS Tumor
@@ -492,7 +493,6 @@ PT_3PSG2DQT	BS_FMYA3W47	PBTA	NA	Methylation	Initial CNS Tumor
 PT_Q25V9Y6M	BS_FNQVK8W6	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_BTTM2HS5	BS_FP4757SN	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_D13X3N8F	BS_FPDWC63C	PBTA	NA	Methylation	Progressive
-PT_WP871F5S	BS_FQBXD8N3	PBTA	Hemangioblastoma	Methylation	Initial CNS Tumor
 PT_BMK69WFB	BS_FQKWSDEZ	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
 PT_S0PBN4M7	BS_FR3VPEHX	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_9PDE9KSB	BS_FS31ZQDG	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -522,7 +522,6 @@ PT_PB4Q0ZX1	BS_GN4KVTPQ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_2FK75B27	BS_GNAPV1MP	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_D5KHK0SS	BS_GNS3DD0V	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_976P4557	BS_GQRBK39P	PBTA	Meningioma	Methylation	Initial CNS Tumor
-PT_59D00MBQ	BS_GTSTAR3W	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_BPKVVWVB	BS_GX9FSY4V	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_5EPZ7TCT	BS_H02YPQTK	PBTA	NA	Methylation	Progressive
 PT_9BZETM0M	BS_H07WTQEH	PBTA	CNS Embryonal tumor	Methylation	Initial CNS Tumor
@@ -576,7 +575,9 @@ PT_SDPA6AAP	BS_JJZKPXCK	PBTA	High-grade glioma/astrocytoma	Methylation	Initial C
 PT_E92E3C9P	BS_JM1J1NH8	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_2PRV78FX	BS_JMPH92EZ	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_NPHZQW6A	BS_JNS1K6PH	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
+PT_PFA762TK	BS_JQD0V916	PBTA	Low-grade glioma/astrocytoma	Methylation	Recurrence
 PT_VREE80NP	BS_JQM0E99N	PBTA	Neurofibroma/Plexiform	Methylation	Progressive
+PT_3VCS1PPF	BS_JRVK8WGZ	PBTA	Ependymoma	Methylation	Progressive
 PT_CR2YBSPT	BS_JS8KW2QY	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
 PT_2NQPX1R2	BS_JSEQ84NG	PBTA	Craniopharyngioma	Methylation	Recurrence
 PT_RNVACT1Q	BS_JTXHT7QJ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -591,6 +592,7 @@ PT_SRWZDG3N	BS_KAFZ8Y5J	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_BWGZBVD1	BS_KB0E8BVB	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_2WVW55DA	BS_KBRRF2J1	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
 PT_AEDWCP8Z	BS_KCF6KWY6	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_XTVQB9S4	BS_KF5Q3K89	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_B0JFCN5W	BS_KFW4FHF6	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_J0SZ1SX5	BS_KGT59ZDT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_3NM45TQ8	BS_KGVHFW0P	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
@@ -605,6 +607,7 @@ PT_9M4CQX3M	BS_KK4AMP03	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_12JTZFC2	BS_KM45ZRKE	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_2BTC5TEN	BS_KM77267Z	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_XWYNQBTK	BS_KMVRX07R	PBTA	Malignant peripheral nerve sheath tumor	Methylation	Progressive
+PT_TKWTTRQ7	BS_KP5F3FTJ	PBTA	Medulloblastoma	Methylation	Progressive
 PT_F822DBA0	BS_KQCXTBDN	PBTA	Ewing sarcoma	Methylation	Initial CNS Tumor
 PT_K94ZVZMX	BS_KQER6QAE	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_14Z5353Q	BS_KRQS22S1	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -614,7 +617,6 @@ PT_MXASQ2GW	BS_M00T28BR	PBTA	Neurofibroma/Plexiform	Methylation	Progressive
 PT_229DRV7B	BS_M0YWF7TK	PBTA	Neurofibroma/Plexiform	Methylation	Recurrence
 PT_HM2GMT2H	BS_M1MPGKYJ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_DTP4MMRA	BS_M255G2TR	PBTA	Schwannoma	Methylation	Initial CNS Tumor
-PT_RJ1TJ2KH	BS_M4GKP5G2	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_9C2G356W	BS_M4PAPSSW	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_JW6FBEFK	BS_M5AC601F	PBTA	Subependymal Giant Cell Astrocytoma	Methylation	Progressive
 PT_99S5BPE3	BS_M5HRCND3	PBTA	Ependymoma	Methylation	Recurrence
@@ -636,7 +638,6 @@ PT_P75ZXB1S	BS_MXGGEDAX	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_Y572BRC1	BS_MYT6NAAB	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_KHX1WQ4H	BS_MZ45E21Q	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_J3B812DT	BS_MZ558206	PBTA	NA	Methylation	Initial CNS Tumor
-PT_2FVTD0WR	BS_MZ9K49VT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_MDWPRDBT	BS_MZN7GK89	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
 PT_E3S6H59E	BS_MZX42FGZ	PBTA	Oligodendroglioma	Methylation	Initial CNS Tumor
 PT_NH8CJ84W	BS_N0553FJB	PBTA	Craniopharyngioma	Methylation	Progressive
@@ -672,7 +673,7 @@ PT_N3HVMV06	BS_NSB783DJ	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_76FCS92F	BS_NSKZ3H09	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_7WT6P5M8	BS_NV6NQHM2	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_0SRRNSAS	BS_NVK7271A	PBTA	Ependymoma	Methylation	Initial CNS Tumor
-PT_NPETR8RY	BS_NWASTET4	PBTA	Ependymoma	Methylation	Initial CNS Tumor
+PT_PR4YBBH3	BS_NW4MHHTV	PBTA	Diffuse intrinsic pontine glioma	Methylation	Progressive
 PT_FKWCVXNC	BS_NX9DC0TN	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_0DR71Q13	BS_NZ133AHZ	PBTA	Ganglioneuroblastoma	Methylation	Initial CNS Tumor
 PT_AQ2Q3JMC	BS_P0DQGW6A	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -690,7 +691,6 @@ PT_KBA2VNA2	BS_PCY5BW8K	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_98QMQZY7	BS_PDNXHWQ8	PBTA	CNS Embryonal tumor	Methylation	Initial CNS Tumor
 PT_27D0WQR9	BS_PFP2M6BM	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_DH8A0SNQ	BS_PGNB51T2	PBTA	Teratoma	Methylation	Progressive
-PT_BNARR0N6	BS_PH6CH643	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_GFTCNWQ0	BS_PKRW6939	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_23K3YS1P	BS_PKVK8JFS	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_Y585X1BS	BS_PKYWRC61	PBTA	High-grade glioma/astrocytoma	Methylation	Recurrence
@@ -698,7 +698,6 @@ PT_JN3EN2HR	BS_PM2MVP4E	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_R4T1V1K4	BS_PM73CEV7	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_AZQ230WT	BS_PND839Z0	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_VVCN8DXT	BS_PNS8DGQR	PBTA	Gliomatosis Cerebri	Methylation	Initial CNS Tumor
-PT_T2M1338J	BS_PQGTDT71	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_DEYCW197	BS_PRF3V7DZ	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_ATE3YRH5	BS_PSR9HVZT	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_MV7Y44QQ	BS_PTRRVESF	PBTA	NA	Methylation	Initial CNS Tumor
@@ -715,7 +714,9 @@ PT_WWZ2Q14R	BS_Q1AHDMR6	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_S4YNE17X	BS_Q2CFP829	PBTA	Schwannoma	Methylation	Initial CNS Tumor
 PT_CWD717Q0	BS_Q37DRN94	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
 PT_QPY0H50V	BS_Q3YR7RM9	PBTA	Inflammatory Myofibroblastic Tumor	Methylation	Progressive
+PT_9S6WMQ92	BS_Q400D66E	PBTA	Medulloblastoma	Methylation	Progressive
 PT_GB5MHYE2	BS_Q4ZSATCT	PBTA	Ependymoma	Methylation	Progressive
+PT_962TCBVR	BS_Q5PQA328	PBTA	Low-grade glioma/astrocytoma	Methylation	Recurrence
 PT_3MNY9BRY	BS_Q61KTESW	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_H024RK87	BS_Q6T1BM6K	PBTA	NA	Methylation	Recurrence
 PT_YV2S3ES7	BS_Q7PP5YJN	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
@@ -755,7 +756,6 @@ PT_Y7S54R98	BS_RBV58RF5	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_HXRGX93V	BS_RCBCFYWA	PBTA	Ependymoma	Methylation	Recurrence
 PT_1TB2V1PH	BS_RCZ5BEXW	PBTA	Germinoma	Methylation	Initial CNS Tumor
 PT_N32BYY8A	BS_RFJN5JSA	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
-PT_7DTGJYA7	BS_RFJWSR7P	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_S0Q27J13	BS_RJMW12ZA	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_084D4KS4	BS_RK04GPWZ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_YFS3AWC0	BS_RMBFCQFB	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
@@ -805,6 +805,7 @@ PT_VBVZ2NAR	BS_SHMXPXA4	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_4XWYZYJS	BS_SHRMVXVC	PBTA	NA	Methylation	Initial CNS Tumor
 PT_1EB5KHZX	BS_SJNWG0BD	PBTA	NA	Methylation	Initial CNS Tumor
 PT_EEKE0V9T	BS_SJSGGF0Y	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
+PT_RJ1TJ2KH	BS_SK7VDHHN	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_W60NH89E	BS_SKC90W9X	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_7RMS6K08	BS_SKGSC6PE	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_5E0ZXETV	BS_SKJ6HZAK	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -823,20 +824,18 @@ PT_7MZRW1DH	BS_T2DM3BW8	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initia
 PT_A4KA01ZH	BS_T3M9V6Q6	PBTA	Teratoma	Methylation	Initial CNS Tumor
 PT_X1PRY0FC	BS_T7FGWZC1	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_EZS4SRH6	BS_T7SSWRA0	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
-PT_ZZRBX5JT	BS_T89RQNXB	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_T4VN7ZRB	BS_TA6KZ7QQ	PBTA	Ependymoma	Methylation	Progressive
 PT_W3FSA7NH	BS_TAB4FCRP	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_G1QNGVCZ	BS_TB9SQHA4	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_ESC6NXTS	BS_TCV64VWQ	PBTA	Ependymoma	Methylation	Initial CNS Tumor
-PT_7M2PGCBV	BS_TDFCRS7E	PBTA	Meningioma	Methylation	Initial CNS Tumor
 PT_32H0CD1P	BS_TDKWCJ43	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_D6AJHDST	BS_TDXY6H8G	PBTA	Ependymoma	Methylation	Recurrence
-PT_04V47WFC	BS_TFPBSRP7	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_V8714N9H	BS_TGYBV2KP	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_BDNE55YT	BS_TH4E3NA8	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_5GQ76YZJ	BS_TH5KHX4M	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_AWBPNFM5	BS_THQ3HXFG	PBTA	Ganglioglioma	Methylation	Initial CNS Tumor
 PT_B54PH840	BS_THY47V4T	PBTA	Pineoblastoma	Methylation	Initial CNS Tumor
+PT_7M2PGCBV	BS_TKS3KBF7	PBTA	Meningioma	Methylation	Recurrence
 PT_X5TQR8V2	BS_TME3CH5P	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_2QZJ4T95	BS_TMEH787Y	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_GY0QSY4H	BS_TPHCQNF2	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
@@ -844,6 +843,8 @@ PT_CTSQ5FHH	BS_TPWNZVQ1	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_S4H6KA09	BS_TQ5BX015	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_PABK01H0	BS_TRDMP775	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_P1F0AHMT	BS_TRSPTHMM	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
+PT_AP658JQV	BS_TSMY09VT	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
+PT_AQWDQW27	BS_TT0R88ZT	PBTA	Meningioma	Methylation	Progressive
 PT_41RR5FQD	BS_TTXVFB85	PBTA	Teratoma	Methylation	Initial CNS Tumor
 PT_MNR94DEV	BS_TY5BXJN9	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_S0C82YW8	BS_V0Z8ET1G	PBTA	Ependymoma	Methylation	Initial CNS Tumor
@@ -879,7 +880,6 @@ PT_M0FVZ88D	BS_VQKQ2CSZ	PBTA	Meningioma	Methylation	Initial CNS Tumor
 PT_JEW5HG4W	BS_VTHR1XMM	PBTA	Meningioma	Methylation	Second Malignancy
 PT_GY99ZJHV	BS_VTTMSAK9	PBTA	NA	Methylation	Initial CNS Tumor
 PT_6N825561	BS_VVVAAAXD	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
-PT_3VCS1PPF	BS_VW3NBEV9	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_3P3D97AB	BS_VXQV7GX2	PBTA	Neurofibroma/Plexiform	Methylation	Initial CNS Tumor
 PT_MNHMAH0S	BS_VXQX0JPW	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_RKECV80K	BS_VZWB13M0	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -889,7 +889,6 @@ PT_S7WJ99PC	BS_W2T8BBBG	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CN
 PT_8RB7TPS2	BS_W435B0S2	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_1MW98VR1	BS_W55EBKYC	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_KZ04SDDS	BS_W57KS1XE	PBTA	High-grade glioma/astrocytoma	Methylation	Progressive
-PT_ESHACWF6	BS_W6A0VXVR	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_ZBX1SSFG	BS_W6T4RR41	PBTA	Neurofibroma/Plexiform	Methylation	Initial CNS Tumor
 PT_DFQAH7RS	BS_W6VHMNJP	PBTA	Ganglioglioma	Methylation	Recurrence
 PT_EB0D3BXG	BS_W808K35Z	PBTA	Neuroblastoma	Methylation	Progressive
@@ -901,7 +900,6 @@ PT_1N6ATKJS	BS_WDE40ZAY	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressiv
 PT_YBJYA2CD	BS_WEQGYFZ8	PBTA	NA	Methylation	Initial CNS Tumor
 PT_HJA1ZYS1	BS_WET2B29A	PBTA	NA	Methylation	Initial CNS Tumor
 PT_89HXDTTW	BS_WFN3ZZK2	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
-PT_962TCBVR	BS_WHKQBZG4	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_1KEER2Q1	BS_WJRMCDCY	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_RQ21EBK9	BS_WKNHM9QK	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_9YNQJZ5G	BS_WMSJC65B	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
@@ -918,7 +916,6 @@ PT_VR8T8JX8	BS_X09QGCHP	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_FMK5VFYW	BS_X11BE7CV	PBTA	CNS Embryonal tumor	Methylation	Progressive
 PT_5CKDR2SF	BS_X2FVRH45	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Initial CNS Tumor
 PT_MQHST8YC	BS_X2S37Y4C	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
-PT_W7FK539G	BS_X36SF91S	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_K2YDNZDA	BS_X3CRNZWC	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_BXXZE0CQ	BS_X3Q9E03X	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_CX58G6P6	BS_X4FED3TW	PBTA	Meningioma	Methylation	Initial CNS Tumor
@@ -939,10 +936,10 @@ PT_C2D4JXS1	BS_XPBRB9S7	PBTA	High-grade glioma/astrocytoma	Methylation	Initial C
 PT_0WMP712K	BS_XPV22DSD	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_Z0JKP1GY	BS_XPZXMMEG	PBTA	High-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_DESHZ91V	BS_XQ5CSC8B	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
+PT_2FVTD0WR	BS_XSME1PXF	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_RMK36R2E	BS_XT819MS0	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_K63972GG	BS_XVE841YY	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_PNED3GG3	BS_XVGVAJW4	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
-PT_EV71W1JW	BS_XVNPADPR	PBTA	Metastatic secondary tumors	Methylation	Initial CNS Tumor
 PT_B38P3Y5T	BS_XWAT4JQM	PBTA	Diffuse intrinsic pontine glioma	Methylation	Initial CNS Tumor
 PT_409Y4N1N	BS_XWG2E2Z3	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_N56EYD4Z	BS_XYW5TDGJ	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
@@ -969,7 +966,6 @@ PT_6PYNBA9C	BS_YD8K8Z9Z	PBTA	NA	Methylation	Initial CNS Tumor
 PT_XWVQW6JX	BS_YDHW508X	PBTA	Low-grade glioma/astrocytoma	Methylation	Progressive
 PT_JMW6Q6NH	BS_YDXYS3Y2	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_6QXP9GQT	BS_YE50GZ8R	PBTA	Ependymoma	Methylation	Initial CNS Tumor
-PT_TKWTTRQ7	BS_YG0FSCMM	PBTA	Medulloblastoma	Methylation	Initial CNS Tumor
 PT_D6W7HYAS	BS_YK0HQG2M	PBTA	Hemangioblastoma	Methylation	Initial CNS Tumor
 PT_7FSE9DD5	BS_YKFX7YSV	PBTA	Ependymoma	Methylation	Recurrence
 PT_5W2PKFK6	BS_YKWSNZ5A	PBTA	Ependymoma	Methylation	Recurrence
@@ -1007,8 +1003,9 @@ PT_RX1EWBP9	BS_ZDM8Y1XM	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progre
 PT_VZT2KXZ6	BS_ZE5SA1H4	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_7KTAH3RD	BS_ZEVFYYB9	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
 PT_P1290MMP	BS_ZFCXH22E	PBTA	Neuroblastoma	Methylation	Progressive
+PT_ZZRBX5JT	BS_ZGAEK877	PBTA	Ependymoma	Methylation	Progressive
 PT_0CRPE7YP	BS_ZGR0PYE5	PBTA	Craniopharyngioma	Methylation	Initial CNS Tumor
-PT_Z4GS3ZQQ	BS_ZH0HTV7S	PBTA	Ependymoma	Methylation	Initial CNS Tumor
+PT_3R0P995B	BS_ZJ36E1SR	PBTA	Ependymoma	Methylation	Progressive
 PT_V07ZH5JS	BS_ZJWVAEAA	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
 PT_F9G665B1	BS_ZMPXP57K	PBTA	Ependymoma	Methylation	Initial CNS Tumor
 PT_41WETNRC	BS_ZNRHJ49Y	PBTA	Low-grade glioma/astrocytoma	Methylation	Initial CNS Tumor
@@ -1030,25 +1027,25 @@ PABLDZ	TARGET-20-PABLDZ-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Prim
 PADYIR	TARGET-20-PADYIR-03A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PADZCG	TARGET-20-PADZCG-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAECCE	TARGET-20-PAECCE-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PAEDKB	TARGET-20-PAEDKB-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PAEDKB	TARGET-20-PAEDKB-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PAEERJ	TARGET-20-PAEERJ-03A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAEFGR	TARGET-20-PAEFGR-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAEFGT	TARGET-20-PAEFGT-03A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PAEIKD	TARGET-20-PAEIKD-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PAEIKD	TARGET-20-PAEIKD-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PAKERZ	TARGET-20-PAKERZ-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PAKIWK	TARGET-20-PAKIWK-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PAKIWK	TARGET-20-PAKIWK-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PAKSMZ	TARGET-20-PAKSMZ-03A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAKTCX	TARGET-20-PAKTCX-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PAKVGI	TARGET-20-PAKVGI-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PAKVGI	TARGET-20-PAKVGI-04A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PALGKX	TARGET-20-PALGKX-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PAMYAS	TARGET-20-PAMYAS-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAMYJX	TARGET-20-PAMYJX-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PANCSC	TARGET-20-PANCSC-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PANDER	TARGET-20-PANDER-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PANDIX	TARGET-20-PANDIX-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PANDIX	TARGET-20-PANDIX-04A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PANGDN	TARGET-20-PANGDN-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PANLIR	TARGET-20-PANLIR-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PANLLX	TARGET-20-PANLLX-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PANLLX	TARGET-20-PANLLX-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PANLRE	TARGET-20-PANLRE-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PANLXM	TARGET-20-PANLXM-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PANNHB	TARGET-20-PANNHB-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -1059,7 +1056,7 @@ PANYCG	TARGET-20-PANYCG-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Prim
 PANYNR	TARGET-20-PANYNR-03A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAPBEJ	TARGET-20-PAPBEJ-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PAPVZK	TARGET-20-PAPVZK-40A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
-PAPXRJ	TARGET-20-PAPXRJ-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PAPXRJ	TARGET-20-PAPXRJ-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PAPXWI	TARGET-20-PAPXWI-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARASV	TARGET-20-PARASV-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARBIU	TARGET-20-PARBIU-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -1070,15 +1067,15 @@ PARCUK	TARGET-20-PARCUK-04A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recu
 PARDMG	TARGET-20-PARDMG-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARFIW	TARGET-20-PARFIW-03A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARFXF	TARGET-20-PARFXF-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PARIMT	TARGET-20-PARIMT-03A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PARIMT	TARGET-20-PARIMT-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARNIA	TARGET-20-PARNIA-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARNNT	TARGET-20-PARNNT-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARNZW	TARGET-20-PARNZW-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PARPDS	TARGET-20-PARPDS-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PARPDS	TARGET-20-PARPDS-04A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARPPY	TARGET-20-PARPPY-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARSAN	TARGET-20-PARSAN-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARSHM	TARGET-20-PARSHM-03A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PARTAL	TARGET-20-PARTAL-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PARTAL	TARGET-20-PARTAL-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARUBT	TARGET-20-PARUBT-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PARUCB	TARGET-20-PARUCB-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PARUDL	TARGET-20-PARUDL-03A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -1090,7 +1087,7 @@ PARYVW	TARGET-20-PARYVW-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recu
 PASAUT	TARGET-20-PASAUT-03A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASBBE	TARGET-20-PASBBE-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASCFW	TARGET-20-PASCFW-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PASCGR	TARGET-20-PASCGR-03A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PASCGR	TARGET-20-PASCGR-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PASCRZ	TARGET-20-PASCRZ-03A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASGCE	TARGET-20-PASGCE-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASGMZ	TARGET-20-PASGMZ-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -1109,12 +1106,12 @@ PASRLS	TARGET-20-PASRLS-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Prim
 PASRTP	TARGET-20-PASRTP-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASTTW	TARGET-20-PASTTW-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASTUH	TARGET-20-PASTUH-09A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PASVVS	TARGET-20-PASVVS-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PASVVS	TARGET-20-PASVVS-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PASVYA	TARGET-20-PASVYA-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PASVYL	TARGET-20-PASVYL-04A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PASWAT	TARGET-20-PASWAT-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PASWLN	TARGET-20-PASWLN-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
-PASWPD	TARGET-20-PASWPD-09A-02D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
+PASWPD	TARGET-20-PASWPD-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PASZLJ	TARGET-20-PASZLJ-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PATDHA	TARGET-20-PATDHA-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
 PATIAK	TARGET-20-PATIAK-09A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Primary Tumor
@@ -1262,7 +1259,7 @@ PARFWB	TARGET-30-PARFWB-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARGDJ	TARGET-30-PARGDJ-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARGKK	TARGET-30-PARGKK-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARGUX	TARGET-30-PARGUX-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
-PARHAM	TARGET-30-PARHAM-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
+PARHAM	TARGET-30-PARHAM-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
 PARHYL	TARGET-30-PARHYL-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARIKF	TARGET-30-PARIKF-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PARIRD	TARGET-30-PARIRD-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
@@ -1304,7 +1301,7 @@ PASFRV	TARGET-30-PASFRV-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASGAP	TARGET-30-PASGAP-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
 PASGPY	TARGET-30-PASGPY-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASGUT	TARGET-30-PASGUT-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primary Tumor
-PASHFA	TARGET-30-PASHFA-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
+PASHFA	TARGET-30-PASHFA-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
 PASJYB	TARGET-30-PASJYB-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASJZC	TARGET-30-PASJZC-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASKJX	TARGET-30-PASKJX-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
@@ -1314,7 +1311,7 @@ PASMJG	TARGET-30-PASMJG-01A-01D.M	TARGET	Ganglioneuroblastoma	Methylation	Primar
 PASMNT	TARGET-30-PASMNT-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASNEF	TARGET-30-PASNEF-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASNML	TARGET-30-PASNML-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
-PASNPG	TARGET-30-PASNPG-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
+PASNPG	TARGET-30-PASNPG-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
 PASNZU	TARGET-30-PASNZU-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASPBZ	TARGET-30-PASPBZ-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PASPER	TARGET-30-PASPER-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
@@ -1355,9 +1352,9 @@ PATGLU	TARGET-30-PATGLU-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PATGWT	TARGET-30-PATGWT-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PATHKB	TARGET-30-PATHKB-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
 PATHVK	TARGET-30-PATHVK-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
-PATNKP	TARGET-30-PATNKP-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
-PATYIL	TARGET-30-PATYIL-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
-PAUDDK	TARGET-30-PAUDDK-01A-01D.M	TARGET	Neuroblastoma	Methylation	Primary Tumor
+PATNKP	TARGET-30-PATNKP-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
+PATYIL	TARGET-30-PATYIL-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
+PAUDDK	TARGET-30-PAUDDK-02A-01D.M	TARGET	Neuroblastoma	Methylation	Recurrence
 0A4HLD	TARGET-40-0A4HLD-01A-01D.M	TARGET	Osteosarcoma	Methylation	Primary Tumor
 0A4HMC	TARGET-40-0A4HMC-01A-01D.M	TARGET	Osteosarcoma	Methylation	Primary Tumor
 0A4HX8	TARGET-40-0A4HX8-01A-01D.M	TARGET	Osteosarcoma	Methylation	Primary Tumor
@@ -1521,7 +1518,7 @@ PAJNZU	TARGET-50-PAJNZU-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PAJPAR	TARGET-50-PAJPAR-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PAJPAU	TARGET-50-PAJPAU-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PAJPCM	TARGET-50-PAJPCM-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
-PAJPDC	TARGET-50-PAJPDC-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
+PAJPDC	TARGET-50-PAJPDC-02A-01D.M	TARGET	Wilms tumor	Methylation	Recurrence
 PAJPDN	TARGET-50-PAJPDN-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PAJPEW	TARGET-50-PAJPEW-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PAJPGY	TARGET-50-PAJPGY-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
@@ -1565,7 +1562,7 @@ PALFRD	TARGET-50-PALFRD-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PALGAZ	TARGET-50-PALGAZ-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PALGLU	TARGET-50-PALGLU-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PALGVY	TARGET-50-PALGVY-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
-PALJIP	TARGET-50-PALJIP-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
+PALJIP	TARGET-50-PALJIP-02A-01D.M	TARGET	Wilms tumor	Methylation	Recurrence
 PALKCW	TARGET-50-PALKCW-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PALKRS	TARGET-50-PALKRS-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor
 PALLCK	TARGET-50-PALLCK-01A-01D.M	TARGET	Wilms tumor	Methylation	Primary Tumor

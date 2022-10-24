@@ -9,7 +9,7 @@ author: Eric Wafula for Pediatric OpenTargets
 date: 01/10/2021
 ---
 
-Purpose: Remove Ensembl (ESNG) gene identifier in the mutation frequency tables, including SNV, CNV and fusion that are not in GENCODE v38 and Ensembl package 104.
+Purpose: Remove Ensembl (ESNG) gene identifier in the mutation frequency tables, including SNV, CNV and fusion that are not in GENCODE v39 and Ensembl package 104.
 
 
 ## Usage
@@ -47,6 +47,7 @@ gene_match_input_dir <- file.path(analyses_dir,  "gene_match/input")
 snv_results_dir <- file.path(analyses_dir,  "snv-frequencies/results")
 cnv_results_dir <- file.path(analyses_dir,  "cnv-frequencies/results")
 fusion_results_dir <- file.path(analyses_dir,  "fusion-frequencies/results")
+input_dir <- file.path(module_dir, "input")
 results_dir <- file.path(module_dir, "results")
 
 # Create results folder if it doesn't exist
@@ -55,16 +56,16 @@ if (!dir.exists(results_dir)) {
 }
 ```
 
-## Get Ensembl gene identifiers
+## Get input data
 
-Load GenCode gtf file
+Load GENECODE gtf file
 ```{r}
 # read file
-gtf <- file.path(data_dir, "gencode.v38.primary_assembly.annotation.gtf.gz")
-gencode_gtf <- rtracklayer::import(con = gtf) %>% as.data.frame() %>% tibble()
+gtf <- file.path(data_dir, "gencode.v39.primary_assembly.annotation.gtf.gz")
+gencode_gtf <- rtracklayer::import(con = gtf) %>% as.data.frame() %>% tibble::as_tibble()
 ```
 
-Get Ensembl identifiers
+Get GENCODE Ensembl identifiers
 ```{r}
 # filter for gene rows and get ids
 ensg_ids <- gencode_gtf %>% 
@@ -78,11 +79,16 @@ ensg_ids <- ensg_ids[!is.na(ensg_ids)]
 rm(gencode_gtf)
 ```
 
+Get deprecated Open Targets Ensembl identifiers
+```{r}
+# load OT deprecated ensembl IDs 
+ot_ensg_ids <- readr::read_lines(file.path(input_dir, "MTP_v11_InvalidENSG_20220831.txt"))
+```
+
 Get PMTL Ensembl identifiers
 ```{r}
 # filter for gene rows and get ids
-pmtl_df <- readr::read_tsv(file.path(gene_match_input_dir, "PMTL_v1.1.tsv"),
-                           show_col_types = FALSE)
+pmtl_df <- readr::read_tsv(file.path(gene_match_input_dir, "PMTL_v1.1.tsv"))
 pmtl_ids <-pmtl_df %>% 
   pull(Ensembl_ID) %>% 
   unique() 
@@ -93,7 +99,7 @@ rm(pmtl_df)
 Get OpenPedCan sample IDs (Kids_First_Biospecimen_ID)
 ```{r}
 sample_ids <- readr::read_tsv(file.path(data_dir, "histologies.tsv"), 
-                              guess_max = 10000, show_col_types = FALSE) %>% 
+                              guess_max = 10000) %>% 
   dplyr::filter(sample_type == "Tumor") %>% 
   dplyr::select(Kids_First_Biospecimen_ID, cohort)
 ```
@@ -103,20 +109,21 @@ sample_ids <- readr::read_tsv(file.path(data_dir, "histologies.tsv"),
 Function to filter for required Ensembl gene identifiers and write to file
 ```{r}
 
-filter_freq_table <- function(freq_file, ensg_ids) {
+filter_freq_table <- function(freq_file, ensg_ids, ot_ensg_ids) {
   
   # Read gene level table 
-  freq_table <-  readr::read_tsv(freq_file, guess_max = 10000, 
-                                 show_col_types = FALSE) 
+  freq_table <-  readr::read_tsv(freq_file, guess_max = 10000) 
   
   # Write filtered TSV file
   file_name <- basename(freq_file)
-  freq_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>% 
-  readr::write_tsv(file.path(results_dir, file_name))
+  freq_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>%
+    dplyr::filter(!targetFromSourceId %in% ot_ensg_ids) %>%
+    readr::write_tsv(file.path(results_dir, file_name))
 
   # Write filtered JSON file
   json_file <- paste(unlist(str_split(file_name, "\\."))[1], "json", sep = ".")
-  freq_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>% 
+  freq_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>%
+    dplyr::filter(!targetFromSourceId %in% ot_ensg_ids) %>%
     jsonlite::write_json(file.path(results_dir,  json_file))  
 
 return(freq_table)
@@ -128,11 +135,11 @@ return(freq_table)
 # Remove Ensembl gene identifiers
 gene_level_snv <- filter_freq_table(
   file.path(snv_results_dir, 
-            "gene-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids) 
+            "gene-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- gene_level_snv %>% 
-  dplyr::filter(!targetFromSourceId %in% ensg_ids) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -141,16 +148,16 @@ filtered_ensg <- gene_level_snv %>%
 consensus_ensg <- data.table::fread(
   file.path(data_dir, "snv-consensus-plus-hotspots.maf.tsv.gz"), 
   select = c("Tumor_Sample_Barcode", "Gene"), showProgress = FALSE) %>% 
-  tibble() %>% 
+  tibble::as_tibble() %>% 
   dplyr::filter(!is.na(Gene)) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID = Tumor_Sample_Barcode) %>% 
   dplyr::distinct()
 
-# merge sample IDs to the ENSG IDs not in gencode v38
+# merge sample IDs to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(consensus_ensg, by=c("Ensembl_ID" = "Gene"))
 
-# merge OpenPedCan cohorts to the ENSG IDs not in gencode v38
+# merge OpenPedCan cohorts to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(sample_ids, by= "Kids_First_Biospecimen_ID")
 
@@ -170,7 +177,7 @@ filtered_ensg %>% dplyr::filter(Ensembl_ID %in% pmtl_ids) %>%
   select(Ensembl_ID, Kids_First_Biospecimen_ID) %>% 
   dplyr::distinct()
 
-# Remove frequencies data frame
+# Remove data frames
 rm(gene_level_snv, filtered_ensg)
 ```
 
@@ -179,20 +186,20 @@ rm(gene_level_snv, filtered_ensg)
 # Remove Ensembl gene identifiers
 variant_level_snv <- filter_freq_table(
   file.path(snv_results_dir, 
-            "variant-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids) 
+            "variant-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- variant_level_snv %>% 
-  dplyr::filter(!targetFromSourceId %in% ensg_ids) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
 
-# merge sample IDs to the ENSG IDs not in gencode v38
+# merge sample IDs to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(consensus_ensg, by=c("Ensembl_ID" = "Gene"))
 
-# merge OpenPedCan cohorts to the ENSG IDs not in gencode v38
+# merge OpenPedCan cohorts to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(sample_ids, by= "Kids_First_Biospecimen_ID")
 
@@ -212,7 +219,7 @@ filtered_ensg %>% dplyr::filter(Ensembl_ID %in% pmtl_ids) %>%
   select(Ensembl_ID, Kids_First_Biospecimen_ID) %>% 
   dplyr::distinct()
 
-# Remove frequencies data frame
+# Remove data frames
 rm(variant_level_snv, filtered_ensg, consensus_ensg)
 ```
 
@@ -221,11 +228,11 @@ rm(variant_level_snv, filtered_ensg, consensus_ensg)
 # Remove Ensembl gene identifiers
 gene_level_cnv <- filter_freq_table(
   file.path(cnv_results_dir, 
-            "gene-level-cnv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids) 
+            "gene-level-cnv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- gene_level_cnv %>% 
-  dplyr::filter(!targetFromSourceId %in% ensg_ids) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -234,16 +241,16 @@ filtered_ensg <- gene_level_cnv %>%
 consensus_ensg <- data.table::fread(
   file.path(data_dir, "consensus_wgs_plus_cnvkit_wxs.tsv.gz"), 
   select = c("biospecimen_id", "ensembl"), showProgress = FALSE) %>% 
-  tibble() %>% 
+  tibble::as_tibble() %>% 
   dplyr::filter(!is.na(ensembl)) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID = biospecimen_id) %>% 
   dplyr::distinct()
 
-# merge sample IDs to the ENSG IDs not in gencode v38
+# merge sample IDs to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(consensus_ensg, by=c("Ensembl_ID" = "ensembl"))
 
-# merge OpenPedCan cohorts to the ENSG IDs not in gencode v38
+# merge OpenPedCan cohorts to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(sample_ids, by= "Kids_First_Biospecimen_ID")
 
@@ -263,7 +270,7 @@ filtered_ensg %>% dplyr::filter(Ensembl_ID %in% pmtl_ids) %>%
   select(Ensembl_ID, Kids_First_Biospecimen_ID) %>% 
   dplyr::distinct()
 
-# Remove frequencies data frame
+# Remove data frames
 rm(gene_level_cnv, filtered_ensg, consensus_ensg)
 ```
 
@@ -272,11 +279,11 @@ rm(gene_level_cnv, filtered_ensg, consensus_ensg)
 # Remove Ensembl gene identifiers
 fusion <- filter_freq_table(
   file.path(fusion_results_dir, 
-            "putative-oncogene-fusion-freq.tsv.gz"), ensg_ids) 
+            "putative-oncogene-fusion-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- fusion %>% 
-  dplyr::filter(!targetFromSourceId %in% ensg_ids) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
   dplyr::select(FusionName, Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -285,7 +292,7 @@ filtered_ensg <- fusion %>%
 fusion_names <- data.table::fread(
   file.path(data_dir, "fusion-putative-oncogenic.tsv"), 
   select = c("Sample", "FusionName"), showProgress = FALSE) %>% 
-  tibble() %>% 
+  tibble::as_tibble() %>% 
   tidyr::separate_rows(FusionName, sep = "--", convert = FALSE) %>% 
   tidyr::separate_rows(FusionName, sep = '/', convert = FALSE) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID = Sample, 
@@ -293,13 +300,13 @@ fusion_names <- data.table::fread(
   dplyr::filter(!is.na(Gene_symbol)) %>% 
   dplyr::distinct() 
 
-# merge sample IDs to the ENSG IDs not in gencode v38
+# merge sample IDs to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(fusion_names, by="Gene_symbol") %>% 
   dplyr::select(-FusionName) %>% 
   dplyr::distinct()
 
-# merge OpenPedCan cohorts to the ENSG IDs not in gencode v38
+# merge OpenPedCan cohorts to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(sample_ids, by = "Kids_First_Biospecimen_ID")
 
@@ -328,21 +335,21 @@ rm(fusion, filtered_ensg)
 # Remove Ensembl gene identifiers
 fused_gene <- filter_freq_table(
   file.path(fusion_results_dir, 
-            "putative-oncogene-fused-gene-freq.tsv.gz"), ensg_ids) 
+            "putative-oncogene-fused-gene-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- fused_gene %>% 
-  dplyr::filter(!targetFromSourceId %in% ensg_ids) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
 
-# merge sample IDs to the ENSG IDs not in gencode v38
+# merge sample IDs to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(fusion_names, by = "Gene_symbol") %>% 
   dplyr::distinct()
 
-# merge OpenPedCan cohorts to the ENSG IDs not in gencode v38
+# merge OpenPedCan cohorts to the ENSG IDs not in gencode v39
 filtered_ensg <- filtered_ensg %>% 
   dplyr::left_join(sample_ids, by = "Kids_First_Biospecimen_ID")
 

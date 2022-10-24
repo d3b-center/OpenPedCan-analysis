@@ -16,11 +16,11 @@ SCRATCHDIR=../../scratch/copy_consensus
 mkdir -p $SCRATCHDIR
 mkdir -p results
 
-## Run the python script to go from 1 big manta file, cnvkit file and freec file into 3 directories. 
+## Run the python script to go from 1 big gatk file, cnvkit file and freec file into 3 directories.
 ## Each directory with individual sample files.
 
 python3 scripts/merged_to_individual_files.py \
-    --manta ../../data/sv-manta.tsv.gz \
+    --gatk input/cnv-gatk.seg.gz \
     --cnvkit ../../data/cnv-cnvkit.seg.gz \
     --freec ../../data/cnv-controlfreec.tsv.gz \
     --histologies ../../data/histologies.tsv \
@@ -33,7 +33,7 @@ python3 scripts/merged_to_individual_files.py \
 ## This Snakemake is to produce copy number consensus, it:
 ## 1) Filters out the CNVs results of the 3 call methods
 ## 2) Performs a reciprocal comparison between 2 call methods to find common CNVs agreed upon by those 2 methods
-## 3) Repeats step 2 for all pairs made from the 3 call methods 
+## 3) Repeats step 2 for all pairs made from the 3 call methods
 ## 4) Finally merges the consensus calls together into one big consensus file
 
 ## The snakemake flag options are:
@@ -48,5 +48,4 @@ snakemake \
     -s Snakefile \
     --configfile $SCRATCHDIR/config_snakemake.yaml \
     -j \
-    --restart-times 2 
-
+    --restart-times 2

@@ -8,35 +8,53 @@
 set -e
 set -o pipefail
 
-# All file paths in this bash script are based on root directory of this Git repository,
-# therefore the script should always be run from the root directory of OPenPedCan-analysis
-# Adapted from OpenPBTA analysis modules
+# This script should always run as if it were being called from
+# the directory it lives in.
+script_directory="$(perl -e 'use File::Basename;
+ use Cwd "abs_path";
+ print dirname(abs_path(@ARGV[0]));' -- "$0")"
+cd "$script_directory" || exit
+
+# Set up paths to data files consumed by analysis
+data_dir="../../data"
+
+# Set up paths to to write result files 
+results_dir="./results"
 
 # Histology file path 
-histology_file=data/histologies.tsv
+histology_file="${data_dir}/histologies.tsv"
 
 # CNV consensus file path
-cnv_file=data/consensus_wgs_plus_cnvkit_wxs.tsv.gz
+cnv_file="${data_dir}/consensus_wgs_plus_cnvkit_wxs.tsv.gz"
 
 # All cohorts independent primary tumor samples file path
-all_cohorts_primary_tumors=data/independent-specimens.wgswxspanel.primary.tsv
+all_cohorts_primary_tumors="${data_dir}/independent-specimens.wgswxspanel.primary.prefer.wgs.tsv"
 
 # All cohorts independent relapse tumor samples file path
-all_cohorts_relapse_tumors=data/independent-specimens.wgswxspanel.relapse.tsv
+all_cohorts_relapse_tumors="${data_dir}/independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv"
 
 # Each cohort independent primary tumor samples file path
-each_cohort_primary_tumors=data/independent-specimens.wgswxspanel.primary.eachcohort.tsv
+each_cohort_primary_tumors="${data_dir}/independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv"
 
 # Each cohort independent relapse tumor samples file path
-each_cohort_relapse_tumors=data/independent-specimens.wgswxspanel.relapse.eachcohort.tsv
+each_cohort_relapse_tumors="${data_dir}/independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv"
 
-####### compute CNV frequencies #############
-python3 analyses/cnv-frequencies/01-cnv-frequencies.py $histology_file $cnv_file $all_cohorts_primary_tumors $all_cohorts_relapse_tumors $each_cohort_primary_tumors $each_cohort_relapse_tumors
+####### remove previous results if they exsist ##########################
+rm -f ${results_dir}/gene-level-cnv-consensus-annotated-mut-freq.jsonl.gz
+rm -f ${results_dir}/gene-level-cnv-consensus-annotated-mut-freq.tsv.gz
 
-####### compress the result files ######################
-gzip analyses/cnv-frequencies/results/gene-level-cnv-consensus-annotated-mut-freq*
+####### compute CNV frequencies #########################################
+python3 01-cnv-frequencies.py \
+	$histology_file \
+	$cnv_file \
+	$all_cohorts_primary_tumors \
+	$all_cohorts_relapse_tumors \
+	$each_cohort_primary_tumors \
+	$each_cohort_relapse_tumors
 
-####### remove intermediate temporary and log files ######################
-rm -f analyses/cnv-frequencies/results/annotator.log
-rm -f analyses/cnv-frequencies/results/gene-level-cnv-consensus-mut-freq.tsv
+####### compress the result files #######################################
+gzip ${results_dir}/gene-level-cnv-consensus-annotated-mut-freq*
 
+####### remove intermediate temporary and log files #####################
+rm -f ${results_dir}/annotator.log
+rm -f ${results_dir}/gene-level-cnv-consensus-mut-freq.tsv

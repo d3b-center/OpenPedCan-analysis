@@ -42,6 +42,7 @@ if os.stat(args.file).st_size == 0:
 ## Use pandas to read in the bed file.
 ## Since Manta doesn't have copy numbers and "NA" is used for Manta's copy numbers, we need
 ## the "keep_default_na" so that the "NA"s don't get converted into NaN by pandas
+## This may be irrelevant with Manta being removed, but is being retained just in case
 else:
     file = pd.read_csv(args.file, delimiter='\t', header=None, keep_default_na=False)
 

@@ -13,7 +13,7 @@ source(file.path(analysis_dir, "util", "independent-rna-samples.R"))
 
 
 # read histology file
-histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies-base.tsv'), guess_max=100000, show_col_types = FALSE)
+histology_df <- readr::read_tsv(file.path(root_dir, 'data/histologies-base.tsv'), guess_max=100000)
 
 # randomize rows of histology file to avoid selection bias
 set.seed(100)
@@ -24,7 +24,9 @@ histology_df <- histology_df[sample(nrow(histology_df)), ]
 rnaseq_samples <- histology_df %>%
   dplyr::filter(sample_type == "Tumor", 
                 composition != "Derived Cell Line", 
-                experimental_strategy == "RNA-Seq")
+                experimental_strategy == "RNA-Seq",
+                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+                       fixed = FALSE, useBytes = FALSE))
 
 print(nrow(rnaseq_samples))
 # generate release RNA-Seq independent samples for all cohorts

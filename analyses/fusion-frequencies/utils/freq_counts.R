@@ -71,10 +71,13 @@ collapse_rp_lists <- function(xl) {
 # Args:
 # - histology_df: a tibble of histology information. Must contain the following
 # fields: Kids_First_Biospecimen_ID, cancer_group, cohort.
-#
+# - all_cohorts: a vector of cohorts to include in the all cohorts calculation. 
+# By default uses all cohorts present in histology_df, but if cohorts need to be
+# excluded from the all cohorts calculation, for example CHOP DGD panel data,
+# a vector can be supplied of the cohorts to be Included (adapted by Kelsey Keith in snv-frequencies). 
 # Returns a tibble. For each cancer_group, create a record of each cohort and
 # a comma-separated-list of all cohorts. Combine and remove duplicates.
-get_cg_cs_tbl <- function(histology_df) {
+get_cg_cs_tbl <- function(histology_df, all_cohorts = unique(histology_df$cohort)) {
   fh_df <- histology_df %>%
     filter(!is.na(Kids_First_Biospecimen_ID),
            !is.na(cancer_group),
@@ -89,6 +92,7 @@ get_cg_cs_tbl <- function(histology_df) {
     ungroup()
   
   fh_1cg_all_cs_df <- fh_df %>%
+    filter(cohort %in% all_cohorts) %>%  
     group_by(cancer_group) %>%
     summarise(n_samples = n(),
               cohort_list = list(unique(cohort)),

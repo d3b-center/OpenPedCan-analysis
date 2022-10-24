@@ -8,10 +8,8 @@
 #' 
 #' 
 #' @param independent_dna_sample_df A data frame of samples, with columns 
-#' corresponding to those in `independent-specimens.wgswxspanel.primary.tsv` 
-#' or `independent-specimens.wgswxspanel.relapse.tsv` 
-#' or `independent-specimens.wgswxspanel.primary-plus.tsv` depending on what 
-#' set of samples you need to include
+#' corresponding to those in produced by DNA independent samples scripts   
+#' depending on what set of samples you need to include
 #' @param histology_df A data frame of samples, with columns corresponding 
 #' to those `histologies.tsv`
 #' @param independent_level Designates whether we want to count independent samples in 
@@ -26,7 +24,7 @@
 #' "none" to include only rnaseq samples
 #' @param tumor_description_rna_only Tumor descriptors to select samples where
 #' only RNA samples are available and will have no matching id in independent_dna_sample_df
-#' Ope=tions are "primary" to select only primary/initial tumors. Primary tumors are defined as those designated "Initial CNS Tumor"+ "Primary Tumor".
+#' Options are "primary" to select only primary/initial tumors. Primary tumors are defined as those designated "Initial CNS Tumor"+ "Primary Tumor".
 #' "primary_plus" if you would like to select other non-initial tumor RNA-Seq sample if no 
 #' initial tumor RNA-Seq sample exists
 #' or "relapse" in select only relapse tumors. Relapse tumors are defined as those designated by "Recurrence", "Recurrent Tumor","Recurrent tumor","Progressive","Progressive Disease Post-Mortem" in `tumor_descriptor` field
@@ -138,7 +136,7 @@ independent_rna_samples <- function(independent_dna_sample_df = NULL,
                     # and participant not in only_rna_primary sample set
                     !Kids_First_Participant_ID %in% only_rna_primary$Kids_First_Participant_ID
                     )
-    # has rna samples which match the independent samples provided plus rna only sample which are primary tumors plus rna samples where no primary primaries exists
+    # has rna samples which match the independent samples provided plus rna only sample which are primary tumors plus rna samples where no primary samples exists
     sample_df <- bind_rows(matched_rna, only_rna_primary, only_rna_plus)
   } 
   

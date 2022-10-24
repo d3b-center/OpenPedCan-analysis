@@ -1,0 +1,5 @@
+Kids_First_Biospecimen_ID	Kids_First_Participant_ID	experimental_strategy	sample_type	RNA_library	cohort
+BS_BZ4GKDP4	PT_B0JFCN5W	WGS	Tumor	NA	PBTA
+BS_C3KDA5ZC	PT_YQWG98Z5	WGS	Tumor	NA	PBTA
+BS_D2BZ25FW	PT_6N1QWCXE	WGS	Tumor	NA	PBTA
+BS_XKXDH0YJ	PT_5SNX4PMK	WGS	Tumor	NA	PBTA

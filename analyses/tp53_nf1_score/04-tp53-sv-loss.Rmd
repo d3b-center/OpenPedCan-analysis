@@ -48,6 +48,9 @@ if ( params$base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)  
 }
 
+# recording of "BS_ETC8R0TD" GMKF NBL sample; needs to be remove once updated in v12
+clinical$RNA_library[clinical$Kids_First_Biospecimen_ID == "BS_ETC8R0TD"] <- "stranded"
+
 histology <- dplyr::select(clinical,c("Kids_First_Biospecimen_ID", "sample_id"))
 
 # high confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd`

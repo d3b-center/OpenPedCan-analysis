@@ -1,0 +1,4 @@
+Kids_First_Biospecimen_ID	Kids_First_Participant_ID	experimental_strategy	sample_type	RNA_library	cohort
+TCGA-DK-A6AW-01A-11R-A30C-07	A6AW	RNA-Seq	Tumor	poly-A	TCGA
+TCGA-E7-A97Q-01A-11R-A38B-07	A97Q	RNA-Seq	Tumor	poly-A	TCGA
+TCGA-W5-AA2R-01A-11R-A41I-07	AA2R	RNA-Seq	Tumor	poly-A	TCGA
