@@ -211,8 +211,9 @@ get_output_ss_df <- function(ss_df, gsb_gid_df) {
     as.integer(0),
     sum(is.na(select(ss_out_df, gene_id, gene_symbol)))
   ))
-  rm_na_ss_out_df <- mutate_all(
-    ss_out_df, function(x) replace_na(x, replace = ''))
+  #ss_out_df[is.nan(ss_out_df)] <- 0
+  
+  rm_na_ss_out_df <- ss_out_df %>% mutate_all(~replace(., is.nan(.), 0)) %>% mutate_all(na_if,"")
   stopifnot(identical(as.integer(0), sum(is.na(rm_na_ss_out_df))))
   return(rm_na_ss_out_df)
 }
@@ -381,7 +382,7 @@ stopifnot(identical(
 # all cohorts independent sample table
 rna_ac_idps_df <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.rnaseq.primary.tsv'),
+            'independent-specimens.rnaseqpanel.primary.tsv'),
   col_types = cols(.default = col_guess()))
 
 rna_ac_idps_kfbids <- rna_ac_idps_df$Kids_First_Biospecimen_ID
@@ -400,7 +401,7 @@ stopifnot(all(rna_ac_htl_df$Kids_First_Biospecimen_ID %in% colnames(tpm_df)))
 # each cohort independent sample table
 rna_ec_idps_df <- read_tsv(
   file.path('../..', 'data',
-            'independent-specimens.rnaseq.primary.eachcohort.tsv'),
+            'independent-specimens.rnaseqpanel.primary.eachcohort.tsv'),
   col_types = cols(.default = col_guess()))
 
 rna_ec_idps_kfbids <- rna_ec_idps_df$Kids_First_Biospecimen_ID

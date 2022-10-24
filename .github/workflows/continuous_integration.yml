@@ -136,6 +136,9 @@ jobs:
           - name: Update table annotation data
             entrypoint: long-format-table-utils/run-update-long-format-table-utils.sh
 
+          - name: RNA-Seq Expression Summary stats
+            entrypoint: rna-seq-expression-summary-stats/run-rna-seq-expression-summary-stats.sh
+
           # MTP-specific modules
           - name: Fusion frequency tables
             entrypoint: fusion-frequencies/run-frequencies.sh
