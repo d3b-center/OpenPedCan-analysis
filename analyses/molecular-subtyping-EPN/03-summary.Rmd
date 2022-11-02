@@ -66,9 +66,34 @@ EPN_final <- read_tsv("results/EPN_all_data.tsv")
 EPN_final["subgroup"] = "EPN, To be classified"
 ```
 
+### Spinal prioritization
+
+We will first prioritize samples from spinal cord to be assigned to "EPN, SP" or "EPN, SP-MYCN" (if MYCN amplification also observed) as described in [reference]. These samples will not be considered for further subgrouping. 
+
+```{r}
+EPN_final <- EPN_final %>%
+  mutate(subgroup = ifelse(disease_group == "spinal" & consensus_focal_CN_MYCN == "amplification", "EPN, SP-MYCN", 
+                           ifelse(disease_group == "spinal", "EPN, SP", subgroup)))
+sp_samples_assigned <- EPN_final %>%
+  filter(subgroup == "EPN, SP") %>%
+  pull(sample_id)
+print(paste("Number of samples assigned for SP:", length(sp_samples_assigned)))
+sp_mycn_samples_assigned <- EPN_final %>%
+  filter(subgroup == "EPN, SP-MYCN") %>%
+  pull(sample_id)
+print(paste("Number of samples assigned for SP-MYCN:", length(sp_mycn_samples_assigned)))
+```
+
+### SP subgroup table
+
+```{r}
+viewDataTable(EPN_final %>%
+                filter(subgroup %in% c("EPN, SP", "EPN, SP-MYCN")))
+```
+
 ### Fusion prioritization
 
-We will prioritize RELA and YAP1 fusions based on evidence for these subgroups from Pajtler. et al. Fig.6
+We will next prioritize RELA and YAP1 fusions based on evidence for these subgroups from Pajtler. et al. Fig.6
 
 ### RELA gene fusions
 
@@ -82,7 +107,7 @@ df[] <- lapply(df, as.logical)
 EPN_final$tmp <- apply(df, MARGIN = 1, any)
 EPN_final$tmp[is.na(EPN_final$tmp)] <- FALSE
 EPN_final <- EPN_final %>%
-  mutate(subgroup = ifelse(tmp == TRUE, "EPN, ST RELA", subgroup)) %>%
+  mutate(subgroup = ifelse(subgroup == "EPN, To be classified" & tmp == TRUE, "EPN, ST RELA", subgroup)) %>%
   dplyr::select(-c(tmp))
 rela_samples_assigned <- EPN_final %>%
   filter(subgroup == "EPN, ST RELA") %>%

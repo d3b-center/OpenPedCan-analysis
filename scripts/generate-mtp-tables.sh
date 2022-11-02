@@ -22,25 +22,50 @@ cd "$SCRIPT_DIR" || exit
 FUSION_MODULE_DIR=$SCRIPT_DIR/../analyses/fusion-frequencies
 SNV_MODULE_DIR=$SCRIPT_DIR/../analyses/snv-frequencies
 CNV_MODULE_DIR=$SCRIPT_DIR/../analyses/cnv-frequencies
+TPM_MODULE_DIR=$SCRIPT_DIR/../analyses/rna-seq-expression-summary-stats
 
-# Run fusion-frequencies module and upload s3 bucket
+# Compile all the files that need to be included in the release in one place
+# in the scratch directory
+SCRATCH_DIR=$SCRIPT_DIR/../scratch
+RELEASE_DIR="$SCRATCH_DIR/$RELEASE"
+mkdir -p $RELEASE_DIR 
+
+# Run fusion-frequencies module and copy over to mpt-tables/ directory on scratch/ 
 printf "\n\nGenerating mtp fusion frequencies tables...\n\n"
 cd $FUSION_MODULE_DIR
 bash run-frequencies.sh
-aws s3 cp results/ $URL/$RELEASE/ --recursive --exclude "*" --include "*.tsv.gz" --include "*.jsonl.gz"
+cp results/*.tsv.gz $RELEASE_DIR
+cp results/*.jsonl.gz $RELEASE_DIR
 
-# Run snv-frequencies module
+# Run snv-frequencies module and copy over to mpt-tables/ directory on scratch/ 
 printf "\n\nGenerating mtp snv frequencies tables...\n\n"
 cd $SNV_MODULE_DIR
 bash run-snv-frequencies.sh
-aws s3 cp results/ $URL/$RELEASE/ --recursive --exclude "*" --include "*.tsv.gz" --include "*.jsonl.gz"
+cp results/*.tsv.gz $RELEASE_DIR
+cp results/*.jsonl.gz $RELEASE_DIR
 
 # Run cnv-frequencies module
 printf "\n\nGenrating mtp cnv frequencies tables...\n\n"
 cd $CNV_MODULE_DIR
 bash run-cnv-frequencies-analysis.sh
-aws s3 cp results/ $URL/$RELEASE/ --recursive --exclude "*" --include "*.tsv.gz" --include "*.jsonl.gz"
+cp results/*.tsv.gz $RELEASE_DIR
+cp results/*.jsonl.gz $RELEASE_DIR
 
-cd $SCRIPT_DIR
+# Run rna-seq-expression-summary-stats module
+printf "\n\nGenrating mtp tpm tables...\n\n"
+cd $TPM_MODULE_DIR
+bash run-rna-seq-expression-summary-stats.sh
+cp results/*_zscore.tsv.gz $RELEASE_DIR
+cp results/*.jsonl.gz $RELEASE_DIR
+
+# Create an md5sum file for all the files in mtp-tables directory
+cd $RELEASE_DIR
+# Remove old md5sum release file if it exists
+rm -f md5sum.txt
+# Create a new md5sum release file
+md5sum * > md5sum.txt
+
+# Upload all release and commit files s3 bucket in their respective folders
+aws s3 cp $RELEASE_DIR/ $URL/$RELEASE/ --recursive
 
 printf "\nDone generating mtp tables...\n\n"

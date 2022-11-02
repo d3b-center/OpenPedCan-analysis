@@ -10,7 +10,6 @@ suppressPackageStartupMessages({
   library(optparse)
 })
 
-# Parse command line options
 option_list <- list(
   make_option(c("--disease_group_file"), type = "character",
               help = "file with disease group info (tsv)"),
@@ -32,9 +31,12 @@ option_list <- list(
               help = "breaks density  SV summary file"),
   make_option(c("--focal_gene_cn"), 
               help = "focal-cn-file-preparation based on gene"),
+  make_option(c("--mutations"),
+              help = 'consensus snv results file'),
   make_option(c("--outfile"), type = "character",
               help = "subfile of the GISTIC zip folder that contains focal data fro CDKN2A")
 )
+
 opt <- parse_args(OptionParser(option_list = option_list))
 disease_group_file <- opt$disease_group_file
 gistic <- opt$gistic
@@ -46,6 +48,7 @@ fusion <- opt$fusion
 breakpoints_cnv <- opt$breakpoints_cnv
 breakpoints_sv <- opt$breakpoints_sv
 focal_gene_cn <- opt$focal_gene_cn
+mutations <- opt$mutations
 outfile <- opt$outfile
 
 # Reading GISTIC broad_values and focal_by_genefile for CNA
@@ -53,10 +56,18 @@ broad_CNA <- read_tsv(unz(gistic, subfile_gistic_broad))
 broad_CNA <- broad_CNA %>%
   column_to_rownames("Chromosome Arm")
 gistic_focalCN <- read_tsv(unz(gistic, subfile_gistic_focalbygene))
-gistic_focalCN <- gistic_focalCN %>%
+gistic_focalCN_CDKN2A <- gistic_focalCN %>%
   filter(`Gene Symbol` == "CDKN2A") %>%
   column_to_rownames("Gene Symbol")
-gistic_focalCN <- t(gistic_focalCN)
+gistic_focalCN_CDKN2A <- t(gistic_focalCN_CDKN2A)
+gistic_focalCN_MYCN <- gistic_focalCN %>%
+  filter(`Gene Symbol` == "MYCN") %>%
+  column_to_rownames("Gene Symbol")
+gistic_focalCN_MYCN <- t(gistic_focalCN_MYCN)
+gistic_focalCN_NF2 <- gistic_focalCN %>%
+  filter(`Gene Symbol` == "NF2") %>%
+  column_to_rownames("Gene Symbol")
+gistic_focalCN_NF2 <- t(gistic_focalCN_NF2)
 
 # Reading in gene set enrichment analyses file for GSEA scores for NFKB pathway
 gsva <- read_tsv(gsva)
@@ -87,7 +98,21 @@ breakpoint_density_sv <- breakpoint_density_sv %>%
 # Reading consensus focal CN results from analyses
 focal_cn_gene <- read_tsv(focal_gene_cn)
 focal_cn_gene_CDKN2A <- focal_cn_gene %>%
-  filter(gene_symbol == "CDKN2A") 
+  filter(gene_symbol == "CDKN2A" & status %in% c("amplification", "gain", "loss")) %>%
+  distinct(biospecimen_id, .keep_all = TRUE) %>%
+  column_to_rownames('biospecimen_id')
+focal_cn_gene_MYCN <- focal_cn_gene %>%
+  filter(gene_symbol == "MYCN" & status %in% c("amplification", "gain", "loss")) %>%
+  distinct(biospecimen_id, .keep_all = TRUE) %>%
+  column_to_rownames('biospecimen_id')
+focal_cn_gene_NF2 <- focal_cn_gene %>%
+  filter(gene_symbol == "NF2" & status %in% c("amplification", "gain", "loss")) %>%
+  distinct(biospecimen_id, .keep_all = TRUE) %>%
+  column_to_rownames('biospecimen_id')
+
+# Reading consensus snv results and filtering for EPN samples and NF2 mutations
+mutations <- data.table::fread(mutations) %>%
+  filter(Hugo_Symbol == "NF2")
 
 # Reading the input in a  dataframe
 EPN_notebook = read_tsv(disease_group_file)
@@ -132,6 +157,10 @@ EPN_notebook["11q_loss"] <- apply(EPN_notebook, MARGIN = 1, FUN = function(x)
   broad_CNA_fill_df(x = x, broad_CNA_data = broad_CNA, arm = "11q", loss_gain = "loss"))
 EPN_notebook["11q_gain"] <- apply(EPN_notebook, MARGIN = 1, FUN = function(x) 
   broad_CNA_fill_df(x = x, broad_CNA_data = broad_CNA, arm = "11q", loss_gain = "gain"))
+EPN_notebook["22p_loss"] <- apply(EPN_notebook, MARGIN = 1, FUN = function(x) 
+  broad_CNA_fill_df(x = x, broad_CNA_data = broad_CNA, arm = "22p", loss_gain = "loss"))
+EPN_notebook["22q_loss"] <- apply(EPN_notebook, MARGIN = 1, FUN = function(x) 
+  broad_CNA_fill_df(x = x, broad_CNA_data = broad_CNA, arm = "22q", loss_gain = "loss"))
 
 # This  function takes a dataframe whose values need to be used for final EPN_notebook  
 # based on row_name, the corresponding value is returned
@@ -169,15 +198,42 @@ EPN_notebook[,"breaks_density-chromosomal_instability_SV"] <- sapply(EPN_noteboo
 
 # Adding focal CN from GISTIC files for CDKN2A
 EPN_notebook[,"GISTIC_focal_CN_CDKN2A"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
-                                                  function(x) fill_df(sample = x, ref_df = gistic_focalCN, col_name = "CDKN2A", included_samples = cn_called_samples))
+                                                  function(x) fill_df(sample = x, ref_df = gistic_focalCN_CDKN2A, col_name = "CDKN2A", included_samples = cn_called_samples))
+EPN_notebook[,"GISTIC_focal_CN_MYCN"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
+                                                  function(x) fill_df(sample = x, ref_df = gistic_focalCN_MYCN, col_name = "MYCN", included_samples = cn_called_samples))
+EPN_notebook[,"GISTIC_focal_CN_NF2"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
+                                                function(x) fill_df(sample = x, ref_df = gistic_focalCN_NF2, col_name = "NF2", included_samples = cn_called_samples))
 
 # Adding focal CN from CDKN2A from CNV consensus files in analyses
 # Using status column from consensus_seg_annotated_cn_autosomes.tsv.gz file
-EPN_notebook[,"consensus_focal_CN_CDKN2"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
+EPN_notebook[,"consensus_focal_CN_CDKN2A"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
                                                     function(x) fill_df(sample = x, ref_df = focal_cn_gene_CDKN2A, col_name = "status", included_samples = cn_called_samples))
+EPN_notebook[,"consensus_focal_CN_MYCN"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
+                                                    function(x) fill_df(sample = x, ref_df = focal_cn_gene_MYCN, col_name = "status", included_samples = cn_called_samples))
+EPN_notebook[,"consensus_focal_CN_NF2"] <- sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA, 
+                                                   function(x) fill_df(sample = x, ref_df = focal_cn_gene_NF2, col_name = "status", included_samples = cn_called_samples))
+
+mutation_fill_df <- function(sample, ref_df, col_name, default = 0){
+  if(is.na(sample)) { # no results for this sample
+    return("NA")
+  } else if(!sample %in% ref_df$Tumor_Sample_Barcode){ # sample is not present in the reference data set, return default
+    return(default)
+  } else {
+    value <- ref_df[ref_df$Tumor_Sample_Barcode == sample, col_name]
+    return(value)
+  }
+}
+
+
+EPN_notebook[,"NF2_variant_HGVSc"] <- unlist(sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA,
+                                          function(x) mutation_fill_df(sample = x, ref_df = mutations, col_name = 'HGVSc')))
+EPN_notebook[,"NF2_variant_consequence"] <- unlist(sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA,
+                                          function(x) mutation_fill_df(sample = x, ref_df = mutations, col_name = 'Consequence')))
+EPN_notebook[,"NF2_variant_classification"] <- unlist(sapply(EPN_notebook$Kids_First_Biospecimen_ID_DNA,
+                                                   function(x) mutation_fill_df(sample = x, ref_df = mutations, col_name = 'Variant_Classification')))
 
 # Adding expression z-scores to dataframe
-genes_of_interest = c("RELA", "L1CAM", "ARL4D", "CLDN1", "CXorf67", "TKTL1", "GPBP1", "IFT46")
+genes_of_interest = c("RELA", "L1CAM", "ARL4D", "CLDN1", "CXorf67", "TKTL1", "GPBP1", "IFT46", "MYCN", "NF2")
 subset_df <- expr_dat[genes_of_interest, intersect(EPN_notebook$Kids_First_Biospecimen_ID_RNA, colnames(expr_dat))]
 # log2(x + 1) transform the expression matrix
 log_expression <- log2(subset_df + 1)

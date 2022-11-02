@@ -62,6 +62,14 @@ echo 'Remove JSON files...'
 rm results/long_n_tpm_mean_sd_quantile_group_wise_zscore.json
 rm results/long_n_tpm_mean_sd_quantile_gene_wise_zscore.json
 
+
+####### remove previous results if they exsist ##########################
+rm -f results/long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz
+rm -f results/long_n_tpm_mean_sd_quantile_group_wise_zscore.jsonl.gz
+rm -f results/long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz
+rm -f results/long_n_tpm_mean_sd_quantile_gene_wise_zscore.jsonl.gz
+
+
 # The --no-name option stops the filename and timestamp from being stored in the
 # output file. So rerun will have the same file.
 echo 'gzip TSV and JSONL files...'

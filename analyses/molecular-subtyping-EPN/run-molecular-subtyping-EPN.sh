@@ -23,6 +23,7 @@ BREAKPOINTS_CNV=../chromosomal-instability/breakpoint-data/cnv_breaks_densities.
 BREAKPOINTS_SV=../chromosomal-instability/breakpoint-data/sv_breaks_densities.tsv
 FOCAL_GENE_CN=../../data/consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz
 GISTIC_SUBFILE_FOCALBYGENE=cnv-consensus-gistic/focal_data_by_genes.txt
+SNVs=../../data/snv-consensus-plus-hotspots.maf.tsv.gz
 EPN_TABLE=results/EPN_all_data.tsv
 
 # make the subset and results directory if they don't exist
@@ -54,6 +55,7 @@ Rscript 02_ependymoma_generate_all_data.R \
 --breakpoints_sv=$BREAKPOINTS_SV \
 --focal_gene_cn=$FOCAL_GENE_CN \
 --subfile_gistic_focalbygene=$GISTIC_SUBFILE_FOCALBYGENE \
+--mutations=$SNVs \
 --outfile=$EPN_TABLE
 
 # summary of molecular subtypes

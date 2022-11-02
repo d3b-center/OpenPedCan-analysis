@@ -749,7 +749,7 @@ relapse_ec_indp_sdf <- read_tsv(
 # pcb = PedcBioPortal
 # pot = Pediatric Open Targets
 pcb_pot_case_set_list <- jsonlite::read_json(
-  'input/ped_opentargets_v11_pedcbio_case_set_ids.json')
+  'input/ped_opentargets_pedcbio_case_set_ids.json')
 # need to supply the name of the study/data release as on Pedcbio
 pcb_cancer_study <- 'openpedcan_v11'
 
