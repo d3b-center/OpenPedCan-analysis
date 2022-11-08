@@ -39,7 +39,7 @@ v7_inspected_annotated_long_format_tibble <- readr::read_tsv(
   na = c("NA"), quoted_na = FALSE, trim_ws = FALSE)[]
 
 v7_all_ann_columns <- c(
-  "PMTL", "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
+  "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
   "Gene_full_name", "Protein_RefSeq_ID", "EFO", "MONDO",
   "GTEx_tissue_group_UBERON", "GTEx_tissue_subgroup_UBERON")
 
@@ -210,42 +210,42 @@ testthat::expect_false(
 # Test annotation order
 testthat::expect_equal(
   run_cli_get_tibble(
-    columns_to_add = c("PMTL", "Gene_type", "OncoKB_cancer_gene",
+    columns_to_add = c("Gene_type", "OncoKB_cancer_gene",
                        "OncoKB_oncogene_TSG", "Gene_full_name",
                        "Protein_RefSeq_ID", "EFO", "MONDO"),
     input_table_path = working_input_tsv_path,
     output_table_path = annotator_cli_output_path),
   inspected_annotated_long_format_tibble[,
-    c("Gene_symbol", "Gene_Ensembl_ID", "Disease", "cohort", "tpm_mean", "PMTL",
+    c("Gene_symbol", "Gene_Ensembl_ID", "Disease", "cohort", "tpm_mean",
       "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
       "Gene_full_name", "Protein_RefSeq_ID", "EFO", "MONDO")])
 
 testthat::expect_equal(
   run_cli_get_tibble(
-    columns_to_add = c("MONDO", "PMTL", "EFO"),
+    columns_to_add = c("MONDO", "EFO"),
     input_table_path = working_input_tsv_path,
     output_table_path = annotator_cli_output_path),
   inspected_annotated_long_format_tibble[,
     c("Gene_symbol", "Gene_Ensembl_ID", "Disease", "cohort", "tpm_mean",
-      "MONDO", "PMTL", "EFO")])
+      "MONDO", "EFO")])
 
 testthat::expect_equal(
   run_cli_get_tibble(
-    columns_to_add = c("PMTL", "EFO", "MONDO"),
+    columns_to_add = c("EFO", "MONDO"),
     input_table_path = working_input_tsv_path,
     output_table_path = annotator_cli_output_path),
   inspected_annotated_long_format_tibble[,
     c("Gene_symbol", "Gene_Ensembl_ID", "Disease", "cohort", "tpm_mean",
-      "PMTL", "EFO", "MONDO")])
+      "EFO", "MONDO")])
 
 testthat::expect_equal(
   run_cli_get_tibble(
-    columns_to_add = c("PMTL", "Protein_RefSeq_ID", "Gene_full_name"),
+    columns_to_add = c("Protein_RefSeq_ID", "Gene_full_name"),
     input_table_path = working_input_tsv_path,
     output_table_path = annotator_cli_output_path),
   inspected_annotated_long_format_tibble[,
     c("Gene_symbol", "Gene_Ensembl_ID", "Disease", "cohort", "tpm_mean",
-      "PMTL", "Protein_RefSeq_ID", "Gene_full_name")])
+      "Protein_RefSeq_ID", "Gene_full_name")])
 
 testthat::expect_equal(
   run_cli_get_tibble(
@@ -450,7 +450,7 @@ readr::write_tsv(
 
 testthat::expect_warning(
   run_cli_get_tibble(
-    columns_to_add = c("PMTL", "Gene_full_name"),
+    columns_to_add = c("Gene_full_name"),
     input_table_path = req_col_missing_tbl_path,
     output_table_path = annotator_cli_output_path,
     remove_input_table = TRUE))
@@ -483,7 +483,7 @@ readr::write_tsv(
 
 testthat::expect_warning(
   run_cli_get_tibble(
-    columns_to_add = c("PMTL", "GTEx_tissue_group_UBERON"),
+    columns_to_add = c("GTEx_tissue_group_UBERON"),
     input_table_path = req_col_missing_tbl_path,
     output_table_path = annotator_cli_output_path,
     remove_input_table = TRUE))
@@ -513,7 +513,7 @@ testthat::expect_equal(
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Gene_Ensembl_ID, -Disease,
-    -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL, -Gene_full_name,
+    -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -Gene_full_name,
     -Protein_RefSeq_ID, -EFO, -MONDO))
 
 readr::write_tsv(
@@ -529,7 +529,7 @@ testthat::expect_equal(
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Gene_Ensembl_ID, -Gene_symbol,
-    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL,
+    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Gene_full_name, -Protein_RefSeq_ID, -MONDO))
 
 readr::write_tsv(
@@ -538,7 +538,7 @@ readr::write_tsv(
 
 testthat::expect_equal(
   run_cli_get_tibble(
-    columns_to_add = c("Gene_full_name", "PMTL"),
+    columns_to_add = c("Gene_full_name"),
     input_table_path = req_col_missing_tbl_path,
     output_table_path = annotator_cli_output_path,
     remove_input_table = TRUE),
@@ -547,8 +547,8 @@ testthat::expect_equal(
     -Disease, -Gene_symbol,
     -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Protein_RefSeq_ID, -EFO, -MONDO,
-    -Gene_full_name, -PMTL,
-    Gene_full_name, PMTL))
+    -Gene_full_name,
+    Gene_full_name))
 
 readr::write_tsv(
   dplyr::select(v7_long_format_tibble, -GTEx_tissue_subgroup, -Gene_symbol),
@@ -565,7 +565,7 @@ testthat::expect_equal(
     -GTEx_tissue_subgroup, -Gene_symbol,
     -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Protein_RefSeq_ID, -EFO, -MONDO,
-    -Gene_full_name, -PMTL, -GTEx_tissue_group_UBERON,
+    -Gene_full_name, -GTEx_tissue_group_UBERON,
     -GTEx_tissue_subgroup_UBERON,
     Gene_full_name, GTEx_tissue_group_UBERON))
 
@@ -691,7 +691,7 @@ testthat::expect_equal(
 readr::write_tsv(
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID, -PMTL),
+    -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID),
   req_non_existing_ann_tbl_path)
 
 testthat::expect_equal(
@@ -702,14 +702,14 @@ testthat::expect_equal(
     remove_input_table = TRUE),
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -PMTL, -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID,
+    -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID,
     MONDO, OncoKB_cancer_gene, Protein_RefSeq_ID))
 
 
 readr::write_tsv(
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -PMTL),
+    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name),
   req_non_existing_ann_tbl_path)
 
 testthat::expect_equal(
@@ -720,14 +720,14 @@ testthat::expect_equal(
     remove_input_table = TRUE),
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -PMTL, -EFO, -OncoKB_oncogene_TSG, -Gene_full_name,
+    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name,
     EFO, OncoKB_oncogene_TSG, Gene_full_name))
 
 
 readr::write_tsv(
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -PMTL, -Gene_type),
+    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -Gene_type),
   req_non_existing_ann_tbl_path)
 
 testthat::expect_equal(
@@ -739,27 +739,26 @@ testthat::expect_equal(
     remove_input_table = TRUE),
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -PMTL, -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -Gene_type,
+    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -Gene_type,
     EFO, OncoKB_oncogene_TSG, Gene_full_name, Gene_type))
 
 readr::write_tsv(
   dplyr::select(
     v7_inspected_annotated_long_format_tibble,
-    -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name, -PMTL),
+    -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name),
   req_non_existing_ann_tbl_path)
 
 testthat::expect_equal(
   run_cli_get_tibble(
     columns_to_add = c(
-      "GTEx_tissue_group_UBERON", "OncoKB_oncogene_TSG", "Gene_full_name",
-      "PMTL"),
+      "GTEx_tissue_group_UBERON", "OncoKB_oncogene_TSG", "Gene_full_name"),
     input_table_path = req_non_existing_ann_tbl_path,
     output_table_path = annotator_cli_output_path,
     remove_input_table = TRUE),
   dplyr::select(
     v7_inspected_annotated_long_format_tibble,
-    -PMTL, -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name,
-    GTEx_tissue_group_UBERON, OncoKB_oncogene_TSG, Gene_full_name, PMTL))
+    -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name,
+    GTEx_tissue_group_UBERON, OncoKB_oncogene_TSG, Gene_full_name))
 
 # Error on non-existing input file
 testthat::expect_warning(

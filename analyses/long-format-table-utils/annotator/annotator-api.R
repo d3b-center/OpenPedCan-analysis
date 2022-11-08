@@ -11,7 +11,6 @@
 #   - Gene_Ensembl_ID: Ensembl ENSG IDs without `.#` versions, e.g.
 #     ENSG00000039139, ENSG00000111261, and ENSG00000169710. The Gene_Ensembl_ID
 #     column is required for adding the following annotation columns:
-#     - PMTL
 #     - Gene_full_name
 #     - Protein_RefSeq_ID
 #   - Disease: The `cancer_group` in the `histologies.tsv`, e.g.
@@ -31,10 +30,10 @@
 #     - GTEx_tissue_subgroup_UBERON
 # - columns_to_add: a character vector of unique names of the columns to be
 #   added to the input table. The vector can contain zero or more of the
-#   following column names: "PMTL", "Gene_type", "OncoKB_cancer_gene",
+#   following column names: Gene_type", "OncoKB_cancer_gene",
 #   "OncoKB_oncogene_TSG", "Gene_full_name", "Protein_RefSeq_ID", "EFO",
 #   "MONDO", "GTEx_tissue_group_UBERON", "GTEx_tissue_subgroup_UBERON". Default
-#   value is to add "PMTL", "Gene_type", "OncoKB_cancer_gene",
+#   value is to add "Gene_type", "OncoKB_cancer_gene",
 #   "OncoKB_oncogene_TSG", "Gene_full_name", "Protein_RefSeq_ID", "EFO", and
 #   "MONDO".
 #   - Notes:
@@ -75,7 +74,7 @@
 #   tests/test_annotator_cli.R for new annotation columns
 annotate_long_format_table <- function(
   long_format_table,
-  columns_to_add = c("PMTL", "Gene_type", "OncoKB_cancer_gene",
+  columns_to_add = c("Gene_type", "OncoKB_cancer_gene",
                      "OncoKB_oncogene_TSG", "Gene_full_name",
                      "Protein_RefSeq_ID", "EFO", "MONDO"),
   replace_na_with_empty_string = TRUE) {
@@ -118,7 +117,7 @@ annotate_long_format_table <- function(
     # no column to add, so return the input table
     return(long_format_table)
   }
-  available_ann_columns <- c("PMTL", "Gene_type", "OncoKB_cancer_gene",
+  available_ann_columns <- c("Gene_type", "OncoKB_cancer_gene",
                              "OncoKB_oncogene_TSG", "Gene_full_name",
                              "Protein_RefSeq_ID", "EFO", "MONDO",
                              "GTEx_tissue_group_UBERON",
@@ -327,25 +326,9 @@ annotate_long_format_table <- function(
   }
 
   if ("PMTL" %in% columns_to_add) {
-    ann_tbl_l$fda_pmtl <- init_ann_tbl_l_element(
-      file_path = file.path(root_dir, "data", "ensg-hugo-pmtl-mapping.tsv"),
-      join_by_column = "Gene_Ensembl_ID")
-    # Asert all pmtl NAs have version NAs, vice versa
-    if (!identical(is.na(ann_tbl_l$fda_pmtl$tibble$pmtl),
-                  is.na(ann_tbl_l$fda_pmtl$tibble$version))) {
-      stop(paste0("ensg-hugo-pmtl-mapping.tsv ",
-                  "has pmtl column NAs with version column non-NAs, or",
-                  "version column NAs with pmtl column non-NAs\n",
-                  "Check data integrity. Submit a data question GitHub issue."))
-    }
-    # Process tibble for joining
-    ann_tbl_l$fda_pmtl$tibble <- ann_tbl_l$fda_pmtl$tibble %>%
-      dplyr::select(ensg_id, pmtl, version) %>%
-      dplyr::filter(!is.na(pmtl), !is.na(version)) %>%
-      dplyr::mutate(PMTL = paste0(pmtl, " (", version, ")")) %>%
-      dplyr::select(ensg_id, PMTL) %>%
-      dplyr::rename(Gene_Ensembl_ID = ensg_id) %>%
-      dplyr::distinct()
+    stop(paste0("Per https://github.com/PediatricOpenTargets/ticket-tracker/issues/447 ",
+                "this column has been removed from source.\n",
+                "Check data integrity. Submit a data question GitHub issue."))
   }
 
   if (any(c("EFO", "MONDO") %in% columns_to_add)) {

@@ -137,7 +137,7 @@ if (!dir.exists(output_data_dir)) {
 
 
 # Read input data --------------------------------------------------------------
-# ensg hugo pmtl mappings
+# ensg hugo mappings
 ensg_hugo_pmtl_df <- dplyr::distinct(
   readr::read_tsv(file.path(input_data_dir, "ensg-hugo-pmtl-mapping.tsv"),
                   col_types = readr::cols(.default = readr::col_guess())))

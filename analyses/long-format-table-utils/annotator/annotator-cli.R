@@ -11,13 +11,13 @@
 # Rscript --vanilla analyses/long-format-table-utils/annotator/annotator-cli.R \
 #   -h
 #
-# - Add PMTL, EFO, and MONDO columns
+# - Add EFO, and MONDO columns
 #   - The `-r` option replaces NAs with empty strings for **ALL COLUMNS THAT
 #     HAVE NA** in the output table
 #   - The `-v` option prints extra messages on progress
 #
 # Rscript --vanilla analyses/long-format-table-utils/annotator/annotator-cli.R \
-#   -r -v -c PMTL,EFO,MONDO \
+#   -r -v -c EFO,MONDO \
 #   -i long_n_tpm_mean_sd_quantile_group_gene_wise_zscore.tsv \
 #   -o long_n_tpm_mean_sd_quantile_group_gene_wise_zscore_annotated.tsv
 
@@ -77,12 +77,12 @@ option_list <- list(
   optparse::make_option(
     c("-c", "--columns-to-add"), type = "character",
     default = paste0(
-      "PMTL,Gene_type,OncoKB_cancer_gene,OncoKB_oncogene_TSG,",
+      "Gene_type,OncoKB_cancer_gene,OncoKB_oncogene_TSG,",
       "Gene_full_name,Protein_RefSeq_ID,EFO,MONDO"),
     help = paste0(
       "A comma-separated list of unique annotation columns to be added, ",
-      "e.g. \"EFO,MONDO\" and \"PMTL,Gene_type,OncoKB_cancer_gene\". ",
-      "Available columns are: PMTL, Gene_type, OncoKB_cancer_gene, ",
+      "e.g. \"EFO,MONDO\" and \"Gene_type,OncoKB_cancer_gene\". ",
+      "Available columns are: Gene_type, OncoKB_cancer_gene, ",
       "OncoKB_oncogene_TSG, Gene_full_name, Protein_RefSeq_ID, EFO, MONDO,",
       "GTEx_tissue_group_UBERON, GTEx_tissue_subgroup_UBERON. ",
       "[Default value is \"%default\"]")),

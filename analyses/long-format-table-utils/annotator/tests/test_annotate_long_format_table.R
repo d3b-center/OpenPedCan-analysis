@@ -39,7 +39,7 @@ v7_inspected_annotated_long_format_tibble <- readr::read_tsv(
   na = c("NA"), quoted_na = FALSE, trim_ws = FALSE)[]
 
 v7_all_ann_columns <- c(
-  "PMTL", "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
+  "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
   "Gene_full_name", "Protein_RefSeq_ID", "EFO", "MONDO",
   "GTEx_tissue_group_UBERON", "GTEx_tissue_subgroup_UBERON")
 
@@ -133,35 +133,35 @@ testthat::expect_equal(
 testthat::expect_equal(
   annotate_long_format_table(
     long_format_tibble,
-    columns_to_add = c("PMTL", "Gene_type", "OncoKB_cancer_gene",
+    columns_to_add = c("Gene_type", "OncoKB_cancer_gene",
                        "OncoKB_oncogene_TSG", "Gene_full_name",
                        "Protein_RefSeq_ID", "EFO", "MONDO")),
   inspected_annotated_long_format_tibble[,
-    c(colnames(long_format_tibble), "PMTL",
+    c(colnames(long_format_tibble),
       "Gene_type", "OncoKB_cancer_gene", "OncoKB_oncogene_TSG",
       "Gene_full_name", "Protein_RefSeq_ID", "EFO", "MONDO")])
 
 testthat::expect_equal(
   annotate_long_format_table(
-    long_format_tibble, columns_to_add = c("MONDO", "PMTL", "EFO")),
+    long_format_tibble, columns_to_add = c("MONDO", "EFO")),
   inspected_annotated_long_format_tibble[,
     c(colnames(long_format_tibble),
-      "MONDO", "PMTL", "EFO")])
+      "MONDO", "EFO")])
 
 testthat::expect_equal(
   annotate_long_format_table(
-    long_format_tibble, columns_to_add = c("PMTL", "EFO", "MONDO")),
+    long_format_tibble, columns_to_add = c("EFO", "MONDO")),
   inspected_annotated_long_format_tibble[,
     c(colnames(long_format_tibble),
-      "PMTL", "EFO", "MONDO")])
+      "EFO", "MONDO")])
 
 testthat::expect_equal(
   annotate_long_format_table(
     long_format_tibble,
-    columns_to_add = c("PMTL", "Protein_RefSeq_ID", "Gene_full_name")),
+    columns_to_add = c("Protein_RefSeq_ID", "Gene_full_name")),
   inspected_annotated_long_format_tibble[,
     c(colnames(long_format_tibble),
-      "PMTL", "Protein_RefSeq_ID", "Gene_full_name")])
+      "Protein_RefSeq_ID", "Gene_full_name")])
 
 testthat::expect_equal(
   annotate_long_format_table(
@@ -317,7 +317,7 @@ testthat::expect_equal(
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Gene_Ensembl_ID, -Disease,
-    -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL, -Gene_full_name,
+    -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -Gene_full_name,
     -Protein_RefSeq_ID, -EFO, -MONDO))
 
 testthat::expect_equal(
@@ -327,7 +327,7 @@ testthat::expect_equal(
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Gene_Ensembl_ID, -Gene_symbol,
-    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL,
+    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Gene_full_name, -Protein_RefSeq_ID, -MONDO))
 
 testthat::expect_equal(
@@ -337,20 +337,20 @@ testthat::expect_equal(
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Gene_Ensembl_ID, -Gene_symbol,
-    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL,
+    -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Gene_full_name, -Protein_RefSeq_ID, -MONDO))
 
 testthat::expect_equal(
   annotate_long_format_table(
     dplyr::select(long_format_tibble, -Disease, -Gene_symbol),
-    columns_to_add = c("Gene_full_name", "PMTL")),
+    columns_to_add = c("Gene_full_name")),
   dplyr::select(
     inspected_annotated_long_format_tibble,
     -Disease, -Gene_symbol,
     -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Protein_RefSeq_ID, -EFO, -MONDO,
-    -Gene_full_name, -PMTL,
-    Gene_full_name, PMTL))
+    -Gene_full_name,
+    Gene_full_name))
 
 testthat::expect_equal(
   annotate_long_format_table(
@@ -361,7 +361,7 @@ testthat::expect_equal(
     -GTEx_tissue_subgroup, -Gene_symbol,
     -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
     -Protein_RefSeq_ID, -EFO, -MONDO,
-    -Gene_full_name, -PMTL, -GTEx_tissue_group_UBERON,
+    -Gene_full_name, -GTEx_tissue_group_UBERON,
     -GTEx_tissue_subgroup_UBERON,
     Gene_full_name, GTEx_tissue_group_UBERON))
 
@@ -393,7 +393,7 @@ testthat::expect_equal(
   dplyr::mutate(
     dplyr::select(
       inspected_annotated_long_format_tibble,
-      -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL, -Gene_full_name,
+      -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -Gene_full_name,
       -Protein_RefSeq_ID, -EFO, -MONDO),
     Gene_Ensembl_ID = as.factor(Gene_Ensembl_ID)))
 
@@ -407,7 +407,7 @@ testthat::expect_equal(
   dplyr::mutate(
     dplyr::select(
       inspected_annotated_long_format_tibble,
-      -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG, -PMTL,
+      -Gene_type, -OncoKB_cancer_gene, -OncoKB_oncogene_TSG,
       -Gene_full_name, -Protein_RefSeq_ID, -MONDO),
     Gene_Ensembl_ID = as.factor(Gene_Ensembl_ID),
     Gene_symbol = as.factor(Gene_symbol)))
@@ -487,32 +487,32 @@ testthat::expect_equal(
   annotate_long_format_table(
     dplyr::select(
       inspected_annotated_long_format_tibble,
-      -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID, -PMTL),
+      -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID),
     columns_to_add = c("MONDO", "OncoKB_cancer_gene", "Protein_RefSeq_ID")),
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -PMTL, -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID,
+    -MONDO, -OncoKB_cancer_gene, -Protein_RefSeq_ID,
     MONDO, OncoKB_cancer_gene, Protein_RefSeq_ID))
 
 testthat::expect_equal(
   annotate_long_format_table(
     dplyr::select(
       inspected_annotated_long_format_tibble,
-      -EFO, -OncoKB_oncogene_TSG, -Gene_full_name, -PMTL),
+      -EFO, -OncoKB_oncogene_TSG, -Gene_full_name),
     columns_to_add = c("EFO", "OncoKB_oncogene_TSG", "Gene_full_name")),
   dplyr::select(
     inspected_annotated_long_format_tibble,
-    -PMTL, -EFO, -OncoKB_oncogene_TSG, -Gene_full_name,
+    -EFO, -OncoKB_oncogene_TSG, -Gene_full_name,
     EFO, OncoKB_oncogene_TSG, Gene_full_name))
 
 testthat::expect_equal(
   annotate_long_format_table(
     dplyr::select(
       v7_inspected_annotated_long_format_tibble,
-      -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name, -PMTL),
+      -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name),
     columns_to_add = c(
       "GTEx_tissue_group_UBERON", "OncoKB_oncogene_TSG", "Gene_full_name")),
   dplyr::select(
     v7_inspected_annotated_long_format_tibble,
-    -PMTL, -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name,
+    -GTEx_tissue_group_UBERON, -OncoKB_oncogene_TSG, -Gene_full_name,
     GTEx_tissue_group_UBERON, OncoKB_oncogene_TSG, Gene_full_name))
