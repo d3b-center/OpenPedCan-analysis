@@ -10,7 +10,8 @@ Furthermore, we need to include the same samples in the RNA-seq data.
 Because we skip running the `tp53_nf1_score` classifier and evaluation steps on the poly-A dataset in CI, we can focus on the stranded data.
 
 ```{r}
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
+options(readr.show_col_types = FALSE)
 ```
 
 ```{r}
@@ -24,7 +25,7 @@ The histologies file contains the information we need for identifying samples th
 mutations_table <- read_tsv(file.path("..", "tp53_nf1_score", "results", 
                                       "TP53_NF1_snv_alteration.tsv"))
 histologies_df <- read_tsv(file.path("..", "..", "data", 
-                                     "histologies.tsv"),
+                                     "histologies-base.tsv"),
                            col_types = cols(
                              molecular_subtype = col_character()
                            ))

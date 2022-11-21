@@ -67,7 +67,7 @@ rm -rf $RTMP_DIRECTORY
 #### copy files that are not being subset --------------------------------------
 
 # histologies file
-cp $FULL_DIRECTORY/histologies.tsv $SUBSET_DIRECTORY
+#cp $FULL_DIRECTORY/histologies.tsv $SUBSET_DIRECTORY
 
 # base histologies file
 cp $FULL_DIRECTORY/histologies-base.tsv $SUBSET_DIRECTORY
@@ -75,7 +75,7 @@ cp $FULL_DIRECTORY/histologies-base.tsv $SUBSET_DIRECTORY
 # annotation files
 cp $FULL_DIRECTORY/uberon-map-gtex-*.tsv $SUBSET_DIRECTORY
 cp $FULL_DIRECTORY/efo-mondo-map.tsv $SUBSET_DIRECTORY
-cp $FULL_DIRECTORY/ensg-hugo-pmtl-mapping.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/ensg-hugo-mapping.tsv $SUBSET_DIRECTORY
 
 # GISTIC output
 cp $FULL_DIRECTORY/cnv-consensus-gistic.zip $SUBSET_DIRECTORY

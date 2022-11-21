@@ -1,5 +1,5 @@
 ---
-title: "QC ensg-hugo-pmtl-mapping.tsv"
+title: "QC ensg-hugo-mapping.tsv"
 output: html_notebook
 ---
 
@@ -11,7 +11,7 @@ suppressPackageStartupMessages({
 })
 ```
 
-## Read ensg-hugo-pmtl-mapping.tsv and OpenPedCan SNV, CNV, TPM, and fusion data
+## Read ensg-hugo-mapping.tsv and OpenPedCan SNV, CNV, TPM, and fusion data
 
 ```{r read_open_ped_can_data}
 open_ped_can_data_path <- '../../data'
@@ -28,8 +28,8 @@ tpm_file <- readRDS(tpm)
 fusion_file <- readr::read_tsv(fusion, col_types = cols())
 
 
-# read in pmtl ensemble hugo mapped 
-ehr_df <- read_tsv('results/ensg-hugo-pmtl-mapping.tsv', col_types = cols())
+# read in ensemble hugo mapped 
+ehr_df <- read_tsv('results/ensg-hugo-mapping.tsv', col_types = cols())
 
 # make them to a list
 open_ped_can_data_dfs <- list(

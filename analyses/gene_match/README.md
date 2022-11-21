@@ -20,7 +20,7 @@ GTF file sources:
 
 `gene_match/merge_gencode_v28_v38_open_ped_can_v7_gene_ensg_symbol_mapping_files.R`: Merges v26,v28, v36, v38, and v39 gencode versions and OpenPedCan v7 `ensg-hugo-rmtl-mapping.tsv`.
 
-`gene_match/add_pmtl_ens_hugo.Rmd`: Merges PMTL v 1.1 with #`ensembl_gene_symbol_gtf_genode_v28_v38_open_ped_can_v7_merged.tsv`
+`gene_match/add_ens_hugo.Rmd`: Merges PMTL v 1.1 with #`ensembl_gene_symbol_gtf_genode_v28_v38_open_ped_can_v7_merged.tsv`
 `ensembl_gene_symbol_gtf_genode_all_open_ped_can_v7_merged.tsv`
 
 ## Package version

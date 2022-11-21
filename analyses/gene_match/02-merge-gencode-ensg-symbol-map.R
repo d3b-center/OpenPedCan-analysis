@@ -6,7 +6,7 @@ v28_eh_df <- read_tsv('results/ensembl_gene_symbol_gtf_gencode_v28.tsv')
 v36_eh_df <- read_tsv('results/ensembl_gene_symbol_gtf_gencode_v36.tsv')
 v39_eh_df <- read_tsv('results/ensembl_gene_symbol_gtf_gencode_v39.tsv')
 
-open_ped_can_v7_eh_df <- read_tsv('input/open_ped_can_v7_ensg-hugo-rmtl-mapping.tsv') %>%
+open_ped_can_v7_eh_df <- read_tsv('input/open_ped_can_v7_ensg-hugo-mapping.tsv') %>%
   dplyr::select(gene_symbol, ensg_id) %>%
   dplyr::rename(ensembl = ensg_id)
 

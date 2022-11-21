@@ -10,7 +10,7 @@ library(tidyverse)
 ens_map <- read_tsv("results/gencode_ensg_symbol_map_merged.tsv") %>%
   rename(ensg_id = ensembl)
 pmtl <- read_tsv("input/PMTL_v1.1.tsv") %>%
-  rename(ensg_id = Ensembl_ID, pmtl = FDA_Designation)
+  rename(ensg_id = Ensembl_ID)
 # add pmtl version
 pmtl$version <- "PMTL version 1.1"
 ```
@@ -35,8 +35,8 @@ ens_pmtl_mer %>%
 ```{r}
 ens_hugo_pmtl <- ens_map %>%
   full_join(pmtl) %>%
-  select(ensg_id, gene_symbol, pmtl, version) %>%
+  select(ensg_id, gene_symbol, version) %>%
   distinct() %>%
   filter(!ensg_id == "Symbol_Not_Found" | !gene_symbol == 'NA') %>%
-  write_tsv("results/ensg-hugo-pmtl-mapping.tsv")
+  write_tsv("results/ensg-hugo-mapping.tsv")
 ```

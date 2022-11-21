@@ -38,6 +38,7 @@ suppressWarnings(
   suppressPackageStartupMessages(library(tidyverse))
 )
 suppressPackageStartupMessages(library(optparse))
+suppressPackageStartupMessages(options(readr.show_col_types = FALSE))
 
 `%>%` <- dplyr::`%>%`
 
@@ -73,11 +74,11 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     biospecimen_ids <- unique(snv_file$Tumor_Sample_Barcode)
   } else if (grepl("biospecimen", filename)) {
     # list of sample IDs with their corresponding bed files
-    bed_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    bed_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(bed_file$Kids_First_Biospecimen_ID)
   } else if (grepl("cnv", filename)) {
     # the two CNV files now have different structures
-    cnv_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    cnv_file <- readr::read_tsv(filename)
     if (grepl("controlfreec|cnvkit_with_status", filename)) {
       biospecimen_ids <- unique(cnv_file$Kids_First_Biospecimen_ID)
     } else if (grepl("consensus_wgs_plus_cnvkit_wxs", filename)) {
@@ -86,11 +87,10 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
       biospecimen_ids <- unique(cnv_file$ID)
     }
   } else if (grepl("consensus_seg_with_status", filename)) {
-    cn_seg_status_file <- readr::read_tsv(filename, 
-                                          show_col_types = FALSE)
+    cn_seg_status_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(cn_seg_status_file$Kids_First_Biospecimen_ID)
   } else if (grepl("fusion", filename)) {
-    fusion_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    fusion_file <- readr::read_tsv(filename)
     # the biospecimen IDs in the filtered/prioritize fusion list included with
     # the download are in a column called 'Sample'
     if (grepl("putative-oncogenic", filename)) {
@@ -119,7 +119,7 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     }
   } else if (grepl("independent", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
-    independent_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    independent_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
   } else {
     # error-handling
@@ -329,8 +329,8 @@ nf1_rnaseq <- c("BS_81SP2HX4", "BS_KFD5128N", "BS_YDEVMD24",
 ### Histologies and participants IDs mapping -----------------------------------
 
 # load histologies file
-histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"), 
-                         guess_max = 10000, show_col_types = FALSE) %>% 
+histology_df <- read_tsv(file.path(data_directory, "histologies-base.tsv"), 
+                         guess_max = 10000) %>% 
   dplyr::filter(experimental_strategy != "Methylation")
 
 # get the participant ID to biospecimen ID mapping
