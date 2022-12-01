@@ -1,4 +1,5 @@
 # OpenPedCan-analysis
+[![DOI](https://zenodo.org/badge/358689512.svg)](https://zenodo.org/badge/latestdoi/358689512)
 
 The Open Pediatric Cancer (OpenPedCan) project at the Children’s Hospital of Philadelphia is an open analysis effort that harmonizes pediatric cancer data from multiple sources, performs downstream cancer analyses on these data, provides them on PedcBioPortal, and the NCI's Molecular Targets Platform (MTP).
 The OpenPedCan analyses currently include the following datasets, described more fully below:
