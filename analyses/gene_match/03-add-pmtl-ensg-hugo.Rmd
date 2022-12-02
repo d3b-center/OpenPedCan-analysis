@@ -35,7 +35,7 @@ ens_pmtl_mer %>%
 ```{r}
 ens_hugo_pmtl <- ens_map %>%
   full_join(pmtl) %>%
-  select(ensg_id, gene_symbol, version) %>%
+  select(ensg_id, gene_symbol) %>%
   distinct() %>%
   filter(!ensg_id == "Symbol_Not_Found" | !gene_symbol == 'NA') %>%
   write_tsv("results/ensg-hugo-mapping.tsv")

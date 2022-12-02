@@ -26,7 +26,7 @@ See `create_subset_files.sh` for more information.
 Certain analysis modules have required modifications to the subset file creation steps beyond randomly selecting participants.
 
 * We have four RNA-seq datasets, `stranded`, `poly-A stranded`, `poly-A`, and `exome_capture`. Participant are selected proportional to the composition of RNA-Seq libraries in each cohort.
-* [`sex-prediction-from-RNASeq`]https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/sex-prediction-from-RNASeq) required that we specified `Male` and `Female` samples (`reported_gender`). We stratify the subset data based on the proportions of `reported_gender` in each cohort where applicable. All cohorts are approximately balanced in gender composition (as of v11 data release) except for `GTEx` where sample for `Female` participants are ~50% of those for `Male` participants.
+* [`sex-prediction-from-RNASeq`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/sex-prediction-from-RNASeq) required that we specified `Male` and `Female` samples (`reported_gender`). We stratify the subset data based on the proportions of `reported_gender` in each cohort where applicable. All cohorts are approximately balanced in gender composition (as of v11 data release) except for `GTEx` where sample for `Female` participants are ~50% of those for `Male` participants.
 * `tp53_nf1_module` requires us to include a set of biospecimen IDs for samples that have _TP53_ and _NF1_ mutations and are present in the `stranded` RNA-seq dataset.
 See the `00-enrich-positive-examples` notebook for more information.
 * `fusion-summary` requires us to include _FGFR1--TACC1_, _MYB--QKI_, fusions or fusions that involve _BRAF_, _MN1_, _RELA_, or _EWSR1_.
