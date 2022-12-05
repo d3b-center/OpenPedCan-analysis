@@ -1,4 +1,4 @@
-## Filter Mutation Frequencies Tables
+## OpenPedCan Data Pre-release QC
 
 ### Purpose
 Performs QC on data pre-release files with requirements which should pass before hand off between BIXU Engineering team to the OpenPedCan team.
@@ -6,7 +6,7 @@ Performs QC on data pre-release files with requirements which should pass before
 
 ### Analysis scripts
 
-### `run-filter-mutation-frequencies-tables.sh`
+### `run-data-pre-release-qc.sh`
 This is a wrapper bash script for main anlysis notebook script, `data-pre-release-qc.Rmd`  This script should always run as if it were being called from the directory it lives in, the module directory (`OpenPedCan-analysis/analyses/data-pre-release-qc`)
 
 
