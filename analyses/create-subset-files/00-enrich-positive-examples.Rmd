@@ -25,7 +25,7 @@ The histologies file contains the information we need for identifying samples th
 mutations_table <- read_tsv(file.path("..", "tp53_nf1_score", "results", 
                                       "TP53_NF1_snv_alteration.tsv"))
 histologies_df <- read_tsv(file.path("..", "..", "data", 
-                                     "histologies-base.tsv"),
+                                     "histologies.tsv"),
                            col_types = cols(
                              molecular_subtype = col_character()
                            ))

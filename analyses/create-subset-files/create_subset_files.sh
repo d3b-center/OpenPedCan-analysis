@@ -67,7 +67,7 @@ rm -rf $RTMP_DIRECTORY
 #### copy files that are not being subset --------------------------------------
 
 # histologies file
-#cp $FULL_DIRECTORY/histologies.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/histologies.tsv $SUBSET_DIRECTORY
 
 # base histologies file
 cp $FULL_DIRECTORY/histologies-base.tsv $SUBSET_DIRECTORY
