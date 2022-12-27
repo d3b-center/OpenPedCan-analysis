@@ -1,0 +1,118 @@
+---
+title: "Tables output for manuscript"
+author: "Aditya Lahiri"
+date: "2021-2022"
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+params:
+  release: v11
+---
+
+Code adapted from: https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/tables/output_tables.Rmd
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(openxlsx)
+```
+
+## Output Tables for OpenPedCan Manuscripts
+
+This Rmarkdown generates tables used in the manuscript, including both main text and supplementary material. 
+
+```{r define directories and result files}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+working_dir <- file.path(root_dir, "tables")
+input_dir <- file.path(working_dir, "input")
+analyses_dir <- file.path(root_dir, "analyses")
+# Define data_dir based on ci. The `testing` param covers if we are in CI where 1 is CI.
+if (params$release == "testing") {
+  data_dir <- file.path(root_dir, "data")
+} else {
+  data_dir <- file.path(root_dir, "data", params$release)
+}
+results_dir <- file.path(working_dir, "results")
+if(!dir.exists(results_dir)){
+  dir.create(results_dir, recursive=TRUE)
+}
+```
+
+
+# Define input files
+```{r}
+histology_file <- file.path(data_dir, "histologies.tsv")
+```
+
+# Define output files and sheet names, when appropriate
+```{r}
+table_s1_file <- file.path(results_dir, "TableS1-histologies.xlsx")
+```
+
+# Read files
+```{r}
+histology_df <- read_tsv(histology_file, guess_max =10000)
+```
+
+## Table S1: V11 histologies table
+
+```{r}
+readme <- tribble(
+~`Histology column`,~Definition,~`Possible values`,
+"age_at_diagnosis_days","Patient age at diagnosis in days","numeric",
+"age_last_update_days","Patient age at the last clinical event/update in days","numeric",
+"aliquot_id","External aliquot identifier","alphanumeric",
+"broad_histology","Broad WHO 2016 classification of cancer type",paste(unique(histology_df$broad_histology), collapse = "; "),
+"cancer_group","Harmonized cancer groupings for plots",paste(unique(histology_df$cancer_group), collapse = "; "),
+"cancer_predispositions","Reported cancer predisposition syndromes",paste(unique(histology_df$cancer_predispositions), collapse = "; "),
+"cns_methylation_class","methylation-based CNS tumor class",paste(unique(histology_df$cns_methylation_class), collapse = "; "),
+"cns_methylation_class_score","methylation-based CNS tumor class score","numeric",
+"cns_methylation_subclass","methylation-based CNS tumor sub-class",paste(unique(histology_df$cns_methylation_subclass), collapse = "; "),
+"cns_methylation_subclass_score","methylation-based tumor subclass score","numeric",
+"CNS_region","Harmonized brain region based on `primary_site`",paste(unique(histology_df$CNS_region), collapse = "; "),
+"cohort","Scientific cohort",paste(unique(histology_df$cohort), collapse = "; "),
+"cohort_participant_id","Scientific cohort participant ID","C#####-C######",
+"composition","Sample composition",paste(unique(histology_df$composition), collapse = "; "),
+"ethnicity","Patient reported ethnicity",paste(unique(histology_df$ethnicity), collapse = "; "),
+"experimental_strategy","Sequencing strategy",paste(unique(histology_df$experimental_strategy), collapse = "; "),
+# leaving this non-programmatic because of the duplicates that would come up (eg two selections in one patient, needing data cleanup)
+"extent_of_tumor_resection","Amount of tumor resected at time of surgical event","Biopsy only;Partial resection;Gross/Near total resection;Not Reported;Unavailable",
+"germline_sex_estimate","Predicted sex of patient based on germline X and Y ratio calculation (described in methods)",paste(unique(histology_df$germline_sex_estimate), collapse = "; "),
+"gtex_group","Tissue Type",paste(unique(histology_df$gtex_group), collapse = "; "),
+"gtex_subgroup","Tissue Subtype",paste(unique(histology_df$gtex_subgroup), collapse = "; "),
+"harmonized_diagnosis","`integrated_diagnosis` if exists or updated and harmonized diagnosis using pathology_free_text_diagnosis information","text",
+"integrated_diagnosis","2016 WHO diagnosis integrated from pathology diagnosis and molecular subtyping","text",
+"Kids_First_Biospecimen_ID","KidsFirst biospecimen identifier","BS_########",
+"Kids_First_Participant_ID","KidsFirst patient identifier","PT_########",
+"molecular_subtype","Molecular subtype defined by WHO 2016 guidelines","text",
+"normal_fraction","Theta2 normal DNA fraction estimate","numeric",
+"Notes","Free text field describing changes from `pathology_diagnosis` to `integrated_diagnosis` or manner in which molecular_subtype was determined","text",
+"OS_days","Overall survival in days","numeric",
+"OS_status","Overall survival status",paste(unique(histology_df$OS_status), collapse = "; "),
+"pathology_diagnosis","Reported and/or harmonized patient diagnosis from pathology reports","text",
+"pathology_free_text_diagnosis","Free text patient diagnosis from pathology reports","text",
+"PFS_days","Progression-free survival in days","numeric",
+"primary_site","Bodily site(s) from which specimen was derived","text",
+"race","Patient reported race",paste(unique(histology_df$race), collapse = "; "),
+"reported_gender","Patient reported gender",paste(unique(histology_df$reported_gender), collapse = "; "),
+"RF_purity_ABSOLUTE","tumor purity fraction estimated using ABSOLUTE","numeric",
+"RF_purity_ESTIMATE","tumor purity fraction estimated using ESTIMATE dataset","numeric",
+"RF_purity_LUMP","tumor purity fraction estimated using LUMP","numeric",
+"RNA_library","Type of RNA-Sequencing library preparation",paste(unique(histology_df$RNA_library), collapse = "; "),
+"sample_id","External biospecimen identifier","alphanumeric",
+"sample_type","Broad sample type",paste(unique(histology_df$sample_type), collapse = "; "),
+"seq_center","Sequencing center",paste(unique(histology_df$seq_center), collapse = "; "),
+"short_histology","Abbreviated `integrated_diagnosis` or `broad_histology` for plotting purposes",paste(unique(histology_df$short_histology), collapse = "; "),
+"tumor_descriptor","Phase of therapy from which tumor was derived",paste(unique(histology_df$tumor_descriptor), collapse = "; "),
+"tumor_fraction","Theta2 tumor DNA fraction estimate","numeric",
+"tumor_ploidy","Control-FREEC ploidy","numeric"
+)
+
+# Combine and output
+list_s1_table <- list(README = readme,
+                      histologies_file = histology_df)
+write.xlsx(list_s1_table, 
+           table_s1_file, 
+           overwrite=TRUE, 
+           keepNA=TRUE)
+```
