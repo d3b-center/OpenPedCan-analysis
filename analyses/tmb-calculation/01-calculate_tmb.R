@@ -11,6 +11,7 @@ suppressPackageStartupMessages(library(optparse))
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(data.table))
 suppressPackageStartupMessages(library(GenomicRanges))
+suppressPackageStartupMessages(library(tmb))
 
 # set up optparse options
 option_list <- list(
@@ -66,16 +67,6 @@ data_dir <- file.path(root_dir, "data")
 module_dir <- file.path(root_dir, "analyses", "tmb-calculation")
 results_dir <- file.path(module_dir, "results")
 input_dir <- file.path(module_dir, "input")
-
-# source functions splitting MNVs and computing TMB scores
-source(file.path(
-  root_dir, "analyses", "tmb-calculation",
-  "util", "split_mnv.R"
-))
-source(file.path(
-  root_dir, "analyses", "tmb-calculation",
-  "util", "tmb_functions.R"
-))
 
 # Create results folder if it doesn't exist
 if (!dir.exists(results_dir)) {
