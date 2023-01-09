@@ -15,10 +15,10 @@ mkdir -p results
 
 ## Match ensembl to gene_symbol using gtf file
 
-Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v27.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v27.tsv
-Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v28.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v28.tsv
-Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v36.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v36.tsv
-Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v39.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v39.tsv
+Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v27.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v27.tsv --version "v27"
+Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v28.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v28.tsv --version "v28"
+Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v36.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v36.tsv --version "v36"
+Rscript --vanilla 01-gene-ensembl-id-from-gtf.R --gtf_file input/gencode.v39.annotation.gtf.gz --output_file results/ensembl_gene_symbol_gtf_gencode_v39.tsv --version "v39"
 
 ## Merge all gencode results and input/open_ped_can_v7_ensg-hugo-rmtl-mapping.tsv
 

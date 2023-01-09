@@ -1,6 +1,7 @@
 library(GenomicFeatures)
 library(tidyverse)
 library(optparse)
+options(readr.show_col_types = FALSE)
 
 option_list <- list(
   make_option(c("--gtf_file"),
@@ -10,6 +11,10 @@ option_list <- list(
   make_option(c("--output_file"),
               type = "character", default = NULL,
               help = "outputfile with given columns from gtf"
+  ),
+  make_option(c("--version"),
+              type = "character", default = NULL,
+              help = "version of the source gtf file"
   )
 )
 
@@ -20,10 +25,11 @@ colnames(genes) <- c("contig", "type", "start", "end", "strand","attributes")
 genes <- genes[genes$type == "gene",]
 genes$gene_symbol <- gsub(".*gene_name \"?([^;\"]+)\"?;.*", "\\1", genes$attributes)
 genes$ensembl <- gsub(".*gene_id \"?([^;\"]+)\"?;.*", "\\1", genes$attributes)
+genes$version <- opt$version
 
 
 genes %>%
-  select(gene_symbol,	ensembl) %>%
+  select(gene_symbol,	ensembl, version) %>%
   # Discard the gene version information in order to get gene symbols and
   # cytoband mappings
   dplyr::mutate(ensembl = gsub("\\..*", "", ensembl))%>%

@@ -27,9 +27,9 @@ ens_pmtl_mer <- merge(pmtl, ens_map, all.x = T)
 # Do any gene IDs mismatch?
 ens_pmtl_mer$mismatches <- ifelse(ens_pmtl_mer$Approved_Symbol == ens_pmtl_mer$gene_symbol, "true", "false")
 table(ens_pmtl_mer$mismatches)
-ens_pmtl_mer %>%
+ens_pmtl_mer %>% 
   filter(mismatches == "false") %>%
-  select(Approved_Symbol, gene_symbol)
+  select(ensg_id, Approved_Symbol, gene_symbol)
 ```
 ## Keep the `gene_symbol` as in the RNA-Seq files
 ```{r}
@@ -38,5 +38,8 @@ ens_hugo_pmtl <- ens_map %>%
   select(ensg_id, gene_symbol, pmtl, version) %>%
   distinct() %>%
   filter(!ensg_id == "Symbol_Not_Found" | !gene_symbol == 'NA') %>%
+  mutate(latest_gene_symbol=ifelse(version=="v39", gene_symbol, NA)) %>%
   write_tsv("results/ensg-hugo-pmtl-mapping.tsv")
 ```
+
+
