@@ -59,7 +59,7 @@ fi
 
 Rscript --vanilla 01-summarize_matrices.R \
   -i ../../data/gene-${expr_count}-rsem-${quantificationType}.rds \
-  -g ../../data/gencode.v27.primary_assembly.annotation.gtf.gz \
+  -g ../../data/gencode.v39.primary_assembly.annotation.gtf.gz \
   -m results/gene-${expr_count}-rsem-${quantificationType}-collapsed.rds \
   -t results/gene-${expr_count}-rsem-${quantificationType}-collapsed_table.rds
 
