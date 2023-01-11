@@ -102,8 +102,13 @@ human_hallmark_list    <- base::split(human_hallmark_twocols$human_gene_symbol, 
 # filter to RNA and exclude TCGA and GTEx
 histology_rna_df <- histology_df %>% 
   dplyr::filter(experimental_strategy == "RNA-Seq") %>% 
-  dplyr::filter(cohort == "PBTA") %>%
-  dplyr::filter(!is.na(RNA_library))
+  dplyr::filter(!is.na(RNA_library)) %>%
+  dplyr::filter(cohort != "TCGA") %>%
+  dplyr::filter(!is.na(broad_histology)) %>%
+  dplyr::filter(broad_histology != "Non-tumor") %>%  
+  dplyr::filter(broad_histology != "Other tumor") %>%
+  dplyr::filter(!is.na(cancer_group)) 
+  
 
 # First filter expression data to exclude GTEx and TCGA
 expression_data <- expression_data %>% 

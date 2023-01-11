@@ -955,14 +955,14 @@ var_level_mut_freq_tbl <- annotate_long_format_table(
   var_level_mut_freq_tbl,
   columns_to_add = c(
     'EFO', 'MONDO',
-    'PMTL', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
+    'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
     'Gene_full_name', 'Protein_RefSeq_ID'))
 
 gene_level_mut_freq_tbl <- annotate_long_format_table(
   gene_level_mut_freq_tbl,
   columns_to_add = c(
     'EFO', 'MONDO',
-    'PMTL', 'Gene_type', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
+    'Gene_type', 'OncoKB_cancer_gene', 'OncoKB_oncogene_TSG',
     'Gene_full_name', 'Protein_RefSeq_ID'))
 
 
@@ -973,7 +973,7 @@ stopifnot(identical(sum(is.na(var_level_mut_freq_tbl)), as.integer(0)))
 stopifnot(identical(sum(is.na(gene_level_mut_freq_tbl)), as.integer(0)))
 # reorder for output
 var_level_mut_freq_tbl <- var_level_mut_freq_tbl %>%
-  select(Gene_symbol, PMTL, Dataset, Disease, EFO, MONDO, Variant_ID, dbSNP_ID,
+  select(Gene_symbol, Dataset, Disease, EFO, MONDO, Variant_ID, dbSNP_ID,
          VEP_impact, SIFT_impact, PolyPhen_impact, Variant_classification,
          Variant_type, Gene_full_name, Protein_RefSeq_ID,
          Gene_Ensembl_ID, Protein_Ensembl_ID, Protein_change,
@@ -1002,7 +1002,7 @@ var_level_mut_freq_tbl <- var_level_mut_freq_tbl %>%
   dplyr::mutate(chop_uuid = uuid_string)
 
 gene_level_mut_freq_tbl <- gene_level_mut_freq_tbl %>%
-  select(Gene_symbol, PMTL, Dataset, Disease, EFO, MONDO,
+  select(Gene_symbol, Dataset, Disease, EFO, MONDO,
          Gene_full_name, Gene_type, Protein_RefSeq_ID,
          Gene_Ensembl_ID, Protein_Ensembl_ID,
          Total_mutations_over_subjects_in_dataset,

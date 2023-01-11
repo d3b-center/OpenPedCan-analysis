@@ -2,7 +2,7 @@
 
 **Module authors:** Chante Bethell ([@cbethell](https://github.com/cbethell)), Joshua Shapiro ([@jashapiro](https://github.com/jashapiro)), and Jaclyn Taroni ([@jaclyn-taroni](https://github.com/jaclyn-taroni))
 
-**Modified by:** Komal S. Rathi([@komalsrathi](https://github.com/komalsrathi)) and Run Jin ([@runjin326](https://github.com/runjin326))
+**Modified by:** Komal S. Rathi([@komalsrathi](https://github.com/komalsrathi)), Run Jin ([@runjin326](https://github.com/runjin326)), Ryan Corbett ([@rjcorb](https://github.com/rjcorb))
 
 The copy number data from OpenPedCan are provided as ranges or segments.
 The purpose of this module is to map from those ranges to gene identifiers for consumption by downstream analyses (e.g., OncoPrint plotting).
@@ -46,9 +46,18 @@ See the notebook for more information. This notebook also prepares lists of copy
   Mapping to cytobands is performed with the [`org.Hs.eg.db`](https://doi.org/doi:10.18129/B9.bioc.org.Hs.eg.db) package.
   A table with the following columns is returned:
 
-  | biospecimen_id | status | copy_number | ploidy | ensembl | gene_symbol | cytoband |
-  |----------------|--------|-------------|--------|---------|-------------|---------|
+  | biospecimen_id | status | copy_number | ploidy | ensembl | gene_symbol | cytoband | pct_overlap |
+  |----------------|--------|-------------|--------|---------|-------------|----------|-------------|
   Any segment that is copy neutral is filtered out of this table. In addition, [any segments with copy number > (2 * ploidy) are marked as amplifications](https://github.com/AlexsLemonade/OpenPedCan-analysis/blob/e2058dd43d9b1dd41b609e0c3429c72f79ff3be6/analyses/focal-cn-file-preparation/03-prepare-cn-file.R#L275) in the `status` column.
+  
+  There are several instances of duplicate gene cn status calls within the same biospecimen, and these are often conflicting (e.g., gain and loss). Duplicate status calls are resolved using the following criteria: 
+  1. One of two duplicate calls has `NA` status --> retain non-NA status call
+  2. One of two duplicate calls has `neutral` status --> retain non-neutral status call
+  3. One duplicate calls comes from segment with >50% exon overlap, or segment with >1.5x exon overlap % relative to other segments --> maintain major segment call 
+  4. Duplicate calls both have `amplification` status with different copy numbers --> retain one call with average copy number across segments
+  5. Duplicate calls are `amplification`/`gain` or `deep deletion`/`loss` --> retain only `amplification` or `deep deletion` call, respectively. 
+  
+  Any duplicate/conflicting status calls that cannot be resolved are appended to the output file. 
 
 * `05-define-most-focal-cn-units.Rmd` - This notebook defines the _most focal_ recurrent copy number units by removing focal changes that are within entire chromosome arm losses and gains.
 _Most focal_ here meaning if a chromosome arm is not clearly defined as a gain or loss (and is callable) we look to define the cytoband level status.

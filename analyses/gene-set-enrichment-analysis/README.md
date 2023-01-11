@@ -27,7 +27,7 @@ bash analyses/gene-set-enrichment-analysis/run-gsea.sh
 
 ## Folder Content
 
-+ `01-conduct-gsea-analysis.R` performs the GSVA analysis using RSEM FPKM expression data for both stranded and polyA data. Results are saved in `results/` TSV files when run via `run-gsea.sh`.
++ `01-conduct-gsea-analysis.R` performs the GSVA analysis using RSEM TPM expression data for both exome_capture, stranded and polyA data. Results are saved in `results/` TSV files when run via `run-gsea.sh`.
 
 + `02-model-gsea.Rmd` performs ANOVA and Tukey tests on GSVA scores to evaluate, for each hallmark pathway, differences in GSVA across groups (e.g. short histology or disease type).
 
@@ -37,7 +37,7 @@ bash analyses/gene-set-enrichment-analysis/run-gsea.sh
 
 + `results/gsva_scores_polya.tsv` represents GSVA scores calculated from `pbta-gene-expression-rsem-fpkm-collapsed.polya.rds` with with `Rscript --vanilla 01-conduct-gsea-analysis.R`
 
-+ **Eight** files named as `results/gsva_<tukey/anova>_<all_possible_RNA_library>_<harmonized_diagnosis/cancer_group)>.tsv` represent results from modeling
++ Files named as `results/gsva_<tukey/anova>_<all_possible_RNA_library>_<broad_histology/cancer_group)>.tsv` represent results from modeling
 	+ Files created with: `Rscript --vanilla 02-model-gsea.R`
 	+ Assumes `results/gsva_scores.tsv` 
  

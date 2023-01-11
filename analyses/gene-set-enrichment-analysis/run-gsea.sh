@@ -31,7 +31,7 @@ cd "$script_directory" || exit
 DATA_DIR="../../data"
 RESULTS_DIR="results"
 
-if [[ "$RUN_FOR_SUBTYPING" -lt "0" ]]; then
+if [[ "$RUN_FOR_SUBTYPING" -eq "0" ]]; then
   HIST_FILE="${DATA_DIR}/histologies.tsv"
 else
   HIST_FILE="${DATA_DIR}/histologies-base.tsv"
@@ -42,7 +42,7 @@ INPUT_FILE="${DATA_DIR}/gene-expression-rsem-tpm-collapsed.rds"
 OUTPUT_FILE="${RESULTS_DIR}/gsva_scores.tsv"
 Rscript --vanilla 01-conduct-gsea-analysis.R --input ${INPUT_FILE} --output ${OUTPUT_FILE} --histology ${HIST_FILE}
 
-if [[ "$RUN_FOR_SUBTYPING" -lt "0" ]]; then
+if [[ "$RUN_FOR_SUBTYPING" -eq "0" ]]; then
   ######## Model GSVA scores ############
   # Only run when histologies.tsv is generated which has cancer_group
   Rscript -e "rmarkdown::render('02-model-gsea.Rmd', clean = TRUE, params=list(is_ci = ${IS_CI}))"

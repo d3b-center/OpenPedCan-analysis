@@ -122,9 +122,9 @@ def compute_variant_frequencies(all_tumors_df, all_cohorts_primary_tumors_file, 
           d["total_sample_alterations"] = x["Kids_First_Biospecimen_ID"].nunique()
           d["total_patient_alterations"] = x["Kids_First_Participant_ID"].nunique()
           return(pd.Series(d, index=["Gene_symbol", "total_sample_alterations", "total_patient_alterations"]))
-     all_tumors_frequecy_dfs = []
-     primary_tumors_frequecy_dfs = []
-     relapse_tumors_frequecy_dfs = []
+     all_tumors_frequency_dfs = []
+     primary_tumors_frequency_dfs = []
+     relapse_tumors_frequency_dfs = []
      for row in cancer_group_cohort_df.itertuples(index=False):
           if row.num_samples > 3:
                for df_name, tumor_df in tumor_dfs.items():
@@ -154,26 +154,26 @@ def compute_variant_frequencies(all_tumors_df, all_cohorts_primary_tumors_file, 
                          df.at[i.Index, "Disease"] = row.cancer_group
                     df = df [["Gene_symbol", "Gene_Ensembl_ID", "Variant_type", "Dataset", "Disease", "Total_alterations_over_subjects_in_dataset", "Frequency_in_overall_dataset"]]
                     if df_name == "each_cohort_primary_tumors" or df_name == "all_cohorts_primary_tumors":
-                         primary_tumors_frequecy_dfs.append(df)
+                         primary_tumors_frequency_dfs.append(df)
                     if df_name == "each_cohort_relapse_tumors" or df_name == "all_cohorts_relapse_tumors":
-                         relapse_tumors_frequecy_dfs.append(df)
+                         relapse_tumors_frequency_dfs.append(df)
                     if df_name == "all_tumors":
-                         all_tumors_frequecy_dfs.append(df)
+                         all_tumors_frequency_dfs.append(df)
 
                          
      #  merge overal dataset (all tumor samples) and independent primary/replase tumor samples frequencies for cancer groups per cohorts into a single dataframe
      merging_list = []
      # frequencies in overall dataset
-     all_tumors_frequecy_df = pd.concat(all_tumors_frequecy_dfs, sort=False, ignore_index=True)
-     merging_list.append(all_tumors_frequecy_df)
+     all_tumors_frequency_df = pd.concat(all_tumors_frequency_dfs, sort=False, ignore_index=True)
+     merging_list.append(all_tumors_frequency_df)
      # frequencies in independent primary tumors
-     primary_tumors_frequecy_df = pd.concat(primary_tumors_frequecy_dfs, sort=False, ignore_index=True)
-     primary_tumors_frequecy_df.rename(columns={"Total_alterations_over_subjects_in_dataset": "Total_primary_tumors_mutated_over_primary_tumors_in_dataset", "Frequency_in_overall_dataset": "Frequency_in_primary_tumors"}, inplace=True)
-     merging_list.append(primary_tumors_frequecy_df)
+     primary_tumors_frequency_df = pd.concat(primary_tumors_frequency_dfs, sort=False, ignore_index=True)
+     primary_tumors_frequency_df.rename(columns={"Total_alterations_over_subjects_in_dataset": "Total_primary_tumors_mutated_over_primary_tumors_in_dataset", "Frequency_in_overall_dataset": "Frequency_in_primary_tumors"}, inplace=True)
+     merging_list.append(primary_tumors_frequency_df)
      # frequencies in independent relapse tumors
-     relapse_tumors_frequecy_df = pd.concat(relapse_tumors_frequecy_dfs, sort=False, ignore_index=True)
-     relapse_tumors_frequecy_df.rename(columns={"Total_alterations_over_subjects_in_dataset": "Total_relapse_tumors_mutated_over_relapse_tumors_in_dataset", "Frequency_in_overall_dataset": "Frequency_in_relapse_tumors"}, inplace=True)
-     merging_list.append(relapse_tumors_frequecy_df)
+     relapse_tumors_frequency_df = pd.concat(relapse_tumors_frequency_dfs, sort=False, ignore_index=True)
+     relapse_tumors_frequency_df.rename(columns={"Total_alterations_over_subjects_in_dataset": "Total_relapse_tumors_mutated_over_relapse_tumors_in_dataset", "Frequency_in_overall_dataset": "Frequency_in_relapse_tumors"}, inplace=True)
+     merging_list.append(relapse_tumors_frequency_df)
      cnv_frequency_df = reduce(lambda x, y: pd.merge(x, y, how="outer", on=["Gene_symbol", "Gene_Ensembl_ID", "Variant_type", "Dataset", "Disease"]), merging_list).fillna("")
      cnv_frequency_df = cnv_frequency_df.replace({"Total_primary_tumors_mutated_over_primary_tumors_in_dataset": "", "Total_relapse_tumors_mutated_over_relapse_tumors_in_dataset": ""}, "0/0")
      # format null frequency values for ensembl ids without cnv call at least one categories (i.e., overall dataset, primary samples, or relapse samples)
@@ -211,11 +211,11 @@ def get_annotations(cnv_frequency_df, CNV_FILE):
      cnv_frequency_df.to_csv(cnv_freq_tsv, sep="\t", index=False, encoding="utf-8")
 
      # annotate full gene names, OncoKB categories, EFO and MONDO disease accessions, 
-     # and Relevant Molecular Target (PMTL) from the long-format-table-utils analysis module
+     # Oct 2022 - update - Sangeeta Shukla - Removed existing Relevant Molecular Target (PMTL) captured from the long-format-table-utils analysis module
      log_file = "{}/annotator.log".format(results_dir)
      cnv_annot_freq_tsv = "{}/gene-level-cnv-consensus-annotated-mut-freq.tsv".format(results_dir)
      with open(log_file, "w") as log:
-          subprocess.run(["Rscript", "--vanilla", "../long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,PMTL,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
+          subprocess.run(["Rscript", "--vanilla", "../long-format-table-utils/annotator/annotator-cli.R", "-r", "-c", "Gene_full_name,OncoKB_cancer_gene,OncoKB_oncogene_TSG,EFO,MONDO", "-i", cnv_freq_tsv, "-o", cnv_annot_freq_tsv, "-v"], stdout=log, check=True)
 
      # columns changes proposed by the FNL:
      cnv_annot_freq_df = pd.read_csv(cnv_annot_freq_tsv, sep="\t", na_filter=False, dtype=str)
