@@ -13,6 +13,8 @@ RUN_ORIGINAL=${RUN_ORIGINAL:-0}
 # Run testing files for circle CI - will not by default
 IS_CI=${OPENPBTA_TESTING:-0}
 
+RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
+
 # This script should always run as if it were being called from
 # the directory it lives in.
 script_directory="$(perl -e 'use File::Basename;
@@ -23,89 +25,76 @@ cd "$script_directory" || exit
 scratch_dir=../../scratch
 data_dir=../../data
 results_dir=../../analyses/focal-cn-file-preparation/results
-histologies_file=${data_dir}/histologies.tsv
-gtf_file=${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz
+gtf_file=${data_dir}/gencode.v39.primary_assembly.annotation.gtf.gz
 goi_file=../../analyses/oncoprint-landscape/driver-lists/brain-goi-list-long.txt
-independent_specimens_file=${data_dir}/independent-specimens.wgswxs.primary.tsv
+independent_specimens_file=${data_dir}/independent-specimens.wgswxspanel.primary.prefer.wgs.tsv
+
+if [[ "$RUN_FOR_SUBTYPING" -eq "1" ]]
+then
+  histologies_file=${data_dir}/histologies-base.tsv
+else
+  histologies_file=${data_dir}/histologies.tsv
+fi
 
 # Prep the consensus SEG file data
 Rscript --vanilla -e "rmarkdown::render('02-add-ploidy-consensus.Rmd', clean = TRUE)"
 
-# Run snakemake script implementing `bedtools coverage` for each sample bed file in
-# `scratch/cytoband_status` -- these files are generated in
-# `02-add-ploidy-consensus.Rmd`
-# currently runs 10 jobs in parallel, which should be fine for most implementations
-snakemake -j 10 --snakefile run-bedtools.snakemake
-
-# Determine the dominant status for each chromosome arm and compare with GISTIC's arm status calls
-Rscript --vanilla -e "rmarkdown::render('03-add-cytoband-status-consensus.Rmd', clean = TRUE)"
-
 # Run annotation step for consensus file
 Rscript --vanilla 04-prepare-cn-file.R \
-  --cnv_file ${scratch_dir}/consensus_seg_with_status.tsv \
-  --gtf_file $gtf_file \
-  --metadata $histologies_file \
-  --filename_lead "consensus_seg_annotated_cn" \
-  --seg
+--cnv_file ${results_dir}/consensus_seg_with_status.tsv \
+--gtf_file $gtf_file \
+--metadata $histologies_file \
+--filename_lead "consensus_seg_annotated_cn" \
+--seg
 
-# Define most focal units of recurrent CNVs
-Rscript --vanilla -e "rmarkdown::render('05-define-most-focal-cn-units.Rmd', clean = TRUE)"
-
-# Define the recurrent calls
-Rscript --vanilla -e "rmarkdown::render('06-find-recurrent-calls.Rmd', clean = TRUE)"
-
-libraryStrategies=("polya" "stranded")
-chromosomesType=("autosomes" "x_and_y")
-for strategy in ${libraryStrategies[@]}; do
-
-  for chromosome_type in ${chromosomesType[@]}; do
-
-    Rscript --vanilla rna-expression-validation.R \
-      --annotated_cnv_file results/consensus_seg_annotated_cn_${chromosome_type}.tsv.gz \
-      --expression_file ${data_dir}/gene-expression-rsem-fpkm-collapsed.${strategy}.rds \
-      --independent_specimens_file $independent_specimens_file \
-      --metadata $histologies_file \
-      --goi_list $goi_file \
-      --filename_lead "consensus_seg_annotated_cn"_${chromosome_type}_${strategy}
-  done
-done
 
 # if we want to process the CNV data from the original callers
 # (e.g., CNVkit, ControlFreeC)
-if [ "$RUN_ORIGINAL" -gt "0" ]; then
+if [ "$RUN_ORIGINAL" -gt "0" ]
+then
 
-  # Prep the CNVkit data
-  Rscript --vanilla -e "rmarkdown::render('01-add-ploidy-cnvkit.Rmd', clean = TRUE)"
+# Prep the CNVkit data
+Rscript --vanilla -e "rmarkdown::render('01-add-ploidy-cnvkit.Rmd', clean = TRUE)"
 
-  # Run annotation step for CNVkit
-  Rscript --vanilla 04-prepare-cn-file.R \
-    --cnv_file ${scratch_dir}/cnvkit_with_status.tsv \
-    --gtf_file $gtf_file \
-    --metadata $histologies_file \
-    --filename_lead "cnvkit_annotated_cn" \
-    --seg
+# Run annotation step for CNVkit
+Rscript --vanilla 04-prepare-cn-file.R \
+--cnv_file ${results_dir}/cnvkit_with_status.tsv \
+--gtf_file $gtf_file \
+--metadata $histologies_file \
+--filename_lead "cnvkit_annotated_cn" \
+--seg \
+--runWXSonly
 
-  # Run annotation step for ControlFreeC
-  Rscript --vanilla 04-prepare-cn-file.R \
-    --cnv_file ${data_dir}/cnv-controlfreec.tsv.gz \
-    --gtf_file $gtf_file \
-    --metadata $histologies_file \
-    --filename_lead "controlfreec_annotated_cn" \
-    --controlfreec
+# Run annotation step for ControlFreeC
+Rscript --vanilla 04-prepare-cn-file.R \
+--cnv_file ${data_dir}/cnv-controlfreec.tsv.gz \
+--gtf_file $gtf_file \
+--metadata $histologies_file \
+--filename_lead "controlfreec_annotated_cn" \
+--controlfreec \
+--runWXSonly
 
-  filenameLead=("cnvkit_annotated_cn" "controlfreec_annotated_cn")
-  for filename in ${filenameLead[@]}; do
-    for strategy in ${libraryStrategies[@]}; do
-      for chromosome_type in ${chromosomesType[@]}; do
-        Rscript --vanilla rna-expression-validation.R \
-          --annotated_cnv_file results/${filename}_${chromosome_type}.tsv.gz \
-          --expression_file ${data_dir}/gene-expression-rsem-fpkm-collapsed.${strategy}.rds \
-          --independent_specimens_file $independent_specimens_file \
-          --metadata $histologies_file \
-          --goi_list $goi_file \
-          --filename_lead ${filename}_${chromosome_type}_${strategy}
-      done
-    done
-  done
+# Run merging for all annotated files 
+Rscript --vanilla 07-consensus-annotated-merge.R \
+--cnvkit_auto ${results_dir}/cnvkit_annotated_cn_wxs_autosomes.tsv.gz \
+--cnvkit_x_and_y ${results_dir}/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz \
+--consensus_auto ${results_dir}/consensus_seg_annotated_cn_autosomes.tsv.gz \
+--consensus_x_and_y ${results_dir}/consensus_seg_annotated_cn_x_and_y.tsv.gz \
+--outdir ${results_dir}
 
+
+ #filenameLead=("cnvkit_annotated_cn" "controlfreec_annotated_cn" "cnvkit_annotated_cn_wxs" "controlfreec_annotated_cn_wxs")
+ #chromosomeType=("autosomes" "x_and_y")
+ #for filename in ${filenameLead[@]}; do
+#   for chromosome_type in ${chromosomesType[@]}; do
+#       Rscript --vanilla rna-expression-validation.R \
+#         --annotated_cnv_file results/${filename}_${chromosome_type}.tsv.gz \
+#         --expression_file ${data_dir}/gene-expression-rsem-tpm-collapsed.rds \
+#         --independent_specimens_file $independent_specimens_file \
+#         --metadata $histologies_file \
+#         --goi_list $goi_file \
+#         --filename_lead ${filename}_${chromosome_type}
+#   done
+# done
+#
 fi

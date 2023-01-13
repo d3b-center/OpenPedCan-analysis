@@ -21,8 +21,8 @@ There are two modes for generating independent sample lists:
 * `02-generate-independent-rnaseq.R`: Generate tables of independent rna-seq specimens.
 * `03-qc-independent-samples.Rmd`: Markdown to tabulate number of biospecimen ids for same participant ids from each output file.
 * `04-generate-independent-specimens-rnaseq-pre-release.R`: Generate tables of RNA-Seq-only independent specimens where no two specimens are chosen from the same individual. 
-* `05-generate-independent-specimens-methyl.R`: Generate tables of Methylation-DNA independent specimens.
 (Note: these tables will only be used for the `fusion_filtering` module runs pre-release).
+* `05-generate-independent-specimens-methyl.R`: Generate tables of DNA methylation array independent specimens where no two specimens are chosen from the same individual.
 
 ```
 .
@@ -38,43 +38,44 @@ There are two modes for generating independent sample lists:
 ├── 05-generate-independent-specimens-methyl.R
 ├── README.md
 ├── results
-│   ├── independent-specimens.methyl.relapse.tsv
-│   ├── independent-specimens.methyl.primary.tsv
-│   ├── independent-specimens.methyl.relapse.eachcohort.tsv
-│   ├── independent-specimens.methyl.primary.eachcohort.tsv
 │   ├── independent-specimens.methyl.primary-plus.eachcohort.tsv
 │   ├── independent-specimens.methyl.primary-plus.tsv
+│   ├── independent-specimens.methyl.primary.eachcohort.tsv
+│   ├── independent-specimens.methyl.primary.tsv
+│   ├── independent-specimens.methyl.relapse.eachcohort.tsv
+│   ├── independent-specimens.methyl.relapse.tsv
+│   ├── independent-specimens.rnaseq.primary-plus-pre-release.tsv
+│   ├── independent-specimens.rnaseq.primary-pre-release.tsv
+│   ├── independent-specimens.rnaseq.relapse-pre-release.tsv
 │   ├── independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv
 │   ├── independent-specimens.rnaseqpanel.primary-plus.tsv
-│   ├── independent-specimens.rnaseqpanel.primary-plus.pre-release.tsv
 │   ├── independent-specimens.rnaseqpanel.primary.eachcohort.tsv
 │   ├── independent-specimens.rnaseqpanel.primary.tsv
-│   ├── independent-specimens.rnaseqpanel.primary.pre-release.tsv
 │   ├── independent-specimens.rnaseqpanel.relapse.eachcohort.tsv
 │   ├── independent-specimens.rnaseqpanel.relapse.tsv
-│   ├── independent-specimens.rnaseqpanel.relapse.pre-release.tsv
 │   ├── independent-specimens.wgs.primary-plus.eachcohort.tsv
 │   ├── independent-specimens.wgs.primary-plus.tsv
 │   ├── independent-specimens.wgs.primary.eachcohort.tsv
 │   ├── independent-specimens.wgs.primary.tsv
 │   ├── independent-specimens.wgs.relapse.eachcohort.tsv
 │   ├── independent-specimens.wgs.relapse.tsv
-│   ├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv
 │   ├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wgs.tsv
-│   ├── independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv
 │   ├── independent-specimens.wgswxspanel.primary-plus.prefer.wgs.tsv
-│   ├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv
 │   ├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv
-│   ├── independent-specimens.wgswxspanel.primary.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv
 │   ├── independent-specimens.wgswxspanel.primary.prefer.wgs.tsv
-│   ├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.primary.prefer.wxs.tsv
 │   ├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv
-│   ├── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
-│   └── independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv
+│   ├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
+│   ├── independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv
+│   └── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
 ├── run-independent-samples.sh
 └── util
     ├── independent-dna-samples.R
-    └── independent_rna_samples.R
+    ├── independent_rna_samples.R
+    └── independent-methyl-samples.R
 ```
 
 ## Summary
@@ -91,20 +92,20 @@ These lists contain only WGS samples:
 
 1. **All-cohorts specific lists**
 
-* Primary specimens only with whole genome sequence (WGS):  
+* Primary specimens only with whole genome sequence (WGS):
 `independent-specimens.wgs.primary.tsv`
-* Relapse specimens with WGS:  
+* Relapse specimens with WGS:
 `independent-specimens.wgs.relapse.tsv`
-* Primary and relapse specimens with WGS:  
+* Primary and relapse specimens with WGS:
 `independent-specimens.wgs.primary-plus.tsv`
 
 2. **Each-cohort specific lists**
 
-* Primary specimens only with whole genome sequence (WGS):  
+* Primary specimens only with whole genome sequence (WGS):
 `independent-specimens.wgs.primary.eachcohort.tsv`
-* Relapse specimens with WGS:  
+* Relapse specimens with WGS:
 `independent-specimens.wgs.relapse.eachcohort.tsv`
-* Primary and relapse specimens with WGS:  
+* Primary and relapse specimens with WGS:
 `independent-specimens.wgs.primary-plus.eachcohort.tsv`
 
 ### WGS-preferred lists
@@ -126,20 +127,20 @@ For WGS-preferred lists, we first subset the **tumor samples** to `WGS` samples 
 
 1. **All-cohorts specific lists**
 
-* Primary specimens only with either WGS or whole exome sequence (WXS) or Panel:  
+* Primary specimens only with either WGS or whole exome sequence (WXS) or Panel:
 `independent-specimens.wgswxspanel.primary.prefer.wgs.tsv`
-* Relapse specimens only with either WGS or whole exome sequence (WXS) or Panel:  
+* Relapse specimens only with either WGS or whole exome sequence (WXS) or Panel:
 `independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv`
-* Primary and relapse specimens with WGS or WXS or Panel:  
+* Primary and relapse specimens with WGS or WXS or Panel:
 `independent-specimens.wgswxspanel.primary-plus.prefer.wgs.tsv`
 
 2. **Each-cohort specific lists**
 
-* Primary specimens only with either WGS or whole exome sequence (WXS) or Panel:  
+* Primary specimens only with either WGS or whole exome sequence (WXS) or Panel:
 `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wgs.tsv`
-* Relapse specimens only with either WGS or whole exome sequence (WXS) or Panel:  
+* Relapse specimens only with either WGS or whole exome sequence (WXS) or Panel:
 `independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wgs.tsv`
-* Primary and relapse specimens with WGS or WXS or Panel:  
+* Primary and relapse specimens with WGS or WXS or Panel:
 `independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wgs.tsv`
 
 ### WXS-preferred lists
@@ -163,20 +164,20 @@ For WXS-preferred lists, we first subset the **tumor samples** to `WXS` samples 
 
 1. **All-cohorts specific lists**
 
-* Primary specimens only with either whole exome sequence (WXS) or WGS or Panel:  
+* Primary specimens only with either whole exome sequence (WXS) or WGS or Panel:
 `independent-specimens.wgswxspanel.primary.prefer.wxs.tsv`
-* Relapse specimens only with either whole exome sequence (WXS) or WGS or Panel:  
+* Relapse specimens only with either whole exome sequence (WXS) or WGS or Panel:
 `independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv`
-* Primary and relapse specimens with WXS or WGS or Panel:  
+* Primary and relapse specimens with WXS or WGS or Panel:
 `independent-specimens.wgswxspanel.primary-plus.prefer.wxs.tsv`
 
 2. **Each-cohort specific lists**
 
-* Primary specimens only with either whole exome sequence (WXS) or WGS or Panel:  
+* Primary specimens only with either whole exome sequence (WXS) or WGS or Panel:
 `independent-specimens.wgswxspanel.primary.eachcohort.prefer.wxs.tsv`
-* Relapse specimens only with either whole exome sequence (WXS) or WGS or Panel:  
+* Relapse specimens only with either whole exome sequence (WXS) or WGS or Panel:
 `independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv`
-* Primary and relapse specimens with WXS or WGS or Panel:  
+* Primary and relapse specimens with WXS or WGS or Panel:
 `independent-specimens.wgswxspanel.primary-plus.eachcohort.prefer.wxs.tsv`
 
 ### RNA-sequencing lists
@@ -188,36 +189,43 @@ When multiple RNA-Seq samples exist per participant, the script matches the inde
 
 1. **All-cohorts specific lists**
 
-* Primary RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
-`independent-specimens.rnaseqpanel.primary-plus.tsv` and `independent-specimens.rnaseqpanel.primary-plus.pre-release.tsv` 
-* Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
-`independent-specimens.rnaseqpanel.primary.tsv` and `independent-specimens.rnaseqpanel.primary.pre-release.tsv`
-* Primary and Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
-`independent-specimens.rnaseqpanel.relapse.tsv` and `independent-specimens.rnaseqpanel.relapse.pre-release.tsv`
+* Primary RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq: 
+`independent-specimens.rnaseqpanel.primary.tsv` and `independent-specimens.rnaseq.primary.pre-release.tsv` 
+* Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq: 
+`independent-specimens.rnaseqpanel.relapse.tsv` and `independent-specimens.rnaseq.relapse.pre-release.tsv`
+* Primary and Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq: 
+`independent-specimens.rnaseqpanel.primary-plus.tsv` and `independent-specimens.rnaseq.primary-plus.pre-release.tsv`
 
 Note: `*pre-release.tsv` files are generated pre-release, require `histologies-base.tsv`, and are only being used to run `fusion_filtering`.
 
 2. **Each-cohort specific lists**
 
-* Primary RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
-`independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv`
-* Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
+* Primary RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq: 
 `independent-specimens.rnaseqpanel.primary.eachcohort.tsv`
-* Primary and Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq 
+* Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq: 
 `independent-specimens.rnaseqpanel.relapse.eachcohort.tsv`
+* Primary and Relapse RNA-Seq specimens matching WGS/WXS/Panel independent sample_ids plus only-RNA-Seq:
+`independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv`
 
 ### Methylation lists
 
 These lists contain independent methylation array samples:
+1. **All-cohorts specific lists**
 
-* Primary specimens:  
+* Primary methylation array specimens:
 `independent-specimens.methyl.primary.tsv`
-`independent-specimens.methyl.primary.eachcohort.tsv`
-* Relapse specimens:  
+* Relapse methylation array specimens:
 `independent-specimens.methyl.relapse.tsv`
-`independent-specimens.methyl.relapse.eachcohort.tsv`
-* Primary and relapse:  
+* Primary and relapse methylation array specimens: 
 `independent-specimens.methyl.primary-plus.tsv`
+
+2. **Each-cohort specific lists**
+
+* Primary specimens methylation array specimens:
+`independent-specimens.methyl.primary.eachcohort.tsv`
+* Relapse specimens methylation array specimens:
+`independent-specimens.methyl.relapse.eachcohort.tsv`
+* Primary and relapse methylation array specimens:
 `independent-specimens.methyl.primary-plus.eachcohort.tsv`
 
 ## Generating sample lists
@@ -232,4 +240,3 @@ bash analyses/independent-samples/run-independent-samples.sh
 - When presented with more than one specimen from a given individual with a specific cancer group and cohort, the script selects the first occurrence of the individual so as to include only one specimen, with preference for primary tumors and whole genome sequences where available.
 - The input histology file is randomized using a seed before using as input in order to avoid any selection bias. Using a seed allows for reproducibility of the randomized histology file.
 - There is also a preference for the earliest collected samples, but as this data is not currently available, that code is currently deleted.
-

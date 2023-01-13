@@ -499,29 +499,29 @@ print(paste("WGS/WXS/Targeted Panels biospecimen in histologies.tsv missing in b
 
 - WGS biospecimen IDs
 ```{r}
-# check that all wgs biospecimen IDs  have either female or male sex extimate
+# check that all wgs biospecimen IDs have either female or male sex estimate
 wgs_sex_estimate <- hist_df %>% 
   dplyr::filter(experimental_strategy == "WGS") %>%
   dplyr::select(Kids_First_Biospecimen_ID,
                 Kids_First_Participant_ID,
                 germline_sex_estimate)
-missing_sex_estimate <- wgs_sex_estimate %>%  
+missing_ids <- wgs_sex_estimate %>%  
   dplyr::filter(germline_sex_estimate != "Female" | 
                   germline_sex_estimate != "Male") %>% 
   dplyr::pull(Kids_First_Biospecimen_ID)
-if (length(missing_sex_estimate) > 0) {
+if (length(missing_ids) > 0) {
   output_file <- "wgs-biospecimen-missing-sex_estimate.txt"
   missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
   missing_ids_df 
 }
-print(paste("WGS biospecimen in histologies.tsv missing germline sex estimate = ", length(missing_sex_estimate)))
+print(paste("WGS biospecimen in histologies.tsv missing germline sex estimate = ", length(missing_ids)))
 ```
 
 - WXS and Targeted Sequencing biospecimen IDs
 ```{r}
-# check that patients with wgs sex extimate them tranferred to corresponding 
-# wgs and targed panels biospecimen IDs
-wgs_with_sex_estimate_patients <-  wgs_sex_estimate %>% 
+# check that patients with wgs sex estimate have been carried over to corresponding 
+# wgs and targted panel biospecimen IDs
+wgs_sex_estimated_patients <-  wgs_sex_estimate %>% 
   dplyr::filter(germline_sex_estimate == "Female" | 
                   germline_sex_estimate == "Male") %>% 
   dplyr::pull(Kids_First_Participant_ID) %>% 
@@ -530,18 +530,18 @@ wxspanel_sex_estimate <- hist_df %>%
   dplyr::filter(experimental_strategy == "WXS" | 
                   experimental_strategy == "Targeted Sequencing",
                 is.na(RNA_library),
-                Kids_First_Participant_ID %in% wgs_with_sex_estimate_patients) %>%
+                Kids_First_Participant_ID %in% wgs_sex_estimated_patients) %>%
   dplyr::select(Kids_First_Biospecimen_ID,
                 Kids_First_Participant_ID,
                 germline_sex_estimate)
-missing_sex_estimate <- wxspanel_sex_estimate %>%  
+missing_ids <- wxspanel_sex_estimate %>%  
   dplyr::filter(germline_sex_estimate != "Female" | 
                   germline_sex_estimate != "Male") %>% 
   dplyr::pull(Kids_First_Biospecimen_ID)
-if (length(missing_sex_estimate) > 0) {
+if (length(missing_ids) > 0) {
   output_file <- "wxspanel-biospecimen-missing-transferred-wgs-sex_estimate.txt"
   missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
   missing_ids_df 
 }
-print(paste("WXS/Targeted Panels biospecimen in histologies.tsv missing transferred WGS germline sex estimate = ", length(missing_sex_estimate)))
+print(paste("WXS/Targeted Panels biospecimen in histologies.tsv missing transferred WGS germline sex estimate = ", length(missing_ids)))
 ```

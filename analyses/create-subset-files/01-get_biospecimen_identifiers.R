@@ -38,6 +38,8 @@ suppressWarnings(
   suppressPackageStartupMessages(library(tidyverse))
 )
 suppressPackageStartupMessages(library(optparse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(options(readr.show_col_types = FALSE))
 
 `%>%` <- dplyr::`%>%`
 
@@ -73,11 +75,11 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     biospecimen_ids <- unique(snv_file$Tumor_Sample_Barcode)
   } else if (grepl("biospecimen", filename)) {
     # list of sample IDs with their corresponding bed files
-    bed_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    bed_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(bed_file$Kids_First_Biospecimen_ID)
   } else if (grepl("cnv", filename)) {
     # the two CNV files now have different structures
-    cnv_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    cnv_file <- readr::read_tsv(filename)
     if (grepl("controlfreec|cnvkit_with_status", filename)) {
       biospecimen_ids <- unique(cnv_file$Kids_First_Biospecimen_ID)
     } else if (grepl("consensus_wgs_plus_cnvkit_wxs", filename)) {
@@ -86,11 +88,10 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
       biospecimen_ids <- unique(cnv_file$ID)
     }
   } else if (grepl("consensus_seg_with_status", filename)) {
-    cn_seg_status_file <- readr::read_tsv(filename, 
-                                          show_col_types = FALSE)
+    cn_seg_status_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(cn_seg_status_file$Kids_First_Biospecimen_ID)
   } else if (grepl("fusion", filename)) {
-    fusion_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    fusion_file <- readr::read_tsv(filename)
     # the biospecimen IDs in the filtered/prioritize fusion list included with
     # the download are in a column called 'Sample'
     if (grepl("putative-oncogenic", filename)) {
@@ -119,7 +120,7 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     }
   } else if (grepl("independent", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
-    independent_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    independent_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
   } else {
     # error-handling
@@ -310,7 +311,7 @@ num_nonmatched_participants <- ceiling(0.1 * num_matched_participants)
 # set the seed
 set.seed(opt$seed)
 
-#### Samples we need to include to run tp53_nf1_score --------------------------
+#### Samples we need to include to run tp53_nf1_score module -------------------
 
 # For more information, see the 00-enrich-positive-examples notebook
 tp53_dnaseq <- c("BS_16FT8V4B", "BS_B9QP40ER", "BS_7KR13R3P", "BS_K2K5YSDS", 
@@ -326,11 +327,39 @@ nf1_rnaseq <- c("BS_81SP2HX4", "BS_KFD5128N", "BS_YDEVMD24",
                 "TARGET-50-PAKKNS-01A-01R", "TARGET-30-PAPVRN-01A-01R",
                 "TARGET-10-PANTSM-04A-01R")
 
+#### Samples we need to include to run rnaseq-batch-correct module -------------
+
+# For more information, see the 00-enrich-positive-examples notebook
+polya_mycn_amp <- c("TARGET-30-PALKUC-01A-01R", "TARGET-30-PAMMXF-01A-01R", 
+                    "TARGET-30-PAMZGT-01A-01R", "TARGET-30-PAPBJE-01A-01R", 
+                    "TARGET-30-PAPTFZ-01A-01R")
+polya_mycn_nonamp <- c("TARGET-30-PAISNS-01A-01R", "TARGET-30-PARZCJ-01A-01R", 
+                        "TARGET-30-PASFGG-01A-01R", "TARGET-30-PASSRS-01A-01R",
+                        "TARGET-30-PASTKC-01A-01R")
+stranded_dmg <- c("BS_1A6MQ9ZA", "BS_D29RPBSZ", "BS_MB7WN0ZB", "BS_TM9MH0RP",
+                  "BS_ZVWE73JZ")
+polya_dmg <- c("BS_0VXZCRJS", "BS_G3NN392N", "BS_XM1AHBDJ", "BS_Z3RCA1T9",
+               "BS_ZF6BSFNF")
+stranded_hgg <- c("BS_49FQXT2E", "BS_FEV5A0HN", "BS_M8EA6R2A", "BS_T9A8JJW5",
+                  "BS_X23724NJ")
+polya_hgg <- c("BS_4PPHAQXF", "BS_58YXHGAJ", "BS_HWGWYCY7", "BS_R7NTZR4C",
+               "BS_SNVM7CZT")
+gtex_brain_cortex <- c("GTEX-1A8G6-2926-SM-731CK", "GTEX-1B8L1-3026-SM-7EPHK", 
+                       "GTEX-1EX96-3026-SM-7RHH5", "GTEX-1HGF4-3126-SM-CL54M",
+                       "GTEX-1IKK5-2926-SM-ARU7Q", "GTEX-1JMQK-3026-SM-ARL95",
+                       "GTEX-1LG7Y-3026-SM-D5OVI", "GTEX-1NV8Z-3126-SM-E76R3",
+                       "GTEX-OXRN-2426-SM-2I5EQ", "GTEX-WWYW-3126-SM-3NB39")
+gtex_brain_cerebellum <- c("GTEX-111FC-3326-SM-5GZYV", "GTEX-117XS-3126-SM-5GIDP",
+                           "GTEX-13FTY-0011-R11a-SM-5IJEA", "GTEX-13NYS-0011-R11b-SM-5MR4P",
+                           "GTEX-13SLX-0011-R11b-SM-5O9C8", "GTEX-14E7W-2926-SM-5S2R8",
+                           "GTEX-1A3MX-2926-SM-718B7", "GTEX-1H4P4-0011-R11b-SM-CE6S8",
+                           "GTEX-1I1GQ-0011-R11b-SM-CKZPA", "GTEX-X4XX-2926-SM-3NMB1")
+
 ### Histologies and participants IDs mapping -----------------------------------
 
 # load histologies file
 histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"), 
-                         guess_max = 10000, show_col_types = FALSE) %>% 
+                         guess_max = 10000) %>% 
   dplyr::filter(experimental_strategy != "Methylation")
 
 # get the participant ID to biospecimen ID mapping
@@ -478,21 +507,27 @@ biospecimen_ids_for_subset <- purrr::map(
   }
 )
 
-message(paste0("\nAppending NF1 and TP53 mutations biospecimen IDs to rds and snv lists..."))
+message(paste0("\nAppending biospecimen IDs of interest to rds and snv lists..."))
 
 # for each rnaseq rds instance, add in biospecimen IDs for samples we know have
-# a positive example of NF1 mutation and TP53 for tp53_nf1_score
+# a positive example of NF1 mutation and TP53 for tp53_nf1_score and biospecimen IDs
+# that can fully test the batch correction module
 rds_files <- 
   names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
 rds_files <- rds_files[-grep("tcga", rds_files)]
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq)))
+  purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq, 
+                                             polya_mycn_amp, polya_mycn_nonamp, 
+                                             stranded_dmg, polya_dmg, 
+                                             stranded_hgg, polya_hgg, 
+                                             gtex_brain_cortex, gtex_brain_cerebellum)))
 
 # for each snv instance, add in biospecimen IDs for samples we know have a
 # positive example of NF1 mutation and TP53 for tp53_nf1_score
 snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
+
 
 # remove any redundant that might result combining and appending to the 
 # biospecimen IDs lists for subsetting 

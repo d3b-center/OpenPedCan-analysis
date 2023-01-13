@@ -46,7 +46,6 @@ Generate z-scores across all `sample_groups` as `z_score_matrix = (mean_TPM_matr
 Generate long summary statistic tables for converting to [JSON Lines (JSONL)](<https://jsonlines.org/>) format, with each row as a tab-delimited record of the following columns, as suggested by @jharenza and @taylordm at <https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/27#issuecomment-868035006>.
 
 - `gene_symbol`
-- `PMTL`
 - `gene_id`
 - `cancer_group`
 - `EFO`
@@ -97,7 +96,6 @@ The following long tables are generated using the computed summary statistics in
 Each row of the long table is a tab-delimited record of the following columns, as suggested by @jharenza and @taylordm at <https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/27#issuecomment-868035006>.
 
 - `gene_symbol`
-- `PMTL`
 - `gene_id`
 - `cancer_group`
 - `EFO`

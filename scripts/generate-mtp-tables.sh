@@ -9,7 +9,8 @@ printf "Start generating mtp tables...\n\n"
 
 # Use the bucket that contains mtp files
 URL="s3://d3b-openaccess-us-east-1-prd-pbta/open-targets"
-RELEASE="mtp-tables"
+RELEASE="v11"   
+MTP_DIR="mtp-tables"
 
 # This script should always run as if it were being called from
 # the directory it lives in.
@@ -27,7 +28,7 @@ TPM_MODULE_DIR=$SCRIPT_DIR/../analyses/rna-seq-expression-summary-stats
 # Compile all the files that need to be included in the release in one place
 # in the scratch directory
 SCRATCH_DIR=$SCRIPT_DIR/../scratch
-RELEASE_DIR="$SCRATCH_DIR/$RELEASE"
+RELEASE_DIR="$SCRATCH_DIR/$MTP_DIR"
 mkdir -p $RELEASE_DIR 
 
 # Run fusion-frequencies module and copy over to mpt-tables/ directory on scratch/ 
@@ -66,6 +67,6 @@ rm -f md5sum.txt
 md5sum * > md5sum.txt
 
 # Upload all release and commit files s3 bucket in their respective folders
-aws s3 cp $RELEASE_DIR/ $URL/$RELEASE/ --recursive
+aws s3 cp $RELEASE_DIR/ $URL/$RELEASE/$MTP_DIR --recursive
 
 printf "\nDone generating mtp tables...\n\n"

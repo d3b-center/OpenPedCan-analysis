@@ -11,8 +11,12 @@
 #     --output_directory data/testing/v11
 
 #### Libraries and functions ---------------------------------------------------
-
-library(optparse)
+suppressWarnings(
+  suppressPackageStartupMessages(library(tidyverse))
+)
+suppressPackageStartupMessages(library(optparse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(options(readr.show_col_types = FALSE))
 
 write_maf_file <- function(maf_df, file_name, version_string) {
   # Given a data.frame that contains the fields for a MAF file, write a gzipped
@@ -95,13 +99,13 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     }
   } else if (grepl("biospecimen", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
-    bed_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    bed_file <- readr::read_tsv(filename)
     bed_file %>% 
       dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
   } else if (grepl("cnv", filename)) {
     # in a column 'ID', 'Kids_First_Biospecimen_ID', and 'biospecimen_id'
-    cnv_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    cnv_file <- readr::read_tsv(filename)
     biospecimen_column <- 
       intersect(colnames(cnv_file), 
                 c("ID", "Kids_First_Biospecimen_ID", "biospecimen_id"))
@@ -110,13 +114,12 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
       readr::write_tsv(output_file)
   } else if (grepl("consensus_seg_with_status", filename)) {
     # in a column Kids_First_Biospecimen_ID',
-    cn_seg_status_file <- readr::read_tsv(filename, 
-                                          show_col_types = FALSE)
+    cn_seg_status_file <- readr::read_tsv(filename)
     cn_seg_status_file %>%
       dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
   } else if (grepl("fusion", filename)) {
-    fusion_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    fusion_file <- readr::read_tsv(filename)
     # original files contain the biospecimen IDs in a column called 'tumor_id',
     # the filtered/prioritized list biospecimen IDs are in 'Sample'
     if (grepl("putative-oncogenic", filename)) {
@@ -160,7 +163,7 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     }
   } else if (grepl("independent", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
-    independent_file <- readr::read_tsv(filename, show_col_types = FALSE)
+    independent_file <- readr::read_tsv(filename)
     independent_file %>% 
       dplyr::filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)

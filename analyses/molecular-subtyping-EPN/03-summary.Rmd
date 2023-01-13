@@ -93,33 +93,33 @@ viewDataTable(EPN_final %>%
 
 ### Fusion prioritization
 
-We will next prioritize RELA and YAP1 fusions based on evidence for these subgroups from Pajtler. et al. Fig.6
+We will next prioritize ZFTA (C11orf95) and YAP1 fusions based on evidence for these subgroups from Pajtler. et al. Fig.6
 
-### RELA gene fusions
+### ZFTA gene fusions
 
-1. Here we are prioritizing RELA fusions, if any of the RELA fusions are present for a sample, it is assigned "EPN, ST RELA"
+1. Here we are prioritizing ZFTA (C11orf95) fusions, if any of the ZFTA fusions are present for a sample, it is assigned "EPN, ST ZFTA"
 2. These samples will not be considered for further subgrouping
 
 ```{r}
-st_epn_rela_fusions = c("C11orf95--RELA", "LTBP3--RELA")
-df <- EPN_final[,st_epn_rela_fusions]
+st_epn_zfta_fusions = c("C11orf95--RELA", "C11orf95--YAP1", "C11orf95--MAML2")
+df <- EPN_final[,st_epn_zfta_fusions]
 df[] <- lapply(df, as.logical)
 EPN_final$tmp <- apply(df, MARGIN = 1, any)
 EPN_final$tmp[is.na(EPN_final$tmp)] <- FALSE
 EPN_final <- EPN_final %>%
-  mutate(subgroup = ifelse(subgroup == "EPN, To be classified" & tmp == TRUE, "EPN, ST RELA", subgroup)) %>%
+  mutate(subgroup = ifelse(subgroup == "EPN, To be classified" & tmp == TRUE, "EPN, ST ZFTA", subgroup)) %>%
   dplyr::select(-c(tmp))
-rela_samples_assigned <- EPN_final %>%
-  filter(subgroup == "EPN, ST RELA") %>%
+zfta_samples_assigned <- EPN_final %>%
+  filter(subgroup == "EPN, ST ZFTA") %>%
   pull(sample_id)
-print(paste("Number of samples assigned for RELA:", length(rela_samples_assigned)))
+print(paste("Number of samples assigned for ZFTA:", length(zfta_samples_assigned)))
 ```
 
-### RELA subgroup table
+### ZFTA subgroup table
 
 ```{r}
 viewDataTable(EPN_final %>%
-                filter(subgroup == "EPN, ST RELA"))
+                filter(subgroup == "EPN, ST ZFTA"))
 ```
 
 ### YAP1 gene fusions
@@ -128,7 +128,7 @@ viewDataTable(EPN_final %>%
 2. These samples will not be considered for further subgrouping
 
 ```{r}
-st_epn_yap1_fusions = c("C11orf95--YAP1", "YAP1--MAMLD1", "YAP1--FAM118B")
+st_epn_yap1_fusions = c("YAP1--MAMLD1", "YAP1--MAML2", "YAP1--FAM118B")
 df <- EPN_final[,st_epn_yap1_fusions]
 df[] <- lapply(df, as.logical)
 EPN_final$tmp <- apply(df, MARGIN = 1, any)
@@ -161,7 +161,11 @@ EPN_final <- EPN_final %>%
   mutate(subgroup = case_when(
     subgroup == "EPN, To be classified" & `1q_gain` > 0 & TKTL1_expr_zscore > 3 ~  "EPN, PF A",
     subgroup == "EPN, To be classified" & CXorf67_expr_zscore > 3 ~ "EPN, PF A",
-    subgroup == "EPN, To be classified" & (`6q_loss` > 0 | `6p_loss` > 0) & (GPBP1_expr_zscore > 3 | IFT46_expr_zscore > 3) ~ "EPN, PF B",
+    subgroup == "EPN, To be classified"  & CNS_region == "Posterior fossa" & 
+      (H3F3A_HGVSp_Short == "p.K28M" | H3F3B_HGVSp_Short == "p.K28M" | HIST1H3B_HGVSp_Short == "p.K28M" | 
+         HIST1H3C_HGVSp_Short == "p.K28M" | HIST2H3C_HGVSp_Short == "p.K28M") ~ "EPN, PF A",
+    subgroup == "EPN, To be classified" & (`6q_loss` > 0 | `6p_loss` > 0) & 
+      (GPBP1_expr_zscore > 3 | IFT46_expr_zscore > 3) ~ "EPN, PF B",
     TRUE ~ subgroup)
     )
                      
