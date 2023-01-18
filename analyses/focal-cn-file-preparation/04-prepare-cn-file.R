@@ -5,6 +5,7 @@ suppressPackageStartupMessages({
   library(AnnotationDbi)
   library(org.Hs.eg.db)
   library(rtracklayer)
+  library(tidyverse)
 })
 
 # This script converts a seg file into a tsv file with CN information and gene
@@ -85,6 +86,7 @@ dir.create(results_dir, showWarnings = F, recursive = T) # identical to mkdir -p
 
 # source function to annotate overlaps
 source(file.path(analysis_dir, "util", "process_annotate_overlaps.R"))
+source(file.path(analysis_dir, "util", "resolve_duplicate_annotations.R"))
 
 #### Format CNV file and overlap with hg38 genome annotations ------------------
 
@@ -143,19 +145,31 @@ annotations_orgDb <- AnnotationDbi::select(org.Hs.eg.db::org.Hs.eg.db, # databas
                                            columns = c("MAP","ENSEMBL","SYMBOL"), # information to retrieve for given data
                                            keytype = "ENSEMBL")
 
-# join using both gene name and gene id combination to avoid discrepancies
+# join using both gene name and gene id combination to avoid discrepancies, and filter to retain only one cytoband annotation per gene 
 annotations_orgDb <- annotations_orgDb %>% 
   dplyr::filter(!is.na(SYMBOL)) %>%
   dplyr::rename("cytoband" = "MAP",
                 "gene_id" = "ENSEMBL",
                 "gene_name" = "SYMBOL")
 gencode_gtf <- gencode_gtf %>%
-  dplyr::inner_join(annotations_orgDb, by = c("gene_id", "gene_name")) # 592480 x 6
-# the above dataframe has all information that is needed to annotated the input cnv file
+  dplyr::inner_join(annotations_orgDb, by = c("gene_id", "gene_name")) %>%
+  dplyr::distinct(seqnames, start, end, gene_id, gene_name, .keep_all = T)
 
-# make GRanges object and sort by coordinates (592480 rows)
-gencode_gtf <- makeGRangesFromDataFrame(gencode_gtf, keep.extra.columns = TRUE)
-gencode_gtf <- sort(gencode_gtf)
+# make GRanges object 
+gencode_gr <- makeGRangesFromDataFrame(gencode_gtf, keep.extra.columns = TRUE)
+
+# merge overlapping rows for each gene id
+gencode_gr <- unlist(GenomicRanges::reduce(split(gencode_gr, c(gencode_gr$gene_id, gencode_gr$gene_name))))
+
+# Create data frame of merged exon coordinates with gene id, gene name, and cytoband annotation
+gencode_df <- data.frame(gencode_gr) %>%
+  add_column(gene_id = names(gencode_gr)) %>%
+  merge(distinct(gencode_gtf, gene_id, .keep_all = T)[,c('gene_id', 'gene_name', 'cytoband')], by = 'gene_id') %>%
+  dplyr::select(seqnames, start, end, width, strand, gene_id, gene_name, cytoband)
+
+# make GRanges object and sort by coordinates
+gencode_gr <- makeGRangesFromDataFrame(gencode_df, keep.extra.columns = TRUE)
+gencode_gr <- sort(gencode_gr)
 
 #### Addressing autosomes first ------------------------------------------------
 # slice the df to avoid memory exhaust issues
@@ -167,7 +181,10 @@ cnv_df_ids <- cnv_df %>%
 slice_vector <- seq(1, length(cnv_df_ids), 100) 
 
 # define combined dataframe
-autosome_annotated_cn <- data.frame()
+#autosome_annotated_cn <- data.frame()
+autosome_annotated_cn_resolved <- data.frame()
+autosome_annotated_cn_unresolved <- data.frame()
+
 for (i in 1:length(slice_vector)){
   start_id <- as.numeric(slice_vector[i])
   if(i<length(slice_vector)){
@@ -192,30 +209,52 @@ for (i in 1:length(slice_vector)){
     distinct()
   
   # Merge and annotated no X&Y
-  autosome_annotated_cn_each <- process_annotate_overlaps(cnv_df = cnv_no_xy_each, exon_granges = gencode_gtf) %>%
+  autosome_annotated_cn_each <- process_annotate_overlaps(cnv_df = cnv_no_xy_each, exon_granges = gencode_gr, gene_df = gencode_df) %>%
     # mark possible amplifications in autosomes
     dplyr::mutate(status = dplyr::case_when(
       copy_number > (2 * ploidy) ~ "amplification",
       copy_number == 0 ~ "deep deletion",
       TRUE ~ as.character(status)))
-  autosome_annotated_cn <- bind_rows(autosome_annotated_cn, autosome_annotated_cn_each)
+  
+  # Resolve cases of duplicate cn calls for genes
+#  autosome_annotated_cn_each <- resolve_duplicate_annotations(overlap_annotation = autosome_annotated_cn_each)
+  
+#  autosome_annotated_cn <- bind_rows(autosome_annotated_cn, autosome_annotated_cn_each)
+  
+  resolve <- resolve_duplicate_annotations(overlap_annotation = autosome_annotated_cn_each)
+  
+  autosome_resolved <- resolve$resolved_calls
+  autosome_unresolved <- resolve$unresolved_calls
+  
+  autosome_annotated_cn_resolved <- bind_rows(autosome_annotated_cn_resolved, autosome_resolved)
+  autosome_annotated_cn_unresolved <- bind_rows(autosome_annotated_cn_unresolved, autosome_unresolved)
+
 }
 
 # Output file name
 if(runWXSonly){
-  autosome_output_file <- paste0(filename_lead, "_wxs_autosomes.tsv.gz")
+#  autosome_output_file <- paste0(filename_lead, "_wxs_autosomes.tsv.gz")
+  autosome_resolved_output_file <- paste0(filename_lead, "_wxs_autosomes.tsv.gz")
+  autosome_unresolved_output_file <- paste0(filename_lead, "_wxs_autosomes_unresolved.tsv.gz")
 } else {
-  autosome_output_file <- paste0(filename_lead, "_autosomes.tsv.gz")
+#  autosome_output_file <- paste0(filename_lead, "_autosomes.tsv.gz")
+  autosome_resolved_output_file <- paste0(filename_lead, "_autosomes.tsv.gz")
+  autosome_unresolved_output_file <- paste0(filename_lead, "_autosomes_unresolved.tsv.gz")
 }
 
 # Save final data.frame to a tsv file
-readr::write_tsv(autosome_annotated_cn, file.path(results_dir, autosome_output_file))
+#readr::write_tsv(autosome_annotated_cn, file.path(results_dir, autosome_output_file))
+readr::write_tsv(autosome_annotated_cn_resolved, file.path(results_dir, autosome_resolved_output_file))
+readr::write_tsv(autosome_annotated_cn_unresolved, file.path(results_dir, autosome_unresolved_output_file))
+
 
 #### X&Y -----------------------------------------------------------------------
 
 if(xy_flag){
   # define combined dataframe
-  sex_chrom_annotated_cn <- data.frame()
+  #sex_chrom_annotated_cn <- data.frame()
+  sex_chrom_annotated_cn_resolved <- data.frame()
+  sex_chrom_annotated_cn_unresolved <- data.frame()
   for (j in 1:length(slice_vector)){
     start_id <- as.numeric(slice_vector[j])
     if(j<length(slice_vector)){
@@ -238,32 +277,65 @@ if(xy_flag){
       dplyr::filter(chr %in% c("chrX", "chrY"))
     
     # Merge and annotated X&Y
-    sex_chrom_annotated_cn_each <- process_annotate_overlaps(cnv_df = cnv_sex_chrom_each, exon_granges = gencode_gtf) %>%
+    sex_chrom_annotated_cn_each <- process_annotate_overlaps(cnv_df = cnv_sex_chrom_each, exon_granges = gencode_gr, gene_df = gencode_df) %>%
       # mark possible deep loss in sex chromosome
       dplyr::mutate(status = dplyr::case_when(
         copy_number == 0  ~ "deep deletion",
         TRUE ~ as.character(status))
       )
     
+    # Resolve cases of duplicate cn calls for genes
+    #sex_chrom_annotated_cn_each <- resolve_duplicate_annotations(overlap_annotation = sex_chrom_annotated_cn_each)
+    
+    resolve <- resolve_duplicate_annotations(overlap_annotation = sex_chrom_annotated_cn_each)
+    
+    sex_chrom_resolved <- resolve$resolved_calls
+    sex_chrom_unresolved <- resolve$unresolved_calls
+    
     # Add germline sex estimate into this data.frame
-    sex_chrom_annotated_cn_each <- sex_chrom_annotated_cn_each %>%
+    #sex_chrom_annotated_cn_each <- sex_chrom_annotated_cn_each %>%
+    #  dplyr::inner_join(dplyr::select(histologies_df,
+    #                                  Kids_First_Biospecimen_ID,
+    #                                  germline_sex_estimate),
+    #                    by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
+    #  dplyr::select(-germline_sex_estimate, dplyr::everything())
+    
+     #Add germline sex estimate into this data.frame
+     sex_chrom_resolved <- sex_chrom_resolved %>%
       dplyr::inner_join(dplyr::select(histologies_df,
                                       Kids_First_Biospecimen_ID,
                                       germline_sex_estimate),
                         by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
       dplyr::select(-germline_sex_estimate, dplyr::everything())
+     
+     sex_chrom_unresolved <- sex_chrom_unresolved %>%
+       dplyr::inner_join(dplyr::select(histologies_df,
+                                       Kids_First_Biospecimen_ID,
+                                       germline_sex_estimate),
+                         by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")) %>%
+       dplyr::select(-germline_sex_estimate, dplyr::everything())
     
     # combine the results
-    sex_chrom_annotated_cn <- bind_rows(sex_chrom_annotated_cn, sex_chrom_annotated_cn_each)
+    #sex_chrom_annotated_cn <- bind_rows(sex_chrom_annotated_cn, sex_chrom_annotated_cn_each)
+    
+    sex_chrom_annotated_cn_resolved <- bind_rows(sex_chrom_annotated_cn_resolved, sex_chrom_resolved)
+    sex_chrom_annotated_cn_unresolved <- bind_rows(sex_chrom_annotated_cn_unresolved, sex_chrom_unresolved)
+    
   }
   
   # Output file name
   if(runWXSonly){
-    sex_chrom_output_file <- paste0(filename_lead, "_wxs_x_and_y.tsv.gz")
+#    sex_chrom_output_file <- paste0(filename_lead, "_wxs_x_and_y.tsv.gz")
+    sex_chrom_resolved_output_file <- paste0(filename_lead, "_wxs_x_and_y.tsv.gz")
+    sex_chrom_unresolved_output_file <- paste0(filename_lead, "_wxs_x_and_y_unresolved.tsv.gz")
   } else {
-    sex_chrom_output_file <- paste0(filename_lead, "_x_and_y.tsv.gz")
+#    sex_chrom_output_file <- paste0(filename_lead, "_x_and_y.tsv.gz")
+    sex_chrom_resolved_output_file <- paste0(filename_lead, "_x_and_y.tsv.gz")
+    sex_chrom_unresolved_output_file <- paste0(filename_lead, "_x_and_y_unresolved.tsv.gz")
   }
   
   # Save final data.frame to a tsv file
-  readr::write_tsv(sex_chrom_annotated_cn, file.path(results_dir, sex_chrom_output_file))
+#  readr::write_tsv(sex_chrom_annotated_cn, file.path(results_dir, sex_chrom_output_file))
+  readr::write_tsv(sex_chrom_annotated_cn_resolved, file.path(results_dir, sex_chrom_resolved_output_file))
+  readr::write_tsv(sex_chrom_annotated_cn_unresolved, file.path(results_dir, sex_chrom_unresolved_output_file))
 }

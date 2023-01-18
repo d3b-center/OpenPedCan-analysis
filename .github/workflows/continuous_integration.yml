@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -43,6 +45,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: github_pat=${{ secrets.GITHUB_TOKEN }}
 
   run_analysis:
     name: Run Analysis
@@ -118,7 +121,7 @@ jobs:
             entrypoint: copy_number_consensus_call/run_consensus_call.sh
 
           - name: Consensus CN annotation
-            entrypoint: focal-cn-file-preparation/run-prepare-cn-OpenTarget.sh
+            entrypoint: focal-cn-file-preparation/run-prepare-cn.sh
             openpbta_testing: 1
 
           - name: TMB calculation
@@ -148,6 +151,10 @@ jobs:
 
           - name: CNV frequency tables
             entrypoint: cnv-frequencies/run-cnv-frequencies-analysis.sh
+            
+          - name: RNA-Seq batch correction
+            entrypoint: rnaseq-batch-correct/run_ruvseq.sh
+
     steps:
       - uses: actions/checkout@v3
 

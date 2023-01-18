@@ -2,8 +2,12 @@ FROM rocker/tidyverse:3.6.0
 MAINTAINER ccdl@alexslemonade.org
 WORKDIR /rocker-build/
 
+ARG github_pat=$GITHUB_PAT
+
+ENV GITHUB_PAT=$github_pat
+
 RUN RSPM="https://packagemanager.rstudio.com/cran/2019-07-07" \
-  && echo "options(repos = c(CRAN='$RSPM'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site
+    && echo "options(repos = c(CRAN='$RSPM'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site
 
 COPY scripts/install_bioc.r .
 
@@ -20,6 +24,10 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     liblzma-dev \
     libreadline-dev
 
+# libgmp3-dev is needed for signature.tools.lib to install
+RUN apt-get -y --no-install-recommends install \
+    libgmp3-dev
+
 # libmagick++-dev is needed for coloblindr to install
 RUN apt-get -y --no-install-recommends install \
     libgdal-dev \
@@ -34,14 +42,14 @@ RUN apt-get -y --no-install-recommends install \
 RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 RUN pip3 install \
-  "Cython==0.29.15" \
-  "setuptools==46.3.0" \
-  "six==1.14.0" \
-  "wheel==0.34.2" 
+    "Cython==0.29.15" \
+    "setuptools==46.3.0" \
+    "six==1.14.0" \
+    "wheel==0.34.2" 
 
 # Install java
 RUN apt-get -y --no-install-recommends install \
-   default-jdk
+    default-jdk
 
 
 # Required for running matplotlib in Python in an interactive session
@@ -189,8 +197,10 @@ RUN ./install_bioc.r \
     bedr \
     && Rscript -e "library(bedr)"
 
-# Install qdapRegex for the fusion analysis
+# Also install for mutation signature analysis
+# qdapRegex is for the fusion analysis
 RUN ./install_bioc.r \
+    deconstructSigs \
     qdapRegex 
 
 # packages required for collapsing RNA-seq data by removing duplicated gene symbols
@@ -250,6 +260,9 @@ RUN R -e "remotes::install_github('wilkox/treemapify', ref = 'e70adf727f4d13223d
 
 # Need this specific version of circlize so it has hg38
 RUN R -e "remotes::install_github('jokergoo/circlize', ref = 'b7d86409d7f893e881980b705ba1dbc758df847d', dependencies = TRUE)"
+
+# signature.tools.lib needed for mutational-signatures 
+RUN R -e "remotes::install_github('Nik-Zainal-Group/signature.tools.lib', ref = 'a54e5d904d091b90ad3b0f9663133e178c36b9aa', dependencies = TRUE)"
 
 # Install python packages
 ##########################
@@ -388,22 +401,12 @@ RUN R -e "remotes::install_github('jtleek/sva-devel@123be9b2b9fd7c7cd495fab7d7d9
 
 # Packages required for de novo mutational signatures
 RUN install2.r --error --deps TRUE \
-  lsa
-
-# To install sigfit, we need a more recent version of rstantools than we can obtain via the MRAN snapshot route
-# We're using the ref for the most recent release on GitHub (2.0.0)
-RUN R -e "remotes::install_github('stan-dev/rstantools', ref = 'd43bf9fb6120d40a60e708853e4b80cdb4689d19', dependencies = TRUE)"
-
-# Build arguments are according to the sigfit instructions
-RUN R -e "remotes::install_github('kgori/sigfit', ref = '209776ee1d2193ad4b682b2e2472f848bd7c67a6', build_vignettes = TRUE, build_opts = c('--no-resave-data', '--no-manual'), dependencies = TRUE)"
-
-# This is needed for mutational signatures analysis
-RUN R -e "remotes::install_github('raerose01/deconstructSigs', ref = '41a705c5d80848121347d448cf9e2c58ff6b81ac', dependencies = TRUE)"
+    lsa
 
 # Package for kinase domain retention for fusions
 RUN ./install_bioc.r \
-     EnsDb.Hsapiens.v86 \
-     ensembldb
+    EnsDb.Hsapiens.v86 \
+    ensembldb
 
 RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = 'c6a2111b5949ca2aae3853f7f34de3d0db4ffa33', dependencies = TRUE)"
 

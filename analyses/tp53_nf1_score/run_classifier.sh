@@ -34,7 +34,7 @@ cd "$analysis_dir" || exit
 data_dir="../../data"
 scratch_dir="../../scratch"
 # cds gencode bed file  
-cds_file="${scratch_dir}/gencode.v27.primary_assembly.annotation.bed"
+cds_file="${scratch_dir}/gencode.v39.primary_assembly.annotation.bed"
 snvconsensus_file="${data_dir}/snv-consensus-plus-hotspots.maf.tsv.gz"
 cnvconsensus_file="${data_dir}/consensus_wgs_plus_cnvkit_wxs.tsv.gz"
 collapsed_rna_file="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
@@ -49,7 +49,7 @@ fi
 
 # Convert GTF to BED file
 # Here we are only extracting lines with as a CDS i.e. are coded in protein
-gunzip -c ${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz \
+gunzip -c ${data_dir}/gencode.v39.primary_assembly.annotation.gtf.gz \
   | awk '$3 ~ /CDS/' \
   | convert2bed --do-not-sort --input=gtf - \
   > $cds_file

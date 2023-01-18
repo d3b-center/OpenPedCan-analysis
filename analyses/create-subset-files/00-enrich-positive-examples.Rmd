@@ -10,7 +10,8 @@ Furthermore, we need to include the same samples in the RNA-seq data.
 Because we skip running the `tp53_nf1_score` classifier and evaluation steps on the poly-A dataset in CI, we can focus on the stranded data.
 
 ```{r}
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
+options(readr.show_col_types = FALSE)
 ```
 
 ```{r}

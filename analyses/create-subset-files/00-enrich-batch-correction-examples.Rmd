@@ -1,0 +1,180 @@
+---
+title: "Identify samples suitable for the RNA-Seq batch correction module"
+output: html_notebook
+author: Eric Wafula for Pedaitric Open Target
+date: 2022
+---
+
+To run and fully test the `rnaseq-batch-correct` module in continuous integration, we must ensure that there are examples in the RNA-Seq gene expression counts subset matrix required for tumor-only (`molecular_subtype`) and tumor-normal (`cancer_group` and `gtex_subgroup`) RNA-Seq batch correction analyses.
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+options(readr.show_col_types = FALSE)
+```
+
+```{r}
+set.seed(2022)
+```
+
+The histologies file contains the information we need for identifying samples to perform batch correction for
+poly-A/poly-A stranded and stranded samples with one cancer_group-cohort cohort cpmbination
+
+```{r}
+histologies_df <- read_tsv(file.path("..", "..", "data", 
+                                     "histologies.tsv"),
+                           col_types = cols(
+                             molecular_subtype = col_character()
+                           )) %>% 
+  filter(RNA_library == "stranded" | 
+           RNA_library == "poly-A stranded" | 
+           RNA_library == "poly-A")
+```
+
+Get biospecimen identifiers for samples with histologies of interest.
+
+```{r}
+# TARGET Diffuse MYCN amp and High-grade MYCN non-amp histologies
+mycn_examples <- histologies_df %>%
+  filter(sample_type == "Tumor",
+         molecular_subtype == "MYCN amp" | 
+           molecular_subtype == "MYCN non-amp", 
+         cohort == "TARGET")
+
+# PBTA Diffuse midline glioma and High-grade glioma/astrocytoma histologies
+glioma_examples <- histologies_df %>%
+  filter(sample_type == "Tumor",
+         cancer_group == "Diffuse midline glioma" | 
+           cancer_group == "High-grade glioma/astrocytoma",
+         cohort == "PBTA")
+  
+# GTEx Brain Cortex and Brain Cerebellum histologies
+gtex_examples <- histologies_df %>%
+  filter(gtex_subgroup == "Brain - Cortex" | 
+           gtex_subgroup == "Brain - Cerebellum") 
+```
+
+### TARGET _poly-A MYCN amp_ RNA-Seq examples
+
+```{r}
+# randomly select TARGET poly-A MYCN amplified samples 
+mycn_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(mycn_examples %>% 
+                    filter(molecular_subtype == "MYCN amp", 
+                           RNA_library == "poly-A") %>% 
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+
+### TARGET _poly-A MYCN non-amp_ RNA-Seq examples
+
+```{r}
+# randomly select TARGET poly-A MYCN non-amplified samples
+mycn_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(mycn_examples %>% 
+                    filter(molecular_subtype == "MYCN non-amp",
+                           RNA_library == "poly-A") %>% 
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### PBTA _stranded Diffuse midline glioma_ RNA-Seq examples
+
+```{r}
+# randomly select PBTA stranded Diffuse midline glioma samples
+glioma_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(glioma_examples %>% 
+                    filter(cancer_group == "Diffuse midline glioma",
+                           RNA_library == "stranded") %>% 
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### PBTA _poly-A Diffuse midline glioma_ RNA-Seq examples
+
+```{r}
+# randomly select PBTA poly-A Diffuse midline glioma samples
+glioma_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(glioma_examples %>% 
+                    filter(cancer_group == "Diffuse midline glioma",
+                           RNA_library == "poly-A") %>% 
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### PBTA _stranded High-grade glioma/astrocytoma_ RNA-Seq examples
+
+```{r}
+# randomly select PBTA stranded High-grade glioma/astrocytoma samples
+glioma_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(glioma_examples %>% 
+                    filter(cancer_group == "High-grade glioma/astrocytoma",
+                           RNA_library == "stranded") %>% 
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### PBTA _poly-A High-grade glioma/astrocytoma_ RNA-Seq examples
+
+```{r}
+# randomly select PBTA poly-A High-grade glioma/astrocytoma samples
+glioma_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(glioma_examples %>% 
+                    filter(cancer_group == "High-grade glioma/astrocytoma",
+                           RNA_library == "poly-A") %>%
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 5)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### GTEx _Brain Cortex_ RNA-Seq examples
+
+```{r}
+# randomly select GTEx Brain Cortex samples
+gtex_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(gtex_examples %>% 
+                    filter(gtex_subgroup == "Brain - Cortex") %>%
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 10)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### GTEx _Brain Cerebellum_ RNA-Seq examples
+
+```{r}
+# randomly select GTEx Brain Cerebellum samples
+gtex_examples %>%
+  filter(Kids_First_Biospecimen_ID %in% 
+           sample(gtex_examples %>% 
+                    filter(gtex_subgroup == "Brain - Cerebellum") %>%
+                    pull(Kids_First_Biospecimen_ID) %>% 
+                    unique(), 
+                  size = 10)) %>% 
+  arrange(Kids_First_Biospecimen_ID)
+```
+
+### Session Info
+
+```{r}
+sessionInfo()
+```
+

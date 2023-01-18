@@ -12,7 +12,7 @@ Adapted by Eric Wafula ([@ewafula](https://github.com/ewafula))
 Uses `consensus_wgs_plus_cnvkit_wxs.tsv.gz` consensus CNV calls and variant types (`amplification`, `deep deletion`, `gain`, `loss`, and `neutral`) to determine `Ensembl` gene-level mutation frequencies for each cancer type in an overall cohort dataset and in the independent primary/relapse cohort subsets of the data.
 
 #### Additional annotation
-Additional disease and gene annotations include `gene full names` `PMTL designations`, `OncoKB categories`, and `EFO and MONDO identifiers` integrated to the CNV frequencies table using the [long-format-table-utils analysis module)](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/long-format-table-utils).
+Additional disease and gene annotations include `gene full names`, `OncoKB categories`, and `EFO and MONDO identifiers` integrated to the CNV frequencies table using the [long-format-table-utils analysis module)](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/long-format-table-utils).
 
 For each `cancer_group_cohort` with `n_samples` >= 3, compute `Frequency_in_overall_dataset`, `Frequency_in_primary_tumors`, and `Frequency_in_relapse_tumors` as following:
 

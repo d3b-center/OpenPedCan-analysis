@@ -602,16 +602,16 @@ stopifnot(identical(
 
 
 
-# Add EFO, MONDO, PMTL to long tables ------------------------------------------
+# Add EFO, MONDO to long tables ------------------------------------------
 m_tpm_ss_long_tbl <- m_tpm_ss_long_tbl %>%
   rename(Gene_symbol = gene_symbol, Gene_Ensembl_ID = gene_id,
          Disease = cancer_group)
 
 m_tpm_ss_long_tbl <- annotate_long_format_table(
-  m_tpm_ss_long_tbl, columns_to_add = c('MONDO', 'PMTL', 'EFO'))
+  m_tpm_ss_long_tbl, columns_to_add = c('MONDO', 'EFO'))
 
 m_tpm_ss_long_tbl <- m_tpm_ss_long_tbl %>%
-  select(Gene_symbol, PMTL, Gene_Ensembl_ID,
+  select(Gene_symbol, Gene_Ensembl_ID,
          Disease, EFO, MONDO, n_samples, cohort,
          tpm_mean, tpm_sd,
          tpm_mean_cancer_group_wise_zscore, tpm_mean_gene_wise_zscore,
