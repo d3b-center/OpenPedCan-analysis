@@ -27,22 +27,31 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ./.git
+      analyses/methylation-summary/results/
       python3 03-methyl-tpm-correlation.py
 
 inputs:
-  methyl_values: {type: ['null', {type: enum, name: methyl_values, symbols: ["beta", "m"]}], default: "beta", inputBinding: {prefix: --methyl_values, position: 2}, doc: "OPenPedCan methly matrix values: beta (default) and m"}
-  expression_values: {type: ['null', {type: enum, name: expression_values, symbols: ["gene", "isoform"]}], default: "gene", inputBinding: {prefix: --exp_values, position: 2}, doc: "OpenPedCan expression matrix values: gene (default) and isoform"}
+  output_basename: {type: 'string?', doc: "Output basename to prepend to output file"}
+  methyl_values: {type: ['null', {type: enum, name: methyl_values, symbols: ["beta", "m"]}], default: "beta", inputBinding: {prefix: --methyl_values, position: 2}, doc: "OpenPedCan methly matrix values: beta (default) or m"}
+  expression_values: {type: ['null', {type: enum, name: expression_values, symbols: ["gene", "isoform"]}], default: "gene", inputBinding: {prefix: --exp_values, position: 2}, doc: "OpenPedCan expression matrix values: gene (default) or isoform"}
   histologies: {type: 'File', inputBinding: {position: 4}, doc: "Histologies file"}
-  independent_specimens_rna: {type: 'File', inputBinding: {position: 5}, doc: "OPenPedCan rnaseq independent biospecimen list file"}
-  independent_specimens_methyl: {type: 'File', inputBinding: {position: 6}, doc: "OPenPedCan methyl independent biospecimen list file"}
+  independent_specimens_rna: {type: 'File', inputBinding: {position: 5}, doc: "OpenPedCan rnaseq independent biospecimen list file"}
+  independent_specimens_methyl: {type: 'File', inputBinding: {position: 6}, doc: "OpenPedCan methyl independent biospecimen list file"}
   methyl_matrix: {type: 'File', inputBinding: {position: 7}, doc: "OpenPedCan methyl beta-values or m-values matrix file"}
-  exp_matrix: {type: 'File', inputBinding: {position: 8}, doc: "OPenPedCan expression matrix file"}
+  exp_matrix: {type: 'File', inputBinding: {position: 8}, doc: "OpenPedCan expression matrix file"}
   probe_annotations: {type: 'File', inputBinding: {position: 9}, doc: "Methylation array probe gencode annotation results file"}
   ram: {type: 'int?', default: 8, doc: "In GB"}
 
 outputs:
-  methyl_tmb_correlations:
+  methyl_tpm_correlations:
     type: 'File'
     outputBinding:
       glob: analyses/methylation-summary/results/gene-methyl-probe-*-correlations.tsv.gz
+      outputEval: |
+        ${
+          if (inputs.output_basename != null) {
+            self[0].basename = inputs.output_basename + '.' + self[0].basename
+          }
+          return self[0]
+        }
     doc: "Probe-level correlations between methyl beta/m-values RNA-Seq expression tpm values"
