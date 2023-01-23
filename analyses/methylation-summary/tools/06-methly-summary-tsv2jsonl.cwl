@@ -38,10 +38,23 @@ inputs:
   ram: {type: 'int?', default: 8, doc: "In GB"}
 
 outputs:
-  methyl_summary_jsonl:
+  gene_methyl_summary_jsonl:
     type: 'File'
     outputBinding:
-      glob: analyses/methylation-summary/results/*.jsonl
+      glob: analyses/methylation-summary/results/gene*.jsonl
+      outputEval: |
+        ${
+          if (inputs.output_basename != null) {
+            self[0].basename = inputs.output_basename + '.' + self[0].basename
+          }
+          return self[0]
+        }
+    doc: "Methylation summary table jsonl file"
+
+  isoform_methyl_summary_jsonl:
+    type: 'File'
+    outputBinding:
+      glob: analyses/methylation-summary/results/isoform*.jsonl
       outputEval: |
         ${
           if (inputs.output_basename != null) {

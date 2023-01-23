@@ -18,7 +18,7 @@ requirements:
     listing:
       - entryname: 01-create-probe-annotations.R
         entry:
-          $include: 01-create-probe-annotations.R
+          $include: ../01-create-probe-annotations.R
 
 baseCommand: [mkdir]
 

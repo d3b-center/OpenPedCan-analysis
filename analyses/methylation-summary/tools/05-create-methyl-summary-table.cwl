@@ -38,7 +38,7 @@ inputs:
   efo_mondo_annot: {type: 'File', inputBinding: {prefix: --efo_mondo_annot, position: 2}, doc: "OpenPedCan EFO and MONDO annotation file"}
   exp_values: {type: ['null', {type: enum, name: exp_values, symbols: ["gene", "isoform"]}], default: "gene", inputBinding: {prefix: --exp_values, position: 2}, doc: "OpenPedCan expression matrix values: gene (default) or isoform"}
   methyl_values: {type: ['null', {type: enum, name: methyl_values, symbols: ["beta", "m"]}], default: "beta", inputBinding: {prefix: --methyl_values, position: 2}, doc: "OpenPedCan methly matrix values: beta (default) or m"}
-  histologies: {type: 'File', inputBinding: {prefix: --histologies, position: 2}, doc: "Histologies file"}
+  tpm_transcript_rep: {type: 'File?', inputBinding: {prefix: ----tpm_transcript_rep, position: 2}, doc: "RNA-Seq expression (tpm) gene isoform (transcript) representation results file"}
   ram: {type: 'int?', default: 8, doc: "In GB"}
 
 outputs:

@@ -39,7 +39,7 @@ inputs:
   ram: {type: 'int?', default: 8, doc: "In GB"}
 
 outputs:
-  probe_levels:
+  probe_quantiles:
     type: 'File'
     outputBinding:
       glob: analyses/methylation-summary/results/*.tsv.gz
