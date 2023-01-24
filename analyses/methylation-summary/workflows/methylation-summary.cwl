@@ -31,9 +31,9 @@ inputs:
 outputs:
   probe_annotations: {type: 'File', outputSource: create-probe-annotations/probe_annotations}
   probe_quantiles: {type: 'File', outputSource: calculate-methyl-quantiles/probe_quantiles}
-  methyl-tpm-correlation-gene: {type: 'File', outputSource: methyl-tpm-correlation-gene/methyl_tpm_correlations}
-  methyl-tpm-correlation-isoform: {type: 'File', outputSource: methyl-tpm-correlation-isoform/methyl_tpm_correlations}
-  tpm-transcript-representation: {type: 'File', outputSource: tpm-transcript-representation/methyl_tpm_transcript_representation}
+  methyl_tpm_correlation_gene: {type: 'File', outputSource: methyl-tpm-correlation-gene/methyl_tpm_correlations}
+  methyl_tpm_correlation_isoform: {type: 'File', outputSource: methyl-tpm-correlation-isoform/methyl_tpm_correlations}
+  tpm_transcript_representation: {type: 'File', outputSource: tpm-transcript-representation/methyl_tpm_transcript_representation}
   summary_table_gene: {type: 'File', outputSource: create-methyl-summary-table-gene/methyl_summary_tsv}
   summary_table_isoform: {type: 'File', outputSource: create-methyl-summary-table-isoform/methyl_summary_tsv}
   summary_table_jsonl_gene: {type: 'File', outputSource: convert-summary-jsonl/gene_methyl_summary_jsonl}
