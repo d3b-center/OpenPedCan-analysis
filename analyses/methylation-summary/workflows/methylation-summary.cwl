@@ -133,6 +133,7 @@ steps:
       exp_values:
         valueFrom: "isoform"
       methyl_values: methyl_values
+      tpm_transcript_rep: tpm-transcript-representation/methyl_tpm_transcript_representation
     out: [methyl_summary_tsv]
 
   convert-summary-jsonl:
