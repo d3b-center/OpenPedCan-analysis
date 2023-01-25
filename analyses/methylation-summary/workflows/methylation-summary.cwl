@@ -15,7 +15,7 @@ requirements:
 - class: InlineJavascriptRequirement
 
 inputs:
-  output_basename: {type: string, doc: "Output basename"}
+  output_basename: {type: 'string?', doc: "Output basename"}
   probes_manifest: {type: 'File', doc: "The latest Illumina Infinuim array probe manifest with cpg annotation metadata."}
   gencode_gtf: {type: 'File', doc: "The current GENCODE GTF utilized in OpenPedCan analyses modules."}
   histologies: {type: 'File', doc: "Histologies file"}

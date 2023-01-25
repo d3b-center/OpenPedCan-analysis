@@ -29,10 +29,14 @@ arguments:
       ./.git
       mkdir -p analyses/methylation-summary/results/
       Rscript 01-create-probe-annotations.R
+  - position: 99
+    shellQuote: false
+    valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-             var cmd = "for f in analyses/methylation-summary/results/*; do mv \"$f\" \"" + output_basename + "-$f \"; done";
-             return cmd;
+            var cmd = " && cd analyses/methylation-summary/results/ && ";
+            cmd += "for f in *; do mv \"$f\" \"" + inputs.output_basename + "-$f \"; done";
+            return cmd;
           }
       }
 
@@ -46,5 +50,5 @@ outputs:
   probe_annotations:
     type: 'File'
     outputBinding:
-      glob: analyses/methylation-summary/results/methyl-probe-annotations.tsv.gz
+      glob: analyses/methylation-summary/results/*.tsv.gz
     doc: "Tsv file with methylation probe annotations"
