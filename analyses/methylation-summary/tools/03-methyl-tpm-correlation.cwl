@@ -37,8 +37,7 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-            var cmd = " && cd analyses/methylation-summary/results/ && ";
-            cmd += "for f in *; do mv \"$f\" \"" + inputs.output_basename + "-$f \"; done";
+            var cmd = " && mv analyses/methylation-summary/results/" + inputs.expression_values + "-methyl-probe-" + inputs.methyl_values + "-tpm-correlations.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-" + inputs.expression_values + "-methyl-probe-" + inputs.methyl_values + "-tpm-correlations.tsv.gz";
             return cmd;
           }
       }

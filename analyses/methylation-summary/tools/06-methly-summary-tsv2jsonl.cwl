@@ -37,8 +37,8 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-            var cmd = " && cd analyses/methylation-summary/results/ && ";
-            cmd += "for f in *; do mv \"$f\" \"" + inputs.output_basename + "-$f \"; done";
+            var cmd = " && mv analyses/methylation-summary/results/gene-methyl-" + inputs.methyl_values + "-values-summary.jsonl.gz analyses/methylation-summary/results/" + inputs.output_basename + "gene-methyl-" + inputs.methyl_values + "-values-summary.jsonl.gz";
+            var cmd = " && mv analyses/methylation-summary/results/isoform-methyl-" + inputs.methyl_values + "-values-summary.jsonl.gz analyses/methylation-summary/results/" + inputs.output_basename + "isoform-methyl-" + inputs.methyl_values + "-values-summary.jsonl.gz";
             return cmd;
           }
       }

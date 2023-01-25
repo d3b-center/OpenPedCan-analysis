@@ -34,8 +34,7 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-            var cmd = " && cd analyses/methylation-summary/results/ && ";
-            cmd += "for f in *; do mv \"$f\" \"" + inputs.output_basename + "-$f \"; done";
+            var cmd = " && mv analyses/methylation-summary/results/methyl-probe-" + inputs.methyl_values + "-quantiles.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-methyl-probe-" + inputs.methyl_values "-quantiles.tsv.gz"
             return cmd;
           }
       }
