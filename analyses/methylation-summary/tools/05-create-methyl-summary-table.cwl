@@ -7,7 +7,7 @@ doc: >-
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: "pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest"
+    dockerPull: "alexsickler/open-pedcan:latest"
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     ramMin: ${return inputs.ram * 1000}
@@ -27,7 +27,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ./.git
-      analyses/methylation-summary/results/
+      mkdir -p analyses/methylation-summary/results/
       Rscript 05-create-methyl-summary-table.R
 
 inputs:
