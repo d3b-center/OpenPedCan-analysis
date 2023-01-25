@@ -34,7 +34,7 @@ arguments:
       python3 06-methly-summary-tsv2jsonl.py
       ${
           if (inputs.output_basename != null) {
-             var cmd = "rename 's/^/" + inputs.output_basename + "/' analyses/methylation-summary/results/*";
+             var cmd = "for f in analyses/methylation-summary/results/*; do mv \"$f\" \"" + output_basename + "-$f \"; done";
              return cmd;
           }
       }
@@ -50,11 +50,11 @@ outputs:
   gene_methyl_summary_jsonl:
     type: 'File'
     outputBinding:
-      glob: analyses/methylation-summary/results/gene*.jsonl
+      glob: analyses/methylation-summary/results/*gene*.jsonl
     doc: "Methylation summary table jsonl file"
 
   isoform_methyl_summary_jsonl:
     type: 'File'
     outputBinding:
-      glob: analyses/methylation-summary/results/isoform*.jsonl
+      glob: analyses/methylation-summary/results/*isoform*.jsonl
     doc: "Methylation summary table jsonl file"

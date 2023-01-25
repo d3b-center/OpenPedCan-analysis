@@ -31,7 +31,7 @@ arguments:
       Rscript 02-calculate-methly-quantiles.R
       ${
           if (inputs.output_basename != null) {
-             var cmd = "rename 's/^/" + inputs.output_basename + "/' analyses/methylation-summary/results/*";
+             var cmd = "for f in analyses/methylation-summary/results/*; do mv \"$f\" \"" + output_basename + "-$f \"; done";
              return cmd;
           }
       }

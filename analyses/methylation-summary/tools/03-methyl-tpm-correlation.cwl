@@ -34,7 +34,7 @@ arguments:
       python3 03-methyl-tpm-correlation.py
       ${
           if (inputs.output_basename != null) {
-             var cmd = "rename 's/^/" + inputs.output_basename + "/' analyses/methylation-summary/results/*";
+             var cmd = "for f in analyses/methylation-summary/results/*; do mv \"$f\" \"" + output_basename + "-$f \"; done";
              return cmd;
           }
       }
