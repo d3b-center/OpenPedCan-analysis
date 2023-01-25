@@ -29,8 +29,15 @@ arguments:
       ./.git
       mkdir -p ./.git/objects
       mkdir -p ./.git/refs
+      touch ./.git/HEAD
       mkdir -p analyses/methylation-summary/results
       python3 03-methyl-tpm-correlation.py
+      ${
+          if (inputs.output_basename != null) {
+             var cmd = "rename 's/^/" + inputs.output_basename + "/' analyses/methylation-summary/results/*";
+             return cmd;
+          }
+      }
 
 inputs:
   output_basename: {type: 'string?', doc: "Output basename to prepend to output file"}
@@ -48,12 +55,5 @@ outputs:
   methyl_tpm_correlations:
     type: 'File'
     outputBinding:
-      glob: analyses/methylation-summary/results/gene-methyl-probe-*-correlations.tsv.gz
-      outputEval: |
-        ${
-          if (inputs.output_basename != null) {
-            self[0].basename = inputs.output_basename + '.' + self[0].basename
-          }
-          return self[0]
-        }
+      glob: analyses/methylation-summary/results/*tsv.gz
     doc: "Probe-level correlations between methyl beta/m-values RNA-Seq expression tpm values"

@@ -29,6 +29,12 @@ arguments:
       ./.git
       mkdir -p analyses/methylation-summary/results/
       Rscript 05-create-methyl-summary-table.R
+      ${
+          if (inputs.output_basename != null) {
+             var cmd = "rename 's/^/" + inputs.output_basename + "/' analyses/methylation-summary/results/*";
+             return cmd;
+          }
+      }
 
 inputs:
   output_basename: {type: 'string?', doc: "Output basename to prepend to output file"}
@@ -46,24 +52,10 @@ outputs:
     type: 'File'
     outputBinding:
       glob: analyses/methylation-summary/results/*.rds
-      outputEval: |
-        ${
-          if (inputs.output_basename != null) {
-            self[0].basename = inputs.output_basename + '.' + self[0].basename
-          }
-          return self[0]
-        }
     doc: "Methylation summary table RDS file"
     
   methyl_summary_tsv:
     type: 'File'
     outputBinding:
       glob: analyses/methylation-summary/results/*.tsv.gz
-      outputEval: |
-        ${
-          if (inputs.output_basename != null) {
-            self[0].basename = inputs.output_basename + '.' + self[0].basename
-          }
-          return self[0]
-        }
     doc: "Methylation summary table tsv file"
