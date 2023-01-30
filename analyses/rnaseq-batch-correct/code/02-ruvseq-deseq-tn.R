@@ -72,20 +72,21 @@ pos_ctrl_genes.f <- opt$pos_c
 
 # establish directories
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+scratch_dir <- file.path(root_dir, 'scratch')
 analysis_dir <-
   file.path(root_dir, 'analyses', 'rnaseq-batch-correct')
 input_dir <- file.path(analysis_dir, 'input')
-plots_dir <- file.path(analysis_dir, 'plots', dataset)
+plots_dir <- file.path(scratch_dir, 'plots', dataset)
 if (!dir.exists(plots_dir)) {
   dir.create(plots_dir, recursive = TRUE)
 }
 
-output_dir <- file.path(analysis_dir, 'output', dataset)
+output_dir <- file.path(scratch_dir, 'output', dataset)
 if (!dir.exists(output_dir)) {
   dir.create(output_dir, recursive = TRUE)
 }
 
-norm_count_dir <- file.path(output_dir, 'normalized_counts')
+norm_count_dir <- file.path(scratch_dir, 'normalized_counts')
 if (!dir.exists(norm_count_dir)) {
   dir.create(norm_count_dir, recursive = TRUE)
 }

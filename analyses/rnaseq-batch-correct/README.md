@@ -27,6 +27,7 @@ msig.gs <- msig.gs %>%
   ```
 6. DESeq2 results of the optimal method from 5 are provided and normalized counts are generated
 as standard output for use in downstream visualizations.
+7. Result files are large and are all written locally to the OpenPedCan-analysis repository scratch directory (`OpenPedCan-analysis/scratch/`).
 
 ### Analysis scripts
 
