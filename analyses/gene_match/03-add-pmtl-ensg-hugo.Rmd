@@ -33,7 +33,7 @@ ens_pmtl_mer %>%
 ```
 ## Keep the `gene_symbol` as in the RNA-Seq files
 ```{r}
-ens_hugo_pmtl <- merged_eh_df %>%
+ens_hugo_pmtl <- ens_map %>%
   full_join(pmtl) %>%
   dplyr::select(ensg_id, gene_symbol, pmtl, version) %>%
   distinct() %>%
@@ -41,12 +41,12 @@ ens_hugo_pmtl <- merged_eh_df %>%
   #mutate(latest_gene_symbol=ifelse(version=='v39',gene_symbol,NA)) %>%
   #ens_hugo_pmtl %>%
   left_join(
-    x = dplyr::filter(., version == "v39")
-    , y = dplyr::filter(., version != "v39")
+    x = dplyr::filter(., version != "v39")
+    , y = dplyr::filter(., version == "v39")
     , by = c("ensg_id")
   ) %>%
-  mutate(latest_gene_symbol = gene_symbol.x) %>%
-  mutate(previous_gene_symbol = gene_symbol.y) %>%
+  mutate(latest_gene_symbol = gene_symbol.y) %>%
+  mutate(previous_gene_symbol = gene_symbol.x) %>%
   dplyr::select(ensg_id,gene_symbol.x,pmtl.x,latest_gene_symbol,previous_gene_symbol) %>%
   distinct() %>%
   mutate(duplicates = if_else(latest_gene_symbol == previous_gene_symbol ,
@@ -54,15 +54,14 @@ ens_hugo_pmtl <- merged_eh_df %>%
                               FALSE)) %>% 
   filter(duplicates == FALSE) %>%
   mutate(gene_symbol= gene_symbol.x, pmtl=pmtl.x) %>%
-  dplyr::select(ensg_id,gene_symbol, pmtl, latest_gene_symbol, previous_gene_symbol)
-  
+  dplyr::select(ensg_id,gene_symbol, pmtl, latest_gene_symbol) %>%
+  write_tsv("results/ensg-hugo-pmtl-mapping.tsv")
+
 #ENSG00000268020  
 #ENSG00000207147
 #ENSG00000207100
 #ENSG00000206878
 #ENSG00000206129  
-  
-  write_tsv("results/ensg-hugo-pmtl-mapping.tsv")
 ```
 
 
