@@ -57,7 +57,7 @@ if (!dir.exists(results_dir)) {
 # CDS bed file, to be used to filter the consensus MAF file
 bed_file <- file.path(root_dir, 
                       "scratch", 
-                      "gencode.v27.primary_assembly.annotation.bed")
+                      "gencode.v39.primary_assembly.annotation.bed")
 gencode_cds_bed <- readr::read_tsv(bed_file, col_names = FALSE)
 # Read in HGG subset snv maf data 
 snv_df <- readr::read_tsv(file.path(input_dir, "hgg_snv_maf.tsv.gz"))

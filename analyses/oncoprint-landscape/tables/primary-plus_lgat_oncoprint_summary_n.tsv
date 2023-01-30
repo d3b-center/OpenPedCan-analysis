@@ -1,0 +1,9 @@
+Hugo_Symbol	3'Flank	Frame_Shift_Del	Fusion	Missense_Mutation	Multi_Hit_Fusion	Nonsense_Mutation	3'UTR	total	Del	CNV_total	MutatedSamples	AlteredSamples
+BRAF	1	0	2	2	0	0	0	5	0	0	5	5
+KIAA1549	0	0	2	0	0	0	0	2	0	0	2	2
+TP53	0	1	0	1	0	0	0	2	0	0	1	1
+ALK	0	0	0	0	1	0	0	1	0	0	1	1
+ATRX	0	0	0	0	0	1	0	1	1	1	1	2
+IDH1	0	0	0	1	0	0	0	1	0	0	1	1
+NTRK3	0	0	0	0	0	0	1	1	0	0	1	1
+PTPN11	1	0	0	0	0	0	0	1	0	0	1	1

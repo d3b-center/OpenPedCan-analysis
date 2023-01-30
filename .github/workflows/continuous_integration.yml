@@ -151,6 +151,10 @@ jobs:
 
           - name: CNV frequency tables
             entrypoint: cnv-frequencies/run-cnv-frequencies-analysis.sh
+            
+          - name: RNA-Seq batch correction
+            entrypoint: rnaseq-batch-correct/run_ruvseq.sh
+
     steps:
       - uses: actions/checkout@v3
 

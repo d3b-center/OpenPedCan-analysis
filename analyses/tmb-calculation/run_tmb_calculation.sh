@@ -17,7 +17,7 @@ scratch_dir="../../scratch"
 input_dir="input"
 
 # BED and GTF file paths
-cds_file="${scratch_dir}/gencode.v27.primary_assembly.annotation.bed"
+cds_file="${scratch_dir}/gencode.v39.primary_assembly.annotation.bed"
 wgs_bed="${scratch_dir}/intersect_strelka_mutect2_vardict_WGS.bed"
 
 # Filtered Fusion file 
@@ -40,7 +40,7 @@ bedtools intersect \
 #################### Make coding regions file
 # Convert GTF to BED file for use in bedtools
 # Here we are only extracting lines with as a CDS i.e. are coded in protein
-gunzip -c ${data_dir}/gencode.v27.primary_assembly.annotation.gtf.gz \
+gunzip -c ${data_dir}/gencode.v39.primary_assembly.annotation.gtf.gz \
   | awk '$3 ~ /CDS/' \
   | convert2bed --do-not-sort --input=gtf - \
   | sort -k 1,1 -k 2,2n \

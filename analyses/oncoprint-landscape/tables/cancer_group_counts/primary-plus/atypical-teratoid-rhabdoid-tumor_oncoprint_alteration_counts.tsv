@@ -1,0 +1,14 @@
+Hugo_Symbol	3'Flank	5'Flank	Frame_Shift_Del	Nonsense_Mutation	Splice_Site	3'UTR	Silent	total	MutatedSamples	AlteredSamples
+SMARCB1	0	0	1	2	0	0	0	3	3	3
+TCF4	1	0	0	0	1	0	0	2	2	2
+KMT2D	0	0	0	0	4	0	0	4	1	1
+CTNNB1	0	0	0	0	2	1	0	3	1	1
+DDX3X	1	0	0	0	2	0	0	3	1	1
+SMARCA4	0	0	0	0	2	0	0	2	1	1
+ARID1A	0	0	0	0	1	0	0	1	1	1
+CREBBP	0	0	0	0	1	0	0	1	1	1
+KMT2C	0	0	0	0	0	0	1	1	1	1
+KSR2	0	0	0	0	0	1	0	1	1	1
+PRKAR1A	0	0	0	0	1	0	0	1	1	1
+TP53	0	0	0	0	1	0	0	1	1	1
+ZMYM3	0	1	0	0	0	0	0	1	1	1

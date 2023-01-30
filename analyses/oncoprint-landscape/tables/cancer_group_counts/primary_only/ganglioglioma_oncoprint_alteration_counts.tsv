@@ -1,0 +1,5 @@
+Hugo_Symbol	Frame_Shift_Del	Missense_Mutation	Nonsense_Mutation	total	MutatedSamples	AlteredSamples
+TP53	1	1	0	2	1	1
+ATRX	0	0	1	1	1	1
+BRAF	0	1	0	1	1	1
+IDH1	0	1	0	1	1	1

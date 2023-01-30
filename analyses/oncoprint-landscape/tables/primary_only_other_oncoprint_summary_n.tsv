@@ -1,0 +1,12 @@
+Hugo_Symbol	5'Flank	Frame_Shift_Del	Fusion	Missense_Mutation	Multi_Hit_Fusion	Nonsense_Mutation	Splice_Site	RNA	total	MutatedSamples	AlteredSamples
+NF2	0	1	0	0	0	1	1	0	3	3	3
+QKI	1	0	0	0	1	0	0	0	2	2	2
+RELA	1	0	1	0	0	0	0	0	2	2	2
+AKT1	1	0	0	0	0	0	0	0	1	1	1
+ARL4D	1	0	0	0	0	0	0	0	1	1	1
+CTNNB1	0	0	0	1	0	0	0	0	1	1	1
+IDH1	1	0	0	0	0	0	0	0	1	1	1
+IDH2	1	0	0	0	0	0	0	0	1	1	1
+MYB	0	0	1	0	0	0	0	0	1	1	1
+POLR2A	0	0	0	0	0	0	0	1	1	1	1
+TERT	1	0	0	0	0	0	0	0	1	1	1
