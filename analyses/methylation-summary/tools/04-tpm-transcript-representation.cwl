@@ -47,7 +47,6 @@ inputs:
   histologies: {type: 'File', inputBinding: {position: 2}, doc: "Histologies file"}
   independent_specimens_rna: {type: 'File', inputBinding: {position: 3}, doc: "OpenPedCan rnaseq independent biospecimen list file"}
   independent_specimens_methyl: {type: 'File', inputBinding: {position: 4}, doc: "OpenPedCan methyl independent biospecimen list file"}
-  methyl_matrix: {type: 'File', inputBinding: {position: 5}, doc: "OpenPedCan methyl beta-values or m-values matrix file"}
   gene_exp_matrix: {type: 'File', inputBinding: {position: 6}, doc: "OpenPedCan gene expression matrix file"}
   isoform_exp_matrix: {type: 'File', inputBinding: {position: 7}, doc: "OpenPedCan isoform expression matrix file"}
   probe_annotations: {type: 'File', inputBinding: {position: 8}, doc: "Methylation array probe gencode annotation results file"}

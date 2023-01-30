@@ -34,7 +34,7 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-            var cmd = " && mv analyses/methylation-summary/results/methyl-probe-" + inputs.methyl_values + "-quantiles.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-methyl-probe-" + inputs.methyl_values "-quantiles.tsv.gz"
+            var cmd = " && mv analyses/methylation-summary/results/methyl-probe-" + inputs.methyl_values + "-quantiles.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-methyl-probe-" + inputs.methyl_values + "-quantiles.tsv.gz"
             return cmd;
           }
       }

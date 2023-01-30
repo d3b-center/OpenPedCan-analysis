@@ -101,7 +101,6 @@ steps:
       histologies: histologies
       independent_specimens_rna: independent_specimens_rna
       independent_specimens_methyl: independent_specimens_methyl
-      methyl_matrix: methyl_matrix
       isoform_exp_matrix: isoform_exp_matrix
       gene_exp_matrix: gene_exp_matrix
       probe_annotations: create-probe-annotations/probe_annotations
