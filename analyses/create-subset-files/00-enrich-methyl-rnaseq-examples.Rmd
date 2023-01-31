@@ -1,0 +1,108 @@
+---
+title: "Identify samples for patients with both methylation and RNA-Seq data"
+output: html_notebook
+author: Eric Wafula for Pedaitric Open Target
+date: 2023
+---
+
+To run and fully test the upstream `post array preprocessing` modules in continuous integration, we must ensure that there are examples of samples for patients with both methylation and RNA-Seq data in both methylation beta/m-value and RNA-Seq gene/isoform expression subset matrices respectivey.
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+options(readr.show_col_types = FALSE)
+```
+
+```{r}
+# establish base dir 
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+```
+
+```{r}
+# Set path to data  directory
+data_dir <- file.path(root_dir, "data")
+```
+
+
+```{r}
+set.seed(2022)
+```
+
+The histologies file contains the information we need for identifying samples for patients with both methylation and RNA-Seq data in a cancer_group-cohort combination.
+
+```{r}
+histologies_df <- read_tsv(file.path(data_dir, "histologies.tsv")) %>% 
+ filter(sample_type == "Tumor",
+          tumor_descriptor %in% c("Primary Tumor", "Initial CNS Tumor"),
+          experimental_strategy %in% c("RNA-Seq", "Methylation"),
+          cohort %in% c("TARGET", "PBTA")
+          ) %>% 
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, 
+         experimental_strategy, cohort) %>% 
+  mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_" )) %>% 
+  select(-Kids_First_Participant_ID, -sample_id)
+  
+```
+### Methylation samples
+
+Get methyl biospecimen identifiers in methyl independent sample list
+
+```{r}
+independent_samples <- read_tsv(
+  file.path(data_dir,
+            "independent-specimens.methyl.primary.eachcohort.tsv"))
+
+methyl_samples <- histologies_df %>% 
+  filter(experimental_strategy == "Methylation", 
+         Kids_First_Biospecimen_ID  %in% 
+           independent_samples$Kids_First_Biospecimen_ID) %>% 
+  rename(Kids_First_Biospecimen_ID_Methyl = Kids_First_Biospecimen_ID)
+
+```
+
+### RNA-Seq samples 
+
+Get rnaseq biospecimen identifiers in rnaseq independent sample list
+
+```{r}
+independent_samples <- read_tsv(
+  file.path(data_dir, 
+            "independent-specimens.rnaseqpanel.primary.eachcohort.tsv"))
+
+rnaseq_samples <- histologies_df %>% 
+  filter(experimental_strategy == "RNA-Seq", 
+         Kids_First_Biospecimen_ID  %in% 
+           independent_samples$Kids_First_Biospecimen_ID) %>% 
+   rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID)
+
+```
+
+### TARGET examples
+
+TARGET biospecimen identifiers for patients with both methylation and RNA-Seq data
+
+```{r}
+methyl_samples %>% inner_join(rnaseq_samples, by = c("match_id", "cohort")) %>% 
+  filter(cohort == "TARGET") %>% 
+  select(Kids_First_Biospecimen_ID_Methyl ,Kids_First_Biospecimen_ID_RNA) %>% 
+  slice_sample(n = 5)
+
+```
+
+### PBTA examples
+
+PBTA biospecimen identifiers for patients with both methylation and RNA-Seq data
+
+```{r}
+methyl_samples %>% inner_join(rnaseq_samples, by = c("match_id", "cohort")) %>% 
+  filter(cohort == "PBTA") %>% 
+  select(Kids_First_Biospecimen_ID_Methyl ,Kids_First_Biospecimen_ID_RNA) %>% 
+  slice_sample(n = 5)
+
+```
+
+### Session Info
+
+```{r}
+sessionInfo()
+```
+

@@ -84,6 +84,8 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
       biospecimen_ids <- unique(cnv_file$Kids_First_Biospecimen_ID)
     } else if (grepl("consensus_wgs_plus_cnvkit_wxs", filename)) {
       biospecimen_ids <- unique(cnv_file$biospecimen_id)
+    } else if (grepl("cnv-gatk", filename)) {
+      biospecimen_ids <- unique(cnv_file$BS_ID)
     } else {
       biospecimen_ids <- unique(cnv_file$ID)
     }
@@ -113,6 +115,10 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     if (grepl("rna-isoform", filename)) {
       expression_file <- readr::read_rds(filename) %>%
         dplyr::select(-transcript_id, -gene_symbol)
+      biospecimen_ids <- unique(colnames(expression_file))
+    } else if (grepl("methyl", filename)){
+      expression_file <- readr::read_rds(filename) %>%
+        dplyr::select(-Probe_ID)
       biospecimen_ids <- unique(colnames(expression_file))
     } else {
       expression_file <- readr::read_rds(filename)
@@ -313,7 +319,7 @@ set.seed(opt$seed)
 
 #### Samples we need to include to run tp53_nf1_score module -------------------
 
-# For more information, see the 00-enrich-positive-examples notebook
+# For more information, see the 00-enrich-tp53_nf1_score-examples notebook
 tp53_dnaseq <- c("BS_16FT8V4B", "BS_B9QP40ER", "BS_7KR13R3P", "BS_K2K5YSDS", 
                  "TARGET-30-PAPBGH-01A-01W", "TARGET-40-PARGTM-01A-01D",
                  "TARGET-40-PATPBS-01A-01D")
@@ -329,7 +335,7 @@ nf1_rnaseq <- c("BS_81SP2HX4", "BS_KFD5128N", "BS_YDEVMD24",
 
 #### Samples we need to include to run rnaseq-batch-correct module -------------
 
-# For more information, see the 00-enrich-positive-examples notebook
+# For more information, see the 00-enrich-batch-correction-examples.Rmd notebook
 polya_mycn_amp <- c("TARGET-30-PALKUC-01A-01R", "TARGET-30-PAMMXF-01A-01R", 
                     "TARGET-30-PAMZGT-01A-01R", "TARGET-30-PAPBJE-01A-01R", 
                     "TARGET-30-PAPTFZ-01A-01R")
@@ -355,12 +361,24 @@ gtex_brain_cerebellum <- c("GTEX-111FC-3326-SM-5GZYV", "GTEX-117XS-3126-SM-5GIDP
                            "GTEX-1A3MX-2926-SM-718B7", "GTEX-1H4P4-0011-R11b-SM-CE6S8",
                            "GTEX-1I1GQ-0011-R11b-SM-CKZPA", "GTEX-X4XX-2926-SM-3NMB1")
 
+#### Samples we need to include to run methylation-summary module --------------
+
+# For more information, see the 00-enrich-methyl-rnaseq-examples.Rmd notebook
+methyl_samples <- c("TARGET-40-PANVJJ-01A-01D.M", "TARGET-40-PAKUZU-01A-01D.M", 
+                    "TARGET-50-PAJMRL-01A-01D.M", "TARGET-50-PAJNRL-01A-01D.M", 
+                    "TARGET-40-0A4I48-01A-01D.M", "BS_QE0MYJAD", "BS_5YNY8WRA",
+                    "BS_B81HY49C", "BS_DKTVT34S", "BS_C32A6KDR")
+rnaseq_samples <- c("TARGET-40-PANVJJ-01A-01R", "TARGET-40-PAKUZU-01A-01R", 
+                    "TARGET-50-PAJMRL-01A-01R", "TARGET-50-PAJNRL-01A-01R", 
+                    "TARGET-40-0A4I48-01A-01R", "BS_JT82QGXF", "BS_AGTPCRR4", 
+                    "BS_R244Z0WX", "BS_NGHK9RZP", "BS_6R7SFVV2")
+
+
 ### Histologies and participants IDs mapping -----------------------------------
 
 # load histologies file
 histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"), 
-                         guess_max = 10000) %>% 
-  dplyr::filter(experimental_strategy != "Methylation")
+                         guess_max = 10000)
 
 # get the participant ID to biospecimen ID mapping
 id_mapping_df <- histology_df %>%
@@ -381,13 +399,7 @@ if (running_locally) {
 
 # drop GISTIC zipped file from this list 
 files_to_subset <- files_to_subset[-grep("gistic.zip", files_to_subset)]
-
-# drop methylation RDS matrices. The "methylation-summary" module that produces
-# these matrices and consumes them alongside other data release files requires 
-# the super large output files produced by the "methylation-preprocessing"  
-# module that currently not part of the data release
-# Methylation modules won't be tested with CI
-files_to_subset <- files_to_subset[-grep("methyl", files_to_subset)]
+files_to_subset
 
 # for each file, extract the participant ID list by first obtaining the
 # biospecimen IDs and then mapping back to participant ID
@@ -395,7 +407,6 @@ message("\nGetting participant IDs from all files...")
 participant_id_list <- purrr::map(files_to_subset,
                                   ~ get_biospecimen_ids(.x, id_mapping_df)) %>%
   purrr::set_names(files_to_subset)
-
 
 # list of matched participant IDs, not including cohort-specific 
 # file (TCGA and DGD)
@@ -405,7 +416,8 @@ other_participant_id_list <-
 other_matched_participants <- purrr::reduce(other_participant_id_list,
                                                 intersect)
 
-# list of TCGA-specific rnaseq files and matched participant IDs for subsetting
+# list of TCGA-specific rnaseq files and matched participant IDs 
+# for subsetting
 message("\nGetting TCGA rna-seq matched participant IDs...")
 tcga_participant_id_list <- 
   participant_id_list[grep("tcga", names(participant_id_list))]
@@ -507,20 +519,47 @@ biospecimen_ids_for_subset <- purrr::map(
   }
 )
 
-message(paste0("\nAppending biospecimen IDs of interest to rds and snv lists..."))
+message(paste0("\nAppending biospecimen IDs of interest to lists..."))
 
 # for each rnaseq rds instance, add in biospecimen IDs for samples we know have
-# a positive example of NF1 mutation and TP53 for tp53_nf1_score and biospecimen IDs
-# that can fully test the batch correction module
+# a positive example of NF1 mutation and TP53 for tp53_nf1_score, samples that 
+# can fully test the batch correction module, and of samples for patients 
+# we know have both methylation and rnaseq data 
 rds_files <- 
   names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
 rds_files <- rds_files[-grep("tcga", rds_files)]
+rds_files <- rds_files[-grep("methyl", rds_files)]
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq, 
                                              polya_mycn_amp, polya_mycn_nonamp, 
                                              stranded_dmg, polya_dmg, 
                                              stranded_hgg, polya_hgg, 
-                                             gtex_brain_cortex, gtex_brain_cerebellum)))
+                                             gtex_brain_cortex, gtex_brain_cerebellum,
+                                             rnaseq_samples)))
+
+# for each methyl rds instance, add in biospecimen IDs of samples for patients 
+# we know have both methylation and rnaseq data
+rds_files <- 
+  names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
+rds_files <- rds_files[grep("methyl", rds_files)]
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+  purrr::modify_at(rds_files, ~ append(.x, methyl_samples))
+
+# for methyl primary each cohort independent list instance, add in biospecimen IDs
+# of samples for patients we know have both methylation and rnaseq data
+independent_files <- 
+  names(biospecimen_ids_for_subset[grep("independent", names(biospecimen_ids_for_subset))])
+independent_files <- independent_files[grep("methyl.primary.eachcohort", independent_files)]
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+  purrr::modify_at(independent_files, ~ append(.x, methyl_samples))
+
+# for rnaseq primary each cohort independent list instance, add in biospecimen IDs
+# of samples for patients we know have both methylation and rnaseq data
+independent_files <- 
+  names(biospecimen_ids_for_subset[grep("independent", names(biospecimen_ids_for_subset))])
+independent_files <- independent_files[grep("rnaseqpanel.primary.eachcohort", independent_files)]
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+  purrr::modify_at(independent_files, ~ append(.x, rnaseq_samples))
 
 # for each snv instance, add in biospecimen IDs for samples we know have a
 # positive example of NF1 mutation and TP53 for tp53_nf1_score

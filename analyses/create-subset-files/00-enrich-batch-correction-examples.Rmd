@@ -13,15 +13,24 @@ options(readr.show_col_types = FALSE)
 ```
 
 ```{r}
+# establish base dir 
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+```
+
+```{r}
+# Set path to data  directory
+data_dir <- file.path(root_dir, "data")
+```
+
+```{r}
 set.seed(2022)
 ```
 
 The histologies file contains the information we need for identifying samples to perform batch correction for
-poly-A/poly-A stranded and stranded samples with one cancer_group-cohort cohort cpmbination
+poly-A/poly-A stranded and stranded samples with one cancer_group-cohort combination
 
 ```{r}
-histologies_df <- read_tsv(file.path("..", "..", "data", 
-                                     "histologies.tsv"),
+histologies_df <- read_tsv(file.path(data_dir, "histologies.tsv"),
                            col_types = cols(
                              molecular_subtype = col_character()
                            )) %>% 
@@ -177,4 +186,3 @@ gtex_examples %>%
 ```{r}
 sessionInfo()
 ```
-

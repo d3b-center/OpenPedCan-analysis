@@ -158,14 +158,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache Data
-        uses: actions/cache@v3
-        with:
-          path: ./data
-          key: ${{ runner.os }}-data-${{ hashFiles('download-data.sh') }}
-          restore-keys: |
-            ${{ runner.os }}-data-
-
       - name: Download Data
         uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
         with:
@@ -183,7 +175,3 @@ jobs:
           OPENPBTA_TESTING: ${{ matrix.openpbta_testing }}
           RUN_FOR_SUBTYPING: ${{ matrix.run_for_subtyping }}
           OPENPEDCAN_POLYA_STRAND: ${{ matrix.openpedcan_polya_strand }}
-
-      # The container image runs as root which makes the cache upload fail.
-      - name: Change Owner of Data to Make It Cacheable
-        run: sudo chown -R $(id -u):$(id -g) ./data

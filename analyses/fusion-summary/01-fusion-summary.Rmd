@@ -120,7 +120,7 @@ if (!dir.exists(resultsDir)) {
 ependFile <- file.path(resultsDir, "fusion_summary_ependymoma_foi.tsv")
 embryFile <- file.path(resultsDir, "fusion_summary_embryonal_foi.tsv")
 ewingsFile <- file.path(resultsDir, "fusion_summary_ewings_foi.tsv")
-lgatFile <- file.path(resultsDir, "fusion_summary_lgat_foi.tsv")
+lgatFile <- file.path(resultsDir, "fusion_summary_lgg_hgg_foi.tsv")
 ```
 
 ## Fusions and genes of interest
@@ -184,7 +184,8 @@ lgatGenes <- c(
   "FGFR1",
   "MYB",
   "MYBL1",
-  "RAF1"
+  "RAF1", 
+  "MET"
 )
 
 ```

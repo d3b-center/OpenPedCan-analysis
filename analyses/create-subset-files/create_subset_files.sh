@@ -76,6 +76,9 @@ cp $FULL_DIRECTORY/histologies-base.tsv $SUBSET_DIRECTORY
 cp $FULL_DIRECTORY/uberon-map-gtex-*.tsv $SUBSET_DIRECTORY
 cp $FULL_DIRECTORY/efo-mondo-map.tsv $SUBSET_DIRECTORY
 cp $FULL_DIRECTORY/ensg-hugo-pmtl-mapping.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/infinium-annotation-mapping.tsv $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/infinium-methylationepic-v-1-0-b5-manifest-file-csv.zip $SUBSET_DIRECTORY
+cp $FULL_DIRECTORY/UCSC_hg19-GRCh37_Ensembl2RefSeq.tsv $SUBSET_DIRECTORY
 
 # GISTIC output
 cp $FULL_DIRECTORY/cnv-consensus-gistic.zip $SUBSET_DIRECTORY
