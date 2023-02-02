@@ -152,7 +152,7 @@ if (exp_values == "gene") {
     methy_summary_table %>% data.table::setDT() %>%
       data.table::fwrite(file.path(results_dir,
                                    "gene-methyl-beta-values-summary.tsv.gz"), 
-                         sep="\t", compress = "auto")
+                         sep="\t")
   } else {
     methy_summary_table <-  methy_summary_table %>% 
       dplyr::select(Gene_symbol, targetFromSourceId, Dataset, Disease,
@@ -163,7 +163,7 @@ if (exp_values == "gene") {
     methy_summary_table %>% data.table::setDT() %>%
       data.table::fwrite(file.path(results_dir,
                                    "gene-methyl-m-values-summary.tsv.gz"), 
-                         sep="\t", compress = "auto")
+                         sep="\t")
   }
 } else {
   if (methyl_values == "beta") {
@@ -177,7 +177,7 @@ if (exp_values == "gene") {
     methy_summary_table %>% data.table::setDT() %>%
       data.table::fwrite(file.path(results_dir,
                                    "isoform-methyl-beta-values-summary.tsv.gz"), 
-                         sep="\t", compress = "auto")
+                         sep="\t")
   } else {
     methy_summary_table <-  methy_summary_table %>% 
       dplyr::select(Gene_symbol, targetFromSourceId, transcript_id, Dataset,
@@ -189,7 +189,7 @@ if (exp_values == "gene") {
     methy_summary_table %>% data.table::setDT() %>%
       data.table::fwrite(file.path(results_dir,
                                    "isoform-methyl-m-values-summary.tsv.gz"), 
-                         sep="\t", compress = "auto")
+                         sep="\t")
   }
 } 
 message("Analysis Done..\n")
