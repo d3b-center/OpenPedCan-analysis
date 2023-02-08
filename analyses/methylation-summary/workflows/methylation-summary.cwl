@@ -143,3 +143,9 @@ steps:
       gene_summary_file: create-methyl-summary-table-gene/methyl_summary_tsv
       isoform_summary_file: create-methyl-summary-table-isoform/methyl_summary_tsv
     out: [gene_methyl_summary_jsonl, isoform_methyl_summary_jsonl]
+
+$namespaces:
+  sbg: https://sevenbridges.com
+hints:
+  - class: 'sbg:maxNumberOfParallelInstances'
+    value: 2
