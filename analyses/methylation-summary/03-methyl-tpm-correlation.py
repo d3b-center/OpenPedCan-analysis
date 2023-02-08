@@ -166,7 +166,10 @@ def main():
 	tpm_values = ""
 	if args.exp_values == "gene":
 		tpm_values = rds.read_r(args.EXP_MATRIX)[None].reset_index()
-		tpm_values.rename(columns={"rownames": "Gene_symbol"}, inplace = True)
+		if "rownames" in tpm_values.columns:
+			tpm_values.rename(columns={"rownames": "Gene_symbol"}, inplace = True)
+		elif "index" in tpm_values.columns:
+			tpm_values.rename(columns={"index": "Gene_symbol"}, inplace = True)
 		annot_cols = ["Probe_ID", "targetFromSourceId", "Gene_symbol"]
 		probe_annot = pd.read_csv(args.PROBE_ANNOT, usecols = annot_cols, sep="\t", na_filter=False, dtype=str).drop_duplicates().reset_index(drop=True)
 		tpm_values = pd.merge(probe_annot, tpm_values, how = "inner", on = "Gene_symbol")

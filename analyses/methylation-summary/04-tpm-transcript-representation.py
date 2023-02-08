@@ -174,7 +174,10 @@ def main():
 
 	# Get RNA-Seq gene expression tpm values for array probes with gencode gene symbols
 	gene_tpm_values = rds.read_r(args.GENE_EXP_MATRIX)[None].reset_index()
-	gene_tpm_values.rename(columns={"rownames": "Gene_symbol"}, inplace = True)
+	if "rownames" in gene_tpm_values.columns:
+		gene_tpm_values.rename(columns={"rownames": "Gene_symbol"}, inplace = True)
+	elif "index" in gene_tpm_values.columns:
+		gene_tpm_values.rename(columns={"index": "Gene_symbol"}, inplace = True)
 	gene_tpm_values = gene_tpm_values[gene_tpm_values["Gene_symbol"].isin(probe_annot["Gene_symbol"].tolist())].drop_duplicates()
 
 	# Get RNA-Seq isoform expression tpm values for array probes with gencode gene symbols
