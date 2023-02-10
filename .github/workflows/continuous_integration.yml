@@ -90,6 +90,9 @@ jobs:
           - name: Molecular Subtyping - LGG
             entrypoint: molecular-subtyping-LGAT/run_subtyping.sh
             openpbta_subset: 0
+            
+          - name: Molecular Subtyping - NBL
+            entrypoint: molecular-subtyping-NBL/run-molecular-subtyping-NBL.sh
 
           - name: Molecular Subtyping - PATHOLOGY/COMPILE
             entrypoint: molecular-subtyping-pathology/run-subtyping-aggregation.sh
@@ -97,6 +100,10 @@ jobs:
 
           - name: Molecular Subtyping - INTEGRATE (+ add cancer groups)
             entrypoint: molecular-subtyping-integrate/run-subtyping-integrate.sh
+            
+          - name: Molecular Subtyping - ATRT
+            entrypoint: molecular-subtyping-ATRT/run-molecular-subtyping-ATRT.sh
+            
 
           # Analysis modules
           - name: Independent Specimens

@@ -7,6 +7,8 @@ params:
     label: "1/0 to run with base histology"
     value: 0
     input: integer
+editor_options: 
+  chunk_output_type: inline
 ---
     
 In this script we will find CNV losses that overlap with TP53 domains:
@@ -59,7 +61,7 @@ cnvkit_seg<- read_tsv(file.path(root_dir,
 
 # Gene location and domain overlap file 
 bioMartDataPfamTp53 <- 
-  readRDS(system.file("extdata", "pfamDataBioMart.RDS", package = "annoFuse")) %>%
+  readRDS(system.file("extdata", "pfamDataBioMart.RDS", package = "annoFuseData")) %>%
   dplyr::filter(hgnc_symbol=="TP53")
 
 ```

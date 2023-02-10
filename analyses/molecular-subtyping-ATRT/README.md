@@ -1,13 +1,7 @@
 # Molecular Subtyping ATRT
+Module authors: Zhuangzhuang Geng and Jo Lynne Rokita
 
-*Note: The files in the `atrt-subset` directory were generated via `00-subset-files-for-ATRT.R` using the the files in the [version 13 data release](https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/444).
-When re-running this module, you may want to regenerate the ATRT subset files using the most recent data release.*
-
-**Module authors:** Chante Bethell ([@cbethell](https://github.com/cbethell)) and Jaclyn Taroni ([@jaclyn-taroni](https://github.com/jaclyn-taroni))
-
-## Limitations
-
-From the analyses performed here, subtyping ATRT tumors was not clear cut and has been deferred (see: [#244 (comment)](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/244#issuecomment-579757849)).
+*Note: the previous files/scripts can be find in Archive folder*
 
 ## Usage
 
@@ -17,50 +11,19 @@ To run all of the Rscripts in this module from the command line sequentially, us
 bash run-molecular-subtyping-ATRT.sh
 ```
 
-**When run in this manner, `00-subset-files-for-ATRT.R` will generate subset files using whichever files are symlinked in `data` on your local machine.**
-
 `run-molecular-subtyping-ATRT.sh` is designed to be run as if it was called from this module directory even when called from outside of this directory.
 
 ## Folder content
 
 This folder contains scripts tasked to molecularly subtype ATRT samples in the PBTA dataset.
 
-`00-subset-files-for-ATRT.R` selects data for ATRT samples and saves the files in `atrt-subset`.
+`00-ATRT_subtyping.R` selects samples from `histologies-base.tsv` and subtypes all PBTA and/or DGD tumor biospecimens into three subtypes, (`ATRT, MYC`, `ATRT, SHH` and `ATRT, TYR`).
 
-`01-ATRT-molecular-subtyping-data-prep.Rmd` is a notebook written to prepare the RNA expression, copy number, GSVA pathway scores, structural variant, and tumor mutation burden data that are relevant for molecular subtyping. This notebook produces a final results table found at `results/ATRT_molecular_subtypes.tsv`. 
+* Filter the samples with `cns_methylation_subclass_score >=0.8` and `cns_methylation_subclass` is one of the three ATRT subtypes ->
+  * `ATRT, MYC`
+  * `ATRT, SHH`
+  * `ATRT, TYR`
+* Filter the samples with `cns_methylation_subclass_score >=0.8` and `cns_methylation_subclass` is not one of the three ATRT subtypes -> `ATRT, To be clasified`
+* If methylation does not exist for any ATRT samples -> `ATRT, To be clasified`
 
-`02-ATRT-molecular-subtyping-plotting.R` is a script written to generate a heatmap and PCA plot saved in the `plots` directory of this module and displayed below.
-
-#### Heatmap
-
-![](plots/atrt_heatmap.png)
-
-#### PCA
-
-![](plots/atrt_expression_pca.png)
-
-## Folder structure 
-
-The structure of this folder is as follows:
-
-```
-├── 00-subset-files-for-ATRT.R
-├── 01-ATRT-molecular-subtyping-data-prep.Rmd
-├── 01-ATRT-molecular-subtyping-data-prep.nb.html
-├── 02-ATRT-molecular-subtyping-plotting.R
-├── README.md
-├── atrt-subset
-│   ├── atrt_focal_cn.tsv.gz
-│   ├── atrt_gistic_broad_values.tsv
-│   ├── atrt_gsva.tsv
-│   ├── atrt_log_expression.RDS
-│   └── atrt_tmb.tsv
-├── plots
-│   ├── atrt_expression_pca.png
-│   └── atrt_heatmap.png
-├── results
-│   ├── ATRT_molecular_subtypes.tsv
-│   ├── final_heatmap_annotation.RDS
-│   └── initial_heatmap_annotation.RDS
-└── run-molecular-subtyping-ATRT.sh
-```
+Final results is a table with `sample_id`, `Kids_First_Biospecimen_ID_meth`, `Kids_First_Biospecimen_ID_DNA`, `Kids_First_Biospecimen_ID_RNA`, and `molecular_subtype`, and saved as `ATRT-molecular-subtypes.tsv`

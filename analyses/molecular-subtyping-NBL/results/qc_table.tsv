@@ -1,0 +1,11 @@
+Kids_First_Biospecimen_ID_GMKF	Kids_First_Biospecimen_ID_TARGET	Kids_First_Participant_ID	sample_id	experimental_strategy_GMKF	experimental_strategy_TARGET	MYCN_TPM_GMKF	MYCN_TPM_TARGET	MYCN_CN_status_GMKF	MYCN_CN_status_TARGET	molecular_subtype_GMKF	molecular_subtype_TARGET
+BS_SYSZCYYZ	TARGET-30-PASCDX-01A-01D	PASCDX	01	WGS	WXS	171.07	NA	amplification	amplification	NBL, MYCN amplified	NBL, MYCN amplified
+BS_MTQ7F28J	TARGET-30-PASFNY-01A-01D	PASFNY	01	WGS	WXS	NA	NA	NA	amplification	NBL, to be classified	NBL, MYCN amplified
+BS_8XDZQKSD	TARGET-30-PASWYR-01A-01D	PASWYR	01	WGS	WXS	334.91	1165.28	gain	amplification	NBL, MYCN amplified	NBL, MYCN amplified
+BS_V4VGG98Y	TARGET-30-PASXHE-01A-01D	PASXHE	01	WGS	WXS	29.28	82.16	gain	gain	NBL, MYCN non-amplified	NBL, MYCN non-amplified
+BS_2N95EW0G	TARGET-30-PASXIE-01A-01D	PASXIE	01	WGS	WXS	485.27	1399.01	NA	gain	NBL, MYCN amplified	NBL, MYCN amplified
+BS_P6FPBJM8	TARGET-30-PASXRG-01A-01D	PASXRG	01	WGS	WXS	163.86	306.49	NA	amplification	NBL, MYCN amplified	NBL, MYCN amplified
+BS_KXRFQF5N	TARGET-30-PASXRJ-01A-01D	PASXRJ	01	WGS	WXS	12.66	40.16	NA	neutral	NBL, MYCN non-amplified	NBL, MYCN non-amplified
+BS_D7442ACV	TARGET-30-PATBMM-01A-01D	PATBMM	01	WGS	WXS	11.39	18.62	NA	loss	NBL, MYCN non-amplified	NBL, MYCN non-amplified
+BS_D3N3FG7Y	TARGET-30-PATCFL-01A-01D	PATCFL	01	WGS	WXS	2.91	7.7	NA	neutral	NBL, MYCN non-amplified	NBL, MYCN non-amplified
+BS_2P6MH05V	TARGET-30-PATGLU-01A-01D	PATGLU	01	WGS	WXS	NA	56.8	gain	gain	NBL, MYCN non-amplified	NBL, MYCN non-amplified

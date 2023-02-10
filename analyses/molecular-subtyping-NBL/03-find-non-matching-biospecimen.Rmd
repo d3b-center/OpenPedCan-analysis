@@ -1,0 +1,178 @@
+---
+title: "02-find-non-matching-biospecimen"
+output: html_notebook
+author: "Aditya Lahiri, Eric Wafula, Jo Lynne Rokita"
+date: "10/13/2022"
+---
+
+In this notebook we find the biospecimen which do not have matched DNA and RNA 
+biospecimen. We create a dataframe for these biospecimens called `MYCN_non_match_df` 
+which has all the necessary information required for performing subtyping. We 
+concatenate this `MYCN_non_match_df` with the table `nbl-subset/mycn_nbl_matched_biospecimen.tsv` 
+and joined table called `nbl-subset/alteration_table_without_subtype.tsv` which 
+contains the list of all NBL-MYCN biospecimen that need to subtpyped. 
+
+The notebook also plots the `TPM vs Kids_First_Biospecimen_ID` for all the biospecimen 
+for which there is a TPM value. We overlay the consensus status call for each of 
+the biospecimen in this plot and determine a cut off for amplification. 
+
+
+```{r load libraries}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+## Set up directories
+```{r setup directories}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data_dir <- file.path(root_dir, "data")
+module_dir <- file.path(root_dir, "analyses","molecular-subtyping-NBL")
+subset_dir <- file.path(module_dir, "nbl-subset")
+results_dir <- file.path(module_dir, "results")
+plot_dir <- file.path(module_dir, "plots")
+
+```
+
+## Load files
+
+```{r load files}
+# mycn subset and filtered file
+mycn_df <- 
+  readr::read_tsv(file.path(subset_dir, "mycn_nbl_subset_data.tsv"), 
+                  guess_max = 10000)
+mycn_dna_rna_df <- 
+  readr::read_tsv(file.path(subset_dir, "mycn_nbl_matched_biospecimen.tsv"), 
+                  guess_max = 10000)
+
+# gmkf clinical patient mycn amplification status
+gmkf_mycn_status_df <- 
+  readr::read_tsv(file.path(subset_dir, 
+                            "gmkf_patient_clinical_mycn_status.tsv"))
+
+target_mycn_status_df <- 
+  readr::read_tsv(file.path(subset_dir, 
+                            "target_patient_clinical_mycn_status.tsv")) 
+
+```
+
+## Unmatched DNA and RNA biospecimen
+
+```{r unmatched biospecimen}
+# unmatched dna biospecimen
+mycn_dna_df <- mycn_df %>% 
+  dplyr::filter(experimental_strategy %in% 
+                  c("WGS", "WXS", "Targeted Sequencing"),
+                is.na(RNA_library), 
+                !(Kids_First_Biospecimen_ID %in%
+                  mycn_dna_rna_df$Kids_First_Biospecimen_ID_DNA)) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Participant_ID, MYCN_TPM,
+                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, cohort) %>% 
+  dplyr::mutate(Kids_First_Biospecimen_ID_RNA = NA_character_)
+  
+# unmatched rna biospecimen
+mycn_rna_df <- mycn_df %>%
+  dplyr::filter(experimental_strategy %in% c("RNA-Seq","Targeted Sequencing"),
+                !is.na(RNA_library),
+                !(Kids_First_Biospecimen_ID %in%
+                  mycn_dna_rna_df$Kids_First_Biospecimen_ID_RNA)) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID_RNA, Kids_First_Participant_ID, MYCN_TPM,
+                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, cohort) %>% 
+  dplyr::mutate(Kids_First_Biospecimen_ID_DNA = NA_character_)
+
+```
+
+## Merge matched and unmatched biospecimen
+
+```{r merge biospecimen}
+# select relevant columns from matched dna-rna biospecimen dataframe
+mycn_dna_rna_df <- mycn_dna_rna_df %>% 
+  dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
+                Kids_First_Participant_ID, MYCN_TPM, MYCN_CN ,MYCN_CN_status,
+                pathology_free_text_diagnosis, cohort) 
+
+# bind matched and unmatched biospecimen 
+alteration_df <- dplyr::bind_rows(mycn_dna_rna_df, mycn_dna_df, mycn_rna_df)
+
+```
+
+## Add clinical MYCN status
+
+```{r add clinical mycn status}
+# add gmkf clinical mycn status
+gmkf_mycn_df <- alteration_df %>% 
+  dplyr::filter(cohort == "GMKF") %>% 
+  dplyr::select(-pathology_free_text_diagnosis) %>% 
+  dplyr::left_join(gmkf_mycn_status_df, 
+                   by = c("Kids_First_Participant_ID" = "USI_ID")) %>% 
+  dplyr::rename(pathology_free_text_diagnosis =
+                  GMKF_MYCN_STATUS)
+
+# add target clinical mycn status
+target_mycn_df <- alteration_df %>% 
+  dplyr::filter(cohort == "TARGET") %>% 
+  dplyr::select(-pathology_free_text_diagnosis) %>% 
+  dplyr::left_join(target_mycn_status_df, 
+                   by = c("Kids_First_Participant_ID" = "USI_ID")) %>% 
+  dplyr::rename(pathology_free_text_diagnosis =
+                  TARGET_MYCN_STATUS)
+
+# other cohorts
+others_mycn_df <- alteration_df %>% 
+  dplyr::filter(!cohort %in% c("GMKF", "TARGET"))
+
+# binc cohort biospecimen 
+alteration_df <- dplyr::bind_rows(gmkf_mycn_df, target_mycn_df, others_mycn_df)
+
+```
+
+Plot the TPM values for biospecimens which have TPMs both for  Matched and Non Matched  
+biospecimens.
+
+## Determine MYCN expression cutoff 
+
+```{r plot tpm distribution}
+plot_alteration_df <- alteration_df %>% 
+  dplyr::filter(!is.na(MYCN_TPM)) %>% 
+  dplyr::mutate(Kids_First_Biospecimen_ID = 
+                  coalesce(Kids_First_Biospecimen_ID_DNA,
+                           Kids_First_Biospecimen_ID_RNA))
+
+bar_plot2<-plot_alteration_df %>%
+  dplyr::arrange(MYCN_TPM) %>%
+  dplyr::mutate(Kids_First_Biospecimen_ID = 
+                  factor(Kids_First_Biospecimen_ID,
+                         unique(Kids_First_Biospecimen_ID))) %>%
+  ggplot() + aes(x = Kids_First_Biospecimen_ID, 
+                 y = MYCN_TPM, 
+                 fill = MYCN_CN_status) +
+  geom_bar(position = "dodge", stat = "identity") +
+  theme(axis.text.x = element_text(size = 2, angle = 45, hjust = 1))
+# display plot
+bar_plot2
+
+Suggested_Cutoff <- 140.83
+bar_plot2 + geom_hline(aes(yintercept=Suggested_Cutoff, 
+                           linetype = "Suggested Amp Cutoff"),
+                       color = "black", size= 2)
+
+plot_file <- file.path(plot_dir, "tpm_biospecimen_all_samples_with_tpm.png")
+ggsave(filename = plot_file, width = 49, height = 20)
+```
+
+
+## Write to file MYCN biospecimen to subtype
+
+```{r write output to file}
+alteration_df %>% 
+  readr::write_tsv(file.path(subset_dir, 
+                             "alteration_table_without_molecular_subtype.tsv"))
+
+```
+
+## Session Info
+
+```{r sessioninfo}
+sessionInfo() 
+```

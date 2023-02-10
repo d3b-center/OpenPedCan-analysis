@@ -408,7 +408,9 @@ RUN ./install_bioc.r \
     EnsDb.Hsapiens.v86 \
     ensembldb
 
-RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = 'c6a2111b5949ca2aae3853f7f34de3d0db4ffa33', dependencies = TRUE)"
+RUN R -e "remotes::install_github('d3b-center/annoFuseData',ref = '321bc4f6db6e9a21358f0d09297142f6029ac7aa', dependencies = TRUE)"
+
+RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '48b1f62cde52ffeb6372c838227c9e6065a568dd', dependencies = TRUE)"
 
 # Package for RNA-seq differential gene expression analysis
 RUN ./install_bioc.r \

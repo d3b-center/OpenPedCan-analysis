@@ -1,0 +1,178 @@
+---
+title: "01-find-matched-biospecimen"
+author: "Aditya Lahiri, Eric Wafula, Jo Lynne Rokita"
+date: "10/13/2022"
+output: html_notebook
+---
+In this notebook we load the table `nbl-subset/mycn_nbl_subset_data.tsv` and find the
+biospecimen which have matched DNA and RNA IDs. We store these biospecimen as a table 
+in `nbl-subset/mycn_nbl_matched_biospecimen.tsv`. The script also creates two tables,
+`nbl-subset/mycn_nbl_dna_biospecimen.tsv` and `nbl-subset/mycn_nbl_rna_biospecimen.tsv`
+which contain biospecimen whose `Kids_First_Biospecimen_ID` are DNA and RNA respectively. 
+
+The notebook also plots the `TPM` vs `Kids_First_Biospecimen_ID` for biospecimen with
+matched DNA and RNA IDs. We overlay the consensus status call for each of the biospecimen 
+in this plot.
+
+## Load Libraries
+
+```{r load libraries}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+## Set up directories
+
+```{r setup directories}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data_dir <- file.path(root_dir, "data")
+module_dir <- file.path(root_dir, "analyses","molecular-subtyping-NBL")
+subset_dir <- file.path(module_dir, "nbl-subset")
+results_dir <- file.path(module_dir, "results")
+plot_dir <- file.path(module_dir, "plots")
+
+# create plot_dir if doesn't exist
+if (!dir.exists(plot_dir)) {
+  dir.create(plot_dir)
+}
+```
+
+Create a `match_id` combining `Kids_First_Participant_ID`, `sample_id`, and
+`cohort` for determining matching DNA-RNA bioscpecimen.
+
+## Load MYCN subset file 
+
+```{r mycn subset file}
+mycn_df <- readr::read_tsv(file.path(subset_dir, "mycn_nbl_subset_data.tsv"), 
+                           guess_max = 100000) %>% 
+  # create match_id
+  dplyr::mutate(match_id = paste(Kids_First_Participant_ID, 
+                                 sample_id, cohort, sep = "_")) %>%
+  # select columns of interest
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, aliquot_id, 
+                experimental_strategy, RNA_library,  pathology_diagnosis, cohort,
+                pathology_free_text_diagnosis, gene_symbol, MYCN_CN, MYCN_TPM,
+                MYCN_CN_status, match_id)
+```
+
+## DNA and RNA biospecimen
+
+```{r dna and rna biospecimen}
+# DNA biospecimen
+mycn_dna_df <- mycn_df %>% 
+  dplyr::filter(experimental_strategy %in% 
+                  c("WGS", "WXS", "Targeted Sequencing"),
+                is.na(RNA_library)) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID)
+
+# RNA biospecimen
+mycn_rna_df <- mycn_df %>%
+  dplyr::filter(experimental_strategy %in% c("RNA-Seq","Targeted Sequencing"),
+                !is.na(RNA_library)) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID)
+
+```
+
+## Determine matching DNA-RNA biospecimen
+
+```{r matching dna and rna}
+mycn_dna_rna_df <- mycn_dna_df %>% 
+  dplyr::select(Kids_First_Participant_ID, gene_symbol, pathology_diagnosis,
+                pathology_free_text_diagnosis, MYCN_CN, MYCN_CN_status,
+                Kids_First_Biospecimen_ID_DNA, match_id, aliquot_id, cohort) %>% 
+  dplyr::inner_join(
+    mycn_rna_df %>% 
+      dplyr::select(Kids_First_Biospecimen_ID_RNA, MYCN_TPM, match_id),
+    by = "match_id")
+  
+```
+
+Determine of duplicate DNA (`Kids_First_Biospecimen_ID_DNA`) and RNA 
+biospecimen (`Kids_First_Biospecimen_ID_RNA`) in the matched DNA-RNA dataframe. 
+We do not need to check for duplicate RNA as all the DNA and RNA biospecimen are
+matched. Therefore, if we find a duplicate DNA biospecimen, we will also find its 
+corresponding RNA biospecimen that is also a duplicate. 
+
+## Find duplicate DNA biospecimen
+
+```{r duplicate biospecimen}
+# get duplicate dna IDs
+dup_dna_ids <- mycn_dna_rna_df %>% 
+  count(Kids_First_Biospecimen_ID_DNA) %>% 
+  dplyr::filter(n > 1) %>% 
+  pull(Kids_First_Biospecimen_ID_DNA)
+
+# display duplicate biospecimen
+mycn_dna_rna_df %>% dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% 
+                                    dup_dna_ids) 
+
+```
+
+There are four pairs of duplicate DNA and RNA biospecimen. 
+Biospecimen with lower copy number in each duplicate pair will be left out. 
+`Adyita` and `Jo Lynne` determine the two `DGD` bioscpecimen to exclude. 
+
+## Remove dupicate biospecimen
+
+```{r remove duplicates}
+# matched biospecimen
+mycn_dna_rna_df <- mycn_dna_rna_df %>% 
+  dplyr::filter(!(Kids_First_Biospecimen_ID_DNA == "TARGET-30-PAPVFD-01A-01D" & 
+                   MYCN_CN == 2), 
+                !(Kids_First_Biospecimen_ID_DNA == "TARGET-30-PASXRG-01A-01D" &
+                   MYCN_CN == 4),
+                !(Kids_First_Biospecimen_ID_DNA == "BS_1F8J25Q1" &
+                   Kids_First_Biospecimen_ID_RNA == "BS_2HM4AE24"),
+                !(Kids_First_Biospecimen_ID_DNA == "BS_0XC02E11" &
+                   Kids_First_Biospecimen_ID_RNA == "BS_XV40PE3Q"))
+
+```
+
+Plot `TPM vs Biospecimen` for RNA biospecimen that are matched with DNA. 
+Only plot those biospecimens that have a TPM value.
+
+## Plot distribution of MYCN TPM values
+
+```{r plot tpm distribution}
+# get relevant variables
+mycn_plot_df <- mycn_dna_rna_df %>% 
+  dplyr::filter(!is.na(MYCN_TPM)) %>%
+  dplyr::select(Kids_First_Biospecimen_ID_DNA, MYCN_TPM, MYCN_CN_status) 
+
+# plot distribution
+bar_plot1 <- mycn_plot_df %>% 
+  dplyr::arrange(MYCN_TPM) %>% 
+  dplyr::mutate(Kids_First_Biospecimen_ID_DNA = 
+                  factor(Kids_First_Biospecimen_ID_DNA, 
+                         unique(Kids_First_Biospecimen_ID_DNA))) %>%
+  ggplot() + aes(x = Kids_First_Biospecimen_ID_DNA, y = MYCN_TPM, 
+                 fill = MYCN_CN_status) +
+  geom_bar(position = "dodge", stat = "identity") +
+  theme(axis.text.x = element_text(size = 5, angle = 45, hjust = 1))
+
+# save distribution plot to file
+plot_file <- file.path(plot_dir, "tpm_biospecimen_matching.png")
+ggsave(filename = plot_file, width = 45, height = 20)
+```
+
+Write the table containing mycn-nbl biospecimen with matched DNA and RNA 
+biospecimen, DNA only, and RNA only to file
+
+## Write tables to file
+
+```{r write alteration table}
+mycn_dna_rna_df %>% 
+  readr::write_tsv(file.path(subset_dir,"mycn_nbl_matched_biospecimen.tsv"))
+mycn_dna_df %>% 
+  readr::write_tsv(file.path(subset_dir,"mycn_nbl_dna_biospecimen.tsv"))
+mycn_rna_df %>% 
+  readr::write_tsv(file.path(subset_dir,"mycn_nbl_rna_biospecimen.tsv"))
+
+```
+
+## Session Info
+
+```{r sessioninfo}
+sessionInfo() 
+```

@@ -1,0 +1,118 @@
+---
+title: "04-qc-checks"
+author: "Aditya Lahiri, Eric Wafula, Jo Lynne Rokita"
+date: "11/14/2022"
+output: html_notebook
+---
+
+This notebook performs QC check for `TARGET WXS` and `GMKF WGS` biospecimen with
+with identical patients and samples IDs. Results and display as well as written
+to `results/qc_table.tsv` file. 
+
+# Load Libraries
+
+```{r load libraries}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Set up directories
+
+```{r setup directories}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data_dir <- file.path(root_dir, "data")
+module_dir <- file.path(root_dir, "analyses","molecular-subtyping-NBL")
+subset_dir <- file.path(module_dir, "nbl-subset")
+results_dir <- file.path(module_dir, "results")
+
+```
+
+# Load files 
+
+```{r message=FALSE}
+# read in the JSON file that contains pathology diagnosis terms
+path_dx_list <- jsonlite::fromJSON(
+  file.path(subset_dir, "nbl_subtyping_path_dx_strings.json")
+  )
+# read histolgies base 
+hist_df <- readr::read_tsv(file.path(data_dir, "histologies-base.tsv"), 
+                           guess_max = 100000) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, sample_id, cohort, 
+                experimental_strategy, pathology_diagnosis)
+
+# read molecular subtypes
+subtypes_df <- readr::read_tsv(file.path(results_dir, 
+                            "alteration_table_with_molecular_subtype.tsv"), 
+                            guess_max = 100000) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA) %>% 
+  dplyr::select(-cohort)
+
+```
+
+# TARGET WXS subtypes
+
+```{r target wsx}
+target_df <- hist_df %>% 
+  dplyr::filter(cohort == "TARGET", 
+         pathology_diagnosis %in% path_dx_list$exact_path_dx,
+         experimental_strategy == "WXS") %>% 
+  dplyr::inner_join(subtypes_df, by = "Kids_First_Biospecimen_ID") %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id,
+                experimental_strategy, MYCN_TPM, MYCN_CN_status, molecular_subtype) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID_TARGET = Kids_First_Biospecimen_ID,
+                experimental_strategy_TARGET = experimental_strategy,
+                MYCN_TPM_TARGET = MYCN_TPM, MYCN_CN_status_TARGET = MYCN_CN_status,
+                molecular_subtype_TARGET = molecular_subtype) 
+  
+```
+
+# GMKF WGS subtypes
+
+```{r target wgs}
+gmkf_df <- hist_df %>% 
+  dplyr::filter(cohort == "GMKF", 
+         pathology_diagnosis %in% path_dx_list$exact_path_dx,
+         experimental_strategy == "WGS") %>% 
+  dplyr::inner_join(subtypes_df, by = "Kids_First_Biospecimen_ID") %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id,
+                experimental_strategy, MYCN_TPM, MYCN_CN_status, molecular_subtype) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID_GMKF = Kids_First_Biospecimen_ID,
+                experimental_strategy_GMKF = experimental_strategy,
+                MYCN_TPM_GMKF = MYCN_TPM, MYCN_CN_status_GMKF = MYCN_CN_status,
+                molecular_subtype_GMKF = molecular_subtype)
+
+```
+
+# Compare TARGET and GMKF subtypes
+
+```{r merge cohort subtypes}
+merged_subtypes <- 
+  dplyr::inner_join(target_df, gmkf_df, 
+                    by = c("Kids_First_Participant_ID", "sample_id")) %>%
+  # reorder columns
+  dplyr::select(Kids_First_Biospecimen_ID_GMKF,
+                Kids_First_Biospecimen_ID_TARGET,
+                Kids_First_Participant_ID,
+                sample_id,
+                experimental_strategy_GMKF,
+                experimental_strategy_TARGET,
+                MYCN_TPM_GMKF,
+                MYCN_TPM_TARGET, 
+                MYCN_CN_status_GMKF, 
+                MYCN_CN_status_TARGET,
+                molecular_subtype_GMKF,
+                molecular_subtype_TARGET) %>% 
+  readr::write_tsv(file.path(results_dir, "qc_table.tsv"))
+
+# display comparison
+merged_subtypes
+
+```
+
+## Session Info
+
+```{r sessioninfo}
+sessionInfo() 
+```
+                                      
