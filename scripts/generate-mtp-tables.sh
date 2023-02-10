@@ -24,6 +24,7 @@ FUSION_MODULE_DIR=$SCRIPT_DIR/../analyses/fusion-frequencies
 SNV_MODULE_DIR=$SCRIPT_DIR/../analyses/snv-frequencies
 CNV_MODULE_DIR=$SCRIPT_DIR/../analyses/cnv-frequencies
 TPM_MODULE_DIR=$SCRIPT_DIR/../analyses/rna-seq-expression-summary-stats
+FILTER_MTP_DIR=$SCRIPT_DIR/../analyses/filter-mtp-tables
 
 # Compile all the files that need to be included in the release in one place
 # in the scratch directory
@@ -57,6 +58,13 @@ printf "\n\nGenrating mtp tpm tables...\n\n"
 cd $TPM_MODULE_DIR
 bash run-rna-seq-expression-summary-stats.sh
 cp results/*_zscore.tsv.gz $RELEASE_DIR
+cp results/*.jsonl.gz $RELEASE_DIR
+
+# Run filter-mtp-tables module
+printd "\n\nFilter MTP tables...\n\n"
+cd $FILTER_MTP_DIR
+bash run-filter-mtp-tables.sh
+cp results/*.tsv.gz $RELEASE_DIR
 cp results/*.jsonl.gz $RELEASE_DIR
 
 # Create an md5sum file for all the files in mtp-tables directory
