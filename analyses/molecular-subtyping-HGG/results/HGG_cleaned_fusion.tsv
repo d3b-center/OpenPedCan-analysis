@@ -1,207 +1,243 @@
-Sample	NTRK_fusions	FGFR1_fusions
-BS_00FD2KMP	None	None
-BS_0VXZCRJS	None	None
-BS_1A6MQ9ZA	None	None
-BS_1D6PZNKN	None	FGFR1--TACC1
-BS_1EBQ3T20	None	None
-BS_1N7MQZGR	None	None
-BS_21ET39G7	None	None
-BS_23QW0BBA	None	None
-BS_2853394H	None	None
-BS_29X4ZX6Q	None	None
-BS_2A162JH9	None	None
-BS_2EN3X6HB	None	None
-BS_2HNXVFAS	None	None
-BS_2JP7RBMB	None	None
-BS_3AC3SRWH	None	None
-BS_3MS8WVNR	None	None
-BS_3ZPJAK9A	None	None
-BS_40MP5BWR	None	None
-BS_45J79YTF	None	None
-BS_49BQS7Z6	None	None
-BS_49CJNZ06	None	None
-BS_49FQXT2E	None	None
-BS_4B0BAVTX	None	None
-BS_4C6B11E4	None	None
-BS_4KNBXM3C	None	None
-BS_4PPHAQXF	None	None
-BS_4PWDGEB0	None	None
-BS_4QW2S1Q8	None	None
-BS_51RA1PGE	None	None
-BS_52C576HH	None	None
-BS_52MPKTJH	None	None
-BS_58YXHGAJ	None	None
-BS_59ZJWJTF	None	None
-BS_5CTVXVRX	None	None
-BS_5GNQC2FF	None	None
-BS_5P1TN10Z	None	None
-BS_5VPM0F36	None	None
-BS_68KX6A42	None	None
-BS_6DCSD5Y6	None	None
-BS_6M2053M0	None	None
-BS_6VPKXXMR	None	None
-BS_6WP1FHTE	None	None
-BS_7327SDAQ	None	None
-BS_7GJT4A6A	None	None
-BS_7WM3MNZ0	None	None
-BS_84XCR9GG	None	None
-BS_8MA5B8Y9	None	None
-BS_8PNA0V6R	None	None
-BS_8ZD6J47V	None	None
-BS_8ZE4Z9G5	None	None
-BS_8ZS9F31R	None	None
-BS_8ZY4GST0	None	None
-BS_91VYM11A	None	None
-BS_97M1E2DW	None	None
-BS_9CA93S6D	None	None
-BS_9XVACXP0	None	None
-BS_A0DYVX9J	None	None
-BS_A6NXR7RC	None	None
-BS_AWH9757B	None	None
-BS_B1C6GZ84	None	None
-BS_B4R7X1KE	None	None
-BS_B57327NA	None	None
-BS_BBAEMXRD	None	None
-BS_BMMY0H73	NTRK2--NTRK2	None
-BS_BWBDH9GM	None	None
-BS_BYCX6VK1	None	None
-BS_C41DJZ1F	None	None
-BS_C6ZZ3FY5	None	None
-BS_C83TK159	None	None
-BS_CXVGG342	None	None
-BS_CZPQ493E	None	None
-BS_D29RPBSZ	None	None
-BS_D6J2BGDJ	None	None
-BS_D7XRFE0R	None	None
-BS_DRY58DTF	None	None
-BS_E60JZ9Z3	None	None
-BS_E7NVYA6G	None	None
-BS_ECNBQ2RA	None	None
-BS_ENX83H9Z	None	None
-BS_EXPJQZTH	None	None
-BS_EZ3147MX	None	None
-BS_F0JB4EAK	None	None
-BS_F21R36MM	None	None
-BS_F9Y4Z92G	None	None
-BS_FCDAH728	None	None
-BS_FGJH1X0S	None	None
-BS_FKASA3MN	None	None
-BS_FN07P04C	None	None
-BS_FYRDYBMZ	None	None
-BS_G3NN392N	None	None
-BS_G3RJTBZD	None	None
-BS_G5NHSFD4	None	None
-BS_GG9W3J9Y	NTRK3--NTRK3	None
-BS_GW0GKWMS	None	None
-BS_GWSJ4Z9H	None	None
-BS_GXTFW99H	None	None
-BS_H0QWRJE2	None	None
-BS_H1ZS5FMZ	None	None
-BS_H97S5SQN	None	None
-BS_H9JYKFTV	None	None
-BS_HE0WJRW6	None	None
-BS_HRJ9145M	None	None
-BS_HWGWYCY7	None	None
-BS_J8VX4D17	None	None
-BS_J9CBGP57	None	None
-BS_JB43XBCQ	None	None
-BS_JJVH7WR0	None	None
-BS_JQVAWTTM	None	None
-BS_JQXHHK0K	None	FGFR1--TACC1
-BS_JRYJGYC4	None	None
-BS_JS95PE0J	None	None
-BS_JTWNJ8T7	None	None
-BS_K17VQECG	None	None
-BS_KBEX4RT2	None	None
-BS_KFD5128N	None	None
-BS_KKDTW11T	None	None
-BS_KP735TJ6	TPM3--NTRK1	None
-BS_M0QYNVK8	None	None
-BS_M0XGZ53Z	None	None
-BS_M7HCF7DW	None	None
-BS_M85CXHDV	None	None
-BS_M8EA6R2A	None	None
-BS_MB7WN0ZB	None	None
-BS_MD0937XT	None	None
-BS_MG78HQDM	None	None
-BS_MKM0EEN1	None	None
-BS_MN5XVP5A	None	None
-BS_MX23ZY0Y	None	None
-BS_NB9XXBW6	None	None
-BS_NGSG2KB6	None	None
-BS_NNPEC7W1	None	None
-BS_P0QF87WC	NTRK3--NTRK3	None
-BS_P9JP6JFA	None	None
-BS_PGK832G2	None	None
-BS_PJC6FH4Y	None	None
-BS_PKW05VZV	None	None
-BS_PNYN0AYD	None	None
-BS_PS0P3QJ3	None	None
-BS_PXCPK5XS	None	None
-BS_PZVHMSYN	None	None
-BS_Q13FQ8FV	None	None
-BS_QB84TBA3	None	None
-BS_QNNX91SM	None	None
-BS_QWTE1CWR	None	None
-BS_QYPHA40N	None	None
-BS_R5SNFB5B	None	None
-BS_R7NTZR4C	None	None
-BS_R9B92M75	None	None
-BS_RCCN63K6	None	None
-BS_RX1YTZ7F	None	None
-BS_RXN5T5YT	None	None
-BS_S2TA8R29	None	None
-BS_S3MET0JZ	None	None
-BS_S5P8VTN5	None	None
-BS_S6B9DVNS	None	None
-BS_S6S7SK3P	None	None
-BS_SB12W1XT	None	None
-BS_SD8YBRBR	None	None
-BS_SHJA4MR0	None	None
-BS_SNVM7CZT	None	None
-BS_SY3J3XR9	None	None
-BS_T1YHK6B7	None	None
-BS_T3DGY9J9	None	None
-BS_T9A8JJW5	None	None
-BS_TGS109T3	None	None
-BS_TJTEF70D	None	None
-BS_TK84K675	None	None
-BS_TM9MH0RP	NTRK2--CTNND2	None
-BS_TPB6WVF4	None	None
-BS_TR2P8KRF	None	None
-BS_TRKH2SPE	NTRK3--NTRK3	None
-BS_TV5B86ZD	None	None
-BS_TVH33J9Q	None	None
-BS_TXZ7KHTQ	None	None
-BS_V3Z3DB4N	None	None
-BS_VF5XWFXD	None	None
-BS_VMQMGSJY	None	None
-BS_VVTHDRBD	None	None
-BS_W1385R8Y	None	None
-BS_W4DB5RP1	None	None
-BS_W4H1D4Y6	None	None
-BS_W60RQAKK	None	None
-BS_W7MFJZ5A	None	None
-BS_W9N9844Q	None	None
-BS_WAXJY4XQ	None	None
-BS_WBVSK3MP	None	None
-BS_WH8G4VFB	None	None
-BS_WJ9H4NZZ	None	None
-BS_WKESC3XN	None	None
-BS_WQ1YRTAT	None	None
-BS_X0XXN9BK	None	None
-BS_X23724NJ	None	None
-BS_X4DD4KSZ	None	None
-BS_XG0DBWVT	None	None
-BS_XGDPK33A	None	None
-BS_XZM79E42	None	None
-BS_YA0KMBRT	None	None
-BS_YDEVMD24	None	None
-BS_YEW22W35	None	None
-BS_Z3RCA1T9	None	None
-BS_Z8F3GM85	None	None
-BS_Z8YZ6QGS	None	None
-BS_ZD5HN296	None	None
-BS_ZF6BSFNF	None	None
-BS_ZV1P6W9C	None	None
-BS_ZVWE73JZ	None	None
+Kids_First_Biospecimen_ID	NTRK_fusions	MET_fusions	ROS1_fusions	ALK_fusions	FGFR1_fusions	HGG_Fusion_evidence	HGG_Fusion_counts
+BS_00FD2KMP	None	None	None	None	None	None	0
+BS_052PZFMK	None	None	None	None	None	None	0
+BS_0C7VZC0A	None	None	None	None	None	None	0
+BS_0RQ4P069	None	None	None	None	None	None	0
+BS_0VXZCRJS	None	None	None	None	None	None	0
+BS_0ZA67BBC	None	None	None	None	None	None	0
+BS_1A6MQ9ZA	None	None	None	None	None	None	0
+BS_1D6PZNKN	None	None	None	None	FGFR1--TACC1	FGFR1--TACC1	1
+BS_1EBQ3T20	None	None	None	None	None	None	0
+BS_1EN5V3XW	None	None	None	None	None	None	0
+BS_1N7MQZGR	None	None	None	None	None	None	0
+BS_21ET39G7	None	None	None	None	None	None	0
+BS_23QW0BBA	None	None	None	None	None	None	0
+BS_2853394H	None	None	None	None	None	None	0
+BS_29X4ZX6Q	None	None	None	None	None	None	0
+BS_2A162JH9	None	None	None	None	None	None	0
+BS_2A5R9MEJ	None	None	None	None	None	None	0
+BS_2EN3X6HB	None	None	None	None	None	None	0
+BS_2HNXVFAS	None	PTPRZ1--MET	None	None	None	PTPRZ1--MET	1
+BS_2JP7RBMB	None	None	None	None	None	None	0
+BS_30VC3R2Q	None	None	None	None	None	None	0
+BS_399RPKC9	None	None	None	None	None	None	0
+BS_3AC3SRWH	None	None	None	None	None	None	0
+BS_3MS8WVNR	None	None	None	None	None	None	0
+BS_3ZPJAK9A	None	None	None	None	None	None	0
+BS_40MP5BWR	None	None	None	None	None	None	0
+BS_45J79YTF	None	MET--PTPRZ1/PTPRZ1--MET	None	None	None	MET--PTPRZ1/PTPRZ1--MET	2
+BS_49BQS7Z6	None	None	None	None	None	None	0
+BS_49CJNZ06	None	None	None	None	None	None	0
+BS_49FQXT2E	None	None	None	None	None	None	0
+BS_4B0BAVTX	None	None	None	None	None	None	0
+BS_4C6B11E4	None	None	None	None	None	None	0
+BS_4KNBXM3C	None	None	None	None	None	None	0
+BS_4PPHAQXF	None	None	None	None	None	None	0
+BS_4PWDGEB0	None	None	None	None	None	None	0
+BS_4QW2S1Q8	None	MET--GCK	None	None	None	MET--GCK	1
+BS_51RA1PGE	None	None	None	None	None	None	0
+BS_52C576HH	None	None	ZCCHC8--ROS1	None	None	ZCCHC8--ROS1	1
+BS_52MPKTJH	None	None	None	None	None	None	0
+BS_58YXHGAJ	None	None	None	None	None	None	0
+BS_5965SFPZ	None	None	None	None	None	None	0
+BS_59ZJWJTF	None	None	None	None	None	None	0
+BS_5CTVXVRX	None	None	None	None	None	None	0
+BS_5GNQC2FF	None	None	None	None	None	None	0
+BS_5P1TN10Z	None	None	None	None	None	None	0
+BS_5VPM0F36	None	None	None	None	None	None	0
+BS_68KX6A42	None	MET--MET	None	None	None	MET--MET	1
+BS_6DCSD5Y6	None	TSPAN12--MET	None	None	None	TSPAN12--MET	1
+BS_6M2053M0	None	None	None	None	None	None	0
+BS_6VPKXXMR	None	None	None	None	None	None	0
+BS_6WP1FHTE	None	None	None	None	None	None	0
+BS_7327SDAQ	None	PTPRZ1--MET	None	None	None	PTPRZ1--MET	1
+BS_7GJT4A6A	None	None	None	None	None	None	0
+BS_7WM3MNZ0	None	None	None	None	None	None	0
+BS_84XCR9GG	None	None	None	None	None	None	0
+BS_8MA5B8Y9	None	None	None	None	None	None	0
+BS_8PNA0V6R	None	None	None	None	None	None	0
+BS_8ZD6J47V	None	None	None	None	None	None	0
+BS_8ZE4Z9G5	None	None	None	None	None	None	0
+BS_8ZS9F31R	None	None	None	None	None	None	0
+BS_8ZY4GST0	None	ST7--MET	None	None	None	ST7--MET	1
+BS_91VYM11A	None	None	None	None	None	None	0
+BS_97M1E2DW	None	HNRNPA2B1--MET	None	None	None	HNRNPA2B1--MET	1
+BS_9CA93S6D	None	None	None	None	None	None	0
+BS_9FX3YREK	None	None	None	None	None	None	0
+BS_9TXEDSWB	None	None	None	None	None	None	0
+BS_9XVACXP0	None	None	None	CCDC88A--ALK	None	CCDC88A--ALK	1
+BS_A0DYVX9J	None	None	None	None	None	None	0
+BS_A6NXR7RC	None	None	None	None	None	None	0
+BS_A7Q8G0Y1	None	None	None	None	None	None	0
+BS_AWH9757B	None	None	None	None	None	None	0
+BS_B1C6GZ84	None	None	None	None	None	None	0
+BS_B4R7X1KE	None	None	None	None	None	None	0
+BS_B57327NA	None	None	None	None	None	None	0
+BS_BBAEMXRD	None	None	None	None	None	None	0
+BS_BMMY0H73	NTRK2--NTRK2	None	None	None	None	NTRK2--NTRK2	1
+BS_BWBDH9GM	None	None	None	None	None	None	0
+BS_BYCX6VK1	None	None	None	None	None	None	0
+BS_C41DJZ1F	None	None	None	None	None	None	0
+BS_C6ZZ3FY5	None	None	None	None	None	None	0
+BS_C83TK159	None	None	None	None	None	None	0
+BS_CXVGG342	None	None	CLIP1--ROS1	None	None	CLIP1--ROS1	1
+BS_CZPQ493E	None	None	None	None	None	None	0
+BS_D29RPBSZ	None	None	None	None	None	None	0
+BS_D6J2BGDJ	None	None	None	None	None	None	0
+BS_D7XRFE0R	None	MET--MET	None	None	None	MET--MET	1
+BS_DFGS950G	None	None	None	None	None	None	0
+BS_DRY58DTF	None	None	None	None	None	None	0
+BS_DS438CXE	None	None	None	None	None	None	0
+BS_DSPVSM7D	None	None	None	None	None	None	0
+BS_E60JZ9Z3	None	None	None	None	None	None	0
+BS_E7NVYA6G	None	None	None	None	None	None	0
+BS_ECNBQ2RA	None	None	None	ALK--PPP1CB/PPP1CB--ALK	None	ALK--PPP1CB/PPP1CB--ALK	2
+BS_ENX83H9Z	None	None	None	None	None	None	0
+BS_EXPJQZTH	None	None	None	None	None	None	0
+BS_EZ3147MX	None	None	None	None	None	None	0
+BS_F0JB4EAK	None	None	None	None	None	None	0
+BS_F21R36MM	None	None	None	None	None	None	0
+BS_F9Y4Z92G	None	None	None	None	None	None	0
+BS_FCDAH728	None	None	None	None	None	None	0
+BS_FEV5A0HN	None	None	None	None	None	None	0
+BS_FGJH1X0S	None	None	None	None	None	None	0
+BS_FKASA3MN	None	None	None	None	None	None	0
+BS_FN07P04C	None	None	None	None	None	None	0
+BS_FX2P2WEG	None	None	None	None	None	None	0
+BS_FXJY0MNH	None	None	None	None	None	None	0
+BS_FYRDYBMZ	None	None	None	None	None	None	0
+BS_G3NN392N	None	None	None	None	None	None	0
+BS_G3RJTBZD	None	None	None	None	None	None	0
+BS_G5NHSFD4	None	None	None	None	None	None	0
+BS_GG9W3J9Y	None	None	None	None	None	None	0
+BS_GW0GKWMS	None	None	None	None	None	None	0
+BS_GWSJ4Z9H	None	MET--UBE2L3/UBE2L3--MET	None	None	None	MET--UBE2L3/UBE2L3--MET	2
+BS_GXTFW99H	None	None	None	None	None	None	0
+BS_H0QWRJE2	None	None	None	None	None	None	0
+BS_H1XPVS9A	None	None	None	None	None	None	0
+BS_H1ZS5FMZ	None	None	None	None	None	None	0
+BS_H97S5SQN	None	None	None	None	None	None	0
+BS_H9JYKFTV	None	None	None	None	None	None	0
+BS_HE0WJRW6	None	None	None	None	None	None	0
+BS_HJRTC9JQ	None	None	None	None	None	None	0
+BS_HRJ9145M	None	None	None	None	None	None	0
+BS_HWGWYCY7	None	None	None	None	None	None	0
+BS_J8VX4D17	None	None	None	None	None	None	0
+BS_J9CBGP57	None	None	None	None	None	None	0
+BS_JB43XBCQ	None	None	None	None	None	None	0
+BS_JJVH7WR0	None	None	None	None	None	None	0
+BS_JMD386Z2	None	None	None	None	None	None	0
+BS_JQVAWTTM	None	None	None	None	None	None	0
+BS_JQXHHK0K	None	None	None	None	None	None	0
+BS_JRYJGYC4	None	None	None	None	None	None	0
+BS_JS95PE0J	None	None	None	None	None	None	0
+BS_JTWNJ8T7	None	None	None	None	None	None	0
+BS_JVW2JJ39	None	None	None	None	None	None	0
+BS_K17VQECG	None	None	None	None	None	None	0
+BS_KABQQA0T	None	None	None	None	None	None	0
+BS_KBEX4RT2	None	None	None	None	None	None	0
+BS_KFD5128N	None	None	None	None	None	None	0
+BS_KKDTW11T	None	None	None	None	None	None	0
+BS_KP735TJ6	None	None	None	None	None	None	0
+BS_KRS4EV4X	None	None	None	None	None	None	0
+BS_M0QYNVK8	None	None	None	None	None	None	0
+BS_M0XGZ53Z	None	None	None	None	None	None	0
+BS_M1PVEHCM	None	None	None	None	None	None	0
+BS_M7HCF7DW	None	None	CLIP1--ROS1	None	None	CLIP1--ROS1	1
+BS_M85CXHDV	None	None	None	None	None	None	0
+BS_M8EA6R2A	None	None	None	None	None	None	0
+BS_MB7WN0ZB	None	None	None	None	None	None	0
+BS_MD0937XT	None	None	None	None	None	None	0
+BS_MDBT7S5Z	None	None	None	None	None	None	0
+BS_MG78HQDM	None	None	None	None	None	None	0
+BS_MKM0EEN1	None	None	None	None	None	None	0
+BS_MN5XVP5A	None	None	None	None	None	None	0
+BS_MWWZBQ60	None	None	None	None	None	None	0
+BS_MX23ZY0Y	None	None	None	None	None	None	0
+BS_NB9XXBW6	None	None	None	None	None	None	0
+BS_NEVYM2FP	None	None	None	None	None	None	0
+BS_NGSG2KB6	None	CAPZA2--MET	None	None	None	CAPZA2--MET	1
+BS_NNPEC7W1	None	None	None	None	None	None	0
+BS_NPA6CZQF	None	None	None	None	None	None	0
+BS_NR3P3GN2	None	None	None	None	None	None	0
+BS_P0QF87WC	None	None	None	None	None	None	0
+BS_P9JP6JFA	None	None	None	None	None	None	0
+BS_PGK832G2	None	None	None	None	None	None	0
+BS_PJC6FH4Y	None	None	None	None	None	None	0
+BS_PKW05VZV	None	None	None	None	None	None	0
+BS_PNYN0AYD	None	None	None	None	None	None	0
+BS_PQVTB6BB	None	None	None	None	None	None	0
+BS_PS0P3QJ3	None	None	KIF21A--ROS1	None	None	KIF21A--ROS1	1
+BS_PXCPK5XS	None	None	None	None	None	None	0
+BS_PZVHMSYN	None	None	None	None	None	None	0
+BS_Q13FQ8FV	None	None	None	None	None	None	0
+BS_QB84TBA3	None	None	None	None	None	None	0
+BS_QNNX91SM	None	None	None	None	None	None	0
+BS_QWTE1CWR	None	None	None	None	None	None	0
+BS_QYPHA40N	None	None	None	None	None	None	0
+BS_R5SNFB5B	None	None	None	None	None	None	0
+BS_R7NTZR4C	None	None	None	None	None	None	0
+BS_R9B92M75	None	None	None	None	None	None	0
+BS_RCCN63K6	None	None	None	None	None	None	0
+BS_RJC3WDD6	None	None	None	None	None	None	0
+BS_RX1YTZ7F	None	None	None	None	None	None	0
+BS_RXN5T5YT	None	None	None	None	None	None	0
+BS_S2TA8R29	None	None	TRIM24--ROS1	None	None	TRIM24--ROS1	1
+BS_S3MET0JZ	None	None	None	None	None	None	0
+BS_S5P8VTN5	None	None	None	None	None	None	0
+BS_S6B9DVNS	None	None	None	None	None	None	0
+BS_S6S7SK3P	None	None	None	None	None	None	0
+BS_SB12W1XT	None	None	None	None	None	None	0
+BS_SD8YBRBR	None	None	None	None	None	None	0
+BS_SHJA4MR0	None	None	None	None	None	None	0
+BS_SNVM7CZT	None	None	None	BCL11A--ALK	None	BCL11A--ALK	1
+BS_SY3J3XR9	None	None	None	None	None	None	0
+BS_T1YHK6B7	None	None	None	None	None	None	0
+BS_T3DGY9J9	None	None	None	None	None	None	0
+BS_T9A8JJW5	None	None	None	None	None	None	0
+BS_TGS109T3	None	None	None	None	None	None	0
+BS_TJTEF70D	None	None	None	None	None	None	0
+BS_TK84K675	None	None	None	None	None	None	0
+BS_TM9MH0RP	None	None	None	None	None	None	0
+BS_TPB6WVF4	None	None	None	None	None	None	0
+BS_TR2P8KRF	None	None	None	None	None	None	0
+BS_TRKH2SPE	None	None	None	None	None	None	0
+BS_TV5B86ZD	None	None	None	None	None	None	0
+BS_TVH33J9Q	None	None	None	None	None	None	0
+BS_TXZ7KHTQ	None	None	None	None	None	None	0
+BS_V3Z3DB4N	None	None	None	None	None	None	0
+BS_VF5XWFXD	None	None	None	None	None	None	0
+BS_VKYEM67A	None	None	None	None	None	None	0
+BS_VMQMGSJY	None	None	None	None	None	None	0
+BS_VVTHDRBD	None	None	None	None	None	None	0
+BS_W1385R8Y	None	None	None	None	None	None	0
+BS_W4DB5RP1	None	None	None	None	None	None	0
+BS_W4H1D4Y6	None	None	None	None	None	None	0
+BS_W60RQAKK	None	None	None	None	None	None	0
+BS_W7MFJZ5A	None	None	None	None	None	None	0
+BS_W9N9844Q	None	None	None	None	None	None	0
+BS_WAXJY4XQ	None	None	None	None	None	None	0
+BS_WBVSK3MP	None	None	None	None	None	None	0
+BS_WH8G4VFB	None	None	None	None	None	None	0
+BS_WJ9H4NZZ	None	None	None	None	None	None	0
+BS_WKESC3XN	None	None	None	None	None	None	0
+BS_WQ1YRTAT	None	None	None	None	None	None	0
+BS_X0XXN9BK	None	None	None	None	None	None	0
+BS_X23724NJ	None	None	None	None	None	None	0
+BS_X4DD4KSZ	None	None	None	None	None	None	0
+BS_X4X1SFSE	None	None	None	None	None	None	0
+BS_XG0DBWVT	None	None	None	None	None	None	0
+BS_XGDPK33A	None	None	None	None	None	None	0
+BS_XM1AHBDJ	None	None	None	None	None	None	0
+BS_XQ5SFW35	None	None	None	None	None	None	0
+BS_XZM79E42	None	None	None	None	None	None	0
+BS_YA0KMBRT	None	None	None	None	None	None	0
+BS_YDEVMD24	None	None	None	None	None	None	0
+BS_YEW22W35	None	None	None	None	None	None	0
+BS_Z3RCA1T9	None	None	None	None	None	None	0
+BS_Z8F3GM85	None	None	None	None	None	None	0
+BS_Z8YZ6QGS	None	None	None	None	None	None	0
+BS_ZD5HN296	None	None	None	None	None	None	0
+BS_ZF6BSFNF	None	None	None	None	None	None	0
+BS_ZV1P6W9C	None	None	None	None	None	None	0
+BS_ZVWE73JZ	None	None	None	None	None	None	0

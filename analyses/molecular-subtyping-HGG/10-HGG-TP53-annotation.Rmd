@@ -49,10 +49,12 @@ hgg_subtypes <- hgg_subtypes %>%
                              "Kids_First_Biospecimen_ID_DNA")) %>%
   rename("tp53_SNV_indel_counts"="SNV_indel_counts",
          "tp53_CNV_loss_counts"="CNV_loss_counts",
-          "tp53_HGVSp_Short"="HGVSp_Short" , 
+         "tp53_HGVSp_Short"="HGVSp_Short" , 
          "tp53_CNV_loss_evidence"="CNV_loss_evidence",
          "tp53_hotspot"="hotspot",
-         "tp53_activating"="activating") %>%
+         "tp53_activating"="activating",
+         "tp53_Fusion_counts"="Fusion_counts", 
+         "tp53_Fusion_evidence"="Fusion_evidence") %>%
   mutate(molecular_subtype= case_when(
     tp53_altered=="activated" ~ stringr::str_c(molecular_subtype,", TP53 activated"),
     tp53_altered=="loss" ~ stringr::str_c(molecular_subtype,", TP53 loss"),

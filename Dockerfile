@@ -410,7 +410,7 @@ RUN ./install_bioc.r \
 
 RUN R -e "remotes::install_github('d3b-center/annoFuseData',ref = '321bc4f6db6e9a21358f0d09297142f6029ac7aa', dependencies = TRUE)"
 
-RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '48b1f62cde52ffeb6372c838227c9e6065a568dd', dependencies = TRUE)"
+RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '55b4b862429fe886790d087b2f1c654689c691c4', dependencies = TRUE)"
 
 # Package for RNA-seq differential gene expression analysis
 RUN ./install_bioc.r \

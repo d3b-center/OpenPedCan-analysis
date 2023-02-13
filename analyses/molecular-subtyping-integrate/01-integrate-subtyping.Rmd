@@ -21,6 +21,8 @@ Here we will use `histologies-base.tsv` in which integrated_diagnosis,Notes and 
 - molecular-subtyping-neurocytoma
 - molecular-subtyping-HGG
 - molecular-subtyping-LGAT
+- molecular-subtyping-ATRT
+- molecular-subtyping-NBL
 - molecular-subtyping-pathology
 
 

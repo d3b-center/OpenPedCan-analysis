@@ -67,9 +67,8 @@ DGD	Embryonal Tumor NOS	Embryonal Tumor NOS	No	No
 PBTA	Embryonal tumor with multilayer rosettes, C19MC-altered	Embryonal tumor with multilayer rosettes	Yes	No
 PBTA	Embryonal Tumor with Multilayered Rosettes (ETMR)	Embryonal tumor with multilayer rosettes	No	Yes
 PBTA	Ependymoma	Ependymoma	No	No
-PBTA	Ependymoma, Supratentorial, RELA fusion positive	Ependymoma	Yes	No
 PBTA	Ependymoma, Supratentorial, YAP1 fusion positive	Ependymoma	Yes	No
-PBTA	Ependymoma, H3 K28-mutant	Ependymoma	Yes	No
+PBTA	Ependymoma, Posterior Fossa, Type A	Ependymoma	Yes	No
 DGD	Ependymoma	Ependymoma	No	No
 TCGA	Esophageal Carcinoma	Esophageal Carcinoma	No	No
 PBTA	Ewing sarcoma	Ewing sarcoma	No	No
