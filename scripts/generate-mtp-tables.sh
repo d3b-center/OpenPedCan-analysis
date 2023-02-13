@@ -61,7 +61,7 @@ cp results/*_zscore.tsv.gz $RELEASE_DIR
 cp results/*.jsonl.gz $RELEASE_DIR
 
 # Run filter-mtp-tables module
-printd "\n\nFilter MTP tables...\n\n"
+printf "\n\nFilter MTP tables...\n\n"
 cd $FILTER_MTP_DIR
 bash run-filter-mtp-tables.sh
 cp results/*.tsv.gz $RELEASE_DIR
