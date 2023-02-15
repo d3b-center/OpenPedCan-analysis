@@ -7,7 +7,7 @@ doc: >-
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: "alexsickler/open-pedcan:latest"
+    dockerPull: "alexsickler/opc_methylation_summary:1.0.0"
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     ramMin: ${return inputs.ram * 1000}
