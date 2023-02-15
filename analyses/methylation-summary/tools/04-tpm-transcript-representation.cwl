@@ -37,7 +37,7 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.output_basename != null) {
-            var cmd = " && cd analyses/methylation-summary/results/methyl-tpm-transcript-representation.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-methyl-tpm-transcript-representation.tsv.gz";
+            var cmd = " && mv analyses/methylation-summary/results/methyl-tpm-transcript-representation.tsv.gz analyses/methylation-summary/results/" + inputs.output_basename + "-methyl-tpm-transcript-representation.tsv.gz";
             return cmd;
           }
       }
