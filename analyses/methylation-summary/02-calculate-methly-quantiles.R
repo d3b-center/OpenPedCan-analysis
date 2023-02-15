@@ -62,7 +62,7 @@ histologies <- data.table::fread(histologies, sep = "\t",
 
 # Get methyl values and only keep samples in independent sample list
 methyl_matrix_df <- readr::read_rds(methyl_matrix) %>%
-  dplyr::select(c("Probe_ID", independent_samples))
+  dplyr::select(tidyselect::any_of(c("Probe_ID", independent_samples)))
 
 # Calculating probe-level methyl values quantiles for all pre-processed samples
 message("===============================================================")
@@ -83,8 +83,8 @@ for (dataset in unique(histologies$cohort)) {
       dplyr::pull(Kids_First_Biospecimen_ID) 
     quantiles <- methyl_matrix_df %>% 
       tibble::column_to_rownames(var = "Probe_ID") %>% 
-      dplyr::select(sample_ids) %>%
-      na.omit() %>%
+      dplyr::select(any_of(sample_ids)) %>% 
+      dplyr::filter(if_any(everything(), ~ !is.na(.))) %>% 
       apply(1, quantile, na.rm = TRUE) %>% t() %>% 
       tibble::as_tibble(rownames = "Probe_ID")
     if (methyl_values == "beta"){  
@@ -111,13 +111,13 @@ if (methyl_values == "beta"){
   methyl_quantiles %>% data.table::setDT() %>%
   data.table::fwrite(file.path(results_dir, 
                                "methyl-probe-beta-quantiles.tsv.gz"), 
-                     sep="\t")
+                     sep="\t", compress = "auto")
 } else {
   message("Writing probe-level methyl values quantiles to methyl-probe-m-quantiles.tsv file...\n")
   methyl_quantiles %>% data.table::setDT() %>%
     data.table::fwrite(file.path(results_dir, 
                                  "methyl-probe-m-quantiles.tsv.gz"), 
-                       sep="\t")
+                       sep="\t", compress = "auto")  
 }
 
 message("Analysis Done..\n")
