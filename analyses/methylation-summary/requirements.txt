@@ -1,0 +1,10 @@
+gitdb==4.0.10
+GitPython==3.1.29
+numpy==1.23.5
+pandas==1.5.2
+pyreadr==0.4.7
+python-dateutil==2.8.2
+pytz==2022.6
+scipy==1.9.3
+six==1.16.0
+smmap==5.0.0
