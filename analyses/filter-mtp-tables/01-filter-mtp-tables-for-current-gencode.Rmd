@@ -51,7 +51,7 @@ cnv_results_dir <- file.path(analyses_dir,  "cnv-frequencies/results")
 fusion_results_dir <- file.path(analyses_dir,  "fusion-frequencies/results")
 tpm_results_dir <- file.path(analyses_dir, "rna-seq-expression-summary-stats/results")
 input_dir <- file.path(module_dir, "input")
-results_dir <- file.path(scratch_dir, "filter-mtp-tables")
+results_dir <- file.path(scratch_dir, "mtp-tables")
 
 # Create results folder if it doesn't exist
 if (!dir.exists(results_dir)) {

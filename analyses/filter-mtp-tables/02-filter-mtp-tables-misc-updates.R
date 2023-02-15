@@ -15,7 +15,7 @@ data_dir <- file.path(root_dir, "data")
 scratch_dir <- file.path(root_dir, "scratch")
 analyses_dir <- file.path(root_dir, "analyses")
 module_dir <- file.path(analyses_dir, "filter-mtp-tables")
-results_dir <- file.path(scratch_dir, "filter-mtp-tables") 
+results_dir <- file.path(scratch_dir, "mtp-tables") 
 
 
 # Functions to perform misc updates

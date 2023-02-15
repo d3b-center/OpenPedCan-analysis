@@ -64,8 +64,8 @@ cp results/*.jsonl.gz $RELEASE_DIR
 printf "\n\nFilter MTP tables...\n\n"
 cd $FILTER_MTP_DIR
 bash run-filter-mtp-tables.sh
-cp results/*.tsv.gz $RELEASE_DIR
-cp results/*.jsonl.gz $RELEASE_DIR
+#cp results/*.tsv.gz $RELEASE_DIR
+#cp results/*.jsonl.gz $RELEASE_DIR
 
 # Create an md5sum file for all the files in mtp-tables directory
 cd $RELEASE_DIR
