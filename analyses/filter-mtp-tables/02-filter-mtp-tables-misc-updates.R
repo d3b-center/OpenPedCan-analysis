@@ -12,9 +12,10 @@ suppressPackageStartupMessages(library(jsonlite))
 # Set up directories for input and output files
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 data_dir <- file.path(root_dir, "data")
+scratch_dir <- file.path(root_dir, "scratch")
 analyses_dir <- file.path(root_dir, "analyses")
 module_dir <- file.path(analyses_dir, "filter-mtp-tables")
-results_dir <- file.path(module_dir, "results") 
+results_dir <- file.path(scratch_dir, "filter-mtp-tables") 
 
 
 # Functions to perform misc updates
