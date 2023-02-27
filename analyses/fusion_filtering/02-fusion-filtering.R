@@ -235,7 +235,7 @@ expression_filtered_fusions <- fusion_sample_gene_df %>%
 
 ###############annotation###############
 # column 1 as GeneName 2 source file 3 type; collapse to summarize type
-geneListReferenceDataTab<-read.delim(file.path(referenceFolder,"genelistreference.txt"),stringsAsFactors = FALSE)
+geneListReferenceDataTab<-read.delim(system.file("extdata", "genelistreference.txt", package = "annoFuseData"))
 geneListReferenceDataTab<-geneListReferenceDataTab %>%
   # upper case because some genes have a/b/c etc
   mutate(Gene_Symbol=toupper(Gene_Symbol)) %>%
@@ -245,7 +245,7 @@ geneListReferenceDataTab<-geneListReferenceDataTab %>%
   dplyr::distinct(Gene_Symbol, type) %>% as.data.frame()
 
 # column 1 as FusionName 2 source file 3 type; collapse to summarize type
-fusionReferenceDataTab<-read.delim(file.path(referenceFolder,"fusionreference.txt"),stringsAsFactors = FALSE)
+fusionReferenceDataTab<-read.delim(system.file("extdata", "fusionreference.txt", package = "annoFuseData"))
 fusionReferenceDataTab<-fusionReferenceDataTab %>%
   dplyr::distinct(FusionName,type) %>% as.data.frame()
 

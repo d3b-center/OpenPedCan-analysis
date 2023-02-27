@@ -208,7 +208,7 @@ alteration_df <- alteration_df %>%
 ```
 
 Case 6: 
-If there are biospecimen not in cases 1-5, assign the subtype as `NBL, to be classified`
+If there are biospecimen not in cases 1-5, assign the subtype as `NBL, To be classified`
 
 ## Biosepcimen not subtyped
 
@@ -216,7 +216,7 @@ If there are biospecimen not in cases 1-5, assign the subtype as `NBL, to be cla
 alteration_df <- alteration_df %>% 
   dplyr::mutate(molecular_subtype =
                   case_when(
-                    is.na(molecular_subtype) ~ "NBL, to be classified",
+                    is.na(molecular_subtype) ~ "NBL, To be classified",
                     TRUE ~ as.character(molecular_subtype)
                   )
                ) 

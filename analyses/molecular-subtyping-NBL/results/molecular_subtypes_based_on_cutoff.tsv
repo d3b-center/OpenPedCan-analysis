@@ -227,9 +227,9 @@ BS_KP0YNTAK	BS_1RT76ANT	4	Metastatic secondary tumors;Neuroblastoma	gain	9.38	NB
 BS_NHMPQ8Q1	BS_JBGZ7HHZ	NA	ganglioneuroblastoma, stage ii favorable histology non n-myc amplified	NA	0.02	NBL, MYCN non-amplified
 NA	BS_G1Y281HX	NA	peripheral neuroblastoma	NA	0.15	NBL, MYCN non-amplified
 NA	BS_TD1ZEQ7R	NA	neuroblastoma	NA	2.72	NBL, MYCN non-amplified
-NA	BS_G0C2BKGC	NA	Neuroblastoma of the Adrenal Gland and Sympathetic Nervous System	NA	NA	NBL, to be classified
-NA	BS_HEDCVFKC	NA	NA	NA	NA	NBL, to be classified
-NA	BS_YTYSPH4Q	NA	Neuroblastoma of the Adrenal Gland and Sympathetic Nervous System	NA	NA	NBL, to be classified
+NA	BS_G0C2BKGC	NA	Neuroblastoma of the Adrenal Gland and Sympathetic Nervous System	NA	NA	NBL, To be classified
+NA	BS_HEDCVFKC	NA	NA	NA	NA	NBL, To be classified
+NA	BS_YTYSPH4Q	NA	Neuroblastoma of the Adrenal Gland and Sympathetic Nervous System	NA	NA	NBL, To be classified
 BS_8XDZQKSD	BS_MPE34NYZ	3	MYCN amp	gain	334.91	NBL, MYCN amplified
 BS_A5AQFAFA	BS_QJ3XB7XZ	3	MYCN amp	gain	27.01	NBL, MYCN non-amplified
 BS_ACCE0MEA	BS_94ZKC2SR	3	MYCN amp	gain	269.8	NBL, MYCN amplified

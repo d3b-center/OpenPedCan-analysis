@@ -88,7 +88,11 @@ path_dx_df <- tumor_metadata_df %>%
   # Inclusion on the basis of CBTTC harmonized pathology diagnoses
   filter(pathology_diagnosis %in% path_dx_list$exact_path_dx |
          # Inclusion based on pathology free text diagnosis
-         pathology_free_text_diagnosis ==path_dx_list$gliomatosis_path_free_text_exact)
+         pathology_free_text_diagnosis == path_dx_list$gliomatosis_path_free_text_exact |
+         # Inclusion based on pathology free text diagnosis for IHG
+         pathology_free_text_diagnosis  %in% path_dx_list$IHG_path_free_path_dx | 
+         # Inclusion based on cns methylation subclass for IHG
+         cns_methylation_subclass %in% path_dx_list$IHG_cns_methylation_subclass)
   
 
 # Now samples on the basis of the defining lesions
@@ -104,9 +108,7 @@ hgg_metadata_df <- bind_rows(
   lesions_df
 ) %>%
   # Remove duplicates
-  distinct() %>%
-  # remove methylation 
-  dplyr::filter(experimental_strategy != "Methylation")
+  distinct() 
 
 # Add a TSV that's the metadata for the samples that will be included in
 # the subtyping
@@ -259,3 +261,4 @@ snv_consensus_hotspot_maf <- snv_consensus_hotspot_maf %>%
 write_tsv(snv_consensus_hotspot_maf,
           file.path(subset_dir, "hgg_snv_maf.tsv.gz"))
 rm(snv_consensus_hotspot_maf)
+

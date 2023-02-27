@@ -410,7 +410,7 @@ RUN ./install_bioc.r \
 
 RUN R -e "remotes::install_github('d3b-center/annoFuseData',ref = '321bc4f6db6e9a21358f0d09297142f6029ac7aa', dependencies = TRUE)"
 
-RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '48b1f62cde52ffeb6372c838227c9e6065a568dd', dependencies = TRUE)"
+RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '55b4b862429fe886790d087b2f1c654689c691c4', dependencies = TRUE)"
 
 # Package for RNA-seq differential gene expression analysis
 RUN ./install_bioc.r \
@@ -458,11 +458,15 @@ RUN ./install_bioc.r \
     ids
 
 WORKDIR /home/rstudio/
-# AWS sCLI installation
+# AWS CLI installation
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
     sudo ./aws/install && \
     rm -rf aws*
+
+# Install Desal latest release (v2.1.1)- converter for JSON, TOML, YAML, XML and CSV data formats
+RUN sudo wget -qO /usr/local/bin/dasel "https://github.com/TomWright/dasel/releases/download/v2.1.1/dasel_linux_amd64" && \
+    sudo chmod a+x /usr/local/bin/dasel
 
 WORKDIR /rocker-build/
 # R package creating .xlsx
