@@ -42,7 +42,7 @@ Set up directories.
 # directories for input and output files
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 data_dir <- file.path(root_dir, "data")
-scratch_dir <- file.path(root_dit,"scratch")
+scratch_dir <- file.path(root_dir,"scratch")
 analyses_dir <- file.path(root_dir, "analyses")
 module_dir <- file.path(analyses_dir, "filter-mtp-tables")
 gene_match_input_dir <- file.path(analyses_dir,  "gene_match/input")
