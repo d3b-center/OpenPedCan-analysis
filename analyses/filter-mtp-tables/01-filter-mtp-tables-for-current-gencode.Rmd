@@ -83,8 +83,11 @@ rm(gencode_gtf)
 
 Get deprecated Open Targets Ensembl identifiers
 ```{r}
-# load OT deprecated ensembl IDs 
-ot_ensg_ids <- readr::read_lines(file.path(input_dir, "MTP_v11_InvalidENSG_20220831.txt"))
+# load MTP targets and diseases mapping file
+mtp_targets <- file.path(input_dir, "mtp-targets-mapping.tsv.gz")
+mtp_diseases <- file.path(input_dir, "mtp-diseases-mapping.tsv.gz")
+targets_mapping_file <- readr::read_tsv(file.path(input_dir, "mtp-targets-mapping.tsv.gz")) %>% as.data.frame() %>% tibble::as_tibble()
+disease_mapping_file <- readr::read_tsv(file.path(input_dir, "mtp-diseases-mapping.tsv.gz")) %>% as.data.frame() %>% tibble::as_tibble()
 ```
 
 Get PMTL Ensembl identifiers
@@ -111,7 +114,7 @@ sample_ids <- readr::read_tsv(file.path(data_dir, "histologies.tsv"),
 Function to filter for required Ensembl gene identifiers and write to file
 ```{r}
 
-filter_mtp_table <- function(mtp_file, ensg_ids, ot_ensg_ids) {
+filter_mtp_table <- function(mtp_file, ensg_ids, targets_mapping_file) {
   
   # Read mtp table 
   mtp_table <-  readr::read_tsv(mtp_file, guess_max = 10000) 
@@ -120,25 +123,25 @@ filter_mtp_table <- function(mtp_file, ensg_ids, ot_ensg_ids) {
     # Write filtered TSV file
     file_name <- basename(mtp_file)
     mtp_table %>% dplyr::filter(Gene_Ensembl_ID %in% ensg_ids) %>%
-      dplyr::filter(!Gene_Ensembl_ID %in% ot_ensg_ids) %>%
+      dplyr::filter(!Gene_Ensembl_ID %in% targets_mapping_file$gene_id) %>%
       readr::write_tsv(file.path(results_dir, file_name))
     
     # Write filtered JSON file
     json_file <- paste(unlist(str_split(file_name, "\\."))[1], "json", sep = ".")
     mtp_table %>% dplyr::filter(Gene_Ensembl_ID %in% ensg_ids) %>%
-      dplyr::filter(!Gene_Ensembl_ID %in% ot_ensg_ids) %>%
+      dplyr::filter(!Gene_Ensembl_ID %in% targets_mapping_file$gene_id) %>%
       jsonlite::write_json(file.path(results_dir,  json_file))  
   } else {
     # Write filtered TSV file
     file_name <- basename(mtp_file)
     mtp_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>%
-      dplyr::filter(!targetFromSourceId %in% ot_ensg_ids) %>%
+      dplyr::filter(!targetFromSourceId %in% targets_mapping_file$gene_id) %>%
       readr::write_tsv(file.path(results_dir, file_name))
     
     # Write filtered JSON file
     json_file <- paste(unlist(str_split(file_name, "\\."))[1], "json", sep = ".")
     mtp_table %>% dplyr::filter(targetFromSourceId %in% ensg_ids) %>%
-      dplyr::filter(!targetFromSourceId %in% ot_ensg_ids) %>%
+      dplyr::filter(!targetFromSourceId %in% targets_mapping_file$gene_id) %>%
       jsonlite::write_json(file.path(results_dir,  json_file))
   }
 return(mtp_table)
@@ -150,11 +153,11 @@ return(mtp_table)
 # Remove Ensembl gene identifiers
 gene_level_snv <- filter_mtp_table(
   file.path(snv_results_dir, 
-            "gene-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
+            "gene-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, targets_mapping_file) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- gene_level_snv %>% 
-  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -201,11 +204,11 @@ rm(gene_level_snv, filtered_ensg)
 # Remove Ensembl gene identifiers
 variant_level_snv <- filter_mtp_table(
   file.path(snv_results_dir, 
-            "variant-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
+            "variant-level-snv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, targets_mapping_file) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- variant_level_snv %>% 
-  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -243,11 +246,11 @@ rm(variant_level_snv, filtered_ensg, consensus_ensg)
 # Remove Ensembl gene identifiers
 gene_level_cnv <- filter_mtp_table(
   file.path(cnv_results_dir, 
-            "gene-level-cnv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
+            "gene-level-cnv-consensus-annotated-mut-freq.tsv.gz"), ensg_ids, targets_mapping_file) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- gene_level_cnv %>% 
-  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -294,11 +297,11 @@ rm(gene_level_cnv, filtered_ensg, consensus_ensg)
 # Remove Ensembl gene identifiers
 fusion <- filter_mtp_table(
   file.path(fusion_results_dir, 
-            "putative-oncogene-fusion-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
+            "putative-oncogene-fusion-freq.tsv.gz"), ensg_ids, targets_mapping_file) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- fusion %>% 
-  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(FusionName, Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -350,11 +353,11 @@ rm(fusion, filtered_ensg)
 # Remove Ensembl gene identifiers
 fused_gene <- filter_mtp_table(
   file.path(fusion_results_dir, 
-            "putative-oncogene-fused-gene-freq.tsv.gz"), ensg_ids, ot_ensg_ids) 
+            "putative-oncogene-fused-gene-freq.tsv.gz"), ensg_ids, targets_mapping_file) 
 
 # Ensembl gene identifiers removed
 filtered_ensg <- fused_gene %>% 
-  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!targetFromSourceId %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, targetFromSourceId) %>%
   dplyr::rename(Ensembl_ID = targetFromSourceId) %>% 
   dplyr::distinct()
@@ -397,11 +400,11 @@ removed ENSEMBL identifiers cannot be listed.
 tpm_group_wise_stats <- filter_mtp_table(
   file.path(tpm_results_dir, 
             "long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz"), 
-  ensg_ids, ot_ensg_ids)
+  ensg_ids, targets_mapping_file)
 
 # Ensembl gene identifiers removed
 filtered_ensg <- tpm_group_wise_stats %>% 
-  dplyr::filter(!Gene_Ensembl_ID %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!Gene_Ensembl_ID %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, Gene_Ensembl_ID, cohort) %>%
   dplyr::rename(Ensembl_ID = Gene_Ensembl_ID) %>% 
   dplyr::distinct()
@@ -431,11 +434,11 @@ removed ENSEMBL identifiers cannot be listed.
 tpm_gene_wise_stats <- filter_mtp_table(
   file.path(tpm_results_dir, 
             "long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz"), 
-  ensg_ids, ot_ensg_ids)
+  ensg_ids, targets_mapping_file)
 
 # Ensembl gene identifiers removed
 filtered_ensg <- tpm_gene_wise_stats %>% 
-  dplyr::filter(!Gene_Ensembl_ID %in% setdiff(ensg_ids, ot_ensg_ids)) %>% 
+  dplyr::filter(!Gene_Ensembl_ID %in% setdiff(ensg_ids, targets_mapping_file$gene_id)) %>% 
   dplyr::select(Gene_symbol, Gene_Ensembl_ID, cohort) %>%
   dplyr::rename(Ensembl_ID = Gene_Ensembl_ID) %>% 
   dplyr::distinct()
