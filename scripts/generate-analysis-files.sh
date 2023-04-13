@@ -7,7 +7,7 @@ printf "Start generating pre-release files...\n\n"
 
 # Set locations for s3 bucket that contains release files
 URL="s3://d3b-openaccess-us-east-1-prd-pbta/open-targets"
-RELEASE="analysis-files-pre-release"
+RELEASE="v12"
 
 # Set the working directory to the directory of this file
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -22,7 +22,6 @@ cd ..
 BASEDIR="$(pwd)"
 cd -
 
-RELEASE="v12"
 analyses_dir="$BASEDIR/analyses"
 data_dir="$BASEDIR/data/$RELEASE"
 scratch_dir="$BASEDIR/scratch"
@@ -115,11 +114,6 @@ cp ${analyses_dir}/tmb-calculation/results/snv-mutation-tmb-coding.tsv ${release
 cp ${analyses_dir}/tmb-calculation/results/snv-mutation-tmb-coding.tsv ${data_dir}
 cp ${analyses_dir}/tmb-calculation/results/snv-mutation-tmb-all.tsv ${release_dir}
 cp ${analyses_dir}/tmb-calculation/results/snv-mutation-tmb-all.tsv ${data_dir}
-
-
-# create symbolic links for generated pre-release files
-cd ${BASEDIR}/data
-ln -s $RELEASE/* .
 
 ## Generate summary files needed for subtyping
 

@@ -1,11 +1,12 @@
 Gene	broad_histology	count
 ABCC1	Hematologic malignancy	4
 ABL1	Hematologic malignancy	18
+ABR	Diffuse astrocytic and oligodendroglial tumor	4
 ABR	Hematologic malignancy	6
-ACSF3	Hematologic malignancy	19
+ACSF3	Hematologic malignancy	18
 ACTB	Hematologic malignancy	4
 ACTR1A	Hematologic malignancy	5
-ADAP1	Hematologic malignancy	8
+ADAP1	Hematologic malignancy	7
 ADRM1	Hematologic malignancy	4
 AFDN	Hematologic malignancy	6
 AFF1	Hematologic malignancy	11
@@ -14,128 +15,128 @@ AKAP8	Hematologic malignancy	15
 AKAP9	Hematologic malignancy	4
 AKT1	Hematologic malignancy	8
 ALK	Diffuse astrocytic and oligodendroglial tumor	5
-ANKRD11	Hematologic malignancy	33
+ANKRD11	Hematologic malignancy	34
 ANP32A	Hematologic malignancy	9
-AP3D1	Hematologic malignancy	6
+AP3D1	Hematologic malignancy	5
 ARAP2	Hematologic malignancy	4
-ARHGAP15	Hematologic malignancy	4
 ARHGEF2	Hematologic malignancy	5
 ARHGEF7	Hematologic malignancy	4
 ARID1B	Diffuse astrocytic and oligodendroglial tumor	4
 ARID3A	Hematologic malignancy	5
 ARID5A	Hematologic malignancy	9
-ARID5B	Hematologic malignancy	4
-ASPSCR1	Hematologic malignancy	11
-ASXL1	Hematologic malignancy	21
-ATP6V0C	Hematologic malignancy	34
+ARID5B	Hematologic malignancy	5
+ASPSCR1	Hematologic malignancy	10
+ASXL1	Hematologic malignancy	22
+ATP6V0C	Hematologic malignancy	35
 ATRX	Hematologic malignancy	4
 AUTS2	Hematologic malignancy	6
-B2M	Hematologic malignancy	40
+B2M	Hematologic malignancy	41
 BAHCC1	Hematologic malignancy	10
-BANP	Hematologic malignancy	61
+BANP	Hematologic malignancy	62
 BAZ1A	Hematologic malignancy	9
-BAZ2B	Hematologic malignancy	8
+BAZ2B	Hematologic malignancy	10
 BCAS3	Embryonal tumor	5
 BCL11A	Hematologic malignancy	5
 BCL11B	Hematologic malignancy	11
-BCL7A	Hematologic malignancy	27
+BCL7A	Hematologic malignancy	25
 BCL9	Hematologic malignancy	4
 BCR	Hematologic malignancy	14
-BID	Hematologic malignancy	4
-BIRC6	Hematologic malignancy	12
+BIRC6	Hematologic malignancy	11
 BPTF	Hematologic malignancy	6
 BRAF	Diffuse astrocytic and oligodendroglial tumor	6
-BRAF	Hematologic malignancy	4
 BRAF	Low-grade astrocytic tumor	202
 BRAF	Neuronal and mixed neuronal-glial tumor	5
-BRD1	Hematologic malignancy	83
+BRD1	Hematologic malignancy	81
 BRD4	Hematologic malignancy	12
-BRF1	Hematologic malignancy	9
-BSG	Hematologic malignancy	10
-C7orf50	Hematologic malignancy	15
-CALM1	Hematologic malignancy	4
+BRF1	Hematologic malignancy	8
+BSG	Hematologic malignancy	9
+C7orf50	Hematologic malignancy	14
+CALM1	Hematologic malignancy	5
 CALM2	Hematologic malignancy	6
 CAPZA2	Diffuse astrocytic and oligodendroglial tumor	5
-CBFA2T3	Hematologic malignancy	122
+CBFA2T3	Hematologic malignancy	121
 CBFB	Hematologic malignancy	29
-CBX4	Hematologic malignancy	5
+CBX4	Hematologic malignancy	4
 CCAR1	Hematologic malignancy	4
 CCDC50	Low-grade astrocytic tumor	4
+CCDC62	Diffuse astrocytic and oligodendroglial tumor	5
 CD81	Hematologic malignancy	51
-CDC34	Hematologic malignancy	4
-CDK14	Diffuse astrocytic and oligodendroglial tumor	4
 CDK14	Low-grade astrocytic tumor	4
-CDK2AP1	Hematologic malignancy	39
+CDK2AP1	Hematologic malignancy	40
 CDK6	Hematologic malignancy	5
-CELF2	Hematologic malignancy	5
+CELF2	Hematologic malignancy	6
 CHMP1A	Embryonal tumor	5
-CHST11	Diffuse astrocytic and oligodendroglial tumor	4
-CHST11	Hematologic malignancy	9
+CHST11	Hematologic malignancy	11
 CIC	Hematologic malignancy	5
+CIRBP	Hematologic malignancy	4
 CLK1	Hematologic malignancy	5
 CLK3	Hematologic malignancy	5
-CLPTM1L	Hematologic malignancy	15
+CLPTM1L	Hematologic malignancy	16
 COL1A1	Mesenchymal non-meningothelial tumor	4
 COPE	Hematologic malignancy	17
 CPSF6	Hematologic malignancy	4
 CREBBP	Hematologic malignancy	10
 CRTC1	Hematologic malignancy	10
 CS	Hematologic malignancy	4
-CSNK1D	Hematologic malignancy	18
-CSNK1G2	Hematologic malignancy	9
-CTBP1	Hematologic malignancy	14
-CTDP1	Hematologic malignancy	29
+CSNK1D	Hematologic malignancy	19
+CSNK1G2	Hematologic malignancy	10
+CTBP1	Hematologic malignancy	13
+CTDP1	Hematologic malignancy	32
+CTNNA2	Diffuse astrocytic and oligodendroglial tumor	4
 CTNNA2	Low-grade astrocytic tumor	8
 CTNND2	Embryonal tumor	5
 CTNND2	Low-grade astrocytic tumor	6
 CUL3	Hematologic malignancy	8
+CUX1	Diffuse astrocytic and oligodendroglial tumor	4
 CUX1	Hematologic malignancy	4
 CXCR4	Hematologic malignancy	108
-CYRIA	Embryonal tumor	7
+CYRIA	Embryonal tumor	8
 CYTH1	Hematologic malignancy	6
-DAZAP1	Hematologic malignancy	16
+DAZAP1	Hematologic malignancy	15
 DCUN1D4	Diffuse astrocytic and oligodendroglial tumor	4
-DDX1	Embryonal tumor	6
+DDX1	Embryonal tumor	7
 DDX3X	Hematologic malignancy	7
-DDX5	Hematologic malignancy	25
+DDX5	Hematologic malignancy	27
 DENND3	Hematologic malignancy	6
-DGKD	Hematologic malignancy	10
-DIDO1	Hematologic malignancy	5
+DENR	Diffuse astrocytic and oligodendroglial tumor	5
+DGKD	Hematologic malignancy	9
+DIDO1	Hematologic malignancy	4
 DNM2	Hematologic malignancy	6
 DOT1L	Hematologic malignancy	40
 DUSP8	Hematologic malignancy	10
 DYNC1H1	Hematologic malignancy	4
 EBF1	Hematologic malignancy	4
-EDF1	Hematologic malignancy	6
-EEF1D	Hematologic malignancy	10
-EHMT1	Hematologic malignancy	9
+EDF1	Hematologic malignancy	4
+EEF1D	Hematologic malignancy	11
+EHMT1	Hematologic malignancy	8
 EIF3A	Hematologic malignancy	4
-EIF4A1	Hematologic malignancy	94
+EIF4A1	Hematologic malignancy	95
 EIF5A	Hematologic malignancy	12
-ELF1	Hematologic malignancy	6
+ELF1	Hematologic malignancy	5
 ELF2	Hematologic malignancy	6
-ELL	Hematologic malignancy	20
+ELL	Hematologic malignancy	19
 ENSG00000144785	Hematologic malignancy	4
 ENSG00000260272	Hematologic malignancy	17
 ENSG00000266086	Hematologic malignancy	4
 ENSG00000271793	Hematologic malignancy	28
-ENSG00000273734	Hematologic malignancy	97
+ENSG00000273734	Hematologic malignancy	98
 ENSG00000284299	Low-grade astrocytic tumor	4
-ENSG00000285245	Hematologic malignancy	10
-ENSG00000285827	Hematologic malignancy	5
-ENSG00000285976	Hematologic malignancy	18
+ENSG00000285245	Hematologic malignancy	9
+ENSG00000285827	Hematologic malignancy	4
+ENSG00000285976	Hematologic malignancy	19
 ENSG00000286192	Hematologic malignancy	4
 EP300	Hematologic malignancy	11
 EPS15	Hematologic malignancy	4
-EPS15L1	Hematologic malignancy	12
+EPS15L1	Hematologic malignancy	13
 ERBB4	Low-grade astrocytic tumor	5
 ERC1	Embryonal tumor	5
 ERC2	Low-grade astrocytic tumor	4
 ERF	Hematologic malignancy	4
 ERG	Hematologic malignancy	7
+ERICH1	Hematologic malignancy	4
 ETV6	Diffuse astrocytic and oligodendroglial tumor	4
 ETV6	Hematologic malignancy	32
-EWSR1	Hematologic malignancy	7
+EWSR1	Hematologic malignancy	8
 EWSR1	Mesenchymal non-meningothelial tumor	10
 EXOC4	Diffuse astrocytic and oligodendroglial tumor	6
 EXOC4	Embryonal tumor	4
@@ -143,110 +144,108 @@ EZR	Hematologic malignancy	6
 FAM131B	Low-grade astrocytic tumor	4
 FAM53B	Hematologic malignancy	6
 FAT1	Hematologic malignancy	4
-FBRSL1	Hematologic malignancy	29
+FBRSL1	Hematologic malignancy	31
 FGF12	Low-grade astrocytic tumor	6
 FGFR1	Low-grade astrocytic tumor	5
 FGFR1	Neuronal and mixed neuronal-glial tumor	4
 FGFRL1	Hematologic malignancy	9
 FLI1	Mesenchymal non-meningothelial tumor	9
-FLT3	Hematologic malignancy	6
+FLT3	Hematologic malignancy	5
 FNBP1	Hematologic malignancy	9
 FOSB	Hematologic malignancy	8
 FOSL2	Hematologic malignancy	5
 FOXK1	Hematologic malignancy	4
-FOXK2	Hematologic malignancy	26
+FOXK2	Hematologic malignancy	25
 FUS	Hematologic malignancy	19
 FYN	Diffuse astrocytic and oligodendroglial tumor	5
 FYN	Low-grade astrocytic tumor	6
 GAB1	Hematologic malignancy	6
-GAK	Hematologic malignancy	17
+GAK	Hematologic malignancy	18
 GALNS	Hematologic malignancy	4
-GAS6	Hematologic malignancy	4
 GET4	Hematologic malignancy	8
 GLIS2	Hematologic malignancy	4
 GLIS3	Diffuse astrocytic and oligodendroglial tumor	4
 GNA11	Hematologic malignancy	7
 GNA15	Hematologic malignancy	9
 GNAQ	Hematologic malignancy	4
-GNAS	Hematologic malignancy	62
-GPSM1	Hematologic malignancy	20
-GRAMD4	Hematologic malignancy	26
+GNAS	Hematologic malignancy	63
+GPSM1	Hematologic malignancy	19
+GRAMD4	Hematologic malignancy	25
 GRAP	Hematologic malignancy	4
 GRK2	Hematologic malignancy	29
-GSE1	Hematologic malignancy	99
+GSE1	Hematologic malignancy	100
 GUK1	Hematologic malignancy	6
-HDAC2	Hematologic malignancy	6
-HDAC4	Hematologic malignancy	18
+HDAC2	Hematologic malignancy	5
+HDAC4	Hematologic malignancy	17
 HIF1A	Hematologic malignancy	5
 HIPK1	Hematologic malignancy	6
-HMGB3	Hematologic malignancy	9
+HMGB3	Hematologic malignancy	8
 HMGN2	Hematologic malignancy	6
-HNRNPA2B1	Hematologic malignancy	8
+HNRNPA2B1	Hematologic malignancy	7
 HNRNPH1	Hematologic malignancy	5
-HNRNPU	Hematologic malignancy	13
-HOXA9	Hematologic malignancy	4
+HNRNPU	Hematologic malignancy	12
+HOXA9	Hematologic malignancy	5
 HSP90AA1	Hematologic malignancy	8
 HSP90AB1	Hematologic malignancy	4
 HTRA1	Tumor of cranial and paraspinal nerves	4
-IGF1R	Diffuse astrocytic and oligodendroglial tumor	5
+IGF1R	Diffuse astrocytic and oligodendroglial tumor	4
 IKBKG	Hematologic malignancy	5
 IKZF1	Hematologic malignancy	7
 ILF3	Hematologic malignancy	4
-ING1	Hematologic malignancy	14
+ING1	Hematologic malignancy	13
 ING5	Hematologic malignancy	8
 INPP5A	Hematologic malignancy	11
 INTS1	Hematologic malignancy	4
 IRX2	Hematologic malignancy	15
-ITM2C	Hematologic malignancy	26
-JADE1	Hematologic malignancy	4
+ITM2C	Hematologic malignancy	25
 JADE2	Hematologic malignancy	6
 JAK2	Hematologic malignancy	5
-JARID2	Hematologic malignancy	8
+JARID2	Hematologic malignancy	11
 JAZF1	Hematologic malignancy	4
 JMJD1C	Hematologic malignancy	5
 KCNH1	Low-grade astrocytic tumor	4
 KDM2B	Hematologic malignancy	4
-KDM4B	Hematologic malignancy	13
-KDM5A	Hematologic malignancy	10
+KDM4B	Hematologic malignancy	12
+KDM5A	Hematologic malignancy	9
 KDM6A	Hematologic malignancy	5
 KIAA1549	Low-grade astrocytic tumor	188
 KIAA1586	Embryonal tumor	6
-KLF10	Hematologic malignancy	13
+KLF10	Hematologic malignancy	12
 KLF11	Hematologic malignancy	5
 KLF13	Hematologic malignancy	12
 KLF16	Hematologic malignancy	13
-KLF2	Hematologic malignancy	31
-KMT2A	Hematologic malignancy	58
+KLF2	Hematologic malignancy	32
+KMT2A	Hematologic malignancy	57
 KMT2C	Hematologic malignancy	8
-LAPTM5	Hematologic malignancy	5
+LAPTM5	Hematologic malignancy	4
 LCORL	Hematologic malignancy	4
-LDLRAD4	Hematologic malignancy	15
-LEF1	Hematologic malignancy	19
-LFNG	Hematologic malignancy	20
-LMNB2	Hematologic malignancy	14
-LRBA	Hematologic malignancy	4
+LDLRAD4	Hematologic malignancy	16
+LEF1	Hematologic malignancy	15
+LFNG	Hematologic malignancy	19
+LMNB2	Hematologic malignancy	13
 LRRC41	Hematologic malignancy	4
-LRRFIP1	Hematologic malignancy	9
+LRRFIP1	Hematologic malignancy	8
 LSP1	Hematologic malignancy	4
-MACF1	Hematologic malignancy	7
-MAD1L1	Hematologic malignancy	106
+MACF1	Hematologic malignancy	9
+MAD1L1	Hematologic malignancy	105
 MAD1L1	Renal tumor	4
-MAEA	Hematologic malignancy	15
-MAFK	Hematologic malignancy	15
+MAEA	Hematologic malignancy	14
+MAFK	Hematologic malignancy	14
 MAML2	Ependymal tumor	4
-MAML3	Hematologic malignancy	8
+MAML3	Hematologic malignancy	7
 MAP4K4	Hematologic malignancy	4
-MARCHF11	Embryonal tumor	5
+MARCHF11	Embryonal tumor	6
+MBP	Hematologic malignancy	4
 MDK	Hematologic malignancy	9
 MEF2D	Hematologic malignancy	6
-MET	Diffuse astrocytic and oligodendroglial tumor	17
-METRNL	Hematologic malignancy	50
-MGRN1	Hematologic malignancy	10
+MET	Diffuse astrocytic and oligodendroglial tumor	16
+METRNL	Hematologic malignancy	48
+MGRN1	Hematologic malignancy	9
 MKNK2	Hematologic malignancy	36
 MLLT1	Hematologic malignancy	10
-MLLT10	Hematologic malignancy	30
+MLLT10	Hematologic malignancy	29
 MLLT3	Hematologic malignancy	14
-MNT	Hematologic malignancy	10
+MNT	Hematologic malignancy	9
 MRM2	Hematologic malignancy	11
 MSI2	Hematologic malignancy	5
 MTA1	Hematologic malignancy	10
@@ -254,20 +253,20 @@ MYB	Hematologic malignancy	5
 MYB	Low-grade astrocytic tumor	5
 MYH11	Hematologic malignancy	29
 MYO18B	Hematologic malignancy	12
-N4BP2L1	Hematologic malignancy	8
+N4BP2L1	Hematologic malignancy	9
 NACC2	Hematologic malignancy	5
 NAP1L1	Renal tumor	4
 NBAS	Embryonal tumor	10
-NBEA	Embryonal tumor	4
 NCOR2	Embryonal tumor	4
-NCOR2	Hematologic malignancy	59
+NCOR2	Hematologic malignancy	60
 NF2	Meningioma	4
-NFATC1	Hematologic malignancy	49
+NFATC1	Hematologic malignancy	48
+NFIC	Hematologic malignancy	4
 NOL4L	Hematologic malignancy	26
-NOTCH1	Hematologic malignancy	30
+NOTCH1	Hematologic malignancy	28
 NOTCH3	Hematologic malignancy	5
 NOVA1	Diffuse astrocytic and oligodendroglial tumor	4
-NPM1	Hematologic malignancy	7
+NPM1	Hematologic malignancy	8
 NR4A1	Hematologic malignancy	17
 NSD1	Hematologic malignancy	7
 NSD3	Embryonal tumor	6
@@ -275,7 +274,7 @@ NTRK2	Low-grade astrocytic tumor	9
 NTRK3	Diffuse astrocytic and oligodendroglial tumor	4
 NUP214	Hematologic malignancy	11
 NUP98	Hematologic malignancy	23
-OAZ1	Hematologic malignancy	96
+OAZ1	Hematologic malignancy	95
 OSBPL5	Hematologic malignancy	8
 P2RX5	Hematologic malignancy	7
 P2RX5-TAX1BP3	Hematologic malignancy	6
@@ -292,55 +291,51 @@ PDF	Hematologic malignancy	4
 PDGFA	Hematologic malignancy	14
 PDGFRA	Diffuse astrocytic and oligodendroglial tumor	7
 PER1	Hematologic malignancy	13
-PFKL	Hematologic malignancy	5
-PFKP	Hematologic malignancy	4
+PFKL	Hematologic malignancy	6
 PHACTR3	Hematologic malignancy	10
 PICALM	Hematologic malignancy	13
-PIM3	Hematologic malignancy	68
+PIM3	Hematologic malignancy	67
 PLEC	Hematologic malignancy	6
 PLEKHO1	Hematologic malignancy	10
 PLPP5	Embryonal tumor	5
-PLXNB2	Hematologic malignancy	6
+PLXNB2	Hematologic malignancy	5
 PMEPA1	Hematologic malignancy	15
 PNRC1	Hematologic malignancy	10
 POLE	Hematologic malignancy	5
 POU2F1	Hematologic malignancy	9
-PPP1R37	Hematologic malignancy	4
 PPP2R2D	Hematologic malignancy	4
 PPP2R5C	Embryonal tumor	4
 PPP2R5C	Hematologic malignancy	4
 PPP6R1	Hematologic malignancy	5
-PPP6R2	Hematologic malignancy	13
+PPP6R2	Hematologic malignancy	12
 PPRC1	Hematologic malignancy	5
 PRDM16	Hematologic malignancy	5
-PRKAR1B	Hematologic malignancy	11
+PRKAR1A	Diffuse astrocytic and oligodendroglial tumor	4
+PRKAR1B	Hematologic malignancy	10
 PRKCE	Hematologic malignancy	4
 PRKN	Diffuse astrocytic and oligodendroglial tumor	5
 PTBP1	Hematologic malignancy	77
 PTDSS2	Hematologic malignancy	4
 PTEN	Hematologic malignancy	5
-PTMA	Hematologic malignancy	172
-PTPN2	Hematologic malignancy	4
+PTMA	Hematologic malignancy	173
+PTPN2	Hematologic malignancy	5
+PTPRE	Hematologic malignancy	4
 PTPRZ1	Diffuse astrocytic and oligodendroglial tumor	6
-PTTG1IP	Hematologic malignancy	22
+PTTG1IP	Hematologic malignancy	20
 PUM1	Hematologic malignancy	5
 PWWP2B	Hematologic malignancy	4
 QKI	Diffuse astrocytic and oligodendroglial tumor	8
 QKI	Low-grade astrocytic tumor	12
-RAB2A	Hematologic malignancy	4
+RAB2A	Hematologic malignancy	5
 RAB35	Hematologic malignancy	8
-RABGAP1L	Hematologic malignancy	4
+RABGAP1L	Hematologic malignancy	5
 RAF1	Low-grade astrocytic tumor	8
 RALGDS	Hematologic malignancy	19
-RASA3	Hematologic malignancy	19
+RASA3	Hematologic malignancy	18
 RASGRP2	Hematologic malignancy	5
 RASSF1	Hematologic malignancy	4
 RBBP6	Hematologic malignancy	5
-RBM14	Hematologic malignancy	4
-RBM14-RBM4	Hematologic malignancy	6
-RBM38	Hematologic malignancy	82
-RBM6	Hematologic malignancy	4
-RBX1	Hematologic malignancy	4
+RBM38	Hematologic malignancy	80
 RELA	Ependymal tumor	32
 RER1	Hematologic malignancy	8
 REV3L	Diffuse astrocytic and oligodendroglial tumor	4
@@ -349,9 +344,10 @@ REXO1	Hematologic malignancy	10
 RFX3	Low-grade astrocytic tumor	4
 RHOA	Hematologic malignancy	4
 RIMBP2	Embryonal tumor	5
-RNF126	Hematologic malignancy	75
+RNF111	Hematologic malignancy	4
+RNF126	Hematologic malignancy	76
 ROCK1	Hematologic malignancy	5
-ROS1	Diffuse astrocytic and oligodendroglial tumor	4
+ROS1	Low-grade astrocytic tumor	4
 RPS15	Hematologic malignancy	66
 RUNX1	Hematologic malignancy	56
 RUNX1T1	Hematologic malignancy	24
@@ -360,25 +356,25 @@ SAP25	Hematologic malignancy	26
 SBF1	Hematologic malignancy	19
 SBNO2	Hematologic malignancy	13
 SCAF4	Hematologic malignancy	4
-SCFD2	Diffuse astrocytic and oligodendroglial tumor	8
+SCFD2	Diffuse astrocytic and oligodendroglial tumor	7
 SDF4	Hematologic malignancy	5
-SELENOO	Hematologic malignancy	6
+SELENOO	Hematologic malignancy	5
 SEMA4D	Hematologic malignancy	4
 SEPTIN9	Hematologic malignancy	24
-SET	Hematologic malignancy	11
-SETD2	Hematologic malignancy	5
-SF1	Hematologic malignancy	5
+SET	Hematologic malignancy	12
+SETD2	Hematologic malignancy	6
+SF1	Hematologic malignancy	4
 SFPQ	Hematologic malignancy	5
 SH2D3C	Hematologic malignancy	4
 SH3TC1	Hematologic malignancy	6
 SHANK3	Hematologic malignancy	9
 SKI	Hematologic malignancy	19
-SLC12A7	Hematologic malignancy	28
+SLC12A7	Hematologic malignancy	30
 SLC16A3	Hematologic malignancy	4
 SLC19A1	Hematologic malignancy	18
 SLC24A2	Low-grade astrocytic tumor	4
-SLC66A2	Hematologic malignancy	61
-SLC7A5	Hematologic malignancy	169
+SLC66A2	Hematologic malignancy	64
+SLC7A5	Hematologic malignancy	167
 SMARCC1	Hematologic malignancy	4
 SMCHD1	Hematologic malignancy	7
 SND1	Hematologic malignancy	4
@@ -388,74 +384,74 @@ SP3	Hematologic malignancy	5
 SPPL2B	Hematologic malignancy	6
 SRSF1	Hematologic malignancy	4
 SRSF4	Hematologic malignancy	4
-SS18	Hematologic malignancy	4
-SS18L1	Hematologic malignancy	10
-SSBP2	Hematologic malignancy	11
+SS18L1	Hematologic malignancy	11
+SSBP2	Hematologic malignancy	12
 ST7	Diffuse astrocytic and oligodendroglial tumor	8
 STAG2	Hematologic malignancy	5
 STK10	Hematologic malignancy	7
 STK11	Hematologic malignancy	4
-STK24	Hematologic malignancy	5
+STK24	Hematologic malignancy	4
 SUMO3	Hematologic malignancy	43
 SYNCRIP	Hematologic malignancy	36
+SYNE1	Hematologic malignancy	4
 TACC1	Neuronal and mixed neuronal-glial tumor	4
-TAF4	Hematologic malignancy	22
+TAF4	Hematologic malignancy	21
 TAFA5	Hematologic malignancy	6
-TAOK3	Hematologic malignancy	4
-TAX1BP1	Hematologic malignancy	4
 TBC1D14	Hematologic malignancy	4
 TBC1D22A	Hematologic malignancy	5
 TBCD	Hematologic malignancy	6
 TCF12	Diffuse astrocytic and oligodendroglial tumor	4
 TCF25	Hematologic malignancy	24
-TCF3	Hematologic malignancy	51
+TCF3	Hematologic malignancy	50
 TCF4	Hematologic malignancy	5
 TCF7	Hematologic malignancy	7
 TFRC	Hematologic malignancy	4
-TGIF1	Hematologic malignancy	13
-TIMP2	Hematologic malignancy	8
+TGIF1	Hematologic malignancy	14
+TIMP2	Hematologic malignancy	7
 TMEM131L	Hematologic malignancy	4
 TMEM18	Hematologic malignancy	8
-TMEM259	Hematologic malignancy	8
-TOP2B	Hematologic malignancy	4
-TOX	Hematologic malignancy	4
-TPM4	Hematologic malignancy	42
-TRABD	Hematologic malignancy	7
+TMEM259	Hematologic malignancy	7
+TOX	Hematologic malignancy	5
+TPD52L2	Hematologic malignancy	5
+TPM4	Hematologic malignancy	43
+TRABD	Hematologic malignancy	6
 TRPM2	Hematologic malignancy	23
 TSC2	Hematologic malignancy	4
 TTYH3	Hematologic malignancy	82
 TXLNG	Hematologic malignancy	4
-UBB	Hematologic malignancy	8
-UBC	Hematologic malignancy	5
+UBB	Hematologic malignancy	7
+UBC	Hematologic malignancy	6
 UBE2I	Hematologic malignancy	4
-UHRF2	Hematologic malignancy	6
+UHRF2	Hematologic malignancy	7
 ULK1	Hematologic malignancy	14
 UNC5C	Embryonal tumor	4
 UNKL	Hematologic malignancy	5
-USP12	Hematologic malignancy	14
+USP12	Hematologic malignancy	15
 USP15	Hematologic malignancy	6
 USP22	Hematologic malignancy	9
-UTRN	Hematologic malignancy	7
-VAV2	Hematologic malignancy	6
-VAV3	Hematologic malignancy	5
+UTRN	Hematologic malignancy	8
+VAV2	Hematologic malignancy	5
+VAV3	Hematologic malignancy	4
 WAC	Hematologic malignancy	5
-WDR1	Hematologic malignancy	5
+WDR1	Hematologic malignancy	4
 WDR6	Hematologic malignancy	8
 WNK1	Hematologic malignancy	4
-YAP1	Ependymal tumor	4
-YWHAE	Hematologic malignancy	13
-ZBTB18	Hematologic malignancy	8
+YAP1	Ependymal tumor	5
+YWHAE	Hematologic malignancy	11
+ZBTB18	Hematologic malignancy	7
 ZBTB7A	Hematologic malignancy	7
 ZC3H3	Hematologic malignancy	17
 ZEB1	Hematologic malignancy	4
 ZEB2	Hematologic malignancy	12
-ZFPM1	Hematologic malignancy	30
+ZFPM1	Hematologic malignancy	31
 ZFTA	Ependymal tumor	36
-ZMIZ1	Hematologic malignancy	11
-ZMYM2	Hematologic malignancy	10
-ZNF292	Hematologic malignancy	37
+ZMIZ1	Hematologic malignancy	10
+ZMYM2	Hematologic malignancy	11
+ZNF131	Hematologic malignancy	4
+ZNF292	Hematologic malignancy	36
 ZNF384	Hematologic malignancy	26
 ZNF440	Hematologic malignancy	4
 ZNF451	Embryonal tumor	6
-ZNF511	Hematologic malignancy	46
-ZNF827	Hematologic malignancy	5
+ZNF511	Hematologic malignancy	47
+ZNF516	Hematologic malignancy	4
+ZNF827	Hematologic malignancy	4
