@@ -14,6 +14,34 @@
       - 3 Kentucky samples (3 normal)
       - 2441 PBTA WGS samples (1171 normal, 1270 tumor)
       - 315 PBTA WXS samples (160 normal, 155 tumor)
+  
+  - files changed
+    - files added
+      - `20038D-17Q6-01.regions.100bp_padded.bed`
+      - `S0274956_Padded_HG38.merged.bed`
+      - `agilent-v4-targets-ucsc.100bp_padded.bed`
+      - `UCSC_hg19-GRCh37_Ensembl2RefSeq.tsv`
+      - `cnv-gatk.seg.gz`
+      - `fusion-annoFuse.tsv.gz`
+      - `fusion_summary_lgg_hgg_foi.tsv`
+      - `independent-specimens.methyl.primary-plus.eachcohort.tsv`
+      - `independent-specimens.methyl.primary.eachcohort.tsv`
+      - `independent-specimens.methyl.relapse.eachcohort.tsv`
+      - `methyl-md5sum.txt`
+      - `onco1500-v2-targets-ucsc.100bp_padded.bed`
+      - `onco1500-v4-targets-ucsc.100bp_padded.bed`
+      - `onco1500-v6-targets-ucsc.100bp_padded.bed`
+      - `onco1500-v6a-targets-ucsc.100bp_padded.bed`
+    - files renamed
+      - `biospecimen_id_to_bed_map.txt` renamed to `biospecimen_id_to_bed_map.tsv`
+      - `independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv` renamed to `independent-specimens.rnaseq.primary-plus-pre-release.tsv`
+      - `independent-specimens.rnaseqpanel.primary.pre-release.tsv` renamed to `independent-specimens.rnaseq.primary-pre-release.tsv`
+      - `independent-specimens.rnaseqpanel.relapse.pre-release.tsv` to `independent-specimens.rnaseq.relapse-pre-release.tsv`
+    - files removed or no longer automatically downloaded
+      - `fusion_summary_lgat_foi.tsv`
+      - `methyl-beta-values.rds`
+      - `methyl-m-values.rds`
+      - `tcga-gene-counts-rsem-expected_count-collapsed.rds`
  
   - Updated data to use GENCODE v39 GDC
     - Update gene_match module GENCODE versions [Ticket 400](https://github.com/PediatricOpenTargets/ticket-tracker/issues/400)
@@ -114,7 +142,6 @@ v12
 ├── StrexomeLite_hg38_liftover_100bp_padded.bed
 ├── Strexome_targets_intersect_sorted_padded100.GRCh38.bed
 ├── TARGET_AML_NBL_WT_SeqVal79_attempt06_AllTracks_HG38_bed_expanded100.bed
-├── UCSC_hg19-GRCh37_Ensembl2RefSeq.tsv
 ├── WGS.hg38.lancet.300bp_padded.bed
 ├── WGS.hg38.lancet.unpadded.bed
 ├── WGS.hg38.mutect2.vardict.unpadded.bed
@@ -182,13 +209,9 @@ v12
 ├── independent-specimens.wgswxspanel.relapse.eachcohort.prefer.wxs.tsv
 ├── independent-specimens.wgswxspanel.relapse.prefer.wgs.tsv
 ├── independent-specimens.wgswxspanel.relapse.prefer.wxs.tsv
-├── infinium-annotation-mapping.tsv
-├── infinium-methylationepic-v-1-0-b5-manifest-file-csv.zip
 ├── intersect_cds_lancet_strelka_mutect_WGS.bed
 ├── intersect_strelka_mutect_WGS.bed
 ├── md5sum.txt
-├── methyl-beta-values.rds
-├── methyl-m-values.rds
 ├── methyl-md5sum.txt
 ├── nexterarapidcapture_exome_targetedregions_v1.2_hg38_100.bed
 ├── onco1500-v2-targets-ucsc.100bp_padded.bed
@@ -197,12 +220,10 @@ v12
 ├── onco1500-v6a-targets-ucsc.100bp_padded.bed
 ├── release-notes.md
 ├── rna-isoform-expression-rsem-tpm.rds
-├── snv-consensus-plus-hotspots.maf.tsv
 ├── snv-consensus-plus-hotspots.maf.tsv.gz
 ├── snv-dgd.maf.tsv.gz
 ├── snv-mutation-tmb-all.tsv
 ├── snv-mutation-tmb-coding.tsv
-├── splice-events-rmats.tsv.gz
 ├── sv-manta.tsv.gz
 ├── tcga-gene-expression-rsem-tpm-collapsed.rds
 ├── truseq-exome-targeted-regions-manifest-v1-2_hg38_100.bed
