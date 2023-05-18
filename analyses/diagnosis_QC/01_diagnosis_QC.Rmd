@@ -1,0 +1,142 @@
+---
+title: "Pathology_Diagnosis QC"
+output: html_notebook
+---
+
+This notebook aims to identify the samples that has different molecular subtype and methylation subclass.   
+
+```{r library}
+library(tidyverse)
+```
+
+Set directories
+
+```{r}
+
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data <- file.path(root_dir, "data")
+analysis_dir <- file.path(root_dir, "analyses", "diagnosis_QC")
+result_dir <- file.path(analysis_dir, "result")
+if(!dir.exists(result_dir)){
+  dir.create(result_dir)
+}
+
+```
+
+Add broad histology to molecular_subtype_methyl
+
+```{r}
+methyl <- readr::read_tsv(file.path(analysis_dir, "input", "mnp_v12.5_annotation_with_OPC_subtype - Sheet1.tsv"))
+
+methyl <- methyl %>% 
+  ## Chordoma has no OPC_molecular_subtype, so we add it as "CHDM"
+  mutate(OPC_molecular_subtype = case_when(Abbrevation == "CHORDM" ~ "CHDM", 
+                                           TRUE ~ OPC_molecular_subtype)) %>%
+  mutate(broad_histology_methyl = case_when(
+    ## non-ATRT/non-MB embryonal tumors
+    grepl(paste(c("CNS", "ETMR"), collapse = "|"), OPC_molecular_subtype) ~ "Embryonal tumor", 
+    ## EWS
+    grepl("EWS", OPC_molecular_subtype) ~ "Mesenchymal non-meningothelial tumor", 
+    ## HGG
+    grepl(paste(c("HGG", "DMG", "IHG"), collapse = "|"), OPC_molecular_subtype) ~ "Diffuse astrocytic and oligodendroglial tumor", 
+    ## LGG
+    grepl(paste(c("LGG", "GNG", "GNT", "SEGA"), collapse = "|"), OPC_molecular_subtype) ~ "Low-grade astrocytic tumor", 
+    ## EPN
+    grepl("EPN", OPC_molecular_subtype) ~ "Ependymal tumor",
+    ## MB
+    grepl("^MB", OPC_molecular_subtype) ~ "Embryonal tumor", 
+    ## CRANIO
+    grepl("^CRANIO", OPC_molecular_subtype) ~ "Tumors of sellar region", 
+    ## Neurocyytoma
+    grepl(paste(c("EVN", "CNC"), collapse = "|"), OPC_molecular_subtype) ~ "Neuronal and mixed neuronal-glial tumor", 
+    ## Chordoma
+    ## Chordoma is not labeled in OPC_molecular_subtype
+    grepl("CHDM", OPC_molecular_subtype) ~ "Chordoma", 
+    ## ATRT
+    grepl("^ATRT", OPC_molecular_subtype) ~ "Embryonal tumor", 
+    ## NBL
+    grepl("^NBL", OPC_molecular_subtype) ~ "Embryonal tumor"
+    )) %>% 
+  select(Abbrevation, Abbrevation_internal, broad_histology_methyl, Molecular_superfamily, Molecular_family, Molecular_class, Molecular_subclass, OPC_molecular_subtype)
+
+
+
+```
+
+Read histo file
+
+First, keep the samples with `dkfz_v12_methylation_subclass_score >= 0.8`
+Add the broad histology for `molecular_subtype_methyl`
+Then select samples whose `molecular_subtype` are different from `molecular_subtype_methyl`
+
+
+```{r read histology}
+
+histo <- readr::read_tsv(file.path(root_dir, "data", "histologies.tsv"))
+histo_filter <- histo %>%
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id,
+         dkfz_v12_methylation_subclass_score, dkfz_v12_methylation_subclass,
+         molecular_subtype, molecular_subtype_methyl, broad_histology) %>%
+  group_by(sample_id) %>%
+  ## select the sample with >= 0.8 methylation score
+  filter(dkfz_v12_methylation_subclass_score >= 0.8) %>% 
+  ## In molecular_subtype column, TP53 status is included in some samples but not in molecular_subtype_methyl. So another column molecular_subtype_alt is created with no TP53 status
+  mutate(molecular_subtype_alt = gsub(", TP53$", "", molecular_subtype)) %>%
+  ## merge with methyl to add methylation broad histology and convert dkfz_v12_methylation_subclass to the compariable form (OPC_molecular_subtype)
+  left_join(methyl[, c(1,3,8)], 
+            by = c("dkfz_v12_methylation_subclass" = "Abbrevation")) %>% 
+  rename("methyl_mol_sub" = "OPC_molecular_subtype") %>% 
+  filter(molecular_subtype_alt !=  methyl_mol_sub | 
+           is.na(molecular_subtype_methyl)) %>% 
+  mutate(Note = case_when(molecular_subtype_alt != molecular_subtype_methyl ~ "not match", 
+                          is.na(molecular_subtype) ~ "no molecular subtype")) %>% 
+  ## remove IHG due to the new molecular subtypes are not included in dfzx
+  filter(!grepl("IHG", molecular_subtype)) %>% 
+  ## rearrange the column
+  select(colnames(.)[c(1:4, 6, 9, 7, 5, 11, 8, 10, 12)]) %>% 
+  readr::write_tsv(file.path(result_dir, "unmatched_sample_all.tsv"))
+
+```
+
+The samples that have unmatched molecular_subtype and molecular_subtype_methyl
+
+```{r}
+
+table(histo_filter$broad_histology)
+```
+
+
+First, take look at the ones that have unmatched broad_histology and broad_histology_methyl
+
+
+```{r}
+unmatch_broad_histology <- histo_filter %>%
+  filter(!is.na(molecular_subtype)) %>%
+  filter(broad_histology != broad_histology_methyl) %>%
+  select(sample_id, broad_histology_methyl) %>%
+  ## subset all the samples with same sample_id
+  left_join(histo, by = "sample_id") %>% 
+  arrange(Kids_First_Participant_ID) %>%
+  readr::write_tsv(file.path(result_dir, "unmatch_broad_histology.tsv"))
+  
+table(unmatch_broad_histology$broad_histology)
+```
+
+Take a look at the samples without neither molecular_subtypes nor molecular_subtype_methyl
+
+```{r}
+
+missing_subtyped <- histo %>% 
+  filter(dkfz_v12_methylation_subclass_score >= 0.8) %>%
+  filter(is.na(molecular_subtype) & is.na(molecular_subtype_methyl)) %>% 
+  left_join(methyl[, c(1, 8)], by = c("dkfz_v12_methylation_subclass" = "Abbrevation")) %>% 
+  readr::write_tsv(file.path(result_dir, "missing_subtype.tsv"))
+
+```
+
+session infor
+
+```{r}
+sessionInfo()
+
+```
