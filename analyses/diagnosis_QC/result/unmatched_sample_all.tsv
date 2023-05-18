@@ -1,0 +1,559 @@
+Kids_First_Biospecimen_ID	Kids_First_Participant_ID	sample_id	dkfz_v12_methylation_subclass_score	molecular_subtype	molecular_subtype_alt	molecular_subtype_methyl	dkfz_v12_methylation_subclass	methyl_mol_sub	broad_histology	broad_histology_methyl	Note
+BS_01M9V4MD	PT_QJDY4Y9P	7316-562	0.999999005927181	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_03GC84XA	PT_R3ZBRJ14	7316-5878	0.858722686799486	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_05KKQDPR	PT_2KBBSP56	7316-4527	0.999935181142642	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_060608PC	PT_FZHGKJ0H	7316-4034	0.958196269693448	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_06ZT67NX	PT_NS1F6DT8	7316-3048	0.990215793047416	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_08TS9717	PT_GDE98S17	7316-3159	0.997237346532269	EPN, To be classified	EPN, To be classified	NA	CTRL_CBM	NA	Ependymal tumor	NA	NA
+BS_0AS813KQ	PT_HT4HJXY6	7316-901	0.963083639741887	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_0ATCJ7Z3	PT_02MVZZSW	7316-1702	0.861249184804663	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_0AWZ1ZTB	PT_YRMG61G8	7316-2305	0.999983912953316	LGG, KIAA1549-BRAF, RTK	LGG, KIAA1549-BRAF, RTK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_0DG68A8N	PT_6XWCT04R	7316-130	0.999999623198457	EPN, To be classified	EPN, To be classified	NA	HGG_E	HGG, H3 wildtype	Ependymal tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_0E0C4FMZ	PT_3J0ASVHN	7316-3622	0.999998989762577	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_0E539XNH	PT_9PJR0ZK7	7316-935	0.996235424849776	NA	NA	NA	MPNST_ATYP	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_0EXCT8V6	PT_6SH7PV1N	7316-535	0.999999601809741	HGG, H3 wildtype	HGG, H3 wildtype	NA	DGONC	GNT	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_0H08N9RR	PT_FZHGKJ0H	7316-4033	0.957958248833186	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_0H9QQRK0	PT_QHJSYTWJ	7316-8120	0.974663630366031	NA	NA	NA	NB_TMM_POS	NA	Embryonal tumor	NA	no molecular subtype
+BS_0JZ4RSWQ	PT_0F3RHT8J	7316-2673	0.997294984413874	NA	NA	NA	MNG_SMARCE1	NA	Meningioma	NA	no molecular subtype
+BS_0K182R15	PT_XP8AM1CH	7316-1096	0.999997860187603	NA	NA	NA	PITAD_ACTH	NA	Benign tumor	NA	no molecular subtype
+BS_0NHZ9HY6	PT_KX84KH6K	7316-2703	0.999306630385527	HGG, To be classified	HGG, To be classified	NA	CTRL_CBM	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_0QRBS2J0	PT_435E7RPF	7316-2483	0.999995738183373	NA	NA	NA	PA_INF	LGG, FGFR	Other	Low-grade astrocytic tumor	no molecular subtype
+BS_0RN1W1Q3	PT_EN4G7A9Z	7316-9713	0.978671076696171	HGG, H3 wildtype	HGG, H3 wildtype	NA	INFLAM_ENV	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_0RWY8M98	PT_XXZHRPNM	7316-2572	0.99999928604419	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_0T1E1YBD	PT_CB9PD1YP	7316-97	0.812627109555214	LGG, BRAF V600E	LGG, BRAF V600E	NA	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_0YB6N1PA	PT_2YT37G8P	7316-399	0.999431420865826	LGG, KIAA1549-BRAF, FGFR	LGG, KIAA1549-BRAF, FGFR	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_0Z1BBZS8	PT_Y572BRC1	7316-485	0.999998208303428	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_109XBCVB	PT_YJBPEF4V	7316-938	0.991955050933701	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_11DEB1E0	PT_ZR8MQRVG	7316-346	0.993911793531826	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_13HM4SA1	PT_MBAXTJET	7316-275	0.998999479882646	LGG, other MAPK	LGG, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_160Z1FV0	PT_8HBWG092	7316-7927	0.977183196502638	GNT, BRAF V600E	GNT, BRAF V600E	GNG, MAPK	GG	GNG, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_19M1VYF8	PT_SJEG0MKD	7316-146	0.999954211504782	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_1DH8SJ7B	PT_MA0J8DSN	7316-39	0.997501512071569	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_1FQYBQ1P	PT_H0HWHRPB	7316-1679	0.999883008050678	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_1G2DAFZY	PT_YXJQGT69	7316-934	0.946460918865599	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_1JF0AGKG	PT_3D74J8RZ	7316-5312	0.996353806398269	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_1JSG9783	PT_57YP9ABV	7316-1070	0.998131719558035	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_1NRF8RFY	PT_6PP78VNE	7316-1893	0.988694086747203	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_1Q2TAKTX	PT_S2SQJVGK	7316-442	0.967166023496907	LGG, RTK	LGG, RTK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_1RDN5JVD	PT_YQWG98Z5	7316-2856	0.99973670334631	NA	NA	NA	CTRL_CORPCAL	NA	Pre-cancerous lesion	NA	no molecular subtype
+BS_1TPEKAK9	PT_DW2XRPC9	7316-430	0.999999914640693	HGG, To be classified	HGG, To be classified	NA	CNS_SARC_CIC	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_1ZW0BTJ2	PT_Z9QE51C3	7316-373	0.999999665338979	GNG, wildtype	GNG, wildtype	NA	NET_PLAGL1_FUS	NA	Low-grade astrocytic tumor	NA	NA
+BS_21KG9DWJ	PT_HJMP6PH2	7316-3775	0.999880297359783	EWS	EWS	NA	CNS_BCOR_ITD	CNS BCOR	Mesenchymal non-meningothelial tumor	Embryonal tumor	NA
+BS_243YNBAH	PT_B5TJ8Q6D	7316-5164	0.832445225450549	NA	NA	NA	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_25EN3VC0	PT_Z4GS3ZQQ	7316-1797	0.999959627576008	NA	NA	NA	CNS_BCOR_ITD	CNS BCOR	Neuronal and mixed neuronal-glial tumor	Embryonal tumor	no molecular subtype
+BS_2879S8VV	PT_XSS1ANXD	7316-495	0.999973520563229	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_2ARHMFW0	PT_N4CXYJSM	7316-4533	0.984074351785581	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_2DDJY2QQ	PT_JSB21KPJ	7316-6810	0.999819304272167	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_2ETZRJQ6	PT_X71D7G5S	7316-1105	0.995489364526108	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_2GAJWRRT	PT_TT8M3GB6	7316-3078	0.998392902858584	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_2HBXV5K6	PT_NZFFMZ0B	7316-923	0.999062398341914	LGG, other MAPK	LGG, other MAPK	NA	CTRL_HEMI	NA	Low-grade astrocytic tumor	NA	NA
+BS_2KGQCKGS	PT_YKVK5HTK	7316-441	0.999663856658944	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_2PJ73SPC	PT_6R95FQT2	7316-459	0.999932540814492	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_2QSSPVGA	PT_3GYW6P6P	7316-5877	0.906350886169136	GNT, RTK	GNT, RTK	LGG, FGFR	PA_INF	LGG, FGFR	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_2W29VZ0Q	PT_EYWDFKA7	7316-30	0.999696919065119	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_2XFFHEWQ	PT_Y97DX151	7316-291	0.997076223114539	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_2YPFPTV3	PT_R50DPWF5	7316-6772	0.994114669014817	NA	NA	NA	INFLAM_ENV	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_2ZBTJ8FB	PT_QH1MHYD6	7316-4953	0.920930211031414	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_32YYB1WF	PT_A9F8Y6MA	7316-476	0.999127463740735	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_34SNT6SK	PT_JW2FDK4W	7316-334	0.915544222867662	GNT, To be classified	GNT, To be classified	NA	PGNT	NA	Neuronal and mixed neuronal-glial tumor	NA	NA
+BS_39DNBN15	PT_JXSDFPNM	7316-2142	0.994251310626807	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_3A7KKC1V	PT_GK725SCY	7316-5155	0.99874163407526	EPN, To be classified	EPN, To be classified	NA	INFLAM_ENV	NA	Ependymal tumor	NA	NA
+BS_3BKVEDV4	PT_NXX0M835	7316-948	0.999933968849959	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_3D0XD278	PT_6RX3FNT4	7316-7101	0.995944377815996	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_3F33N9RR	PT_BF3PGTF7	7316-1808	0.999193838926542	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_3JKNWNKV	PT_KCTZZA3G	7316-223	0.823292361117232	NA	NA	NA	NFIB_PLEX	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_3MYH1TKQ	PT_P5HHJJPH	7316-870	0.999977492660076	HGG, H3 wildtype	HGG, H3 wildtype	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_3NB5W9V8	PT_8D35V6HW	7316-963	0.997986931886066	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_3ND4Q1HV	PT_PFA762TK	7316-368	0.999976586651002	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_3NJKMKGA	PT_62VNQ8C4	7316-1884	0.999997375507772	MB, SHH	MB, SHH	NA	CNS_SARC_CIC	NA	Embryonal tumor	NA	NA
+BS_3QQB1VAM	PT_5ABCFCSK	7316-1851	0.986018389308014	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_3QR05NT0	PT_865QGR0X	7316-4440	0.999588257627708	NA	NA	NA	PB_FOXR2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_3SN6JCCB	PT_D52NM7JY	7316-1110	0.833207447532097	LGG, To be classified	LGG, To be classified	NA	IHG	IHG	Low-grade astrocytic tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_3Z211WE0	PT_M9WKP8RF	7316-7919	0.999991134220801	CRANIO, ADAM	CRANIO, ADAM	NA	CPH_ADM	CRANIO, ADAM	Tumors of sellar region	Tumors of sellar region	NA
+BS_42V8EPRQ	PT_FAPEH6R1	7316-1660	0.880154956665519	LGG, RTK	LGG, RTK	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_42X5PNA0	PT_66XN3MT1	7316-936	0.999756470486291	SEGA, To be classified	SEGA, To be classified	SEGA, To be classified	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_43XHCMC5	PT_DXF7ZZQZ	7316-2809	0.997029233643652	GNG, MYB/MYBL1	GNG, MYB/MYBL1	LGG, MYB/MYBL1	LGG_MYB_D	LGG, MYB/MYBL1	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_486R313X	PT_0DM10YSE	7316-5523	0.997287661479719	HGG, H3 wildtype	HGG, H3 wildtype	NA	EPN_SPINE_MYCN	EPN, SP-MYCN	Diffuse astrocytic and oligodendroglial tumor	Ependymal tumor	NA
+BS_48VF55QR	PT_Y572BRC1	7316-2193	0.999969903564485	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_4B6613ZQ	PT_VBG3Z18B	7316-512	0.999686383371455	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	pedHGG_MYCN	HGG, H3 wildtype	Embryonal tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_4BQDTH10	PT_7F4TBYYQ	7316-3296	0.999998800196725	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_4CTSVRTB	PT_90W4HCNR	7316-2672	0.999643719007881	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_4DYK40XD	PT_BCWGRGDB	7316-3639	0.889227469803353	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_4HAXKEFA	PT_8V96YFJQ	7316-5218	0.998005129716186	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_4JQQEM4Q	PT_VAW7C1MR	7316-5154	0.996810232416624	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_4K6Y2TEH	PT_QJ3144WH	7316-3204	0.993948163350248	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_4N31JVE5	PT_GBDRTNTY	7316-8911	0.999747593300868	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_4QKD9JZ7	PT_ADTP7EHN	7316-1664	0.998851450757479	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_4S5HJM6P	PT_FAD8FQ6S	7316-120	0.998621852683377	GNG, KIAA1549-BRAF	GNG, KIAA1549-BRAF	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_4SJW4Q4Z	PT_Q3EP24V1	7316-154	0.997481120048564	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_4TFNECS4	PT_GERCQ0JG	7316-3520	0.859165477971551	NA	NA	NA	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_4THVWHBK	PT_QEMT1845	7316-3153	0.99736621572399	NA	NA	NA	CTRL_CORPCAL	NA	Non-tumor	NA	no molecular subtype
+BS_4TXDH2S8	PT_DW6V5V8E	7316-924	0.911819559341443	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_4Y7JTA35	PT_3A2Q62RD	7316-4449	0.999994438515107	EPN, To be classified	EPN, To be classified	NA	PA_INF	LGG, FGFR	Ependymal tumor	Low-grade astrocytic tumor	NA
+BS_50V3AXSK	PT_3873YK5S	7316-2862	0.999955628562361	NA	NA	NA	NET_PLAGL1_FUS	NA	Neuronal and mixed neuronal-glial tumor	NA	no molecular subtype
+BS_5199YKS4	PT_DRZHXMRB	7316-4043	0.992257340810683	NA	NA	NA	PB_GRP1A	NA	Tumor of pineal region	NA	no molecular subtype
+BS_533FYRG7	PT_GTQN90DF	7316-4922	0.99999428249270506	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_53R9Z7YY	PT_DPMC1D8Z	7316-7274	0.999923384941515	GNT, To be classified	GNT, To be classified	NA	CNS_BCOR_ITD	CNS BCOR	Low-grade astrocytic tumor	Embryonal tumor	NA
+BS_53Y8W0N9	PT_WY8REZ3P	7316-1783	0.999432108797875	GNG, BRAF V600E	GNG, BRAF V600E	GNG, MAPK	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_580ZPA5T	PT_3A0B29QT	7316-80	0.998870119524164	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_5AEBR8CK	PT_01MZ62KG	7316-447	0.999997356948114	NA	NA	NA	ETMR_C19MC	ETMR, C19MC-altered	Tumor of pineal region	Embryonal tumor	no molecular subtype
+BS_5BM9MXP9	PT_PHKSYE6Q	7316-220	0.999608791524157	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_5C2TBN5R	PT_80NVYCBS	7316-765	0.999999999309284	CNS HGNET-MN1	CNS HGNET-MN1	NA	NET_CXXC5	CNS HGNET-MN1	Embryonal tumor	Embryonal tumor	NA
+BS_5CWT1AFF	PT_RRT2E7HK	7316-136	0.989633439881952	LGG, BRAF V600E	LGG, BRAF V600E	NA	CTRL_REACTIVE	NA	Low-grade astrocytic tumor	NA	NA
+BS_5K9S2PZE	PT_20ZM6THA	7316-3629	0.941939088759385	GNT, other MAPK	GNT, other MAPK	GNT, MAPK	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_5NEHMV02	PT_SMDEQVHJ	7316-119	0.999779660555904	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_5QFPZ2QW	PT_R0M1QBY4	7316-905	0.998934510393946	GNG, KIAA1549-BRAF	GNG, KIAA1549-BRAF	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_5QKNT1EC	PT_JQ45JK94	7316-222	0.88350697337689	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_5T8CJB36	PT_HVXYKN8E	7316-4670	0.896510429834593	NA	NA	NA	GG	GNG, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_5TB8FGRR	PT_XNMKQ4MR	7316-2006	0.999999419092632	LGG, other MAPK	LGG, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_61S3VRAP	PT_NSXP8AWV	7316-94	0.998950922878326	NA	NA	NA	MNG_SMARCE1	NA	Meningioma	NA	no molecular subtype
+BS_61YHWHV3	PT_KCTZZA3G	7316-216	0.906379049851945	NA	NA	NA	NFIB_PLEX	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_62S9RVAC	PT_VABP80N2	7316-1949	0.821751247230832	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_65N6QVEF	PT_C1HRBJJD	7316-6379	0.994029491259423	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_66QBC815	PT_GQDHZFJP	7316-265	0.999366752944378	LGG, FGFR	LGG, FGFR	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_6AC8SY86	PT_WWZWD4KC	7316-4540	0.999884336670742	CRANIO, To be classified	CRANIO, To be classified	NA	CTRL_ADENOPIT	NA	Tumors of sellar region	NA	NA
+BS_6AS03QVQ	PT_QQZXYR4M	7316-1946	0.998627631802702	HGG, IDH, TP53	HGG, IDH	NA	A_IDH_LG	LGG, IDH	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_6JTXMCTT	PT_7TEHW6VQ	7316-2755	0.994719778866748	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_6M1F3J71	PT_ECBD1D5J	7316-2177	0.943217769434682	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_6M8GG1M8	PT_M7ZBZJ43	7316-3897	0.999998331366779	EPN, To be classified	EPN, To be classified	NA	CNS_BCOR_ITD	CNS BCOR	Ependymal tumor	Embryonal tumor	NA
+BS_6MRNV8Y1	PT_KXB1PJV0	7316-206	0.999969663390339	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_6RRQZCP7	PT_7ECBYH4W	7316-8970	0.999991168057504	DHG, H3 G35, TP53	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_6SRMM7XB	PT_S3FJSBJT	7316-1794	0.978731671251691	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_6STP8KG4	PT_AW7S7WGD	7316-7596	0.994393500438706	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_6T1N6Z4Y	PT_2BJF83GQ	7316-1745	0.998443598658365	LGG, NF1-somatic, NF1-germline	LGG, NF1-somatic, NF1-germline	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_6T4MGRKD	PT_S2CXXZCF	7316-643	0.999992365008707	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_6TNM4BXN	PT_QAX38GM7	7316-3570	0.948183871809209	LGG, other MAPK	LGG, other MAPK	NA	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_6YY5FQJX	PT_WE1CHTWK	7316-87	0.998484569722621	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	NET_PLAGL1_FUS	NA	Embryonal tumor	NA	NA
+BS_707NA9ET	PT_NTK39NNV	7316-3076	0.999389400147751	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_71966GA8	PT_K39HM2JF	7316-1084	0.988871054098124	LGG, BRAF V600E	LGG, BRAF V600E	NA	CTRL_REACTIVE	NA	Low-grade astrocytic tumor	NA	NA
+BS_74T8QGDN	PT_EXPT96T9	7316-4512	0.911832576112834	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_7535PGPW	PT_7F3ZPZB7	7316-2662	0.999997705814434	NA	NA	NA	GCT_YOLKSAC	NA	Germ cell tumor	NA	no molecular subtype
+BS_75P5BC58	PT_DYVAW1K2	7316-1112	0.999958627677633	GNT, RTK	GNT, RTK	LGG, FGFR	PA_INF	LGG, FGFR	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_76B3BYEZ	PT_27FDWCVZ	7316-184	0.996988860280407	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_76MPTPTA	PT_JN3S17B3	7316-1693	0.999993998416207	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_76X3HJ0M	PT_7TRGHZBK	7316-431	0.985732075375859	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_773PCETX	PT_AV0W0V8D	7316-4716	0.999606248232442	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_7ADKRVHT	PT_3D74J8RZ	7316-877	0.976880862342519	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_7FDN6CJB	PT_HN0AXSZ0	7316-1103	0.999962589497807	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_7GRCE406	PT_TD6ST5MG	7316-235	0.999283577698472	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_7HASJ8Z2	PT_WP871F5S	7316-1766	0.996068444953051	NA	NA	NA	CTRL_CBM	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_7J05ME1K	PT_2S69A6JY	7316-5239	0.99990087570831	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_7JTWSDK1	PT_3AWKWXEV	7316-85	0.99804874618906	HGG, H3 wildtype	HGG, H3 wildtype	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_7MFSD4VP	PT_SBHN5F68	7316-516	0.999986095302853	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_7N0Y7G6V	PT_F168VFAE	7316-5839	0.983775594130346	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_7NXX6BKF	PT_5CYJ3NZ9	7316-3397	0.999999971606163	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	ET_PLAG	NA	Embryonal tumor	NA	NA
+BS_7Q2WKSSX	PT_AZFSRAWZ	7316-4553	0.999964723075688	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_7Q3AEAM5	PT_PAW18EK3	7316-1948	0.993557965410211	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_7TVVA2PY	PT_HJMP6PH2	7316-4768	0.99981168931877	EWS	EWS	NA	CTRL_CBM	NA	Mesenchymal non-meningothelial tumor	NA	NA
+BS_7TZ3H638	PT_50ZFWMZE	7316-1942	0.999999202952432	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_7VBB4CMK	PT_D5C09HMR	7316-6299	0.992958000229594	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_7VBT9G8F	PT_06ERX8Z7	7316-2578	0.99997833884845	SEGA, To be classified	SEGA, To be classified	SEGA, To be classified	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_7Y1A2J3B	PT_3WA1XB8G	7316-70	0.988304053079399	LGG, wildtype	LGG, wildtype	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_7YW8W58B	PT_AP658JQV	7316-519	0.999686159220929	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_80JJQ4NG	PT_1BV6ND1D	7316-3203	0.9999995976657	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_80KFQCBJ	PT_SABHZ7XX	7316-3029	0.999626905406396	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_846RA6HX	PT_962TCBVR	7316-2744	0.999858407158784	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_8E0ZMVNV	PT_99R55MP0	7316-4417	0.954915495453286	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_8ES144GT	PT_6N1QWCXE	7316-3169	0.999999900728906	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_8F50CHFP	PT_RM9AZ7A8	7316-2084	0.999612467099362	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_8F5SCRM3	PT_N8W26H19	7316-267	0.983077835384866	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_8G6F62TC	PT_FWWRWTV2	7316-6886	0.94660825960714	HGG, H3 wildtype	HGG, H3 wildtype	NA	CTRL_CBM	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_8GFRJ12Y	PT_C4P0F36E	7316-3653	0.998939235505568	EPN, To be classified	EPN, To be classified	NA	CTRL_CBM	NA	Ependymal tumor	NA	NA
+BS_8HSSAPP9	PT_92YX7KK9	7316-1785	0.998793713103571	NA	NA	NA	GCT_GERM_KIT	NA	Germ cell tumor	NA	no molecular subtype
+BS_8JXYP5CV	PT_D8D108NY	7316-448	0.996706876218011	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_8K4E6C7A	PT_9KH4MRBK	7316-1788	0.999464365768507	NA	NA	NA	CTRL_CORPCAL	NA	Pre-cancerous lesion	NA	no molecular subtype
+BS_8KXCKTRY	PT_WYR1DVHX	7316-1950	0.999002212521476	CRANIO, ADAM	CRANIO, ADAM	NA	CTRL_ADENOPIT	NA	Tumors of sellar region	NA	NA
+BS_8P1KGX5M	PT_3WA7SBQ6	7316-2248	0.995703525093736	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_8R0WBGMK	PT_13MKXR8G	7316-2251	0.999982523282844	NA	NA	NA	EPN_PFB_4	EPN, PF B	Choroid plexus tumor	Ependymal tumor	no molecular subtype
+BS_8RNAR5N3	PT_ZRQQC2S9	7316-3139	0.953593559171933	LGG, NF1-germline, CDKN2A/B	LGG, NF1-germline, CDKN2A/B	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_8SPQ35BC	PT_EZEMVRVT	7316-3154	0.999975194625088	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_8T5T4MTS	PT_JEW5HG4W	7316-8425	0.979918374676847	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_8TEAVCT6	PT_J06X17XH	7316-1649	0.858938400313352	NA	NA	NA	LCH	NA	Histiocytic tumor	NA	no molecular subtype
+BS_8TH4AXN8	PT_VW2PNHFD	7316-8868	0.999989847104471	NA	NA	NA	NET_PLAGL1_FUS	NA	Neuronal and mixed neuronal-glial tumor	NA	no molecular subtype
+BS_8TRTBPW9	PT_6MWPJ96F	7316-1928	0.999980551501247	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_96QPQX80	PT_T8V9ES93	7316-1106	0.944849593891742	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_97QEPM0H	PT_E3ADF4ZB	7316-2664	0.978165049576134	LGG, wildtype	LGG, wildtype	NA	NET_PATZ1	NA	Low-grade astrocytic tumor	NA	NA
+BS_98S645ES	PT_HNZNZ635	7316-2151	0.997654900407594	HGG, H3 wildtype	HGG, H3 wildtype	NA	NET_PATZ1	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_9AWA5SR5	PT_6E8JYRXM	7316-2729	0.998387429232911	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_9B13CNX5	PT_K6CR9D53	7316-112	0.99977752225005	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_9DN9E727	PT_5KP2E0DS	7316-3936	0.999311684498609	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_9DNMHYH6	PT_16EJ7BZ9	7316-1938	0.941677582176706	NA	NA	NA	PLNTY	LGG, MAPK	Meningioma	Low-grade astrocytic tumor	no molecular subtype
+BS_9JBGVQ0M	PT_EPFX7V9H	7316-2571	0.83996340318627	GNG, other MAPK, BRAF V600E	GNG, other MAPK, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_9PGP77HY	PT_GDDWPDMC	7316-2575	0.94117638071189	GNG, BRAF V600E	GNG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_9QDA6XJM	PT_9DMMZ08D	7316-1676	0.999329179743941	MB, SHH	MB, SHH	NA	ETMR_Atyp	NA	Embryonal tumor	NA	NA
+BS_9SF86CS6	PT_MGJJBG0T	7316-7550	0.999997810606848	GNT, To be classified	GNT, To be classified	NA	MB_WNT	MB, WNT	Low-grade astrocytic tumor	Embryonal tumor	NA
+BS_9WFPXJKV	PT_3V5GTCJR	7316-1646	0.925897538577811	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_9XBGGK0F	PT_QT3MK7BZ	7316-1977	0.93043607260423	SEGA, To be classified	SEGA, To be classified	NA	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_9XNVJKVG	PT_2189ZWKX	7316-5262	0.995859448611682	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_9YNS9WZJ	PT_4JG5KWE8	7316-50	0.999036739030372	LGG, other MAPK	LGG, other MAPK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_A4771SDM	PT_2YCHME6S	7316-2622	0.99999933864249	LGG, FGFR	LGG, FGFR	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_AAVNFHHB	PT_SYHB12RN	7316-194	0.983243455669777	HGG, H3 wildtype	HGG, H3 wildtype	NA	RGNT	GNT, FGFR	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_AEF61NYH	PT_E1TRJP8V	7316-134	0.988871994630046	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_AG74Q1GW	PT_GPQJYAW4	7316-1750	0.997812518709055	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_AGQ97WK5	PT_HYXSSCJ5	7316-1088	0.998537826191022	LGG, RTK	LGG, RTK	GNT	DNET	GNT	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_AJP26WFT	PT_TS0FW57Z	7316-2167	0.999999262046582	LGG, KIAA1549-BRAF, other MAPK	LGG, KIAA1549-BRAF, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_AN87J6X2	PT_PKCTFSV2	7316-242	0.98011914679885	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_AQXCVDTJ	PT_JG2S7114	7316-3118	0.999775488178473	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_ATVVVXCS	PT_69C7CBFW	7316-1959	0.998414433236859	NA	NA	NA	ARMS	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_AYVAZ31P	PT_N9SG16EC	7316-1958	0.999979963255419	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_AZC81VGS	PT_5QEKPBGS	7316-6970	0.88039807336987	NA	NA	NA	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_B0GKQAWP	PT_H45M7M2T	7316-3074	0.960455004011336	LGG, other MAPK	LGG, other MAPK	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_B47HW960	PT_HV6C0T34	7316-3062	0.995853794691761	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_B4NHQPGV	PT_KBWVBMR4	7316-7745	0.999292047711919	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_B5V1MQ2M	PT_2VSDT9CK	7316-3575	0.959973185153491	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_B81HY49C	PT_JPWVCTAJ	7316-1953	0.85882694923593	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_B8KDVBBS	PT_Y8HSH496	7316-196	0.941016662576396	LGG, wildtype	LGG, wildtype	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_BDRTMHBR	PT_203ZY782	7316-2668	0.935117513722623	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_BE7W6QKW	PT_X8SK8120	7316-2654	0.99958513357066	CNC	CNC	NA	CN	CNC	Neuronal and mixed neuronal-glial tumor	Neuronal and mixed neuronal-glial tumor	NA
+BS_BG1W2F7V	PT_QH9H491G	7316-382	0.998840717371247	NA	NA	NA	MNG_BEN_2	NA	Meningioma	NA	no molecular subtype
+BS_BGS2YE1H	PT_F8MJBBJJ	7316-9021	0.961424608745256	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_BHCFPXE8	PT_EYHJQQ8E	7316-77	0.993144478986141	LGG, FGFR	LGG, FGFR	GNT, FGFR	RGNT	GNT, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_BQYXKCD0	PT_ZEQ3NS7K	7316-8829	0.948365922795592	DHG, H3 G35, TP53	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_BSZBVXQ2	PT_S0Q27J13	7316-6570	0.998859836238483	HGG, To be classified	HGG, To be classified	NA	CTRL_HEMI	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_BV9N9E63	PT_3T3VGWC6	7316-3923	0.99980247879917306	LGG, BRAF V600E, CDKN2A/B	LGG, BRAF V600E, CDKN2A/B	NA	PXA	NA	Low-grade astrocytic tumor	NA	NA
+BS_BWZGR3T4	PT_5S029SZM	7316-2070	0.998828876607845	EPN, To be classified	EPN, To be classified	NA	INFLAM_ENV	NA	Ependymal tumor	NA	NA
+BS_C08EHVE0	PT_ZPE3RXF0	7316-3401	0.898537189622743	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_C32A6KDR	PT_HQ89KPKT	7316-202	0.999541022620016	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_C471PQSC	PT_ABV3RS3T	7316-471	0.99999981211781	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_C48B9VRK	PT_C1M4YF1R	7316-127	0.99999206825631	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_C8MH6YDY	PT_EQCQNN1B	7316-9256	0.891100971247934	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_C8X8B8HV	PT_SJ4G8KS2	7316-4155	0.999219535638565	NA	NA	NA	PB_GRP1A	NA	Tumor of pineal region	NA	no molecular subtype
+BS_CBT428EZ	PT_0K0DPVF6	7316-121	0.905637479824161	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_CCC607HX	PT_8BXEQY0V	7316-4621	0.999616365465345	EPN, To be classified	EPN, To be classified	NA	INFLAM_ENV	NA	Ependymal tumor	NA	NA
+BS_CD906YAB	PT_91PDAFH0	7316-5267	0.99997091241891	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_CEFWNECZ	PT_4TASAQKA	7316-3566	0.990044918132766	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_CK0BY1MB	PT_TAFNV6T9	7316-5757	0.99323142376584606	NA	NA	NA	CTRL_CBM	NA	NA	NA	no molecular subtype
+BS_CN7NVE6K	PT_P9RT6693	7316-2566	0.999998378013079	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_CRWYJ73G	PT_KBDP8ZCR	7316-1889	0.889985734072445	HGG, To be classified	HGG, To be classified	NA	CTRL_HEMI	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_CTR1KRKC	PT_MPRBGGEJ	7316-2172	0.999998824353742	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_CTV7V6RC	PT_V5ASTHRH	7316-3892	0.830270510825318	NA	NA	NA	GCT_GERM_A	NA	Germ cell tumor	NA	no molecular subtype
+BS_CXAN4X6K	PT_0R8KNMBK	7316-3642	0.998991599954866	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_CXV7X7WN	PT_YMN5GV47	7316-658	0.999996666037184	LGG, NF1-somatic	LGG, NF1-somatic	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_CYX19WJT	PT_7TF40D8R	7316-3079	0.998469749640319	DHG, H3 G35, TP53	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_D07622XS	PT_BBHAD51D	7316-1089	0.999788006600761	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_D0KV2X28	PT_ZPE3RXF0	7316-3398	0.993558832874179	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_D0Y8DF51	PT_PF04R0BH	7316-3957	0.955811124857976	GNT, FGFR	GNT, FGFR	GNG, MAPK	GG	GNG, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_D6HWJ3H8	PT_VZEREHVW	7316-6047	0.997841460204233	HGG, To be classified	HGG, To be classified	NA	ABM_MN1	CNS HGNET-MN1	Diffuse astrocytic and oligodendroglial tumor	Embryonal tumor	NA
+BS_D7QK50P7	PT_D5W98C9T	7316-9734	0.998134885117613	NA	NA	NA	PB_GRP1A	NA	Tumor of pineal region	NA	no molecular subtype
+BS_DCWYQZP6	PT_HMY997GX	7316-3554	0.961968574079345	SEGA, RTK	SEGA, RTK	NA	PXA	NA	Low-grade astrocytic tumor	NA	NA
+BS_DEPW31E9	PT_5M8A47WW	7316-436	0.999999927677614	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_DETQZ74D	PT_MGJJBG0T	7316-7667	0.999980643313394	GNT, RTK, CDKN2A/B	GNT, RTK, CDKN2A/B	NA	ANTCON	NA	Low-grade astrocytic tumor	NA	NA
+BS_DFFBN81J	PT_BWFTKJXT	7316-1094	0.999714481621132	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_DHR7058H	PT_EF398HVC	7316-1975	0.999998234505819	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_DPN8T66Y	PT_2ZXR2PDN	7316-1636	0.821617866807443	GNG, BRAF V600E	GNG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_DRGEX9VX	PT_S4YNE17X	7316-3963	0.999786303672745	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_DRRS3234	PT_6MWPJ96F	7316-1711	0.999999305607023	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_DSZSFTR6	PT_89HXDTTW	7316-4844	0.856005394330958	HGG, To be classified	HGG, To be classified	NA	DIG_DIA	GNT	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_DXKYMFRY	PT_J4MWGQFQ	7316-2071	0.969989597043799	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_DXP7GTAA	PT_7HSD72ZQ	7316-8808	0.999954810960113	HGG, H3 wildtype	HGG, H3 wildtype	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_DY454V2Q	PT_WVAJN6WR	7316-456	0.999156107945243	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_E2B9C2E4	PT_078F75Z9	7316-2534	0.999999385502858	NA	NA	NA	PA_MID	LGG, MAPK	Other	Low-grade astrocytic tumor	no molecular subtype
+BS_E685NDKM	PT_QH9H491G	7316-1461	0.970839242549612	NA	NA	NA	MNG_BEN_2	NA	Meningioma	NA	no molecular subtype
+BS_E911ZA14	PT_NPPBNRVV	7316-1943	0.846759385724558	LGG, RTK	LGG, RTK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_E9GAYC6R	PT_1P436YMM	7316-3917	0.999536427584002	GNG, FGFR	GNG, FGFR	GNG, MAPK	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_ECBMVAZ7	PT_AKQZZPH8	7316-2782	0.999579993791426	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_EGHNMZ9V	PT_DDFAZ345	7316-321	0.881524848561716	GNG, other MAPK	GNG, other MAPK	GNG, MAPK	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_EJK71EEZ	PT_0RN3VSXZ	7316-3073	0.84414339223818	NA	NA	NA	CTRL_REACTIVE	NA	Meningioma	NA	no molecular subtype
+BS_EMN3H5Y7	PT_3WA7SBQ6	7316-6122	0.99003547840493	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_EQX67B7H	PT_SCCDBETQ	7316-2628	0.985602453749057	GNG, BRAF V600E	GNG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_ER9RMSVG	PT_AW8WV14Y	7316-179	0.999454926058047	MB, To be classified	MB, To be classified	NA	EWS	EWS	Embryonal tumor	Mesenchymal non-meningothelial tumor	NA
+BS_ERZJP66A	PT_7JQ24F35	7316-1681	0.999297736703119	SEGA, To be classified	SEGA, To be classified	NA	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_ETHBPZBE	PT_37WTWPZY	7316-73	0.946635417268394	NA	NA	NA	LCH	NA	Histiocytic tumor	NA	no molecular subtype
+BS_EVTRECAK	PT_45YH276T	7316-499	0.999999853082978	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_EY14FYAA	PT_TPEWXVJ1	7316-722	0.952016653775601	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_F0PJ864S	PT_P4GDWHXA	7316-477	0.951290117955646	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_F116QHAJ	PT_XDV8W16W	7316-3751	0.999983132621781	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_F3R5A5WV	PT_K30AWQ8A	7316-393	0.933349653669456	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_F4S6YVNV	PT_ATS9XDJ5	7316-2159	0.988535180281641	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_F984HQZE	PT_JYZA0PNV	7316-437	0.999999837310874	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_F9P4YDBJ	PT_1ZAWNGWT	7316-319	0.948559230158415	GNG, IDH	GNG, IDH	LGG, IDH	A_IDH_LG	LGG, IDH	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_FBPGKMX5	PT_7JQ24F35	7316-1957	0.977551197217132	SEGA, To be classified	SEGA, To be classified	NA	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FD03JPYW	PT_RXJZ3C5G	7316-2632	0.826867344179006	LGG, FGFR	LGG, FGFR	NA	DNET	GNT	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FD842CQN	PT_PGVQ4XRZ	7316-946	0.999916300578453	LGG, other MAPK	LGG, other MAPK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_FGFXGS44	PT_AQWDQW27	7316-1476	0.960010687943345	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_FGQRF6AT	PT_AQWDQW27	7316-523	0.985952905728552	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_FJNERYAH	PT_DA2TJAV1	7316-482	0.999999835594664	LGG, MAPK	LGG, MAPK	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FMYA3W47	PT_3PSG2DQT	7316-1111	0.97979389310108	NA	NA	NA	CTRL_CBM	NA	Pre-cancerous lesion	NA	no molecular subtype
+BS_FNQVK8W6	PT_Q25V9Y6M	7316-1668	0.997023805479052	LGG, KIAA1549-BRAF, FGFR	LGG, KIAA1549-BRAF, FGFR	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FR3VPEHX	PT_S0PBN4M7	7316-1805	0.998304632522561	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FR4K7JTC	PT_B2KF59PQ	7316-6088	0.999999420919558	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_FS31ZQDG	PT_9PDE9KSB	7316-4723	0.99999417356281906	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_FS3DD2PH	PT_X8SK8120	7316-340	0.999731399632183	CNC	CNC	NA	CN	CNC	Neuronal and mixed neuronal-glial tumor	Neuronal and mixed neuronal-glial tumor	NA
+BS_FVBPNWH8	PT_9R8JW346	7316-5332	0.991140569558428	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_FX5BH0A0	PT_M5HDHQNQ	7316-475	0.999909941295514	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FXWKR0XJ	PT_AC5SD9AC	7316-2291	0.999683746570164	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_FYGC4GN0	PT_ZVV78QP5	7316-117	0.977898068693244	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_G14RVCCY	PT_NCVTTNTG	7316-6206	0.91109589723659	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_G43HP0PK	PT_GQZ84ACS	7316-487	0.999997490556568	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_G4Y34Z7A	PT_FXPJM0MW	7316-207	0.979647140296825	LGG, RTK	LGG, RTK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_G61KHHGG	PT_NME1D79F	7316-7963	0.829855677036631	HGG, H3 wildtype	HGG, H3 wildtype	NA	CTRL_CORPCAL	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_G8SVD7QA	PT_BCWGRGDB	7316-3623	0.999397965029513	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_GBH5465S	PT_3FWKC70D	7316-2323	0.908995022207491	LGG, other MAPK	LGG, other MAPK	NA	DMG_K27	DMG, H3 K28	Low-grade astrocytic tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_GE54T1TT	PT_1JRQQVYZ	7316-5899	0.997733955619794	NA	NA	NA	MNG_SMARCE1	NA	Meningioma	NA	no molecular subtype
+BS_GJ5YWQNJ	PT_5FPQXNAM	7316-4436	0.959556675212576	NA	NA	NA	PITAD_TSH	NA	Benign tumor	NA	no molecular subtype
+BS_GJAR8X3M	PT_1DRAVX4S	7316-1968	0.915499633177459	NA	NA	NA	ARMS	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_GK5CJFEQ	PT_2E552BAR	7316-3066	0.857674726536035	NA	NA	NA	SCHW	NA	Mixed tumor	NA	no molecular subtype
+BS_GQRBK39P	PT_976P4557	7316-214	0.943788766195927	NA	NA	NA	CTRL_HEMI	NA	Meningioma	NA	no molecular subtype
+BS_GQXY6MDC	PT_K2PD4VT2	7316-9035	0.964101601293956	GNT, other MAPK	GNT, other MAPK	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_H02YPQTK	PT_5EPZ7TCT	7316-2597	0.999272020439644	NA	NA	NA	SCHW	NA	Other	NA	no molecular subtype
+BS_H07WTQEH	PT_9BZETM0M	7316-158	0.848791257412591	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_H1DTKG7W	PT_DFCZAG9T	7316-224	0.999997339520173	NA	NA	NA	NB_MYCN	NA	Embryonal tumor	NA	no molecular subtype
+BS_H1YVXKC0	PT_FWWRWTV2	7316-6886	0.998657014737207	HGG, H3 wildtype	HGG, H3 wildtype	NA	CTRL_CBM	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_H5Y2CYK2	PT_YJGTKDV0	7316-1683	0.999960975689435	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_H66ZV62C	PT_SD4RJ57T	7316-9842	0.911869518806301	DMG, H3 K28, TP53	DMG, H3 K28	HGG, IDH	A_IDH_HG	HGG, IDH	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	not match
+BS_H6K3MGTB	PT_Y0XPQ1SZ	7316-8870	0.947847902123796	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_H9JCDE5Y	PT_SFGJ7C83	7316-927	0.933666983469451	LGG, MAPK	LGG, MAPK	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_H9PAZ2GF	PT_3CVMBGD7	7316-1963	0.999997416507035	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_HA2G3RSW	PT_DBR35QVJ	7316-5221	0.992715164686101	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_HCRJR7YP	PT_NMZBRFYS	7316-3654	0.99991733776381	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_HFACGMWB	PT_WVPM84TF	7316-7504	0.989550195343774	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_HFC14C3X	PT_B4NYKS5V	7316-8720	0.999548807355238	NA	NA	NA	PB_GRP1B	NA	Tumor of pineal region	NA	no molecular subtype
+BS_HG8GSFR0	PT_7YGZ526E	7316-1978	0.999999987645008	LGG, KIAA1549-BRAF, RTK	LGG, KIAA1549-BRAF, RTK	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_HJ51RXV8	PT_4Z34K4XB	7316-733	0.999999495391672	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_HSAD17B7	PT_CJ1M7YTY	7316-4338	0.994243137263487	NA	NA	NA	PB_GRP2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_HVMS7D5J	PT_X84SD608	7316-497	0.849001887683462	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_HVPBH3BV	PT_YZ8A8A36	7316-723	0.999918233772421	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_HX5THCZ6	PT_WVC247PK	7316-1090	0.999999892837539	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_J39Y0TCB	PT_VZ32W7M8	7316-5263	0.999982488236048	CRANIO, ADAM	CRANIO, ADAM	NA	CPH_ADM	CRANIO, ADAM	Tumors of sellar region	Tumors of sellar region	NA
+BS_J5V9PEM9	PT_FZP24XYK	7316-1060	0.9859995742937	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_J68XEJAD	PT_3D74J8RZ	7316-1792	0.999795056390298	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_J6NGG30Q	PT_E79807KT	7316-1087	0.972612885996327	SEGA, To be classified	SEGA, To be classified	NA	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_J75KMWCZ	PT_JT0JFDHA	7316-6374	0.999859273910851	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_J81C76DJ	PT_G16WS1MW	7316-279	0.999387042613432	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_J8KXGDXJ	PT_44HPG5YT	7316-3067	0.943623732579225	GNG, BRAF V600E	GNG, BRAF V600E	GNG, MAPK	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_J9C865T8	PT_TPSMT960	7316-400	0.964403408826072	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_JB9TKWYN	PT_P0A5MQPS	7316-6258	0.998209241510425	NA	NA	NA	GCT_YOLKSAC	NA	Germ cell tumor	NA	no molecular subtype
+BS_JDH4Y21W	PT_NFCRT9D3	7316-9031	0.999706083963168	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_JE09WG8W	PT_2WVW55DA	7316-502	0.999991107148834	GNT, RTK	GNT, RTK	NA	IHG	IHG	Neuronal and mixed neuronal-glial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_JFMJ6PH9	PT_PFP1ZVHD	7316-2310	0.99999991311105	LGG, BRAF V600E, CDKN2A/B	LGG, BRAF V600E, CDKN2A/B	NA	PXA	NA	Low-grade astrocytic tumor	NA	NA
+BS_JHTEHZ43	PT_FH9B37E1	7316-3507	0.986828178004932	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_JMAEFJ1F	PT_JMYBRWQ9	7316-6812	0.999774346107036	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_JMGPEWPD	PT_WYXTEG3E	7316-5522	0.84336981728653	CRANIO, ADAM	CRANIO, ADAM	NA	CTRL_REACTIVE	NA	Tumors of sellar region	NA	NA
+BS_JQD0V916	PT_PFA762TK	7316-462	0.99997036449903	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_JTXHT7QJ	PT_RNVACT1Q	7316-5105	0.999986869525634	EPN, To be classified	EPN, To be classified	NA	AG_MYB	LGG, MYB/MYBL1	Ependymal tumor	Low-grade astrocytic tumor	NA
+BS_K14K54GX	PT_DQE0STN1	7316-3509	0.932619863500495	GNT, To be classified	GNT, To be classified	GNT	GNT_A	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_K9ZKFWAS	PT_XCCV6CW2	7316-2268	0.848953543869164	NA	NA	NA	GCT_TERA	NA	Germ cell tumor	NA	no molecular subtype
+BS_KAFZ8Y5J	PT_SRWZDG3N	7316-361	0.999446027151398	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_KB0E8BVB	PT_BWGZBVD1	7316-1678	0.999612629493596	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_KD5H0NQ2	PT_G46JNYAD	7316-5106	0.999578800062598	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_KGHBXZE6	PT_9DMMZ08D	7316-1666	0.995744703651023	MB, SHH	MB, SHH	NA	ETMR_Atyp	NA	Embryonal tumor	NA	NA
+BS_KGT59ZDT	PT_J0SZ1SX5	7316-2589	0.999988494678904	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_KGVHFW0P	PT_3NM45TQ8	7316-1077	0.999340910479823	GNG, FGFR	GNG, FGFR	GNG, MAPK	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_KJ3NJZK0	PT_868QRW9G	7316-3132	0.970400248721888	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_KJA9Q4N7	PT_CGPJY881	7316-891	0.999006763964437	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	MB_SHH_2	MB, SHH	Low-grade astrocytic tumor	Embryonal tumor	NA
+BS_KK4AMP03	PT_9M4CQX3M	7316-1972	0.999984530536883	LGG, NF1-somatic, FGFR	LGG, NF1-somatic, FGFR	NA	RGNT	GNT, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_KM45ZRKE	PT_12JTZFC2	7316-3504	0.999993670581213	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_KMVRX07R	PT_XWYNQBTK	7316-2652	0.999944445535562	NA	NA	NA	MPNST_ATYP	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_KPEJSEDB	PT_C41JYFF4	7316-5300	0.995887356242811	NA	NA	NA	PB_GRP2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_KRJA08HJ	PT_Y98Q8XKV	7316-4775	0.999559671108626	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_KRQS22S1	PT_14Z5353Q	7316-6359	0.997503650218666	EPN, To be classified	EPN, To be classified	NA	INFLAM_ENV	NA	Ependymal tumor	NA	NA
+BS_KWMS40SQ	PT_3HRS5CWF	7316-925	0.999797445054504	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_M00T28BR	PT_MXASQ2GW	7316-3558	0.885647422134811	NA	NA	NA	NFIB_PLEX	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_M0YWF7TK	PT_229DRV7B	7316-1757	0.948868813181615	NA	NA	NA	NFIB_PLEX	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_M255G2TR	PT_DTP4MMRA	7316-1463	0.990781040415419	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_M4PAPSSW	PT_9C2G356W	7316-3555	0.999991430645715	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_M5AC601F	PT_JW6FBEFK	7316-3019	0.999889438877702	SEGA, To be classified	SEGA, To be classified	SEGA, To be classified	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_M7KQY7PE	PT_T58EGJRX	7316-3561	0.921823181562845	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_MAQMYWNS	PT_SD4RJ57T	7316-9842	0.862727553983983	DMG, H3 K28, TP53	DMG, H3 K28	HGG, IDH	A_IDH_HG	HGG, IDH	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	not match
+BS_MR7DZ7D0	PT_GH6HM5QF	7316-3202	0.997055500034982	MB, SHH	MB, SHH	NA	ARMS	NA	Embryonal tumor	NA	NA
+BS_MT8TPB0G	PT_YDWBWTVN	7316-147	0.99993970472798	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_MV728Q6J	PT_ZN1F7RMP	7316-1080	0.996685824189486	NA	NA	NA	PITAD_TSH	NA	Benign tumor	NA	no molecular subtype
+BS_MVGE1QES	PT_E8XM8JFZ	7316-324	0.999970617139155	GNG, BRAF V600E	GNG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_MYT6NAAB	PT_Y572BRC1	7316-2147	0.999987767826616	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_MZ45E21Q	PT_KHX1WQ4H	7316-186	0.995286295881904	LGG, other MAPK	LGG, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_MZ9K49VT	PT_2FVTD0WR	7316-2897	0.999997349774793	LGG, MAPK	LGG, MAPK	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_N3QT5EFA	PT_NGDW8WVP	7316-1704	0.999443241062795	NA	NA	NA	HMB	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_N52FBNRY	PT_DMHFS0HX	7316-3055	0.99999971316487	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_N55ANSCK	PT_FF0NV7ZM	7316-716	0.99999964724949	HGG, To be classified	HGG, To be classified	NA	NET_PATZ1	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_N56DAP7P	PT_E78NHRWQ	7316-1081	0.981390441573665	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_N86NB8J0	PT_4MQT24P4	7316-6981	0.998832819179727	NA	NA	NA	PB_GRP2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_N9WQE4F6	PT_W4SMVJM8	7316-6979	0.993216446261898	GNT, other MAPK	GNT, other MAPK	GNT, MAPK	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_NAHRYB7F	PT_EYWDFKA7	7316-29	0.999780108039684	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_NC79CTRA	PT_9CCEQ57K	7316-2936	0.995107383629577	NA	NA	NA	GG	GNG, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_NDRFGYY3	PT_TB8HPJBN	7316-2663	0.999988619964159	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_NSB783DJ	PT_N3HVMV06	7316-2075	0.999999747087992	LGG, BRAF V600E	LGG, BRAF V600E	NA	PXA	NA	Low-grade astrocytic tumor	NA	NA
+BS_NX9DC0TN	PT_FKWCVXNC	7316-332	0.999635858085062	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_NZ133AHZ	PT_0DR71Q13	7316-3517	0.989673820728537	NA	NA	NA	SCHW	NA	Embryonal tumor	NA	no molecular subtype
+BS_P0KXVQ8K	PT_TVK2KY36	7316-2626	0.92480953816047	MB, Group4	MB, Group4	NA	CTRL_CBM	NA	Embryonal tumor	NA	NA
+BS_P26GF314	PT_XY404K0D	7316-1782	0.999999346103617	EVN	EVN	NA	EVNCYT	EVN	Neuronal and mixed neuronal-glial tumor	Neuronal and mixed neuronal-glial tumor	NA
+BS_P6BMPCE3	PT_F27SA15G	7316-1661	0.999995289077611	LGG, NF1-germline	LGG, NF1-germline	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_P8BTR3QS	PT_DNAJYFZT	7316-4035	0.999932024740979	EPN, To be classified	EPN, To be classified	NA	CNS_BCOR_FUS	NA	Ependymal tumor	NA	NA
+BS_P9G0E57D	PT_HJMP6PH2	7316-185	0.999800173846075	EWS	EWS	NA	CNS_BCOR_ITD	CNS BCOR	Mesenchymal non-meningothelial tumor	Embryonal tumor	NA
+BS_PDNXHWQ8	PT_98QMQZY7	7316-464	0.996291760604369	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	PB_GRP1A	NA	Embryonal tumor	NA	NA
+BS_PGNB51T2	PT_DH8A0SNQ	7316-408	0.823193531157501	NA	NA	NA	GCT_TERA	NA	Germ cell tumor	NA	no molecular subtype
+BS_PRF3V7DZ	PT_DEYCW197	7316-175	0.991934656343258	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_PRJ6VEZ8	PT_SYSCTVT8	7316-7113	0.80967956839486	CRANIO, ADAM	CRANIO, ADAM	NA	PA_MID	LGG, MAPK	Tumors of sellar region	Low-grade astrocytic tumor	NA
+BS_PSR9HVZT	PT_ATE3YRH5	7316-3308	0.99998630835645	LGG, KIAA1549-BRAF, RTK	LGG, KIAA1549-BRAF, RTK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_PV4N35MA	PT_218SX3G4	7316-529	0.926121768956454	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	PIN_RB	NA	Embryonal tumor	NA	NA
+BS_PVHKMY7T	PT_WYF217NZ	7316-345	0.999851986869806	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_PW40TSTA	PT_NMZBRFYS	7316-1987	0.999865920027414	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_PWRJHMQV	PT_B5VQ16GW	7316-488	0.99974708939711	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_PX2GS0TD	PT_HERXR7FX	7316-6039	0.999999996463209	HGG, H3 wildtype	HGG, H3 wildtype	NA	ET_PLAG	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_PYSXW993	PT_TXFYRDP4	7316-193	0.999702940945817	LGG, BRAF V600E	LGG, BRAF V600E	NA	GG	GNG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_PZ6ZDNV1	PT_124TTG01	7316-1960	0.967891810762409	NA	NA	NA	PITAD_STH_DENSE1	NA	Benign tumor	NA	no molecular subtype
+BS_Q0PBV7W5	PT_R4T1V1K4	7316-2784	0.999807317776647	HGG, To be classified	HGG, To be classified	NA	CTRL_CBM	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_Q2CFP829	PT_S4YNE17X	7316-4341	0.999371299351613	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_Q37DRN94	PT_CWD717Q0	7316-101	0.825646891411492	GNG, other MAPK	GNG, other MAPK	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_Q5PQA328	PT_962TCBVR	7316-896	0.995695145836636	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_Q61KTESW	PT_3MNY9BRY	7316-2583	0.850479491292905	LGG, BRAF V600E	LGG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_Q6T1BM6K	PT_H024RK87	7316-104	0.972104506585357	NA	NA	NA	GCT_TERA	NA	Germ cell tumor	NA	no molecular subtype
+BS_Q7YA56VW	PT_M7NFAC5G	7316-2329	0.934418224052008	NA	NA	NA	NFIB_PLEX	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_Q8ZVK2KX	PT_DBPKVB5P	7316-6644	0.951833510467914	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_QCES7F55	PT_2Z7GVDTM	7316-3515	0.969696398468696	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QK2JGRS8	PT_YWFFHZD5	7316-3399	0.97773260010541	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_QQ96KZ3W	PT_EQ5C5TEA	7316-3922	0.999906399901761	LGG, KIAA1549-BRAF, other MAPK	LGG, KIAA1549-BRAF, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QRWRZHRV	PT_DJ39ZXZX	7316-7938	0.99988623485691	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_QSN1ANPN	PT_9B6KWJT2	7316-1226	0.999808477358105	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QV86KKGV	PT_DA4WFQ96	7316-172	0.843628485272689	NA	NA	NA	GG	GNG, MAPK	Pre-cancerous lesion	Low-grade astrocytic tumor	no molecular subtype
+BS_QWXFFWQ2	PT_H57TEQDT	7316-2324	0.99999947721078	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QXBPAFV9	PT_N9CGVG02	7316-2197	0.997283617001682	LGG, KIAA1549-BRAF, RTK	LGG, KIAA1549-BRAF, RTK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QYH73D6M	PT_FWWRWTV2	7316-6886	0.996774070421252	HGG, H3 wildtype	HGG, H3 wildtype	NA	CTRL_CBM	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_QZG0024B	PT_5P3XJ97K	7316-390	0.999452980266207	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_QZQY9X9X	PT_BN8RWJEV	7316-3633	0.995411901214015	HGG, H3 wildtype	HGG, H3 wildtype	NA	PA_CORT	GNT, MAPK	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_R11RSZDN	PT_KT1TR9JH	7316-8072	0.985491277114567	ETMR, NOS	ETMR, NOS	NA	ETMR_Atyp	NA	Embryonal tumor	NA	NA
+BS_R3PD62P1	PT_C95KPXSW	7316-869	0.937701533333872	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_R4BCJEBB	PT_8XZY6MM1	7316-957	0.999970978733791	LGG, KIAA1549-BRAF, other MAPK	LGG, KIAA1549-BRAF, other MAPK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_R50NQATQ	PT_EXYXBDGP	7316-3140	0.900123636434381	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_R6ES0HY1	PT_48N4Y6YP	7316-1866	0.999843523073734	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_R83GG0JW	PT_8S943DXT	7316-6208	0.947763822761688	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_R8NSV7XB	PT_YZME6QCY	7316-2245	0.814867291072935	LGG, FGFR	LGG, FGFR	NA	PA_INF_FGFR	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_R9B71R7T	PT_N3205P0D	7316-1099	0.953066490460225	DHG, H3 G35, TP53	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_RA074XH1	PT_K32CWBQF	7316-5893	0.997202285104149	CRANIO, To be classified	CRANIO, To be classified	NA	PA_MID	LGG, MAPK	Tumors of sellar region	Low-grade astrocytic tumor	NA
+BS_RCZ5BEXW	PT_1TB2V1PH	7316-2608	0.991343497918759	NA	NA	NA	GCT_GERM_KIT	NA	Germ cell tumor	NA	no molecular subtype
+BS_RD0CVYKF	PT_Z0N9D7GW	7316-6969	0.974597472593082	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_RE5YCEEX	PT_MVSWHXSR	7316-8734	0.99999890777725	HGG, To be classified	HGG, To be classified	NA	PA_MID	LGG, MAPK	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_RF93Q7R6	PT_P6PKT77Y	7316-7741	0.996919534183375	NA	NA	NA	NB_TMM_POS	NA	Embryonal tumor	NA	no molecular subtype
+BS_RFJN5JSA	PT_N32BYY8A	7316-89	0.971760270251265	HGG, H3 wildtype	HGG, H3 wildtype	NA	PA_CORT	GNT, MAPK	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_RMP2RWNA	PT_41BCPB7R	7316-406	0.972062003775876	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_RN4CW4TW	PT_R9V5R1SY	7316-1940	0.9937510315062	GNG, BRAF V600E	GNG, BRAF V600E	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_RVAH1AZV	PT_GCKT4FJX	7316-3919	0.999996181335968	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_RWKHJFYY	PT_4EDBZRM2	7316-1952	0.999751137111342	GNG, KIAA1549-BRAF	GNG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_RX11G9TX	PT_1J2DT6MM	7316-2184	0.999998296988203	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_RYF0NJ9R	PT_17W3GJPT	7316-2306	0.839980141423034	GNG, FGFR	GNG, FGFR	GNT	DNET	GNT	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_S0CRDFF4	PT_QK4XB83F	7316-663	0.998010374092364	SEGA, To be classified	SEGA, To be classified	NA	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_S0NFY0XQ	PT_1NN9AW39	7316-3148	0.993849155605185	NA	NA	NA	MELN	NA	Melanocytic tumor	NA	no molecular subtype
+BS_S1JQYAAW	PT_R10BSB9F	7316-1965	0.990657833781275	GNG, wildtype	GNG, wildtype	NA	CTRL_REACTIVE	NA	Low-grade astrocytic tumor	NA	NA
+BS_S27Q9QZC	PT_8J4EYY40	7316-9435	0.999999767066213	HGG, H3 wildtype	HGG, H3 wildtype	NA	PA_INF	LGG, FGFR	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_S30DM7ZD	PT_HQSVFBPH	7316-7496	0.974295262588351	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_S367XK8A	PT_1VQWQ0TC	7316-3627	0.890193353049315	LGG, BRAF V600E, other MAPK	LGG, BRAF V600E, other MAPK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_S5DT08R4	PT_PDFP2XFB	7316-6842	0.998184049477158	GNT, BRAF V600E	GNT, BRAF V600E	LGG, FGFR	PA_INF	LGG, FGFR	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_S7EWDE73	PT_HXDCHQ9Y	7316-2171	0.961007937872296	SEGA, To be classified	SEGA, To be classified	SEGA, To be classified	SEGA	SEGA	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_S9H9WDCD	PT_9D2N4S5Z	7316-93	0.998278837625604	LGG, To be classified	LGG, To be classified	NA	DMG_K27	DMG, H3 K28	Low-grade astrocytic tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_SG2X2XQB	PT_QD6KKKJH	7316-1765	0.994958258901371	NA	NA	NA	PB_GRP1A	NA	Tumor of pineal region	NA	no molecular subtype
+BS_SH1ET65Z	PT_3RN24N9X	7316-20	0.844699024220635	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF_FGFR	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_SJSGGF0Y	PT_EEKE0V9T	7316-32	0.898491004454069	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_SNDPSMTW	PT_DHZ5KCNN	7316-7737	0.879782471640821	NA	NA	NA	NFIB_PLEX	NA	Embryonal tumor	NA	no molecular subtype
+BS_SPJCNAT7	PT_ZP4W7JN6	7316-1074	0.954350258088825	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_SQCV0X97	PT_R1DHB0ZT	7316-2642	0.968032432289434	LGG, FGFR	LGG, FGFR	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_STP5K7T2	PT_PY4QFHHV	7316-3768	0.843371318220182	NA	NA	NA	CTRL_CORPCAL	NA	Neuronal and mixed neuronal-glial tumor	NA	no molecular subtype
+BS_T0WBA2VV	PT_QH9H491G	7316-8733	0.999948918894741	NA	NA	NA	MNG_BEN_2	NA	Meningioma	NA	no molecular subtype
+BS_T12T8R20	PT_2YT37G8P	7316-2962	0.99999988649819	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_T3M9V6Q6	PT_A4KA01ZH	7316-894	0.999998896049139	NA	NA	NA	GCT_TERA	NA	Germ cell tumor	NA	no molecular subtype
+BS_T47KCS4P	PT_J4VQP0RW	7316-526	0.907979795316616	HGG, IDH, TP53	HGG, IDH	NA	A_IDH_LG	LGG, IDH	Diffuse astrocytic and oligodendroglial tumor	Low-grade astrocytic tumor	NA
+BS_T7FGWZC1	PT_X1PRY0FC	7316-1779	0.999983693223402	LGG, KIAA1549-BRAF, NF1-germline	LGG, KIAA1549-BRAF, NF1-germline	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_TA55BX6B	PT_P9GVEXFE	7316-3322	0.999004419752104	NA	NA	NA	PB_FOXR2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_TDFCRS7E	PT_7M2PGCBV	7316-331	0.999786954375246	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_TH4E3NA8	PT_BDNE55YT	7316-1710	0.99620448042098	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_TH5KHX4M	PT_5GQ76YZJ	7316-168	0.99893534318787	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_THY47V4T	PT_B54PH840	7316-2707	0.999650140864718	NA	NA	NA	PB_FOXR2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_TKS3KBF7	PT_7M2PGCBV	7316-3312	0.99956069679271	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_TRSPTHMM	PT_P1F0AHMT	7316-4432	0.973253627367939	HGG, To be classified	HGG, To be classified	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_TSMY09VT	PT_AP658JQV	7316-1694	0.985397876689603	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_TT0R88ZT	PT_AQWDQW27	7316-1705	0.853135980103443	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_TTXVFB85	PT_41RR5FQD	7316-1115	0.999999695949371	NA	NA	NA	GCT_TERA	NA	Germ cell tumor	NA	no molecular subtype
+BS_TWBD7741	PT_BGX962PA	7316-6971	0.999993826065503	NA	NA	NA	CNS_SARC_CIC	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_V1PQAKJT	PT_1H2REHT2	7316-2990	0.97753112257573	LGG, NF1-somatic, NF1-germline, CDKN2A/B	LGG, NF1-somatic, NF1-germline, CDKN2A/B	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_V3200RYQ	PT_TH18S0JQ	7316-3068	0.999998460039967	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_V38JC9TH	PT_0DXHDZJR	7316-2857	0.999839945537973	HGG, H3 wildtype	HGG, H3 wildtype	NA	CNS_BCOR_ITD	CNS BCOR	Diffuse astrocytic and oligodendroglial tumor	Embryonal tumor	NA
+BS_V3WDSJY3	PT_YPCR2XRS	7316-554	0.993421798714552	LGG, other MAPK	LGG, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_V52DMGQX	PT_BDM0M83S	7316-3072	0.99995049601599	NA	NA	NA	MB_WNT	MB, WNT	Tumor of pineal region	Embryonal tumor	no molecular subtype
+BS_V839GTGE	PT_Y98Q8XKV	7316-7219	0.969580849462863	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_VBPNA1QT	PT_S2SQJVGK	7316-344	0.973789030100806	LGG, RTK	LGG, RTK	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_VC5CZD0N	PT_1TGKS073	7316-1659	0.999710478377534	LGG, BRAF V600E	LGG, BRAF V600E	NA	DLGNT_1	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_VFF1Y8S7	PT_9CSZBV2P	7316-1473	0.999790404645529	CNS NB-FOXR2	CNS NB-FOXR2	NA	pedHGG_RTK1B	HGG, H3 wildtype	Embryonal tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_VG51Q0NH	PT_AYZA2WCW	7316-197	0.999375712330148	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_VJF77FPE	PT_41QYPSGV	7316-884	0.999999998013611	LGG, BRAF V600E, CDKN2A/B	LGG, BRAF V600E, CDKN2A/B	NA	PXA	NA	Low-grade astrocytic tumor	NA	NA
+BS_VK5DAZCB	PT_5CNZ47XV	7316-1926	0.999993692065804	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_VKRANPWV	PT_GKSABESN	7316-3485	0.99999975223136806	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_VPVJTN5N	PT_BK92NM09	7316-2669	0.999975760966765	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, FGFR	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_VQ4E0ZSM	PT_KMHGNCNR	7316-944	0.995089357085211	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_VQAPSJCN	PT_MGJJBG0T	7316-7667	0.999999947431988	GNT, RTK, CDKN2A/B	GNT, RTK, CDKN2A/B	NA	ANTCON	NA	Low-grade astrocytic tumor	NA	NA
+BS_VQKQ2CSZ	PT_M0FVZ88D	7316-1986	0.999705061404447	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_VTHR1XMM	PT_JEW5HG4W	7316-1703	0.968414138007997	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_VTSA23T2	PT_7ECZ8VD0	7316-6066	0.963392350512209	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_VTTMSAK9	PT_GY99ZJHV	7316-1654	0.999957561074973	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_VTWGK1DV	PT_W6H1Q54P	7316-8122	0.810198189471855	DMG, H3 K28	DMG, H3 K28	NA	MB_SHH_2	MB, SHH	Diffuse astrocytic and oligodendroglial tumor	Embryonal tumor	NA
+BS_VXQV7GX2	PT_3P3D97AB	7316-13	0.997544450784457	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_VXQX0JPW	PT_MNHMAH0S	7316-880	0.999999793153312	LGG, RTK	LGG, RTK	NA	pedHGG_RTK2A	HGG, H3 wildtype	Low-grade astrocytic tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_VZWB13M0	PT_RKECV80K	7316-9	0.93177226544899	LGG, BRAF V600E	LGG, BRAF V600E	GNT, MAPK	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_W0FSAQJ5	PT_DW2XRPC9	7316-1723	0.999999888846194	HGG, To be classified	HGG, To be classified	NA	CNS_SARC_CIC	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_W4SCDX8T	PT_7HGY5W67	7316-6044	0.999996761032981	GNT, wildtype	GNT, wildtype	NA	ABM_MN1	CNS HGNET-MN1	Neuronal and mixed neuronal-glial tumor	Embryonal tumor	NA
+BS_W7K1H10P	PT_MGJJBG0T	7316-7667	0.999999230662688	GNT, RTK, CDKN2A/B	GNT, RTK, CDKN2A/B	NA	ANTCON	NA	Low-grade astrocytic tumor	NA	NA
+BS_W808K35Z	PT_EB0D3BXG	7316-3311	0.923639011029209	NA	NA	NA	NB_TMM_POS	NA	Embryonal tumor	NA	no molecular subtype
+BS_WAN02YNZ	PT_5R8KC1A1	7316-5482	0.99999976884852	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_WDE40ZAY	PT_1N6ATKJS	7316-2725	0.990812749505439	LGG, BRAF V600E	LGG, BRAF V600E	NA	CTRL_REACTIVE	NA	Low-grade astrocytic tumor	NA	NA
+BS_WEQGYFZ8	PT_YBJYA2CD	7316-2244	0.999882274050432	NA	NA	NA	CPP_AD	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_WHJTDF8Q	PT_KW94B4BJ	7316-3657	0.999366935891141	NA	NA	NA	PITAD_PRL	NA	Benign tumor	NA	no molecular subtype
+BS_WHKQBZG4	PT_962TCBVR	7316-391	0.99180253211029	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_WJJHFGX7	PT_S7D7H9VA	7316-7751	0.992433782263892	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_WNGTPP3E	PT_G1EVC9DA	7316-6285	0.999096562438593	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_WQ90DGQT	PT_6VJ5PNKS	7316-2174	0.988770907535124	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_WQPCGFZF	PT_G16J1RA8	7316-7926	0.828850637218161	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_WWHA79G6	PT_714QF82Q	7316-9743	0.886578891341769	NA	NA	NA	MNG_BEN_1	NA	Meningioma	NA	no molecular subtype
+BS_WX2BE8KZ	PT_DS0HZCSD	7316-9843	0.999644401846751	HGG, H3 wildtype, TP53	HGG, H3 wildtype	NA	INFLAM_ENV	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_WZY34KWZ	PT_673WYA9X	7316-7595	0.990856563235642	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_WZY641ZC	PT_AYVKQZRB	7316-612	0.999984618544285	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_X2S37Y4C	PT_MQHST8YC	7316-3316	0.997125718634015	CRANIO, To be classified	CRANIO, To be classified	NA	CTRL_ADENOPIT	NA	Tumors of sellar region	NA	NA
+BS_X36SF91S	PT_W7FK539G	7316-76	0.999992197041629	NA	NA	NA	NB_MYCN	NA	Embryonal tumor	NA	no molecular subtype
+BS_X4FED3TW	PT_CX58G6P6	7316-2191	0.958506001700734	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_X4W7RWVN	PT_G1EVC9DA	7316-4732	0.999461820616335	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_X6GNJ28N	PT_TEBD1SES	7316-3054	0.988068911563212	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_XA1T7CAX	PT_B8XTNWPS	7316-2981	0.996132141145626	NA	NA	NA	MB_SHH_2	MB, SHH	Other	Embryonal tumor	no molecular subtype
+BS_XC11GCHB	PT_KMHGNCNR	7316-350	0.859202993719671	LGG, RTK, BRAF V600E	LGG, RTK, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_XKSDEG8D	PT_GVDMG7KC	7316-152	0.992859090086185	LGG, wildtype	LGG, wildtype	NA	CTRL_HEMI	NA	Low-grade astrocytic tumor	NA	NA
+BS_XMHRZM1M	PT_CM32ZCX6	7316-2215	0.988335809544596	LGG, BRAF V600E	LGG, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_XPBRB9S7	PT_C2D4JXS1	7316-1746	0.996036767129634	HGG, To be classified	HGG, To be classified	NA	CNS_SARC_DICER	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_XPZXMMEG	PT_Z0JKP1GY	7316-3158	0.999966036494483	DMG, H3 K28, TP53	DMG, H3 K28	NA	INFLAM_ENV	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_XQNMWJ4H	PT_HJMP6PH2	7316-4768	0.977969980306455	EWS	EWS	NA	CNS_BCOR_ITD	CNS BCOR	Mesenchymal non-meningothelial tumor	Embryonal tumor	NA
+BS_XSME1PXF	PT_2FVTD0WR	7316-917	0.953075287516776	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_XT819MS0	PT_RMK36R2E	7316-2275	0.978343102295266	LGG, other MAPK	LGG, other MAPK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_XVE841YY	PT_K63972GG	7316-666	0.965747884347147	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_CORT	GNT, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_XWG2E2Z3	PT_409Y4N1N	7316-84	0.983989087343185	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	CTRL_CBM	NA	Low-grade astrocytic tumor	NA	NA
+BS_XX681CXV	PT_G2CH3Z17	7316-3085	0.965421361924767	CRANIO, To be classified	CRANIO, To be classified	NA	PA_MID	LGG, MAPK	Tumors of sellar region	Low-grade astrocytic tumor	NA
+BS_Y0V9RZCQ	PT_5X061J42	7316-2149	0.967856748002167	NA	NA	NA	GCT_GERM_KIT	NA	Germ cell tumor	NA	no molecular subtype
+BS_Y19FJ1NW	PT_8ED5MJR2	7316-9073	0.999724077194876	HGG, To be classified	HGG, To be classified	NA	CTRL_CORPCAL	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_Y1CFCD70	PT_FH0TJ5P2	7316-212	0.990752368392864	HGG, To be classified	HGG, To be classified	NA	EPN_ST_ZFTA_RELA_A	EPN, ST ZFTA	Diffuse astrocytic and oligodendroglial tumor	Ependymal tumor	NA
+BS_Y54J0CXS	PT_8V3360DR	7316-641	0.999450958741024	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_YBZ421J5	PT_AP9P5D7N	7316-1117	0.999857324912107	NA	NA	NA	PA_CORT	GNT, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_YD8K8Z9Z	PT_6PYNBA9C	7316-853	0.999753819572476	NA	NA	NA	CPP_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_YDAZPDQW	PT_AEN9D8NP	7316-2398	0.999928038337307	NA	NA	NA	MB_G34_VIII	MB, Group4	Other	Embryonal tumor	no molecular subtype
+BS_YDXYS3Y2	PT_JMW6Q6NH	7316-1648	0.999999981298806	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_YGS362AV	PT_H7WRRTGQ	7316-6355	0.83183624467639	NA	NA	NA	MNG_BEN_2	NA	Meningioma	NA	no molecular subtype
+BS_YK0HQG2M	PT_D6W7HYAS	7316-3059	0.884539482713659	NA	NA	NA	HMB	NA	Mesenchymal non-meningothelial tumor	NA	no molecular subtype
+BS_YM8N4S9W	PT_8WNA6M94	7316-1983	0.978735795050474	NA	NA	NA	SCHW	NA	Tumor of cranial and paraspinal nerves	NA	no molecular subtype
+BS_YP1MXWY9	PT_T1FV709B	7316-681	0.999990598034402	GNT, BRAF V600E	GNT, BRAF V600E	LGG, MAPK	PA_MID	LGG, MAPK	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	not match
+BS_YXW1NSG2	PT_0MHKP408	7316-726	0.999981847281832	LGG, BRAF V600E	LGG, BRAF V600E	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_YZVGP1X1	PT_WTMSD2WB	7316-3632	0.996122706052382	CHDM, conventional	CHDM, conventional	NA	CHORDM	CHDM	Chordoma	Chordoma	NA
+BS_Z12A6M41	PT_5VAKED5F	7316-2689	0.999750281434248	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_Z1CCVC65	PT_VJBVXB08	7316-155	0.999994898511582	CNS Embryonal, NOS	CNS Embryonal, NOS	NA	DGONC	GNT	Embryonal tumor	Low-grade astrocytic tumor	NA
+BS_Z4Q0JCGB	PT_ARCM3PXM	7316-1187	0.995759499805979	HGG, To be classified	HGG, To be classified	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_Z58Z928D	PT_G5MWV2WW	7316-7534	0.919417183366231	NA	NA	NA	MNG_BEN_3	NA	Meningioma	NA	no molecular subtype
+BS_Z62B53CW	PT_5EPZ7TCT	7316-2555	0.999340901322104	NA	NA	NA	ETMR_C19MC	ETMR, C19MC-altered	Meningioma	Embryonal tumor	no molecular subtype
+BS_Z8BJAPNR	PT_3D74J8RZ	7316-7493	0.897926270609609	NA	NA	NA	MNG_INT_A	NA	Meningioma	NA	no molecular subtype
+BS_Z9WJ6WW1	PT_5SX0GRW1	7316-1927	0.97658867480846	NA	NA	NA	NB_MYCN	NA	Embryonal tumor	NA	no molecular subtype
+BS_Z9WVCMBB	PT_Q5W5F4SP	7316-3081	0.959088274877344	NA	NA	NA	PB_FOXR2	NA	Tumor of pineal region	NA	no molecular subtype
+BS_ZA4EAXGT	PT_8CZ6ANE0	7316-1970	0.999788425664356	NA	NA	NA	DNET	GNT	Neuronal and mixed neuronal-glial tumor	Low-grade astrocytic tumor	no molecular subtype
+BS_ZANBP1Z1	PT_Z7YJ7MSM	7316-2864	0.999970634053294	GNT, RTK	GNT, RTK	NA	IHG	IHG	Low-grade astrocytic tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_ZBWDSNVQ	PT_JXGMAHHN	7316-874	0.999862840758909	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_ZD9P085G	PT_39V0DG4H	7316-6766	0.990302969030758	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_ZEVFYYB9	PT_7KTAH3RD	7316-2671	0.913802749267534	CRANIO, ADAM	CRANIO, ADAM	NA	CTRL_ADENOPIT	NA	Tumors of sellar region	NA	NA
+BS_ZFCXH22E	PT_P1290MMP	7316-125	0.831696853765113	NA	NA	NA	NFIB_PLEX	NA	Embryonal tumor	NA	no molecular subtype
+BS_ZH0HTV7S	PT_Z4GS3ZQQ	7316-740	0.999884017836528	EPN, To be classified	EPN, To be classified	NA	CNS_BCOR_ITD	CNS BCOR	Ependymal tumor	Embryonal tumor	NA
+BS_ZHQ8NGZR	PT_3WA7SBQ6	7316-4468	0.979062947357428	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_ZJWVAEAA	PT_V07ZH5JS	7316-472	0.999447459480148	LGG, KIAA1549-BRAF	LGG, KIAA1549-BRAF	LGG, MAPK	PA_MID	LGG, MAPK	Low-grade astrocytic tumor	Low-grade astrocytic tumor	not match
+BS_ZNPPWNFE	PT_B2KF59PQ	7316-6581	0.999999367188545	DHG, H3 G35	DHG, H3 G35	DHG, H3 G35	DHG_G34	HGG, H3 G35	Diffuse astrocytic and oligodendroglial tumor	Diffuse astrocytic and oligodendroglial tumor	NA
+BS_ZNRHJ49Y	PT_41WETNRC	7316-3065	0.999876101933655	LGG, RTK	LGG, RTK	NA	PA_INF	LGG, FGFR	Low-grade astrocytic tumor	Low-grade astrocytic tumor	NA
+BS_ZPGN9ABV	PT_AV0W0V8D	7316-5744	0.998804623001928	NA	NA	NA	CPC_PED	NA	Choroid plexus tumor	NA	no molecular subtype
+BS_ZQQPDGX4	PT_NVFBGMWK	7316-6984	0.985623048140443	NA	NA	NA	PB_GRP1A	NA	Tumor of pineal region	NA	no molecular subtype
+BS_ZR660J77	PT_YSYNKHAE	7316-4466	0.999927180066919	HGG, To be classified	HGG, To be classified	NA	PXA	NA	Diffuse astrocytic and oligodendroglial tumor	NA	NA
+BS_ZSKZPBHN	PT_BNARR0N6	7316-3660	0.987395126226298	EPN, To be classified	EPN, To be classified	NA	CTRL_CBM	NA	Ependymal tumor	NA	NA
