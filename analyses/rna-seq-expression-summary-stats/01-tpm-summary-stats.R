@@ -213,7 +213,7 @@ get_output_ss_df <- function(ss_df, gsb_gid_df) {
   ))
   #ss_out_df[is.nan(ss_out_df)] <- 0
   
-  rm_na_ss_out_df <- ss_out_df %>% mutate_all(~replace(., is.nan(.), 0)) %>% mutate_all(na_if,"")
+  rm_na_ss_out_df <- ss_out_df %>% mutate_all(~replace(., is.nan(.), 0)) #%>% mutate_all(na_if,"")
   stopifnot(identical(as.integer(0), sum(is.na(rm_na_ss_out_df))))
   return(rm_na_ss_out_df)
 }

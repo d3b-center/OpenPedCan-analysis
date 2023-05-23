@@ -23,6 +23,13 @@ set -o pipefail
 POLYA_STRAND=${OPENPEDCAN_POLYA_STRAND:-1}
 RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
 
+
+# Temporary solution to for the python3 rpy2 package to work
+# rpy2 not loading R is a shared library (libR.so) when imported
+# currently no viable solution for versions for rpy2 in the Opendpedcan docker debian release
+export R_HOME='/usr/local/lib/R'
+export LD_LIBRARY_PATH=${R_HOME}/lib:${LD_LIBRARY_PATH}
+
 # This script should always run as if it were being called from
 # the directory it lives in.
 analysis_dir="$(perl -e 'use File::Basename;

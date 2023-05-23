@@ -64,7 +64,7 @@ name = os.path.basename(inputfile)
 name = re.sub("\.rds$", "", name)
 
 exprs_rds = readRDS(inputfile)
-exprs_df = pandas2ri.ri2py(exprs_rds)
+exprs_df = pandas2ri.rpy2py(exprs_rds)
 exprs_df.index = rownamesRDS(exprs_rds)
 
 # transpose

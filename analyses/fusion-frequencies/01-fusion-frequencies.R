@@ -196,8 +196,8 @@ fusion_df <- fusion_df  %>%
   # replace NA to "" in columns that have NA
   replace_na(list("Kinase_domain_retained_Gene1A"="",
                   "Kinase_domain_retained_Gene1B"="",
-                  "Reciprocal_exists_either_gene_kinase"="",
-                  "reciprocal_exists"="",
+                  "Reciprocal_exists_either_gene_kinase"=FALSE,
+                  "reciprocal_exists"=FALSE,
                   "Gene1A_anno"="",
                   "Gene1B_anno"="",
                   "Gene2A_anno"="",
@@ -326,7 +326,7 @@ stopifnot(identical(sum(is.na(m_fus_freq_tbl)), as.integer(0)))
 
 # write to tsv
 annotated_m_fus_freq_tbl <- annotated_m_fus_freq_tbl %>%
-  select(keep_cols, Gene_Ensembl_ID, Disease, MONDO, EFO, Dataset,
+  select(all_of(keep_cols), Gene_Ensembl_ID, Disease, MONDO, EFO, Dataset,
          Total_alterations_over_subjects_in_dataset,
          Frequency_in_overall_dataset,
          Total_primary_tumors_mutated_over_primary_tumors_in_dataset,

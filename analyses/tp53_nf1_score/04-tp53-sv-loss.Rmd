@@ -19,6 +19,7 @@ We want to subset SV calls which will possibly	lead to loss of function to use f
 ```{r}
 library("ggpubr")
 library("ggthemes")
+library(data.table)
 library("tidyverse")
 
 # rootdir
@@ -39,7 +40,7 @@ if (!dir.exists(results_dir)) {
 ### Input files
 ```{r}
 putative_onco_fusion <- read_tsv(file.path(data_dir, "fusion-putative-oncogenic.tsv"))
-manta_sv <- read_tsv(file.path(data_dir, "sv-manta.tsv.gz"), guess_max = 5000000)
+manta_sv <- fread(file.path(data_dir, "sv-manta.tsv.gz"), sep = "\t") %>% as_tibble()
 rna_expr <- readRDS(file.path(data_dir, "gene-expression-rsem-tpm-collapsed.rds"))
 
 if ( params$base_run ==0 ){
