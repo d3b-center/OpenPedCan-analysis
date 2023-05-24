@@ -13,16 +13,21 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 results_dir <-
   file.path(root_dir, "analyses", "molecular-subtyping-ATRT", "results")
 
+# Directory of json file for subseting
+atrt_subset_file <- file.path(root_dir, "analyses", "molecular-subtyping-ATRT", "atrt-subset", "ATRT_subtyping_path_dx_strings.json")
 
 # Read in histologies
 histo <- 
   readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000)
 
+# Read json file
+path_dx_list_atrt <- jsonlite::fromJSON(atrt_subset_file)
+  
 # Filter histo, 
 # select all ATRT biospecimens from PBTA and/DGD
 atrt_df <- histo %>%
-  dplyr::filter(short_histology == "ATRT",
-                cohort %in% c("PBTA", "Kentucky", "DGD")) %>%
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD")) %>%
+  dplyr::filter(pathology_diagnosis %in% path_dx_list_atrt$exact_path_dx) %>%
   # create match id
   mutate(id = paste(sample_id, composition, sep = "_"))
 
