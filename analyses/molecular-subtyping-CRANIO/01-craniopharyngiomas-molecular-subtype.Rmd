@@ -1,0 +1,255 @@
+---
+title: "Molecularly Subtype Craniopharyngiomas into Adamantinomatous or Papillary"
+author: "Daniel Miller <millerd15@email.chop.edu> and Jo Lynne Rokita <rokita@chop.edu> for D3B"
+date: 2020, 2022
+output:
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+# Background
+
+This notebook looks at the defining lesions for all samples for the issue of
+molecular subtyping craniopharyngiomas into adamantinomatous or papillary samples
+in the OpenPBTA dataset.
+
+Defining Lesions:
+
+CRANIO, ADAM
+- Contains SNV in exon 3 of CTNNB1
+- Tumor occurs mostly in childhood or young adolescence (0-39 years), but can be seen in adults
+
+CRANIO, PAP
+- Contains BRAF V600E mutation
+- Tumor occurs exclusively in adults (40+ years)
+
+# Usage
+
+This notebook is intended to be run via the command line from the top directory
+of the repository as follows:
+
+```
+Rscript -e "rmarkdown::render('analyses/molecular-subtyping-CRANIO/00-craniopharyngiomas-molecular-subtype.Rmd', clean = TRUE)"
+```
+
+# Set up
+
+```{r load-library}
+library(tidyverse)
+library(dplyr)
+```
+
+## Directories and File Inputs/Outputs
+
+```{r set-dir-and-file-names}
+# Detect the ".git" folder -- this will in the project root directory.
+# Use this as the root directory to ensure proper sourcing of functions no
+# matter where this is called from
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+# File path to results directory
+results_dir <-
+  file.path(root_dir, "analyses", "molecular-subtyping-CRANIO", "results")
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+
+# Outputs
+output_lesions <- file.path(results_dir, "CRANIO_defining_lesions.tsv")
+output_subtype <- file.path(results_dir, "CRANIO_molecular_subtype.tsv")
+```
+
+```{r load-inputs-please-wait}
+# Inputs
+## Read pathology diagnosis json file
+path_dx_list <- jsonlite::fromJSON(
+  file.path(root_dir, "analyses", "molecular-subtyping-CRANIO", "cranio-subset",
+            "CRANIO_subtyping_path_dx_strings.json")
+)
+
+## Read in metadata
+metadata <-
+  read_tsv(file.path(root_dir, "data", "histologies-base.tsv")) %>%
+  filter(pathology_diagnosis == path_dx_list$exact_path_dx)
+
+#cranio biospecimens
+cranio_bs <- metadata %>%
+  pull(Kids_First_Biospecimen_ID)
+
+## Read in snv consensus mutation data, subset for samples of interest
+#dgd_maf_file <- file.path(root_dir, "data", "snv-dgd.maf.tsv.gz")
+snv_file <- file.path(root_dir, "data", "snv-consensus-plus-hotspots.maf.tsv.gz")
+
+#dgd_df <- read_tsv(dgd_maf_file, comment = '#') %>%
+#    filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID,
+#           Hugo_Symbol %in% c("BRAF","CTNNB1"))
+
+snv_df <- read_tsv(snv_file, comment = '#') %>%
+  filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID,
+           Hugo_Symbol %in% c("BRAF","CTNNB1")) #%>%
+#  bind_rows(dgd_df)
+
+```
+
+# Process Data
+
+## Collecting Tumor Sample Barcodes with Variants of Interest
+
+Collect Tumor_Sample_Barcodes with BRAF V600E mutations.
+
+```{r braf-tsb}
+braf_v600e_tsb <-
+  snv_df %>%
+  filter(Hugo_Symbol == "BRAF" & HGVSp_Short == "p.V600E") %>%
+  pull(Tumor_Sample_Barcode)
+```
+
+Collect Tumor_Sample_Barcodes with CTNNB1 mutation on exon 3.
+
+```{r ctnnb1-tsb}
+ctnnb1_e3_tsb <-
+  snv_df %>%
+  filter(Hugo_Symbol == "CTNNB1" & Exon_Number == "3/15") %>%
+  pull(Tumor_Sample_Barcode)
+```
+
+Gather all bs_ids with methylation results
+
+```{r methylation subtypes}
+# get all methyl samples
+all_methyl <- metadata %>%
+  filter(experimental_strategy == "Methylation") %>%
+  pull(Kids_First_Biospecimen_ID)
+
+# we will add methyl subtypes in the absence DNA results or in the case of discrepant results
+methyl_bs_ids_with_subtypes <- metadata %>%
+  filter(experimental_strategy == "Methylation",
+         (grepl("CPH_", dkfz_v12_methylation_subclass) & dkfz_v12_methylation_subclass_score >= 0.8)) %>%
+  # reformat classifier result per https://www.molecularneuropathology.org/mnp/classifiers/11
+  mutate(molecular_subtype = case_when(dkfz_v12_methylation_subclass == "CPH_PAP" ~ "CRANIO, PAP",
+                                       dkfz_v12_methylation_subclass == "CPH_ADM" ~ "CRANIO, ADAM")) %>%
+  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, id) 
+
+## add sample with low methyl score
+methyl_no_subtype <- metadata %>% 
+  filter(experimental_strategy == "Methylation", 
+         !(Kids_First_Biospecimen_ID %in% methyl_bs_ids_with_subtypes$Kids_First_Biospecimen_ID)) %>%
+  mutate(id = paste(sample_id, composition, sep = "_")) %>%	 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, id) %>%
+  dplyr::left_join(methyl_bs_ids_with_subtypes %>% dplyr::select(molecular_subtype, id), by = "id")  
+
+methyl_bs_ids_with_subtypes <- methyl_bs_ids_with_subtypes %>% 
+  bind_rows(methyl_no_subtype)
+
+
+# are there any methylation discrepancies? no
+methyl_subtype_map <- methyl_bs_ids_with_subtypes %>%
+  select(sample_id, composition, tumor_descriptor, molecular_subtype) %>%
+  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  dplyr::rename(molecular_subtype_methyl = molecular_subtype) %>%
+  select(id, molecular_subtype_methyl) %>%
+  unique()
+
+```
+
+## Defining Lesion Table
+First, make a frame with DNA and RNA samples per patient as well as age at diagnosis.
+
+```{r DNA and RNA metadata}
+dnameta <- metadata %>%
+  filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") & is.na(RNA_library)) %>%
+  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  dplyr::select(Kids_First_Participant_ID, age_at_diagnosis_days, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, id) 
+```
+
+
+Annotate the metadata table where the Kids_First_Biospecimen_ID matches the Tumor_Sample_Barcodes (TSBs) collected above.
+Select the columns from the table that the PIs have requested.
+
+```{r snv-lesion-table}
+snv_lesion_df <- dnameta %>%
+  mutate(CTNNB1.Exon3 = Kids_First_Biospecimen_ID %in% ctnnb1_e3_tsb) %>%
+  mutate(BRAF.V600E = Kids_First_Biospecimen_ID %in% braf_v600e_tsb) %>%
+  dplyr::arrange(Kids_First_Participant_ID, sample_id)
+
+# print this lesion table
+write_tsv(snv_lesion_df, output_lesions)
+```
+
+## Defining Molecular Subtype Table
+
+Append molecular subtypes defined as follows:
+1. `CRANIO, PAP`: patient has BRAF.V600E mutation and is older than the age_of_adulthood (40 years in this case)
+1. `CRANIO, ADAM`:patient has CTNNB1.Exon3 mutation and is younger than the age_of_adulthood (40 years in this case)
+1. `CRANIO, To be classified` None of the above or DNA sample does not exist
+Select the columns from the table that the PIs have requested
+
+```{r meta-subtype-table}
+# Dispute this all you like
+age_of_adulthood <- 40 * 365.25
+
+# SNV-related bs id subtypes
+snv_subtype <- snv_lesion_df %>%
+  mutate(fourty_or_older = as.numeric(age_at_diagnosis_days) >= age_of_adulthood) %>%
+  mutate(molecular_subtype =
+           case_when(
+             (BRAF.V600E & fourty_or_older) & !(CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, PAP",
+             !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, ADAM",
+             !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & fourty_or_older) ~ "CRANIO, ADAM",
+             TRUE ~ "CRANIO, To be classified"))  %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, id, molecular_subtype)
+
+# create dna map and fix discrepant subtypes
+dna_map <- snv_subtype %>%
+  select(id, molecular_subtype) %>%
+  unique() %>%
+  # if one sample is To be classified and one is ADAM for the same tumor event, recode to ADAM:
+  group_by(id) %>%
+  summarise(molecular_subtype = str_c(molecular_subtype, collapse = ";", sep = ";")) %>%
+  mutate(molecular_subtype = case_when(molecular_subtype %in% c("CRANIO, To be classified;CRANIO, ADAM", "CRANIO, ADAM;CRANIO, To be classified") ~ "CRANIO, ADAM",
+                                       TRUE ~ molecular_subtype)) 
+
+# update snv subtypes
+snv_subtype <- snv_subtype %>%
+  select(-molecular_subtype) %>%
+  left_join(dna_map) %>%
+  unique()
+
+
+# subtype others
+other_bs_id_subtyped <- metadata %>%
+  filter(!Kids_First_Biospecimen_ID %in% snv_subtype$Kids_First_Biospecimen_ID) %>%
+  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, id) %>%
+  # join with DNA map
+  left_join(dna_map) %>%
+  mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "CRANIO, To be classified",
+         TRUE ~ molecular_subtype))
+  
+# bind all and add methyl subtypes
+all_subtypes <- snv_subtype %>%
+  bind_rows(other_bs_id_subtyped) %>%
+  left_join(methyl_subtype_map) %>%
+  # if To be classified or NA, use methyl subtype
+  mutate(molecular_subtype = case_when((molecular_subtype == "CRANIO, To be classified" & !is.na(molecular_subtype_methyl)) ~ molecular_subtype_methyl,
+                             TRUE ~ molecular_subtype)) %>%
+  write_tsv(output_subtype)
+
+# how many tumors subtyped?
+all_subtypes %>%
+  pull(sample_id) %>%
+  unique() %>%
+  length()
+
+# how many samples subtyped?
+all_subtypes %>%
+  count(molecular_subtype)
+
+```
+
+# SessionInfo
+
+```{r session-info}
+sessionInfo()
+```

@@ -21,7 +21,7 @@ scratch_dir <- file.path(root_dir, "scratch")
 
 source(file.path(root_dir, 
                  "analyses", 
-                 "snv-callers", 
+                 "tmb-calculation", 
                  "util",
                  "tmb_functions.R"))
 
