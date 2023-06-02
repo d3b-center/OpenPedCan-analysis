@@ -23,9 +23,11 @@ if(!dir.exists(result_dir)){
 
 ```
 
+## Read mnp_v12.5_annotation_with_OPC_subtype - Sheet1.tsv 
+ 
 Add broad histology to molecular_subtype_methyl
 
-```{r}
+```{r read methyl file}
 methyl <- readr::read_tsv(file.path(analysis_dir, "input", "mnp_v12.5_annotation_with_OPC_subtype - Sheet1.tsv"))
 
 methyl <- methyl %>% 
@@ -33,6 +35,7 @@ methyl <- methyl %>%
   mutate(OPC_molecular_subtype = case_when(Abbrevation == "CHORDM" ~ "CHDM", 
                                            TRUE ~ OPC_molecular_subtype)) %>%
   mutate(broad_histology_methyl = case_when(
+    ## add broad histology matching methylation molecular subtypes
     ## non-ATRT/non-MB embryonal tumors
     grepl(paste(c("CNS", "ETMR"), collapse = "|"), OPC_molecular_subtype) ~ "Embryonal tumor", 
     ## EWS
@@ -63,7 +66,7 @@ methyl <- methyl %>%
 
 ```
 
-Read histo file
+## Read histologies file
 
 First, keep the samples with `dkfz_v12_methylation_subclass_score >= 0.8`
 Add the broad histology for `molecular_subtype_methyl`
@@ -106,7 +109,7 @@ table(histo_filter$broad_histology)
 ```
 
 
-First, take look at the ones that have unmatched broad_histology and broad_histology_methyl
+Take a look at the ones that have unmatched broad_histology and broad_histology_methyl
 
 
 ```{r}
@@ -117,6 +120,7 @@ unmatch_broad_histology <- histo_filter %>%
   ## subset all the samples with same sample_id
   left_join(histo, by = "sample_id") %>% 
   arrange(Kids_First_Participant_ID) %>%
+  ## save the file
   readr::write_tsv(file.path(result_dir, "unmatch_broad_histology.tsv"))
   
 table(unmatch_broad_histology$broad_histology)
@@ -134,7 +138,7 @@ missing_subtyped <- histo %>%
 
 ```
 
-session infor
+## session info
 
 ```{r}
 sessionInfo()
