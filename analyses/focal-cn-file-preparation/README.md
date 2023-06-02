@@ -41,7 +41,7 @@ See the notebook for more information. This notebook also prepares lists of copy
   | `Kids_First_Biospecimen_ID` | chr | cytoband | dominant_status | band_length | callable_fraction | gain_fraction | loss_fraction | chromosome_arm |
   |----------------|--------|-------------|--------|---------|----------|-------------|---------|---------------|
 
-* `04-prepare-cn-file.R` - This script performs the ranges to annotation mapping using the GENCODE v38 GTF included via the data download step; it takes the ControlFreeC file or a SEG (e.g., CNVkit, consensus SEG) file prepared with `01-add-ploidy-cnvkit.Rmd` and  `02-add-ploidy-cnvkit.Rmd` as input.
+* `04-prepare-cn-file.R` - This script performs the ranges to annotation mapping using the GENCODE v39 GTF included via the data download step; it takes the ControlFreeC file or a SEG (e.g., CNVkit, consensus SEG) file prepared with `01-add-ploidy-cnvkit.Rmd` and  `02-add-ploidy-cnvkit.Rmd` as input.
   **The mapping is limited to _exons_.**
   Mapping to cytobands is performed with the [`org.Hs.eg.db`](https://doi.org/doi:10.18129/B9.bioc.org.Hs.eg.db) package.
   A table with the following columns is returned:
