@@ -30,9 +30,12 @@ ews_file <- file.path(results_dir, "EWS_results.tsv")
 clinical <- readr::read_tsv(file.path(dataDir, "histologies-base.tsv"), guess_max = 100000) %>%
   filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
 
+# read pathology diagnosis JSON file 
+path_dx_list <- jsonlite::fromJSON(file.path(analysis_dir, "ews-subset", "EWS_subtyping_path_dx_strings.json"))
+
 # ewings samples or samples with EWS via methylation
 ews_clinical <- clinical %>%
-  filter(pathology_diagnosis == "Ewings Sarcoma" | (dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score >= 0.8)) 
+  filter(pathology_diagnosis == path_dx_list$exact_path_dx | (dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score >= 0.8)) 
 
 # what are the path diagnoses here? Non-EWS should be reviewed by pathology
 ews_clinical %>%
@@ -148,7 +151,6 @@ all_subtypes %>%
 ```{r}
 sessionInfo()
 ```
-
 
 
 
