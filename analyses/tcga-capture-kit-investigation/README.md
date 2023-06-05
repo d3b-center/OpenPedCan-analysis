@@ -2,7 +2,7 @@
 This is an investigation of the TMB discrepancy between PBTA and TCGA data. 
 
 ## Background
-To perform the analysis of [Tumor Mutation Burden Compare to TCGA](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/tmb-compare), 160 tumor/normal paired TCGA WXS data had been selected and processed. The input BAM file manifest is on the `pbta-tcga-manifest.tsv` and is available in both V14 and V15 release. The MC3 WXS BED file [`gencode.v19.basic.exome.bed`](https://gdc.cancer.gov/about-data/publications/mc3-2017) was used as the capture kit region for both mutation calling and TMB calculation. It turns out the adult-based TCGA has overall lower TMB compared to pediatric-based PBTA data, and on top of that the Lancet somatic calling outputs much more low VAFs. To better figure out those issues, we started this investigation.
+To perform the analysis of [Tumor Mutation Burden Compare to TCGA](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/tmb-compare), 160 tumor/normal paired TCGA WXS data had been selected and processed. The input BAM file manifest is on the `pbta-tcga-manifest.tsv` and is available in both V14 and V15 release. The MC3 WXS BED file [`gencode.v39.basic.exome.bed`](https://gdc.cancer.gov/about-data/publications/mc3-2017) was used as the capture kit region for both mutation calling and TMB calculation. It turns out the adult-based TCGA has overall lower TMB compared to pediatric-based PBTA data, and on top of that the Lancet somatic calling outputs much more low VAFs. To better figure out those issues, we started this investigation.
 
 We started by looking only the "codon impact mutation" where we only selected the `Mutation|Splice|Silent` mutations.
 - plot: https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/548#issuecomment-590813383
@@ -43,7 +43,7 @@ We created script to prepare the input dataframe for the boxplot script. This sc
 ![](plots/boxplot-all.png)
 
 ## Coverage-Comparison
-In order to show in the form of coverage that the downloaded BED files were  correct, we calculated the number of bases that are covered  at least at 20x in both old TCGA BED file(`gencode.v19.basic.exome`) and the new downloaded BED files (`results/*Gh38.bed`). The following command was used to run sambamba coverage per base with a coverage threshold of 20x -
+In order to show in the form of coverage that the downloaded BED files were  correct, we calculated the number of bases that are covered  at least at 20x in both old TCGA BED file(`gencode.v39.basic.exome`) and the new downloaded BED files (`results/*Gh38.bed`). The following command was used to run sambamba coverage per base with a coverage threshold of 20x -
 `sambamba_v0.5.9  depth base -c 20 -L *Gh38.bed *.bam > *.sambamba_basecoverage.txt`
 The coverage table in `results/TCGA_oldandnew_coverage_comparisons.txt` gives  a  tabular summary of  number of bases and percentages within corresponding BED files. Boxplot comparison for the same data is available here(`plots/TCGA_oldandnew_coverage_plots.png`)
 

@@ -38,7 +38,7 @@ Rscript --vanilla 02-filter-mtp-tables-misc-updates.R
 - `../fusion-frequencies/results/putative-oncogene-fusion-freq.tsv.gz`
 - `../rna-seq-expression-summary-stats/results/long_n_tpm_mean_sd_quantile_group_wise_zscore.tsv.gz`
 - `../rna-seq-expression-summary-stats/results/long_n_tpm_mean_sd_quantile_gene_wise_zscore.tsv.gz`
-- `../../data/input/gencode.v38.primary_assembly.annotation.gtf.gz"`
+- `../../data/input/gencode.v39.primary_assembly.annotation.gtf.gz"`
 - `../../data/snv-consensus-plus-hotspots.maf.tsv.gz`
 - `../../data/consensus_wgs_plus_cnvkit_wxs.tsv.gz`
 - `../../data/fusion-putative-oncogenic.tsv`
