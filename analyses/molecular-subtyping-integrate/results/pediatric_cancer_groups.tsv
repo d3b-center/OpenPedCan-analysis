@@ -14,18 +14,28 @@ Anaplastic Large Cell Lymphoma	Primary Tumor	2
 Angiosarcoma	Primary Tumor	1
 Astroblastoma	Initial CNS Tumor	2
 Astrocytoma	Primary Tumor	1
-Atypical choroid plexus papilloma	Initial CNS Tumor	7
-Atypical choroid plexus papilloma	Progressive	3
 Atypical Teratoid Rhabdoid Tumor	Deceased	36
 Atypical Teratoid Rhabdoid Tumor	Initial CNS Tumor	164
 Atypical Teratoid Rhabdoid Tumor	Progressive	31
 Atypical Teratoid Rhabdoid Tumor	Recurrence	12
+Atypical choroid plexus papilloma	Initial CNS Tumor	7
+Atypical choroid plexus papilloma	Progressive	3
 B Acute Lymphoblastic Leukemia/Lymphoma	Initial CNS Tumor	1
 B Acute Lymphoblastic Leukemia/Lymphoma	Not Reported	1
 B Acute Lymphoblastic Leukemia/Lymphoma	Primary Tumor	46
 B Acute Lymphoblastic Leukemia/Lymphoma	Progressive	1
 B Acute Lymphoblastic Leukemia/Lymphoma	Recurrence	40
 Burkitt Leukemia/Lymphoma	Primary Tumor	3
+CIC-DUX4 Sarcoma	Primary Tumor	1
+CNS Burkitt's lymphoma	Initial CNS Tumor	3
+CNS Embryonal tumor	Deceased	3
+CNS Embryonal tumor	Initial CNS Tumor	39
+CNS Embryonal tumor	Primary Tumor	1
+CNS Embryonal tumor	Progressive	10
+CNS Embryonal tumor	Recurrence	13
+CNS Melanoma	Initial CNS Tumor	1
+CNS neuroblastoma	Initial CNS Tumor	8
+CNS neuroblastoma	Recurrence	2
 Cavernoma	Initial CNS Tumor	9
 Cavernoma	Second Malignancy	1
 Central neurocytoma	Initial CNS Tumor	4
@@ -46,17 +56,7 @@ Choroid plexus papilloma	Initial CNS Tumor	87
 Choroid plexus papilloma	Progressive	5
 Choroid plexus tumor	Initial CNS Tumor	3
 Chronic Myelogenous Leukemia	Primary Tumor	2
-CIC-DUX4 Sarcoma	Primary Tumor	1
 Clear cell sarcoma of the kidney	Primary Tumor	24
-CNS Burkitt's lymphoma	Initial CNS Tumor	3
-CNS Embryonal tumor	Deceased	3
-CNS Embryonal tumor	Initial CNS Tumor	39
-CNS Embryonal tumor	Primary Tumor	1
-CNS Embryonal tumor	Progressive	10
-CNS Embryonal tumor	Recurrence	13
-CNS Melanoma	Initial CNS Tumor	1
-CNS neuroblastoma	Initial CNS Tumor	8
-CNS neuroblastoma	Recurrence	2
 Craniopharyngioma	Initial CNS Tumor	48
 Craniopharyngioma	Progressive	10
 Craniopharyngioma	Recurrence	1
@@ -103,11 +103,10 @@ Ganglioglioma	Initial CNS Tumor	194
 Ganglioglioma	Progressive	34
 Ganglioglioma	Recurrence	20
 Ganglioneuroblastoma	Initial CNS Tumor	7
-Ganglioneuroblastoma	Primary Tumor	179
+Ganglioneuroblastoma	Primary Tumor	185
 Ganglioneuroblastoma	Progressive	1
 Ganglioneuroblastoma	Recurrence	6
 Ganglioneuroma	Initial CNS Tumor	7
-Ganglioneuroma	Primary Tumor	6
 Ganglioneuroma	Progressive	5
 Germ Cell Tumor	Primary Tumor	2
 Germinoma	Initial CNS Tumor	20
@@ -191,10 +190,10 @@ Neurofibroma/Plexiform	Primary Tumor	1
 Neurofibroma/Plexiform	Progressive	16
 Neurofibroma/Plexiform	Recurrence	7
 Neurofibroma/Plexiform	Second Malignancy	6
+Non-Hodgkin Lymphoma	Primary Tumor	2
 Non-germinomatous germ cell tumor	Deceased	8
 Non-germinomatous germ cell tumor	Initial CNS Tumor	7
 Non-germinomatous germ cell tumor	Progressive	2
-Non-Hodgkin Lymphoma	Primary Tumor	2
 Oligodendroglioma	Initial CNS Tumor	40
 Oligodendroglioma	Not Reported	2
 Oligodendroglioma	Primary Tumor	31

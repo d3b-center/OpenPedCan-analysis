@@ -12,12 +12,18 @@ suppressPackageStartupMessages({
 option_list <- list(
   make_option(c("--histology"), type = "character",
     help = "histology file tsv"),
+  make_option(
+    c("-p", "--path"), type = "character",
+    default = NULL,
+    help = "pathology-selecting json file"
+  ),
   make_option(c("--outfile"), type = "character",
     help = "output tsv file; .gz for gzipped output.")
 )
 opt <- parse_args(OptionParser(option_list = option_list))
 pbta_histologies <- read.delim(opt$histology)
 outfile <- opt$outfile
+path_dx_list <- jsonlite::fromJSON(opt$path)
 
 # infra and supra categories
 supra = c("frontal lobe", "parietal lobe", "occipital lobe", "temporal lobe")
@@ -26,7 +32,7 @@ spine = c("spinal", "spine")
 
 # filter for ependymoma samples 
 EP = pbta_histologies %>%
-  filter(grepl("Ependymoma", pathology_diagnosis)) %>%
+  filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) %>%
   mutate(id = paste(sample_id, sample_type, tumor_descriptor, sep = "_"))
 
 

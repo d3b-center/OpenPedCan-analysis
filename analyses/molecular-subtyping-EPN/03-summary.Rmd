@@ -38,8 +38,9 @@ data_dir <- file.path(root_dir, "data")
 
 ```{r message=FALSE}
 # Read in histologies file
+path_dx_list <- jsonlite::fromJSON(file.path(root_dir, "analyses", "molecular-subtyping-EPN", "epn-subset", "EPN_subtyping_path_dx_strings.json"))
 epn_samples <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max = 100000) %>%
-  filter(grepl("Ependymoma", pathology_diagnosis)) %>%
+  filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) %>%
   mutate(id = paste(sample_id, sample_type, tumor_descriptor, sep = "_"))
 
 # Reading in table from results folder without the molecular_subtype column
@@ -188,4 +189,3 @@ EPN_subtypes_by_id %>%
   summarise(n = n())
 
 ```
-

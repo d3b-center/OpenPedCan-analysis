@@ -1,0 +1,256 @@
+---
+title: "DBS Mutational Signatures Analysis"
+output: 
+  html_notebook:
+  toc: TRUE
+toc_float: TRUE
+author: Ryan Corbett
+date: 2022
+---
+  
+  **Purpose:**
+  
+Calculate and plot DBS mutational signatures for all samples using [COSMIC signatures](https://cancer.sanger.ac.uk/cosmic).
+
+#### Usage
+
+To run this from the command line, use:
+```
+Rscript -e "rmarkdown::render('analyses/mutational-signatures/02-dbs_mutational_signatures.Rmd', 
+                              clean = TRUE)"
+```
+
+_This assumes you are in the top directory of the repository._
+
+## Setup
+
+#### Packages and functions
+
+Import necessary functions.
+
+```{r load libraries}
+# Magrittr pipe
+`%>%` <- dplyr::`%>%`
+
+# Import specialized functions
+source(file.path("util", "mut_sig_functions.R"))
+
+# Load this library
+library(deconstructSigs)
+library(tidyverse)
+```
+
+Set up directory paths. 
+
+```{r set directories}
+data_dir <- file.path("..", "..", "data")
+input_dir <- "input"
+results_dir <- "results"
+plots_dir <- "plots"
+figures_dir <- file.path("..", "..", "figures")
+cosmic_dbs_plots <- file.path(plots_dir, "cosmicv3_dbs")
+
+scratch_dir <- file.path("..", "..", "scratch", "mutational-signatures")
+cosmicv3_dbs_scratch <- file.path(scratch_dir, "cosmicv3_dbs")
+```
+
+Make new directories for the results. 
+
+```{r make directories}
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}
+if (!dir.exists(cosmic_dbs_plots)) {
+  dir.create(cosmic_dbs_plots, recursive = TRUE)
+}
+
+if (!dir.exists(scratch_dir)) {
+  dir.create(scratch_dir)
+}
+if (!dir.exists(cosmicv3_dbs_scratch)) {
+  dir.create(cosmicv3_dbs_scratch)
+}
+```
+
+## Read in data
+
+```{r}
+# Declare file path for consensus file
+consensus_file <- file.path(data_dir, "snv-consensus-plus-hotspots.maf.tsv.gz")
+```
+
+Read in the consensus MAF file. 
+
+```{r}
+# Read in the file
+maf <- data.table::fread(consensus_file, data.table = FALSE)
+```
+
+### Read in color palettes
+
+Read in the histology colors and labels. 
+
+```{r}
+histology_label_mapping <- readr::read_tsv(
+  file.path(figures_dir, "palettes", "histology_label_color_table.tsv")
+) %>% 
+  # Select just the columns we will need for plotting
+  dplyr::select(Kids_First_Biospecimen_ID, display_group, display_order, hex_codes) %>% 
+  # Reorder display_group based on display_order
+  dplyr::mutate(display_group = forcats::fct_reorder(display_group, display_order))
+```
+
+Set up gradient color palette for the bubble matrix plots. 
+
+```{r}
+gradient_col_palette <- readr::read_tsv(
+  file.path(figures_dir, "palettes", "gradient_color_palette.tsv")
+)
+
+# Won't need NA color this time. 
+gradient_col_palette <- gradient_col_palette %>%
+  dplyr::filter(color_names != "na_color")
+```
+
+Read in the metadata and set it up with the color palette. 
+
+```{r}
+metadata_df <- readr::read_tsv(file.path(data_dir, "histologies.tsv"), guess_max = 10000) %>% 
+  dplyr::select("Kids_First_Biospecimen_ID", "experimental_strategy") %>%
+  dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>% 
+  dplyr::rename(Tumor_Sample_Barcode = "Kids_First_Biospecimen_ID") 
+```
+
+Set up BED region files for TMB calculations
+
+```{r}
+region_sizes <- readr::read_tsv(file.path(data_dir, "snv-mutation-tmb-all.tsv")) %>%
+  dplyr::select(Tumor_Sample_Barcode, region_size)
+```
+
+## Set up data
+
+Determine how many mutations we have per sample.
+
+```{r}
+mut_per_sample <- maf %>%
+  dplyr::group_by(Tumor_Sample_Barcode) %>%
+  dplyr::tally() %>%
+  dplyr::arrange(n)
+summary(mut_per_sample$n)
+```
+
+Make mutation data into `deconstructSigs` input format.
+
+```{r}
+sigs_input <- mut.to.sigs.input(
+  mut.ref = maf,
+  sample.id = "Tumor_Sample_Barcode",
+  chr = "Chromosome",
+  pos = "Start_Position",
+  ref = "Reference_Allele",
+  alt = "Allele",
+  sig.type = 'DBS',
+  dbs_table = dbs_possible,
+  bsg = BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38
+)
+```
+
+Add total mutations per sample. 
+
+```{r}
+total_muts <- apply(sigs_input, 1, sum)
+```
+
+
+## Determine DBS Signatures for COSMIC
+
+Get list of tumor sample ids. 
+
+```{r}
+tumor_sample_ids <- maf %>%
+  dplyr::filter(Tumor_Sample_Barcode %in% rownames(sigs_input)) %>%
+  dplyr::distinct(Tumor_Sample_Barcode) %>%
+  dplyr::pull(Tumor_Sample_Barcode)
+```
+
+Get [COSMIC DBS v3.3 signatures](https://cancer.sanger.ac.uk/cosmic) for each sample. 
+This step will take some time. 
+
+```{r}
+signatures.cosmic.dbs <- read_tsv(file.path(input_dir, 'COSMIC_v3.3_DBS_GRCh38.txt')) %>%
+  column_to_rownames('Type') %>%
+  t %>%
+  as.data.frame()
+
+sample_dbs_sigs_cosmic <- lapply(tumor_sample_ids, function(sample_id) {
+  # Determine the signatures contributing to the sample
+  whichSignatures(
+    tumor.ref = sigs_input,
+    signatures.ref = signatures.cosmic.dbs,
+    sample.id = sample_id,
+    contexts.needed = TRUE
+  )
+})
+
+# Bring along the names
+names(sample_dbs_sigs_cosmic) <- tumor_sample_ids
+# 
+
+# Create matrix of COSMIC signature weights
+cosmic_dbs_weights <- lapply(sample_dbs_sigs_cosmic, "[[", "weights")
+cosmic_dbs_wide <- do.call(dplyr::bind_rows, cosmic_dbs_weights) %>%
+  add_column('Kids_First_Biospecimen_ID' = unlist(lapply(cosmic_dbs_weights, rownames)), .before = 1) %>%
+  tibble::as_tibble() %>%
+  readr::write_tsv(file.path(results_dir, 'cosmicv3.3_DBS_signature_exposure_matrix.tsv')) 
+```
+
+
+Calculate COSMIC DBS signature mutations per Mb for each sample
+
+```{r}
+cosmic_dbs_sigs_df <- calc_mut_per_sig(
+  sample_dbs_sigs_cosmic,
+  muts_per_sample = total_muts,
+  region_size = region_sizes,
+  metadata = metadata_df
+)  %>%
+  dplyr::filter(grepl("DBS", signature))
+
+# Write this to a file but drop the color column
+cosmic_dbs_sigs_df %>% 
+  dplyr::select(-hex_codes) %>% 
+  readr::write_tsv(file.path(results_dir, "cosmicv3.3_dbs_signatures_results.tsv"))
+
+# Print out a preview
+cosmic_dbs_sigs_df
+```
+
+
+## Mutation signature bubble matrix by histology groups
+
+```{r}
+bubble_matrix_plot(cosmic_dbs_sigs_df, 
+                   label = "COSMIC DBS Signatures", 
+                   color_palette = gradient_col_palette$hex_codes
+)
+```
+
+```{r}
+ggplot2::ggsave(
+  file.path(cosmic_dbs_plots, "bubble_matrix_cosmic_dbs_mutation_sig.png"),
+  width = 30, height = 20, units = "cm")
+```
+
+
+Mutation signature grouped bar plots for each histology group
+
+```{r, results = "hide"}
+# Make grouped bar plots
+lapply(unique(cosmic_dbs_sigs_df$display_group),
+  grouped_sig_barplot,
+  sig_num_df = cosmic_dbs_sigs_df,
+  output_dir = file.path(cosmicv3_dbs_scratch, "signature_grouped_barplots"), 
+  label = "cosmicv3_dbs"
+)
+```

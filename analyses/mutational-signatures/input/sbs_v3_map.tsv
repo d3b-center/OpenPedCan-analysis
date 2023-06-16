@@ -1,0 +1,80 @@
+Signature	Meaning	Broad_category	Narrow_category
+ SBS1	Deamination of 5-methylcytosine	Aging	5-mC deamination
+ SBS2	APOBEC activity	APOBEC	APOBEC
+ SBS3	Defective HR DNA repair; BRCA1/2 mutation	DNA repair deficiency	HR deficiency
+ SBS4	Tobacco smoking	Environmental exposure	Tobacco smoke
+ SBS5	Unknown proposed clock-like	Aging	clock-like
+ SBS6	Defective DNA mismatch repair	DNA repair deficiency	MMR deficiency
+ SBS7a	Ultraviolet light exposure	Environmental exposure	UV exposure
+ SBS7b	Ultraviolet light exposure	Environmental exposure	UV exposure
+ SBS7c	Ultraviolet light exposure	Environmental exposure	UV exposure
+ SBS7d	Ultraviolet light exposure	Environmental exposure	UV exposure
+ SBS8	Unknown	Unknown	Unknown
+ SBS9	"In part, polymerase n activity"	Replication deficiency	Poln
+ SBS10a	POLE mutation	DNA repair deficiency	POLE mutation
+ SBS10b	POLE mutation	DNA repair deficiency	POLE mutation
+ SBS10c	Defective POLD1 proofreading	DNA repair deficiency	POLD1 deficiency
+ SBS10d	Defective POLD1 proofreading	DNA repair deficiency	POLD1 deficiency
+ SBS11	Temozolomide treatment	Therapy exposure	TMZ treatment
+ SBS12	Unknown	Unknown	Unknown
+ SBS13	APOBEC activity	APOBEC	APOBEC
+ SBS14	POLE mutation and MMR deficiency	DNA repair deficiency	POLE & MMR deficiency
+ SBS15	Defective DNA mismatch repair	DNA repair deficiency	MMR deficiency
+ SBS16	Unknown	Unknown	Unknown
+ SBS17a	Unknown	Unknown	Unknown
+ SBS17b	Unknown	Unknown	Unknown
+ SBS18	Reactive oxygen species	ROS	ROS
+ SBS19	Unknown	Unknown	Unknown
+ SBS20	POLD1 mutation and MMR deficiency	DNA repair deficiency	POLD1 & MMR deficiency
+ SBS21	Defective DNA mismatch repair	DNA repair deficiency	MMR deficiency
+ SBS22	Aristolochic acid exposure	Environmental exposure	Aristolochic acid
+ SBS23	Unknown	Unknown	Unknown
+ SBS24	Aflatoxin exposure	Environmental exposure	Aflatoxin
+ SBS25	Chemotherapy	Therapy exposure	Chemotherapy
+ SBS26	Defective DNA mismatch repair	DNA repair deficiency	MMR deficiency
+ SBS27	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS28	Unknown	Unknown	Unknown
+ SBS29	Tobacco chewing	Environmental exposure	Tobacco chew
+ SBS30	Defective base excision repair; NTHL1 mutation	DNA repair deficiency	BER deficiency
+ SBS31	Platinum treatment	Therapy exposure	Platinum
+ SBS32	Azathioprine treatment	Therapy exposure	Azathioprine
+ SBS33	Unknown	Unknown	Unknown
+ SBS34	Unknown	Unknown	Unknown
+ SBS35	Platinum treatment	Therapy exposure	Platinum
+ SBS36	Defective base excision repair; MUTYH mutation	DNA repair deficiency	BER deficiency
+ SBS37	Unknown	Unknown	Unknown
+ SBS38	Indirect effect of UV light	Environmental exposure	UV exposure
+ SBS39	Unknown	Unknown	Unknown
+ SBS40	Unknown	Unknown	Unknown
+ SBS41	Unknown	Unknown	Unknown
+ SBS42	Haloalkane exposure	Environmental exposure	Haloalkane
+ SBS43	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS44	Defective DNA mismatch repair	DNA repair deficiency	MMR deficiency
+ SBS45	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS46	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS47	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS48	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS49	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS50	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS51	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS52	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS53	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS54	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS55	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS56	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS57	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS58	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS59	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS60	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact
+ SBS84	Activity of activation-induced cytidine deaminase	Cytidine deaminase	Cytidine deaminase
+ SBS85	"Activity of activation-induced cytidine deaminase, indirect"	Cytidine deaminase	Cytidine deaminase
+ SBS86	Unknown chemotherapy treatment	Therapy exposure	Chemotherapy
+ SBS87	Thiopurine chemotherapy treatment	Therapy exposure	Chemotherapy
+ SBS88	Colibactin exposure	Environmental exposure	Colibactin
+ SBS89	Unknown	Unknown	Unknown
+ SBS90	Duocarmycin exposure	Therapy exposure	Duocarmycin
+ SBS91	Unknown	Unknown	Unknown
+ SBS92	Tobacco smoking	Environmental exposure	Tobacco smoke
+ SBS93	Unknown	Unknown	Unknown
+ SBS94	Unknown	Unknown	Unknown
+ SBS95	"Unknown, possible sequencing artifact"	Sequencing artifact	Sequencing artifact

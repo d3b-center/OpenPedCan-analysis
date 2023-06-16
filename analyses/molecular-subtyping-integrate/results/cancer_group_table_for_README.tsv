@@ -10,9 +10,9 @@ Aneurysmal bone cyst (abc)	NA
 Aplastic anemia	NA
 Arteriovenous malformation	NA
 Astrocytoma;Oligoastrocytoma	NA
+Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor
 Atypical lymphoid infiltrate	NA
 Atypical meningioma	Meningioma
-Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor
 Atypical vascular lesion	NA
 Bone marrow cellularity	NA
 Bone marrow failure	NA
@@ -21,8 +21,8 @@ Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine gli
 Cholesterol granuloma	NA
 Chondroma	NA
 Chronic myeloid leukemia pathway	NA
-Clear cell meningioma	Meningioma
 Clear Cell Sarcoma of the Kidney	Clear cell sarcoma of the kidney
+Clear cell meningioma	Meningioma
 Cranial fasciitis	NA
 Cyst	NA
 Dermoid cyst	NA
@@ -38,7 +38,6 @@ Familial adenomatous polyposis	NA
 Fibroma	NA
 Fibromixoid lesion	Fibromyxoid lesion
 Giant cell tumor of bone	NA
-Glial-neuronal tumor NOS	Glial-neuronal tumor
 Glioblastoma Multiforme Pathway	NA
 Gliosis	NA
 Hamartoma	NA
@@ -50,8 +49,8 @@ Hypocellular bone marrow	NA
 Hypophyseal stalk thickening	NA
 Inclusion cyst	NA
 Inflammatory lesion	NA
-Juvenile xanthogranuloma	Histiocytic tumor
 Juvenile Xanthogranuloma	Juvenile xanthogranuloma
+Juvenile xanthogranuloma	Histiocytic tumor
 Kidney Chromophobe	Chromophobe renal cell carcinoma
 Kidney Renal Clear Cell Carcinoma	Renal Clear Cell Carcinoma
 Kidney Renal Papillary Cell Carcinoma	Renal Papillary Cell Carcinoma

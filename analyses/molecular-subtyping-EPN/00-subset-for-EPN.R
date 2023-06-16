@@ -36,6 +36,12 @@ option_list <- list(
     help = "expression file in RDS format",
   ),
   make_option(
+    c("-p", "--path"),
+    type = "character",
+    default = NULL,
+    help = "pathology-selecting json file"
+  ),
+  make_option(
     c("-o", "--outfile"),
     type = "character",
     default = NULL,
@@ -48,14 +54,12 @@ opts <- parse_args(OptionParser(option_list = option_list))
 # read in files
 histologies <- readr::read_tsv(opts$histology, guess_max = 100000)
 expression <- readr::read_rds(opts$expression)
-
+path_dx_list <- jsonlite::fromJSON(opts$path)
 
 epn_exp_samples <- histologies %>%
   filter(experimental_strategy == "RNA-Seq",
-         # All Ependymoma samples are captured in pathology_diagnosis
-         # pathology_free_text_diagnosis adds no additional samples
-         grepl("Ependymoma", pathology_diagnosis),
-         cohort %in% c("PBTA", "DGD", "Kentucky")) %>%
+         cohort %in% c("PBTA", "DGD", "Kentucky")) %>% 
+  filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) %>% 
   pull(Kids_First_Biospecimen_ID)
 epn_exp_samples <- intersect(epn_exp_samples, colnames(expression))
 

@@ -1778,15 +1778,15 @@ step.</p>
 library(data.table)
 library(&quot;tidyverse&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxuIn0= -->
-<pre><code>── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxuIn0= -->
+<pre><code>── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.1     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ✔ lubridate 1.9.2     ✔ tibble    3.2.1
 ✔ purrr     1.0.1     ✔ tidyr     1.3.0</code></pre>
 <!-- rnb-message-end -->
-<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpiZXR3ZWVuKCkgICAgIG1hc2tzIGRhdGEudGFibGU6OmJldHdlZW4oKVxu4pyWIGRwbHlyOjpmaWx0ZXIoKSAgICAgIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpmaXJzdCgpICAgICAgIG1hc2tzIGRhdGEudGFibGU6OmZpcnN0KClcbuKcliBsdWJyaWRhdGU6OmhvdXIoKSAgICBtYXNrcyBkYXRhLnRhYmxlOjpob3VyKClcbuKcliBsdWJyaWRhdGU6Omlzb3dlZWsoKSBtYXNrcyBkYXRhLnRhYmxlOjppc293ZWVrKClcbuKcliBkcGx5cjo6bGFnKCkgICAgICAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKcliBkcGx5cjo6bGFzdCgpICAgICAgICBtYXNrcyBkYXRhLnRhYmxlOjpsYXN0KClcbuKcliBsdWJyaWRhdGU6Om1kYXkoKSAgICBtYXNrcyBkYXRhLnRhYmxlOjptZGF5KClcbuKcliBsdWJyaWRhdGU6Om1pbnV0ZSgpICBtYXNrcyBkYXRhLnRhYmxlOjptaW51dGUoKVxu4pyWIGx1YnJpZGF0ZTo6bW9udGgoKSAgIG1hc2tzIGRhdGEudGFibGU6Om1vbnRoKClcbuKcliBsdWJyaWRhdGU6OnF1YXJ0ZXIoKSBtYXNrcyBkYXRhLnRhYmxlOjpxdWFydGVyKClcbuKcliBsdWJyaWRhdGU6OnNlY29uZCgpICBtYXNrcyBkYXRhLnRhYmxlOjpzZWNvbmQoKVxu4pyWIHB1cnJyOjp0cmFuc3Bvc2UoKSAgIG1hc2tzIGRhdGEudGFibGU6OnRyYW5zcG9zZSgpXG7inJYgbHVicmlkYXRlOjp3ZGF5KCkgICAgbWFza3MgZGF0YS50YWJsZTo6d2RheSgpXG7inJYgbHVicmlkYXRlOjp3ZWVrKCkgICAgbWFza3MgZGF0YS50YWJsZTo6d2VlaygpXG7inJYgbHVicmlkYXRlOjp5ZGF5KCkgICAgbWFza3MgZGF0YS50YWJsZTo6eWRheSgpXG7inJYgbHVicmlkYXRlOjp5ZWFyKCkgICAgbWFza3MgZGF0YS50YWJsZTo6eWVhcigpXG7ihLkgVXNlIHRoZSBjb25mbGljdGVkIHBhY2thZ2UgKDxodHRwOi8vY29uZmxpY3RlZC5yLWxpYi5vcmcvPikgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
-<pre><code>── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpiZXR3ZWVuKCkgICAgIG1hc2tzIGRhdGEudGFibGU6OmJldHdlZW4oKVxu4pyWIGRwbHlyOjpmaWx0ZXIoKSAgICAgIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpmaXJzdCgpICAgICAgIG1hc2tzIGRhdGEudGFibGU6OmZpcnN0KClcbuKcliBsdWJyaWRhdGU6OmhvdXIoKSAgICBtYXNrcyBkYXRhLnRhYmxlOjpob3VyKClcbuKcliBsdWJyaWRhdGU6Omlzb3dlZWsoKSBtYXNrcyBkYXRhLnRhYmxlOjppc293ZWVrKClcbuKcliBkcGx5cjo6bGFnKCkgICAgICAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKcliBkcGx5cjo6bGFzdCgpICAgICAgICBtYXNrcyBkYXRhLnRhYmxlOjpsYXN0KClcbuKcliBsdWJyaWRhdGU6Om1kYXkoKSAgICBtYXNrcyBkYXRhLnRhYmxlOjptZGF5KClcbuKcliBsdWJyaWRhdGU6Om1pbnV0ZSgpICBtYXNrcyBkYXRhLnRhYmxlOjptaW51dGUoKVxu4pyWIGx1YnJpZGF0ZTo6bW9udGgoKSAgIG1hc2tzIGRhdGEudGFibGU6Om1vbnRoKClcbuKcliBsdWJyaWRhdGU6OnF1YXJ0ZXIoKSBtYXNrcyBkYXRhLnRhYmxlOjpxdWFydGVyKClcbuKcliBsdWJyaWRhdGU6OnNlY29uZCgpICBtYXNrcyBkYXRhLnRhYmxlOjpzZWNvbmQoKVxu4pyWIHB1cnJyOjp0cmFuc3Bvc2UoKSAgIG1hc2tzIGRhdGEudGFibGU6OnRyYW5zcG9zZSgpXG7inJYgbHVicmlkYXRlOjp3ZGF5KCkgICAgbWFza3MgZGF0YS50YWJsZTo6d2RheSgpXG7inJYgbHVicmlkYXRlOjp3ZWVrKCkgICAgbWFza3MgZGF0YS50YWJsZTo6d2VlaygpXG7inJYgbHVicmlkYXRlOjp5ZGF5KCkgICAgbWFza3MgZGF0YS50YWJsZTo6eWRheSgpXG7inJYgbHVicmlkYXRlOjp5ZWFyKCkgICAgbWFza3MgZGF0YS50YWJsZTo6eWVhcigpXG7ihLkgVXNlIHRoZSBjb25mbGljdGVkIHBhY2thZ2UgKDxodHRwOi8vY29uZmxpY3RlZC5yLWxpYi5vcmcvPikgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
+<pre><code>── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::between()     masks data.table::between()
 ✖ dplyr::filter()      masks stats::filter()
 ✖ dplyr::first()       masks data.table::first()
@@ -1831,9 +1831,9 @@ if (!dir.exists(results_dir)) {
 <!-- rnb-source-begin eyJkYXRhIjoicHV0YXRpdmVfb25jb19mdXNpb24gPC0gcmVhZF90c3YoZmlsZS5wYXRoKGRhdGFfZGlyLCBcImZ1c2lvbi1wdXRhdGl2ZS1vbmNvZ2VuaWMudHN2XCIpKSJ9 -->
 <pre class="r"><code>putative_onco_fusion &lt;- read_tsv(file.path(data_dir, &quot;fusion-putative-oncogenic.tsv&quot;))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUm93czogNTUyNjAgQ29sdW1uczogMjJcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICgyMCk6IFNhbXBsZSwgRnVzaW9uTmFtZSwgTGVmdEJyZWFrcG9pbnQsIFJpZ2h0QnJlYWtwb2ludCwgRG9tYWluUmV0YWluZS4uLlxuZGJsICAoMSk6IGNhbGxlci5jb3VudFxubGdsICAoMSk6IHJlY2lwcm9jYWxfZXhpc3RzXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogNTUyNjAgQ29sdW1uczogMjJcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICgyMCk6IFNhbXBsZSwgRnVzaW9uTmFtZSwgTGVmdEJyZWFrcG9pbnQsIFJpZ2h0QnJlYWtwb2ludCwgRG9tYWluUmV0YWluZS4uLlxuZGJsICAoMSk6IGNhbGxlci5jb3VudFxubGdsICAoMSk6IHJlY2lwcm9jYWxfZXhpc3RzXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
 <pre><code>Rows: 55260 Columns: 22
-── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
 chr (20): Sample, FusionName, LeftBreakpoint, RightBreakpoint, DomainRetaine...
 dbl  (1): caller.count
@@ -1842,73 +1842,9 @@ lgl  (1): reciprocal_exists
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <!-- rnb-message-end -->
-<!-- rnb-source-begin eyJkYXRhIjoibWFudGFfc3YgPC0gZnJlYWQoZmlsZS5wYXRoKGRhdGFfZGlyLCBcInN2LW1hbnRhLnRzdi5nelwiKSwgc2VwID0gXCJcXHRcIikgJT4lIGFzX3RpYmJsZSgpIn0= -->
-<pre class="r"><code>manta_sv &lt;- fread(file.path(data_dir, &quot;sv-manta.tsv.gz&quot;), sep = &quot;\t&quot;) %&gt;% as_tibble()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-warning-begin eyJkYXRhIjpbIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIiwiV2FybmluZyBpbiB3cml0ZUJpbihiZnIsIGNvbiA9IG91dCwgc2l6ZSA9IDFMKTogcHJvYmxlbSB3cml0aW5nIHRvIGNvbm5lY3Rpb25cbiIsIldhcm5pbmcgaW4gd3JpdGVCaW4oYmZyLCBjb24gPSBvdXQsIHNpemUgPSAxTCk6IHByb2JsZW0gd3JpdGluZyB0byBjb25uZWN0aW9uXG4iLCJXYXJuaW5nIGluIHdyaXRlQmluKGJmciwgY29uID0gb3V0LCBzaXplID0gMUwpOiBwcm9ibGVtIHdyaXRpbmcgdG8gY29ubmVjdGlvblxuIl19 -->
-<pre><code>Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection
-
-Warning in writeBin(bfr, con = out, size = 1L): problem writing to connection</code></pre>
-<!-- rnb-warning-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQXZvaWRhYmxlIDExLjI4MCBzZWNvbmRzLiBUaGlzIGZpbGUgaXMgdmVyeSB1bnVzdWFsOiBpdCBlbmRzIGFicnVwdGx5IHdpdGhvdXQgYSBmaW5hbCBuZXdsaW5lLCBhbmQgYWxzbyBpdHMgc2l6ZSBpcyBhIG11bHRpcGxlIG9mIDQwOTYgYnl0ZXMuIFBsZWFzZSBwcm9wZXJseSBlbmQgdGhlIGxhc3Qgcm93IHdpdGggYSBuZXdsaW5lIHVzaW5nIGZvciBleGFtcGxlICdlY2hvID4+IGZpbGUnIHRvIGF2b2lkIHRoaXMgIHRpbWUgdG8gY29weS5cbiJ9 -->
-<pre><code>Avoidable 11.280 seconds. This file is very unusual: it ends abruptly without a final newline, and also its size is a multiple of 4096 bytes. Please properly end the last row with a newline using for example &#39;echo &gt;&gt; file&#39; to avoid this  time to copy.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBmcmVhZChmaWxlLnBhdGgoZGF0YV9kaXIsIFwic3YtbWFudGEudHN2Lmd6XCIpLCBzZXAgPSBcIlxcdFwiKTogRGlzY2FyZGVkXG5zaW5nbGUtbGluZSBmb290ZXI6IDw8MTFfNDIzODUwNzVfNjU4MTkwMjlfSU5WXzEgMTEgNDIzODUwNzUgNjU4MTkwMjkgMjM0MzM5NTRcbklOViBCU18xTldWRkJUUSxCU184M01TV1I1OSBNYW50YUlOVjo0MTQ3MDowOjE6MDowOjAgQSA8SU5WPiAuIFBBU1NcbkNJRU5EPS0xLDA7Q0lQT1M9Pj5cbiJ9 -->
-<pre><code>Warning in fread(file.path(data_dir, &quot;sv-manta.tsv.gz&quot;), sep = &quot;\t&quot;): Discarded
-single-line footer: &lt;&lt;11_42385075_65819029_INV_1 11 42385075 65819029 23433954
-INV BS_1NWVFBTQ,BS_83MSWR59 MantaINV:41470:0:1:0:0:0 A &lt;INV&gt; . PASS
-CIEND=-1,0;CIPOS=&gt;&gt;</code></pre>
-<!-- rnb-warning-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbInJuYV9leHByIDwtIHJlYWRSRFMoZmlsZS5wYXRoKGRhdGFfZGlyLCBcImdlbmUtZXhwcmVzc2lvbi1yc2VtLXRwbS1jb2xsYXBzZWQucmRzXCIpKSIsIiIsImlmICggcGFyYW1zJGJhc2VfcnVuID09MCApe1xuICBjbGluaWNhbDwtcmVhZC5kZWxpbShmaWxlLnBhdGgoZGF0YV9kaXIsXCJoaXN0b2xvZ2llcy50c3ZcIiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSlcbn0gZWxzZXtcbiAgY2xpbmljYWw8LXJlYWQuZGVsaW0oZmlsZS5wYXRoKGRhdGFfZGlyLFwiaGlzdG9sb2dpZXMtYmFzZS50c3ZcIiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgIFxufSIsIiIsIiMgcmVjb3JkaW5nIG9mIFwiQlNfRVRDOFIwVERcIiBHTUtGIE5CTCBzYW1wbGU7IG5lZWRzIHRvIGJlIHJlbW92ZSBvbmNlIHVwZGF0ZWQgaW4gdjEyIiwiI2NsaW5pY2FsJFJOQV9saWJyYXJ5W2NsaW5pY2FsJEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQgPT0gXCJCU19FVEM4UjBURFwiXSA8LSBcInN0cmFuZGVkXCIiLCIiLCJoaXN0b2xvZ3kgPC0gZHBseXI6OnNlbGVjdChjbGluaWNhbCxjKFwiS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRFwiLCBcInNhbXBsZV9pZFwiKSkiLCIiLCIjIGhpZ2ggY29uZmlkZW5jZSBjbnYgbG9zc2VzIGZyb20gYDAzLXRwNTMtY252LWxvc3MtZG9tYWluLlJtZGAiLCJjbnZfdHA1M19sb3NzIDwtIHJlYWRfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpciwgXCJsb3NzX292ZXJsYXBfZG9tYWluc190cDUzLnRzdlwiKSkiXX0= -->
-<pre class="r"><code>rna_expr &lt;- readRDS(file.path(data_dir, &quot;gene-expression-rsem-tpm-collapsed.rds&quot;))
+<!-- rnb-source-begin eyJkYXRhIjpbIm1hbnRhX3N2IDwtIGZyZWFkKGZpbGUucGF0aChkYXRhX2RpciwgXCJzdi1tYW50YS50c3YuZ3pcIiksIHNlcCA9IFwiXFx0XCIpICU+JSBhc190aWJibGUoKSIsInJuYV9leHByIDwtIHJlYWRSRFMoZmlsZS5wYXRoKGRhdGFfZGlyLCBcImdlbmUtZXhwcmVzc2lvbi1yc2VtLXRwbS1jb2xsYXBzZWQucmRzXCIpKSIsIiIsImlmICggcGFyYW1zJGJhc2VfcnVuID09MCApe1xuICBjbGluaWNhbDwtcmVhZC5kZWxpbShmaWxlLnBhdGgoZGF0YV9kaXIsXCJoaXN0b2xvZ2llcy50c3ZcIiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSlcbn0gZWxzZXtcbiAgY2xpbmljYWw8LXJlYWQuZGVsaW0oZmlsZS5wYXRoKGRhdGFfZGlyLFwiaGlzdG9sb2dpZXMtYmFzZS50c3ZcIiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgIFxufSIsIiIsIiMgcmVjb3JkaW5nIG9mIFwiQlNfRVRDOFIwVERcIiBHTUtGIE5CTCBzYW1wbGU7IG5lZWRzIHRvIGJlIHJlbW92ZSBvbmNlIHVwZGF0ZWQgaW4gdjEyIiwiI2NsaW5pY2FsJFJOQV9saWJyYXJ5W2NsaW5pY2FsJEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQgPT0gXCJCU19FVEM4UjBURFwiXSA8LSBcInN0cmFuZGVkXCIiLCIiLCJoaXN0b2xvZ3kgPC0gZHBseXI6OnNlbGVjdChjbGluaWNhbCxjKFwiS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRFwiLCBcInNhbXBsZV9pZFwiKSkiLCIiLCIjIGhpZ2ggY29uZmlkZW5jZSBjbnYgbG9zc2VzIGZyb20gYDAzLXRwNTMtY252LWxvc3MtZG9tYWluLlJtZGAiLCJjbnZfdHA1M19sb3NzIDwtIHJlYWRfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpciwgXCJsb3NzX292ZXJsYXBfZG9tYWluc190cDUzLnRzdlwiKSkiXX0= -->
+<pre class="r"><code>manta_sv &lt;- fread(file.path(data_dir, &quot;sv-manta.tsv.gz&quot;), sep = &quot;\t&quot;) %&gt;% as_tibble()
+rna_expr &lt;- readRDS(file.path(data_dir, &quot;gene-expression-rsem-tpm-collapsed.rds&quot;))
 
 if ( params$base_run ==0 ){
   clinical&lt;-read.delim(file.path(data_dir,&quot;histologies.tsv&quot;), stringsAsFactors = FALSE)
@@ -1924,9 +1860,9 @@ histology &lt;- dplyr::select(clinical,c(&quot;Kids_First_Biospecimen_ID&quot;, 
 # high confidence cnv losses from `03-tp53-cnv-loss-domain.Rmd`
 cnv_tp53_loss &lt;- read_tsv(file.path(results_dir, &quot;loss_overlap_domains_tp53.tsv&quot;))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMjM3IENvbHVtbnM6IDlcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICg2KTogYmlvc3BlY2ltZW5faWQsIGRvbWFpbiwgS2lkc19GaXJzdF9QYXJ0aWNpcGFudF9JRCwgc2FtcGxlX2lkLCBjb21wby4uLlxuZGJsICgzKTogY29weV9udW1iZXIsIHBsb2lkeSwgdHA1M19zaHVmZmxlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMjM3IENvbHVtbnM6IDlcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICg2KTogYmlvc3BlY2ltZW5faWQsIGRvbWFpbiwgS2lkc19GaXJzdF9QYXJ0aWNpcGFudF9JRCwgc2FtcGxlX2lkLCBjb21wby4uLlxuZGJsICgzKTogY29weV9udW1iZXIsIHBsb2lkeSwgdHA1M19zaHVmZmxlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
 <pre><code>Rows: 237 Columns: 9
-── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
 chr (6): biospecimen_id, domain, Kids_First_Participant_ID, sample_id, compo...
 dbl (3): copy_number, ploidy, tp53_shuffle
@@ -1956,34 +1892,95 @@ if (!file.exists(annotation_file)) {
   txdb &lt;- AnnotationDbi::loadDb(annotation_file)
 }</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiSW1wb3J0IGdlbm9taWMgZmVhdHVyZXMgZnJvbSB0aGUgZmlsZSBhcyBhIEdSYW5nZXMgb2JqZWN0IC4uLiBPS1xuUHJlcGFyZSB0aGUgJ21ldGFkYXRhJyBkYXRhIGZyYW1lIC4uLiBPS1xuTWFrZSB0aGUgVHhEYiBvYmplY3QgLi4uIFxuIn0= -->
-<pre><code>Import genomic features from the file as a GRanges object ... OK
-Prepare the &#39;metadata&#39; data frame ... OK
-Make the TxDb object ... </code></pre>
+<!-- rnb-message-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBHZW5vbWljRmVhdHVyZXNcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogQmlvY0dlbmVyaWNzXG5cbkF0dGFjaGluZyBwYWNrYWdlOiAnQmlvY0dlbmVyaWNzJ1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tICdwYWNrYWdlOmx1YnJpZGF0ZSc6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHVuaW9uXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20gJ3BhY2thZ2U6ZHBseXInOlxuXG4gICAgY29tYmluZSwgaW50ZXJzZWN0LCBzZXRkaWZmLCB1bmlvblxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tICdwYWNrYWdlOnN0YXRzJzpcblxuICAgIElRUiwgbWFkLCBzZCwgdmFyLCB4dGFic1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tICdwYWNrYWdlOmJhc2UnOlxuXG4gICAgYW55RHVwbGljYXRlZCwgYXBlcm0sIGFwcGVuZCwgYXMuZGF0YS5mcmFtZSwgYmFzZW5hbWUsIGNiaW5kLFxuICAgIGNvbG5hbWVzLCBkaXJuYW1lLCBkby5jYWxsLCBkdXBsaWNhdGVkLCBldmFsLCBldmFscSwgRmlsdGVyLCBGaW5kLFxuICAgIGdldCwgZ3JlcCwgZ3JlcGwsIGludGVyc2VjdCwgaXMudW5zb3J0ZWQsIGxhcHBseSwgTWFwLCBtYXBwbHksXG4gICAgbWF0Y2gsIG1nZXQsIG9yZGVyLCBwYXN0ZSwgcG1heCwgcG1heC5pbnQsIHBtaW4sIHBtaW4uaW50LFxuICAgIFBvc2l0aW9uLCByYW5rLCByYmluZCwgUmVkdWNlLCByb3duYW1lcywgc2FwcGx5LCBzZXRkaWZmLCBzb3J0LFxuICAgIHRhYmxlLCB0YXBwbHksIHVuaW9uLCB1bmlxdWUsIHVuc3BsaXQsIHdoaWNoLm1heCwgd2hpY2gubWluXG5cbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogUzRWZWN0b3JzXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHN0YXRzNFxuXG5BdHRhY2hpbmcgcGFja2FnZTogJ1M0VmVjdG9ycydcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSAncGFja2FnZTpsdWJyaWRhdGUnOlxuXG4gICAgc2Vjb25kLCBzZWNvbmQ8LVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tICdwYWNrYWdlOmRwbHlyJzpcblxuICAgIGZpcnN0LCByZW5hbWVcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20gJ3BhY2thZ2U6dGlkeXInOlxuXG4gICAgZXhwYW5kXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20gJ3BhY2thZ2U6ZGF0YS50YWJsZSc6XG5cbiAgICBmaXJzdCwgc2Vjb25kXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20gJ3BhY2thZ2U6YmFzZSc6XG5cbiAgICBleHBhbmQuZ3JpZCwgSSwgdW5uYW1lXG5cbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogSVJhbmdlc1xuXG5BdHRhY2hpbmcgcGFja2FnZTogJ0lSYW5nZXMnXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tICdwYWNrYWdlOmx1YnJpZGF0ZSc6XG5cbiAgICAld2l0aGluJVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tICdwYWNrYWdlOmRwbHlyJzpcblxuICAgIGNvbGxhcHNlLCBkZXNjLCBzbGljZVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSAncGFja2FnZTpwdXJycic6XG5cbiAgICByZWR1Y2VcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20gJ3BhY2thZ2U6ZGF0YS50YWJsZSc6XG5cbiAgICBzaGlmdFxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IEdlbm9tZUluZm9EYlxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBHZW5vbWljUmFuZ2VzXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IEFubm90YXRpb25EYmlcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogQmlvYmFzZVxuV2VsY29tZSB0byBCaW9jb25kdWN0b3JcblxuICAgIFZpZ25ldHRlcyBjb250YWluIGludHJvZHVjdG9yeSBtYXRlcmlhbDsgdmlldyB3aXRoXG4gICAgJ2Jyb3dzZVZpZ25ldHRlcygpJy4gVG8gY2l0ZSBCaW9jb25kdWN0b3IsIHNlZVxuICAgICdjaXRhdGlvbihcIkJpb2Jhc2VcIiknLCBhbmQgZm9yIHBhY2thZ2VzICdjaXRhdGlvbihcInBrZ25hbWVcIiknLlxuXG5cbkF0dGFjaGluZyBwYWNrYWdlOiAnQW5ub3RhdGlvbkRiaSdcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20gJ3BhY2thZ2U6ZHBseXInOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
+<pre><code>Loading required package: GenomicFeatures
+Loading required package: BiocGenerics
+
+Attaching package: &#39;BiocGenerics&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    intersect, setdiff, union
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: &#39;S4Vectors&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    second, second&lt;-
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    first, rename
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    expand
+
+The following objects are masked from &#39;package:data.table&#39;:
+
+    first, second
+
+The following objects are masked from &#39;package:base&#39;:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: &#39;IRanges&#39;
+
+The following object is masked from &#39;package:lubridate&#39;:
+
+    %within%
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    collapse, desc, slice
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    reduce
+
+The following object is masked from &#39;package:data.table&#39;:
+
+    shift
+
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+
+
+Attaching package: &#39;AnnotationDbi&#39;
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    select</code></pre>
 <!-- rnb-message-end -->
-<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiAuZ2V0X2Nkc19JRFgobWNvbHMwJHR5cGUsIG1jb2xzMCRwaGFzZSk6IFRoZSBcInBoYXNlXCIgbWV0YWRhdGEgY29sdW1uIGNvbnRhaW5zIG5vbi1OQSB2YWx1ZXMgZm9yIGZlYXR1cmVzIG9mIHR5cGVcbiAgc3RvcF9jb2Rvbi4gVGhpcyBpbmZvcm1hdGlvbiB3YXMgaWdub3JlZC5cbiJ9 -->
-<pre><code>Warning in .get_cds_IDX(mcols0$type, mcols0$phase): The &quot;phase&quot; metadata column contains non-NA values for features of type
-  stop_codon. This information was ignored.</code></pre>
-<!-- rnb-warning-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiT0tcbiJ9 -->
-<pre><code>OK</code></pre>
-<!-- rnb-message-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHhEYiBvYmplY3Q6XG4jIERiIHR5cGU6IFR4RGJcbiMgU3VwcG9ydGluZyBwYWNrYWdlOiBHZW5vbWljRmVhdHVyZXNcbiMgRGF0YSBzb3VyY2U6IC9ob21lL3JzdHVkaW8vT3BlblBlZENhbi1hbmFseXNpcy9kYXRhL2dlbmNvZGUudjM5LnByaW1hcnlfYXNzZW1ibHkuYW5ub3RhdGlvbi5ndGYuZ3pcbiMgT3JnYW5pc206IE5BXG4jIFRheG9ub215IElEOiBOQVxuIyBtaVJCYXNlIGJ1aWxkIElEOiBOQVxuIyBHZW5vbWU6IE5BXG4jIE5iIG9mIHRyYW5zY3JpcHRzOiAyNDQ5OThcbiMgRGIgY3JlYXRlZCBieTogR2Vub21pY0ZlYXR1cmVzIHBhY2thZ2UgZnJvbSBCaW9jb25kdWN0b3JcbiMgQ3JlYXRpb24gdGltZTogMjAyMy0wNS0yMiAwMzozMTo1MiArMDAwMCAoTW9uLCAyMiBNYXkgMjAyMylcbiMgR2Vub21pY0ZlYXR1cmVzIHZlcnNpb24gYXQgY3JlYXRpb24gdGltZTogMS41MC40XG4jIFJTUUxpdGUgdmVyc2lvbiBhdCBjcmVhdGlvbiB0aW1lOiAyLjMuMVxuIyBEQlNDSEVNQVZFUlNJT046IDEuMlxuIn0= -->
-<pre><code>TxDb object:
-# Db type: TxDb
-# Supporting package: GenomicFeatures
-# Data source: /home/rstudio/OpenPedCan-analysis/data/gencode.v39.primary_assembly.annotation.gtf.gz
-# Organism: NA
-# Taxonomy ID: NA
-# miRBase build ID: NA
-# Genome: NA
-# Nb of transcripts: 244998
-# Db created by: GenomicFeatures package from Bioconductor
-# Creation time: 2023-05-22 03:31:52 +0000 (Mon, 22 May 2023)
-# GenomicFeatures version at creation time: 1.50.4
-# RSQLite version at creation time: 2.3.1
-# DBSCHEMAVERSION: 1.2</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjpbIiMgZXhvbiByZWdpb25zIiwiZXhvbiA8LSBHZW5vbWljRmVhdHVyZXM6OmV4b25pY1BhcnRzKHR4ZGIsIGxpbmtlZC50by5zaW5nbGUuZ2VuZS5vbmx5PUZBTFNFKSIsIiMgaW50cm9uIHJlZ2lvbnMiLCJpbnRyb24gPC0gR2Vub21pY0ZlYXR1cmVzOjppbnRyb25pY1BhcnRzKHR4ZGIsIGxpbmtlZC50by5zaW5nbGUuZ2VuZS5vbmx5PUZBTFNFKSJdfQ== -->
 <pre class="r"><code># exon regions
 exon &lt;- GenomicFeatures::exonicParts(txdb, linked.to.single.gene.only=FALSE)
@@ -2477,6 +2474,17 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
+<td align="right">7354503</td>
+<td align="right">7802588</td>
+<td align="right">-448084</td>
+<td align="left">BS_3RCKRJB1</td>
+<td align="left">DEL</td>
+<td align="left">TP53</td>
+<td align="left"><DEL></td>
+<td align="left">7316-5423</td>
+</tr>
+<tr class="odd">
+<td align="left">17</td>
 <td align="right">6770742</td>
 <td align="right">52819502</td>
 <td align="right">46048760</td>
@@ -2486,7 +2494,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2960</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2101574</td>
 <td align="right">12263463</td>
@@ -2497,7 +2505,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3158</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2105460</td>
 <td align="right">12264076</td>
@@ -2508,7 +2516,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3158</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2108397</td>
 <td align="right">12264010</td>
@@ -2519,7 +2527,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3158</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4668982</td>
 <td align="right">81970414</td>
@@ -2530,7 +2538,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5304</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">827207</td>
 <td align="right">51887701</td>
@@ -2541,7 +2549,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1326742</td>
 <td align="right">63563566</td>
@@ -2552,7 +2560,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4426269</td>
 <td align="right">8113656</td>
@@ -2563,7 +2571,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4464292</td>
 <td align="right">18883999</td>
@@ -2574,7 +2582,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5425621</td>
 <td align="right">57134291</td>
@@ -2585,17 +2593,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7674288</td>
-<td align="right">7674856</td>
-<td align="right">-568</td>
-<td align="left">BS_5ARWRQ8E</td>
-<td align="left">DEL</td>
-<td align="left">TP53</td>
-<td align="left">A</td>
-<td align="left">7316UP-2013</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7674288</td>
@@ -2609,9 +2606,9 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7675236</td>
-<td align="right">7675993</td>
-<td align="right">-757</td>
+<td align="right">7674288</td>
+<td align="right">7674856</td>
+<td align="right">-568</td>
 <td align="left">BS_5ARWRQ8E</td>
 <td align="left">DEL</td>
 <td align="left">TP53</td>
@@ -2630,6 +2627,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316UP-2013</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7675236</td>
+<td align="right">7675993</td>
+<td align="right">-757</td>
+<td align="left">BS_5ARWRQ8E</td>
+<td align="left">DEL</td>
+<td align="left">TP53</td>
+<td align="left">A</td>
+<td align="left">7316UP-2013</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1222635</td>
 <td align="right">32524996</td>
@@ -2640,7 +2648,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2530461</td>
 <td align="right">74969693</td>
@@ -2651,7 +2659,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3409757</td>
 <td align="right">54584535</td>
@@ -2662,7 +2670,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5823198</td>
 <td align="right">76436156</td>
@@ -2673,7 +2681,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7474366</td>
 <td align="right">67689070</td>
@@ -2684,17 +2692,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2013</td>
 </tr>
-<tr class="odd">
-<td align="left">17</td>
-<td align="right">7682077</td>
-<td align="right">7682078</td>
-<td align="right">NA</td>
-<td align="left">BS_5ARWRQ8E</td>
-<td align="left">BND</td>
-<td align="left">TP53</td>
-<td align="left">[chr12:12364246[TG</td>
-<td align="left">7316UP-2013</td>
-</tr>
 <tr class="even">
 <td align="left">17</td>
 <td align="right">7682077</td>
@@ -2707,6 +2704,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316UP-2013</td>
 </tr>
 <tr class="odd">
+<td align="left">17</td>
+<td align="right">7682077</td>
+<td align="right">7682078</td>
+<td align="right">NA</td>
+<td align="left">BS_5ARWRQ8E</td>
+<td align="left">BND</td>
+<td align="left">TP53</td>
+<td align="left">[chr12:12364246[TG</td>
+<td align="left">7316UP-2013</td>
+</tr>
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2473049</td>
 <td align="right">53750232</td>
@@ -2717,17 +2725,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7674288</td>
-<td align="right">7674856</td>
-<td align="right">-568</td>
-<td align="left">BS_5AZW4DKB</td>
-<td align="left">DEL</td>
-<td align="left">TP53</td>
-<td align="left">A</td>
-<td align="left">7316UP-1975</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7674288</td>
@@ -2741,13 +2738,13 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7674969</td>
-<td align="right">7675050</td>
-<td align="right">-81</td>
+<td align="right">7674288</td>
+<td align="right">7674856</td>
+<td align="right">-568</td>
 <td align="left">BS_5AZW4DKB</td>
 <td align="left">DEL</td>
 <td align="left">TP53</td>
-<td align="left">G</td>
+<td align="left">A</td>
 <td align="left">7316UP-1975</td>
 </tr>
 <tr class="odd">
@@ -2763,13 +2760,13 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7673837</td>
-<td align="right">7674180</td>
-<td align="right">-343</td>
+<td align="right">7674969</td>
+<td align="right">7675050</td>
+<td align="right">-81</td>
 <td align="left">BS_5AZW4DKB</td>
 <td align="left">DEL</td>
 <td align="left">TP53</td>
-<td align="left">A</td>
+<td align="left">G</td>
 <td align="left">7316UP-1975</td>
 </tr>
 <tr class="odd">
@@ -2785,9 +2782,9 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7675236</td>
-<td align="right">7675993</td>
-<td align="right">-757</td>
+<td align="right">7673837</td>
+<td align="right">7674180</td>
+<td align="right">-343</td>
 <td align="left">BS_5AZW4DKB</td>
 <td align="left">DEL</td>
 <td align="left">TP53</td>
@@ -2806,6 +2803,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316UP-1975</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7675236</td>
+<td align="right">7675993</td>
+<td align="right">-757</td>
+<td align="left">BS_5AZW4DKB</td>
+<td align="left">DEL</td>
+<td align="left">TP53</td>
+<td align="left">A</td>
+<td align="left">7316UP-1975</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">433248</td>
 <td align="right">72231482</td>
@@ -2816,7 +2824,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2261781</td>
 <td align="right">57928438</td>
@@ -2827,7 +2835,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2287718</td>
 <td align="right">76530231</td>
@@ -2838,7 +2846,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5730698</td>
 <td align="right">27871578</td>
@@ -2849,7 +2857,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7532868</td>
 <td align="right">19552228</td>
@@ -2860,7 +2868,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7622097</td>
 <td align="right">28833087</td>
@@ -2871,17 +2879,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1975</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7678675</td>
-<td align="right">7678719</td>
-<td align="right">NA</td>
-<td align="left">BS_5AZW4DKB</td>
-<td align="left">BND</td>
-<td align="left">TP53</td>
-<td align="left">]chr12:93168781]T</td>
-<td align="left">7316UP-1975</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7678675</td>
@@ -2894,6 +2891,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316UP-1975</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7678675</td>
+<td align="right">7678719</td>
+<td align="right">NA</td>
+<td align="left">BS_5AZW4DKB</td>
+<td align="left">BND</td>
+<td align="left">TP53</td>
+<td align="left">]chr12:93168781]T</td>
+<td align="left">7316UP-1975</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2447116</td>
 <td align="right">81798309</td>
@@ -2904,7 +2912,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5002</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2801623</td>
 <td align="right">57893374</td>
@@ -2915,7 +2923,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3409</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">947414</td>
 <td align="right">13052544</td>
@@ -2926,7 +2934,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1060283</td>
 <td align="right">14491676</td>
@@ -2937,7 +2945,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1439410</td>
 <td align="right">8507248</td>
@@ -2948,7 +2956,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1662648</td>
 <td align="right">9357607</td>
@@ -2959,7 +2967,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3134837</td>
 <td align="right">8239794</td>
@@ -2970,7 +2978,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">552698</td>
 <td align="right">7984792</td>
@@ -2981,7 +2989,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1161263</td>
 <td align="right">13117290</td>
@@ -2992,7 +3000,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1263812</td>
 <td align="right">8229300</td>
@@ -3003,7 +3011,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5415500</td>
 <td align="right">8234275</td>
@@ -3014,7 +3022,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5490144</td>
 <td align="right">7985119</td>
@@ -3025,17 +3033,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3022</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7669645</td>
-<td align="right">7670078</td>
-<td align="right">-433</td>
-<td align="left">BS_7BN22JGJ</td>
-<td align="left">DEL</td>
-<td align="left">TP53</td>
-<td align="left">T</td>
-<td align="left">7316-8970</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7669645</td>
@@ -3049,13 +3046,13 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7669232</td>
-<td align="right">7670082</td>
-<td align="right">850</td>
+<td align="right">7669645</td>
+<td align="right">7670078</td>
+<td align="right">-433</td>
 <td align="left">BS_7BN22JGJ</td>
-<td align="left">INV</td>
+<td align="left">DEL</td>
 <td align="left">TP53</td>
-<td align="left"><INV></td>
+<td align="left">T</td>
 <td align="left">7316-8970</td>
 </tr>
 <tr class="odd">
@@ -3071,9 +3068,9 @@ manta_sv_tp53 %&gt;%
 </tr>
 <tr class="even">
 <td align="left">17</td>
-<td align="right">7669247</td>
-<td align="right">7672197</td>
-<td align="right">2950</td>
+<td align="right">7669232</td>
+<td align="right">7670082</td>
+<td align="right">850</td>
 <td align="left">BS_7BN22JGJ</td>
 <td align="left">INV</td>
 <td align="left">TP53</td>
@@ -3092,6 +3089,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316-8970</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7669247</td>
+<td align="right">7672197</td>
+<td align="right">2950</td>
+<td align="left">BS_7BN22JGJ</td>
+<td align="left">INV</td>
+<td align="left">TP53</td>
+<td align="left"><INV></td>
+<td align="left">7316-8970</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2447086</td>
 <td align="right">81798467</td>
@@ -3102,7 +3110,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-9741</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7678058</td>
 <td align="right">7689795</td>
@@ -3113,7 +3121,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3218</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">6323690</td>
 <td align="right">19973056</td>
@@ -3124,7 +3132,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-4274</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">947391</td>
 <td align="right">10566553</td>
@@ -3135,7 +3143,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">947414</td>
 <td align="right">13052544</td>
@@ -3146,7 +3154,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1060418</td>
 <td align="right">14491387</td>
@@ -3157,7 +3165,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1080925</td>
 <td align="right">10341301</td>
@@ -3168,7 +3176,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1439410</td>
 <td align="right">8507248</td>
@@ -3179,7 +3187,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1662648</td>
 <td align="right">9357607</td>
@@ -3190,7 +3198,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3134837</td>
 <td align="right">8239794</td>
@@ -3201,7 +3209,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">552698</td>
 <td align="right">7984792</td>
@@ -3212,7 +3220,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1161263</td>
 <td align="right">13117290</td>
@@ -3223,7 +3231,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1263812</td>
 <td align="right">8229300</td>
@@ -3234,7 +3242,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5415500</td>
 <td align="right">8234275</td>
@@ -3245,7 +3253,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5490144</td>
 <td align="right">7985119</td>
@@ -3256,7 +3264,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-3303</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2726318</td>
 <td align="right">31600240</td>
@@ -3267,7 +3275,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-935</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1923103</td>
 <td align="right">71124449</td>
@@ -3278,7 +3286,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3817389</td>
 <td align="right">39272022</td>
@@ -3289,7 +3297,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4679137</td>
 <td align="right">44793728</td>
@@ -3300,7 +3308,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">6632496</td>
 <td align="right">59506491</td>
@@ -3311,7 +3319,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7563353</td>
 <td align="right">59356784</td>
@@ -3322,7 +3330,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">347301</td>
 <td align="right">46780290</td>
@@ -3333,7 +3341,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1319734</td>
 <td align="right">9421218</td>
@@ -3344,7 +3352,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1423738</td>
 <td align="right">71188371</td>
@@ -3355,7 +3363,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1951243</td>
 <td align="right">59846565</td>
@@ -3366,7 +3374,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2031523</td>
 <td align="right">47731004</td>
@@ -3377,7 +3385,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2167086</td>
 <td align="right">20905630</td>
@@ -3388,7 +3396,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3013473</td>
 <td align="right">10899359</td>
@@ -3399,7 +3407,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3882668</td>
 <td align="right">38401895</td>
@@ -3410,7 +3418,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4069548</td>
 <td align="right">31366234</td>
@@ -3421,7 +3429,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5568109</td>
 <td align="right">70753370</td>
@@ -3432,7 +3440,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7272233</td>
 <td align="right">36739676</td>
@@ -3443,7 +3451,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7332909</td>
 <td align="right">77109425</td>
@@ -3454,7 +3462,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-1333</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1630675</td>
 <td align="right">59497463</td>
@@ -3465,7 +3473,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-7144</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">546869</td>
 <td align="right">73345922</td>
@@ -3476,7 +3484,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1410723</td>
 <td align="right">58896696</td>
@@ -3487,7 +3495,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4525112</td>
 <td align="right">16256891</td>
@@ -3498,7 +3506,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">6681994</td>
 <td align="right">72362022</td>
@@ -3509,7 +3517,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">6767679</td>
 <td align="right">70896298</td>
@@ -3520,7 +3528,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">547996</td>
 <td align="right">17756561</td>
@@ -3531,7 +3539,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3140432</td>
 <td align="right">12607968</td>
@@ -3542,7 +3550,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3495919</td>
 <td align="right">40032808</td>
@@ -3553,7 +3561,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4260103</td>
 <td align="right">44267941</td>
@@ -3564,7 +3572,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5417340</td>
 <td align="right">46978423</td>
@@ -3575,7 +3583,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5662988</td>
 <td align="right">72196645</td>
@@ -3586,7 +3594,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5821324</td>
 <td align="right">62575089</td>
@@ -3597,7 +3605,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">6328795</td>
 <td align="right">29473846</td>
@@ -3608,7 +3616,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">6683103</td>
 <td align="right">71841281</td>
@@ -3619,7 +3627,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">6762480</td>
 <td align="right">10195499</td>
@@ -3630,7 +3638,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-9945</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7391201</td>
 <td align="right">7802469</td>
@@ -3641,7 +3649,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-1696</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7424597</td>
 <td align="right">15045117</td>
@@ -3652,7 +3660,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-8419</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1359042</td>
 <td align="right">63231997</td>
@@ -3663,7 +3671,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5816</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1219429</td>
 <td align="right">15806452</td>
@@ -3674,7 +3682,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-85</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4779292</td>
 <td align="right">9703248</td>
@@ -3685,7 +3693,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-9066</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">854726</td>
 <td align="right">10188422</td>
@@ -3696,7 +3704,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1168835</td>
 <td align="right">9728445</td>
@@ -3707,7 +3715,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1849038</td>
 <td align="right">11447184</td>
@@ -3718,7 +3726,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">490098</td>
 <td align="right">14452638</td>
@@ -3729,7 +3737,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">491284</td>
 <td align="right">21759964</td>
@@ -3740,7 +3748,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">958343</td>
 <td align="right">14599824</td>
@@ -3751,7 +3759,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2620575</td>
 <td align="right">13546067</td>
@@ -3762,7 +3770,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3419915</td>
 <td align="right">14134734</td>
@@ -3773,7 +3781,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4434354</td>
 <td align="right">14934472</td>
@@ -3784,7 +3792,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4904132</td>
 <td align="right">14453978</td>
@@ -3795,17 +3803,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-5159</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7679119</td>
-<td align="right">7679515</td>
-<td align="right">-396</td>
-<td align="left">BS_EDCQ4M0R</td>
-<td align="left">DEL</td>
-<td align="left">TP53</td>
-<td align="left">A</td>
-<td align="left">7316-216</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7679119</td>
@@ -3818,6 +3815,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">7316-216</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7679119</td>
+<td align="right">7679515</td>
+<td align="right">-396</td>
+<td align="left">BS_EDCQ4M0R</td>
+<td align="left">DEL</td>
+<td align="left">TP53</td>
+<td align="left">A</td>
+<td align="left">7316-216</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1390822</td>
 <td align="right">16072027</td>
@@ -3828,7 +3836,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3787318</td>
 <td align="right">13549685</td>
@@ -3839,7 +3847,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4608377</td>
 <td align="right">13557701</td>
@@ -3850,7 +3858,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4753792</td>
 <td align="right">12341121</td>
@@ -3861,7 +3869,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5008154</td>
 <td align="right">13916852</td>
@@ -3872,7 +3880,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5171157</td>
 <td align="right">14568011</td>
@@ -3883,7 +3891,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5208564</td>
 <td align="right">12871823</td>
@@ -3894,7 +3902,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5701684</td>
 <td align="right">16034665</td>
@@ -3905,7 +3913,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5752747</td>
 <td align="right">12799069</td>
@@ -3916,7 +3924,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7441265</td>
 <td align="right">12341178</td>
@@ -3927,7 +3935,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">751346</td>
 <td align="right">13340066</td>
@@ -3938,7 +3946,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1411993</td>
 <td align="right">13128047</td>
@@ -3949,7 +3957,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3767696</td>
 <td align="right">13082388</td>
@@ -3960,7 +3968,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3933749</td>
 <td align="right">13034986</td>
@@ -3971,7 +3979,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4285021</td>
 <td align="right">13562734</td>
@@ -3982,7 +3990,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4750651</td>
 <td align="right">13899930</td>
@@ -3993,7 +4001,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5011096</td>
 <td align="right">14514677</td>
@@ -4004,7 +4012,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5630190</td>
 <td align="right">16219301</td>
@@ -4015,7 +4023,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">5730681</td>
 <td align="right">16215814</td>
@@ -4026,7 +4034,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5753435</td>
 <td align="right">12341257</td>
@@ -4037,7 +4045,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">1350477</td>
 <td align="right">18738260</td>
@@ -4048,7 +4056,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">16510-23</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4779292</td>
 <td align="right">9703248</td>
@@ -4059,17 +4067,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-9066</td>
 </tr>
-<tr class="even">
-<td align="left">17</td>
-<td align="right">7682402</td>
-<td align="right">7682403</td>
-<td align="right">NA</td>
-<td align="left">BS_FHJP8HE0</td>
-<td align="left">BND</td>
-<td align="left">TP53</td>
-<td align="left">[chrX:12414938[CA</td>
-<td align="left">16510-20</td>
-</tr>
 <tr class="odd">
 <td align="left">17</td>
 <td align="right">7682402</td>
@@ -4082,6 +4079,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">16510-20</td>
 </tr>
 <tr class="even">
+<td align="left">17</td>
+<td align="right">7682402</td>
+<td align="right">7682403</td>
+<td align="right">NA</td>
+<td align="left">BS_FHJP8HE0</td>
+<td align="left">BND</td>
+<td align="left">TP53</td>
+<td align="left">[chrX:12414938[CA</td>
+<td align="left">16510-20</td>
+</tr>
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2447240</td>
 <td align="right">81798114</td>
@@ -4092,7 +4100,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5557225</td>
 <td align="right">13247254</td>
@@ -4103,7 +4111,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-3217</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2653620</td>
 <td align="right">79919390</td>
@@ -4114,7 +4122,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">CNMC-1277</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">5425084</td>
 <td align="right">74253333</td>
@@ -4125,7 +4133,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">CNMC-1277</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2959958</td>
 <td align="right">66427347</td>
@@ -4136,17 +4144,6 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">CF359-T</td>
 </tr>
-<tr class="odd">
-<td align="left">17</td>
-<td align="right">7684400</td>
-<td align="right">7684401</td>
-<td align="right">NA</td>
-<td align="left">BS_JTNTWJMD</td>
-<td align="left">BND</td>
-<td align="left">TP53</td>
-<td align="left">[chr6:42600838[A</td>
-<td align="left">CF359-T</td>
-</tr>
 <tr class="even">
 <td align="left">17</td>
 <td align="right">7684400</td>
@@ -4159,6 +4156,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">CF359-T</td>
 </tr>
 <tr class="odd">
+<td align="left">17</td>
+<td align="right">7684400</td>
+<td align="right">7684401</td>
+<td align="right">NA</td>
+<td align="left">BS_JTNTWJMD</td>
+<td align="left">BND</td>
+<td align="left">TP53</td>
+<td align="left">[chr6:42600838[A</td>
+<td align="left">CF359-T</td>
+</tr>
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1161093</td>
 <td align="right">11852607</td>
@@ -4169,7 +4177,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3142811</td>
 <td align="right">21192943</td>
@@ -4180,7 +4188,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">4412925</td>
 <td align="right">18173756</td>
@@ -4191,7 +4199,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3028887</td>
 <td align="right">21753518</td>
@@ -4202,7 +4210,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3865033</td>
 <td align="right">21173084</td>
@@ -4213,7 +4221,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">3867249</td>
 <td align="right">21536376</td>
@@ -4224,7 +4232,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">3867269</td>
 <td align="right">21178289</td>
@@ -4235,7 +4243,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-2152</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4779292</td>
 <td align="right">9703248</td>
@@ -4246,7 +4254,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-9066</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2087197</td>
 <td align="right">34691837</td>
@@ -4257,7 +4265,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">01</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4779292</td>
 <td align="right">9703248</td>
@@ -4268,7 +4276,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-7689</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1480606</td>
 <td align="right">34728149</td>
@@ -4279,7 +4287,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2398</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">405514</td>
 <td align="right">20303232</td>
@@ -4290,7 +4298,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-6574</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1029707</td>
 <td align="right">18257824</td>
@@ -4301,7 +4309,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-6574</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4940940</td>
 <td align="right">78093074</td>
@@ -4312,7 +4320,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-6574</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">2860710</td>
 <td align="right">15410942</td>
@@ -4323,7 +4331,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">16510-25</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7679697</td>
 <td align="right">8314127</td>
@@ -4334,7 +4342,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5539</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">158438</td>
 <td align="right">15639524</td>
@@ -4345,7 +4353,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5299</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">7525014</td>
 <td align="right">52953319</td>
@@ -4356,7 +4364,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316UP-2243</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1775289</td>
 <td align="right">20785995</td>
@@ -4367,7 +4375,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-9039</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">4779292</td>
 <td align="right">9703248</td>
@@ -4378,7 +4386,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-9066</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7058670</td>
 <td align="right">13943370</td>
@@ -4389,7 +4397,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5146</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">2275408</td>
 <td align="right">41514897</td>
@@ -4400,7 +4408,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">16510-18</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">7354503</td>
 <td align="right">7802588</td>
@@ -4411,7 +4419,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><DEL></td>
 <td align="left">7316-5423</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">17</td>
 <td align="right">764238</td>
 <td align="right">16349689</td>
@@ -4422,7 +4430,7 @@ manta_sv_tp53 %&gt;%
 <td align="left"><INV></td>
 <td align="left">7316-4860</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">17</td>
 <td align="right">1219462</td>
 <td align="right">15806560</td>
@@ -4432,6 +4440,17 @@ manta_sv_tp53 %&gt;%
 <td align="left">TP53</td>
 <td align="left"><INV></td>
 <td align="left">7316-6253</td>
+</tr>
+<tr class="odd">
+<td align="left">17</td>
+<td align="right">2754326</td>
+<td align="right">35945253</td>
+<td align="right">-33190919</td>
+<td align="left">BS_WH6C5Z6S</td>
+<td align="left">DEL</td>
+<td align="left">TP53</td>
+<td align="left"><DEL></td>
+<td align="left">7316UP-1641</td>
 </tr>
 <tr class="even">
 <td align="left">17</td>
@@ -4715,18 +4734,18 @@ sv_with_loss_cnv</code></pre>
 <!-- rnb-source-end -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["SV_chrom"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SV_start"],"name":[2],"type":["int"],"align":["right"]},{"label":["SV_end"],"name":[3],"type":["int"],"align":["right"]},{"label":["SV_length"],"name":[4],"type":["int"],"align":["right"]},{"label":["Kids.First.Biospecimen.ID.Tumor"],"name":[5],"type":["chr"],"align":["left"]},{"label":["SV_type"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Gene_name"],"name":[7],"type":["chr"],"align":["left"]},{"label":["ALT"],"name":[8],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_YG6FYM9A","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"4668982","3":"81970414","4":"-77300981","5":"BS_544KFC5J","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5304"},{"1":"17","2":"1931889","3":"13210487","4":"11278598","5":"BS_28HAR2FT","6":"INV","7":"TP53","8":"<INV>","9":"7316-8044"},{"1":"17","2":"7597632","3":"7686362","4":"-88730","5":"BS_X2VRDBVG","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-8860"},{"1":"17","2":"2801623","3":"57893374","4":"-55091726","5":"BS_6G19QBAY","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3409"},{"1":"17","2":"947414","3":"13052544","4":"-12105128","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1060283","3":"14491676","4":"-13430682","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1439410","3":"8507248","4":"-7067838","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1662648","3":"9357607","4":"-7694958","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"3134837","3":"8239794","4":"-5104956","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"552698","3":"7984792","4":"7432094","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"1161263","3":"13117290","4":"11956027","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"1263812","3":"8229300","4":"6965488","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"5415500","3":"8234275","4":"2818775","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"5490144","3":"7985119","4":"2494975","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"947391","3":"10566553","4":"-9618688","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"947414","3":"13052544","4":"-12105128","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1060418","3":"14491387","4":"-13430390","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1080925","3":"10341301","4":"-9259924","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1439410","3":"8507248","4":"-7067838","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1662648","3":"9357607","4":"-7694958","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"3134837","3":"8239794","4":"-5104956","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"552698","3":"7984792","4":"7432094","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"1161263","3":"13117290","4":"11956027","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"1263812","3":"8229300","4":"6965488","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"5415500","3":"8234275","4":"2818775","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"5490144","3":"7985119","4":"2494975","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_V9CJXVFQ","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_1XSM0T7R","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"6762480","3":"10195499","4":"-3433019","5":"BS_B8TG51S6","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-9945"},{"1":"17","2":"2473049","3":"53750232","4":"-51277183","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"<DEL>","9":"7316UP-1975"},{"1":"17","2":"7674288","3":"7674856","4":"-568","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7674288","3":"7674856","4":"-568","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7674969","3":"7675050","4":"-81","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"G","9":"7316UP-1975"},{"1":"17","2":"7674969","3":"7675050","4":"-81","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"G","9":"7316UP-1975"},{"1":"17","2":"7673837","3":"7674180","4":"-343","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7673837","3":"7674180","4":"-343","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7675236","3":"7675993","4":"-757","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7675236","3":"7675993","4":"-757","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"433248","3":"72231482","4":"71798234","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"2261781","3":"57928438","4":"55666657","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"2287718","3":"76530231","4":"74242513","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"5730698","3":"27871578","4":"22140880","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7532868","3":"19552228","4":"12019360","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7622097","3":"28833087","4":"21210990","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7678675","3":"7678719","4":"NA","5":"BS_5AZW4DKB","6":"BND","7":"TP53","8":"]chr12:93168781]T","9":"7316UP-1975"},{"1":"17","2":"7678675","3":"7678719","4":"NA","5":"BS_5AZW4DKB","6":"BND","7":"TP53","8":"]chr12:93168781]T","9":"7316UP-1975"},{"1":"17","2":"1413971","3":"15951129","4":"-14537158","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"1770124","3":"8375245","4":"-6604616","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"3515318","3":"12201159","4":"-8685435","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"3877977","3":"8352665","4":"-4474688","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"4366684","3":"13780887","4":"-9414203","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"4369526","3":"18463646","4":"-14094100","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"5186537","3":"18111107","4":"-12924569","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"7266849","3":"17550916","4":"-10284066","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"7541112","3":"18325202","4":"-10784090","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"1618695","3":"16689488","4":"15070793","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1753796","3":"17527009","4":"15772588","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1770295","3":"8374983","4":"6604688","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1969611","3":"7785167","4":"5815556","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2041683","3":"17129657","4":"15087974","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2185674","3":"11018801","4":"8833127","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"3925149","3":"7959450","4":"4034301","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5032606","3":"17546789","4":"12514183","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5064455","3":"16012385","4":"10947930","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5186254","3":"15349536","4":"10162787","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6038519","3":"18194383","4":"12155864","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6683878","3":"12200940","4":"5517062","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6765239","3":"15318180","4":"8552941","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6796599","3":"18326588","4":"11529989","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6902444","3":"16075411","4":"9172967","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7379255","3":"16689143","4":"9309888","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7539664","3":"18972644","4":"11432980","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7564265","3":"17548857","4":"9984592","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2447116","3":"81798309","4":"79350707","5":"BS_5Z0GA574","6":"INV","7":"TP53","8":"<INV>","9":"7316-5002"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["SV_chrom"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SV_start"],"name":[2],"type":["int"],"align":["right"]},{"label":["SV_end"],"name":[3],"type":["int"],"align":["right"]},{"label":["SV_length"],"name":[4],"type":["int"],"align":["right"]},{"label":["Kids.First.Biospecimen.ID.Tumor"],"name":[5],"type":["chr"],"align":["left"]},{"label":["SV_type"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Gene_name"],"name":[7],"type":["chr"],"align":["left"]},{"label":["ALT"],"name":[8],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_YG6FYM9A","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"4668982","3":"81970414","4":"-77300981","5":"BS_544KFC5J","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5304"},{"1":"17","2":"1931889","3":"13210487","4":"11278598","5":"BS_28HAR2FT","6":"INV","7":"TP53","8":"<INV>","9":"7316-8044"},{"1":"17","2":"7597632","3":"7686362","4":"-88730","5":"BS_X2VRDBVG","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-8860"},{"1":"17","2":"2801623","3":"57893374","4":"-55091726","5":"BS_6G19QBAY","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3409"},{"1":"17","2":"947414","3":"13052544","4":"-12105128","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1060283","3":"14491676","4":"-13430682","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1439410","3":"8507248","4":"-7067838","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"1662648","3":"9357607","4":"-7694958","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"3134837","3":"8239794","4":"-5104956","5":"BS_79SYEHY3","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3022"},{"1":"17","2":"552698","3":"7984792","4":"7432094","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"1161263","3":"13117290","4":"11956027","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"1263812","3":"8229300","4":"6965488","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"5415500","3":"8234275","4":"2818775","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"5490144","3":"7985119","4":"2494975","5":"BS_79SYEHY3","6":"INV","7":"TP53","8":"<INV>","9":"7316-3022"},{"1":"17","2":"947391","3":"10566553","4":"-9618688","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"947414","3":"13052544","4":"-12105128","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1060418","3":"14491387","4":"-13430390","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1080925","3":"10341301","4":"-9259924","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1439410","3":"8507248","4":"-7067838","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"1662648","3":"9357607","4":"-7694958","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"3134837","3":"8239794","4":"-5104956","5":"BS_96S0VQBN","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-3303"},{"1":"17","2":"552698","3":"7984792","4":"7432094","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"1161263","3":"13117290","4":"11956027","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"1263812","3":"8229300","4":"6965488","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"5415500","3":"8234275","4":"2818775","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"5490144","3":"7985119","4":"2494975","5":"BS_96S0VQBN","6":"INV","7":"TP53","8":"<INV>","9":"7316-3303"},{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_V9CJXVFQ","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_1XSM0T7R","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"},{"1":"17","2":"6762480","3":"10195499","4":"-3433019","5":"BS_B8TG51S6","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-9945"},{"1":"17","2":"2473049","3":"53750232","4":"-51277183","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"<DEL>","9":"7316UP-1975"},{"1":"17","2":"7674288","3":"7674856","4":"-568","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7674288","3":"7674856","4":"-568","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7674969","3":"7675050","4":"-81","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"G","9":"7316UP-1975"},{"1":"17","2":"7674969","3":"7675050","4":"-81","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"G","9":"7316UP-1975"},{"1":"17","2":"7673837","3":"7674180","4":"-343","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7673837","3":"7674180","4":"-343","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7675236","3":"7675993","4":"-757","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"7675236","3":"7675993","4":"-757","5":"BS_5AZW4DKB","6":"DEL","7":"TP53","8":"A","9":"7316UP-1975"},{"1":"17","2":"433248","3":"72231482","4":"71798234","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"2261781","3":"57928438","4":"55666657","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"2287718","3":"76530231","4":"74242513","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"5730698","3":"27871578","4":"22140880","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7532868","3":"19552228","4":"12019360","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7622097","3":"28833087","4":"21210990","5":"BS_5AZW4DKB","6":"INV","7":"TP53","8":"<INV>","9":"7316UP-1975"},{"1":"17","2":"7678675","3":"7678719","4":"NA","5":"BS_5AZW4DKB","6":"BND","7":"TP53","8":"]chr12:93168781]T","9":"7316UP-1975"},{"1":"17","2":"7678675","3":"7678719","4":"NA","5":"BS_5AZW4DKB","6":"BND","7":"TP53","8":"]chr12:93168781]T","9":"7316UP-1975"},{"1":"17","2":"1413971","3":"15951129","4":"-14537158","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"1770124","3":"8375245","4":"-6604616","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"3515318","3":"12201159","4":"-8685435","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"3877977","3":"8352665","4":"-4474688","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"4366684","3":"13780887","4":"-9414203","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"4369526","3":"18463646","4":"-14094100","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"5186537","3":"18111107","4":"-12924569","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"7266849","3":"17550916","4":"-10284066","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"7541112","3":"18325202","4":"-10784090","5":"BS_3NX3RBCX","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-114"},{"1":"17","2":"1618695","3":"16689488","4":"15070793","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1753796","3":"17527009","4":"15772588","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1770295","3":"8374983","4":"6604688","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"1969611","3":"7785167","4":"5815556","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2041683","3":"17129657","4":"15087974","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2185674","3":"11018801","4":"8833127","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"3925149","3":"7959450","4":"4034301","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5032606","3":"17546789","4":"12514183","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5064455","3":"16012385","4":"10947930","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"5186254","3":"15349536","4":"10162787","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6038519","3":"18194383","4":"12155864","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6683878","3":"12200940","4":"5517062","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6765239","3":"15318180","4":"8552941","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6796599","3":"18326588","4":"11529989","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"6902444","3":"16075411","4":"9172967","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7379255","3":"16689143","4":"9309888","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7539664","3":"18972644","4":"11432980","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"7564265","3":"17548857","4":"9984592","5":"BS_3NX3RBCX","6":"INV","7":"TP53","8":"<INV>","9":"7316-114"},{"1":"17","2":"2447116","3":"81798309","4":"79350707","5":"BS_5Z0GA574","6":"INV","7":"TP53","8":"<INV>","9":"7316-5002"},{"1":"17","2":"7354503","3":"7802588","4":"-448084","5":"BS_3RCKRJB1","6":"DEL","7":"TP53","8":"<DEL>","9":"7316-5423"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-source-begin eyJkYXRhIjoic3Zfd2l0aF9sb3NzX2NudiAlPiUgZHBseXI6OnB1bGwoS2lkcy5GaXJzdC5CaW9zcGVjaW1lbi5JRC5UdW1vciklPiUgdW5pcXVlKCkifQ== -->
 <pre class="r"><code>sv_with_loss_cnv %&gt;% dplyr::pull(Kids.First.Biospecimen.ID.Tumor)%&gt;% unique()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkJTX1lHNkZZTTlBXCIgXCJCU181NDRLRkM1SlwiIFwiQlNfMjhIQVIyRlRcIiBcIkJTX1gyVlJEQlZHXCIgXCJCU182RzE5UUJBWVwiXG4gWzZdIFwiQlNfNzlTWUVIWTNcIiBcIkJTXzk2UzBWUUJOXCIgXCJCU19WOUNKWFZGUVwiIFwiQlNfMVhTTTBUN1JcIiBcIkJTX0I4VEc1MVM2XCJcblsxMV0gXCJCU181QVpXNERLQlwiIFwiQlNfM05YM1JCQ1hcIiBcIkJTXzVaMEdBNTc0XCJcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkJTX1lHNkZZTTlBXCIgXCJCU181NDRLRkM1SlwiIFwiQlNfMjhIQVIyRlRcIiBcIkJTX1gyVlJEQlZHXCIgXCJCU182RzE5UUJBWVwiXG4gWzZdIFwiQlNfNzlTWUVIWTNcIiBcIkJTXzk2UzBWUUJOXCIgXCJCU19WOUNKWFZGUVwiIFwiQlNfMVhTTTBUN1JcIiBcIkJTX0I4VEc1MVM2XCJcblsxMV0gXCJCU181QVpXNERLQlwiIFwiQlNfM05YM1JCQ1hcIiBcIkJTXzVaMEdBNTc0XCIgXCJCU18zUkNLUkpCMVwiXG4ifQ== -->
 <pre><code> [1] &quot;BS_YG6FYM9A&quot; &quot;BS_544KFC5J&quot; &quot;BS_28HAR2FT&quot; &quot;BS_X2VRDBVG&quot; &quot;BS_6G19QBAY&quot;
  [6] &quot;BS_79SYEHY3&quot; &quot;BS_96S0VQBN&quot; &quot;BS_V9CJXVFQ&quot; &quot;BS_1XSM0T7R&quot; &quot;BS_B8TG51S6&quot;
-[11] &quot;BS_5AZW4DKB&quot; &quot;BS_3NX3RBCX&quot; &quot;BS_5Z0GA574&quot;</code></pre>
+[11] &quot;BS_5AZW4DKB&quot; &quot;BS_3NX3RBCX&quot; &quot;BS_5Z0GA574&quot; &quot;BS_3RCKRJB1&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjpbIkJTX1lHNkZZTTlBXG4iLCJCU181NDRLRkM1SlxuIiwiQlNfMjhIQVIyRlRcbiIsIkJTX1gyVlJEQlZHXG4iLCJCU182RzE5UUJBWVxuIiwiQlNfNzlTWUVIWTNcbiIsIkJTXzk2UzBWUUJOXG4iLCJCU19WOUNKWFZGUVxuIiwiQlNfMVhTTTBUN1JcbiIsIkJTX0I4VEc1MVM2XG4iLCJCU181QVpXNERLQlxuIiwiQlNfM05YM1JCQ1hcbiIsIkJTXzVaMEdBNTc0XG4iXX0= -->
+<!-- rnb-output-begin eyJkYXRhIjpbIkJTX1lHNkZZTTlBXG4iLCJCU181NDRLRkM1SlxuIiwiQlNfMjhIQVIyRlRcbiIsIkJTX1gyVlJEQlZHXG4iLCJCU182RzE5UUJBWVxuIiwiQlNfNzlTWUVIWTNcbiIsIkJTXzk2UzBWUUJOXG4iLCJCU19WOUNKWFZGUVxuIiwiQlNfMVhTTTBUN1JcbiIsIkJTX0I4VEc1MVM2XG4iLCJCU181QVpXNERLQlxuIiwiQlNfM05YM1JCQ1hcbiIsIkJTXzVaMEdBNTc0XG4iLCJCU18zUkNLUkpCMVxuIl19 -->
 <pre><code>BS_YG6FYM9A
 
 BS_544KFC5J
@@ -4751,7 +4770,9 @@ BS_5AZW4DKB
 
 BS_3NX3RBCX
 
-BS_5Z0GA574</code></pre>
+BS_5Z0GA574
+
+BS_3RCKRJB1</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

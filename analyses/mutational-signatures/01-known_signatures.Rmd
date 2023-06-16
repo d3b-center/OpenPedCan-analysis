@@ -1,27 +1,23 @@
 ---
-title: "Mutational Signatures"
+title: "SBS Mutational Signatures Analysis"
 output: 
   html_notebook:
-    toc: TRUE
-    toc_float: TRUE
-author: C. Savonen for ALSF CCDL
-date: 2019
+  toc: TRUE
+toc_float: TRUE
+author: Ryan Corbett (adapted from C. Savonen for ALSF CCDL)
+date: 2022
 ---
-
-**Purpose:**
-
+  
+  **Purpose:**
+  
 Calculate and plot mutational signatures for all samples using [COSMIC signatures](https://cancer.sanger.ac.uk/cosmic) and 
 [Alexandrov et al, 2013](https://www.ncbi.nlm.nih.gov/pubmed/23945592) mutational signatures. 
-
-### Summary of Findings:
-
-Coming soon. 
 
 #### Usage
 
 To run this from the command line, use:
-```
-Rscript -e "rmarkdown::render('analyses/mutational-signatures/mutational_signatures.Rmd', 
+  ```
+Rscript -e "rmarkdown::render('analyses/mutational-signatures/01-known_signatures.Rmd', 
                               clean = TRUE)"
 ```
 
@@ -33,7 +29,7 @@ _This assumes you are in the top directory of the repository._
 
 Import necessary functions.
 
-```{r}
+```{r load libraries}
 # Magrittr pipe
 `%>%` <- dplyr::`%>%`
 
@@ -42,40 +38,63 @@ source(file.path("util", "mut_sig_functions.R"))
 
 # Load this library
 library(deconstructSigs)
+library(tidyverse)
 ```
 
 Set up directory paths. 
 
-```{r}
+```{r set directories}
 data_dir <- file.path("..", "..", "data")
+input_dir <- "input"
 results_dir <- "results"
 plots_dir <- "plots"
 figures_dir <- file.path("..", "..", "figures")
-cosmic_plots <- file.path(plots_dir, "cosmic")
+
+cosmicv2_plots <- file.path(plots_dir, "cosmicv2")
 nature_plots <- file.path(plots_dir, "nature")
+cosmicv3_plots <- file.path(plots_dir, "cosmicv3")
+
+scratch_dir <- file.path("..", "..", "scratch", "mutational-signatures")
+cosmicv2_scratch <- file.path(scratch_dir, "cosmicv2")
+cosmicv3_scratch <- file.path(scratch_dir, "cosmicv3")
+nature_scratch <- file.path(scratch_dir, "nature")
 ```
 
 Make new directories for the results. 
 
-```{r}
+```{r make directories}
 if (!dir.exists(results_dir)) {
   dir.create(results_dir)
 }
-if (!dir.exists(cosmic_plots)) {
-  dir.create(cosmic_plots, recursive = TRUE)
+if (!dir.exists(cosmicv2_plots)) {
+  dir.create(cosmicv2_plots, recursive = TRUE)
 }
 if (!dir.exists(nature_plots)) {
   dir.create(nature_plots, recursive = TRUE)
+}
+if (!dir.exists(cosmicv3_plots)) {
+  dir.create(cosmicv3_plots, recursive = TRUE)
+}
+
+if (!dir.exists(scratch_dir)) {
+  dir.create(scratch_dir)
+}
+if (!dir.exists(cosmicv2_scratch)) {
+  dir.create(cosmicv2_scratch)
+}
+if (!dir.exists(cosmicv3_scratch)) {
+  dir.create(cosmicv3_scratch)
+}
+if (!dir.exists(nature_scratch)) {
+  dir.create(nature_scratch)
 }
 ```
 
 ## Read in data
 
-Read in the consensus MAF file. 
-
 ```{r}
 # Declare file path for consensus file
-consensus_file <- file.path(data_dir, "pbta-snv-consensus-mutation.maf.tsv.gz")
+consensus_file <- file.path(data_dir, "snv-consensus-plus-hotspots.maf.tsv.gz")
 ```
 
 Read in the consensus MAF file. 
@@ -92,7 +111,7 @@ Read in the histology colors and labels.
 ```{r}
 histology_label_mapping <- readr::read_tsv(
   file.path(figures_dir, "palettes", "histology_label_color_table.tsv")
-  ) %>% 
+) %>% 
   # Select just the columns we will need for plotting
   dplyr::select(Kids_First_Biospecimen_ID, display_group, display_order, hex_codes) %>% 
   # Reorder display_group based on display_order
@@ -104,50 +123,32 @@ Set up gradient color palette for the bubble matrix plots.
 ```{r}
 gradient_col_palette <- readr::read_tsv(
   file.path(figures_dir, "palettes", "gradient_color_palette.tsv")
-  )
+)
 
 # Won't need NA color this time. 
 gradient_col_palette <- gradient_col_palette %>%
   dplyr::filter(color_names != "na_color")
 ```
 
-Read in the metadata and set it up with the color palette. 
+Read in the metadata and set it up with the color palette. Separate BS_ids into intial CNS tumors and other tumors, as mutational signatures analyses will be run on a different set of signatures for each group.  
 
 ```{r}
-metadata_df <- readr::read_tsv(file.path(data_dir, "pbta-histologies.tsv"), guess_max = 10000) %>% 
-  dplyr::select("Kids_First_Biospecimen_ID", "experimental_strategy") %>%
+metadata_df <- readr::read_tsv(file.path(data_dir, "histologies.tsv"), guess_max = 10000) %>% 
+#  dplyr::select("Kids_First_Biospecimen_ID", "experimental_strategy") %>%
   dplyr::inner_join(histology_label_mapping, by = "Kids_First_Biospecimen_ID") %>% 
   dplyr::rename(Tumor_Sample_Barcode = "Kids_First_Biospecimen_ID") 
 
+initial_pretx_tumors <- metadata_df %>%
+  filter(tumor_descriptor == "Initial CNS Tumor" & age_at_diagnosis_days < age_at_chemo_start) %>%
+  pull(Tumor_Sample_Barcode)
 ```
 
-Read in this list so we can make sure we keep only primary tumors for the 
-grouped bar plots.
+Read in tmb-all file with WGS and WXS region lengths so they can be used for the Mb denominator. 
 
 ```{r}
-ind_samples <- readr::read_tsv(file.path(
-  data_dir,
-  "independent-specimens.wgswxs.primary.tsv"
-))
-```
-
-Read in the WGS and WXS regions so they can be used for the Mb denominator. 
-
-```{r}
-# Set up BED region files for TMB calculations
-wgs_bed <- readr::read_tsv(file.path(data_dir, "WGS.hg38.strelka2.unpadded.bed"),
-  col_names = FALSE
-)
-wxs_bed <- readr::read_tsv(file.path(data_dir, "WXS.hg38.100bp_padded.bed"),
-  col_names = FALSE
-)
-
-# Calculate size of genome surveyed
-# These files are BED files where the third column is the End position and
-# the second column is the Start position.
-# So End - Start gives the size of each range. Sum the gives the total size in bp.
-wgs_size <- sum(wgs_bed[, 3] - wgs_bed[, 2])
-wxs_size <- sum(wxs_bed[, 3] - wxs_bed[, 2])
+# Set up BED region file for TMB calculations
+region_sizes <- readr::read_tsv(file.path(data_dir, "snv-mutation-tmb-all.tsv")) %>%
+  dplyr::select(Tumor_Sample_Barcode, region_size)
 ```
 
 ## Set up data
@@ -204,7 +205,7 @@ tumor_sample_ids <- maf %>%
   dplyr::pull(Tumor_Sample_Barcode)
 ```
 
-Get [COSMIC signatures](https://cancer.sanger.ac.uk/cosmic) for each sample. 
+Get [COSMIC v2 signatures](https://cancer.sanger.ac.uk/cosmic) for each sample. 
 This step will take some time. 
 
 ```{r}
@@ -219,6 +220,13 @@ sample_sigs_cosmic <- lapply(tumor_sample_ids, function(sample_id) {
 })
 # Bring along the names
 names(sample_sigs_cosmic) <- tumor_sample_ids
+
+# Create matrix of COSMIC signature weights
+cosmic_weights <- lapply(sample_sigs_cosmic, "[[", "weights")
+cosmic_wide <- do.call(dplyr::bind_rows, cosmic_weights) %>%
+  add_column('Kids_First_Biospecimen_ID' = unlist(lapply(cosmic_weights, rownames)), .before = 1) %>%
+  tibble::as_tibble() %>%
+readr::write_tsv(file.path(results_dir, 'cosmicv2_signature_exposure_matrix.tsv'))
 ```
 
 Get [Alexandrov et al, 2013](https://www.ncbi.nlm.nih.gov/pubmed/23945592) signatures for each sample. 
@@ -235,65 +243,146 @@ sample_sigs_nature <- lapply(tumor_sample_ids, function(sample_id) {
 })
 # Bring along the names
 names(sample_sigs_nature) <- tumor_sample_ids
+
+# Create data frame of Nature signature weights
+nature_weights <- lapply(sample_sigs_nature, "[[", "weights")
+nature_wide <- do.call(dplyr::bind_rows, nature_weights) %>%
+  add_column('Kids_First_Biospecimen_ID' = unlist(lapply(nature_weights, rownames)), .before = 1) %>%
+  tibble::as_tibble() %>%
+readr::write_tsv(file.path(results_dir, 'nature_signature_exposure_matrix.tsv'))
 ```
 
-### COSMIC signature plots
+Get [COSMIC genome v3.3 signatures](https://cancer.sanger.ac.uk/cosmic) for each sample. 
 
 ```{r}
-sample_mut_sig_plot(
-  sample_sigs_cosmic,
-  label = "cosmic",
-  output_dir = file.path(cosmic_plots, "individual_mutation_sig")
-)
+signatures.cosmic.v3.3 <- read_tsv(file.path(input_dir, 'COSMIC_v3.3.1_SBS_GRCh38.txt')) %>%
+  column_to_rownames('Type') %>%
+  t %>%
+  as.data.frame()
 ```
 
-### Alexandrov et al, 2013 signature plots
+Create list of include/exclude signatures using SBSv3 mapping file. For Initial CNS tumors, therapy exposures will be excluded, but they will be retained for other tumor types. 
+
+```{r Set up lists of excluded and included signatures for COSMIC V3}
+map <- read_tsv(file.path(input_dir, "sbs_v3_map.tsv"))
+
+# Excluded signatures:
+artifact_sigs <- map %>%
+   filter(Broad_category == "Sequencing artifact") %>%
+   pull(Signature)
+
+environ_sigs <- map %>%
+   filter(Broad_category == "Environmental exposure") %>%
+   pull(Signature)
+
+unknown <- map %>%
+   filter(Broad_category == "Unknown" & Signature != "SBS39") %>%
+   pull(Signature)
+ 
+therapy_sigs <- map %>%
+   filter(Broad_category == "Therapy exposure") %>%
+   pull(Signature)
+
+exclude_sigs <- c(artifact_sigs, environ_sigs, unknown)
+include_sigs_initialPretx <- setdiff(rownames(signatures.cosmic.v3.3), c(exclude_sigs, therapy_sigs))
+include_sigs_other <- setdiff(rownames(signatures.cosmic.v3.3), exclude_sigs)
+```
+
+Run signature extraction. This step will take some time.
 
 ```{r}
-sample_mut_sig_plot(
-  sample_sigs_nature,
-  label = "nature",
-  output_dir = file.path(nature_plots, "individual_mutation_sig") 
-)
+sample_sigs_cosmic_v33 <- lapply(tumor_sample_ids, function(sample_id) {
+  # Determine the signatures contributing to the sample
+  if (sample_id %in% initial_pretx_tumors){
+    whichSignatures(
+    tumor.ref = sigs_input,
+    signatures.ref = signatures.cosmic.v3.3,
+    sample.id = sample_id,
+    contexts.needed = TRUE,
+    associated = include_sigs_initialPretx
+    )
+  }else{
+    whichSignatures(
+    tumor.ref = sigs_input,
+    signatures.ref = signatures.cosmic.v3.3,
+    sample.id = sample_id,
+    contexts.needed = TRUE,
+    associated = include_sigs_other
+    )
+  }
+})
+
+# Bring along the names
+names(sample_sigs_cosmic_v33) <- tumor_sample_ids
+# 
+# Create matrix of COSMIC signature weights
+cosmic_v33_weights <- lapply(sample_sigs_cosmic_v33, "[[", "weights")
+cosmic_v33_wide <- do.call(dplyr::bind_rows, cosmic_v33_weights) %>%
+  add_column('Kids_First_Biospecimen_ID' = unlist(lapply(cosmic_v33_weights, rownames)), .before = 1) %>%
+  tibble::as_tibble() %>%
+  readr::write_tsv(file.path(results_dir, 'cosmicv3.3_signature_exposure_matrix.tsv'))
 ```
 
 ### Calculate the mutations per Mb for each signature
 
-Do this for COSMIC mutation signatures.
+Do this for COSMIC v2 mutation signatures.
 
 ```{r}
 # Calculate mutations per signature
 cosmic_sigs_df <- calc_mut_per_sig(
   sample_sigs_cosmic,
   muts_per_sample = total_muts,
-  wgs_genome_size = wgs_size,
-  wxs_exome_size = wxs_size,
+  region_size = region_sizes,
   metadata = metadata_df
-  ) 
+)  %>%
+  dplyr::filter(grepl("Signature", signature))
 
 # Write this to a file but drop the color column
 cosmic_sigs_df %>% 
   dplyr::select(-hex_codes) %>% 
-  readr::write_tsv(file.path(results_dir, "cosmic_signatures_results.tsv"))
+  readr::write_tsv(file.path(results_dir, "cosmicv2_signatures_results.tsv"))
 
 # Print out a preview
 cosmic_sigs_df
 ```
 
-Do this for Alexandrov et al, 2013 mutation signatures.
+Do this for COSMIC v3.3 mutation signatures.
 
 ```{r}
 # Calculate mutations per signature
+cosmicv3_sigs_df <- calc_mut_per_sig(
+  sample_sigs_cosmic_v33,
+  muts_per_sample = total_muts,
+  region_size = region_sizes,
+  metadata = metadata_df
+) %>%
+  dplyr::filter(grepl("SBS", signature))
+
+# Write this to a file but drop the color column
+cosmicv3_sigs_df %>% 
+#  dplyr::filter(grepl("SBS", signature)) %>%
+  dplyr::select(-hex_codes) %>% 
+  readr::write_tsv(file.path(results_dir, "cosmicv3.3_signatures_results.tsv"))
+
+# Print out a preview
+cosmicv3_sigs_df
+```
+
+Do this for Alexandrov et al, 2013 mutation signatures.
+
+```{r}
+#Calculate mutations per signature
 nature_sigs_df <- calc_mut_per_sig(
   sample_sigs_nature,
   muts_per_sample = total_muts,
-  wgs_genome_size = wgs_size,
-  wxs_exome_size = wxs_size,
-  metadata = metadata_df 
-) 
+  region_size = region_sizes,
+  metadata = metadata_df
+)  %>%
+  dplyr::filter(grepl("Signature", signature))
 
 # Write this to a file but drop the color column
 nature_sigs_df %>% 
+#  dplyr::filter(grepl("SBS", signature)) %>%
   dplyr::select(-hex_codes) %>% 
   readr::write_tsv(file.path(results_dir, "nature_signatures_results.tsv"))
 
@@ -303,18 +392,23 @@ nature_sigs_df
 
 ## Mutation signature bubble matrix by histology groups
 
+For COSMIC v2 signatures
+
 ```{r}
 bubble_matrix_plot(cosmic_sigs_df, 
                    label = "COSMIC Signatures", 
                    color_palette = gradient_col_palette$hex_codes
-                   )
+)
 ```
 
 ```{r}
 ggplot2::ggsave(
-  file.path(cosmic_plots, "bubble_matrix_cosmic_mutation_sig.png"),
+  file.path(cosmicv2_plots, "bubble_matrix_cosmicv2_mutation_sig.png"),
   width = 30, height = 20, units = "cm")
 ```
+
+
+For Nature signatures
 
 ```{r}
 bubble_matrix_plot(nature_sigs_df, 
@@ -328,40 +422,62 @@ ggplot2::ggsave(
   width = 30, height = 20, units = "cm")
 ```
 
+
+For COSMIC v3.3 signatures
+
+```{r}
+bubble_matrix_plot(cosmicv3_sigs_df, 
+                   label = "COSMIC Signatures", 
+                   color_palette = gradient_col_palette$hex_codes
+)
+```
+
+```{r}
+ggplot2::ggsave(
+  file.path(cosmicv3_plots, "bubble_matrix_cosmicv3_mutation_sig.png"),
+  width = 30, height = 20, units = "cm")
+```
+
 ## Mutation signature grouped bar plots for each histology group
 
 We will make these plots for primary tumor samples only. 
-Let's make these for COSMIC mutation signatures first. 
+Lets make these for COSMIC mutation signatures first. 
 
 ```{r, results = "hide"}
-# Keep only primary tumors
-cosmic_sigs_primary <- cosmic_sigs_df %>%
-  dplyr::filter(Tumor_Sample_Barcode %in% ind_samples$Kids_First_Biospecimen_ID)
-
 # Make grouped bar plots
-lapply(unique(cosmic_sigs_primary$display_group),
+lapply(unique(cosmic_sigs_df$display_group),
   grouped_sig_barplot,
-  sig_num_df = cosmic_sigs_primary,
-  output_dir = file.path(cosmic_plots, "signature_grouped_barplots"), 
-  label = "cosmic"
+  sig_num_df = cosmic_sigs_df,
+  output_dir = file.path(cosmicv2_scratch, "signature_grouped_barplots"), 
+  label = "cosmic_v2"
 )
 ```
 
 Make these plots for Alexandrov et al, 2013 signatures. 
 
 ```{r, results = "hide"}
-# Keep only primary tumors
-nature_sigs_primary <- nature_sigs_df %>%
-  dplyr::filter(Tumor_Sample_Barcode %in% ind_samples$Kids_First_Biospecimen_ID)
-
 # Make grouped bar plots
-lapply(unique(nature_sigs_primary$display_group),
+lapply(unique(nature_sigs_df$display_group),
   grouped_sig_barplot,
-  sig_num_df = nature_sigs_primary,
-  output_dir = file.path(nature_plots, "signature_grouped_barplots"),
+  sig_num_df = nature_sigs_df,
+  output_dir = file.path(nature_scratch, "signature_grouped_barplots"),
   label = "nature"
 )
 ```
+
+Make these plots for COSMIC v3.3 signatures. 
+
+```{r, results = "hide"}
+# Make grouped bar plots
+lapply(unique(cosmicv3_sigs_df$display_group),
+  grouped_sig_barplot,
+  sig_num_df = cosmicv3_sigs_df,
+  output_dir = file.path(cosmicv3_scratch, "signature_grouped_barplots"),
+  label = "cosmic_v3.3"
+)
+```
+
+
 
 ## Session Info
 

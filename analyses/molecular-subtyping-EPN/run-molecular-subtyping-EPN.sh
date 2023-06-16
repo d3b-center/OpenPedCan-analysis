@@ -12,6 +12,7 @@ SUBSET=${OPENPBTA_SUBSET:-1}
 
 # Define needed files
 HISTOLOGIES=../../data/histologies-base.tsv
+PATH_DX=epn-subset/EPN_subtyping_path_dx_strings.json
 FULL_EXPRESSION=../../data/gene-expression-rsem-tpm-collapsed.rds
 SUBSET_EXPRESSION=epn-subset/epn-gene-expression-rsem-tpm-collapsed.tsv.gz
 DISEASE_GROUP_FILE=epn-subset/EPN_samples.tsv
@@ -30,15 +31,19 @@ EPN_TABLE=results/EPN_all_data.tsv
 mkdir -p epn-subset
 mkdir -p results
 
+#generate JSON file
+Rscript 00-EPN-select-pathology-dx.R
+
 # subset gene expression data
 if [ "$SUBSET" -gt "0" ]; then
   echo "Subsetting  for CI"
-  Rscript 00-subset-for-EPN.R -i $HISTOLOGIES -e $FULL_EXPRESSION -o $SUBSET_EXPRESSION
+  Rscript 00-subset-for-EPN.R -i $HISTOLOGIES -p $PATH_DX -e $FULL_EXPRESSION -o $SUBSET_EXPRESSION
 fi
 
 # map DNA and RNA ID's for each participant and assign disease group
 echo "Generating epn-subset/EPN_samples.tsv that maps DNA and RNA ID's and assigns disease group"
 Rscript 01-assign-disease-group.R \
+-p $PATH_DX \
 --histology $HISTOLOGIES \
 --outfile $DISEASE_GROUP_FILE
 

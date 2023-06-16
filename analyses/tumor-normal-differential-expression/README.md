@@ -21,7 +21,8 @@ download-data.sh
 2) `Input_Data/countData_subset.rds` -   Gene counts data subset
 3) `Input_Data/GTEx_Index_limit.txt` - maximum count of GTEx tissues that have sufficient clinical data
 4) `Input_Data/Hist_Index_limit.txt` - maximum count of cancer histology
-5) `indices.txt` - pairs of indices of cancer histology and GTEx tissue, to be used by the slurm set up for parallelization.
+5) `Input_Data/filelist_expected.txt` - a list of all filenames as combination of cancer_group and cohort combinations expected if the module runs successfully
+6) `indices.txt` - pairs of indices of cancer histology and GTEx tissue, to be used by the slurm set up for parallelization.
 
 ` run-generate-Hist-GTEx-indices-file.sh` - This script runs the ` run-generate-Hist-GTEx-indices-file.R` script.
 
@@ -33,24 +34,51 @@ download-data.sh
 
 ## Steps
 1) Load the data files, and script files on the cluster with a directory set up similar to the repository
-2) Set working directory to /deseq_analysis
-3) Create a new directory to capture messages from Slurm execution with the following command: `mkdir Logs_DESeq2`
+2) Set working directory to module level
+3) Create a new directory to capture messages from Slurm execution with the following command: `mkdir Logs_DESeq2_v12` or other suitable name. Make sure it matches the name specified in the below scripts.
+3) Verify all the input files and paths are correct, and output filenames and path are as expected.
 4) Run `run-generate-Hist-GTEx-indices-file.sh`
 5) Run `run-tumor-normal-differential-expression.sh` with sbatch command (This step may take a few hours)
+
+## Note
+- Confirm beforehand 
+	Input filename for indices is correct in the `run-tumor-normal-differential-expression.sh` script
+	Number of cores specified in shell script is greater than number of pairs of comparison expected
+	Memory per CPU specified in shell script is optimal considering the largest sample set
+	Logs directory exists
+- When the job is initiated - 
+  Capture the job id
+  Use below commands to monitor the process
+    `squeue -u <username>`
+	  `ls -l results/*.tsv | wc -l`
+	  `ls -l results/*.jsonl | wc -l`
 
 
 ## Results
 When running on a high performance cluster, the module will create a `results` directory which holds all the results `.tsv` and `.jsonl` files.
 Final step is to concatenate all the `.tsv` files into one big file with a single table for all the differential expression comparisons; and also concatenating all the `.jsonl` files into one big file. This can be done with the below code via command line on the cluster.
 
-`cat results/Results*.jsonl > results/deseq_all_comparisons.jsonl`
+`nohup cat results/Results*.jsonl > gene-counts-rsem-expected_count-collapsed-deseq.jsonl &`
 
-`awk '(NR == 1) || (FNR > 1)' results/Results*.tsv > results/deseq_all_comparisons.tsv`
+`nohup awk '(NR == 1) || (FNR > 1)' results/Results*.tsv > gene-counts-rsem-expected_count-collapsed-deseq.tsv &`
+
+
+Run a QC script to verify if all expected comparisons are found in the final results. If not, which ones are missing. Also print a few deseq results into a file for spot checking.
+
+`nohup bash run-qc-tumor-normal-differential-expression.sh &`
+
+
+Finally, run command to compress TSV and JSONL results. Below command will replace existing file with new compressed filename
+`gzip -f filename`
+
+If you need to keep the original file, use option as below
+`gzip -k filename`
 
 ## Visualization
 For visualization purposes, we also create an .RDS version of the final results. This module contains a script `convert_tsv_to_rds.R` to do that. Ensure that the .TSV file with the combined results is named deseq_all_comparisons.tsv. Or, if a different filename is used, edit the `slurm_tsv_to_rds.sh` script to reflect that. And then run the below command with Slurm (this step may take a few hours)
 
 `Sbatch slurm_tsv_to_rds.sh`
+
 
 ## Dockerfile
 
@@ -59,6 +87,8 @@ To build Dockerfile, use below:
 `
 docker build -t deseq2_cavatica .
 `
+
+If you plan to use the module with the Dockerfile to build an interactive app on CAVATICA, also push the docker image to your docker hub.
 
 To run Docker image for executing the script to create histology and counts subset, use below:
 `
@@ -72,7 +102,11 @@ docker run --volume $PWD:/analysis deseq2_cavatica bash -c "cd /analysis && Rscr
 Note: In the above command, `--HIST_i` and `-–GTEX_i` are initialized as 1, since the process is CPU heavy, and not recommended to run on non-HPC servers. Initializing those index values small, is meant only for testing purposes.
 
 ## CAVATICA
-While the module requires an HPC environment for implementation, to enable non-HPC implementation this module is also wrapped into a [CAVATICA](https://d3b.center/our-research/cavatica/) application. To run on CAVATICA, the user must download scripts and publish an application. Following command can be used to publish an application on CAVATICA:
+While the module requires an HPC environment for implementation, to enable non-HPC implementation this module is also wrapped into a [CAVATICA](https://d3b.center/our-research/cavatica/) application. To run on CAVATICA, the user must download scripts and publish an application You must maintain the same file structure while creating and publishing the application.
+
+Following command can be used to publish an application on CAVATICA:
 `sbpack cavatica user/projectname/workflowname workflows/run_deseq_analysis_wf.cwl`
 Refer to this link for instructions on setting up [sbpack](https://docs.cavatica.org/docs/maintaining-and-versioning-cwl-on-external-tool-repositories).
 The data files required for running the application are also publicly available [here](https://cavatica.sbgenomics.com/u/cavatica/opentarget). 
+
+

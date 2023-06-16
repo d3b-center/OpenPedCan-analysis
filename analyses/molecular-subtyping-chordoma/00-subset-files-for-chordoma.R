@@ -35,10 +35,16 @@ if (!dir.exists(results_dir)) {
 metadata <-
   readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000)
 
+# Read pathology diagnosis json file
+path_dx_list <- jsonlite::fromJSON(
+  file.path(results_dir,
+            "chordoma_subtyping_path_dx_strings.json")
+)
+
 #### Filter metadata -----------------------------------------------------------
 # Select wanted columns in metadata for merging and assign to a new object
 chordoma_metadata <- metadata %>%
-  dplyr::filter(pathology_diagnosis == "Chordoma") %>%
+  dplyr::filter(pathology_diagnosis == path_dx_list$exact_path_dx) %>%
   dplyr::select(
     sample_id,
     Kids_First_Participant_ID,

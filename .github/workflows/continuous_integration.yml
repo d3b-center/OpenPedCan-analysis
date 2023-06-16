@@ -121,6 +121,9 @@ jobs:
             entrypoint: fusion-summary/run-new-analysis.sh
             openpbta_subset: 0
 
+          - name: Consensus CN Manta
+            entrypoint: copy_number_consensus_call_manta/run_consensus_call.sh
+
           - name: Consensus CN
             entrypoint: copy_number_consensus_call/run_consensus_call.sh
 

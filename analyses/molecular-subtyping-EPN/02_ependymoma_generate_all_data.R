@@ -216,6 +216,7 @@ EPN_notebook[,"consensus_focal_CN_NF2"] <- sapply(EPN_notebook$Kids_First_Biospe
                                                    function(x) fill_df(sample = x, ref_df = focal_cn_gene_NF2, col_name = "status", included_samples = cn_called_samples))
 
 mutation_fill_df <- function(sample, ref_df, col_name, default = 0){
+  ref_df <-  ref_df %>% as_tibble()
   if(is.na(sample)) { # no results for this sample
     return("NA")
   } else if(!sample %in% ref_df$Tumor_Sample_Barcode){ # sample is not present in the reference data set, return default

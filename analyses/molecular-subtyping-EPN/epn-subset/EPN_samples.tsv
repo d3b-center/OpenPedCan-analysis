@@ -1,0 +1,438 @@
+Kids_First_Participant_ID	sample_id	id	Kids_First_Biospecimen_ID_DNA	Kids_First_Biospecimen_ID_RNA	Kids_First_Biospecimen_ID_RNA_panel	Kids_First_Biospecimen_ID_Methyl	CNS_region	primary_site	disease_group	molecular_subtype_methyl
+PT_04V47WFC	7316-4437	7316-4437_Tumor_Initial CNS Tumor	BS_KZ2HT460	BS_93PB8G76	BS_93PB8G76	BS_TFPBSRP7	Ventricles	Ventricles	undetermined	NA
+PT_04V47WFC	7316-4437	7316-4437_Tumor_Initial CNS Tumor	BS_KZ2HT460	BS_ETM3DW4J	BS_93PB8G76	BS_TFPBSRP7	Ventricles	Ventricles	undetermined	NA
+PT_04V47WFC	7316-6352	7316-6352_Tumor_Recurrence	NA	BS_P8T4JW93	BS_P8T4JW93	NA	Ventricles	Ventricles	undetermined	NA
+PT_04V47WFC	7316-7099	7316-7099_Tumor_Progressive	BS_3E1HC152	BS_ANRGV1D3	BS_ANRGV1D3	BS_G788X4NY	Mixed	Brain Stem-Medulla;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	NA
+PT_04V47WFC	7316-7099	7316-7099_Tumor_Progressive	BS_3E1HC152	BS_E646AM2H	BS_ANRGV1D3	BS_G788X4NY	Mixed	Brain Stem-Medulla;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	NA
+PT_04V47WFC	7316-7508	7316-7508_Tumor_Progressive	BS_BHWE8S84	NA	NA	BS_X5M93E0R	Mixed	Brain Stem-Medulla;Brain Stem- Pons;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	NA
+PT_04V47WFC	7316-7535	7316-7535_Tumor_Progressive	NA	NA	NA	BS_95XVF293	Mixed	Brain Stem-Medulla;Brain Stem- Midbrain/Tectum;Brain Stem- Pons;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic;Ventricles	mixed	EPN, PF B
+PT_04V47WFC	7316-8116	7316-8116_Tumor_Progressive	NA	BS_Y1F4NTDB	NA	BS_4FWWGMHC	Mixed	Brain Stem-Medulla;Brain Stem- Midbrain/Tectum;Brain Stem- Pons;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic;Ventricles	mixed	NA
+PT_04X0KGW6	7316-7739	7316-7739_Tumor_Second Malignancy	BS_3RDWWCZC	NA	NA	BS_7S2N5ZM8	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, PF A
+PT_06H29FCG	7316-1944	7316-1944_Tumor_Initial CNS Tumor	BS_0W8AWY10	BS_4T0HPZDC	NA	BS_S7Y2Q1T7	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_084D4KS4	7316-514	7316-514_Tumor_Initial CNS Tumor	NA	NA	NA	BS_RK04GPWZ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_0CVRX4SJ	7316-764	7316-764_Tumor_Initial CNS Tumor	NA	BS_H4NXBD2D	NA	BS_1Z86DC87	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_0EH5EP5Q	7316-772	7316-772_Tumor_Recurrence	NA	NA	NA	BS_5YKPW392	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_0NY38X3W	7316-1706	7316-1706_Tumor_Progressive	BS_HQFNQHVW	BS_S0175QKX	NA	BS_FJKZ7952	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_0Q13NSP5	7316-4906	7316-4906_Tumor_Initial CNS Tumor	BS_8K9K67M8	BS_GPR8ZV36	BS_GPR8ZV36	BS_79QJPZ3H	Ventricles	Ventricles	undetermined	NA
+PT_0SRRNSAS	7316-250	7316-250_Tumor_Initial CNS Tumor	NA	BS_ADEE1SN5	NA	BS_NVK7271A	Mixed	Frontal Lobe;Spinal Cord- Cervical;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	mixed	EPN, ST YAP1
+PT_0WKX8Q5X	7316-88	7316-88_Tumor_Initial CNS Tumor	BS_QSMFVHSB	BS_KXMYBQ6N	NA	BS_ZR1W080B	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_101VYN5T	7316-5298	7316-5298_Tumor_Initial CNS Tumor	BS_CZKR2J79	BS_PF5JDJJV	BS_PF5JDJJV	BS_G9HG8G81	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_14Z5353Q	7316-6359	7316-6359_Tumor_Initial CNS Tumor	BS_E1QWNESV	BS_KS2HY842	BS_KS2HY842	BS_KRQS22S1	Spine	Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	NA
+PT_164RNWTT	7316-1078	7316-1078_Tumor_Initial CNS Tumor	BS_5D24XV4T	BS_0BXY0F9N	NA	BS_XA6NWYGK	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_164RNWTT	7316-1980	7316-1980_Tumor_Progressive	NA	BS_EWC2NGHN	NA	BS_Z0KREQTN	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_1B265M3A	7316-528	7316-528_Tumor_Initial CNS Tumor	BS_4K2G6FZJ	BS_5SWXR2QQ	NA	BS_73Y1GN32	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_1DY2TP9N	7316-1786	7316-1786_Tumor_Initial CNS Tumor	BS_376Q9QKG	BS_E4F1D721	NA	BS_ASHZ8TDJ	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_1KY3PW1Z	7316-4514	7316-4514_Tumor_Initial CNS Tumor	BS_89R4PMCB	BS_K1024ZPM	NA	BS_ZV6WRYM6	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_1MW98VR1	7316-2558	7316-2558_Tumor_Initial CNS Tumor	BS_007JTNB8	BS_6H1C1ME9	NA	BS_W55EBKYC	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_1PZC01QF	7316-6990	7316-6990_Tumor_Progressive	BS_7GSBXDZ4	BS_AP814Q8D	NA	BS_3ENRPP86	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_1Z015H6V	7316-3516	7316-3516_Tumor_Initial CNS Tumor	BS_A3EV6FXK	BS_MA2T7ET1	NA	BS_H8HPJ9FB	Spine	Spine NOS	spinal	EPN, MPE
+PT_22F1768J	7316-9061	7316-9061_Tumor_Deceased	BS_8A2786RZ	BS_P7A4C235	NA	NA	Ventricles	Ventricles	undetermined	NA
+PT_23K3YS1P	7316-189	7316-189_Tumor_Initial CNS Tumor	BS_BBCM52QE	BS_G23JJAZY	NA	BS_PKVK8JFS	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_27F24QTA	7316-4318	7316-4318_Tumor_Initial CNS Tumor	NA	NA	NA	BS_NMY0K4JM	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_2CJ31SBX	7316-3624	7316-3624_Tumor_Initial CNS Tumor	BS_JC2187NA	BS_KDSTG5YY	NA	BS_Z8QS0EQ6	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_2DEB3637	7316-6793	7316-6793_Tumor_Initial CNS Tumor	BS_GXYT1T1B	NA	NA	BS_SQZYGY3C	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_2HA8XN0T	7316-6760	7316-6760_Tumor_Initial CNS Tumor	NA	BS_8KEV8HDE	BS_8KEV8HDE	NA	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_2NPPEF7P	7316-2687	7316-2687_Tumor_Initial CNS Tumor	NA	NA	NA	BS_1BCK5MAR	Mixed	Cerebellum/Posterior Fossa;Parietal Lobe	mixed	EPN, ST ZFTA
+PT_2SCVQ2N6	7316-3631	7316-3631_Tumor_Initial CNS Tumor	BS_ST3Z2B9B	BS_NGHK9RZP	NA	BS_DKTVT34S	Mixed	Parietal Lobe;Ventricles	supratentorial	EPN, ST ZFTA
+PT_32H0CD1P	7316-5326	7316-5326_Tumor_Initial CNS Tumor	BS_4N3EXDB0	BS_D48301X5	BS_ERQEFR9J	BS_TDKWCJ43	Spine	Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_32H0CD1P	7316-5326	7316-5326_Tumor_Initial CNS Tumor	BS_4N3EXDB0	BS_ERQEFR9J	BS_ERQEFR9J	BS_TDKWCJ43	Spine	Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_32JK6Z61	7316-7678	7316-7678_Tumor_Deceased	BS_3GPKDE4K	NA	NA	BS_EP1E4EWQ	Mixed	Occipital Lobe;Parietal Lobe;Temporal Lobe;Ventricles	supratentorial	EPN, PF A
+PT_360E6Z0S	7316-5888	7316-5888_Tumor_Initial CNS Tumor	BS_J5VK3B8C	BS_GS7Q2JHA	NA	BS_H33F0VS1	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_3A2Q62RD	7316-2243	7316-2243_Tumor_Initial CNS Tumor	BS_R5H6KFDW	BS_RGPSEMHC	NA	BS_NKJCKV8X	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_3A2Q62RD	7316-4449	7316-4449_Tumor_Progressive	NA	BS_CQ9KWJ8S	NA	BS_4Y7JTA35	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_3A2Q62RD	7316-4849	7316-4849_Tumor_Progressive	BS_GG98K7W0	BS_6Q2REZCD	NA	BS_99ZAJDYN	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_3A2Q62RD	7316-6150	7316-6150_Tumor_Progressive	BS_T8BPW0XD	BS_CE7C68FX	NA	BS_CQMW2QGX	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_3C6QA9MA	7316-1279	7316-1279_Tumor_Recurrence	NA	BS_FW5ECXXK	NA	BS_Z7RSRCX9	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_3KWSRWZN	7316-2648	7316-2648_Tumor_Initial CNS Tumor	BS_5V2XCW17	BS_SDCNP7MW	NA	BS_GF7FB4B8	Ventricles	Ventricles	undetermined	EPN, PF B
+PT_3PK66TJY	7316-2609	7316-2609_Tumor_Initial CNS Tumor	BS_F5V8CWXT	BS_PRAEF32W	NA	BS_4BYJ109R	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_3R0P995B	7316-873	7316-873_Tumor_Initial CNS Tumor	BS_75VHXMZN	BS_RCFQ31XF	NA	BS_A9QBBVXQ	Mixed	Cerebellum/Posterior Fossa;Suprasellar/Hypothalamic/Pituitary	infratentorial	EPN, PF A
+PT_3R0P995B	7316-892	7316-892_Tumor_Progressive	BS_C9TNGEA0	BS_MKP2Y41Z	NA	BS_ZJ36E1SR	Mixed	Cerebellum/Posterior Fossa;Suprasellar/Hypothalamic/Pituitary	infratentorial	EPN, PF A
+PT_3VCS1PPF	7316-198	7316-198_Tumor_Initial CNS Tumor	BS_B4P1NP87	BS_3X9WMZGJ	NA	BS_VW3NBEV9	Spine	Spinal Cord- Cervical;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, SP-MYCN
+PT_3VCS1PPF	7316-490	7316-490_Tumor_Progressive	BS_QMY84KF4	BS_99B1XRZQ	NA	BS_JRVK8WGZ	Mixed	Cerebellum/Posterior Fossa;Occipital Lobe;Parietal Lobe;Spinal Cord- Cervical	mixed	EPN, SP-MYCN
+PT_3VVNQSB6	7316-524	7316-524_Tumor_Initial CNS Tumor	NA	NA	NA	BS_1GQZ81B4	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_3Z8ABX6B	7316-4346	7316-4346_Tumor_Initial CNS Tumor	NA	BS_1C2KSWN1	BS_1C2KSWN1	NA	Other	Other locations NOS	undetermined	NA
+PT_40X4TBVD	7316-5110	7316-5110_Tumor_Initial CNS Tumor	NA	BS_9D1XZKJE	NA	BS_Y6S6RQ0T	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	EPN, PF B
+PT_46F28BFH	7316-1799	7316-1799_Tumor_Initial CNS Tumor	BS_H8E4K1DT	BS_WYERXS4G	NA	BS_ZXP15DY5	Hemispheric	Occipital Lobe	supratentorial	EPN, ST YAP1
+PT_4HBWTZM1	7316-774	7316-774_Tumor_Initial CNS Tumor	NA	NA	NA	BS_N0ZY3NAM	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_5E0ZXETV	7316-3712	7316-3712_Tumor_Initial CNS Tumor	NA	NA	NA	BS_VE6TETQZ	Other	Other locations NOS	undetermined	EPN, ST ZFTA
+PT_5E0ZXETV	7316-3713	7316-3713_Tumor_Initial CNS Tumor	NA	NA	NA	BS_SKJ6HZAK	Other	Other locations NOS	undetermined	EPN, ST ZFTA
+PT_5S029SZM	7316-2070	7316-2070_Tumor_Initial CNS Tumor	NA	NA	NA	BS_BWZGR3T4	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_5W2PKFK6	7316-1729	7316-1729_Tumor_Recurrence	NA	NA	NA	BS_YKWSNZ5A	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_625X34JX	7316-2170	7316-2170_Tumor_Initial CNS Tumor	BS_6FYTRKJJ	BS_TBWYAFSM	NA	BS_13VG2WC3	Spine	Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_67R1AF5R	7316-4680	7316-4680_Tumor_Recurrence	NA	BS_0PHW7PMV	BS_0PHW7PMV	BS_MWTH7NNH	Other	Other locations NOS	undetermined	EPN, PF A
+PT_67R1AF5R	7316-4680	7316-4680_Tumor_Recurrence	NA	BS_NK4W3X54	BS_0PHW7PMV	BS_MWTH7NNH	Other	Other locations NOS	undetermined	EPN, PF A
+PT_67R1AF5R	7316-5481	7316-5481_Tumor_Recurrence	NA	BS_3A9BTVZJ	NA	BS_7GR7VZ1K	Mixed	Cerebellum/Posterior Fossa;Meninges/Dura	infratentorial	NA
+PT_67R1AF5R	7316-889	7316-889_Tumor_Initial CNS Tumor	BS_4PAE19ZC	BS_PSW27ZTE	NA	BS_B5Y1FDFX	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_6A1W2SZJ	7316-5759	7316-5759_Tumor_Initial CNS Tumor	NA	NA	NA	BS_3EHET1C1	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_6B7ZN2M9	C4117425-Tumor	C4117425-Tumor_Tumor_Recurrence	BS_V1BNA817	BS_YZM9RFVD	NA	NA	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_6B8W4B6B	7316-5511	7316-5511_Tumor_Initial CNS Tumor	BS_CKBVDKGE	NA	NA	BS_3H5H8EJ6	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_6BX46NVR	7316-3893	7316-3893_Tumor_Progressive	BS_CFPWSZB5	BS_6MZ7FRZH	NA	BS_JVSMR4M7	Other	Other locations NOS	undetermined	EPN, ST ZFTA
+PT_6N4TJ9G3	7316-6143	7316-6143_Tumor_Initial CNS Tumor	BS_74QP36MM	BS_ZJC7VQNA	NA	BS_BE2W4AZS	Ventricles	Ventricles	undetermined	EPN, PF B
+PT_6NSPR99T	7316-7442	7316-7442_Tumor_Deceased	BS_DZTJC1GJ	NA	NA	BS_V9YC31VQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_6QXP9GQT	7316-6283	7316-6283_Tumor_Initial CNS Tumor	NA	BS_4XK24YWX	BS_4XK24YWX	BS_YE50GZ8R	Midline	Thalamus	undetermined	NA
+PT_6QXP9GQT	7316-6283	7316-6283_Tumor_Initial CNS Tumor	NA	BS_KT3C0XCA	BS_4XK24YWX	BS_YE50GZ8R	Midline	Thalamus	undetermined	NA
+PT_6TMT65YA	7316-1642	7316-1642_Tumor_Initial CNS Tumor	BS_BSM3ZHW4	NA	NA	BS_J8N60HNP	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_6WZ8RVRQ	7316-6758	7316-6758_Tumor_Initial CNS Tumor	BS_9FN0417M	BS_AMJRV0NK	BS_Z7Y12BZC	BS_SZBPACG3	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_6WZ8RVRQ	7316-6758	7316-6758_Tumor_Initial CNS Tumor	BS_QP7FX3N3	BS_AMJRV0NK	BS_Z7Y12BZC	BS_SZBPACG3	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_6WZ8RVRQ	7316-6758	7316-6758_Tumor_Initial CNS Tumor	BS_9FN0417M	BS_Z7Y12BZC	BS_Z7Y12BZC	BS_SZBPACG3	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_6WZ8RVRQ	7316-6758	7316-6758_Tumor_Initial CNS Tumor	BS_QP7FX3N3	BS_Z7Y12BZC	BS_Z7Y12BZC	BS_SZBPACG3	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_6XWCT04R	7316-130	7316-130_Tumor_Recurrence	NA	NA	NA	BS_0DG68A8N	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_765TC2XG	7316-1964	7316-1964_Tumor_Initial CNS Tumor	BS_57ZNS4K5	BS_SV3YAAC1	NA	BS_SX1P2BVF	Spine	Spine NOS	spinal	EPN, SP
+PT_76FCS92F	7316-7597	7316-7597_Tumor_Initial CNS Tumor	NA	NA	NA	BS_NSKZ3H09	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_7E3V3JFX	7316-506	7316-506_Tumor_Initial CNS Tumor	BS_G16NM5WJ	BS_J8VX4D17	NA	BS_64PSB5ZD	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_7FSE9DD5	7316-3896	7316-3896_Tumor_Recurrence	NA	NA	NA	BS_YKFX7YSV	Hemispheric	Occipital Lobe	supratentorial	EPN, ST ZFTA
+PT_7H67Q7VS	7316-2966	7316-2966_Tumor_Initial CNS Tumor	NA	BS_EMYET8F4	NA	NA	Ventricles	Ventricles	undetermined	NA
+PT_7K25M5TQ	7316-5266	7316-5266_Tumor_Recurrence	NA	BS_061395E1	BS_061395E1	NA	Ventricles	Ventricles	undetermined	NA
+PT_7SM25BDW	7316-4311	7316-4311_Tumor_Initial CNS Tumor	NA	NA	NA	BS_AFRXFE5X	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_7Z6XVNH0	7316-4114	7316-4114_Tumor_Initial CNS Tumor	NA	NA	NA	BS_V7BJFTRG	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_80NVYCBS	7316-765	7316-765_Tumor_Initial CNS Tumor	NA	BS_KSKZ9J7J	NA	BS_5C2TBN5R	Hemispheric	Temporal Lobe	supratentorial	NA
+PT_829V3YNC	7316-5089	7316-5089_Tumor_Recurrence	NA	NA	NA	BS_B5K5M3KH	Mixed	Spinal Cord- Thoracic;Temporal Lobe	mixed	EPN, ST ZFTA
+PT_82A9SDRN	7316-2313	7316-2313_Tumor_Initial CNS Tumor	BS_NWYBD9CA	BS_0XEG6SNV	NA	BS_SN86H4MK	Mixed	Parietal Lobe;Ventricles	supratentorial	EPN, ST ZFTA
+PT_8AMEPEA5	7316-5517	7316-5517_Tumor_Initial CNS Tumor	NA	NA	NA	BS_XZWM6GNZ	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_8BEC0M1Z	7316-503	7316-503_Tumor_Initial CNS Tumor	NA	NA	NA	BS_J2RJH3WP	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_8BES19QQ	7316-3900	7316-3900_Tumor_Initial CNS Tumor	NA	NA	NA	BS_16Q57NBD	Mixed	Occipital Lobe;Parietal Lobe;Temporal Lobe;Ventricles	supratentorial	EPN, ST YAP1
+PT_8BXEQY0V	7316-4621	7316-4621_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CCC607HX	Spine	Spinal Cord- Thoracic	spinal	NA
+PT_8D8V9PBH	7316-6816	7316-6816_Tumor_Initial CNS Tumor	BS_PPV9X2VE	BS_6AFD49QR	NA	NA	Hemispheric	Occipital Lobe	supratentorial	NA
+PT_8PRBVAA8	7316-4329	7316-4329_Tumor_Initial CNS Tumor	NA	NA	NA	BS_F68QXW20	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_8PV84CNE	7316-532	7316-532_Tumor_Initial CNS Tumor	NA	BS_74G5K7JF	NA	BS_HNY2ZZMR	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8RB7TPS2	7316-3	7316-3_Tumor_Initial CNS Tumor	BS_ZS1QRMXS	BS_3F4FQJMR	NA	BS_W435B0S2	Hemispheric	Temporal Lobe	supratentorial	NA
+PT_8RB7TPS2	7316-322	7316-322_Tumor_Initial CNS Tumor	BS_8SETK1J4	BS_HC44ZA0V	NA	NA	Hemispheric	Temporal Lobe	supratentorial	NA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_8G87RFQE	BS_8G87RFQE	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_8G87RFQE	BS_TRGW0XPY	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_TRGW0XPY	BS_8G87RFQE	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_TRGW0XPY	BS_TRGW0XPY	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_TZ5D0A7R	BS_8G87RFQE	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8SDJXNFR	7316-3755	7316-3755_Tumor_Recurrence	BS_6Z4WHYDG	BS_TZ5D0A7R	BS_TRGW0XPY	BS_BZHNA3TX	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_8VEQB03E	7316-3171	7316-3171_Tumor_Progressive	NA	NA	NA	BS_1F0EJ0CG	Midline	Pineal Gland	undetermined	EPN, ST ZFTA
+PT_91EV3A87	7316-5094	7316-5094_Tumor_Initial CNS Tumor	NA	NA	NA	BS_3ST1V7JB	Mixed	Brain Stem-Medulla;Brain Stem- Pons;Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_94BFYTVZ	7316-6768	7316-6768_Tumor_Initial CNS Tumor	BS_7M4R9HV9	BS_238MGRTM	BS_AW59EVGQ	BS_9MTN0TJX	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF B
+PT_94BFYTVZ	7316-6768	7316-6768_Tumor_Initial CNS Tumor	BS_7M4R9HV9	BS_AW59EVGQ	BS_AW59EVGQ	BS_9MTN0TJX	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF B
+PT_99S5BPE3	7316-292	7316-292_Tumor_Initial CNS Tumor	BS_83MSWR59	BS_MT15SGJN	NA	NA	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	NA
+PT_99S5BPE3	7316-365	7316-365_Tumor_Recurrence	BS_86QSEFS7	BS_NB42PWZN	NA	NA	Hemispheric	Temporal Lobe	supratentorial	NA
+PT_99S5BPE3	7316-451	7316-451_Tumor_Recurrence	BS_AG6M7TJE	BS_Z7890YNR	NA	BS_M5HRCND3	Hemispheric	Frontal Lobe;Parietal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_9AW9EWHA	7316-454	7316-454_Tumor_Recurrence	BS_EFBBP9H3	NA	NA	BS_YPRGV9M3	Mixed	Brain Stem- Pons;Cerebellum/Posterior Fossa;Other locations NOS;Spinal Cord- Cervical;Thalamus	mixed	NA
+PT_9PA8EZNG	7316-2570	7316-2570_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CRBWHNAP	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_9RACP1ZZ	7316-8127	7316-8127_Tumor_Progressive	NA	BS_FQB6HSBQ	BS_FQB6HSBQ	NA	Mixed	Meninges/Dura;Ventricles	undetermined	NA
+PT_A4DXSFVG	7316-4690	7316-4690_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CRX87C2V	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_AH6K40Q7	7316-7808	7316-7808_Tumor_Initial CNS Tumor	BS_SC3CV0Z9	BS_JCKGMNR0	NA	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_AJ5HET76	7316-5099	7316-5099_Tumor_Initial CNS Tumor	NA	NA	NA	BS_R6XQH8FQ	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical	mixed	EPN, PF A
+PT_AJJFDXQS	7316-5109	7316-5109_Tumor_Initial CNS Tumor	BS_4XZCCYVV	BS_MPZ6PKW8	NA	NA	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	NA
+PT_AY2BVCYP	7316-5890	7316-5890_Tumor_Initial CNS Tumor	BS_1AMAP96X	BS_7FKE2YPB	NA	BS_2NCEKP94	Ventricles	Ventricles	undetermined	EPN, PF B
+PT_AZQ230WT	7316-443	7316-443_Tumor_Initial CNS Tumor	NA	BS_XQYHPBFS	NA	BS_PND839Z0	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_AZQ230WT	7316-4913	7316-4913_Tumor_Progressive	NA	BS_DHYXD9KN	BS_W2DMN1QX	NA	Ventricles	Ventricles	undetermined	NA
+PT_AZQ230WT	7316-4913	7316-4913_Tumor_Progressive	NA	BS_W2DMN1QX	BS_W2DMN1QX	NA	Ventricles	Ventricles	undetermined	NA
+PT_B04PRJTQ	7316-4644	7316-4644_Tumor_Recurrence	NA	NA	NA	BS_GB1XQAD2	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, PF A
+PT_B1J3PZXF	C4117179-Tumor	C4117179-Tumor_Tumor_Initial CNS Tumor	BS_B64J2XCQ	BS_JHTBR7DW	NA	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_B5BANZD9	7316-534	7316-534_Tumor_Initial CNS Tumor	NA	NA	NA	BS_BQJ7WV6J	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_B5DQ8FF0	7316-4517	7316-4517_Tumor_Initial CNS Tumor	BS_4GK34NM3	BS_BYBG9F2X	NA	BS_DQEQPEHF	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_B5DQ8FF0	7316-5902	7316-5902_Tumor_Progressive	BS_GY83XDY8	BS_T8N8KQHZ	NA	BS_P3EHKA6H	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_B5K3A4F4	7316-1214	7316-1214_Tumor_Initial CNS Tumor	NA	BS_CZ3NA7KV	NA	BS_66FVH3K0	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_BCE0F25X	7316-511	7316-511_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CSCVP0QB	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_BNARR0N6	7316-1954	7316-1954_Tumor_Initial CNS Tumor	BS_99PPRCW4	BS_196BBNEJ	NA	BS_PH6CH643	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_BNARR0N6	7316-1976	7316-1976_Tumor_Progressive	NA	BS_JAHKJPN0	NA	BS_HXJK25E5	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_BNARR0N6	7316-3660	7316-3660_Tumor_Recurrence	NA	BS_6XNJ9TG0	NA	BS_ZSKZPBHN	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_BNARR0N6	7316-5903	7316-5903_Tumor_Progressive	NA	BS_V4D4YPV1	NA	BS_1X3HZXSC	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_BWN251DF	7316-659	7316-659_Tumor_Initial CNS Tumor	BS_MVC1NCZX	BS_7G42J2SK	NA	BS_1048DHEA	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_BXQYTG2F	7316-837	7316-837_Tumor_Initial CNS Tumor	NA	NA	NA	BS_RZVGJ4WC	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_BZCJMEX8	7316-2375	7316-2375_Tumor_Initial CNS Tumor	BS_3PRZ5AVW	NA	NA	NA	Hemispheric	Occipital Lobe	supratentorial	NA
+PT_BZCJMEX8	7316-5474	7316-5474_Tumor_Recurrence	BS_DF6VTW0D	BS_HTSFDSJR	NA	BS_PSEA8K6N	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_C1RDBCVM	7316-3117	7316-3117_Tumor_Recurrence	BS_PT2NF9BZ	NA	NA	BS_YJZKM7PD	Other	Other locations NOS	undetermined	EPN, PF A
+PT_C1RDBCVM	7316-531	7316-531_Tumor_Initial CNS Tumor	BS_37MZFQY4	BS_XPBEHJ77	NA	BS_JZ3RR9EK	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_C1RDBCVM	7316-9490	7316-9490_Tumor_Progressive	BS_1GFA9NF0	BS_NJ19NGVS	NA	BS_1ZTSEGTW	Other	Other locations NOS	undetermined	NA
+PT_C2WZGW1V	7316-508	7316-508_Tumor_Initial CNS Tumor	NA	NA	NA	BS_6J8S9QXJ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_C4P0F36E	7316-3653	7316-3653_Tumor_Initial CNS Tumor	BS_Y571A481	BS_PJTQHTRA	NA	BS_8GFRJ12Y	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_C94VR1Y2	7316-2278	7316-2278_Tumor_Recurrence	BS_HBAKYKQM	BS_M1T1K5WV	NA	BS_W871TM75	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_CMB6TASJ	7316-505	7316-505_Tumor_Progressive	BS_B73JK7T1	BS_SXCZ3CXN	NA	BS_BEQYY2S5	Mixed	Parietal Lobe;Temporal Lobe;Ventricles	supratentorial	EPN, ST ZFTA
+PT_CPYZVCN8	7316-7922	7316-7922_Tumor_Initial CNS Tumor	BS_GMKEEYR1	BS_18M3RHYN	BS_90NXV63H	BS_TG9V8P1M	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_CPYZVCN8	7316-7922	7316-7922_Tumor_Initial CNS Tumor	BS_GMKEEYR1	BS_90NXV63H	BS_90NXV63H	BS_TG9V8P1M	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_CYBYN18G	7316-2567	7316-2567_Tumor_Initial CNS Tumor	BS_T1SNKF50	BS_KBT7MQ6H	NA	BS_AKJHQQG3	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_CYBYN18G	7316-3502	7316-3502_Tumor_Recurrence	NA	BS_SHKBM12T	NA	BS_871VFVQE	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_CYVVA9AB	7316-3299	7316-3299_Tumor_Initial CNS Tumor	BS_01DQH017	BS_BBKQVYTE	BS_BBKQVYTE	BS_DXGMJJJK	Hemispheric	Occipital Lobe	supratentorial	EPN, ST ZFTA
+PT_CYVVA9AB	7316-3299	7316-3299_Tumor_Initial CNS Tumor	BS_01DQH017	BS_CXVJK2FY	BS_BBKQVYTE	BS_DXGMJJJK	Hemispheric	Occipital Lobe	supratentorial	EPN, ST ZFTA
+PT_D3AN5M5W	7316-47	7316-47_Tumor_Initial CNS Tumor	BS_XBE002WV	BS_4SCWT0FX	NA	BS_Z5THD41A	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_D6AJHDST	7316-5161	7316-5161_Tumor_Recurrence	BS_WCEE5B97	BS_AS9XV7XG	BS_AS9XV7XG	BS_TDXY6H8G	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_D6AJHDST	7316-7962	7316-7962_Tumor_Progressive	BS_XH2JZF5B	BS_E7BAT11E	BS_YMPSTN5Z	BS_TKJPEPA9	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_D6AJHDST	7316-7962	7316-7962_Tumor_Progressive	BS_XH2JZF5B	BS_YMPSTN5Z	BS_YMPSTN5Z	BS_TKJPEPA9	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_D6AJHDST	7316-9039	7316-9039_Tumor_Progressive	BS_SQMBER92	BS_SVBQN72V	NA	BS_YYQBP148	Mixed	Cerebellum/Posterior Fossa;Meninges/Dura	infratentorial	EPN, PF A
+PT_DM9H29QD	7316-513	7316-513_Tumor_Initial CNS Tumor	NA	NA	NA	BS_EATRXC4S	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_DNAJYFZT	7316-4035	7316-4035_Tumor_Recurrence	BS_EJ1H9PZY	BS_WGK8ZMVA	NA	BS_P8BTR3QS	Hemispheric	Occipital Lobe	supratentorial	NA
+PT_DNAJYFZT	7316-4274	7316-4274_Tumor_Deceased	BS_8XJJVBQP	BS_99BJN8NC	NA	NA	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	NA
+PT_DNAJYFZT	7316-4274	7316-4274_Tumor_Progressive	NA	NA	NA	BS_SZ9SVSBH	Mixed	Occipital Lobe; Parietal Lobe	supratentorial	NA
+PT_DP63WTHH	7316-3898	7316-3898_Tumor_Initial CNS Tumor	NA	NA	NA	BS_Y0WJKN1E	Hemispheric	Parietal Lobe	supratentorial	EPN, SP-SE
+PT_DPTMDT4E	7316-6585	7316-6585_Tumor_Progressive	NA	NA	NA	BS_6FH33KY0	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_E0QNEXZ8	7316-2160	7316-2160_Tumor_Initial CNS Tumor	BS_QG2B3G6A	BS_WETH5SAH	NA	BS_AX0CJPVH	Spine	Spinal Cord- Cervical;Spinal Cord- Thoracic	spinal	EPN, PF A
+PT_E4F78SHX	7316-7699	7316-7699_Tumor_Initial CNS Tumor	BS_V6V2NMFC	NA	NA	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_E92E3C9P	7316-4313	7316-4313_Tumor_Initial CNS Tumor	NA	NA	NA	BS_JM1J1NH8	Spine	Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_EB89G70N	7316-2858	7316-2858_Tumor_Initial CNS Tumor	BS_KB9GJDCS	BS_JHGW42S6	NA	BS_C6CAKG22	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_ECMZCNTF	7316-736	7316-736_Tumor_Initial CNS Tumor	BS_MGBEMNYR	BS_CZ3ER8DY	NA	BS_Z71YG09F	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_EG7PH32E	7316-2144	7316-2144_Tumor_Initial CNS Tumor	BS_2P7MJGM7	BS_SAA624A4	NA	BS_BQMMHHZH	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, SP
+PT_EP0C760T	7316-4518	7316-4518_Tumor_Initial CNS Tumor	BS_J61Q9P3N	NA	NA	BS_A3AHDTEP	Hemispheric	Temporal Lobe	supratentorial	NA
+PT_EQX0VT4F	7316-6777	7316-6777_Tumor_Initial CNS Tumor	BS_6SVS6CRT	BS_37XTWG7A	BS_37XTWG7A	BS_9DRWBVV9	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_EQX0VT4F	7316-6777	7316-6777_Tumor_Initial CNS Tumor	BS_6SVS6CRT	BS_37XTWG7A	BS_ANSVC5T8	BS_9DRWBVV9	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_EQX0VT4F	7316-6777	7316-6777_Tumor_Initial CNS Tumor	BS_6SVS6CRT	BS_ANSVC5T8	BS_37XTWG7A	BS_9DRWBVV9	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_EQX0VT4F	7316-6777	7316-6777_Tumor_Initial CNS Tumor	BS_6SVS6CRT	BS_ANSVC5T8	BS_ANSVC5T8	BS_9DRWBVV9	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_EQX0VT4F	7316-8838	7316-8838_Tumor_Recurrence	BS_3SE7P41D	BS_HJVKKWGP	NA	BS_C3H1GKM5	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_EQX0VT4F	7316-9052	7316-9052_Tumor_Recurrence	BS_HY0YTMDC	BS_GH7Z6YTG	NA	BS_4N2R4TNP	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_ESC6NXTS	7316-7199	7316-7199_Tumor_Initial CNS Tumor	BS_1FQGP0PB	NA	NA	BS_TCV64VWQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF B
+PT_EZW3S4F1	7316-1961	7316-1961_Tumor_Initial CNS Tumor	BS_QBZDQX7A	NA	NA	BS_ZTX41A49	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_F9G665B1	7316-1886	7316-1886_Tumor_Initial CNS Tumor	NA	BS_X67GTEM6	NA	BS_ZMPXP57K	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_F9RMHEXV	7316-791	7316-791_Tumor_Initial CNS Tumor	NA	NA	NA	BS_6AQ17V84	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_FCM7XPVR	7316-2285	7316-2285_Tumor_Recurrence	BS_4GKH983E	BS_MQCKXD60	NA	BS_554AS76R	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_FHDZNN40	7316-405	7316-405_Tumor_Initial CNS Tumor	BS_R82MYPKB	BS_WRHDP7WF	NA	BS_6HKMJ4EK	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_FSR10RSN	7316-7061	7316-7061_Tumor_Initial CNS Tumor	BS_47KWXVXE	BS_B78E81YZ	BS_B78E81YZ	BS_6CG1C04V	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_FSR10RSN	7316-7061	7316-7061_Tumor_Initial CNS Tumor	BS_47KWXVXE	BS_X1S67ZEA	BS_B78E81YZ	BS_6CG1C04V	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_G0CGYF8E	7316-3855	7316-3855_Tumor_Recurrence	BS_GTF9WBNM	NA	NA	BS_K2WNM2Z5	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_G0NNMKH3	7316-507	7316-507_Tumor_Initial CNS Tumor	NA	NA	NA	BS_NHR5TX1Z	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_G4HD4QTK	7316-7943	7316-7943_Tumor_Initial CNS Tumor	BS_EY857EMY	BS_613KQVAE	NA	BS_DW18MWN8	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_G4HD4QTK	7316-7943	7316-7943_Tumor_Initial CNS Tumor	BS_QSEKE2HK	BS_613KQVAE	NA	BS_DW18MWN8	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_G4HD4QTK	7316-7943	7316-7943_Tumor_Initial CNS Tumor	BS_EY857EMY	BS_R34ZYJR8	NA	BS_DW18MWN8	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_G4HD4QTK	7316-7943	7316-7943_Tumor_Initial CNS Tumor	BS_QSEKE2HK	BS_R34ZYJR8	NA	BS_DW18MWN8	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_G4YH2YTZ	7316-6897	7316-6897_Tumor_Initial CNS Tumor	NA	NA	NA	BS_0MV6XKWC	Hemispheric	Frontal Lobe;Parietal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_GAM3E6M3	7316-872	7316-872_Tumor_Initial CNS Tumor	BS_9E632VPJ	BS_XF0ZX2B3	NA	BS_E8B2JNAK	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_GB5MHYE2	7316-1474	7316-1474_Tumor_Progressive	NA	NA	NA	BS_37T009DG	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	NA
+PT_GB5MHYE2	7316-1475	7316-1475_Tumor_Progressive	NA	NA	NA	BS_S2XWRWNT	Mixed	Frontal Lobe;Other locations NOS;Parietal Lobe;Skull	supratentorial	EPN, ST ZFTA
+PT_GB5MHYE2	7316-2289	7316-2289_Tumor_Progressive	NA	NA	NA	BS_Q4ZSATCT	Mixed	Frontal Lobe;Other locations NOS;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_GB5MHYE2	7316-761	7316-761_Tumor_Recurrence	NA	NA	NA	BS_W7KHEVBY	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_GBN55D2P	7316-5304	7316-5304_Tumor_Progressive	BS_544KFC5J	BS_0E390R1S	BS_0E390R1S	NA	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_GBN55D2P	7316-5304	7316-5304_Tumor_Progressive	BS_544KFC5J	BS_WQ5FDHF8	BS_0E390R1S	NA	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_GDE98S17	7316-3159	7316-3159_Tumor_Recurrence	BS_9PSJ10YY	NA	NA	BS_08TS9717	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_GFTCNWQ0	7316-775	7316-775_Tumor_Initial CNS Tumor	NA	BS_EK5PCKY0	NA	BS_PKRW6939	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_GH27VJBD	7316-2266	7316-2266_Tumor_Progressive	BS_H8MAKDRB	BS_VAAHBH60	NA	BS_QM4VTDP1	Mixed	Brain Stem- Midbrain/Tectum;Cerebellum/Posterior Fossa	infratentorial	EPN, ST ZFTA
+PT_GK725SCY	7316-5155	7316-5155_Tumor_Initial CNS Tumor	BS_XQ5ES56G	BS_2F4BJR0W	BS_2F4BJR0W	BS_3A7KKC1V	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_GM0Q138S	7316-533	7316-533_Tumor_Initial CNS Tumor	NA	NA	NA	BS_MD7H76N7	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_GMFX689Z	7316-5108	7316-5108_Tumor_Initial CNS Tumor	BS_7JZZDDHC	BS_50S6TFFE	NA	BS_ZRTHWX5J	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	EPN, PF B
+PT_GXBA7S2C	7316-4557	7316-4557_Tumor_Initial CNS Tumor	BS_NH2XJVK9	BS_KWVZXEDS	NA	BS_XZ3SY785	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF B
+PT_H876VB6R	7316-1806	7316-1806_Tumor_Initial CNS Tumor	BS_XMNBSBGN	BS_TXY8QYWA	NA	BS_BQB6NZWZ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_HABD273B	7316-3901	7316-3901_Tumor_Initial CNS Tumor	NA	NA	NA	BS_W9PWP17B	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF SE
+PT_HHBB3XFE	7316-501	7316-501_Tumor_Initial CNS Tumor	NA	NA	NA	BS_Z7EPXNKY	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_HHCJEVBP	7316-4324	7316-4324_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CKG1FD2X	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_HMZ4DC5X	7316-4991	7316-4991_Tumor_Initial CNS Tumor	NA	NA	NA	BS_Y9E0PBBE	Hemispheric	Parietal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_HV6XEG0K	7316-3137	7316-3137_Tumor_Initial CNS Tumor	BS_7TX8VPSN	BS_418N847Z	NA	NA	Ventricles	Ventricles	undetermined	NA
+PT_HXRGX93V	7316-777	7316-777_Tumor_Recurrence	NA	NA	NA	BS_RCBCFYWA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_J47HSDR0	7316-3895	7316-3895_Tumor_Recurrence	NA	NA	NA	BS_36HN0ANX	Hemispheric	Frontal Lobe;Parietal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_J8C3VPNF	7316-4684	7316-4684_Tumor_Initial CNS Tumor	BS_01DCRKR1	BS_3NQB12XN	BS_BGM6XN3S	NA	Ventricles	Ventricles	undetermined	NA
+PT_J8C3VPNF	7316-4684	7316-4684_Tumor_Initial CNS Tumor	BS_01DCRKR1	BS_BGM6XN3S	BS_BGM6XN3S	NA	Ventricles	Ventricles	undetermined	NA
+PT_JA91W5FP	7316-7191	7316-7191_Tumor_Initial CNS Tumor	NA	NA	NA	BS_3XN092AQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_JCFBT5TR	7316-7193	7316-7193_Tumor_Initial CNS Tumor	BS_PC1SQ3P7	NA	NA	BS_DV8JV7JJ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_JJKK6YFQ	7316-7516	7316-7516_Tumor_Initial CNS Tumor	BS_EZASVCQJ	BS_C7NABWVW	BS_C7NABWVW	BS_S902QEAA	Mixed	Brain Stem-Medulla;Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_JN3EN2HR	7316-2267	7316-2267_Tumor_Initial CNS Tumor	BS_MAVSJH2Y	BS_RHD7XPNP	NA	BS_PM2MVP4E	Mixed	Brain Stem- Pons;Cerebellum/Posterior Fossa;Cranial Nerves NOS	infratentorial	EPN, PF A
+PT_JP1FDKN9	7316-2959	7316-2959_Tumor_Initial CNS Tumor	BS_W74D279Q	BS_T1DVKKJB	NA	BS_0JV00K8V	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_JP1FDKN9	7316-929	7316-929_Tumor_Recurrence	BS_FF73TT6D	BS_QSTAVWGE	NA	BS_1R8Y46A9	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_JRYEKF4G	7316-2537	7316-2537_Tumor_Recurrence	NA	NA	NA	BS_2TMMNDC5	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_JXH1NWTR	7316-328	7316-328_Tumor_Initial CNS Tumor	NA	BS_TF8R864V	NA	BS_SNABQ61V	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_JXSTA5HB	7316-5293	7316-5293_Tumor_Initial CNS Tumor	BS_52VS6HDC	BS_3DE052QS	BS_3DE052QS	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-5293	7316-5293_Tumor_Initial CNS Tumor	BS_52VS6HDC	BS_M3C0MZC9	BS_3DE052QS	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-7065	7316-7065_Tumor_Recurrence	NA	BS_YKEK4YWT	BS_YKEK4YWT	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_91PQ311R	BS_CRWF3CZQ	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_CZ6XFMAW	BS_CRWF3CZQ	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_EK4XEBRD	BS_CRWF3CZQ	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_91PQ311R	BS_MZM00D4F	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_CZ6XFMAW	BS_MZM00D4F	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_EK4XEBRD	BS_MZM00D4F	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_91PQ311R	BS_PBBWKYFX	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_CZ6XFMAW	BS_PBBWKYFX	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_JXSTA5HB	7316-8128	7316-8128_Tumor_Recurrence	BS_EK4XEBRD	BS_PBBWKYFX	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_K2YDNZDA	7316-429	7316-429_Tumor_Initial CNS Tumor	BS_62XRDTM6	BS_C80S5N37	NA	BS_X3CRNZWC	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_K84J9401	7316-6972	7316-6972_Tumor_Progressive	BS_JVDGE9S5	BS_00W5QB9S	NA	BS_1JBHR7FM	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_KVFS3Z2Q	7316-1955	7316-1955_Tumor_Initial CNS Tumor	BS_9JVGXA2W	BS_BJDNWMJH	NA	BS_W85M8H89	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_M7ZBZJ43	7316-3897	7316-3897_Tumor_Recurrence	NA	NA	NA	BS_6M8GG1M8	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_MKDQZ17N	7316-3292	7316-3292_Tumor_Deceased	NA	BS_QP6MSKRE	NA	NA	Mixed	Brain Stem-Medulla;Brain Stem- Pons;Cerebellum/Posterior Fossa;Spinal Cord- Cervical	mixed	NA
+PT_MKDQZ17N	7316-3300	7316-3300_Tumor_Initial CNS Tumor	NA	BS_1J2WQ08M	NA	BS_S3CZSQSA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_MMVHQ4SP	7316-530	7316-530_Tumor_Initial CNS Tumor	NA	NA	NA	BS_YNBF10BW	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_MP9P54B3	7316-4333	7316-4333_Tumor_Initial CNS Tumor	NA	NA	NA	BS_61VSS5SM	Spine	Spinal Cord- Cervical	spinal	EPN, SP
+PT_MT27S7S4	7316-1969	7316-1969_Tumor_Initial CNS Tumor	BS_9GJHMA3J	BS_VJ2S5DVS	NA	BS_AGVA3E45	Mixed	Thalamus;Ventricles	undetermined	NA
+PT_N4PR21ME	7316-330	7316-330_Tumor_Initial CNS Tumor	BS_Y3472DYJ	BS_GV3NZ9QD	NA	NA	Ventricles	Ventricles	undetermined	NA
+PT_N53GPH3G	7316-424	7316-424_Tumor_Initial CNS Tumor	NA	NA	NA	BS_N6KM1Y2K	Midline	Brain Stem-Medulla	undetermined	EPN, PF A
+PT_N9KYV4WB	7316-749	7316-749_Tumor_Initial CNS Tumor	BS_9PQPZPGM	BS_T4P3J13C	NA	BS_HAVHXW0G	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_N9P7RARB	7316-1479	7316-1479_Tumor_Recurrence	NA	NA	NA	BS_KH679HCS	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_N9P7RARB	7316-537	7316-537_Tumor_Recurrence	NA	NA	NA	BS_YREMKDJA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_N9W4GT6D	7316-174	7316-174_Tumor_Initial CNS Tumor	BS_AVS4DSZW	NA	NA	BS_RZDHPRJB	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_NAYJ2G2E	7316-8741	7316-8741_Tumor_Initial CNS Tumor	BS_4FXPXSR4	BS_QY48KHDX	BS_QY48KHDX	BS_28GWNXKN	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	EPN, ST YAP1
+PT_NAYJ2G2E	7316-8741	7316-8741_Tumor_Initial CNS Tumor	BS_EMPP6N9Q	BS_QY48KHDX	BS_QY48KHDX	BS_28GWNXKN	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	EPN, ST YAP1
+PT_NAYJ2G2E	7316-8741	7316-8741_Tumor_Initial CNS Tumor	BS_4FXPXSR4	BS_WQ0K79EA	BS_QY48KHDX	BS_28GWNXKN	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	EPN, ST YAP1
+PT_NAYJ2G2E	7316-8741	7316-8741_Tumor_Initial CNS Tumor	BS_EMPP6N9Q	BS_WQ0K79EA	BS_QY48KHDX	BS_28GWNXKN	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	EPN, ST YAP1
+PT_NFC12XAR	7316-5096	7316-5096_Tumor_Progressive	NA	NA	NA	BS_1KCV4WMQ	Mixed	Brain Stem- Pons;Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Thalamus;Ventricles	mixed	EPN, PF A
+PT_NJQ26FHN	7316-4715	7316-4715_Tumor_Initial CNS Tumor	BS_NXTB7A9N	NA	NA	NA	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	NA
+PT_NJQ26FHN	7316-5818	7316-5818_Tumor_Recurrence	BS_JZ61AA7Z	BS_Q5Q81SPA	NA	BS_6MSGMJKK	Mixed	Occipital Lobe;Parietal Lobe;Spinal Cord- Thoracic	mixed	EPN, ST ZFTA
+PT_NJQ26FHN	7316-7451	7316-7451_Tumor_Deceased	BS_7XEEQM3X	NA	NA	BS_BW6CMP11, BS_NRHPSZRN	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_NJQ26FHN	7316-7451	7316-7451_Tumor_Deceased	BS_7XEEQM3X	NA	NA	BS_BW6CMP11, BS_NRHPSZRN	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_NJQ26FHN	7316-7451	7316-7451_Tumor_Deceased	BS_AYR6PJN0	NA	NA	BS_BW6CMP11, BS_NRHPSZRN	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_NJQ26FHN	7316-7451	7316-7451_Tumor_Deceased	BS_AYR6PJN0	NA	NA	BS_BW6CMP11, BS_NRHPSZRN	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_NPETR8RY	7316-160	7316-160_Tumor_Initial CNS Tumor	BS_W5P7SPDH	BS_4FZS7TX4	NA	BS_NWASTET4	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_NPETR8RY	7316-1784	7316-1784_Tumor_Recurrence	BS_FSM39DXA	BS_53M8PP88	NA	BS_C5CHG1S8	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_NT4SS4QP	7316-6443	7316-6443_Tumor_Recurrence	NA	NA	NA	BS_5VRG5FS1	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_NYBH025T	7316-3069	7316-3069_Tumor_Progressive	BS_6NPSZJ4C	BS_67Z63A2K	BS_8PKNSM80	BS_DYMT3JZG	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_NYBH025T	7316-3069	7316-3069_Tumor_Progressive	BS_6NPSZJ4C	BS_8PKNSM80	BS_8PKNSM80	BS_DYMT3JZG	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_PAPEQ0T0	7316-5457	7316-5457_Tumor_Initial CNS Tumor	BS_W7SF8HSD	BS_S2XGY5RN	BS_S2XGY5RN	BS_K7HGW2FJ	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	EPN, PF A
+PT_PAPEQ0T0	7316-5458	7316-5458_Tumor_Initial CNS Tumor	BS_D119Z11C	BS_6AQ5RR83	NA	BS_C51P611V	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical;Ventricles	mixed	EPN, PF A
+PT_PAPEQ0T0	7316-9248	7316-9248_Tumor_Progressive	BS_HW1S3SGK	NA	NA	BS_E8ZB483Q	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_PB4Q0ZX1	7316-3902	7316-3902_Tumor_Initial CNS Tumor	BS_99S7WQG0	BS_WFQT9J8Q	NA	BS_GN4KVTPQ	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_PFKHS5BR	7316-6888	7316-6888_Tumor_Initial CNS Tumor	NA	NA	NA	BS_4AD9TXWQ	Mixed	Brain Stem-Medulla;Cerebellum/Posterior Fossa	infratentorial	NA
+PT_PKP1250P	7316-2556	7316-2556_Tumor_Recurrence	BS_ZBWQG7VR	BS_G63HYD6N	NA	BS_YMJJ8Y23	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_PKYY553K	7316-1731	7316-1731_Tumor_Recurrence	NA	NA	NA	BS_4R2H7MWN	Hemispheric	Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_PKYY553K	7316-1732	7316-1732_Tumor_Progressive	NA	NA	NA	BS_VB39JC7F	Hemispheric	Frontal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_PKYY553K	7316-771	7316-771_Tumor_Recurrence	NA	NA	NA	BS_ZH2V8YQH	Hemispheric	Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_PN05NGWX	7316-4327	7316-4327_Tumor_Progressive	NA	NA	NA	BS_ZV23QCBQ	Mixed	Cerebellum/Posterior Fossa;Temporal Lobe	mixed	EPN, PF A
+PT_Q35ZZD2W	7316-4638	7316-4638_Tumor_Initial CNS Tumor	NA	NA	NA	BS_KJM08ZYE	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_QBAA2E23	C4107093-Tumor	C4107093-Tumor_Tumor_Initial CNS Tumor	BS_FFZGMSMQ	BS_QZAR0AB5	NA	NA	Mixed	Spinal Cord- Cervical;Ventricles	spinal	NA
+PT_QHBEC0M5	7316-4990	7316-4990_Tumor_Progressive	BS_3PXSZ06A	BS_K5KWSB7D	NA	NA	Mixed	Temporal Lobe;Ventricles	supratentorial	NA
+PT_QN3R80MS	7316-3899	7316-3899_Tumor_Recurrence	NA	NA	NA	BS_1HY7YDZH	Hemispheric	Occipital Lobe;Parietal Lobe;Temporal Lobe	supratentorial	EPN, ST ZFTA
+PT_QT9PS43V	7316-9022	7316-9022_Tumor_Initial CNS Tumor	BS_4EQ6DJVM	NA	NA	BS_RWN4YX62	Hemispheric	Occipital Lobe	supratentorial	EPN, ST ZFTA
+PT_QVQC3KY1	7316-5887	7316-5887_Tumor_Initial CNS Tumor	BS_GEX9KAKM	BS_NWNTY3FZ	NA	BS_FAVZAZHE	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_QVWCRKZM	7316-5331	7316-5331_Tumor_Initial CNS Tumor	BS_8XZ95YPG	BS_1XFFNFY0	BS_4CADZHM6	BS_X8KW23DG	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_QVWCRKZM	7316-5331	7316-5331_Tumor_Initial CNS Tumor	BS_8XZ95YPG	BS_4CADZHM6	BS_4CADZHM6	BS_X8KW23DG	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_QWR0EECG	7316-1480	7316-1480_Tumor_Progressive	NA	BS_J70GK8SM	NA	BS_EANQNMYY	Hemispheric	Frontal Lobe;Parietal Lobe;Temporal Lobe	supratentorial	NA
+PT_QWR0EECG	7316-540	7316-540_Tumor_Initial CNS Tumor	NA	NA	NA	BS_2Q8Q7P8V	Hemispheric	Frontal Lobe;Parietal Lobe;Temporal Lobe	supratentorial	NA
+PT_QZN7FZER	7316-2757	7316-2757_Tumor_Initial CNS Tumor	BS_VK46N40F	BS_7BTZQKYY	BS_RBSQNHXB	BS_7ZC1599X	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_QZN7FZER	7316-2757	7316-2757_Tumor_Initial CNS Tumor	BS_VK46N40F	BS_RBSQNHXB	BS_RBSQNHXB	BS_7ZC1599X	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_R0H2D2KX	7316-8057	7316-8057_Tumor_Initial CNS Tumor	NA	NA	NA	BS_YM9EJZYF	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_R6WWH1QX	7316-423	7316-423_Tumor_Initial CNS Tumor	BS_1AZ8YJSH	BS_W80TJC27	NA	BS_VJPVRGDA	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_RM5S859Q	7316-111	7316-111_Tumor_Initial CNS Tumor	BS_R7YMKNJN	BS_QXKRN6CR	NA	BS_Y9VSZFYK	Hemispheric	Occipital Lobe	supratentorial	EPN, ST ZFTA
+PT_RNHJMDVV	7316-2564	7316-2564_Tumor_Recurrence	NA	NA	NA	BS_3K04VX4H	Hemispheric	Frontal Lobe;Parietal Lobe	supratentorial	NA
+PT_RNVACT1Q	7316-5105	7316-5105_Tumor_Initial CNS Tumor	BS_KW18Q4QG	BS_NFJPYMET	NA	BS_JTXHT7QJ	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_RY0GF9JR	7316-6974	7316-6974_Tumor_Recurrence	BS_XSVG8RMY	BS_GKZZJ29B	NA	BS_R2PFW6R8	Ventricles	Ventricles	undetermined	NA
+PT_S0C82YW8	7316-3393	7316-3393_Tumor_Initial CNS Tumor	NA	NA	NA	BS_V0Z8ET1G	Hemispheric	Occipital Lobe;Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_S4H6KA09	7316-2134	7316-2134_Tumor_Initial CNS Tumor	BS_K6A9Z04J	BS_07ANYSYQ	NA	BS_TQ5BX015	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_S8E3281G	7316-2138	7316-2138_Tumor_Initial CNS Tumor	BS_55N7KFHW	BS_TNRHHYNC	NA	BS_PW3DRNZV	Spine	Spinal Cord- Cervical	spinal	EPN, SP
+PT_T16E2TWZ	7316-3156	7316-3156_Tumor_Initial CNS Tumor	NA	BS_975AWWJE	NA	NA	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_T4VKB29K	7316-2125	7316-2125_Tumor_Initial CNS Tumor	BS_MFTAVQ5C	BS_8ZP3CBQA	NA	BS_XFR2X7D2	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_T4VN7ZRB	7316-5295	7316-5295_Tumor_Progressive	BS_MS63PBQZ	BS_68X75R4G	BS_HDDK62FX	BS_TA6KZ7QQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_T4VN7ZRB	7316-5295	7316-5295_Tumor_Progressive	BS_MS63PBQZ	BS_HDDK62FX	BS_HDDK62FX	BS_TA6KZ7QQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_T4VN7ZRB	7316-947	7316-947_Tumor_Recurrence	BS_P2GA1245	BS_BPKRC55C	NA	BS_SQ4BXSZS	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_TE19K10J	7316-5231	7316-5231_Tumor_Second Malignancy	NA	NA	NA	BS_S5GPNBBW	Other	Skull	undetermined	NA
+PT_TE4DP9BW	C4123206-Tumor	C4123206-Tumor_Tumor_Initial CNS Tumor	BS_KY0N6ZCY	BS_S56VRTCE	NA	NA	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	NA
+PT_TF4YF4FJ	7316-527	7316-527_Tumor_Initial CNS Tumor	NA	NA	NA	BS_FGRJS5SQ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_TP6GS00H	7316-5456	7316-5456_Tumor_Initial CNS Tumor	BS_3AQ7V6ZQ	BS_8Q7W9NSR	BS_SAEMBCPN	BS_6KRWM6Q5	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_TP6GS00H	7316-5456	7316-5456_Tumor_Initial CNS Tumor	BS_3AQ7V6ZQ	BS_SAEMBCPN	BS_SAEMBCPN	BS_6KRWM6Q5	Hemispheric	Parietal Lobe	supratentorial	EPN, ST ZFTA
+PT_TP6GS00H	7316-7096	7316-7096_Tumor_Recurrence	BS_5J7Z8DSZ	BS_3RWMC6WD	BS_3RWMC6WD	BS_EJSEXK4F	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_TP6GS00H	7316-7096	7316-7096_Tumor_Recurrence	BS_5J7Z8DSZ	BS_AWXQ0YP4	BS_3RWMC6WD	BS_EJSEXK4F	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_TP6GS00H	7316-7540	7316-7540_Tumor_Progressive	BS_5FS4BERE	BS_TCWW2GSK	NA	BS_VHZYZ8PF	Mixed	Parietal Lobe;Spinal Cord- Cervical;Ventricles	mixed	EPN, ST ZFTA
+PT_TS0H697Y	7316-394	7316-394_Tumor_Initial CNS Tumor	NA	BS_AGTPCRR4	NA	BS_5YNY8WRA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_TY3W122M	7316-5901	7316-5901_Tumor_Initial CNS Tumor	BS_5Y3RMFEZ	BS_YQFX2Y00	NA	BS_J5VED499	Spine	Spine NOS	spinal	EPN, MPE
+PT_V0SSS1CT	7316-509	7316-509_Tumor_Initial CNS Tumor	NA	NA	NA	BS_J3V76W4V	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_V0X73HEQ	7316-2182	7316-2182_Tumor_Initial CNS Tumor	BS_GMQZNQH8	BS_34201DKZ	NA	BS_KH28G601	Mixed	Cerebellum/Posterior Fossa;Spinal Cord- Cervical	mixed	EPN, PF A
+PT_V29SWCXF	7316-538	7316-538_Tumor_Initial CNS Tumor	NA	NA	NA	BS_38TKJC25	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_V3Q78E6F	7316-455	7316-455_Tumor_Initial CNS Tumor	BS_7RQCH5Y7	BS_0QYS36NR	NA	BS_2BE8D4AP	Ventricles	Ventricles	undetermined	NA
+PT_VBVZ2NAR	7316-2156	7316-2156_Tumor_Initial CNS Tumor	BS_9ZFXXJPK	BS_N5DVEJXT	NA	BS_SHMXPXA4	Midline	Brain Stem- Midbrain/Tectum	infratentorial	NA
+PT_VD2DHTMY	7316-2580	7316-2580_Tumor_Recurrence	BS_HHNG2JZT	BS_E2B5BJ7A	NA	BS_AM1YZ3FP	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_VE0Q731Y	7316-1641	7316-1641_Tumor_Initial CNS Tumor	BS_BBHFKBE7	BS_N8J1DP02	NA	BS_4S165JR7	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_VG6S9YQ9	7316-6975	7316-6975_Tumor_Recurrence	BS_KG4S1KES	BS_ZYVWSXNK	NA	BS_FW4MCZSG	Ventricles	Ventricles	undetermined	EPN, ST ZFTA
+PT_VKDEP9K8	7316-5104	7316-5104_Tumor_Initial CNS Tumor	NA	NA	NA	BS_RV7KWCWC	Mixed	Cerebellum/Posterior Fossa;Occipital Lobe;Parietal Lobe;Ventricles	mixed	EPN, ST ZFTA
+PT_VN04Y016	7316-3004	7316-3004_Tumor_Initial CNS Tumor	BS_FS9KK5HZ	BS_CN797XGY	NA	BS_HWFTHR2J	Spine	Spine NOS	spinal	EPN, MPE
+PT_VR8T8JX8	7316-762	7316-762_Tumor_Initial CNS Tumor	NA	BS_FTKPQ5FZ	NA	BS_X09QGCHP	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_VY7PV323	C4106355-Tumor	C4106355-Tumor_Tumor_Not Reported	BS_Z4JW5FGH	BS_DS4Z2VBP	NA	NA	Spine	Spine NOS	spinal	NA
+PT_VZT2KXZ6	7316-5752	7316-5752_Tumor_Initial CNS Tumor	NA	NA	NA	BS_ZE5SA1H4	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_W17NV5YG	7316-2079	7316-2079_Tumor_Initial CNS Tumor	BS_FVPMPMRJ	BS_V4W81SFC	NA	NA	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_W17NV5YG	7316-2106	7316-2106_Tumor_Initial CNS Tumor	BS_B4DY7ET3	BS_TCGEZJ5F	NA	BS_5H0FNCFG	Hemispheric	Parietal Lobe	supratentorial	NA
+PT_W4PJKYK7	7316-838	7316-838_Tumor_Initial CNS Tumor	NA	NA	NA	BS_CYJMA6Y7	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_W60NH89E	7316-7673	7316-7673_Tumor_Initial CNS Tumor	NA	NA	NA	BS_SKC90W9X	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, MPE
+PT_WFD5FHAS	7316-5098	7316-5098_Tumor_Initial CNS Tumor	NA	NA	NA	BS_WY2HPA89	Mixed	Brain Stem- Pons;Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_WGTQYN3K	7316-3355	7316-3355_Tumor_Progressive	NA	NA	NA	BS_8HVVX41B	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_WGTQYN3K	7316-4637	7316-4637_Tumor_Recurrence	NA	NA	NA	BS_H213BADH	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_WKNKNYHH	7316-1107	7316-1107_Tumor_Initial CNS Tumor	BS_5ZRZC3ZM	BS_WFD0GE5X	NA	BS_J8KF2T56	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_WQ2EJVF5	7316-8119	7316-8119_Tumor_Initial CNS Tumor	BS_HAG8H8N1	BS_1C71D5CH	BS_1C71D5CH	BS_VKSTCHRC	Mixed	Meninges/Dura;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_WQ2EJVF5	7316-8119	7316-8119_Tumor_Initial CNS Tumor	BS_HAG8H8N1	BS_G0RPJHA9	BS_1C71D5CH	BS_VKSTCHRC	Mixed	Meninges/Dura;Spinal Cord- Lumbar/Thecal Sac;Spinal Cord- Thoracic	spinal	EPN, MPE
+PT_X7GTQR9N	7316-7959	7316-7959_Tumor_Initial CNS Tumor	BS_Q04D7JVF	BS_H4P8P54E	BS_H4P8P54E	BS_CWTTDDTX	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_X7GTQR9N	7316-7959	7316-7959_Tumor_Initial CNS Tumor	BS_V2QN65XA	BS_H4P8P54E	BS_H4P8P54E	BS_CWTTDDTX	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_X7GTQR9N	7316-7959	7316-7959_Tumor_Initial CNS Tumor	BS_Q04D7JVF	BS_ZC1194Z8	BS_H4P8P54E	BS_CWTTDDTX	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_X7GTQR9N	7316-7959	7316-7959_Tumor_Initial CNS Tumor	BS_V2QN65XA	BS_ZC1194Z8	BS_H4P8P54E	BS_CWTTDDTX	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	EPN, PF A
+PT_XHYBZKCX	7316-2972	7316-2972_Tumor_Initial CNS Tumor	BS_0XR7GYAV	BS_Q5WZYWCT	NA	NA	Spine	Spinal Cord- Cervical;Spinal Cord- Thoracic	spinal	NA
+PT_XQVKV373	7316-3370	7316-3370_Tumor_Recurrence	NA	NA	NA	BS_JCSHMADP	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_Y4FN0XN1	7316-1252	7316-1252_Tumor_Initial CNS Tumor	NA	BS_4NWHYH53	NA	BS_3GWGMS4G	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_Y4MGJ7AJ	7316-4330	7316-4330_Tumor_Unavailable	NA	NA	NA	BS_FM4GT39Z	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_Y6Y9JJ9P	7316-425	7316-425_Tumor_Progressive	NA	BS_0WQJP6ZG	NA	BS_ZQ29NTTA	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_Y7S54R98	7316-835	7316-835_Tumor_Initial CNS Tumor	NA	NA	NA	BS_RBV58RF5	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_YDGG20RS	7316-6038	7316-6038_Tumor_Initial CNS Tumor	BS_49C8VBC4	BS_W568T9CS	NA	BS_P0DQGW6A	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_YDQMJZJB	7316-8559	7316-8559_Tumor_Initial CNS Tumor	BS_WGF722PR	BS_YTTMKCBX	NA	BS_3JGGSATX	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_YHV7AGAY	7316-3525	7316-3525_Tumor_Initial CNS Tumor	BS_RNGHD7F6	NA	NA	BS_ZNZ19RZS	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_YHYP7ZKK	7316-4530	7316-4530_Tumor_Initial CNS Tumor	BS_NP8R2JAM	BS_BW1Z7QQY	NA	BS_WVXBBMBE	Spine	Spinal Cord- Cervical;Spinal Cord- Thoracic	spinal	EPN, SP
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_6N7YE1A4	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_EDE1DMVE	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_RNNV2QAH	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_1RS20EMZ	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_2ESN6Q0D	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_9SJB1XRH	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H04BZP9Q	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_H3237RZS	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_MT7ZHBK4	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_QMJT2BBH	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_4BJMWMF2, BS_JEKTFKYQ, BS_TYV44Q7J, BS_XZR4A4KT	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YM51XZH0	7316-5929	7316-5929_Tumor_Deceased	BS_TNM9RW9W	BS_VSSVV6VY	NA	BS_122BPTBJ, BS_32TK5JR8, BS_4BJMWMF2, BS_JEKTFKYQ, BS_SC5WJWHW, BS_TYV44Q7J, BS_XZR4A4KT, BS_ZB00HB76	Mixed	Basal Ganglia;Cerebellum/Posterior Fossa;Spine NOS;Ventricles	mixed	EPN, PF A
+PT_YQNXB5KV	7316-4326	7316-4326_Tumor_Unavailable	NA	NA	NA	BS_BVY22A4P	Other	Other locations NOS	undetermined	EPN, ST ZFTA
+PT_YXZPWFVB	7316-966	7316-966_Tumor_Initial CNS Tumor	BS_R8ZKDFWH	BS_P78SMRBS	NA	BS_Y6TFD4M1	Spine	Spinal Cord- Cervical;Spinal Cord- Thoracic	spinal	EPN, SP
+PT_Z31BW9E5	7316-9819	7316-9819_Tumor_Initial CNS Tumor	NA	BS_HYASKY2Z	NA	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_Z3G5RX6Y	7316-4693	7316-4693_Tumor_Initial CNS Tumor	NA	NA	NA	BS_307ZEZE0	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_Z4GS3ZQQ	7316-740	7316-740_Tumor_Initial CNS Tumor	BS_6ZP2KRPW	BS_EVCAC3NH	NA	BS_ZH0HTV7S	Hemispheric	Frontal Lobe	supratentorial	NA
+PT_ZA95JQEB	7316-384	7316-384_Tumor_Initial CNS Tumor	BS_ZZJF26C4	BS_8RHPJ740	NA	BS_E29VV9AZ	Ventricles	Ventricles	undetermined	EPN, PF A
+PT_ZD45GXZ0	7316-2109	7316-2109_Tumor_Progressive	BS_J33YVP27	BS_NH7K4CD9	NA	BS_1WW4VNXC	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	EPN, PF A
+PT_ZNYCHPNG	7316-6394	7316-6394_Tumor_Initial CNS Tumor	BS_F8QBB0AK	NA	NA	BS_JE0V6WMZ	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_ZWY04DCR	7316-2666	7316-2666_Tumor_Initial CNS Tumor	BS_6T87HSPX	BS_C05FKR8X	NA	BS_V26XB0ZH	Hemispheric	Frontal Lobe	supratentorial	EPN, ST ZFTA
+PT_ZZRBX5JT	7316-2661	7316-2661_Tumor_Recurrence	BS_JE1DF581	BS_47YCTZ24	BS_47YCTZ24	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_ZZRBX5JT	7316-2661	7316-2661_Tumor_Recurrence	BS_JE1DF581	BS_HZ707C55	BS_47YCTZ24	NA	Posterior fossa	Cerebellum/Posterior Fossa	infratentorial	NA
+PT_ZZRBX5JT	7316-3319	7316-3319_Tumor_Recurrence	BS_9N3B3HZB	BS_WCFGW07E	BS_WCFGW07E	BS_FJC1RB8X	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, PF A
+PT_ZZRBX5JT	7316-3319	7316-3319_Tumor_Recurrence	BS_9N3B3HZB	BS_YE1MAQYJ	BS_WCFGW07E	BS_FJC1RB8X	Spine	Spinal Cord- Lumbar/Thecal Sac	spinal	EPN, PF A
+PT_ZZRBX5JT	7316-4423	7316-4423_Tumor_Progressive	NA	BS_672V4AHJ	BS_PR9JVJSD	BS_5ZECW8YX	Mixed	Spinal Cord- Lumbar/Thecal Sac;Temporal Lobe	mixed	EPN, PF A
+PT_ZZRBX5JT	7316-4423	7316-4423_Tumor_Progressive	NA	BS_PR9JVJSD	BS_PR9JVJSD	BS_5ZECW8YX	Mixed	Spinal Cord- Lumbar/Thecal Sac;Temporal Lobe	mixed	EPN, PF A
+PT_ZZRBX5JT	7316-4423	7316-4423_Tumor_Progressive	NA	BS_SB0GXSZA	BS_PR9JVJSD	BS_5ZECW8YX	Mixed	Spinal Cord- Lumbar/Thecal Sac;Temporal Lobe	mixed	EPN, PF A
+PT_ZZRBX5JT	7316-496	7316-496_Tumor_Initial CNS Tumor	BS_AGD2ATY1	BS_PJPGVD62	NA	BS_T89RQNXB	Ventricles	Ventricles	undetermined	NA
+PT_ZZRBX5JT	7316-5188	7316-5188_Tumor_Progressive	NA	BS_71M3ZGM6	BS_71M3ZGM6	BS_ZGAEK877	Mixed	Spinal Cord- Thoracic;Temporal Lobe	mixed	EPN, PF A
+PT_ZZRBX5JT	7316-5188	7316-5188_Tumor_Progressive	NA	BS_PJ2S96H1	BS_71M3ZGM6	BS_ZGAEK877	Mixed	Spinal Cord- Thoracic;Temporal Lobe	mixed	EPN, PF A
+PT_ZZRBX5JT	7316-5484	7316-5484_Tumor_Progressive	NA	BS_7576V83X	BS_7576V83X	BS_GSA8PYNF	Mixed	Other locations NOS;Temporal Lobe	supratentorial	EPN, PF A
+PT_ZZRBX5JT	7316-5484	7316-5484_Tumor_Progressive	NA	BS_AWQWQMJR	BS_7576V83X	BS_GSA8PYNF	Mixed	Other locations NOS;Temporal Lobe	supratentorial	EPN, PF A
+PT_ZZRBX5JT	7316-6666	7316-6666_Tumor_Progressive	NA	BS_6PJ5AWNE	NA	BS_85NJ8086	Mixed	Brain Stem-Medulla;Frontal Lobe;Hippocampus;Other locations NOS;Spinal Cord- Cervical;Temporal Lobe	mixed	EPN, PF A
+PT_ZZWYKZZ8	7316-2758	7316-2758_Tumor_Deceased	BS_11PGDQ89	BS_7B89YR6K	NA	BS_53K6KZH2	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_ZZWYKZZ8	7316-2758	7316-2758_Tumor_Deceased	BS_2E81A3FT	BS_7B89YR6K	NA	BS_53K6KZH2	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_ZZWYKZZ8	7316-2758	7316-2758_Tumor_Deceased	BS_11PGDQ89	BS_KEC46Y95	NA	BS_53K6KZH2	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA
+PT_ZZWYKZZ8	7316-2758	7316-2758_Tumor_Deceased	BS_2E81A3FT	BS_KEC46Y95	NA	BS_53K6KZH2	Mixed	Cerebellum/Posterior Fossa;Ventricles	infratentorial	NA

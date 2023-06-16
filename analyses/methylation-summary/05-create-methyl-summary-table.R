@@ -25,7 +25,7 @@ option_list <- list(
               help = "Methyl array probe beta/m-values quantiles results file",
               metavar = "character"),
   make_option(opt_str = "--methyl_probe_annot", type = "character", default = NULL,
-              help = "Methyl gencode array probe annotation results file",
+              help = "Methyl gencode array probe annotations",
               metavar = "character"),
   make_option(opt_str = "--rnaseq_tpm_medians", type = "character", default = NULL,
               help = "RNA-Seq gene-level or isoform-level tmp median expression results file",

@@ -31,6 +31,12 @@ scratch_dir="$BASEDIR/scratch"
 release_dir="${scratch_dir}/analysis-files-pre-release"
 mkdir -p ${release_dir}
 
+
+# Run step to generate cnv consensus file
+echo "Run copy number consensus calls"
+cd ${analyses_dir}/copy_number_consensus_call
+bash run_consensus_call.sh
+
 # Copy over cnv consensus file
 echo "Copy currently generated cnv consensus file in copy_number_consensus_call moudule"
 cp ${analyses_dir}/copy_number_consensus_call/results/cnv-consensus.seg.gz ${release_dir}
@@ -122,19 +128,12 @@ echo "Run GSEA"
 cd ${analyses_dir}/gene-set-enrichment-analysis
 OPENPBTA_BASE_SUBTYPING=1 bash run-gsea.sh
 
-# Copy over GSEA results for subtyping
-cp ${analyses_dir}/gene-set-enrichment-analysis/results/gsva_scores.tsv ${release_dir}
 
 # Run TP53
 echo "TP53 altered score"
 cd ${analyses_dir}/tp53_nf1_score
 OPENPBTA_BASE_SUBTYPING=1 bash run_classifier.sh
 
-# Copy over TP53 results
-cp ${analyses_dir}/tp53_nf1_score/results/* ${release_dir}
-cp ${analyses_dir}/tp53_nf1_score/plots/* ${release_dir}
-
-# Delete pre-release copied to the data directory
 
 # Create an md5sum file for all the files in the directories where the analysis
 # files are compiled

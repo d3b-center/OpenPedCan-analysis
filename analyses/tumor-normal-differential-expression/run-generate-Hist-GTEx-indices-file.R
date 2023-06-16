@@ -7,6 +7,7 @@
 
 suppressPackageStartupMessages({
   library(optparse)
+  library(sys)
 })
 
 
@@ -181,6 +182,19 @@ GTEX_filtered <- unique(sample_type_df_filtered$Type[grep("^GTEX",sample_type_df
 
 
 
+#Define all expected filenames as pairs of histology tissue and cancer_group
+filename_list <- data.frame()
+for(I in 1:length(histology_filtered))
+{
+  for (J in 1:length(GTEX_filtered))
+  {
+    FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_")))
+    filename_list <- rbind(filename_list, FILENAME)
+  }
+}
+
+
+
 # Print output to files
 fileConn_GTEx<-file(paste(outdir,"/GTEx_Index_limit.txt",sep=""),open = "w")
 write.table(length(GTEX_filtered), file = fileConn_GTEx, append = FALSE, row.names = FALSE, col.names = FALSE)
@@ -189,6 +203,11 @@ close(fileConn_GTEx)
 fileConn_Hist<-file(paste(outdir,"/Hist_Index_limit.txt",sep=""),open = "w")
 write.table(length(histology_filtered), file = fileConn_Hist, append = FALSE, row.names = FALSE, col.names = FALSE)
 close(fileConn_Hist) 
+
+
+fileConn_FilenameList<-file(paste(outdir,"/filelist_expected.txt",sep=""),open = "w")
+write.table(filename_list, file = fileConn_FilenameList, append = FALSE, row.names = FALSE, col.names = FALSE)
+close(fileConn_FilenameList)
 
 
 write.table(hist.filtered_final, file=paste(outdir,"/histologies_subset.tsv",sep=""), sep="\t", col.names = T, row.names = F,quote = F)

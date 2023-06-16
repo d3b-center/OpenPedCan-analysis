@@ -20,6 +20,8 @@ script_directory="$(perl -e 'use File::Basename;
   print dirname(abs_path(@ARGV[0]));' -- "$0")"
 cd "$script_directory" || exit
 
+Rscript 00-chordoma-select-pathology-dx.R
+
 if [ "$SUBSET" -gt "0" ]; then
   Rscript --vanilla 00-subset-files-for-chordoma.R
 fi

@@ -31,7 +31,7 @@ def read_parameters():
 	p.add_argument('METHYL_INDEPENDENT_SAMPLES', type=str, default=None, help="OPenPedCan methyl independent biospecimen list file\n\n")
 	p.add_argument('GENE_EXP_MATRIX', type=str, default=None, help="OPenPedCan gene expression matrix file\n\n")
 	p.add_argument('ISOFORM_EXP_MATRIX', type=str, default=None, help="OPenPedCan isoform expression matrix file\n\n")
-	p.add_argument('PROBE_ANNOT', type=str, default=None, help="Methylation array probe gencode annotation results file\n\n")
+	p.add_argument('PROBE_ANNOT', type=str, default=None, help="Methyl gencode array probe annotations\n\n")
 	p.add_argument('-v', '--version', action='version', version="04-tpm-transcript-representation.py version {} ({})".format(__version__, __date__), help="Print the current 04-tpm-transcript-representation.py version and exit\n\n")
 	return p.parse_args()
 

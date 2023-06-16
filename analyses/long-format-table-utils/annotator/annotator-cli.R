@@ -156,7 +156,7 @@ if (parsed_opts$verbose) {
 # that double quotes are used to quote values that need escapes, e.g. "NA",
 # "\t", and "\n"
 readr::write_tsv(
-  ann_df, parsed_opts$`output-long-format-table-tsv`, quote_escape = "double")
+  ann_df, parsed_opts$`output-long-format-table-tsv`, escape = "double")
 
 if (parsed_opts$verbose) {
   message("Done.")

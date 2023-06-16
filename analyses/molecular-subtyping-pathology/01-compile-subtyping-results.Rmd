@@ -404,7 +404,7 @@ atrt_results_df <-  atrt_results_df %>%
 nbl_results_df <- bind_exp_strategies(nbl_results_df) %>%
   unique() %>%
   inner_join(select(histologies_df, c("Kids_First_Participant_ID", "sample_id", join_cols)),
-             by = "Kids_First_Biospecimen_ID") %>%
+             by = c("Kids_First_Biospecimen_ID", "Kids_First_Participant_ID", "sample_id")) %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "NBL, MYCN amplified" ~ paste0(short_histology, ", MYCN-amplified"),
                                           molecular_subtype == "NBL, MYCN non-amplified" ~ paste0(short_histology, ", MYCN non-amplified"), 
                                           TRUE ~ NA_character_),

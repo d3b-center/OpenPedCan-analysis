@@ -28,9 +28,15 @@ Set up metadata
 # Read in non-subsetted metadata
 histologies_df <- readr::read_tsv(file.path("..", "..", "data", "histologies-base.tsv"), guess_max = 100000)
 
+# Read pathology diagnosis json file
+path_dx_list <- jsonlite::fromJSON(
+  file.path(input_dir,
+            "chordoma_subtyping_path_dx_strings.json")
+)
+
 # Subset metadata
 subset_metadata <- histologies_df %>%
-  dplyr::filter(pathology_diagnosis == "Chordoma") %>%
+  dplyr::filter(pathology_diagnosis == path_dx_list$exact_path_dx) %>%
   select(Kids_First_Biospecimen_ID, sample_id, composition, Kids_First_Participant_ID,experimental_strategy,tumor_ploidy) %>%
   dplyr::rename(ploidy=tumor_ploidy) %>%
   mutate(id = paste(sample_id, composition, sep = "_"))

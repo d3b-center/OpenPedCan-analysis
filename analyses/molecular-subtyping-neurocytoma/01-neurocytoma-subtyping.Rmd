@@ -24,6 +24,9 @@ library(tidyverse)
 ```{r}
 data_dir <- file.path("..", "..", "data")
 histologies_df <- read_tsv(file.path(data_dir, "histologies-base.tsv"))
+path_dx_list <-  jsonlite::fromJSON(
+  file.path("neurocytoma-subset","neurocytoma_subtyping_path_dx_strings.json"))
+
 
 ```
 
@@ -38,22 +41,13 @@ outputfile <- file.path(results_dir,"neurocytoma_subtyping.tsv")
 ```
 
 
-## Check if `pathology_free_text_diagnosis` and `pathology_diagnosis` different for any Neurocytoma sample
-
-Are there any Neurocytoma samples in `pathology_free_text_diagnosis` that are not listed in pathology_diagnosis?
+## Subset neurocytoma samples from histologies based on the pathology_diagnosis json file.
 
 ```{r}
 
-neurocytoma_from_pathology_free_text_diagnosis <- histologies_df %>%
-  filter(str_detect(pathology_free_text_diagnosis, "neurocytoma")
-                    ) 
-
 neurocytoma_from_pathology_diagnosis <- histologies_df %>%
-  filter(str_detect(pathology_diagnosis, "Neurocytoma")
-                    ) 
+  filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) 
 
-neurocytoma_from_pathology_free_text_diagnosis %>%
-  dplyr::filter(!Kids_First_Biospecimen_ID %in% neurocytoma_from_pathology_diagnosis$Kids_First_Biospecimen_ID )
 
 ```
 There are no Kids_First_Biospecimen_ID in `pathology_free_text_diagnosis` that are not listed as "Neurocytoma" in  `pathology_diagnosis`. So will only use  `pathology_diagnosis` to look up "Neurocytoma" samples for subtyping

@@ -165,14 +165,14 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
     if (grepl("rna-isoform", filename)) {
       expression_file %>% dplyr::select(transcript_id, gene_symbol,
-                                        !!!rlang::quos(biospecimen_ids)) %>% 
+                                        !!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
     } else if (grepl("methyl", filename)) {
       expression_file %>% dplyr::select(Probe_ID, 
-                                        !!!rlang::quos(biospecimen_ids)) %>% 
+                                        !!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
     } else {
-      expression_file %>% dplyr::select(!!!rlang::quos(biospecimen_ids)) %>% 
+      expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
     }
   } else if (grepl("independent", filename)) {

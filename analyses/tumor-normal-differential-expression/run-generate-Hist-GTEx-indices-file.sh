@@ -21,5 +21,5 @@ Rscript --vanilla run-generate_Hist_GTEx_indices_file.R \
         --hist_file ../../data/histologies.tsv \
         --counts_file ../../data/gene-counts-rsem-expected_count-collapsed.rds \
         --outdir Input_Data \
-	--ind_allcohorts ../../data/independent-specimens.rnaseq.primary.tsv \
-	--ind_eachcohort ../../data/independent-specimens.rnaseq.primary.eachcohort.tsv
+	--ind_allcohorts ../../data/independent-specimens.rnaseqpanel.primary.tsv \
+	--ind_eachcohort ../../data/independent-specimens.rnaseqpanel.primary.eachcohort.tsv

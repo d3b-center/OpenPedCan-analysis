@@ -154,7 +154,7 @@ for (iter in 1: length(clincal_amplified_IDs)) {
     if(!is.na(clincal_amplified_IDs[iter])) {
       plt1 <- plot_chr2(cnv_cnvkit_df,clincal_amplified_IDs[iter])
       if(plt1@data@elementMetadata@nrows > 0) { # CI fail issues being addressed in this LINE
-        ggsave(filename = plt_file,plot =plt1@ggplot)
+        ggsave(filename = plt_file, plot = plt1@ggplot, units = "in")
       }
     } else {
       # If clincal_amplified_IDs is NA we need to find corresponding RNA ID
@@ -162,7 +162,7 @@ for (iter in 1: length(clincal_amplified_IDs)) {
         plot_chr2(cnv_cnvkit_df, 
                   alteration_df$Kids_First_Biospecimen_ID_RNA[index_clinical_amplified[iter]])
       if(plt1@data@elementMetadata@nrows > 0) { # CI fail issues being addressed in this LINE
-        ggsave(filename = plt_file,plot =plt1@ggplot)
+        ggsave(filename = plt_file, plot = plt1@ggplot, units = "in")
       }
     }
   }  

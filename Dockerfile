@@ -38,6 +38,9 @@ RUN apt-get -y --no-install-recommends install \
 RUN apt-get -y --no-install-recommends install \
     libglpk-dev
 
+# Required dependency for running GISTIC
+RUN apt-get -y --no-install-recommends install \
+    libncurses5
 
 # Install pip3 and low-level python installation reqs
 RUN apt-get -y --no-install-recommends install \
@@ -203,10 +206,8 @@ RUN ./install_bioc.r \
     bedr \
     && Rscript -e "library(bedr)"
 
-# Also install for mutation signature analysis
 # qdapRegex is for the fusion analysis
 RUN ./install_bioc.r \
-    deconstructSigs \
     qdapRegex 
 
 # packages required for collapsing RNA-seq data by removing duplicated gene symbols
@@ -419,6 +420,9 @@ RUN ./install_bioc.r \
 RUN R -e "remotes::install_github('d3b-center/annoFuseData',ref = '321bc4f6db6e9a21358f0d09297142f6029ac7aa', dependencies = TRUE)"
 
 RUN R -e "remotes::install_github('d3b-center/annoFuse',ref = '55b4b862429fe886790d087b2f1c654689c691c4', dependencies = TRUE)"
+
+# Latest deconstructSigs release for mut sigs analyses
+RUN R -e "remotes::install_github('raerose01/deconstructSigs', ref = '41a705c5d80848121347d448cf9e2c58ff6b81ac', dependencies = TRUE)"
 
 # Package for RNA-seq differential gene expression analysis
 RUN ./install_bioc.r \

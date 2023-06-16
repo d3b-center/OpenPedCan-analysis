@@ -245,7 +245,9 @@ countData_filtered_DEG.hist <- data.matrix(countData_filtered_DEG[,which(colname
     sample_type_df_filtered.hist <- sample_type_df_filtered[which(sample_type_df_filtered$Type 
                                                                   %in% c(histology_filtered[I],GTEX_filtered[J])),]
 
-#Run DESeq2  
+    rownames(sample_type_df_filtered.hist) <- NULL
+    
+    #Run DESeq2  
     sub.deseqdataset <- DESeqDataSetFromMatrix(countData <- round(countData_filtered_DEG.hist),
                                                colData <- sample_type_df_filtered.hist,
                                                design <- ~ Type)
@@ -298,23 +300,23 @@ GTEX_MEAN_TPMs <- round(GTEX_MEAN_TPMs,2)
 Final_Data_Table <- data.frame(
   datasourceId = paste(gsub("all-cohorts","all_cohorts",strsplit(histology_filtered[I],split="_")[[1]][1]),"vs_GTEx",sep="_"),
   datatypeId = "rna_expression",
-  cohort = ifelse(strsplit(histology_filtered[I],split="_")[[1]][1]=="all-cohorts","All Cohorts",
+  Dataset = ifelse(strsplit(histology_filtered[I],split="_")[[1]][1]=="all-cohorts","All Cohorts",
                   paste(unique(hist$cohort[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)])
                         ,collapse=";",sep=";")),
   Gene_symbol = rownames(Result),
-  Gene_Ensembl_ID = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
+  targetFromSourceId = ENSG_Hugo$ensg_id[match(rownames(Result),ENSG_Hugo$gene_symbol)],
   PMTL = ENSG_Hugo$pmtl[match(rownames(Result),ENSG_Hugo$gene_symbol)],
-  EFO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
+  diseaseFromSourceMappedId = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
                , EFO_MONDO$efo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))], "" ),
   MONDO = ifelse(length(which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))) >= 1
                  ,EFO_MONDO$mondo_code[which(EFO_MONDO$cancer_group == unique(hist$cancer_group[which(hist$Kids_First_Biospecimen_ID %in% HIST_sample_type_df_filtered$Case_ID)]))],""),
   GTEx_tissue_subgroup_UBERON = GTEx_SubGroup_UBERON$uberon_code[which(GTEx_SubGroup_UBERON$gtex_subgroup %in% GTEX_filtered[J])],
   comparisonId = gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(histology_filtered[I],GTEX_filtered[J],sep="_v_"))),
-  cancer_group = paste(gsub("all-cohorts","all_cohorts",unlist(strsplit(histology_filtered[I],split="_"))[-1]),collapse=" "),
-  cancer_group_Count = Cancer.Hist_Hits,
+  Disease = paste(gsub("all-cohorts","all_cohorts",unlist(strsplit(histology_filtered[I],split="_"))[-1]),collapse=" "),
+  Disease_Count = Cancer.Hist_Hits,
   GTEx_subgroup = GTEX_filtered[J],
   GTEx_Count = GTEX_Hits,
-  cancer_group_MeanTpm = Histology_MEAN_TPMs,
+  Disease_MeanTpm = Histology_MEAN_TPMs,
   GTEx_MeanTpm = GTEX_MEAN_TPMs,
   Result, stringsAsFactors = FALSE
 )#Final_Data_Table = data.frame(
@@ -331,4 +333,7 @@ FILENAME <- gsub("all-cohorts","all_cohorts",gsub(" |/|;|:|\\(|)","_",paste(hist
 write.table(Final_Data_Table, file=paste(outdir,"/Results_",FILENAME,".tsv",sep=""), sep="\t", col.names = T, row.names = F,quote = F)
 result_jsonl = Create_josnl(Final_Data_Table)
 write(result_jsonl,paste(outdir,"/Results_",FILENAME,".jsonl",sep=""))
+
+saveRDS(Final_Data_Table, file = paste(outdir,"/Results_",FILENAME,".rds",sep=""))
+
 

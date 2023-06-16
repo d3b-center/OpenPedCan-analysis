@@ -20,7 +20,7 @@ option_list <- list(
               help = "OPenPedCan methyl beta-values or m-values matrix file",
               metavar = "character"),
   make_option(opt_str = "--methyl_probe_annot", type = "character", default = NULL,
-              help = "Methyl gencode array probe annotation results file",
+              help = "Methyl gencode array probe annotations",
               metavar = "character"),
   make_option(opt_str = "--independent_samples", type = "character", default = NULL,
               help = "OpenPedCan methyl independent biospecimen list file",

@@ -1,13 +1,13 @@
 #!/usr/bin/bash
-#SBATCH --job-name=Run_Deseq2_auto              # Job Name
+#SBATCH --job-name=Run_Deseq2_v12              # Job Name
 #SBATCH --mail-type=END,FAIL                    # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=shuklas1@chop.edu           # Where to send mail
-#SBATCH -a 1-5000 				# number of threads you want to be run simultaneously, input is 2438, so 2438 threads
+#SBATCH -a 1-5500 				# number of threads you want to be run simultaneously, for v12 input is 102 * 53, so 5406 threads
 #SBATCH --cpus-per-task=1
-#SBATCH --mem-per-cpu=32G
-#SBATCH -t 40:00:00
-#SBATCH --error=Logs_DESeq2/Run_DESeq2-%A_%a.error.out
-#SBATCH --output=Logs_DESeq2/Run_DESeq2-%A_%a.out
+#SBATCH --mem-per-cpu=96G
+#SBATCH -t 60:00:00
+#SBATCH --error=Logs_DESeq2_v12/Run_DESeq2-%A_%a.error.out
+#SBATCH --output=Logs_DESeq2_v12/Run_DESeq2-%A_%a.out
 
 
 declare -a input
@@ -27,8 +27,8 @@ function echoMe {
                 --ensg_hugo_file ../../data/ensg-hugo-pmtl-mapping.tsv \
                 --efo_mondo_file ../../data/efo-mondo-map.tsv \
                 --gtex_subgroup_uberon ../../data/uberon-map-gtex-subgroup.tsv \
-		--ind_allcohorts ../../data/independent-specimens.rnaseq.primary.tsv \
-		--ind_eachcohort ../../data/independent-specimens.rnaseq.primary.eachcohort.tsv \
+		--ind_allcohorts ../../data/independent-specimens.rnaseqpanel.primary.tsv \
+		--ind_eachcohort ../../data/independent-specimens.rnaseqpanel.primary.eachcohort.tsv \
 		--outdir results \
 		--HIST_i $1 \
 		--GTEX_i $2	

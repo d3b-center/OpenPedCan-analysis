@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# J. Taroni for ALSF CCDL 
-# 2020
+# R. Corbett (adapted from J. Taroni for ALSF CCDL)
+# December 2022
 
 set -e
 set -o pipefail
@@ -10,14 +10,16 @@ set -o pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # In CI we'll run an abbreviated version of the de novo signatures extraction
-ABBREVIATED_MUTSIGS=${OPENPBTA_QUICK_MUTSIGS:-0}
+ABBREVIATED_MUTSIGS=${OPC_QUICK_MUTSIGS:-0}
 
-# Run the mutational signatures analysis using existing signatures
+# Run the SBS mutational signatures analysis using existing signatures
 Rscript -e "rmarkdown::render('01-known_signatures.Rmd', clean = TRUE)"
 
-# Split up the consensus MAF files by experimental strategy (writes to scratch)
-Rscript --vanilla 02-split_experimental_strategy.R
+# Run the mutational signatures analysis using COSMIC DBS signatures (v3.3)
+Rscript -e "rmarkdown::render('02-cosmic_dbs_signatures.Rmd', clean = TRUE)"
 
-# Run the shell script that is for determining the number of signatures to use
-# with a low number of iterations
-QUICK_MUTSIGS=$ABBREVIATED_MUTSIGS bash 03-de_novo_range_of_nsignatures.sh
+# Run analysis of adult CNS mutational signatures
+Rscript --vanilla 03-fit_cns_signatures.R
+
+# Run mutational signature summary of hypermutant tumors
+Rscript -e "rmarkdown::render('04-explore_hypermutators.Rmd', clean = TRUE)"

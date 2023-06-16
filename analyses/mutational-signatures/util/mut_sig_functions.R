@@ -21,11 +21,11 @@ sample_mut_sig_plot <- function(which_sig_list,
   #               this will create it. Default is current directory.
   # Returns:
   #   Saved png mutation signature plots to the specified directory.
-
+  
   if (!dir.exists(output_dir)) {
     dir.create(output_dir, recursive = TRUE)
   }
-
+  
   for (sample_id in names(which_sig_list)) {
     # Set up png
     png(file.path(output_dir, paste0(sample_id, "_", label, "_mutation_sig.png")),
@@ -38,8 +38,9 @@ sample_mut_sig_plot <- function(which_sig_list,
 
 calc_mut_per_sig <- function(which_sig_list,
                              muts_per_sample,
-                             wgs_genome_size,
-                             wxs_exome_size,
+                             #wgs_genome_size,
+                             #wxs_exome_size,
+                             region_sizes,
                              metadata_df) {
   # Given a list of `deconstructSigs::whichSignature` output, calculate the
   # mutations per signature per Mb of the genome/exome.
@@ -57,40 +58,42 @@ calc_mut_per_sig <- function(which_sig_list,
   # Returns:
   #   A data.frame that is samples x signatures and has the number of mutations
   #   per mb for each signature x sample combo
-
+  
   # Count the total number of signature mutations for each sample
   total_muts <- apply(sigs_input, 1, sum)
-
+  
   # Pull out the signature weights and make into matrix
   sig_num_df <- do.call(
     "rbind.data.frame",
     lapply(which_sig_list, function(sample_data) sample_data$weights)
   ) %>%
     tibble::rownames_to_column("Tumor_Sample_Barcode") %>%
-
-  # Calculate the number of mutations contributing to each signature
-  # Here the weight is multiplied by the total number of signature mutations. 
-  dplyr::mutate_at(dplyr::vars(-Tumor_Sample_Barcode), ~ . * total_muts) %>%
+    
+    # Calculate the number of mutations contributing to each signature
+    # Here the weight is multiplied by the total number of signature mutations. 
+    dplyr::mutate_at(dplyr::vars(-Tumor_Sample_Barcode), ~ . * total_muts) %>%
     
     # Join the display_group and experimental stategy information
     dplyr::left_join(metadata_df %>% 
-      dplyr::distinct(Tumor_Sample_Barcode,.keep_all = TRUE),
-    by = "Tumor_Sample_Barcode"
+                       dplyr::distinct(Tumor_Sample_Barcode,.keep_all = TRUE),
+                     by = "Tumor_Sample_Barcode"
     ) %>%
-
+    
     # Get rid of Panel samples
     dplyr::filter(experimental_strategy != "Panel") %>%
     
     # Reformat for plotting
     reshape2::melt(value.name = "num_mutations") %>%
-
-    # Add genome size and calculate the mutation per this column
+    
+    # Add genome/exome size and calculate the mutation per this column
+    left_join(region_sizes, by = 'Tumor_Sample_Barcode') %>%
+    
     dplyr::mutate(
-      genome_size = dplyr::recode(experimental_strategy,
-        "WGS" = wgs_size,
-        "WXS" = wxs_size
-      ),
-      mut_per_mb = num_mutations / (genome_size / 10^6)
+      # genome_size = dplyr::recode(experimental_strategy,
+      #                             "WGS" = wgs_size,
+      #                             #        "WXS" = wxs_size
+      # ),
+      mut_per_mb = num_mutations / (region_size / 10^6)
     ) %>% 
     # Rename variable as signature
     dplyr::rename("signature" = variable) %>% 
@@ -182,18 +185,18 @@ grouped_sig_barplot <- function(hist_groups, sig_num_df, output_dir = getwd(),
   # Returns:
   #  A grouped barplot saved as png with the mutations per Mb for each sample
   #  from each signature. 
-
+  
   # Make the output directory if it doesn't exist
   if (!dir.exists(output_dir)) {
     dir.create(output_dir, recursive = TRUE)
   }
-
+  
   # Do this for each histology group provided in. the vector
   for (hist_group in hist_groups) {
     # Narrow the df down to just this histology's group
     histology_df <- sig_num_df %>%
       dplyr::filter(display_group == hist_group, mut_per_mb > 0) 
-
+    
     # Make the grouped bar plot
     histology_df %>%
       ggplot2::ggplot(ggplot2::aes(x = reorder(Tumor_Sample_Barcode, -mut_per_mb), y = mut_per_mb)) +
@@ -203,7 +206,7 @@ grouped_sig_barplot <- function(hist_groups, sig_num_df, output_dir = getwd(),
       ggplot2::ylab("Mutations per Mb") +
       ggplot2::xlab("") +
       ggplot2::ggtitle(paste(hist_group, label, "signatures"))
-
+    
     # Save the plot
     ggplot2::ggsave(file.path(
       output_dir,

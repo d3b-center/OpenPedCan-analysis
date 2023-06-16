@@ -35,7 +35,7 @@ def read_parameters():
 	p.add_argument('METHYL_INDEPENDENT_SAMPLES', type=str, default=None, help="OPenPedCan methyl independent biospecimen list file\n\n")
 	p.add_argument('METHLY_MATRIX', type=str, default=None, help="OpenPedCan methyl beta-values or m-values matrix file\n\n")
 	p.add_argument('EXP_MATRIX', type=str, default=None, help="OPenPedCan expression matrix file\n\n")
-	p.add_argument('PROBE_ANNOT', type=str, default=None, help="Methylation aaray probe gencode annotation results file\n\n")
+	p.add_argument('PROBE_ANNOT', type=str, default=None, help="Methyl gencode array probe annotations\n\n")
 	p.add_argument('-m', '--methyl_values', type=str, default='beta', choices=METHLY_VALUES, help="OpenPedCan methly matrix values: beta (default) and m\n\n")
 	p.add_argument('-e', '--exp_values', type=str, default='gene', choices=EXP_TYPE, help="OpenPedCan expression matrix values: gene (default) and isoform\n\n")
 	p.add_argument('-v', '--version', action='version', version="03-methyl-tpm-correlation.py version {} ({})".format(__version__, __date__), help="Print the current 03-methyl-tpm-correlation.py version and exit\n\n")
