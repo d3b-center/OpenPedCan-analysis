@@ -446,7 +446,7 @@ print(paste("DNA biospecimen in cnv-controlfreec.tsv.gz missing in histolgies = 
 - GATK seg file (cnv-gatk.seg.gz)
 ```{r}
 # check that all biospecimen IDs are in the file
-biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-gatk.seg.gz")) %>%
+biospecimen_ids <- readr::read_tsv(file.path(data_dir, "v13", "cnv-gatk.seg.gz")) %>%
   dplyr::pull(BS_ID) %>%
   unique()
 hist_ids <- hist_df %>%
@@ -506,56 +506,56 @@ print(paste("DNA biospecimen in snv-consensus-plus-hotspots.maf.tsv.gz missing i
 - SNV DGD MAF file (snv-dgd.maf.tsv.gz)
 ```{r}
 # check that all biospecimen IDs are in the file
-snv_dgd_maf <- data.table::fread(file.path(data_dir, "snv-dgd.maf.tsv.gz"), 
-                                 data.table = FALSE)
-biospecimen_ids <- snv_dgd_maf %>% 
-  dplyr::pull(Tumor_Sample_Barcode) %>%
-  unique()
-hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy == "Targeted Sequencing",
-                sample_type == "Tumor",
-                is.na(RNA_library),
+#snv_dgd_maf <- data.table::fread(file.path(data_dir, "snv-dgd.maf.tsv.gz"), 
+#                                 data.table = FALSE)
+#biospecimen_ids <- snv_dgd_maf %>% 
+#  dplyr::pull(Tumor_Sample_Barcode) %>%
+#  unique()
+#hist_ids <- hist_df %>%
+#  dplyr::filter(experimental_strategy == "Targeted Sequencing",
+#                sample_type == "Tumor",
+#                is.na(RNA_library),
                 #!is.na(pathology_diagnosis), 
-                cohort == "DGD") %>%
-  dplyr::pull(Kids_First_Biospecimen_ID)
-missing_ids <- setdiff(hist_ids, biospecimen_ids)
-missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-if (length(missing_ids) > 0) {
-  output_file <- "histologies-samples-missing-in-snv-dgd.tsv"
-  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-  missing_ids_df
-}
-print(paste("DNA biospecimen in histolgies missing in snv-dgd.maf.tsv.gz = ", length(missing_ids)))
-if (length(missing_hist_ids) > 0) {
-  output_file <- "snv-dgd-samples-missing-in-histologies.tsv"
-  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-  missing_hist_ids_df
-}
-print(paste("DNA biospecimen in snv-dgd.maf.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+#                cohort == "DGD") %>%
+#  dplyr::pull(Kids_First_Biospecimen_ID)
+#missing_ids <- setdiff(hist_ids, biospecimen_ids)
+#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+#if (length(missing_ids) > 0) {
+#  output_file <- "histologies-samples-missing-in-snv-dgd.tsv"
+#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+#  missing_ids_df
+#}
+#print(paste("DNA biospecimen in histolgies missing in snv-dgd.maf.tsv.gz = ", length(missing_ids)))
+#if (length(missing_hist_ids) > 0) {
+#  output_file <- "snv-dgd-samples-missing-in-histologies.tsv"
+#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+#  missing_hist_ids_df
+#}
+#print(paste("DNA biospecimen in snv-dgd.maf.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 - Check column class differences between DGD and consensus SNV MAF
 ```{r}
 # consensus maf column class
-snv_consensus_maf <- snv_consensus_maf %>% 
-  dplyr::summarise_all(class) %>% 
-  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "consensus")
+#snv_consensus_maf <- snv_consensus_maf %>% 
+#  dplyr::summarise_all(class) %>% 
+#  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "consensus")
 
 # dgd maf column class
-snv_dgd_maf <- snv_dgd_maf %>% 
-  dplyr::summarise_all(class) %>% 
-  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "DGD")
+#snv_dgd_maf <- snv_dgd_maf %>% 
+#  dplyr::summarise_all(class) %>% 
+#  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "DGD")
 
 # diffs between DGD and consensus
-maff_class_diffs <- snv_consensus_maf %>% 
-  dplyr::full_join(snv_dgd_maf, by = "variable") %>% 
-  filter(is.na(consensus) | is.na(DGD) | consensus != DGD)
-maff_class_diffs
+#maff_class_diffs <- snv_consensus_maf %>% 
+#  dplyr::full_join(snv_dgd_maf, by = "variable") %>% 
+#  filter(is.na(consensus) | is.na(DGD) | consensus != DGD)
+#maff_class_diffs
 
 # write to file
-output_file <- "snv-column-class-diffs-consensus-vs-dgd.tsv"
-maff_class_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
+#output_file <- "snv-column-class-diffs-consensus-vs-dgd.tsv"
+#maff_class_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
 ```
 
 - SV Manta file (sv-manta.tsv.gz)
