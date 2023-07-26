@@ -160,6 +160,7 @@ _Note: the `download-data.sh` script now has the ability to skip downloads of un
 Once this has been done, run `bash download-data.sh` to acquire the latest release.
 This will create symlinks in `data/` to the latest files.
 It's safe to re-run `bash download-data.sh` to check that you have the most recent release of the data.
+For downloading DNA methylation-related data, run `bash download-methyl.sh`  in `scripts` folder. 
 We will update the default release number whenever we produce a new release.
 
 ### Data Access via CAVATICA
