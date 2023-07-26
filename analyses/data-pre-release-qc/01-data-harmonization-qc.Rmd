@@ -656,9 +656,10 @@ print(paste("DNA biospecimen in biospecimen_id_to_bed_map.tsv missing in histolo
 biospecimen_ids <- readr::read_tsv(file.path(data_dir, "fusion-annoFuse.tsv.gz")) %>%
   dplyr::pull(Sample) %>%
   unique()
+
+## access all RNA-seq except the ones from DGD, TCGA and GTEx
 hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy == "RNA-Seq", 
-                sample_type == "Tumor",
+  dplyr::filter(experimental_strategy == "RNA-Seq",
                 !cohort %in% c("DGD", "TCGA", "GTEx")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
