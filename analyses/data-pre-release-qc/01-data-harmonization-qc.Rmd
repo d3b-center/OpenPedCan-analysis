@@ -450,7 +450,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-gatk.seg.gz")) %>%
   dplyr::pull(BS_ID) %>%
   unique()
 hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy %in% c("WGS"),
+  dplyr::filter(experimental_strategy == "WGS",
                 sample_type == "Tumor") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)

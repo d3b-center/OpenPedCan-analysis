@@ -14,6 +14,8 @@ cd "$script_directory" || exit
 # Set up paths results directory
 results_path="results"
 
+#remove all the files in results folder
+rm $results_path/*
 
 printf '\nStart data pre-release QC analysis...'
 
