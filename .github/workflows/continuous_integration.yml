@@ -7,10 +7,46 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
+
+
+  startRunner:
+    name: Start self-hosted runner
+    runs-on: ubuntu-latest
+    outputs:
+      label: ${{ steps.startEc2Runner.outputs.label }}
+      ec2-instance-id: ${{ steps.startEc2Runner.outputs.ec2-instance-id }}
+    steps:
+        - uses: actions/checkout@v3
+        - uses: aws-actions/configure-aws-credentials@v2
+          with:
+            role-to-assume: arn:aws:iam::684194535433:role/GitHubD3bGithubRunners-PrdRole-20230918172959368200000003
+            aws-region: us-east-1
+        - name: On-demand self-hosted AWS EC2 runner for GitHub Actions
+          uses: machulav/ec2-github-runner@v2
+          id: startEc2Runner
+          with:
+            mode: start
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            ec2-image-id: ami-058503fef6626d70a
+            ec2-instance-type: m7i.12xlarge
+            subnet-id: subnet-0c0010ecf26c704bf # Use private subnet, only needs outbound connection
+            security-group-id: sg-044ba9c90949f865c
+            iam-role-name: d3bGithubActionRunner-20230918142700396500000002
+            aws-resource-tags: > 
+              [
+                {"Key": "Name", "Value": "ec2-github-runner"},
+                {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
+              ]
+              
   build_and_publish_image:
     name: Build and Publish Image
-    runs-on: ubuntu-latest
+    runs-on: ${{ needs.startRunner.outputs.label }}
+    needs: [startRunner]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -47,138 +83,159 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: github_pat=${{ secrets.GITHUB_TOKEN }}
 
-  run_analysis:
-    name: Run Analysis
-    needs: build_and_publish_image
+  stop-runner:
+    name: Stop self-hosted EC2 runner
+    needs:
+      - startRunner 
+      - build_and_publish_image
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Molecular subtyping modules
-          - name: Molecular Subtyping - MB
-            entrypoint: molecular-subtyping-MB/run-molecular-subtyping-mb.sh
-            openpbta_subset: 0
-
-          - name: Molecular Subtyping - CRANIO
-            entrypoint: molecular-subtyping-CRANIO/run-molecular-subtyping-cranio.sh
-            openpbta_subset: 0
-
-          - name: Molecular Subtyping - EPN
-            entrypoint: molecular-subtyping-EPN/run-molecular-subtyping-EPN.sh
-
-          - name: Molecular Subtyping - EMBRYONAL
-            entrypoint: molecular-subtyping-embryonal/run-embryonal-subtyping.sh
-            openpbta_testing: 1
-
-          - name: Molecular Subtyping - CHORDOMA
-            entrypoint: molecular-subtyping-chordoma/run-molecular-subtyping-chordoma.sh
-            openpbta_subset: 0
-
-          - name: Molecular Subtyping - EWS
-            entrypoint: molecular-subtyping-EWS/run_subtyping.sh
-
-          - name: Molecular Subtyping - NEUROCYTOMA
-            entrypoint: molecular-subtyping-neurocytoma/run_subtyping.sh
-
-          - name: Molecular Subtyping - HGG
-            entrypoint: molecular-subtyping-HGG/run-molecular-subtyping-HGG.sh
-
-          - name: Molecular Subtyping - LGG
-            entrypoint: molecular-subtyping-LGAT/run_subtyping.sh
-            openpbta_subset: 0
-            
-          - name: Molecular Subtyping - NBL
-            entrypoint: molecular-subtyping-NBL/run-molecular-subtyping-NBL.sh
-
-          - name: Molecular Subtyping - PATHOLOGY/COMPILE
-            entrypoint: molecular-subtyping-pathology/run-subtyping-aggregation.sh
-            openpbta_testing: 1
-
-          - name: Molecular Subtyping - INTEGRATE (+ add cancer groups)
-            entrypoint: molecular-subtyping-integrate/run-subtyping-integrate.sh
-            
-          - name: Molecular Subtyping - ATRT
-            entrypoint: molecular-subtyping-ATRT/run-molecular-subtyping-ATRT.sh
-            
-
-          # Analysis modules
-          - name: Independent Specimens
-            entrypoint: independent-samples/run-independent-samples.sh
-
-          - name: Independent Specimens pre-release
-            entrypoint: independent-samples/run-independent-samples.sh
-            run_for_subtyping: 1
-
-          - name: TP53/NF1 scores
-            entrypoint: tp53_nf1_score/run_classifier.sh
-            openpedcan_polya_strand: 0
-
-          - name: Fusion filtering
-            entrypoint: fusion_filtering/run_fusion_merged.sh
-
-          - name: Fusion summary
-            entrypoint: fusion-summary/run-new-analysis.sh
-            openpbta_subset: 0
-
-          - name: Consensus CN Manta
-            entrypoint: copy_number_consensus_call_manta/run_consensus_call.sh
-
-          - name: Consensus CN
-            entrypoint: copy_number_consensus_call/run_consensus_call.sh
-
-          - name: Consensus CN annotation
-            entrypoint: focal-cn-file-preparation/run-prepare-cn.sh
-            openpbta_testing: 1
-
-          - name: TMB calculation
-            entrypoint: tmb-calculation/run_tmb_calculation.sh
-
-          #- name: Immune Deconvolution
-          #  entrypoint: immune-deconv/run-immune-deconv.sh
-
-          #- name: EFO/MONDO annotation
-          #  entrypoint: efo-mondo-mapping/run_search_and_qc.sh
-
-          - name: ENSEMBL Gene matching
-            entrypoint: gene_match/run-gene-mapping.sh
-
-          #- name: Update table annotation data
-          #  entrypoint: long-format-table-utils/run-update-long-format-table-utils.sh
-
-          - name: RNA-Seq Expression Summary stats
-            entrypoint: rna-seq-expression-summary-stats/run-rna-seq-expression-summary-stats.sh
-
-          # MTP-specific modules
-          #- name: Fusion frequency tables
-          #  entrypoint: fusion-frequencies/run-frequencies.sh
-
-          #- name: SNV frequency tables
-          #  entrypoint: snv-frequencies/run-snv-frequencies.sh
-
-          #- name: CNV frequency tables
-          #  entrypoint: cnv-frequencies/run-cnv-frequencies-analysis.sh
-            
-          #- name: RNA-Seq batch correction
-          #  entrypoint: rnaseq-batch-correct/run_ruvseq.sh
-
+    # Required to terminate EC2 instance no matter the error
+    if: ${{ always() }}
     steps:
-      - uses: actions/checkout@v3
+    - uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::684194535433:role/GitHubD3bGithubRunners-PrdRole-20230918172959368200000003
+        aws-region: us-east-1
+    - name: Stop EC2 runner
+      uses: machulav/ec2-github-runner@v2
+      with:
+        mode: stop
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        label: ${{ needs.startRunner.outputs.label }}
+        ec2-instance-id: ${{ needs.startRunner.outputs.ec2-instance-id }}
 
-      - name: Download Data
-        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
-        with:
-          entrypoint: ./download-data.sh
-        env:
-          OPENPEDCAN_URL: https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets
-          OPENPEDCAN_RELEASE: testing
+  # run_analysis:
+  #   name: Run Analysis
+  #   needs: build_and_publish_image
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         # Molecular subtyping modules
+  #         - name: Molecular Subtyping - MB
+  #           entrypoint: molecular-subtyping-MB/run-molecular-subtyping-mb.sh
+  #           openpbta_subset: 0
 
-      - name: Run Analysis
-        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
-        with:
-          entrypoint: analyses/${{ matrix.entrypoint }}
-        env:
-          OPENPBTA_SUBSET: ${{ matrix.openpbta_subset }}
-          OPENPBTA_TESTING: ${{ matrix.openpbta_testing }}
-          RUN_FOR_SUBTYPING: ${{ matrix.run_for_subtyping }}
-          OPENPEDCAN_POLYA_STRAND: ${{ matrix.openpedcan_polya_strand }}
+  #         - name: Molecular Subtyping - CRANIO
+  #           entrypoint: molecular-subtyping-CRANIO/run-molecular-subtyping-cranio.sh
+  #           openpbta_subset: 0
+
+  #         - name: Molecular Subtyping - EPN
+  #           entrypoint: molecular-subtyping-EPN/run-molecular-subtyping-EPN.sh
+
+  #         - name: Molecular Subtyping - EMBRYONAL
+  #           entrypoint: molecular-subtyping-embryonal/run-embryonal-subtyping.sh
+  #           openpbta_testing: 1
+
+  #         - name: Molecular Subtyping - CHORDOMA
+  #           entrypoint: molecular-subtyping-chordoma/run-molecular-subtyping-chordoma.sh
+  #           openpbta_subset: 0
+
+  #         - name: Molecular Subtyping - EWS
+  #           entrypoint: molecular-subtyping-EWS/run_subtyping.sh
+
+  #         - name: Molecular Subtyping - NEUROCYTOMA
+  #           entrypoint: molecular-subtyping-neurocytoma/run_subtyping.sh
+
+  #         - name: Molecular Subtyping - HGG
+  #           entrypoint: molecular-subtyping-HGG/run-molecular-subtyping-HGG.sh
+
+  #         - name: Molecular Subtyping - LGG
+  #           entrypoint: molecular-subtyping-LGAT/run_subtyping.sh
+  #           openpbta_subset: 0
+            
+  #         - name: Molecular Subtyping - NBL
+  #           entrypoint: molecular-subtyping-NBL/run-molecular-subtyping-NBL.sh
+
+  #         - name: Molecular Subtyping - PATHOLOGY/COMPILE
+  #           entrypoint: molecular-subtyping-pathology/run-subtyping-aggregation.sh
+  #           openpbta_testing: 1
+
+  #         - name: Molecular Subtyping - INTEGRATE (+ add cancer groups)
+  #           entrypoint: molecular-subtyping-integrate/run-subtyping-integrate.sh
+            
+  #         - name: Molecular Subtyping - ATRT
+  #           entrypoint: molecular-subtyping-ATRT/run-molecular-subtyping-ATRT.sh
+            
+
+  #         # Analysis modules
+  #         - name: Independent Specimens
+  #           entrypoint: independent-samples/run-independent-samples.sh
+
+  #         - name: Independent Specimens pre-release
+  #           entrypoint: independent-samples/run-independent-samples.sh
+  #           run_for_subtyping: 1
+
+  #         - name: TP53/NF1 scores
+  #           entrypoint: tp53_nf1_score/run_classifier.sh
+  #           openpedcan_polya_strand: 0
+
+  #         - name: Fusion filtering
+  #           entrypoint: fusion_filtering/run_fusion_merged.sh
+
+  #         - name: Fusion summary
+  #           entrypoint: fusion-summary/run-new-analysis.sh
+  #           openpbta_subset: 0
+
+  #         - name: Consensus CN Manta
+  #           entrypoint: copy_number_consensus_call_manta/run_consensus_call.sh
+
+  #         - name: Consensus CN
+  #           entrypoint: copy_number_consensus_call/run_consensus_call.sh
+
+  #         - name: Consensus CN annotation
+  #           entrypoint: focal-cn-file-preparation/run-prepare-cn.sh
+  #           openpbta_testing: 1
+
+  #         - name: TMB calculation
+  #           entrypoint: tmb-calculation/run_tmb_calculation.sh
+
+  #         #- name: Immune Deconvolution
+  #         #  entrypoint: immune-deconv/run-immune-deconv.sh
+
+  #         #- name: EFO/MONDO annotation
+  #         #  entrypoint: efo-mondo-mapping/run_search_and_qc.sh
+
+  #         - name: ENSEMBL Gene matching
+  #           entrypoint: gene_match/run-gene-mapping.sh
+
+  #         #- name: Update table annotation data
+  #         #  entrypoint: long-format-table-utils/run-update-long-format-table-utils.sh
+
+  #         - name: RNA-Seq Expression Summary stats
+  #           entrypoint: rna-seq-expression-summary-stats/run-rna-seq-expression-summary-stats.sh
+
+  #         # MTP-specific modules
+  #         #- name: Fusion frequency tables
+  #         #  entrypoint: fusion-frequencies/run-frequencies.sh
+
+  #         #- name: SNV frequency tables
+  #         #  entrypoint: snv-frequencies/run-snv-frequencies.sh
+
+  #         #- name: CNV frequency tables
+  #         #  entrypoint: cnv-frequencies/run-cnv-frequencies-analysis.sh
+            
+  #         #- name: RNA-Seq batch correction
+  #         #  entrypoint: rnaseq-batch-correct/run_ruvseq.sh
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Download Data
+  #       uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
+  #       with:
+  #         entrypoint: ./download-data.sh
+  #       env:
+  #         OPENPEDCAN_URL: https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets
+  #         OPENPEDCAN_RELEASE: testing
+
+  #     - name: Run Analysis
+  #       uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:analysisjob
+  #       with:
+  #         entrypoint: analyses/${{ matrix.entrypoint }}
+  #       env:
+  #         OPENPBTA_SUBSET: ${{ matrix.openpbta_subset }}
+  #         OPENPBTA_TESTING: ${{ matrix.openpbta_testing }}
+  #         RUN_FOR_SUBTYPING: ${{ matrix.run_for_subtyping }}
+  #         OPENPEDCAN_POLYA_STRAND: ${{ matrix.openpedcan_polya_strand }}
