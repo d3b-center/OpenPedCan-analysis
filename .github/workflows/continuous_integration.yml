@@ -32,7 +32,7 @@ jobs:
             ec2-instance-type: m7i.12xlarge
             subnet-id: subnet-0c0010ecf26c704bf # Use private subnet, only needs outbound connection
             security-group-id: sg-044ba9c90949f865c
-            iam-role-name: d3bGithubActionRunner-20230918142700396500000002
+            iam-role-name: d3bGithubActionRunner-20230918142700744200000003
             aws-resource-tags: > 
               [
                 {"Key": "Name", "Value": "ec2-github-runner"},
