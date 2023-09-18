@@ -27,7 +27,7 @@ jobs:
           id: startEc2Runner
           with:
             mode: start
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+            github-token: ${{ secrets.GH_RUNNER_REGISTRAR_TOKEN }}
             ec2-image-id: ami-058503fef6626d70a
             ec2-instance-type: m7i.12xlarge
             subnet-id: subnet-0c0010ecf26c704bf # Use private subnet, only needs outbound connection
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_RUNNER_REGISTRAR_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -96,7 +96,7 @@ jobs:
       uses: machulav/ec2-github-runner@v2
       with:
         mode: stop
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GH_RUNNER_REGISTRAR_TOKEN }}
         label: ${{ needs.startRunner.outputs.label }}
         ec2-instance-id: ${{ needs.startRunner.outputs.ec2-instance-id }}
 
