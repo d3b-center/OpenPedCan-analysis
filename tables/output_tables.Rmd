@@ -65,7 +65,7 @@ subtype_n <- histology_df %>%
   filter(!is.na(pathology_diagnosis),
          !is.na(molecular_subtype),
          !grepl("To be classified", molecular_subtype)) %>%
-   mutate(tumor_id = paste(sample_id, sample_type, composition, cell_line_composition, cell_line_passage, sep = "_")) # %>%
+   mutate(tumor_id = paste(sample_id, sample_type, composition, cell_line_composition, cell_line_passage, sep = "_"))  %>%
   # Join with palette to get broad_histology_display column
   inner_join(
     select(palette_df,

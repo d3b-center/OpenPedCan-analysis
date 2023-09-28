@@ -1,111 +1,111 @@
 Broad histology group	Molecular Subtype	Patients	Tumors
-Chordoma	CHDM, conventional	2	2
-Chordoma	CHDM, poorly differentiated	2	5
-Diffuse astrocytic and oligodendroglial tumor	DHG, H3 G35	10	13
-Diffuse astrocytic and oligodendroglial tumor	DHG, H3 G35, TP53	18	18
-Diffuse astrocytic and oligodendroglial tumor	DMG, H3 K28	102	130
-Diffuse astrocytic and oligodendroglial tumor	DMG, H3 K28, TP53	100	138
-Diffuse astrocytic and oligodendroglial tumor	HGG, H3 wildtype	97	115
-Diffuse astrocytic and oligodendroglial tumor	HGG, H3 wildtype, TP53	53	72
-Diffuse astrocytic and oligodendroglial tumor	HGG, IDH, TP53	11	12
-Diffuse astrocytic and oligodendroglial tumor	IHG, ALK-altered	3	3
-Diffuse astrocytic and oligodendroglial tumor	IHG, NTRK-altered	3	3
-Diffuse astrocytic and oligodendroglial tumor	IHG, NTRK-altered, TP53	1	1
-Diffuse astrocytic and oligodendroglial tumor	IHG, ROS1-altered	3	3
-Diffuse astrocytic and oligodendroglial tumor	IHG, ROS1-altered, TP53	1	1
-Embryonal tumor	ATRT, MYC	18	20
-Embryonal tumor	ATRT, SHH	18	22
-Embryonal tumor	ATRT, TYR	10	11
-Embryonal tumor	CNS Embryonal, NOS	25	31
+Chordoma	"CHDM, conventional"	2	2
+Chordoma	"CHDM, poorly differentiated"	2	5
+Diffuse astrocytic and oligodendroglial tumor	"DHG, H3 G35"	10	13
+Diffuse astrocytic and oligodendroglial tumor	"DHG, H3 G35, TP53"	18	18
+Diffuse astrocytic and oligodendroglial tumor	"DMG, H3 K28"	102	130
+Diffuse astrocytic and oligodendroglial tumor	"DMG, H3 K28, TP53"	100	138
+Diffuse astrocytic and oligodendroglial tumor	"HGG, H3 wildtype"	97	115
+Diffuse astrocytic and oligodendroglial tumor	"HGG, H3 wildtype, TP53"	53	72
+Diffuse astrocytic and oligodendroglial tumor	"HGG, IDH, TP53"	11	12
+Diffuse astrocytic and oligodendroglial tumor	"IHG, ALK-altered"	3	3
+Diffuse astrocytic and oligodendroglial tumor	"IHG, NTRK-altered"	3	3
+Diffuse astrocytic and oligodendroglial tumor	"IHG, NTRK-altered, TP53"	1	1
+Diffuse astrocytic and oligodendroglial tumor	"IHG, ROS1-altered"	3	3
+Diffuse astrocytic and oligodendroglial tumor	"IHG, ROS1-altered, TP53"	1	1
+Embryonal tumor	"ATRT, MYC"	18	20
+Embryonal tumor	"ATRT, SHH"	18	22
+Embryonal tumor	"ATRT, TYR"	10	11
+Embryonal tumor	"CNS Embryonal, NOS"	25	31
 Embryonal tumor	CNS HGNET-MN1	2	2
 Embryonal tumor	CNS NB-FOXR2	3	4
-Embryonal tumor	ETMR, C19MC-altered	5	5
-Embryonal tumor	ETMR, NOS	1	1
-Embryonal tumor	MB, Group3	67	71
-Embryonal tumor	MB, Group4	111	114
-Embryonal tumor	MB, SHH	68	77
-Embryonal tumor	MB, WNT	24	24
-Ependymoma	EPN, MPE	17	20
-Ependymoma	EPN, PF A	86	124
-Ependymoma	EPN, PF B	9	10
-Ependymoma	EPN, PF SE	1	1
-Ependymoma	EPN, SP	6	6
-Ependymoma	EPN, SP-MYCN	1	2
-Ependymoma	EPN, SP-SE	1	1
-Ependymoma	EPN, ST YAP1	4	6
-Ependymoma	EPN, ST ZFTA	52	67
-Low-grade astrocytic tumor	GNG, BRAF V600E	30	30
-Low-grade astrocytic tumor	GNG, BRAF V600E, CDKN2A/B	2	2
-Low-grade astrocytic tumor	GNG, FGFR	4	4
-Low-grade astrocytic tumor	GNG, H3	1	1
-Low-grade astrocytic tumor	GNG, IDH	1	2
-Low-grade astrocytic tumor	GNG, KIAA1549-BRAF	9	9
-Low-grade astrocytic tumor	GNG, MAPK	2	2
-Low-grade astrocytic tumor	GNG, MYB/MYBL1	2	2
-Low-grade astrocytic tumor	GNG, NF1-germline	1	1
-Low-grade astrocytic tumor	GNG, NF1-somatic, BRAF V600E	1	1
-Low-grade astrocytic tumor	GNG, RTK	5	8
-Low-grade astrocytic tumor	GNG, other MAPK	7	7
-Low-grade astrocytic tumor	GNG, other MAPK, BRAF V600E	1	1
-Low-grade astrocytic tumor	GNG, other MAPK, IDH	1	1
-Low-grade astrocytic tumor	GNG, wildtype	20	20
-Low-grade astrocytic tumor	GNT, FGFR	1	1
-Low-grade astrocytic tumor	GNT, KIAA1549-BRAF	1	1
-Low-grade astrocytic tumor	GNT, RTK	1	1
-Low-grade astrocytic tumor	GNT, RTK, CDKN2A/B	1	1
-Low-grade astrocytic tumor	GNT, other MAPK	1	1
-Low-grade astrocytic tumor	GNT, other MAPK, CDKN2A/B	1	1
-Low-grade astrocytic tumor	GNT, wildtype	1	1
-Low-grade astrocytic tumor	LGG, BRAF V600E	44	45
-Low-grade astrocytic tumor	LGG, BRAF V600E, CDKN2A/B	9	10
-Low-grade astrocytic tumor	LGG, BRAF V600E, other MAPK	1	1
-Low-grade astrocytic tumor	LGG, CDKN2A/B	4	4
-Low-grade astrocytic tumor	LGG, FGFR	22	25
-Low-grade astrocytic tumor	LGG, FGFR, NF1-germline	1	1
-Low-grade astrocytic tumor	LGG, FGFR, NF1-somatic	1	1
-Low-grade astrocytic tumor	LGG, IDH	9	9
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF	218	259
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, BRAF V600E	1	2
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, CDKN2A/B	1	1
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, FGFR	2	2
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, NF1-germline	1	1
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, RTK	5	5
-Low-grade astrocytic tumor	LGG, KIAA1549-BRAF, other MAPK	3	3
-Low-grade astrocytic tumor	LGG, MAPK	4	4
-Low-grade astrocytic tumor	LGG, MYB/MYBL1	7	8
-Low-grade astrocytic tumor	LGG, MYB/MYBL1, other MAPK	1	1
-Low-grade astrocytic tumor	LGG, NF1-germline	16	18
-Low-grade astrocytic tumor	LGG, NF1-germline, BRAF V600E	1	1
-Low-grade astrocytic tumor	LGG, NF1-germline, CDKN2A/B	2	2
-Low-grade astrocytic tumor	LGG, NF1-germline, FGFR	2	3
-Low-grade astrocytic tumor	LGG, NF1-germline, RTK, FGFR	1	1
-Low-grade astrocytic tumor	LGG, NF1-germline, other MAPK	1	1
-Low-grade astrocytic tumor	LGG, NF1-somatic	4	4
-Low-grade astrocytic tumor	LGG, NF1-somatic, FGFR	4	4
-Low-grade astrocytic tumor	LGG, NF1-somatic, NF1-germline	3	3
-Low-grade astrocytic tumor	LGG, NF1-somatic, NF1-germline, CDKN2A/B	1	1
-Low-grade astrocytic tumor	LGG, NF1-somatic, NF1-germline, FGFR	2	2
-Low-grade astrocytic tumor	LGG, NF1-somatic, RTK	1	1
-Low-grade astrocytic tumor	LGG, RTK	16	19
-Low-grade astrocytic tumor	LGG, RTK, BRAF V600E	1	1
-Low-grade astrocytic tumor	LGG, RTK, CDKN2A/B	1	1
-Low-grade astrocytic tumor	LGG, other MAPK	32	37
-Low-grade astrocytic tumor	LGG, other MAPK, CDKN2A/B	1	1
-Low-grade astrocytic tumor	LGG, other MAPK, IDH	1	1
-Low-grade astrocytic tumor	LGG, wildtype	71	73
-Low-grade astrocytic tumor	SEGA, RTK	1	1
-Low-grade astrocytic tumor	SEGA, wildtype	8	8
+Embryonal tumor	"ETMR, C19MC-altered"	5	5
+Embryonal tumor	"ETMR, NOS"	1	1
+Embryonal tumor	"MB, Group3"	67	71
+Embryonal tumor	"MB, Group4"	111	114
+Embryonal tumor	"MB, SHH"	68	77
+Embryonal tumor	"MB, WNT"	24	24
+Ependymoma	"EPN, MPE"	17	20
+Ependymoma	"EPN, PF A"	86	124
+Ependymoma	"EPN, PF B"	9	10
+Ependymoma	"EPN, PF SE"	1	1
+Ependymoma	"EPN, SP"	6	6
+Ependymoma	"EPN, SP-MYCN"	1	2
+Ependymoma	"EPN, SP-SE"	1	1
+Ependymoma	"EPN, ST YAP1"	4	6
+Ependymoma	"EPN, ST ZFTA"	52	67
+Low-grade astrocytic tumor	"GNG, BRAF V600E"	30	30
+Low-grade astrocytic tumor	"GNG, BRAF V600E, CDKN2A/B"	2	2
+Low-grade astrocytic tumor	"GNG, FGFR"	4	4
+Low-grade astrocytic tumor	"GNG, H3"	1	1
+Low-grade astrocytic tumor	"GNG, IDH"	1	2
+Low-grade astrocytic tumor	"GNG, KIAA1549-BRAF"	9	9
+Low-grade astrocytic tumor	"GNG, MAPK"	2	2
+Low-grade astrocytic tumor	"GNG, MYB/MYBL1"	2	2
+Low-grade astrocytic tumor	"GNG, NF1-germline"	1	1
+Low-grade astrocytic tumor	"GNG, NF1-somatic, BRAF V600E"	1	1
+Low-grade astrocytic tumor	"GNG, RTK"	5	8
+Low-grade astrocytic tumor	"GNG, other MAPK"	7	7
+Low-grade astrocytic tumor	"GNG, other MAPK, BRAF V600E"	1	1
+Low-grade astrocytic tumor	"GNG, other MAPK, IDH"	1	1
+Low-grade astrocytic tumor	"GNG, wildtype"	20	20
+Low-grade astrocytic tumor	"GNT, FGFR"	1	1
+Low-grade astrocytic tumor	"GNT, KIAA1549-BRAF"	1	1
+Low-grade astrocytic tumor	"GNT, RTK"	1	1
+Low-grade astrocytic tumor	"GNT, RTK, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"GNT, other MAPK"	1	1
+Low-grade astrocytic tumor	"GNT, other MAPK, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"GNT, wildtype"	1	1
+Low-grade astrocytic tumor	"LGG, BRAF V600E"	44	45
+Low-grade astrocytic tumor	"LGG, BRAF V600E, CDKN2A/B"	9	10
+Low-grade astrocytic tumor	"LGG, BRAF V600E, other MAPK"	1	1
+Low-grade astrocytic tumor	"LGG, CDKN2A/B"	4	4
+Low-grade astrocytic tumor	"LGG, FGFR"	22	25
+Low-grade astrocytic tumor	"LGG, FGFR, NF1-germline"	1	1
+Low-grade astrocytic tumor	"LGG, FGFR, NF1-somatic"	1	1
+Low-grade astrocytic tumor	"LGG, IDH"	9	9
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF"	218	259
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, BRAF V600E"	1	2
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, FGFR"	2	2
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, NF1-germline"	1	1
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, RTK"	5	5
+Low-grade astrocytic tumor	"LGG, KIAA1549-BRAF, other MAPK"	3	3
+Low-grade astrocytic tumor	"LGG, MAPK"	4	4
+Low-grade astrocytic tumor	"LGG, MYB/MYBL1"	7	8
+Low-grade astrocytic tumor	"LGG, MYB/MYBL1, other MAPK"	1	1
+Low-grade astrocytic tumor	"LGG, NF1-germline"	16	18
+Low-grade astrocytic tumor	"LGG, NF1-germline, BRAF V600E"	1	1
+Low-grade astrocytic tumor	"LGG, NF1-germline, CDKN2A/B"	2	2
+Low-grade astrocytic tumor	"LGG, NF1-germline, FGFR"	2	3
+Low-grade astrocytic tumor	"LGG, NF1-germline, RTK, FGFR"	1	1
+Low-grade astrocytic tumor	"LGG, NF1-germline, other MAPK"	1	1
+Low-grade astrocytic tumor	"LGG, NF1-somatic"	4	4
+Low-grade astrocytic tumor	"LGG, NF1-somatic, FGFR"	4	4
+Low-grade astrocytic tumor	"LGG, NF1-somatic, NF1-germline"	3	3
+Low-grade astrocytic tumor	"LGG, NF1-somatic, NF1-germline, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"LGG, NF1-somatic, NF1-germline, FGFR"	2	2
+Low-grade astrocytic tumor	"LGG, NF1-somatic, RTK"	1	1
+Low-grade astrocytic tumor	"LGG, RTK"	16	19
+Low-grade astrocytic tumor	"LGG, RTK, BRAF V600E"	1	1
+Low-grade astrocytic tumor	"LGG, RTK, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"LGG, other MAPK"	32	37
+Low-grade astrocytic tumor	"LGG, other MAPK, CDKN2A/B"	1	1
+Low-grade astrocytic tumor	"LGG, other MAPK, IDH"	1	1
+Low-grade astrocytic tumor	"LGG, wildtype"	71	73
+Low-grade astrocytic tumor	"SEGA, RTK"	1	1
+Low-grade astrocytic tumor	"SEGA, wildtype"	8	8
 Mesenchymal non-meningothelial tumor	EWS	21	32
 Neuronal and mixed neuronal-glial tumor	CNC	3	4
 Neuronal and mixed neuronal-glial tumor	EVN	2	3
-Neuronal and mixed neuronal-glial tumor	GNT, BRAF V600E	5	5
-Neuronal and mixed neuronal-glial tumor	GNT, FGFR	5	5
-Neuronal and mixed neuronal-glial tumor	GNT, KIAA1549-BRAF	3	3
-Neuronal and mixed neuronal-glial tumor	GNT, MAPK	1	1
-Neuronal and mixed neuronal-glial tumor	GNT, NF1-somatic, FGFR	1	1
-Neuronal and mixed neuronal-glial tumor	GNT, RTK	5	6
-Neuronal and mixed neuronal-glial tumor	GNT, other MAPK	3	3
-Neuronal and mixed neuronal-glial tumor	GNT, other MAPK, FGFR	1	1
-Neuronal and mixed neuronal-glial tumor	GNT, wildtype	4	4
-Tumors of sellar region	CRANIO, ADAM	74	91
+Neuronal and mixed neuronal-glial tumor	"GNT, BRAF V600E"	5	5
+Neuronal and mixed neuronal-glial tumor	"GNT, FGFR"	5	5
+Neuronal and mixed neuronal-glial tumor	"GNT, KIAA1549-BRAF"	3	3
+Neuronal and mixed neuronal-glial tumor	"GNT, MAPK"	1	1
+Neuronal and mixed neuronal-glial tumor	"GNT, NF1-somatic, FGFR"	1	1
+Neuronal and mixed neuronal-glial tumor	"GNT, RTK"	5	6
+Neuronal and mixed neuronal-glial tumor	"GNT, other MAPK"	3	3
+Neuronal and mixed neuronal-glial tumor	"GNT, other MAPK, FGFR"	1	1
+Neuronal and mixed neuronal-glial tumor	"GNT, wildtype"	4	4
+Tumors of sellar region	"CRANIO, ADAM"	74	91
 	Total	1661	1957
