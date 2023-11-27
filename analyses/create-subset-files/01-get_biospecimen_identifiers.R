@@ -126,6 +126,10 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
       expression_file <- readr::read_rds(filename)
       biospecimen_ids <- unique(colnames(expression_file))
     }
+  } else if (grepl("gtex-gene", filename)) {
+    ## for gtex RNA-seq
+    gtex <- readr::read_tsv(filename)
+    biospecimen_ids <- unique(colnames(gtex))
   } else if (grepl("independent", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
     independent_file <- readr::read_tsv(filename)
@@ -134,6 +138,9 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     # in a column 'sample_id'
     rmats_file <- arrow::read_tsv_arrow(filename)
     biospecimen_ids <- unique(rmats_file$sample_id)
+  } else if (grepl("protein-impute", filename)) {
+    prot_file <- readr::read_tsv(filename)
+    biospecimen_ids <- colnames(prot_file)[(grepl("BS_", colnames(prot_file)))]
   } else {
     # error-handling
     stop("File type unrecognized by 'get_biospecimen_ids'")
@@ -379,8 +386,6 @@ rnaseq_samples <- c("TARGET-40-PANVJJ-01A-01R", "TARGET-40-PAKUZU-01A-01R",
                     "TARGET-40-0A4I48-01A-01R", "BS_JT82QGXF", "BS_AGTPCRR4", 
                     "BS_R244Z0WX", "BS_NGHK9RZP", "BS_6R7SFVV2")
 
-#### Two non-GATK samples 
-non_GATK_sample <- c("BS_A9Q65W4Q", "BS_JTNTWJMD")
 
 ### Histologies and participants IDs mapping -----------------------------------
 
@@ -575,10 +580,14 @@ snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
 
-## add non-GATK samples to cnv file 
-  cnv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "cnv")
+## for Hope tumor only SNV file, add all samples for testing
+Hope_snv <- read_tsv(file.path(data_directory, "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz")) %>% 
+  pull(Tumor_Sample_Barcode) %>% 
+  unique()
+
+Hope_snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv-mutect2")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(cnv_index, ~ append(.x, c(non_GATK_sample)))
+  purrr::modify_at(Hope_snv_index, ~ append(.x, c(Hope_snv)))
 
 # remove any redundant that might result combining and appending to the 
 # biospecimen IDs lists for subsetting 

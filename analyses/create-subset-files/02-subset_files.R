@@ -188,6 +188,11 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     rmats_file %>% 
       dplyr::filter(sample_id %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
+  } else if (grepl("gtex", filename)) {
+    expression_file <- readr::read_rds(filename)
+    biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
+    expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
+        readr::write_rds(output_file)
   } else {
     # error-handling
     stop("File type unrecognized by 'subset_files'")
