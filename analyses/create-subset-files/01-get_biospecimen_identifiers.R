@@ -581,13 +581,13 @@ biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
 
 ## for Hope tumor only SNV file, add all samples for testing
-Hope_snv <- read_tsv(file.path(data_directory, "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz")) %>% 
+tumor_only_snv <- read_tsv(file.path(data_directory, "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz")) %>% 
   pull(Tumor_Sample_Barcode) %>% 
   unique()
 
-Hope_snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv-mutect2")
+tumor_only_snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "mutect2-tumor-only")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(Hope_snv_index, ~ append(.x, c(Hope_snv)))
+  purrr::modify_at(tumor_only_snv_index, ~ append(.x, c(tumor_only_snv)))
 
 # remove any redundant that might result combining and appending to the 
 # biospecimen IDs lists for subsetting 

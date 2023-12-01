@@ -193,6 +193,11 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
     expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
+  } else if (grepl("protein-imputed", filename)) {
+    prot_file <- readr::read_tsv(filename)
+    biospecimen_id <- intersect(colnames(expression_file), biospecimen_ids)
+    prot_file %>% select(colnames(prot_file)[!grepl("BS_", colnames(prot_file))], all_of(biospecimen_id)) %>% 
+      readr::write_tsv(output_file)
   } else {
     # error-handling
     stop("File type unrecognized by 'subset_files'")
