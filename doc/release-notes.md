@@ -93,7 +93,8 @@
     - Examine the latest base adapt histologies for updates [Ticket 454](https://github.com/PediatricOpenTargets/ticket-tracker/issues/454)
     - Create bixu-generated fields for v12 release [Ticket 481](https://github.com/PediatricOpenTargets/ticket-tracker/issues/481)
     - v12 WGS germline sex estimate [Ticket 492](https://github.com/PediatricOpenTargets/ticket-tracker/issues/492)
-    - Updates to help with creation and QC of histologies file
+  
+  - Updates to help with creation and QC of histologies file
     - Histologies QC to check germline sex estimate [Ticket 426](https://github.com/PediatricOpenTargets/ticket-tracker/issues/426)
 
   - Molecular subtyping updates
