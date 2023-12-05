@@ -29,13 +29,24 @@ bash run-embryonal-subtyping.sh
 
 `00-embryonal-select-pathology-dx.Rmd` is not run via this module's shell script, as it should be run locally, tied to `release-v17-20200908`, and should not be re-rendered when there are changes to the underlying `pbta-histologies.tsv` file in future releases (see [Folder content](#folder-content) and [#748](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/748)).
 
-## Folder Content
+## Molecular subtyping HGG workflow
 
-[`00-v17-embryonal-select-pathology-dx.Rmd`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-embryonal/00-embryonal-select-pathology-dx.nb.html) is a notebook used to explore the `pathology_diagnosis` and `pathology_free_text_diagnosis` fields in the `release-v17-20200908` version of `pbta-histologies.tsv`. 
-Prior to `release-v17-20200908`, this module used `broad_histology == "Embryonal tumor"` to identify samples to be included for subtyping.
-ATRT and Medulloblastoma samples were also filtered out with this method of identifying samples.
-In future releases, the `broad_histology` values will be derived from the `pathology_diagnosis` and `molecular_subtype` values (see [#748](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/748)); this module generates the latter.
-Thus, this notebook looks to identify the samples to be included for subtyping based on the `pathology_diagnosis` and `pathology_free_text_diagnosis` values.
+ ![embryonal molecular subtyping workflow](./plot/embryonal_subtyping.png)
+
+
+## Molecular subtyping criterias
+
+First, samples was selected based on the pathology-diagnosis and pathologies_free_text-diagnosis in this [script](./00-embryonal-select-pathology-dx.R). To molecular subtype embryonal tumors, following criteria is used based on WHO cancer guidebook: 
+
+- **ETMR, C19MC-altered**: samples contain chromosome 19 amplification or the overexpression of _LIN28A_ and contain _TTYH1_ gene fusion;
+- **ETMR, NOS**: samples contain NO _TTYH1_ gene sufion and the overexpression of _LIN28A_. 
+- **CNS HGNET-MN1**: samples contain _MN1_ gene fusion.
+- **CNS NB-FOXR2**: samples contain _FOXR2_ gene fusion or the overexpression of _FOXR2_.
+- **CNS Embryonal, NOS**: Pathology diagnosis is "Neuroblastoma" and do NOT have high confidence methylation subtypes.
+- For all the other samples with Pathology diagnosis of "Neuroblastoma" and have high confidence methylation subtypes, molecular subtypes of these samples follow their methylation molecular subtypes.
+
+
+## Folder Content
 
 [`00-embryonal-select-pathology-dx.R`](https://alexslemonade.github.io/OpenPBTA-analysis/analyses/molecular-subtyping-embryonal/00-embryonal-select-pathology-dx.R)
 in this script we gather relevant strings from the summarized results above and histology updates review and save in [`subset-files/embryonal_subtyping_path_dx_strings.json`](subset-files/embryonal_subtyping_path_dx_strings.json), which is used downstream in `01-samples-to-subset.Rmd` to identify the samples to include in the subset files.

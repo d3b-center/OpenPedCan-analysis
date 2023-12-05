@@ -527,36 +527,6 @@ compiled_df <- compiled_df %>%
   )
 ```
 
-### PT `PT_45E5JA1P`
-This patient has path free text high grade glial neoplasm, so looks to be mistakenly GNT as path dx. Combined with H3 subtype, make this DMG.
-```{r}
-compiled_df %>%
-  filter(Kids_First_Participant_ID == "PT_45E5JA1P")
-
-compiled_df <- compiled_df %>%
-  mutate(
-    integrated_diagnosis = case_when(
-      sample_id == "7316-4463" ~ "Diffuse midline glioma, H3 K28-mutant",
-      TRUE ~ integrated_diagnosis
-    ),
-    short_histology = case_when(
-      sample_id == "7316-4463" ~ "HGAT",
-      TRUE ~ short_histology
-    ),
-    broad_histology = case_when(
-      sample_id == "7316-4463" ~ "Diffuse astrocytic and oligodendroglial tumor",
-      TRUE ~ broad_histology
-    ),
-    molecular_subtype = case_when(
-      sample_id == "7316-4463" ~ "DMG, H3 K28",
-      TRUE ~ molecular_subtype
-    ),
-    Notes = case_when(
-      sample_id == "7316-4463" ~ "Updated via OpenPedCan subtyping",
-      TRUE ~ Notes
-    )
-  )
-```
 
 ### PT `PT_VZEREHVW`
 This patient is being subtyped as both `CNS HGNET-MN1` and `HGG, To be classified`. Other biospecimen for the sample_id are all `Diffuse astrocytic and oligodendroglial tumor`. Exclduing `CNS HGNET-MN1`

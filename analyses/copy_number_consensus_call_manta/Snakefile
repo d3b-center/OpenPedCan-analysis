@@ -8,9 +8,9 @@ wildcard_constraints:
 ## Define the first rule of the Snakefile. This rule determines what the final file is and which steps to be taken.
 rule all:
     input:
-        "results/cnv_consensus.tsv",
-        "results/cnv_neutral.bed",
-        "results/cnv-consensus.seg.gz"
+        "results/cnv_consensus-freec-ckit-manta.tsv",
+        "results/cnv_neutral-freec-ckit-manta.bed",
+        "results/cnv-consensus-freec-ckit-manta.seg.gz"
 
 
 scratch_loc = config["scratch"] + '/'
@@ -287,7 +287,7 @@ rule merge_neutral:
         expand(scratch_loc + "endpoints/{sample}.neutral.bed",
                sample = config["samples"])
     output:
-        "results/cnv_neutral.bed"
+        "results/cnv_neutral-freec-ckit-manta.bed"
     shell:
         "cat {input} > {output}"
 
@@ -312,18 +312,18 @@ rule clean_output:
         script=os.path.join(config["scripts"], "remove_dup_NULL_overlap_entries.py"),
         cnv_file = scratch_loc + "endpoints/all_CNVs_combined.tsv"
     output:
-        "results/cnv_consensus.tsv"
+        "results/cnv_consensus-freec-ckit-manta.tsv"
     shell:
         "python3 {input.script} --file {input.cnv_file} > {output}"
 
 rule make_segfile:
     input:
         script= os.path.join(config["scripts"], "bed_to_segfile.R"),
-        consensus = "results/cnv_consensus.tsv",
-        neutral = "results/cnv_neutral.bed",
+        consensus = "results/cnv_consensus-freec-ckit-manta.tsv",
+        neutral = "results/cnv_neutral-freec-ckit-manta.bed",
         uncalled = "results/uncalled_samples.tsv"
     output:
-        "results/cnv-consensus.seg.gz"
+        "results/cnv-consensus-freec-ckit-manta.seg.gz"
     shell:
         "Rscript {input.script}"
         " -i {input.consensus}"

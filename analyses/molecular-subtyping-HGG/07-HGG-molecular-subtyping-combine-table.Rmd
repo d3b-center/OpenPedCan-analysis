@@ -168,16 +168,20 @@ Add methylation to all_data_df.
 methyl_df <- hgg_meta %>% 
   filter(experimental_strategy == "Methylation", 
          (grepl("GBM_|pedHGG_|HGG_", dkfz_v12_methylation_subclass) |
-             dkfz_v12_methylation_subclass %in% c("DHG_G34", "DMG_K27", "DMG_EGFR", "A_IDH_HG", "IHG", "HGAP", "A_IDH_HG")), 
+             dkfz_v12_methylation_subclass %in% c("DHG_G34", "DMG_K27", "DMG_EGFR", "A_IDH_HG", "IHG", "HGAP", "A_IDH_HG", 
+                                                  ## Add PXA methylation molecular subtype
+                                                  "PXA")), 
          dkfz_v12_methylation_subclass_score >= 0.8) %>% 
   # add all samples but only keep subtypes if score >=0.8
   mutate(molecular_subtype_methyl = case_when(grepl("GBM_|pedHGG_|HGG_", dkfz_v12_methylation_subclass) ~ "HGG, H3 wildtype",
     dkfz_v12_methylation_subclass == "DHG_G34"  ~ "DHG, H3 G35",
-    dkfz_v12_methylation_subclass %in% c("DMG_K27", "DMG_EGFR")  ~ "DMG, H3 K28",
+    dkfz_v12_methylation_subclass == "DMG_K27"  ~ "DMG, H3 K28",
+    dkfz_v12_methylation_subclass == "DMG_EGFR"  ~ "DMG, EGFR",
     dkfz_v12_methylation_subclass == "A_IDH_HG"  ~ "HGG, IDH",
     dkfz_v12_methylation_subclass == "O_IDH" ~ "Oligo, IDH",
     dkfz_v12_methylation_subclass == "IHG"  ~ "IHG",
     dkfz_v12_methylation_subclass == "HGAP"  ~ "HGG, MAPK",
+    dkfz_v12_methylation_subclass == "PXA"  ~ "PXA",
     TRUE ~ NA_character_)) %>% 
   select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, 
                 composition, id, molecular_subtype_methyl) %>%
@@ -221,7 +225,9 @@ In this section, we'll divide up the table based on the molecular subtypes descr
 h3_k28_df <- all_data_df %>%
   # Only rows with H3 K28M mutations or methyl subtype of H3 K28M
   filter(`H3F3A_H3-3A.K28M` == "Yes" | HIST1H3B_H3C2.K28M == "Yes" |
-           HIST1H3C_H3C3.K28M == "Yes" | HIST2H3C_H3C14.K28M == "Yes" | 
+           HIST1H3C_H3C3.K28M == "Yes" | HIST2H3C_H3C14.K28M == "Yes" |
+           `H3F3A_H3-3A.K28I` == "Yes" | HIST1H3B_H3C2.K28I == "Yes" |
+           HIST1H3C_H3C3.K28I == "Yes" | HIST2H3C_H3C14.K28I == "Yes" |
            molecular_subtype_methyl == "DMG, H3 K28") %>%
   # Only the relevant columns
   select(Kids_First_Participant_ID,
@@ -230,6 +236,10 @@ h3_k28_df <- all_data_df %>%
          HIST1H3B_H3C2.K28M,
          HIST1H3C_H3C3.K28M,
          HIST2H3C_H3C14.K28M,
+         `H3F3A_H3-3A.K28I`,
+         HIST1H3B_H3C2.K28I,
+         HIST1H3C_H3C3.K28I,
+         HIST2H3C_H3C14.K28I,
          `H3F3A_H3-3A.G35R`,
          `H3F3A_H3-3A.G35V`,
          age_at_diagnosis_yr,
@@ -432,6 +442,21 @@ ihg_df_biospecimen <- all_data_df %>%
   unique()
 ```
 
+## PXA subtype
+
+PXA have BRAF V600E mutation or MAPK pathway gene and 
+homozygous deletion of CDKN2A and/or CDKN2B
+
+DNA methyaltion profile of "PXA"
+
+```{r}
+pxa_df_biospecimen <- all_data_df %>% 
+  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E == "p.V600E" & 
+           (CDKN2A_focal_status == "loss" | CDKN2B_focal_status == "loss")) %>% 
+  mutate(molecular_subtype = "PXA") %>% 
+  unique()
+  
+```
 
 ## Biospecimen Table
 
@@ -441,7 +466,8 @@ Join all the tables that contain the biospecimen ids and `molecular_subtype` col
 molecular_subtype_table <- bind_rows(h3_g35_df_biospecimen,
                                      h3_k28_df_biospecimen,
                                      idh_df_biospecimen,
-                                     ihg_df_biospecimen) %>% 
+                                     ihg_df_biospecimen, 
+                                     pxa_df_biospecimen) %>% 
   distinct()
 
 as.data.frame(table(molecular_subtype_table$molecular_subtype)) %>%
@@ -470,8 +496,9 @@ wildtype_df <- all_data_df %>%
          `H3F3A_H3-3A.G35V` == "No",
          IDH1_mutation == "No R132 or R172",
          # and not re-classified by methyl
-         !molecular_subtype_methyl %in% c("DMG, H3 K28", "DHG, H3 G35", "IHG")) %>%
-  mutate(molecular_subtype = "HGG, H3 wildtype") %>%
+         !molecular_subtype_methyl %in% c("DMG, H3 K28", "DHG, H3 G35", "IHG")) %>%## if there is no H3 mutation and methylation molecular subtype == "DMG, EFGR", assign sample molecular subtype as "DMG, H3 K28"
+  mutate(molecular_subtype = case_when(molecular_subtype_methyl == "DMG, EGFR" ~ "DMG, H3 K28", 
+                                       TRUE ~"HGG, H3 wildtype")) %>%
   distinct()
 
 # add wildtype methyl not already there

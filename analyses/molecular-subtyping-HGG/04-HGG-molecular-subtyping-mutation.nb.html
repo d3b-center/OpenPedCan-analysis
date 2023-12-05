@@ -2906,38 +2906,33 @@ directory of the repository as follows:</p>
 <h3>Libraries and Functions</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWxlIHBhdGggdG8gcmVzdWx0cyBkaXJlY3RvcnlcbmlucHV0X2RpciA8LVxuICBmaWxlLnBhdGgocm9vdF9kaXIsIFxcYW5hbHlzZXNcXCwgXFxtb2xlY3VsYXItc3VidHlwaW5nLUhHR1xcLCBcXGhnZy1zdWJzZXRcXClcbiMgRmlsZSBwYXRoIHRvIHJlc3VsdHMgZGlyZWN0b3J5XG5yZXN1bHRzX2RpciA8LVxuICBmaWxlLnBhdGgocm9vdF9kaXIsIFxcYW5hbHlzZXNcXCwgXFxtb2xlY3VsYXItc3VidHlwaW5nLUhHR1xcLCBcXHJlc3VsdHNcXClcbmlmICghZGlyLmV4aXN0cyhyZXN1bHRzX2RpcikpIHtcbiAgZGlyLmNyZWF0ZShyZXN1bHRzX2Rpcilcbn1cbmBgYCJ9 -->
-<pre class="r"><code># File path to results directory
-input_dir &lt;-
-  file.path(root_dir, \analyses\, \molecular-subtyping-HGG\, \hgg-subset\)
-# File path to results directory
-results_dir &lt;-
-  file.path(root_dir, \analyses\, \molecular-subtyping-HGG\, \results\)
-if (!dir.exists(results_dir)) {
-  dir.create(results_dir)
-}</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImAlPiVgIDwtIGRwbHlyOjpgJT4lYCIsImxpYnJhcnkodGlkeXZlcnNlKSJdfQ== -->
+<pre class="r"><code>`%&gt;%` &lt;- dplyr::`%&gt;%`
+library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuMiAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAgXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG7inJYgZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKEuSBVc2UgdGhlIGNvbmZsaWN0ZWQgcGFja2FnZSAoPGh0dHA6Ly9jb25mbGljdGVkLnItbGliLm9yZy8+KSB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
+<pre><code>── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<!-- rnb-message-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We’ll take a similar approach to the <a href="../tp53_nf1_score/"><code>tp53_nf1_score</code></a> module and use
 functions from the <a href="../snv-callers/"><code>snv-callers</code></a> module.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDRFMgYmVkIGZpbGUsIHRvIGJlIHVzZWQgdG8gZmlsdGVyIHRoZSBjb25zZW5zdXMgTUFGIGZpbGVcbmJlZF9maWxlIDwtIGZpbGUucGF0aChyb290X2RpciwgXG4gICAgICAgICAgICAgICAgICAgICAgXFxzY3JhdGNoXFwsIFxuICAgICAgICAgICAgICAgICAgICAgIFxcZ2VuY29kZS52MzkucHJpbWFyeV9hc3NlbWJseS5hbm5vdGF0aW9uLmJlZFxcKVxuZ2VuY29kZV9jZHNfYmVkIDwtIHJlYWRyOjpyZWFkX3RzdihiZWRfZmlsZSwgY29sX25hbWVzID0gRkFMU0UpXG4jIFJlYWQgaW4gSEdHIHN1YnNldCBzbnYgbWFmIGRhdGEgXG5zbnZfZGYgPC0gcmVhZHI6OnJlYWRfdHN2KGZpbGUucGF0aChpbnB1dF9kaXIsIFxcaGdnX3Nudl9tYWYudHN2Lmd6XFwpKVxuIyBSZWFkIGluIGRlZmluaW5nIGxlc2lvbnMgZmlsZVxuZGVmaW5pbmdfbGVzaW9uc19kZiA8LSByZWFkcjo6cmVhZF90c3YoZmlsZS5wYXRoKHJlc3VsdHNfZGlyLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxcSEdHX2RlZmluaW5nX2xlc2lvbnMudHN2XFwpKVxuc3Vic2V0X2JzaWQgPC0gcmVhZF90c3YoZmlsZS5wYXRoKGlucHV0X2RpciwgXFxoZ2dfbWV0YWRhdGEudHN2XFwpKSAlPiVcbiAgZmlsdGVyKCFpcy5uYShwYXRob2xvZ3lfZGlhZ25vc2lzKSxcbiAgICAgICAgICAgICAgICAoZXhwZXJpbWVudGFsX3N0cmF0ZWd5ICVpbiUgYyhcXFdHU1xcLCBcXFdYU1xcLCBcXFRhcmdldGVkIFNlcXVlbmNpbmdcXCkgJiBpcy5uYShSTkFfbGlicmFyeSkpKSAlPiVcbiAgcHVsbChLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEKVxuYGBgIn0= -->
-<pre class="r"><code># CDS bed file, to be used to filter the consensus MAF file
-bed_file &lt;- file.path(root_dir, 
-                      \scratch\, 
-                      \gencode.v39.primary_assembly.annotation.bed\)
-gencode_cds_bed &lt;- readr::read_tsv(bed_file, col_names = FALSE)
-# Read in HGG subset snv maf data 
-snv_df &lt;- readr::read_tsv(file.path(input_dir, \hgg_snv_maf.tsv.gz\))
-# Read in defining lesions file
-defining_lesions_df &lt;- readr::read_tsv(file.path(results_dir,
-                                                 \HGG_defining_lesions.tsv\))
-subset_bsid &lt;- read_tsv(file.path(input_dir, \hgg_metadata.tsv\)) %&gt;%
-  filter(!is.na(pathology_diagnosis),
-                (experimental_strategy %in% c(\WGS\, \WXS\, \Targeted Sequencing\) &amp; is.na(RNA_library))) %&gt;%
-  pull(Kids_First_Biospecimen_ID)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgVE9ETzogaWYgYSBjb21tb24gdXRpbCBmb2xkZXIgaXMgZXN0YWJsaXNoZWQsIHVzZSB0aGF0IGluc3RlYWQiLCJyb290X2RpciA8LSBycHJvanJvb3Q6OmZpbmRfcm9vdChycHJvanJvb3Q6Omhhc19kaXIoXCIuZ2l0XCIpKSIsInNvdXJjZShmaWxlLnBhdGgocm9vdF9kaXIsIFwiYW5hbHlzZXNcIiwgXCJ0bWItY2FsY3VsYXRpb25cIiwgXCJ1dGlsXCIsXG4gICAgICAgICAgICAgICAgIFwidG1iX2Z1bmN0aW9ucy5SXCIpKSJdfQ== -->
+<pre class="r"><code># TODO: if a common util folder is established, use that instead
+root_dir &lt;- rprojroot::find_root(rprojroot::has_dir(&quot;.git&quot;))
+source(file.path(root_dir, &quot;analyses&quot;, &quot;tmb-calculation&quot;, &quot;util&quot;,
+                 &quot;tmb_functions.R&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2946,8 +2941,16 @@ subset_bsid &lt;- read_tsv(file.path(input_dir, \hgg_metadata.tsv\)) %&gt;%
 <h3>Directories</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3V0cHV0X2ZpbGUgPC0gZmlsZS5wYXRoKHJlc3VsdHNfZGlyLCBcXEhHR19jbGVhbmVkX211dGF0aW9uLnRzdlxcKVxuYGBgIn0= -->
-<pre class="r"><code>output_file &lt;- file.path(results_dir, \HGG_cleaned_mutation.tsv\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgRmlsZSBwYXRoIHRvIHJlc3VsdHMgZGlyZWN0b3J5IiwiaW5wdXRfZGlyIDwtXG4gIGZpbGUucGF0aChyb290X2RpciwgXCJhbmFseXNlc1wiLCBcIm1vbGVjdWxhci1zdWJ0eXBpbmctSEdHXCIsIFwiaGdnLXN1YnNldFwiKSIsIiMgRmlsZSBwYXRoIHRvIHJlc3VsdHMgZGlyZWN0b3J5IiwicmVzdWx0c19kaXIgPC1cbiAgZmlsZS5wYXRoKHJvb3RfZGlyLCBcImFuYWx5c2VzXCIsIFwibW9sZWN1bGFyLXN1YnR5cGluZy1IR0dcIiwgXCJyZXN1bHRzXCIpIiwiaWYgKCFkaXIuZXhpc3RzKHJlc3VsdHNfZGlyKSkge1xuICBkaXIuY3JlYXRlKHJlc3VsdHNfZGlyKVxufSJdfQ== -->
+<pre class="r"><code># File path to results directory
+input_dir &lt;-
+  file.path(root_dir, &quot;analyses&quot;, &quot;molecular-subtyping-HGG&quot;, &quot;hgg-subset&quot;)
+# File path to results directory
+results_dir &lt;-
+  file.path(root_dir, &quot;analyses&quot;, &quot;molecular-subtyping-HGG&quot;, &quot;results&quot;)
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)
+}</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2956,8 +2959,21 @@ subset_bsid &lt;- read_tsv(file.path(input_dir, \hgg_metadata.tsv\)) %&gt;%
 <h3>Read in Files</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChkZWZpbmluZ19sZXNpb25zX2RmLCBuID0gMTApXG5gYGAifQ== -->
-<pre class="r"><code>head(defining_lesions_df, n = 10)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgQ0RTIGJlZCBmaWxlLCB0byBiZSB1c2VkIHRvIGZpbHRlciB0aGUgY29uc2Vuc3VzIE1BRiBmaWxlIiwiYmVkX2ZpbGUgPC0gZmlsZS5wYXRoKHJvb3RfZGlyLCBcbiAgICAgICAgICAgICAgICAgICAgICBcInNjcmF0Y2hcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgXCJnZW5jb2RlLnYzOS5wcmltYXJ5X2Fzc2VtYmx5LmFubm90YXRpb24uYmVkXCIpIiwiZ2VuY29kZV9jZHNfYmVkIDwtIHJlYWRyOjpyZWFkX3RzdihiZWRfZmlsZSwgY29sX25hbWVzID0gRkFMU0UpIiwiIyBSZWFkIGluIEhHRyBzdWJzZXQgc252IG1hZiBkYXRhICIsInNudl9kZiA8LSByZWFkcjo6cmVhZF90c3YoZmlsZS5wYXRoKGlucHV0X2RpciwgXCJoZ2dfc252X21hZi50c3YuZ3pcIikpIiwiIyBSZWFkIGluIGRlZmluaW5nIGxlc2lvbnMgZmlsZSIsImRlZmluaW5nX2xlc2lvbnNfZGYgPC0gcmVhZHI6OnJlYWRfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpcixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIkhHR19kZWZpbmluZ19sZXNpb25zLnRzdlwiKSkiLCJzdWJzZXRfYnNpZCA8LSByZWFkX3RzdihmaWxlLnBhdGgoaW5wdXRfZGlyLCBcImhnZ19tZXRhZGF0YS50c3ZcIikpICU+JVxuICBmaWx0ZXIoIWlzLm5hKHBhdGhvbG9neV9kaWFnbm9zaXMpLFxuICAgICAgICAgICAgICAgIChleHBlcmltZW50YWxfc3RyYXRlZ3kgJWluJSBjKFwiV0dTXCIsIFwiV1hTXCIsIFwiVGFyZ2V0ZWQgU2VxdWVuY2luZ1wiKSAmIGlzLm5hKFJOQV9saWJyYXJ5KSkpICU+JVxuICBwdWxsKEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQpIl19 -->
+<pre class="r"><code># CDS bed file, to be used to filter the consensus MAF file
+bed_file &lt;- file.path(root_dir, 
+                      &quot;scratch&quot;, 
+                      &quot;gencode.v39.primary_assembly.annotation.bed&quot;)
+gencode_cds_bed &lt;- readr::read_tsv(bed_file, col_names = FALSE)
+# Read in HGG subset snv maf data 
+snv_df &lt;- readr::read_tsv(file.path(input_dir, &quot;hgg_snv_maf.tsv.gz&quot;))
+# Read in defining lesions file
+defining_lesions_df &lt;- readr::read_tsv(file.path(results_dir,
+                                                 &quot;HGG_defining_lesions.tsv&quot;))
+subset_bsid &lt;- read_tsv(file.path(input_dir, &quot;hgg_metadata.tsv&quot;)) %&gt;%
+  filter(!is.na(pathology_diagnosis),
+                (experimental_strategy %in% c(&quot;WGS&quot;, &quot;WXS&quot;, &quot;Targeted Sequencing&quot;) &amp; is.na(RNA_library))) %&gt;%
+  pull(Kids_First_Biospecimen_ID)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2967,8 +2983,8 @@ subset_bsid &lt;- read_tsv(file.path(input_dir, \hgg_metadata.tsv\)) %&gt;%
 <h2>Output File</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuazI4X2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXFxBQ1JWMVxcLCBcXFRQNTNcXCwgXFxBVFJYXFwsIFxcRkdGUjFcXCwgXFxJREgxXFwsIFxcQlJBRlxcKVxuYGBgIn0= -->
-<pre class="r"><code>k28_genes_of_interest &lt;- c(\ACRV1\, \TP53\, \ATRX\, \FGFR1\, \IDH1\, \BRAF\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoib3V0cHV0X2ZpbGUgPC0gZmlsZS5wYXRoKHJlc3VsdHNfZGlyLCBcIkhHR19jbGVhbmVkX211dGF0aW9uLnRzdlwiKSJ9 -->
+<pre class="r"><code>output_file &lt;- file.path(results_dir, &quot;HGG_cleaned_mutation.tsv&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2996,9 +3012,14 @@ mutations here. Instead, we can look at the defining lesions
 <code>data.frame</code> we read in above.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZzM1X2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXFxBVFJYXFwsIFxcREFYWFxcLCBcXFRQNTNcXCwgXFxTRVREMlxcLCBcXElESDFcXClcbmBgYCJ9 -->
-<pre class="r"><code>g35_genes_of_interest &lt;- c(\ATRX\, \DAXX\, \TP53\, \SETD2\, \IDH1\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiaGVhZChkZWZpbmluZ19sZXNpb25zX2RmLCBuID0gMTApIn0= -->
+<pre class="r"><code>head(defining_lesions_df, n = 10)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Kids_First_Participant_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Kids_First_Biospecimen_ID"],"name":[3],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.K28M"],"name":[4],"type":["chr"],"align":["left"]},{"label":["HIST1H3B_H3C2.K28M"],"name":[5],"type":["chr"],"align":["left"]},{"label":["HIST1H3C_H3C3.K28M"],"name":[6],"type":["chr"],"align":["left"]},{"label":["HIST2H3C_H3C14.K28M"],"name":[7],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.K28I"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HIST1H3B_H3C2.K28I"],"name":[9],"type":["chr"],"align":["left"]},{"label":["HIST1H3C_H3C3.K28I"],"name":[10],"type":["chr"],"align":["left"]},{"label":["HIST2H3C_H3C14.K28I"],"name":[11],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.G35R"],"name":[12],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.G35V"],"name":[13],"type":["chr"],"align":["left"]},{"label":["defining_lesion"],"name":[14],"type":["lgl"],"align":["right"]}],"data":[{"1":"PT_01HNFSBZ","2":"C4115334-Tumor","3":"BS_VGXWS93R","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0324HWD5","2":"7316-7091","3":"BS_Q3H2JNNM","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0BVR16FK","2":"C4105986-Tumor","3":"BS_0Q2X74YN","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0DM10YSE","2":"7316-5523","3":"BS_K3F9WTAN","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0DXHDZJR","2":"7316-2857","3":"BS_QWS88QXE","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0EBP2PBD","2":"7316-8041","3":"BS_Z61JVJ03","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"TRUE"},{"1":"PT_0FGS6YME","2":"7316-8811","3":"BS_HGKDT5AJ","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"FALSE"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_1VC0YAGC","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"TRUE"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_70AW1WH4","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"TRUE"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_8P04KVX9","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3010,8 +3031,8 @@ mutations here. Instead, we can look at the defining lesions
 (specific for low-grade gliomas).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWRoX2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXFxJREgxXFwsIFxcVFA1M1xcKVxuYGBgIn0= -->
-<pre class="r"><code>idh_genes_of_interest &lt;- c(\IDH1\, \TP53\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiazI4X2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXCJBQ1JWMVwiLCBcIlRQNTNcIiwgXCJBVFJYXCIsIFwiRkdGUjFcIiwgXCJJREgxXCIsIFwiQlJBRlwiKSJ9 -->
+<pre class="r"><code>k28_genes_of_interest &lt;- c(&quot;ACRV1&quot;, &quot;TP53&quot;, &quot;ATRX&quot;, &quot;FGFR1&quot;, &quot;IDH1&quot;, &quot;BRAF&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3023,9 +3044,8 @@ mutations here. Instead, we can look at the defining lesions
 <em>IDH1</em> mutations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2lsZHR5cGVfZ2VuZXNfb2ZfaW50ZXJlc3QgPC0gYyhcXEgzLTNBXFwsIFxcSDNDMlxcLCBcXEgzQzNcXCwgXFxIM0MxNFxcLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcXElESDFcXCwgXFxUUDUzXFwsIFxcVEVSVFxcKVxuYGBgIn0= -->
-<pre class="r"><code>wildtype_genes_of_interest &lt;- c(\H3-3A\, \H3C2\, \H3C3\, \H3C14\,
-                                \IDH1\, \TP53\, \TERT\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZzM1X2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXCJBVFJYXCIsIFwiREFYWFwiLCBcIlRQNTNcIiwgXCJTRVREMlwiLCBcIklESDFcIikifQ== -->
+<pre class="r"><code>g35_genes_of_interest &lt;- c(&quot;ATRX&quot;, &quot;DAXX&quot;, &quot;TP53&quot;, &quot;SETD2&quot;, &quot;IDH1&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3036,8 +3056,8 @@ mutations here. Instead, we can look at the defining lesions
 lesions include <em>TP53</em> mutations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29kZWxldGVkX2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXFxJREgxXFwsIFxcVEVSVFxcLCBcXENJQ1xcLCBcXEZVQlAxXFwpXG5gYGAifQ== -->
-<pre class="r"><code>codeleted_genes_of_interest &lt;- c(\IDH1\, \TERT\, \CIC\, \FUBP1\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiaWRoX2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXCJJREgxXCIsIFwiVFA1M1wiKSJ9 -->
+<pre class="r"><code>idh_genes_of_interest &lt;- c(&quot;IDH1&quot;, &quot;TP53&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3048,12 +3068,9 @@ lesions include <em>TP53</em> mutations.</p>
 but harbor <em>TP53</em> and <em>TERT</em> mutations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2VuZXNfb2ZfaW50ZXJlc3QgPC0gdW5pcXVlKGMoazI4X2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZzM1X2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWRoX2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2lsZHR5cGVfZ2VuZXNfb2ZfaW50ZXJlc3QsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2RlbGV0ZWRfZ2VuZXNfb2ZfaW50ZXJlc3QpKVxuYGBgIn0= -->
-<pre class="r"><code>genes_of_interest &lt;- unique(c(k28_genes_of_interest,
-                              g35_genes_of_interest,
-                              idh_genes_of_interest,
-                              wildtype_genes_of_interest,
-                              codeleted_genes_of_interest))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoid2lsZHR5cGVfZ2VuZXNfb2ZfaW50ZXJlc3QgPC0gYyhcIkgzLTNBXCIsIFwiSDNDMlwiLCBcIkgzQzNcIiwgXCJIM0MxNFwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIklESDFcIiwgXCJUUDUzXCIsIFwiVEVSVFwiKSJ9 -->
+<pre class="r"><code>wildtype_genes_of_interest &lt;- c(&quot;H3-3A&quot;, &quot;H3C2&quot;, &quot;H3C3&quot;, &quot;H3C14&quot;,
+                                &quot;IDH1&quot;, &quot;TP53&quot;, &quot;TERT&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3070,9 +3087,8 @@ R172)</li>
 </blockquote>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsdGVyZWRfc252X2RmIDwtIHNudl9kZiAlPiVcbiAgZHBseXI6OmZpbHRlcihIdWdvX1N5bWJvbCAlaW4lIGdlbmVzX29mX2ludGVyZXN0KVxuYGBgIn0= -->
-<pre class="r"><code>filtered_snv_df &lt;- snv_df %&gt;%
-  dplyr::filter(Hugo_Symbol %in% genes_of_interest)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiY29kZWxldGVkX2dlbmVzX29mX2ludGVyZXN0IDwtIGMoXCJJREgxXCIsIFwiVEVSVFwiLCBcIkNJQ1wiLCBcIkZVQlAxXCIpIn0= -->
+<pre class="r"><code>codeleted_genes_of_interest &lt;- c(&quot;IDH1&quot;, &quot;TERT&quot;, &quot;CIC&quot;, &quot;FUBP1&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3084,18 +3100,12 @@ R172)</li>
 filter the HGG subset consensus MAF file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29kaW5nX3Nudl9kZiA8LSBzbnZfcmFuZ2VzX2ZpbHRlcihtYWZfZGYgPSBmaWx0ZXJlZF9zbnZfZGYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGtlZXBfcmFuZ2VzID0gZ2VuY29kZV9jZHNfYmVkKSAlPiVcbiAgZHBseXI6OmZpbHRlcihWYXJpYW50X0NsYXNzaWZpY2F0aW9uICE9IFxcU2lsZW50XFwsXG4gICAgICAgICAgICAgICAgSHVnb19TeW1ib2wgIT0gXFxURVJUXFwpXG5gYGAifQ== -->
-<pre class="r"><code>coding_snv_df &lt;- snv_ranges_filter(maf_df = filtered_snv_df,
-                                   keep_ranges = gencode_cds_bed) %&gt;%
-  dplyr::filter(Variant_Classification != \Silent\,
-                Hugo_Symbol != \TERT\)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmF0aW8gb2YgdmFyaWFudHMgaW4gdGhpcyBCRUQ6IDMuMzM3NzgzIFxuIFJhdGlvIG9mIHZhcmlhbnRzIGJlaW5nIGZpbHRlcmVkIG91dDogLTIuMzM3NzgzIFxuIn0= -->
-<pre><code>Ratio of variants in this BED: 3.337783 
- Ratio of variants being filtered out: -2.337783 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChjb2Rpbmdfc252X2RmLCBuID0gMTApXG5gYGAifQ== -->
-<pre class="r"><code>head(coding_snv_df, n = 10)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZ2VuZXNfb2ZfaW50ZXJlc3QgPC0gdW5pcXVlKGMoazI4X2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZzM1X2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWRoX2dlbmVzX29mX2ludGVyZXN0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2lsZHR5cGVfZ2VuZXNfb2ZfaW50ZXJlc3QsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2RlbGV0ZWRfZ2VuZXNfb2ZfaW50ZXJlc3QpKSJ9 -->
+<pre class="r"><code>genes_of_interest &lt;- unique(c(k28_genes_of_interest,
+                              g35_genes_of_interest,
+                              idh_genes_of_interest,
+                              wildtype_genes_of_interest,
+                              codeleted_genes_of_interest))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3103,14 +3113,9 @@ filter the HGG subset consensus MAF file.</p>
 <h3>Filter the SNV data</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVydF9zbnZfZGYgPC0gZmlsdGVyZWRfc252X2RmICU+JVxuICBkcGx5cjo6ZmlsdGVyKEh1Z29fU3ltYm9sID09IFxcVEVSVFxcLFxuICAgICAgICAgICAgICAgIFZhcmlhbnRfQ2xhc3NpZmljYXRpb24gPT0gXFw1J0ZsYW5rXFwsXG4gICAgICAgICAgICAgICAgU3RhcnRfUG9zaXRpb24gJWluJSBjKFxcMTI5NTExM1xcLFxcMTI5NTEzNVxcKSxcbiAgICAgICAgICAgICAgICBFbmRfUG9zaXRpb24gJWluJSBjKFxcMTI5NTExM1xcLFxcMTI5NTEzNVxcKSlcblxudGVydF9zbnZfZGZcbmBgYCJ9 -->
-<pre class="r"><code>tert_snv_df &lt;- filtered_snv_df %&gt;%
-  dplyr::filter(Hugo_Symbol == \TERT\,
-                Variant_Classification == \5&#39;Flank\,
-                Start_Position %in% c(\1295113\,\1295135\),
-                End_Position %in% c(\1295113\,\1295135\))
-
-tert_snv_df</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZmlsdGVyZWRfc252X2RmIDwtIHNudl9kZiAlPiVcbiAgZHBseXI6OmZpbHRlcihIdWdvX1N5bWJvbCAlaW4lIGdlbmVzX29mX2ludGVyZXN0KSJ9 -->
+<pre class="r"><code>filtered_snv_df &lt;- snv_df %&gt;%
+  dplyr::filter(Hugo_Symbol %in% genes_of_interest)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3120,13 +3125,19 @@ tert_snv_df</code></pre>
 sequences and drop silent mutations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWRoX3Nudl9kZiA8LSBmaWx0ZXJlZF9zbnZfZGYgJT4lXG4gIGRwbHlyOjpmaWx0ZXIoSHVnb19TeW1ib2wgPT0gXFxJREgxXFwsXG4gICAgICAgICAgICAgICAgZ3JlcGwoXFxSMTMyfFIxNzJcXCwgSEdWU3BfU2hvcnQpKVxuXG5oZWFkKGlkaF9zbnZfZGYpXG5gYGAifQ== -->
-<pre class="r"><code>idh_snv_df &lt;- filtered_snv_df %&gt;%
-  dplyr::filter(Hugo_Symbol == \IDH1\,
-                grepl(\R132|R172\, HGVSp_Short))
+<!-- rnb-source-begin eyJkYXRhIjpbImNvZGluZ19zbnZfZGYgPC0gc252X3Jhbmdlc19maWx0ZXIobWFmX2RmID0gZmlsdGVyZWRfc252X2RmLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBrZWVwX3JhbmdlcyA9IGdlbmNvZGVfY2RzX2JlZCkgJT4lXG4gIGRwbHlyOjpmaWx0ZXIoVmFyaWFudF9DbGFzc2lmaWNhdGlvbiAhPSBcIlNpbGVudFwiLFxuICAgICAgICAgICAgICAgIEh1Z29fU3ltYm9sICE9IFwiVEVSVFwiKSIsIiIsImhlYWQoY29kaW5nX3Nudl9kZiwgbiA9IDEwKSJdfQ== -->
+<pre class="r"><code>coding_snv_df &lt;- snv_ranges_filter(maf_df = filtered_snv_df,
+                                   keep_ranges = gencode_cds_bed) %&gt;%
+  dplyr::filter(Variant_Classification != &quot;Silent&quot;,
+                Hugo_Symbol != &quot;TERT&quot;)
 
-head(idh_snv_df)</code></pre>
+head(coding_snv_df, n = 10)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Chromosome"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Start_Position"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["End_Position"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Strand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Variant_Classification"],"name":[5],"type":["chr"],"align":["left"]},{"label":["IMPACT"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Tumor_Sample_Barcode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Hugo_Symbol"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HGVSp_Short"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Exon_Number"],"name":[10],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[12],"type":["chr"],"align":["left"]}],"data":[{"1":"chr7","2":"140777990","3":"140777991","4":"+","5":"In_Frame_Ins","6":"MODERATE","7":"BS_VGXWS93R","8":"BRAF","9":"p.V544_R546dup","10":"NA","11":"C4115334-Tumor","12":"PT_01HNFSBZ"},{"1":"chr7","2":"140753336","3":"140753336","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_Q3H2JNNM","8":"BRAF","9":"p.V640E","10":"16/20","11":"7316-7091","12":"PT_0324HWD5"},{"1":"chr1","2":"226064434","3":"226064434","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_Z61JVJ03","8":"H3-3A","9":"p.K28M","10":"2/4","11":"7316-8041","12":"PT_0EBP2PBD"},{"1":"chr17","2":"7670700","3":"7670700","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_HGKDT5AJ","8":"TP53","9":"p.R337C","10":"10/11","11":"7316-8811","12":"PT_0FGS6YME"},{"1":"chr17","2":"7673803","3":"7673803","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_HGKDT5AJ","8":"TP53","9":"p.R273C","10":"8/11","11":"7316-8811","12":"PT_0FGS6YME"},{"1":"chrX","2":"77558842","3":"77558842","4":"+","5":"Nonsense_Mutation","6":"HIGH","7":"BS_HGKDT5AJ","8":"ATRX","9":"p.R2111*","10":"29/35","11":"7316-8811","12":"PT_0FGS6YME"},{"1":"chr1","2":"226064434","3":"226064434","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_8TRGVZ3F","8":"H3-3A","9":"p.K28M","10":"2/4","11":"7316-6475","12":"PT_0J07HTRF"},{"1":"chr1","2":"226064434","3":"226064434","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_1VC0YAGC","8":"H3-3A","9":"p.K28M","10":"2/4","11":"7316-6475","12":"PT_0J07HTRF"},{"1":"chr1","2":"226064434","3":"226064434","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_70AW1WH4","8":"H3-3A","9":"p.K28M","10":"2/4","11":"7316-6475","12":"PT_0J07HTRF"},{"1":"chr1","2":"226064434","3":"226064434","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_8P04KVX9","8":"H3-3A","9":"p.K28M","10":"2/4","11":"7316-6475","12":"PT_0J07HTRF"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3136,13 +3147,20 @@ head(idh_snv_df)</code></pre>
 terms of <em>regions.</em></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnJhZl9zbnZfZGYgPC0gZmlsdGVyZWRfc252X2RmICU+JVxuICBkcGx5cjo6ZmlsdGVyKEh1Z29fU3ltYm9sID09IFxcQlJBRlxcLFxuICAgICAgICAgICAgICAgIGdyZXBsKFxcVjYwMEVcXCwgSEdWU3BfU2hvcnQpKVxuXG5oZWFkKGJyYWZfc252X2RmLCBuID0gMTApXG5gYGAifQ== -->
-<pre class="r"><code>braf_snv_df &lt;- filtered_snv_df %&gt;%
-  dplyr::filter(Hugo_Symbol == \BRAF\,
-                grepl(\V600E\, HGVSp_Short))
+<!-- rnb-source-begin eyJkYXRhIjpbInRlcnRfc252X2RmIDwtIGZpbHRlcmVkX3Nudl9kZiAlPiVcbiAgZHBseXI6OmZpbHRlcihIdWdvX1N5bWJvbCA9PSBcIlRFUlRcIixcbiAgICAgICAgICAgICAgICBWYXJpYW50X0NsYXNzaWZpY2F0aW9uID09IFwiNSdGbGFua1wiLFxuICAgICAgICAgICAgICAgIFN0YXJ0X1Bvc2l0aW9uICVpbiUgYyhcIjEyOTUxMTNcIixcIjEyOTUxMzVcIiksXG4gICAgICAgICAgICAgICAgRW5kX1Bvc2l0aW9uICVpbiUgYyhcIjEyOTUxMTNcIixcIjEyOTUxMzVcIikpIiwiIiwidGVydF9zbnZfZGYiXX0= -->
+<pre class="r"><code>tert_snv_df &lt;- filtered_snv_df %&gt;%
+  dplyr::filter(Hugo_Symbol == &quot;TERT&quot;,
+                Variant_Classification == &quot;5&#39;Flank&quot;,
+                Start_Position %in% c(&quot;1295113&quot;,&quot;1295135&quot;),
+                End_Position %in% c(&quot;1295113&quot;,&quot;1295135&quot;))
 
-head(braf_snv_df, n = 10)</code></pre>
+tert_snv_df</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Chromosome"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Start_Position"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["End_Position"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Strand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Variant_Classification"],"name":[5],"type":["chr"],"align":["left"]},{"label":["IMPACT"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Tumor_Sample_Barcode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Hugo_Symbol"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HGVSp_Short"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Exon_Number"],"name":[10],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[12],"type":["chr"],"align":["left"]}],"data":[{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_DYA4EMPF","8":"TERT","9":"NA","10":"NA","11":"7316-4310","12":"PT_2KB81GB1"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_T7WMJ08W","8":"TERT","9":"NA","10":"NA","11":"7316-466","12":"PT_40HTPY49"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_BJ6GHH0W","8":"TERT","9":"NA","10":"NA","11":"C4125420-Tumor","12":"PT_4WX3MW90"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_BFDEZK1C","8":"TERT","9":"NA","10":"NA","11":"7316-1102","12":"PT_5BWZA0NT"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_KAD49R68","8":"TERT","9":"NA","10":"NA","11":"7316-3521","12":"PT_63F63QY0"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_2296JPP5","8":"TERT","9":"NA","10":"NA","11":"7316-6267","12":"PT_87HZ0PF2"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_46TETVWQ","8":"TERT","9":"NA","10":"NA","11":"7316-4220","12":"PT_9RTMDPES"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_PYYNXW86","8":"TERT","9":"NA","10":"NA","11":"7316-7075","12":"PT_BC0B16HC"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_V89KBS0Z","8":"TERT","9":"NA","10":"NA","11":"7316-9830","12":"PT_DR94DMTG"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_33FDZ9QY","8":"TERT","9":"NA","10":"NA","11":"C3984954-Tumor","12":"PT_DR94DMTG"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_Q2R56X78","8":"TERT","9":"NA","10":"NA","11":"C4116318-Tumor","12":"PT_E9J8FNW5"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_PZ5WX9TX","8":"TERT","9":"NA","10":"NA","11":"7316-10281","12":"PT_GBCZ0RW3"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_S3DSBR9Y","8":"TERT","9":"NA","10":"NA","11":"7316-9642","12":"PT_GBCZ0RW3"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_S6XJN6XC","8":"TERT","9":"NA","10":"NA","11":"7316-9642","12":"PT_GBCZ0RW3"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_39JWYN4D","8":"TERT","9":"NA","10":"NA","11":"C4114842-Tumor","12":"PT_J4GESC9A"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_F8K4VQMF","8":"TERT","9":"NA","10":"NA","11":"7316-3817","12":"PT_J5NSRW1Y"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_S4CG60MW","8":"TERT","9":"NA","10":"NA","11":"7316-8017","12":"PT_MTVXXQTG"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_KNZY0HB9","8":"TERT","9":"NA","10":"NA","11":"7316-8047","12":"PT_QWN0G1GH"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_9XQVJS03","8":"TERT","9":"NA","10":"NA","11":"7316-8967","12":"PT_RDGW5MJE"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_4T994QT4","8":"TERT","9":"NA","10":"NA","11":"7316-8967","12":"PT_RDGW5MJE"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_AVFSX65M","8":"TERT","9":"NA","10":"NA","11":"7316-6934","12":"PT_RGX0DPJY"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_SK4H5MJQ","8":"TERT","9":"NA","10":"NA","11":"7316-204","12":"PT_RSDTCFDA"},{"1":"chr5","2":"1295113","3":"1295113","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_MSB1RDAJ","8":"TERT","9":"NA","10":"NA","11":"7316-71","12":"PT_VVCN8DXT"},{"1":"chr5","2":"1295135","3":"1295135","4":"+","5":"5'Flank","6":"MODIFIER","7":"BS_JG5TTB1E","8":"TERT","9":"NA","10":"NA","11":"7316-6034","12":"PT_Z12GNV1C"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3151,15 +3169,18 @@ head(braf_snv_df, n = 10)</code></pre>
 <p><em>IDH1</em> mutations are specific - we’ll break them out here.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29kaW5nX3N1bW1hcnlfZGYgPC0gY29kaW5nX3Nudl9kZiAlPiUgXG4gIGRwbHlyOjpzZWxlY3QoVHVtb3JfU2FtcGxlX0JhcmNvZGUsXG4gICAgICAgICAgICAgICAgSHVnb19TeW1ib2wpICU+JVxuICAjIEZvciBlYWNoIHR1bW9yIGJpb3NwZWNpbWVuLCBnZXQgYSBjb21tYSBzZXBhcmF0ZWRcbiAgZHBseXI6Omdyb3VwX2J5KFR1bW9yX1NhbXBsZV9CYXJjb2RlKSAlPiVcbiAgZHBseXI6OnN1bW1hcml6ZShyZWxldmFudF9jb2RpbmdfbXV0YXRpb25zID0gcGFzdGUoc29ydCh1bmlxdWUoSHVnb19TeW1ib2wpKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sbGFwc2UgPSBcXFxuYGBgIn0= -->
-<pre class="r"><code>coding_summary_df &lt;- coding_snv_df %&gt;% 
-  dplyr::select(Tumor_Sample_Barcode,
-                Hugo_Symbol) %&gt;%
-  # For each tumor biospecimen, get a comma separated
-  dplyr::group_by(Tumor_Sample_Barcode) %&gt;%
-  dplyr::summarize(relevant_coding_mutations = paste(sort(unique(Hugo_Symbol)),
-                                                     collapse = \</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImlkaF9zbnZfZGYgPC0gZmlsdGVyZWRfc252X2RmICU+JVxuICBkcGx5cjo6ZmlsdGVyKEh1Z29fU3ltYm9sID09IFwiSURIMVwiLFxuICAgICAgICAgICAgICAgIGdyZXBsKFwiUjEzMnxSMTcyXCIsIEhHVlNwX1Nob3J0KSkiLCIiLCJoZWFkKGlkaF9zbnZfZGYpIl19 -->
+<pre class="r"><code>idh_snv_df &lt;- filtered_snv_df %&gt;%
+  dplyr::filter(Hugo_Symbol == &quot;IDH1&quot;,
+                grepl(&quot;R132|R172&quot;, HGVSp_Short))
+
+head(idh_snv_df)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Chromosome"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Start_Position"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["End_Position"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Strand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Variant_Classification"],"name":[5],"type":["chr"],"align":["left"]},{"label":["IMPACT"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Tumor_Sample_Barcode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Hugo_Symbol"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HGVSp_Short"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Exon_Number"],"name":[10],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[12],"type":["chr"],"align":["left"]}],"data":[{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_8SYN7GXG","8":"IDH1","9":"p.R132H","10":"4/10","11":"7316-3220","12":"PT_0MXPTTM3"},{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_H3TYF6GD","8":"IDH1","9":"p.R132H","10":"4/10","11":"A09410","12":"PT_0MXPTTM3"},{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_DYA4EMPF","8":"IDH1","9":"p.R132H","10":"4/10","11":"7316-4310","12":"PT_2KB81GB1"},{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_15BAPZBP","8":"IDH1","9":"p.R132H","10":"4/10","11":"7316-9253","12":"PT_DF8P04Y1"},{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_4YJF0KE7","8":"IDH1","9":"p.R132H","10":"4/10","11":"7316-6389","12":"PT_EWNAWYKB"},{"1":"chr2","2":"208248388","3":"208248388","4":"+","5":"Missense_Mutation","6":"MODERATE","7":"BS_VDESNWXQ","8":"IDH1","9":"p.R132H","10":"4/10","11":"7316-717","12":"PT_H3KTPFRH"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>Note that some samples that did not get included in the subset
@@ -3170,16 +3191,18 @@ be included in the subset files?</em></p>
 <h4><em>BRAF</em> V600E</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBZGQgdGhlICdtaXNzaW5nJyBiaW9zcGVjaW1lbiBJRHMgaW50byB0aGUgY29kaW5nIHN1bW1hcnkgZGF0YS5mcmFtZSBidXRcbiMgbWFyayByZWxldmFudF9jb2RpbmdfbXV0YXRpb25zIGFzIFxcTm9uZVxcXG5jb2Rpbmdfc3VtbWFyeV9kZiA8LSBjb2Rpbmdfc3VtbWFyeV9kZiAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29kaW5nX3N1bW1hcnlfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcXE5vbmVcXClcbmBgYCJ9 -->
-<pre class="r"><code># Add the &#39;missing&#39; biospecimen IDs into the coding summary data.frame but
-# mark relevant_coding_mutations as \None\
-coding_summary_df &lt;- coding_summary_df %&gt;%
-  dplyr::bind_rows(data.frame(
-    Tumor_Sample_Barcode = setdiff(subset_bsid,
-                                   coding_summary_df$Tumor_Sample_Barcode)
-  )) %&gt;%
-  replace(is.na(.), \None\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImJyYWZfc252X2RmIDwtIGZpbHRlcmVkX3Nudl9kZiAlPiVcbiAgZHBseXI6OmZpbHRlcihIdWdvX1N5bWJvbCA9PSBcIkJSQUZcIixcbiAgICAgICAgICAgICAgICBncmVwbChcIlY2MDBFXCIsIEhHVlNwX1Nob3J0KSkiLCIiLCJoZWFkKGJyYWZfc252X2RmLCBuID0gMTApIl19 -->
+<pre class="r"><code>braf_snv_df &lt;- filtered_snv_df %&gt;%
+  dplyr::filter(Hugo_Symbol == &quot;BRAF&quot;,
+                grepl(&quot;V600E&quot;, HGVSp_Short))
+
+head(braf_snv_df, n = 10)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Chromosome"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Start_Position"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["End_Position"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Strand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Variant_Classification"],"name":[5],"type":["chr"],"align":["left"]},{"label":["IMPACT"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Tumor_Sample_Barcode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Hugo_Symbol"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HGVSp_Short"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Exon_Number"],"name":[10],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[12],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3194,28 +3217,37 @@ contains all of the coding mutations of interest (excluding
 mutations – but serve as a “sanity check.”</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVydF9zdW1tYXJ5X2RmIDwtIHRlcnRfc252X2RmICU+JVxuICBkcGx5cjo6c2VsZWN0KFR1bW9yX1NhbXBsZV9CYXJjb2RlLFxuICAgICAgICAgICAgICAgIFZhcmlhbnRfQ2xhc3NpZmljYXRpb24pICU+JVxuICBkcGx5cjo6Z3JvdXBfYnkoVHVtb3JfU2FtcGxlX0JhcmNvZGUpICU+JVxuICBkcGx5cjo6c3VtbWFyaXplKFRFUlRfdmFyaWFudF9jbGFzc2lmaWNhdGlvbiA9IFxuICAgICAgICAgICAgICAgICAgICAgcGFzdGUoc29ydCh1bmlxdWUoVmFyaWFudF9DbGFzc2lmaWNhdGlvbikpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sbGFwc2UgPSBcXFxuYGBgIn0= -->
-<pre class="r"><code>tert_summary_df &lt;- tert_snv_df %&gt;%
+<!-- rnb-source-begin eyJkYXRhIjpbImNvZGluZ19zdW1tYXJ5X2RmIDwtIGNvZGluZ19zbnZfZGYgJT4lIFxuICBkcGx5cjo6c2VsZWN0KFR1bW9yX1NhbXBsZV9CYXJjb2RlLFxuICAgICAgICAgICAgICAgIEh1Z29fU3ltYm9sKSAlPiVcbiAgIyBGb3IgZWFjaCB0dW1vciBiaW9zcGVjaW1lbiwgZ2V0IGEgY29tbWEgc2VwYXJhdGVkXG4gIGRwbHlyOjpncm91cF9ieShUdW1vcl9TYW1wbGVfQmFyY29kZSkgJT4lXG4gIGRwbHlyOjpzdW1tYXJpemUocmVsZXZhbnRfY29kaW5nX211dGF0aW9ucyA9IHBhc3RlKHNvcnQodW5pcXVlKEh1Z29fU3ltYm9sKSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbGxhcHNlID0gXCIsIFwiKSkiLCIiLCJoZWFkKGNvZGluZ19zdW1tYXJ5X2RmLCBuID0gMTApIl19 -->
+<pre class="r"><code>coding_summary_df &lt;- coding_snv_df %&gt;% 
   dplyr::select(Tumor_Sample_Barcode,
-                Variant_Classification) %&gt;%
+                Hugo_Symbol) %&gt;%
+  # For each tumor biospecimen, get a comma separated
   dplyr::group_by(Tumor_Sample_Barcode) %&gt;%
-  dplyr::summarize(TERT_variant_classification = 
-                     paste(sort(unique(Variant_Classification)),
-                           collapse = \</code></pre>
+  dplyr::summarize(relevant_coding_mutations = paste(sort(unique(Hugo_Symbol)),
+                                                     collapse = &quot;, &quot;))
+
+head(coding_summary_df, n = 10)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Tumor_Sample_Barcode"],"name":[1],"type":["chr"],"align":["left"]},{"label":["relevant_coding_mutations"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"BS_00GG0R70","2":"TP53"},{"1":"BS_00TRPEQX","2":"SETD2"},{"1":"BS_026TDAF1","2":"H3-3A"},{"1":"BS_02NHQ9F8","2":"TP53"},{"1":"BS_02VZJ0QK","2":"H3-3A, TP53"},{"1":"BS_02YBZSBY","2":"ATRX, BRAF, CIC, DAXX, FGFR1, FUBP1, SETD2, TP53"},{"1":"BS_05CHNS17","2":"ATRX, FGFR1, H3-3A"},{"1":"BS_08QFCDXB","2":"ATRX, H3-3A, TP53"},{"1":"BS_09983DA9","2":"H3-3A"},{"1":"BS_0ATJ22QA","2":"H3-3A"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add tumors that had no mutations in the relevant genes into this
 <code>data.frame</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVydF9zdW1tYXJ5X2RmIDwtIHRlcnRfc3VtbWFyeV9kZiAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVydF9zdW1tYXJ5X2RmJFR1bW9yX1NhbXBsZV9CYXJjb2RlKVxuICApKSAlPiVcbiAgcmVwbGFjZShpcy5uYSguKSwgXFxOb25lXFwpXG5gYGAifQ== -->
-<pre class="r"><code>tert_summary_df &lt;- tert_summary_df %&gt;%
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgQWRkIHRoZSAnbWlzc2luZycgYmlvc3BlY2ltZW4gSURzIGludG8gdGhlIGNvZGluZyBzdW1tYXJ5IGRhdGEuZnJhbWUgYnV0IiwiIyBtYXJrIHJlbGV2YW50X2NvZGluZ19tdXRhdGlvbnMgYXMgXCJOb25lXCIiLCJjb2Rpbmdfc3VtbWFyeV9kZiA8LSBjb2Rpbmdfc3VtbWFyeV9kZiAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29kaW5nX3N1bW1hcnlfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcIk5vbmVcIikiXX0= -->
+<pre class="r"><code># Add the &#39;missing&#39; biospecimen IDs into the coding summary data.frame but
+# mark relevant_coding_mutations as &quot;None&quot;
+coding_summary_df &lt;- coding_summary_df %&gt;%
   dplyr::bind_rows(data.frame(
     Tumor_Sample_Barcode = setdiff(subset_bsid,
-                                   tert_summary_df$Tumor_Sample_Barcode)
+                                   coding_summary_df$Tumor_Sample_Barcode)
   )) %&gt;%
-  replace(is.na(.), \None\)</code></pre>
+  replace(is.na(.), &quot;None&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3224,31 +3256,34 @@ mutations – but serve as a “sanity check.”</p>
 tumor biospecimen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWRoX3N1bW1hcnlfZGYgPC0gaWRoX3Nudl9kZiAlPiVcbiAgZHBseXI6OnNlbGVjdChUdW1vcl9TYW1wbGVfQmFyY29kZSwgSEdWU3BfU2hvcnQpICU+JVxuICBkcGx5cjo6cmVuYW1lKElESDFfbXV0YXRpb24gPSBIR1ZTcF9TaG9ydCkgJT4lXG4gIGRwbHlyOjpiaW5kX3Jvd3MoZGF0YS5mcmFtZShcbiAgICBUdW1vcl9TYW1wbGVfQmFyY29kZSA9IHNldGRpZmYoc3Vic2V0X2JzaWQsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlkaF9zbnZfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcXE5vIFIxMzIgb3IgUjE3MlxcKVxuYGBgIn0= -->
-<pre class="r"><code>idh_summary_df &lt;- idh_snv_df %&gt;%
-  dplyr::select(Tumor_Sample_Barcode, HGVSp_Short) %&gt;%
-  dplyr::rename(IDH1_mutation = HGVSp_Short) %&gt;%
-  dplyr::bind_rows(data.frame(
-    Tumor_Sample_Barcode = setdiff(subset_bsid,
-                                   idh_snv_df$Tumor_Sample_Barcode)
-  )) %&gt;%
-  replace(is.na(.), \No R132 or R172\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbInRlcnRfc3VtbWFyeV9kZiA8LSB0ZXJ0X3Nudl9kZiAlPiVcbiAgZHBseXI6OnNlbGVjdChUdW1vcl9TYW1wbGVfQmFyY29kZSxcbiAgICAgICAgICAgICAgICBWYXJpYW50X0NsYXNzaWZpY2F0aW9uKSAlPiVcbiAgZHBseXI6Omdyb3VwX2J5KFR1bW9yX1NhbXBsZV9CYXJjb2RlKSAlPiVcbiAgZHBseXI6OnN1bW1hcml6ZShURVJUX3ZhcmlhbnRfY2xhc3NpZmljYXRpb24gPSBcbiAgICAgICAgICAgICAgICAgICAgIHBhc3RlKHNvcnQodW5pcXVlKFZhcmlhbnRfQ2xhc3NpZmljYXRpb24pKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbGxhcHNlID0gXCIsIFwiKSkiLCJoZWFkKHRlcnRfc3VtbWFyeV9kZikiXX0= -->
+<pre class="r"><code>tert_summary_df &lt;- tert_snv_df %&gt;%
+  dplyr::select(Tumor_Sample_Barcode,
+                Variant_Classification) %&gt;%
+  dplyr::group_by(Tumor_Sample_Barcode) %&gt;%
+  dplyr::summarize(TERT_variant_classification = 
+                     paste(sort(unique(Variant_Classification)),
+                           collapse = &quot;, &quot;))
+head(tert_summary_df)</code></pre>
 <!-- rnb-source-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Tumor_Sample_Barcode"],"name":[1],"type":["chr"],"align":["left"]},{"label":["TERT_variant_classification"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"BS_2296JPP5","2":"5'Flank"},{"1":"BS_33FDZ9QY","2":"5'Flank"},{"1":"BS_39JWYN4D","2":"5'Flank"},{"1":"BS_46TETVWQ","2":"5'Flank"},{"1":"BS_4T994QT4","2":"5'Flank"},{"1":"BS_9XQVJS03","2":"5'Flank"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add in tumor biospecimens where no <em>TERT</em> mutation is
 present.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnJhZl9zdW1tYXJ5X2RmIDwtIGJyYWZfc252X2RmICU+JVxuICBkcGx5cjo6c2VsZWN0KFR1bW9yX1NhbXBsZV9CYXJjb2RlLCBIR1ZTcF9TaG9ydCkgJT4lXG4gIGRwbHlyOjpyZW5hbWUoQlJBRl9WNjAwRSA9IEhHVlNwX1Nob3J0KSAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJhZl9zbnZfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcXE5vIFY2MDBFXFwpXG5gYGAifQ== -->
-<pre class="r"><code>braf_summary_df &lt;- braf_snv_df %&gt;%
-  dplyr::select(Tumor_Sample_Barcode, HGVSp_Short) %&gt;%
-  dplyr::rename(BRAF_V600E = HGVSp_Short) %&gt;%
+<!-- rnb-source-begin eyJkYXRhIjoidGVydF9zdW1tYXJ5X2RmIDwtIHRlcnRfc3VtbWFyeV9kZiAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVydF9zdW1tYXJ5X2RmJFR1bW9yX1NhbXBsZV9CYXJjb2RlKVxuICApKSAlPiVcbiAgcmVwbGFjZShpcy5uYSguKSwgXCJOb25lXCIpIn0= -->
+<pre class="r"><code>tert_summary_df &lt;- tert_summary_df %&gt;%
   dplyr::bind_rows(data.frame(
     Tumor_Sample_Barcode = setdiff(subset_bsid,
-                                   braf_snv_df$Tumor_Sample_Barcode)
+                                   tert_summary_df$Tumor_Sample_Barcode)
   )) %&gt;%
-  replace(is.na(.), \No V600E\)</code></pre>
+  replace(is.na(.), &quot;None&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3256,16 +3291,15 @@ present.</p>
 mutations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVmaW5pbmdfbGVzaW9uc19kZiA8LSBkZWZpbmluZ19sZXNpb25zX2RmICU+JVxuICAjIFdlJ3JlIG5vdCBjb25jZXJuZWQgd2l0aCBkaXNlYXNlIHR5cGUgY2xhc3NpZmljYXRpb25zIGF0IHRoZSBtb21lbnRcbiAgZHBseXI6OnNlbGVjdCgtZHBseXI6OnN0YXJ0c193aXRoKFxcZGlzZWFzZVxcKSxcbiAgICAgICAgICAgICAgICAtZHBseXI6OmNvbnRhaW5zKFxcaGlzdG9sb2d5XFwpKSAlPiVcbiAgIyBGaWx0ZXIgdG8gdHVtb3IgYmlvc3BlY2ltZW5zIHRoYXQgYXJlIGluIHRoZSBzdWJzZXQgZmlsZVxuICBkcGx5cjo6ZmlsdGVyKEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQgJWluJSBzdWJzZXRfYnNpZCkgJT4lXG4gICMgQWxsIG90aGVyIGRhdGEuZnJhbWUgdXNlICdUdW1vcl9TYW1wbGVfQmFyY29kZScgZm9yIHRoZSBjb2x1bW4gdGhhdCBjb250YWluc1xuICAjIHRoZSB0dW1vciBiaW9zcGVjaW1lbiBpZGVudGlmaWVyc1xuICBkcGx5cjo6cmVuYW1lKFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRClcbmBgYCJ9 -->
-<pre class="r"><code>defining_lesions_df &lt;- defining_lesions_df %&gt;%
-  # We&#39;re not concerned with disease type classifications at the moment
-  dplyr::select(-dplyr::starts_with(\disease\),
-                -dplyr::contains(\histology\)) %&gt;%
-  # Filter to tumor biospecimens that are in the subset file
-  dplyr::filter(Kids_First_Biospecimen_ID %in% subset_bsid) %&gt;%
-  # All other data.frame use &#39;Tumor_Sample_Barcode&#39; for the column that contains
-  # the tumor biospecimen identifiers
-  dplyr::rename(Tumor_Sample_Barcode = Kids_First_Biospecimen_ID)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiaWRoX3N1bW1hcnlfZGYgPC0gaWRoX3Nudl9kZiAlPiVcbiAgZHBseXI6OnNlbGVjdChUdW1vcl9TYW1wbGVfQmFyY29kZSwgSEdWU3BfU2hvcnQpICU+JVxuICBkcGx5cjo6cmVuYW1lKElESDFfbXV0YXRpb24gPSBIR1ZTcF9TaG9ydCkgJT4lXG4gIGRwbHlyOjpiaW5kX3Jvd3MoZGF0YS5mcmFtZShcbiAgICBUdW1vcl9TYW1wbGVfQmFyY29kZSA9IHNldGRpZmYoc3Vic2V0X2JzaWQsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlkaF9zbnZfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcIk5vIFIxMzIgb3IgUjE3MlwiKSJ9 -->
+<pre class="r"><code>idh_summary_df &lt;- idh_snv_df %&gt;%
+  dplyr::select(Tumor_Sample_Barcode, HGVSp_Short) %&gt;%
+  dplyr::rename(IDH1_mutation = HGVSp_Short) %&gt;%
+  dplyr::bind_rows(data.frame(
+    Tumor_Sample_Barcode = setdiff(subset_bsid,
+                                   idh_snv_df$Tumor_Sample_Barcode)
+  )) %&gt;%
+  replace(is.na(.), &quot;No R132 or R172&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3273,17 +3307,15 @@ mutations.</p>
 <em>BRAF</em> mutation.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmluYWxfbXV0YXRpb25zX2RmIDwtIGxpc3QoZGVmaW5pbmdfbGVzaW9uc19kZixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvZGluZ19zdW1tYXJ5X2RmLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgaWRoX3N1bW1hcnlfZGYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICB0ZXJ0X3N1bW1hcnlfZGYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBicmFmX3N1bW1hcnlfZGYpICU+JVxuICBwdXJycjo6cmVkdWNlKGRwbHlyOjppbm5lcl9qb2luLCBieSA9IFxcVHVtb3JfU2FtcGxlX0JhcmNvZGVcXCkgJT4lXG4gIGRwbHlyOjpzZWxlY3QoLWRlZmluaW5nX2xlc2lvbikgJT4lXG4gIGRwbHlyOjphcnJhbmdlKEtpZHNfRmlyc3RfUGFydGljaXBhbnRfSUQsIHNhbXBsZV9pZClcblxuaGVhZChmaW5hbF9tdXRhdGlvbnNfZGYsIG4gPSAxMClcbmBgYCJ9 -->
-<pre class="r"><code>final_mutations_df &lt;- list(defining_lesions_df,
-                           coding_summary_df,
-                           idh_summary_df,
-                           tert_summary_df,
-                           braf_summary_df) %&gt;%
-  purrr::reduce(dplyr::inner_join, by = \Tumor_Sample_Barcode\) %&gt;%
-  dplyr::select(-defining_lesion) %&gt;%
-  dplyr::arrange(Kids_First_Participant_ID, sample_id)
-
-head(final_mutations_df, n = 10)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYnJhZl9zdW1tYXJ5X2RmIDwtIGJyYWZfc252X2RmICU+JVxuICBkcGx5cjo6c2VsZWN0KFR1bW9yX1NhbXBsZV9CYXJjb2RlLCBIR1ZTcF9TaG9ydCkgJT4lXG4gIGRwbHlyOjpyZW5hbWUoQlJBRl9WNjAwRSA9IEhHVlNwX1Nob3J0KSAlPiVcbiAgZHBseXI6OmJpbmRfcm93cyhkYXRhLmZyYW1lKFxuICAgIFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gc2V0ZGlmZihzdWJzZXRfYnNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJhZl9zbnZfZGYkVHVtb3JfU2FtcGxlX0JhcmNvZGUpXG4gICkpICU+JVxuICByZXBsYWNlKGlzLm5hKC4pLCBcIk5vIFY2MDBFXCIpIn0= -->
+<pre class="r"><code>braf_summary_df &lt;- braf_snv_df %&gt;%
+  dplyr::select(Tumor_Sample_Barcode, HGVSp_Short) %&gt;%
+  dplyr::rename(BRAF_V600E = HGVSp_Short) %&gt;%
+  dplyr::bind_rows(data.frame(
+    Tumor_Sample_Barcode = setdiff(subset_bsid,
+                                   braf_snv_df$Tumor_Sample_Barcode)
+  )) %&gt;%
+  replace(is.na(.), &quot;No V600E&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3295,69 +3327,45 @@ head(final_mutations_df, n = 10)</code></pre>
 table.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVhZHI6OndyaXRlX3RzdihmaW5hbF9tdXRhdGlvbnNfZGYsIG91dHB1dF9maWxlKVxuYGBgIn0= -->
-<pre class="r"><code>readr::write_tsv(final_mutations_df, output_file)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZGVmaW5pbmdfbGVzaW9uc19kZiA8LSBkZWZpbmluZ19sZXNpb25zX2RmICU+JVxuICAjIFdlJ3JlIG5vdCBjb25jZXJuZWQgd2l0aCBkaXNlYXNlIHR5cGUgY2xhc3NpZmljYXRpb25zIGF0IHRoZSBtb21lbnRcbiAgZHBseXI6OnNlbGVjdCgtZHBseXI6OnN0YXJ0c193aXRoKFwiZGlzZWFzZVwiKSxcbiAgICAgICAgICAgICAgICAtZHBseXI6OmNvbnRhaW5zKFwiaGlzdG9sb2d5XCIpKSAlPiVcbiAgIyBGaWx0ZXIgdG8gdHVtb3IgYmlvc3BlY2ltZW5zIHRoYXQgYXJlIGluIHRoZSBzdWJzZXQgZmlsZVxuICBkcGx5cjo6ZmlsdGVyKEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQgJWluJSBzdWJzZXRfYnNpZCkgJT4lXG4gICMgQWxsIG90aGVyIGRhdGEuZnJhbWUgdXNlICdUdW1vcl9TYW1wbGVfQmFyY29kZScgZm9yIHRoZSBjb2x1bW4gdGhhdCBjb250YWluc1xuICAjIHRoZSB0dW1vciBiaW9zcGVjaW1lbiBpZGVudGlmaWVyc1xuICBkcGx5cjo6cmVuYW1lKFR1bW9yX1NhbXBsZV9CYXJjb2RlID0gS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCkifQ== -->
+<pre class="r"><code>defining_lesions_df &lt;- defining_lesions_df %&gt;%
+  # We&#39;re not concerned with disease type classifications at the moment
+  dplyr::select(-dplyr::starts_with(&quot;disease&quot;),
+                -dplyr::contains(&quot;histology&quot;)) %&gt;%
+  # Filter to tumor biospecimens that are in the subset file
+  dplyr::filter(Kids_First_Biospecimen_ID %in% subset_bsid) %&gt;%
+  # All other data.frame use &#39;Tumor_Sample_Barcode&#39; for the column that contains
+  # the tumor biospecimen identifiers
+  dplyr::rename(Tumor_Sample_Barcode = Kids_First_Biospecimen_ID)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Join all mutation <code>data.frame</code> together.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgIn0= -->
-<pre class="r"><code>sessionInfo()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImZpbmFsX211dGF0aW9uc19kZiA8LSBsaXN0KGRlZmluaW5nX2xlc2lvbnNfZGYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBjb2Rpbmdfc3VtbWFyeV9kZixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGlkaF9zdW1tYXJ5X2RmLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVydF9zdW1tYXJ5X2RmLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJhZl9zdW1tYXJ5X2RmKSAlPiVcbiAgcHVycnI6OnJlZHVjZShkcGx5cjo6aW5uZXJfam9pbiwgYnkgPSBcIlR1bW9yX1NhbXBsZV9CYXJjb2RlXCIpICU+JVxuICBkcGx5cjo6c2VsZWN0KC1kZWZpbmluZ19sZXNpb24pICU+JVxuICBkcGx5cjo6YXJyYW5nZShLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lELCBzYW1wbGVfaWQpIiwiIiwiaGVhZChmaW5hbF9tdXRhdGlvbnNfZGYsIG4gPSAxMCkiXX0= -->
+<pre class="r"><code>final_mutations_df &lt;- list(defining_lesions_df,
+                           coding_summary_df,
+                           idh_summary_df,
+                           tert_summary_df,
+                           braf_summary_df) %&gt;%
+  purrr::reduce(dplyr::inner_join, by = &quot;Tumor_Sample_Barcode&quot;) %&gt;%
+  dplyr::select(-defining_lesion) %&gt;%
+  dplyr::arrange(Kids_First_Participant_ID, sample_id)
+
+head(final_mutations_df, n = 10)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDMuNi4wICgyMDE5LTA0LTI2KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IERlYmlhbiBHTlUvTGludXggOSAoc3RyZXRjaClcblxuTWF0cml4IHByb2R1Y3RzOiBkZWZhdWx0XG5CTEFTL0xBUEFDSzogL3Vzci9saWIvbGlib3BlbmJsYXNwLXIwLjIuMTkuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1DICAgICAgICAgICAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcblsxXSBmb3JjYXRzXzAuNC4wICAgc3RyaW5ncl8xLjQuMCAgIGRwbHlyXzAuOC4zICAgICBwdXJycl8wLjMuMiAgICBcbls1XSByZWFkcl8xLjMuMSAgICAgdGlkeXJfMC44LjMgICAgIHRpYmJsZV8yLjEuMyAgICBnZ3Bsb3QyXzMuMi4wICBcbls5XSB0aWR5dmVyc2VfMS4yLjFcblxubG9hZGVkIHZpYSBhIG5hbWVzcGFjZSAoYW5kIG5vdCBhdHRhY2hlZCk6XG4gWzFdIHRpZHlzZWxlY3RfMC4yLjUgICAgICAgeGZ1bl8wLjggICAgICAgICAgICAgICBoYXZlbl8yLjEuMSAgICAgICAgICAgXG4gWzRdIGxhdHRpY2VfMC4yMC0zOCAgICAgICAgY29sb3JzcGFjZV8xLjQtMSAgICAgICBnZW5lcmljc18wLjAuMiAgICAgICAgXG4gWzddIGh0bWx0b29sc18wLjMuNiAgICAgICAgc3RhdHM0XzMuNi4wICAgICAgICAgICB5YW1sXzIuMi4wICAgICAgICAgICAgXG5bMTBdIGJhc2U2NGVuY18wLjEtMyAgICAgICAgcmxhbmdfMC40LjAgICAgICAgICAgICBwaWxsYXJfMS40LjIgICAgICAgICAgXG5bMTNdIGdsdWVfMS4zLjEgICAgICAgICAgICAgd2l0aHJfMi4xLjIgICAgICAgICAgICBCaW9jR2VuZXJpY3NfMC4zMi4wICAgXG5bMTZdIG1vZGVscl8wLjEuNCAgICAgICAgICAgcmVhZHhsXzEuMy4xICAgICAgICAgICBHZW5vbWVJbmZvRGJEYXRhXzEuMi4yXG5bMTldIHpsaWJiaW9jXzEuMzIuMCAgICAgICAgbXVuc2VsbF8wLjUuMCAgICAgICAgICBndGFibGVfMC4zLjAgICAgICAgICAgXG5bMjJdIGNlbGxyYW5nZXJfMS4xLjAgICAgICAgcnZlc3RfMC4zLjQgICAgICAgICAgICBldmFsdWF0ZV8wLjE0ICAgICAgICAgXG5bMjVdIGtuaXRyXzEuMjMgICAgICAgICAgICAgSVJhbmdlc18yLjIwLjIgICAgICAgICBHZW5vbWVJbmZvRGJfMS4yMi4xICAgXG5bMjhdIHBhcmFsbGVsXzMuNi4wICAgICAgICAgYnJvb21fMC41LjIgICAgICAgICAgICBSY3BwXzEuMC4xICAgICAgICAgICAgXG5bMzFdIHNjYWxlc18xLjAuMCAgICAgICAgICAgYmFja3BvcnRzXzEuMS40ICAgICAgICBTNFZlY3RvcnNfMC4yNC40ICAgICAgXG5bMzRdIFhWZWN0b3JfMC4yNi4wICAgICAgICAganNvbmxpdGVfMS42ICAgICAgICAgICBobXNfMC40LjIgICAgICAgICAgICAgXG5bMzddIGRpZ2VzdF8wLjYuMjAgICAgICAgICAgc3RyaW5naV8xLjQuMyAgICAgICAgICBHZW5vbWljUmFuZ2VzXzEuMzguMCAgXG5bNDBdIGdyaWRfMy42LjAgICAgICAgICAgICAgcnByb2pyb290XzEuMy0yICAgICAgICBiaXRvcHNfMS4wLTYgICAgICAgICAgXG5bNDNdIGNsaV8xLjEuMCAgICAgICAgICAgICAgdG9vbHNfMy42LjAgICAgICAgICAgICBtYWdyaXR0cl8xLjUgICAgICAgICAgXG5bNDZdIFJDdXJsXzEuOTUtNC4xMiAgICAgICAgbGF6eWV2YWxfMC4yLjIgICAgICAgICBjcmF5b25fMS4zLjQgICAgICAgICAgXG5bNDldIHBrZ2NvbmZpZ18yLjAuMiAgICAgICAgeG1sMl8xLjIuMCAgICAgICAgICAgICBsdWJyaWRhdGVfMS43LjQgICAgICAgXG5bNTJdIGFzc2VydHRoYXRfMC4yLjEgICAgICAgcm1hcmtkb3duXzEuMTMgICAgICAgICBodHRyXzEuNC4wICAgICAgICAgICAgXG5bNTVdIHJzdHVkaW9hcGlfMC4xMCAgICAgICAgUjZfMi40LjAgICAgICAgICAgICAgICBubG1lXzMuMS0xNDAgICAgICAgICAgXG5bNThdIGNvbXBpbGVyXzMuNi4wICAgICAgICBcbiJ9 -->
-<pre><code>R version 3.6.0 (2019-04-26)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Debian GNU/Linux 9 (stretch)
-
-Matrix products: default
-BLAS/LAPACK: /usr/lib/libopenblasp-r0.2.19.so
-
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.2    
-[5] readr_1.3.1     tidyr_0.8.3     tibble_2.1.3    ggplot2_3.2.0  
-[9] tidyverse_1.2.1
-
-loaded via a namespace (and not attached):
- [1] tidyselect_0.2.5       xfun_0.8               haven_2.1.1           
- [4] lattice_0.20-38        colorspace_1.4-1       generics_0.0.2        
- [7] htmltools_0.3.6        stats4_3.6.0           yaml_2.2.0            
-[10] base64enc_0.1-3        rlang_0.4.0            pillar_1.4.2          
-[13] glue_1.3.1             withr_2.1.2            BiocGenerics_0.32.0   
-[16] modelr_0.1.4           readxl_1.3.1           GenomeInfoDbData_1.2.2
-[19] zlibbioc_1.32.0        munsell_0.5.0          gtable_0.3.0          
-[22] cellranger_1.1.0       rvest_0.3.4            evaluate_0.14         
-[25] knitr_1.23             IRanges_2.20.2         GenomeInfoDb_1.22.1   
-[28] parallel_3.6.0         broom_0.5.2            Rcpp_1.0.1            
-[31] scales_1.0.0           backports_1.1.4        S4Vectors_0.24.4      
-[34] XVector_0.26.0         jsonlite_1.6           hms_0.4.2             
-[37] digest_0.6.20          stringi_1.4.3          GenomicRanges_1.38.0  
-[40] grid_3.6.0             rprojroot_1.3-2        bitops_1.0-6          
-[43] cli_1.1.0              tools_3.6.0            magrittr_1.5          
-[46] RCurl_1.95-4.12        lazyeval_0.2.2         crayon_1.3.4          
-[49] pkgconfig_2.0.2        xml2_1.2.0             lubridate_1.7.4       
-[52] assertthat_0.2.1       rmarkdown_1.13         httr_1.4.0            
-[55] rstudioapi_0.10        R6_2.4.0               nlme_3.1-140          
-[58] compiler_3.6.0        </code></pre>
-<!-- rnb-output-end -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Kids_First_Participant_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Tumor_Sample_Barcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.K28M"],"name":[4],"type":["chr"],"align":["left"]},{"label":["HIST1H3B_H3C2.K28M"],"name":[5],"type":["chr"],"align":["left"]},{"label":["HIST1H3C_H3C3.K28M"],"name":[6],"type":["chr"],"align":["left"]},{"label":["HIST2H3C_H3C14.K28M"],"name":[7],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.K28I"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HIST1H3B_H3C2.K28I"],"name":[9],"type":["chr"],"align":["left"]},{"label":["HIST1H3C_H3C3.K28I"],"name":[10],"type":["chr"],"align":["left"]},{"label":["HIST2H3C_H3C14.K28I"],"name":[11],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.G35R"],"name":[12],"type":["chr"],"align":["left"]},{"label":["H3F3A_H3-3A.G35V"],"name":[13],"type":["chr"],"align":["left"]},{"label":["relevant_coding_mutations"],"name":[14],"type":["chr"],"align":["left"]},{"label":["IDH1_mutation"],"name":[15],"type":["chr"],"align":["left"]},{"label":["TERT_variant_classification"],"name":[16],"type":["chr"],"align":["left"]},{"label":["BRAF_V600E"],"name":[17],"type":["chr"],"align":["left"]}],"data":[{"1":"PT_01HNFSBZ","2":"C4115334-Tumor","3":"BS_VGXWS93R","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"BRAF","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0324HWD5","2":"7316-7091","3":"BS_Q3H2JNNM","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"BRAF","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0BVR16FK","2":"C4105986-Tumor","3":"BS_0Q2X74YN","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"None","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0DM10YSE","2":"7316-5523","3":"BS_K3F9WTAN","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"None","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0DXHDZJR","2":"7316-2857","3":"BS_QWS88QXE","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"None","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0EBP2PBD","2":"7316-8041","3":"BS_Z61JVJ03","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"H3-3A","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0FGS6YME","2":"7316-8811","3":"BS_HGKDT5AJ","4":"No","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"ATRX, TP53","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_1VC0YAGC","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"H3-3A","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_70AW1WH4","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"H3-3A","15":"No R132 or R172","16":"None","17":"No V600E"},{"1":"PT_0J07HTRF","2":"7316-6475","3":"BS_8P04KVX9","4":"Yes","5":"No","6":"No","7":"No","8":"No","9":"No","10":"No","11":"No","12":"No","13":"No","14":"H3-3A","15":"No R132 or R172","16":"None","17":"No V600E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Write the final table to file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVhZHI6OndyaXRlX3RzdihmaW5hbF9tdXRhdGlvbnNfZGYsIG91dHB1dF9maWxlKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoicmVhZHI6OndyaXRlX3RzdihmaW5hbF9tdXRhdGlvbnNfZGYsIG91dHB1dF9maWxlKSJ9 -->
 <pre class="r"><code>readr::write_tsv(final_mutations_df, output_file)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -3367,9 +3375,55 @@ loaded via a namespace (and not attached):
 <h2>Session Info</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoic2Vzc2lvbkluZm8oKSJ9 -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDQuMi4zICgyMDIzLTAzLTE1KVxuUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdClcblJ1bm5pbmcgdW5kZXI6IFVidW50dSAyMi4wNC4yIExUU1xuXG5NYXRyaXggcHJvZHVjdHM6IGRlZmF1bHRcbkJMQVM6ICAgL3Vzci9saWIveDg2XzY0LWxpbnV4LWdudS9vcGVuYmxhcy1wdGhyZWFkL2xpYmJsYXMuc28uM1xuTEFQQUNLOiAvdXNyL2xpYi94ODZfNjQtbGludXgtZ251L29wZW5ibGFzLXB0aHJlYWQvbGlib3BlbmJsYXNwLXIwLjMuMjAuc29cblxubG9jYWxlOlxuIFsxXSBMQ19DVFlQRT1lbl9VUy5VVEYtOCAgICAgICBMQ19OVU1FUklDPUMgICAgICAgICAgICAgIFxuIFszXSBMQ19USU1FPWVuX1VTLlVURi04ICAgICAgICBMQ19DT0xMQVRFPWVuX1VTLlVURi04ICAgIFxuIFs1XSBMQ19NT05FVEFSWT1lbl9VUy5VVEYtOCAgICBMQ19NRVNTQUdFUz1lbl9VUy5VVEYtOCAgIFxuIFs3XSBMQ19QQVBFUj1lbl9VUy5VVEYtOCAgICAgICBMQ19OQU1FPUMgICAgICAgICAgICAgICAgIFxuIFs5XSBMQ19BRERSRVNTPUMgICAgICAgICAgICAgICBMQ19URUxFUEhPTkU9QyAgICAgICAgICAgIFxuWzExXSBMQ19NRUFTVVJFTUVOVD1lbl9VUy5VVEYtOCBMQ19JREVOVElGSUNBVElPTj1DICAgICAgIFxuXG5hdHRhY2hlZCBiYXNlIHBhY2thZ2VzOlxuWzFdIHN0YXRzICAgICBncmFwaGljcyAgZ3JEZXZpY2VzIHV0aWxzICAgICBkYXRhc2V0cyAgbWV0aG9kcyAgIGJhc2UgICAgIFxuXG5vdGhlciBhdHRhY2hlZCBwYWNrYWdlczpcbiBbMV0gbHVicmlkYXRlXzEuOS4yIGZvcmNhdHNfMS4wLjAgICBzdHJpbmdyXzEuNS4wICAgZHBseXJfMS4xLjEgICAgXG4gWzVdIHB1cnJyXzEuMC4xICAgICByZWFkcl8yLjEuNCAgICAgdGlkeXJfMS4zLjAgICAgIHRpYmJsZV8zLjIuMSAgIFxuIFs5XSBnZ3Bsb3QyXzMuNC4yICAgdGlkeXZlcnNlXzIuMC4wXG5cbmxvYWRlZCB2aWEgYSBuYW1lc3BhY2UgKGFuZCBub3QgYXR0YWNoZWQpOlxuIFsxXSB0aWR5c2VsZWN0XzEuMi4wICAgICAgIHhmdW5fMC4zOCAgICAgICAgICAgICAgYnNsaWJfMC40LjIgICAgICAgICAgIFxuIFs0XSBjb2xvcnNwYWNlXzIuMS0wICAgICAgIHZjdHJzXzAuNi4yICAgICAgICAgICAgZ2VuZXJpY3NfMC4xLjMgICAgICAgIFxuIFs3XSBodG1sdG9vbHNfMC41LjUgICAgICAgIHN0YXRzNF80LjIuMyAgICAgICAgICAgeWFtbF8yLjMuNyAgICAgICAgICAgIFxuWzEwXSB1dGY4XzEuMi4zICAgICAgICAgICAgIHJsYW5nXzEuMS4wICAgICAgICAgICAganF1ZXJ5bGliXzAuMS40ICAgICAgIFxuWzEzXSBwaWxsYXJfMS45LjAgICAgICAgICAgIGdsdWVfMS42LjIgICAgICAgICAgICAgd2l0aHJfMi41LjAgICAgICAgICAgIFxuWzE2XSBCaW9jR2VuZXJpY3NfMC40NC4wICAgIGJpdDY0XzQuMC41ICAgICAgICAgICAgR2Vub21lSW5mb0RiRGF0YV8xLjIuOVxuWzE5XSBsaWZlY3ljbGVfMS4wLjMgICAgICAgIHpsaWJiaW9jXzEuNDQuMCAgICAgICAgbXVuc2VsbF8wLjUuMCAgICAgICAgIFxuWzIyXSBndGFibGVfMC4zLjMgICAgICAgICAgIGV2YWx1YXRlXzAuMjAgICAgICAgICAga25pdHJfMS40MiAgICAgICAgICAgIFxuWzI1XSB0emRiXzAuMy4wICAgICAgICAgICAgIElSYW5nZXNfMi4zMi4wICAgICAgICAgZmFzdG1hcF8xLjEuMSAgICAgICAgIFxuWzI4XSBHZW5vbWVJbmZvRGJfMS4zNC45ICAgIHBhcmFsbGVsXzQuMi4zICAgICAgICAgZmFuc2lfMS4wLjQgICAgICAgICAgIFxuWzMxXSBzY2FsZXNfMS4yLjEgICAgICAgICAgIGNhY2hlbV8xLjAuNyAgICAgICAgICAgUzRWZWN0b3JzXzAuMzYuMiAgICAgIFxuWzM0XSBYVmVjdG9yXzAuMzguMCAgICAgICAgIHZyb29tXzEuNi4xICAgICAgICAgICAganNvbmxpdGVfMS44LjQgICAgICAgIFxuWzM3XSBiaXRfNC4wLjUgICAgICAgICAgICAgIGhtc18xLjEuMyAgICAgICAgICAgICAgZGlnZXN0XzAuNi4zMSAgICAgICAgIFxuWzQwXSBzdHJpbmdpXzEuNy4xMiAgICAgICAgIEdlbm9taWNSYW5nZXNfMS41MC4yICAgZ3JpZF80LjIuMyAgICAgICAgICAgIFxuWzQzXSBycHJvanJvb3RfMi4wLjMgICAgICAgIGJpdG9wc18xLjAtNyAgICAgICAgICAgY2xpXzMuNi4xICAgICAgICAgICAgIFxuWzQ2XSB0b29sc180LjIuMyAgICAgICAgICAgIG1hZ3JpdHRyXzIuMC4zICAgICAgICAgc2Fzc18wLjQuNSAgICAgICAgICAgIFxuWzQ5XSBSQ3VybF8xLjk4LTEuMTIgICAgICAgIGNyYXlvbl8xLjUuMiAgICAgICAgICAgcGtnY29uZmlnXzIuMC4zICAgICAgIFxuWzUyXSB0aW1lY2hhbmdlXzAuMi4wICAgICAgIHJtYXJrZG93bl8yLjIxICAgICAgICAgUjZfMi41LjEgICAgICAgICAgICAgIFxuWzU1XSBjb21waWxlcl80LjIuMyAgICAgICAgXG4ifQ== -->
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 22.04.2 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.1    
+ [5] purrr_1.0.1     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
+ [9] ggplot2_3.4.2   tidyverse_2.0.0
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0       xfun_0.38              bslib_0.4.2           
+ [4] colorspace_2.1-0       vctrs_0.6.2            generics_0.1.3        
+ [7] htmltools_0.5.5        stats4_4.2.3           yaml_2.3.7            
+[10] utf8_1.2.3             rlang_1.1.0            jquerylib_0.1.4       
+[13] pillar_1.9.0           glue_1.6.2             withr_2.5.0           
+[16] BiocGenerics_0.44.0    bit64_4.0.5            GenomeInfoDbData_1.2.9
+[19] lifecycle_1.0.3        zlibbioc_1.44.0        munsell_0.5.0         
+[22] gtable_0.3.3           evaluate_0.20          knitr_1.42            
+[25] tzdb_0.3.0             IRanges_2.32.0         fastmap_1.1.1         
+[28] GenomeInfoDb_1.34.9    parallel_4.2.3         fansi_1.0.4           
+[31] scales_1.2.1           cachem_1.0.7           S4Vectors_0.36.2      
+[34] XVector_0.38.0         vroom_1.6.1            jsonlite_1.8.4        
+[37] bit_4.0.5              hms_1.1.3              digest_0.6.31         
+[40] stringi_1.7.12         GenomicRanges_1.50.2   grid_4.2.3            
+[43] rprojroot_2.0.3        bitops_1.0-7           cli_3.6.1             
+[46] tools_4.2.3            magrittr_2.0.3         sass_0.4.5            
+[49] RCurl_1.98-1.12        crayon_1.5.2           pkgconfig_2.0.3       
+[52] timechange_0.2.0       rmarkdown_2.21         R6_2.5.1              
+[55] compiler_4.2.3        </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
 

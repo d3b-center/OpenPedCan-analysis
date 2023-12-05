@@ -4,8 +4,6 @@
 
 Summarize preprocessed `Illumina Infinium Human Methylation` array measurements produced by the [OpenPedCan methylation-preprocessing module](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/methylation-preprocessing) and [Illumina infinium methylation array CpG probe coordinates](https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html) lifted-over from `GRCh37` to `GRCh38` build and annotated with [GENCODE v39 release](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/) that is currently utilized in the OpenPedCan data analyses.
 
-## Methylation array CpG probe coordinates liftover
-The 450K and EPIC Illumina Infinium methylation array CpG probe coordinates are based on the `Human Build 37 (GRCh37/hg19)` genome assembly. Probe coordinates were converted to `Human Build 38 (GRCh38/hg38)` using the [ENSEMBL Assembly Converter tool](https://useast.ensembl.org/Homo_sapiens/Tools/AssemblyConverter). A probe annotation file, `infinium.gencode.v39.probe.annotations.tsv` currently used in the module analyses, was created by annotating all the probes that were lifted over with associated gene features (i.e., `promoter`, `5' UTR`, `exon`, `intron`, `3'UTR`, and `intergenic`) based on `GENCODE v39` release. Intron coordinates, typically not included in the GFF3/GTF genome annotation formats, were added to the GENCODE annotations file using [GenomeTools](http://genometools.org/). Probe locations were then assigned with their intersecting gene annotation features with [bedtools](https://bedtools.readthedocs.io/en/latest/content/bedtools-suite.html). 
 
 
 ## Analysis scripts
@@ -215,7 +213,7 @@ optional arguments:
 
 
 ## General usage of scripts
-1. `run-methylation-summary.sh` is a wrapper bash script for execruing all the other analysis scripts in the module. All file paths set in this script relative to the module directory. Therefore, this script should always run as if it were being called from the directory it lives in, the module directory (`OpenPedCan-analysis/analyses/methylation-summary`).
+1. `run-methylation-summary.sh` is a wrapper bash script for executing all the other analysis scripts in the module. All file paths set in this script relative to the module directory. Therefore, this script should always run as if it were being called from the directory it lives in, the module directory (`OpenPedCan-analysis/analyses/methylation-summary`).
 ```
 bash run-methylation-summary.sh
 ```

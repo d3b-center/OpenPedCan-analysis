@@ -14,6 +14,11 @@ Additional molecular data included in the module results but not explicitly used
 - breaks_density-chromosomal_instability_SV
 - NF2 single nucleotide variant (SNV) data
 
+## Molecular subtyping EPN workflow
+
+ ![EPN molecular subtyping workflow](./plot/EPN_subtyping.png)
+ 
+
 ## Usage
 `bash run-molecular-subtyping-EPN.sh`
 

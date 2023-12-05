@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!infinium.gencode.v39.probe.annotations.tsv.gz

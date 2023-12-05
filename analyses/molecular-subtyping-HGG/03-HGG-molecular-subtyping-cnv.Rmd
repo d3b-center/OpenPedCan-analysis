@@ -84,7 +84,10 @@ cn_df_ids <- cn_df %>%
 cn_df_genes <- cn_df %>%
   dplyr::rename(Kids_First_Biospecimen_ID = biospecimen_id) %>%
   dplyr::select(-cytoband) %>%
-  dplyr::filter(gene_symbol %in% c("PDGFRA", "PTEN", "MYCN", "EGFR"))
+  dplyr::filter(gene_symbol %in% c("PDGFRA", "PTEN", "MYCN", "EGFR", 
+                                   ## add CDKN2B and CDKN2A for PXA molecular subtyping
+                                   "CDKN2A", "CDKN2B"
+                                   ))
 
 # Summarize the data to have a single row per sample where _all_ kinds of copy number alterations are present.
 cn_df_genes_status <- cn_df_genes %>% 
@@ -96,12 +99,18 @@ cn_df_genes_status <- cn_df_genes %>%
   replace_na(list(PDGFRA = "neutral", 
                   PTEN = "neutral", 
                   MYCN = "neutral",
-                  EGFR = "neutral")) %>% 
+                  EGFR = "neutral", 
+  ## add CDKN2B and CDKN2A for PXA molecular subtyping
+                  CDKN2A = "neutral",
+                  CDKN2B = "neutral")) %>% 
   # Rename columns to indicate focal status explicitly
-  dplyr::rename(MYCN_focal_status   = MYCN, 
-                 PDGFRA_focal_status = PDGFRA,
-                 PTEN_focal_status   = PTEN,
-                EGFR_focal_status = EGFR) %>%
+  dplyr::rename(MYCN_focal_status = MYCN, 
+                PDGFRA_focal_status = PDGFRA,
+                PTEN_focal_status = PTEN,
+                EGFR_focal_status = EGFR, 
+                ## add CDKN2B and CDKN2A status for PXA molecular subtyping
+                CDKN2A_focal_status = CDKN2A,
+                CDKN2B_focal_status = CDKN2B) %>%
   # Arrange order of columns
   dplyr::select(sample_id,
                 Kids_First_Biospecimen_ID, 
@@ -174,8 +183,10 @@ final_hgg_cn_df_wxs <- final_hgg_cn_df %>%
   filter(!Kids_First_Biospecimen_ID %in% WGS_bsid) %>% 
   dplyr::mutate(MYCN_focal_status = replace_na(MYCN_focal_status, "neutral"), 
                 PDGFRA_focal_status = replace_na(PDGFRA_focal_status, "neutral"),
-                PTEN_focal_status = replace_na(PDGFRA_focal_status, "neutral"),
-                EGFR_focal_status = replace_na(EGFR_focal_status, "neutral"))
+                PTEN_focal_status = replace_na(PTEN_focal_status, "neutral"),
+                EGFR_focal_status = replace_na(EGFR_focal_status, "neutral"), 
+                CDKN2A_focal_status = replace_na(CDKN2A_focal_status, "neutral"),
+                CDKN2B_focal_status = replace_na(CDKN2A_focal_status, "neutral"))
 
 final_hgg_cn_df <- bind_rows(final_hgg_cn_df_wgs, final_hgg_cn_df_wxs)
 ```

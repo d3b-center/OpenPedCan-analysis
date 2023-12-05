@@ -156,8 +156,9 @@ snv_consensus_hotspot_maf <- data.table::fread(
 snv_lesions_df <- snv_consensus_hotspot_maf  %>%
   dplyr::filter(Hugo_Symbol %in% c("H3-3A", "H3C2",
                                    "H3C3", "H3C14") &
+                  ## add the H3 p.K28I mutation
                   HGVSp_Short %in% c("p.K28M", "p.G35R",
-                                     "p.G35V")) %>%
+                                     "p.G35V", "p.K28I")) %>%
   dplyr::select(Tumor_Sample_Barcode, Hugo_Symbol, HGVSp_Short) %>%
   dplyr::mutate(
     `H3F3A_H3-3A.K28M` = dplyr::case_when(Hugo_Symbol == "H3-3A" &
@@ -171,6 +172,19 @@ snv_lesions_df <- snv_consensus_hotspot_maf  %>%
       TRUE ~ "No"),
     HIST2H3C_H3C14.K28M = dplyr::case_when(
       Hugo_Symbol == "H3C14" & HGVSp_Short == "p.K28M" ~ "Yes",
+      TRUE ~ "No"),
+    ## add H3 p.K28I mutation
+    `H3F3A_H3-3A.K28I` = dplyr::case_when(Hugo_Symbol == "H3-3A" &
+                                    HGVSp_Short == "p.K28I" ~ "Yes",
+                                  TRUE ~ "No"),
+    HIST1H3B_H3C2.K28I = dplyr::case_when(
+      Hugo_Symbol == "H3C2" & HGVSp_Short == "p.K28I" ~ "Yes",
+      TRUE ~ "No"),
+    HIST1H3C_H3C3.K28I = dplyr::case_when(
+      Hugo_Symbol == "H3C3" & HGVSp_Short == "p.K28I" ~ "Yes",
+      TRUE ~ "No"),
+    HIST2H3C_H3C14.K28I = dplyr::case_when(
+      Hugo_Symbol == "H3C14" & HGVSp_Short == "p.K28I" ~ "Yes",
       TRUE ~ "No"),
     `H3F3A_H3-3A.G35R` = dplyr::case_when(Hugo_Symbol == "H3-3A" &
                                     HGVSp_Short == "p.G35R" ~ "Yes",
@@ -205,6 +219,11 @@ snv_lesions_df <- snv_lesions_df %>%
       HIST1H3B_H3C2.K28M == "Yes" ~ TRUE,
       HIST1H3C_H3C3.K28M == "Yes" ~ TRUE,
       HIST2H3C_H3C14.K28M == "Yes" ~ TRUE,
+      ## for K28I mutation
+      `H3F3A_H3-3A.K28I` == "Yes" ~ TRUE,
+      HIST1H3B_H3C2.K28I == "Yes" ~ TRUE,
+      HIST1H3C_H3C3.K28I == "Yes" ~ TRUE,
+      HIST2H3C_H3C14.K28I == "Yes" ~ TRUE,
       `H3F3A_H3-3A.G35R` == "Yes" ~ TRUE,
       `H3F3A_H3-3A.G35V` == "Yes" ~ TRUE,
       TRUE ~ FALSE

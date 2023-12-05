@@ -192,6 +192,8 @@ histology_cg <- histology %>%
     cancer_group %in% c("Adamantinomatous craniopharyngioma", "Gliomatosis cerebri") ~ str_to_title(cancer_group),
     #typo
     cancer_group == "Fibromixoid lesion" ~ "Fibromyxoid lesion",
+    ## change two samples 7316-5880 and 7316-2641, but not 7316-188 to Juvenile xanthogranuloma
+    grepl("xanthogranuloma", pathology_free_text_diagnosis) & sample_id != "7316-188" ~ "Juvenile xanthogranuloma", 
     cancer_group == "Histiocytic Tumor" ~ str_to_sentence(cancer_group),
     short_histology == "JXG" ~ "Histiocytic tumor",
     cancer_group == "Melanocytoma" ~ "Melanocytic tumor",

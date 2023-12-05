@@ -379,6 +379,8 @@ rnaseq_samples <- c("TARGET-40-PANVJJ-01A-01R", "TARGET-40-PAKUZU-01A-01R",
                     "TARGET-40-0A4I48-01A-01R", "BS_JT82QGXF", "BS_AGTPCRR4", 
                     "BS_R244Z0WX", "BS_NGHK9RZP", "BS_6R7SFVV2")
 
+#### Two non-GATK samples 
+non_GATK_sample <- c("BS_A9Q65W4Q", "BS_JTNTWJMD")
 
 ### Histologies and participants IDs mapping -----------------------------------
 
@@ -573,6 +575,10 @@ snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
 
+## add non-GATK samples to cnv file 
+  cnv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "cnv")
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+  purrr::modify_at(cnv_index, ~ append(.x, c(non_GATK_sample)))
 
 # remove any redundant that might result combining and appending to the 
 # biospecimen IDs lists for subsetting 

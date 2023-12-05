@@ -1,0 +1,6 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!gencode.v39.primary_assembly.annotation.gff3.gz
+!infinium-methylationepic-v-1-0-b5-manifest-file-grch38.bed

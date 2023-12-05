@@ -72,7 +72,7 @@ Diffuse intrinsic pontine glioma	NA	1
 Diffuse leptomeningeal glioneuronal tumor	Initial CNS Tumor	2
 Diffuse leptomeningeal glioneuronal tumor	Progressive	4
 Diffuse midline glioma	Deceased	236
-Diffuse midline glioma	Initial CNS Tumor	368
+Diffuse midline glioma	Initial CNS Tumor	366
 Diffuse midline glioma	Not Reported	2
 Diffuse midline glioma	Progressive	36
 Diffuse midline glioma	Progressive Disease Post-Mortem	12
@@ -113,7 +113,7 @@ Germinoma	Initial CNS Tumor	20
 Germinoma	Progressive	3
 Germinoma	Recurrence	1
 Glial-neuronal tumor	Deceased	20
-Glial-neuronal tumor	Initial CNS Tumor	67
+Glial-neuronal tumor	Initial CNS Tumor	69
 Glial-neuronal tumor	Progressive	6
 Glial-neuronal tumor	Recurrence	13
 Glioblastoma	Primary Tumor	3
@@ -129,7 +129,7 @@ High-grade glioma	Progressive	87
 High-grade glioma	Progressive Disease Post-Mortem	1
 High-grade glioma	Recurrence	65
 High-grade glioma	Second Malignancy	26
-Histiocytic tumor	Initial CNS Tumor	7
+Histiocytic tumor	Initial CNS Tumor	2
 Histiocytic tumor	Primary Tumor	3
 Histiocytic tumor	Progressive	1
 Hodgkin's lymphoma	Recurrence	1
@@ -144,6 +144,7 @@ Inflammatory Myofibroblastic Tumor	Progressive	4
 Inflammatory Myofibroblastic Tumor	Recurrence	1
 Intrahepatic Cholangiocarcinoma	Primary Tumor	1
 Intraneural perineuroma	Initial CNS Tumor	1
+Juvenile xanthogranuloma	Initial CNS Tumor	5
 Juvenile xanthogranuloma	Primary Tumor	1
 Langerhans Cell histiocytosis	Initial CNS Tumor	23
 Langerhans Cell histiocytosis	Primary Tumor	4

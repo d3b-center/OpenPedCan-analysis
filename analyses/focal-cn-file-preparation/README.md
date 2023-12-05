@@ -85,15 +85,11 @@ _Note: The shell script's default behavior is to produce these plots using the a
 
 ```
 results
-├── cnvkit_annotated_cn_autosomes.tsv.gz
-├── cnvkit_annotated_cn_x_and_y.tsv.gz
-├── consensus_seg_annotated_cn_autosomes.tsv.gz
+├── consensus_seg_with_status.tsv
+├── consensus_seg_annotated_cn_x_and_y_unresolved.tsv.gz
 ├── consensus_seg_annotated_cn_x_and_y.tsv.gz
-├── consensus_seg_most_focal_cn_status.tsv.gz
-├── consensus_seg_recurrent_focal_cn_units.tsv
-├── consensus_seg_with_ucsc_cytoband_status.tsv.gz
-├── controlfreec_annotated_cn_autosomes.tsv.gz
-└── controlfreec_annotated_cn_x_and_y.tsv.gz
+├── consensus_seg_annotated_cn_autosomes_unresolved.tsv.gz
+└── consensus_seg_annotated_cn_autosomes.tsv.gz
 ```
 
 ### Folder Structure
@@ -111,40 +107,12 @@ focal-cn-file-preparation
 ├── 05-define-most-focal-cn-units.nb.html
 ├── 06-find-recurrent-calls.Rmd
 ├── 06-find-recurrent-calls.nb.html
+├── 07-consensus-annotated-merge.R
 ├── README.md
+├── annotation_files
 ├── display-plots.md
-├── driver-lists
-├── gistic-results
-│   └── pbta-cnv-cnvkit-gistic
-│       ├── D.cap1.5.mat
-│       ├── all_data_by_genes.txt
-│       ├── all_lesions.conf_90.txt
-│       ├── all_thresholded.by_genes.txt
-│       ├── amp_genes.conf_90.txt
-│       ├── amp_qplot.pdf
-│       ├── amp_qplot.png
-│       ├── broad_data_by_genes.txt
-│       ├── broad_gistic_plot.pdf
-│       ├── broad_significance_results.txt
-│       ├── broad_values_by_arm.txt
-│       ├── del_genes.conf_90.txt
-│       ├── del_qplot.pdf
-│       ├── del_qplot.png
-│       ├── focal_dat.0.98.mat
-│       ├── focal_data_by_genes.txt
-│       ├── freqarms_vs_ngenes.pdf
-│       ├── gistic_inputs.mat
-│       ├── peak_regs.mat
-│       ├── perm_ads.mat
-│       ├── raw_copy_number.pdf
-│       ├── raw_copy_number.png
-│       ├── regions_track.conf_90.bed
-│       ├── sample_cutoffs.txt
-│       ├── sample_seg_counts.txt
-│       ├── scores.0.98.mat
-│       ├── scores.gistic
-│       └── wide_peak_regs.mat
 ├── plots
+│   ├── all_histology_cn_counts.png
 │   ├── cnvkit_annotated_cn_autosomes_polya_loss_cor_plot.png
 │   ├── cnvkit_annotated_cn_autosomes_polya_stacked_plot.png
 │   ├── cnvkit_annotated_cn_autosomes_polya_zero_cor_plot.png
@@ -180,20 +148,20 @@ focal-cn-file-preparation
 │   ├── controlfreec_annotated_cn_x_and_y_polya_zero_cor_plot.png
 │   ├── controlfreec_annotated_cn_x_and_y_stranded_loss_cor_plot.png
 │   ├── controlfreec_annotated_cn_x_and_y_stranded_stacked_plot.png
-│   └── controlfreec_annotated_cn_x_and_y_stranded_zero_cor_plot.png
+│   ├── controlfreec_annotated_cn_x_and_y_stranded_zero_cor_plot.png
+│   └── separate_histology_cn_counts.png
 ├── results
-│   ├── cnvkit_annotated_cn_autosomes.tsv.gz
-│   ├── cnvkit_annotated_cn_x_and_y.tsv.gz
 │   ├── consensus_seg_annotated_cn_autosomes.tsv.gz
+│   ├── consensus_seg_annotated_cn_autosomes_unresolved.tsv.gz
 │   ├── consensus_seg_annotated_cn_x_and_y.tsv.gz
-│   ├── consensus_seg_most_focal_cn_status.tsv.gz
-│   ├── consensus_seg_recurrent_focal_cn_units.tsv
-│   ├── consensus_seg_with_ucsc_cytoband_status.tsv.gz
-│   ├── controlfreec_annotated_cn_autosomes.tsv.gz
-│   └── controlfreec_annotated_cn_x_and_y.tsv.gz
+│   ├── consensus_seg_annotated_cn_x_and_y_unresolved.tsv.gz
+│   └── consensus_seg_with_status.tsv
 ├── rna-expression-validation.R
 ├── run-bedtools.snakemake
+├── run-prepare-cn-OpenPBTA.sh
 ├── run-prepare-cn.sh
 └── util
+    ├── process_annotate_overlaps.R
+    ├── resolve_duplicate_annotations.R
     └── rna-expression-functions.R
 ```

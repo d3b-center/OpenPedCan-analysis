@@ -17,20 +17,20 @@ In this analysis we subtype LGAT samples according to the presence/absence of mo
   - contains BRAF V600E or V599 SNV or non-canonical _BRAF_ alterations such as p.V600ins or p.D594N within the kiinase (PK_Tyr_Ser-Thr) domain.
 
 - **LGG, other MAPK**
-  - contains non-canonical _BRAF_ fusion other than _KIAA1549-BRAF_
-  - contains _RAF1_ fusion
+  - contains non-canonical _BRAF_ fusion other than _KIAA1549-BRAF_ **or**
+  - contains _RAF1_ fusion **or**
   - contains _KRAS_, _NRAS_, _HRAS_, _MAP2K1_, _MAP2K2_, _MAP2K1_, _ARAF_, _RAF1_ and BRAF (other than V600E or V599 SNV and other mutations in kinase domain) SNV or indel
 
 - **LGG, RTK**
   - harbors a fusion in _ALK_, _ROS1_, _NTRK1_, _NTRK2_, or _NTRK3_ **or**
-  - harbors a _MET_ SNV **or 
+  - harbors a _MET_ SNV **or** 
   - harbors a _KIT_ SNV **or**
   - harbors a _PDGFRA_ SNV or fusion
 
 - **LGG, FGFR**
   - harbors _FGFR1_ p.N546K, p.K656E, p.N577, or p. K687 hotspot mutations **or** 
   - harbors _FGFR1_ TKD (tyrosine kinase domain tandem duplication) **or**
-  - harbors _FGFR1-TACC1_ fusion **or 
+  - harbors _FGFR1-TACC1_ fusion **or**
   - harbors _FGFR1_ or _FGFR2_ fusions
 
 - **LGG, IDH**
@@ -75,6 +75,9 @@ These strings are stored in `lgat-subset/lgat_subtyping_path_dx_strings.json`, w
 
 Prior to `release-v17-20200908`, we used `short_histology == "LGAT"` as our inclusion criteria.
 
+## Molecular subtyping HGG workflow
+
+![LGG molecular subtyping workflow](./plots/LGAT_subtyping_workflow.png)
 
 ### Preprocessing
 

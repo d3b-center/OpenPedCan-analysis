@@ -348,14 +348,15 @@ lgat_methyl_subtyped <- clinical %>%
                   case_when(grepl("LGG_MYB", dkfz_v12_methylation_subclass) ~ "LGG, MYB/MYBL1",
                             dkfz_v12_methylation_subclass == "SEGA" ~ "SEGA, To be classified",
                             dkfz_v12_methylation_subclass == "A_IDH_LG" ~ "LGG, IDH",
-                            dkfz_v12_methylation_subclass %in% c("PA_INF_FGFR", "PA_INF")  ~ "LGG, FGFR",
-			    dkfz_v12_methylation_subclass %in% c("PA_MID", "PLNTY")  ~ "LGG, MAPK",
+                            dkfz_v12_methylation_subclass == "PA_INF_FGFR"  ~ "LGG, FGFR",
+                            dkfz_v12_methylation_subclass == "PA_INF"  ~ "LGG, BRAF/MAPK",
+			                      dkfz_v12_methylation_subclass %in% c("PA_MID", "PLNTY")  ~ "LGG, MAPK",
                             dkfz_v12_methylation_subclass == "AG_MYB" ~ "LGG, MYB/MYBL1",
                             dkfz_v12_methylation_subclass == "GG" ~ "GNG, MAPK",
-			    dkfz_v12_methylation_subclass == "RGNT" ~ "GNT, FGFR",
-			    dkfz_v12_methylation_subclass %in% c("DLGNT_1", "DLGNT_2", "PA_CORT") ~ "GNT, MAPK",
-			    dkfz_v12_methylation_subclass %in% c("DGONC", "DIG_DIA", "DNET", "GNT_A") ~ "GNT",
-			    dkfz_v12_methylation_subclass == "PXA" ~ "PXA")) %>% 
+                  			    dkfz_v12_methylation_subclass == "RGNT" ~ "GNT, FGFR",
+                  			    dkfz_v12_methylation_subclass %in% c("DLGNT_1", "DLGNT_2", "PA_CORT") ~ "GNT, MAPK",
+                  			    dkfz_v12_methylation_subclass %in% c("DGONC", "DIG_DIA", "DNET", "GNT_A") ~ "GNT",
+                  			    dkfz_v12_methylation_subclass == "PXA" ~ "PXA")) %>% 
   dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::filter(!is.na(molecular_subtype_methyl)) %>% 
