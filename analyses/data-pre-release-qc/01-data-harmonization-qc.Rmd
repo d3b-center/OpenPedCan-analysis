@@ -114,6 +114,7 @@ hist_ids <- hist %>%
 biospecimen_ids <- readr::read_tsv(file.path(data_dir,
                                         "gtex-gene-counts.liftover.tsv")) %>%
   colnames()
+biospecimen_ids <- biospecimen_ids[grepl("GTEx", biospecimen_ids)]
 
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
@@ -126,7 +127,7 @@ print(paste("RNA-Seq biospecimen in histolgies missing in gtex-gene-counts.lifto
 
 ```
 
-- TPM matrix (gene-expression-rsem-tpm-collapsed.rds)
+- TPM matrix 
 ```{r}
 # check that all OpenPedCan RNA-Seq biospecimen IDs are in the tpm expression matrix
 biospecimen_ids <- readr::read_rds(file.path(data_dir,
@@ -156,6 +157,7 @@ hist_ids <- hist %>%
 biospecimen_ids <- readr::read_tsv(file.path(data_dir,
                                         "gtex-gene-expression-tpm.liftover.tsv")) %>%
   colnames()
+biospecimen_ids <- biospecimen_ids[grepl("GTEx", biospecimen_ids)]
 
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
@@ -318,6 +320,131 @@ if (length(rownames(gene_symbol_diffs)) > 0) {
   gene_symbol_diffs
 }
 print(paste("Genes not matching all expression matrices =", length(rownames(gene_symbol_diffs))))
+```
+
+### Check proteomic data
+#### CPTAC Whole Cell Proteomics
+
+```{r}
+# get CPTAC whole cell proteomics ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "CPTAC") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all CPTAC whole cell proteomics biospecimen IDs 
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "cptac-protein-imputed-prot-expression.tsv")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("BS_", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-cptac-protein-imputed-prot-expression.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("WCP biospecimen in histolgies missing in cptac-protein-imputed-prot-expression.tsv = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "cptac-protein-imputed-prot-expression-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("WCP biospecimen in cptac-protein-imputed-prot-expression.tsv missing in histolgies = ", length(missing_hist_ids)))
+
+```
+
+#### Hope Whole Cell Proteomics
+
+```{r}
+# get HOPE whole cell proteomics ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "PBTA") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all HOPE whole cell proteomics biospecimen IDs 
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "hope-protein-imputed-prot-expression.tsv")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("BS_", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-hope-protein-imputed-prot-expression.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("WCP biospecimen in histolgies missing in hope-protein-imputed-prot-expression.tsv = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "hope-protein-imputed-prot-expression-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("WCP biospecimen in hope-protein-imputed-prot-expression.tsv missing in histolgies = ", length(missing_hist_ids)))
+
+```
+
+#### CPTAC Phospho-Proteomics
+
+```{r}
+# get CPTAC Phospho-Proteomics ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "CPTAC") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all CPTAC Phospho-Proteomics biospecimen IDs
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "cptac-protein-imputed-phospho-expression.tsv")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("BS_", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-cptac-protein-imputed-phospho-expression.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in cptac-protein-imputed-phospho-expression.tsv = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "cptac-protein-imputed-phospho-expression-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in cptac-protein-imputed-prot-expression.tsv missing in histolgies = ", length(missing_hist_ids)))
+
+```
+
+#### CPTAC Phospho-Proteomics
+
+```{r}
+# get Hope Phospho-Proteomics ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "PBTA") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all Hope Phospho-Proteomics biospecimen IDs
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "hope-protein-imputed-phospho-expression.tsv")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("BS_", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-hope-protein-imputed-phospho-expression.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in hope-protein-imputed-phospho-expression.tsv = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "hope-protein-imputed-phospho-expression-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in hope-protein-imputed-prot-expression.tsv missing in histolgies = ", length(missing_hist_ids)))
+
 ```
 
 
