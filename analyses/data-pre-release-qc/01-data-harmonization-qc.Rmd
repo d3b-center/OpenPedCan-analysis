@@ -83,7 +83,7 @@ hist_df <- readr::read_tsv(file.path(data_dir, "histologies-base.tsv"),
 ```{r}
 # get OpenPedCan rnaseq biospecimen ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "RNA-Seq", cohort != "TCGA") %>%
+  filter(experimental_strategy == "RNA-Seq", !cohort %in% c("TCGA","GTEx")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check that all OpenPedCan RNA-Seq biospecimen IDs are in the expected count expression matrix
@@ -105,6 +105,25 @@ if (length(missing_hist_ids) > 0) {
   missing_hist_ids_df
 }
 print(paste("RNA-Seq biospecimen in gene-counts-rsem-expected_count-collapsed.rds missing in histolgies = ", length(missing_hist_ids)))
+
+## add gtex RNA-seq 
+hist_ids <- hist %>% 
+  filter(experimental_strategy == "RNA-Seq", cohort == "GTEx") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+biospecimen_ids <- readr::read_tsv(file.path(data_dir,
+                                        "gtex-gene-counts.liftover.tsv")) %>%
+  colnames()
+
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gtex-gene-counts.liftover.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("RNA-Seq biospecimen in histolgies missing in gtex-gene-counts.liftover.tsv = ", length(missing_ids)))
+
 ```
 
 - TPM matrix (gene-expression-rsem-tpm-collapsed.rds)
@@ -128,6 +147,25 @@ if (length(missing_hist_ids) > 0) {
   missing_hist_ids_df
 }
 print(paste("RNA-Seq biospecimen in gene-expression-rsem-tpm-collapsed.rds missing in histolgies = ", length(missing_hist_ids)))
+
+## add gtex RNA-seq 
+hist_ids <- hist %>% 
+  filter(experimental_strategy == "RNA-Seq", cohort == "GTEx") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+biospecimen_ids <- readr::read_tsv(file.path(data_dir,
+                                        "gtex-gene-expression-tpm.liftover.tsv")) %>%
+  colnames()
+
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gtex-gene-expression-tpm.liftover.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("RNA-Seq biospecimen in histolgies missing in gtex-gene-expression-tpm.liftover.tsv = ", length(missing_ids)))
+
 ```
 
 - Isoform TPM matrix (rna-isoform-expression-rsem-tpm.rds)
@@ -233,6 +271,21 @@ opc_tpm <-
       rownames() %>% unique()) %>%
   dplyr::mutate(gene_symbol = OPC_TPM)
 
+# gtex tpm matrix
+gtex_tpm <-
+  tibble::tibble(GTEx_TPM =
+    readr::read_rds(file.path(data_dir, "gtex-gene-expression-tpm.liftover.tsv")) %>%
+      pull(gene_name) %>% unique()) %>%
+  dplyr::mutate(gene_symbol = GTEx_TPM)
+
+# gtex count matrix
+gtex_counts <-
+  tibble::tibble(GTEx_COUNTS =
+    readr::read_rds(file.path(data_dir, "gtex-gene-counts.liftover.tsv")) %>%
+      pull(gene_name) %>% unique()) %>%
+  dplyr::mutate(gene_symbol = GTEx_COUNTS)
+
+
 # # TCGA counts matrix
 # tcga-counts <-
 #   tibble::tibble(TCGA_COUNTS =
@@ -250,6 +303,9 @@ tcga_tpm <-
 # merge and list differences
 gene_symbol_diffs <- opc_counts %>%
   dplyr::full_join(opc_tpm, by = "gene_symbol") %>%
+  ## add gtex rna
+  dplyr::full_join(gtex_tpm, by = "gene_symbol") %>%
+  dplyr::full_join(gtex_counts, by = "gene_symbol") %>%
   dplyr::full_join(tcga_tpm, by = "gene_symbol") %>%
   dplyr::select(-gene_symbol) %>%
   dplyr::filter(is.na(OPC_COUNTS) | is.na(OPC_TPM) | is.na(TCGA_TPM)) %>%
@@ -471,15 +527,25 @@ if (length(missing_hist_ids) > 0) {
 print(paste("DNA biospecimen in cnv-gatk.seg.gz missing in histolgies = ", length(missing_hist_ids)))
 ```
 
-- SNV consensus MAF file (snv-consensus-plus-hotspots.maf.tsv.gz)
+- SNV MAF file (snv-consensus-plus-hotspots.maf.tsv.gz + snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz)
 ```{r}
 # check that all biospecimen IDs are in the file
 snv_consensus_maf <- data.table::fread(file.path(data_dir,
                                                  "snv-consensus-plus-hotspots.maf.tsv.gz"),
                                        data.table = FALSE)
-biospecimen_ids <- snv_consensus_maf %>% 
+snv_consensus_bs_id <- snv_consensus_maf %>% 
   dplyr::pull(Tumor_Sample_Barcode) %>%
   unique()
+
+snv_tumor_only <- data.table::fread(file.path(data_dir,
+                                                 "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"),
+                                       data.table = FALSE)
+tumor_only_bs_id <- snv_tumor_only %>% 
+  pull(Tumor_Sample_Barcode) %>% 
+  unique()
+
+biospecimen_ids <- c(snv_consensus_bs_id, tumor_only_bs_id)
+
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 sample_type == "Tumor",
@@ -489,73 +555,73 @@ hist_ids <- hist_df %>%
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
 if (length(missing_ids) > 0) {
-  output_file <- "histologies-samples-missing-in-snv-consensus-plus-hotspots.tsv"
+  output_file <- "histologies-samples-missing-in-snv-maf.tsv"
   missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
   missing_ids_df
 }
-print(paste("DNA biospecimen in histolgies missing in snv-consensus-plus-hotspots.maf.tsv.gz = ", length(missing_ids)))
+print(paste("DNA biospecimen in histolgies missing in snv-maf.gz = ", length(missing_ids)))
 if (length(missing_hist_ids) > 0) {
-  output_file <- "snv-consensus-plus-hotspots-samples-missing-in-histologies.tsv"
+  output_file <- "snv-maf-samples-missing-in-histologies.tsv"
   missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
   missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
   missing_hist_ids_df
 }
-print(paste("DNA biospecimen in snv-consensus-plus-hotspots.maf.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+print(paste("DNA biospecimen in snv-maf missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 - SNV DGD MAF file (snv-dgd.maf.tsv.gz)
 ```{r}
 # check that all biospecimen IDs are in the file
-snv_dgd_maf <- data.table::fread(file.path(data_dir, "snv-dgd.maf.tsv.gz"), 
-                                 data.table = FALSE)
-biospecimen_ids <- snv_dgd_maf %>% 
-  dplyr::pull(Tumor_Sample_Barcode) %>%
-  unique()
-hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy == "Targeted Sequencing",
-                sample_type == "Tumor",
-                is.na(RNA_library),
-                #!is.na(pathology_diagnosis), 
-                cohort == "DGD") %>%
-  dplyr::pull(Kids_First_Biospecimen_ID)
-missing_ids <- setdiff(hist_ids, biospecimen_ids)
-missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-if (length(missing_ids) > 0) {
-  output_file <- "histologies-samples-missing-in-snv-dgd.tsv"
-  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-  missing_ids_df
-}
-print(paste("DNA biospecimen in histolgies missing in snv-dgd.maf.tsv.gz = ", length(missing_ids)))
-if (length(missing_hist_ids) > 0) {
-  output_file <- "snv-dgd-samples-missing-in-histologies.tsv"
-  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-  missing_hist_ids_df
-}
-print(paste("DNA biospecimen in snv-dgd.maf.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+#snv_dgd_maf <- data.table::fread(file.path(data_dir, "snv-dgd.maf.tsv.gz"), 
+#                                 data.table = FALSE)
+#biospecimen_ids <- snv_dgd_maf %>% 
+#  dplyr::pull(Tumor_Sample_Barcode) %>%
+#  unique()
+#hist_ids <- hist_df %>%
+#  dplyr::filter(experimental_strategy == "Targeted Sequencing",
+#                sample_type == "Tumor",
+#                is.na(RNA_library),
+#                #!is.na(pathology_diagnosis), 
+#                cohort == "DGD") %>%
+#  dplyr::pull(Kids_First_Biospecimen_ID)
+#missing_ids <- setdiff(hist_ids, biospecimen_ids)
+#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+#if (length(missing_ids) > 0) {
+#  output_file <- "histologies-samples-missing-in-snv-dgd.tsv"
+#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+#  missing_ids_df
+#}
+#print(paste("DNA biospecimen in histolgies missing in snv-dgd.maf.tsv.gz = ", length(missing_ids)))
+#if (length(missing_hist_ids) > 0) {
+#  output_file <- "snv-dgd-samples-missing-in-histologies.tsv"
+#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+#  missing_hist_ids_df
+#}
+#print(paste("DNA biospecimen in snv-dgd.maf.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 - Check column class differences between DGD and consensus SNV MAF
 ```{r}
 # consensus maf column class
-snv_consensus_maf <- snv_consensus_maf %>% 
-  dplyr::summarise_all(class) %>% 
-  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "consensus")
+#snv_consensus_maf <- snv_consensus_maf %>% 
+#  dplyr::summarise_all(class) %>% 
+#  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "consensus")
 
 # dgd maf column class
-snv_dgd_maf <- snv_dgd_maf %>% 
-  dplyr::summarise_all(class) %>% 
-  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "DGD")
+#snv_dgd_maf <- snv_dgd_maf %>% 
+#  dplyr::summarise_all(class) %>% 
+#  tidyr::pivot_longer(colnames(.), names_to = "variable", values_to = "DGD")
 
 # diffs between DGD and consensus
-maff_class_diffs <- snv_consensus_maf %>% 
-  dplyr::full_join(snv_dgd_maf, by = "variable") %>% 
-  filter(is.na(consensus) | is.na(DGD) | consensus != DGD)
-maff_class_diffs
+#maff_class_diffs <- snv_consensus_maf %>% 
+#  dplyr::full_join(snv_dgd_maf, by = "variable") %>% 
+#  filter(is.na(consensus) | is.na(DGD) | consensus != DGD)
+#maff_class_diffs
 
 # write to file
-output_file <- "snv-column-class-diffs-consensus-vs-dgd.tsv"
-maff_class_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
+#output_file <- "snv-column-class-diffs-consensus-vs-dgd.tsv"
+#maff_class_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
 ```
 
 - SV Manta file (sv-manta.tsv.gz)
