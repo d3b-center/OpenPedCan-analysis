@@ -127,6 +127,7 @@ print(paste("RNA-Seq biospecimen in histolgies missing in gtex_gene-counts-rsem-
 ```
 
 - TPM matrix 
+
 ```{r OPC_rna_TPM}
 # get OpenPedCan rnaseq biospecimen ids
 hist_ids <- hist_df %>%
@@ -240,29 +241,29 @@ print(paste("RNA-Seq biospecimen in rna-isoform-expression-rsem-tpm.rds missing 
 - tcga TPM matrix (tcga-gene-expression-rsem-tpm-collapsed.rds)
 ```{r }
 # get tcga rnaseq biospecimen ids
-#hist_ids <- hist_df %>%
-#  filter(experimental_strategy == "RNA-Seq", cohort == "TCGA") %>%
-#  dplyr::pull(Kids_First_Biospecimen_ID)
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "RNA-Seq", cohort == "TCGA") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check that all TCGA RNA-Seq biospecimen IDs are in the tpm expression matrix
-#biospecimen_ids <- readr::read_rds(file.path(data_dir,
-#                                        "tcga-gene-expression-rsem-tpm-collapsed.rds")) %>%
-#  colnames()
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-tcga-gene-expression-rsem-tpm-collapsed.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("RNA-Seq biospecimen in histolgies missing in tcga-gene-expression-rsem-tpm-collapsed.rds = ", #length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "tcga-gene-expression-rsem-tpm-collapsed-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("RNA-Seq biospecimen in tcga-gene-expression-rsem-tpm-collapsed.rds missing in histolgies = ", #length(missing_hist_ids)))
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "tcga-gene-expression-rsem-tpm-collapsed.rds")) %>%
+  colnames()
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-tcga-gene-expression-rsem-tpm-collapsed.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("RNA-Seq biospecimen in histolgies missing in tcga-gene-expression-rsem-tpm-collapsed.rds = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "tcga-gene-expression-rsem-tpm-collapsed-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("RNA-Seq biospecimen in tcga-gene-expression-rsem-tpm-collapsed.rds missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 #### Check gene symbols in gene expression matrices
@@ -298,29 +299,18 @@ gtex_counts <-
   dplyr::mutate(gene_symbol = GTEx_COUNTS)
 
 
-# # TCGA counts matrix
-# tcga-counts <-
-#   tibble::tibble(TCGA_COUNTS =
-#     readr::read_rds(file.path(data_dir, "tcga-gene-counts-rsem-expected_count-collapsed.rds")) %>%
-#       rownames() %>% unique()) %>%
-#   dplyr::mutate(gene_symbol = TCGA_COUNTS)
-
 # TCGA tpm matrix
-#tcga_tpm <-
-#  tibble::tibble(TCGA_TPM =
-#    readr::read_rds(file.path(data_dir, "tcga-gene-expression-rsem-tpm-collapsed.rds")) %>%
-#      rownames() %>% unique()) %>%
-#  dplyr::mutate(gene_symbol = TCGA_TPM)
+tcga_tpm <-
+  tibble::tibble(TCGA_TPM =
+    readr::read_rds(file.path(data_dir, "tcga-gene-expression-rsem-tpm-collapsed.rds")) %>%
+      rownames() %>% unique()) %>%
+  dplyr::mutate(gene_symbol = TCGA_TPM)
 
 # merge and list differences
 gene_symbol_diffs <- opc_counts %>%
   dplyr::full_join(opc_tpm, by = "gene_symbol") %>%
-  ## add gtex rna
-  dplyr::full_join(gtex_tpm, by = "gene_symbol") %>%
-  dplyr::full_join(gtex_counts, by = "gene_symbol") %>%
-#  dplyr::full_join(tcga_tpm, by = "gene_symbol") %>%
   dplyr::select(-gene_symbol) %>%
-  dplyr::filter(is.na(OPC_COUNTS) | is.na(OPC_TPM) | is.na(GTEx_COUNTS) | is.na(GTEx_TPM) ) %>%
+  dplyr::filter(is.na(OPC_COUNTS)) %>%
   #### | is.na(TCGA_TPM)
   dplyr::distinct()
 
@@ -482,185 +472,186 @@ print(paste("Phospho biospecimen in hope-protein-imputed-phospho-expression-abun
 
 ### GBM proteomic samples
 
-```{r}
+```{r GBM proteomic}
 
 # get GBM Phospho-Proteomics ids
-#hist_ids <- hist_df %>%
-#  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "GBM") %>%
-#  dplyr::pull(Kids_First_Biospecimen_ID)
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "GBM") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all GBM Phospho-Proteomics biospecimen IDs
-#biospecimen_ids <- readr::read_rds(file.path(data_dir,
-#                                        "gbm-protein-imputed-phospho-expression-abundance.tsv.gz")) %>%
-#  colnames()
-#biospecimen_ids <- biospecimen_ids[grepl("PHOS", biospecimen_ids)]
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-phospho-expression-abundance.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-phospho-expression-abundance.tsv.gz = ", #length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "gbm-protein-imputed-phospho-expression-abundance-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("Phospho biospecimen in gbm-protein-imputed-phospho-expression-abundance.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+biospecimen_ids <- readr::read_tsv(file.path(data_dir,
+                                        "gbm-protein-imputed-phospho-expression-abundance.tsv.gz")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("PHOS", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-phospho-expression-abundance.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-phospho-expression-abundance.tsv.gz = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "gbm-protein-imputed-phospho-expression-abundance-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in gbm-protein-imputed-phospho-expression-abundance.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 
 ####GBM phospho samples 
 # get GBM WCP ids
-#hist_ids <- hist_df %>%
-#  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "GBM") %>%
-#  dplyr::pull(Kids_First_Biospecimen_ID)
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "GBM") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
 
 # check all Hope Phospho-Proteomics biospecimen IDs
-#biospecimen_ids <- readr::read_rds(file.path(data_dir,
-#                                        "gbm-protein-imputed-prot-expression-abundance.tsv.gz")) %>%
-#  colnames()
-#biospecimen_ids <- biospecimen_ids[grepl("WCP", biospecimen_ids)]
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-prot-expression-abundance.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-prot-expression-abundance.tsv.gz = ", #length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "gbm-protein-imputed-prot-expression-abundance-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("Phospho biospecimen in gbm-protein-imputed-prot-expression-abundance.tsv.gz missing in histolgies = ", #length(missing_hist_ids)))
+biospecimen_ids <- readr::read_tsv(file.path(data_dir,
+                                        "gbm-protein-imputed-prot-expression-abundance.tsv.gz")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("WCP", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-prot-expression-abundance.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-prot-expression-abundance.tsv.gz = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "gbm-protein-imputed-prot-expression-abundance-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in gbm-protein-imputed-prot-expression-abundance.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 
 
 ```
 #### Check methylation matrices biospecimen IDs
 
 - Beta-values matrix (methyl-beta-values.rds)
-```{r}
+```{r beta_methyl}
 # get beta-values methylation biospecimen ids
-#hist_ids <- hist_df %>%
-#  dplyr::filter(experimental_strategy == "Methylation") %>%
-#  dplyr::pull(Kids_First_Biospecimen_ID)
+hist_ids <- hist_df %>%
+  dplyr::filter(experimental_strategy == "Methylation") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check that all methylation biospecimen IDs are in the beta-values methylation matrix
-#biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-beta-values.rds")) %>%
-#  dplyr::select(-Probe_ID) %>%
-#  colnames()
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-methyl-beta-values.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("Methylation biospecimen in histolgies missing in methyl-beta-values.rds = ", length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "methyl-beta-values-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("Methylation biospecimen in methyl-beta-values.rds missing in histolgies = ", length(missing_hist_ids)))
+biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-beta-values.rds")) %>%
+  dplyr::select(-Probe_ID) %>%
+  colnames()
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-methyl-beta-values.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Methylation biospecimen in histolgies missing in methyl-beta-values.rds = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "methyl-beta-values-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Methylation biospecimen in methyl-beta-values.rds missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 - M-values matrix (methyl-m-values.rds)
-```{r}
+```{r M-matrix}
 # check that all methylation biospecimen IDs are in the m-values methylation matrix
-#biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-m-values.rds")) %>%
-#  dplyr::select(-Probe_ID) %>%
-#  colnames()
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-methyl-m-values.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("Methylation biospecimen in histolgies missing in methyl-m-values.rds = ", length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "methyl-m-values-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("Methylation biospecimen in methyl-m-values.rds missing in histolgies = ", length(missing_hist_ids)))
+biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-m-values.rds")) %>%
+  dplyr::select(-Probe_ID) %>%
+  colnames()
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-methyl-m-values.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Methylation biospecimen in histolgies missing in methyl-m-values.rds = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "methyl-m-values-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Methylation biospecimen in methyl-m-values.rds missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 - CN-values matrix (methyl-m-values.rds)
-```{r}
+```{r CN methyl}
 # check that all methylation biospecimen IDs are in the m-values methylation matrix
-#biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-cn-values.rds")) %>%
-#  dplyr::select(-Probe_ID) %>%
-#  colnames()
-#missing_ids <- setdiff(hist_ids, biospecimen_ids)
-#missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
-#if (length(missing_ids) > 0) {
-#  output_file <- "histologies-samples-missing-in-methyl-cn-values.tsv"
-#  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
-#  missing_ids_df
-#}
-#print(paste("Methylation biospecimen in histolgies missing in methyl-cn-values.rds = ", length(missing_ids)))
-#if (length(missing_hist_ids) > 0) {
-#  output_file <- "methyl-cn-values-samples-missing-in-histologies.tsv"
-#  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
-#  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
-#  missing_hist_ids_df
-#}
-#print(paste("Methylation biospecimen in methyl-cn-values.rds missing in histolgies = ", length(missing_hist_ids)))
+biospecimen_ids <- readr::read_rds(file.path(data_dir, "methyl-cn-values.rds")) %>%
+  dplyr::select(-Probe_ID) %>%
+  colnames()
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-methyl-cn-values.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Methylation biospecimen in histolgies missing in methyl-cn-values.rds = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "methyl-cn-values-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Methylation biospecimen in methyl-cn-values.rds missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 #### Check methylation matrices probe IDs
 
 - Methylation matrices
-```{r}
+```{r methyl matrix}
 # beta-values matrix
-#beta_values <-
-#  tibble::tibble(beta_values =
-#    readr::read_rds(file.path(data_dir, "methyl-beta-values.rds")) %>%
-#      dplyr::pull(Probe_ID) %>% unique()) %>%
-#  dplyr::mutate(probe_id = beta_values)
+beta_values <-
+  tibble::tibble(beta_values =
+    readr::read_rds(file.path(data_dir, "methyl-beta-values.rds")) %>%
+      dplyr::pull(Probe_ID) %>% unique()) %>%
+  dplyr::mutate(probe_id = beta_values)
 
 # m-values matrix
-#m_values <-
-#  tibble::tibble(m_values =
-#    readr::read_rds(file.path(data_dir, "methyl-m-values.rds")) %>%
-#      dplyr::pull(Probe_ID) %>% unique()) %>%
-#  dplyr::mutate(probe_id = m_values)
+m_values <-
+  tibble::tibble(m_values =
+    readr::read_rds(file.path(data_dir, "methyl-m-values.rds")) %>%
+      dplyr::pull(Probe_ID) %>% unique()) %>%
+  dplyr::mutate(probe_id = m_values)
 
 # cn-values matrix
-#cn_values <-
-#  tibble::tibble(cn_values =
-#    readr::read_rds(file.path(data_dir, "methyl-cn-values.rds")) %>%
-#      dplyr::pull(Probe_ID) %>% unique()) %>%
-#  dplyr::mutate(probe_id = cn_values)
+cn_values <-
+  tibble::tibble(cn_values =
+    readr::read_rds(file.path(data_dir, "methyl-cn-values.rds")) %>%
+      dplyr::pull(Probe_ID) %>% unique()) %>%
+  dplyr::mutate(probe_id = cn_values)
 
 # merge and list differences
-#probe_id_diffs <- beta_values %>%
-#  dplyr::full_join(m_values, by = "probe_id") %>%
-#  dplyr::full_join(cn_values, by = "probe_id") %>%
-#  dplyr::select(-probe_id) %>%
-#  dplyr::filter(is.na(beta_values) | is.na(m_values) | is.na(cn_values)) %>%
-#  dplyr::distinct()
+probe_id_diffs <- beta_values %>%
+  dplyr::full_join(m_values, by = "probe_id") %>%
+  dplyr::full_join(cn_values, by = "probe_id") %>%
+  dplyr::select(-probe_id) %>%
+  dplyr::filter(is.na(beta_values) | is.na(m_values) | is.na(cn_values)) %>%
+  dplyr::distinct()
 
 # check any differences in probe IDs among methyl matrices
-#if (length(rownames(probe_id_diffs)) > 0) {
-#  output_file <- "probes_not_in_all_methyl_matrices.tsv"
-#  gene_symbol_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
-#  gene_symbol_diffs
-#}
-#print(paste("Probes not matching all methylation matrices =", length(rownames(probe_id_diffs))))
+if (length(rownames(probe_id_diffs)) > 0) {
+  output_file <- "probes_not_in_all_methyl_matrices.tsv"
+  gene_symbol_diffs %>% readr::write_tsv(file.path(results_dir, output_file))
+  gene_symbol_diffs
+}
+print(paste("Probes not matching all methylation matrices =", length(rownames(probe_id_diffs))))
 ```
 
 #### Check DNA SNV, CNV and SV biospecimen IDs
 
 - CNVkit seg file (cnv-cnvkit.seg.gz)
-```{r}
+```{r CNVkit}
 # check that all biospecimen IDs are in the file
 biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-cnvkit.seg.gz")) %>%
   dplyr::pull(ID) %>%
@@ -668,7 +659,8 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-cnvkit.seg.gz")) %>%
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 sample_type == "Tumor",
-                cohort !=  "DGD") %>%
+                cohort !=  "DGD", 
+                sub_cohort != "HOPE_tumor_only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
@@ -689,7 +681,7 @@ print(paste("DNA biospecimen in cnv-cnvkit.seg.gz missing in histolgies = ", len
 ```
 
 - Control-FREEC file (cnv-controlfreec.tsv.gz)
-```{r}
+```{r controlfreec}
 # check that all  biospecimen IDs are in the file
 biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-controlfreec.tsv.gz")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID) %>%
@@ -697,7 +689,8 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-controlfreec.tsv.gz"
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 sample_type == "Tumor",
-                cohort !=  "DGD") %>%
+                cohort !=  "DGD", 
+                sub_cohort != "HOPE_tumor_only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
@@ -717,6 +710,36 @@ if (length(missing_hist_ids) > 0) {
 print(paste("DNA biospecimen in cnv-controlfreec.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 ```
 
+- Hope tumor only samples (hope-cnv-controlfreec-tumor-only.tsv.gz)
+```{r cnv tumor only}
+# check that all  biospecimen IDs are in the file
+biospecimen_ids <- readr::read_tsv(file.path(data_dir, "hope-cnv-controlfreec-tumor-only.tsv.gz")) %>%
+  dplyr::pull(Kids_First_Biospecimen_ID) %>%
+  unique()
+hist_ids <- hist_df %>%
+  dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
+                sample_type == "Tumor",
+                sub_cohort == "HOPE_tumor_only") %>%
+                #!is.na(pathology_diagnosis)) %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-hope-cnv-controlfreec-tumor-only.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("DNA biospecimen in histolgies missing in hope-cnv-controlfreec-tumor-only.tsv.gz = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "hope-cnv-controlfreec-tumor-only-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("DNA biospecimen in hope-cnv-controlfreec-tumor-only.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+```
+
+
 - GATK seg file (cnv-gatk.seg.gz)
 ```{r}
 # check that all biospecimen IDs are in the file
@@ -724,8 +747,9 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-gatk.seg.gz")) %>%
   dplyr::pull(BS_ID) %>%
   unique()
 hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy %in% c("WGS"),
-                sample_type == "Tumor") %>%
+  dplyr::filter(experimental_strategy == "WGS",
+                sample_type == "Tumor", 
+                sub_cohort != "HOPE_tumor_only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
@@ -766,9 +790,8 @@ biospecimen_ids <- c(snv_consensus_bs_id, tumor_only_bs_id)
 
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-                sample_type == "Tumor",
-                #!is.na(pathology_diagnosis),
-                cohort != "DGD") %>%
+                sample_type == "Tumor", 
+                is.na(RNA_library)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
@@ -942,8 +965,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "fusion-annoFuse.tsv.gz")
   unique()
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy == "RNA-Seq", 
-                sample_type == "Tumor",
-                !cohort %in% c("DGD", "TCGA", "GTEx")) %>%
+                !cohort %in% c("TCGA", "GTEx")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
 if (length(missing_hist_ids) > 0) {
@@ -984,8 +1006,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "fusion-starfusion.tsv.gz
   unique()
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy == "RNA-Seq", 
-                sample_type == "Tumor",
-                !cohort %in% c("DGD", "TCGA", "GTEx")) %>%
+                !cohort %in% c("TCGA", "GTEx")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
 if (length(missing_hist_ids) > 0) {
@@ -1004,7 +1025,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "fusion-dgd.tsv.gz")) %>%
   dplyr::pull(Sample) %>%
   unique()
 hist_ids <- hist_df %>%
-  dplyr::filter(experimental_strategy == "Targeted Sequencing",
+  dplyr::filter(experimental_strategy %in% c("RNA-Seq", "Targeted Sequencing"),
                 sample_type == "Tumor",
                 !is.na(RNA_library),
                 cohort == "DGD") %>%
