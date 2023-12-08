@@ -170,6 +170,13 @@ if (length(missing_ids) > 0) {
   missing_ids_df
 }
 print(paste("RNA-Seq biospecimen in histolgies missing in gtex_gene-expression-rsem-tpm-collapsed.rds = ", length(missing_ids)))
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gtex_gene-expression-rsem-tpm-collapsed.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("RNA-Seq biospecimen in histolgies missing in gtex_gene-expression-rsem-tpm-collapsed.rds = ", length(missing_ids)))
+
 
 ```
 
