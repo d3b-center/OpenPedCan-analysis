@@ -452,7 +452,7 @@ biospecimen_ids <- biospecimen_ids[grepl("PHOS", biospecimen_ids)]
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
 if (length(missing_ids) > 0) {
-  output_file <- "histologies-samples-missing-in-hope-protein-imputed-phospho-expression-abundance.tsv.gz"
+  output_file <- "histologies-samples-missing-in-hope-protein-imputed-phospho-expression-abundance.tsv"
   missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
   missing_ids_df
 }
@@ -467,7 +467,65 @@ print(paste("Phospho biospecimen in hope-protein-imputed-phospho-expression-abun
 
 ```
 
+### GBM proteomic samples
 
+```{r}
+
+# get GBM Phospho-Proteomics ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "GBM") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all GBM Phospho-Proteomics biospecimen IDs
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "gbm-protein-imputed-phospho-expression-abundance.tsv.gz")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("PHOS", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-phospho-expression-abundance.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-phospho-expression-abundance.tsv.gz = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "gbm-protein-imputed-phospho-expression-abundance-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in gbm-protein-imputed-phospho-expression-abundance.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+
+####GBM phospho samples 
+# get GBM WCP ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "GBM") %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
+# check all Hope Phospho-Proteomics biospecimen IDs
+biospecimen_ids <- readr::read_rds(file.path(data_dir,
+                                        "gbm-protein-imputed-prot-expression-abundance.tsv.gz")) %>%
+  colnames()
+biospecimen_ids <- biospecimen_ids[grepl("WCP", biospecimen_ids)]
+missing_ids <- setdiff(hist_ids, biospecimen_ids)
+missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
+if (length(missing_ids) > 0) {
+  output_file <- "histologies-samples-missing-in-gbm-protein-imputed-prot-expression-abundance.tsv"
+  missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
+  missing_ids_df
+}
+print(paste("Phospho biospecimen in histolgies missing in gbm-protein-imputed-prot-expression-abundance.tsv.gz = ", length(missing_ids)))
+if (length(missing_hist_ids) > 0) {
+  output_file <- "gbm-protein-imputed-prot-expression-abundance-samples-missing-in-histologies.tsv"
+  missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
+  missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
+  missing_hist_ids_df
+}
+print(paste("Phospho biospecimen in gbm-protein-imputed-prot-expression-abundance.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+
+
+```
 #### Check methylation matrices biospecimen IDs
 
 - Beta-values matrix (methyl-beta-values.rds)
