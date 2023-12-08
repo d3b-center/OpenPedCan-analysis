@@ -128,6 +128,11 @@ print(paste("RNA-Seq biospecimen in histolgies missing in gtex_gene-counts-rsem-
 
 - TPM matrix 
 ```{r OPC_rna_TPM}
+# get OpenPedCan rnaseq biospecimen ids
+hist_ids <- hist_df %>%
+  filter(experimental_strategy == "RNA-Seq", !cohort %in% c("TCGA","GTEx")) %>%
+  dplyr::pull(Kids_First_Biospecimen_ID)
+
 # check that all OpenPedCan RNA-Seq biospecimen IDs are in the tpm expression matrix
 biospecimen_ids <- readr::read_rds(file.path(data_dir,
                                         "gene-expression-rsem-tpm-collapsed.rds")) %>%
