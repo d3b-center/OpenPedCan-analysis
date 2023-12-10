@@ -172,6 +172,11 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
       expression_file %>% dplyr::select(Probe_ID, 
                                         !!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
+    } else if (grepl("gtex", filename)) {
+      expression_file <- readr::read_rds(filename)
+      biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
+      expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
+        readr::write_rds(output_file)
     } else {
       expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
         readr::write_rds(output_file)
@@ -188,15 +193,15 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     rmats_file %>% 
       dplyr::filter(sample_id %in% biospecimen_ids) %>%
       readr::write_tsv(output_file)
-  } else if (grepl("gtex", filename)) {
-    expression_file <- readr::read_rds(filename)
-    biospecimen_ids <- intersect(colnames(expression_file), biospecimen_ids)
-    expression_file %>% dplyr::select(!!!rlang::quos(any_of(biospecimen_ids))) %>% 
-        readr::write_rds(output_file)
-  } else if (grepl("protein-imputed", filename)) {
+  }  else if (grepl("prot-expression", filename)) {
     prot_file <- readr::read_tsv(filename)
     biospecimen_id <- intersect(colnames(expression_file), biospecimen_ids)
-    prot_file %>% select(colnames(prot_file)[!grepl("BS_", colnames(prot_file))], all_of(biospecimen_id)) %>% 
+    prot_file %>% select(colnames(prot_file)[!grepl("WCP", colnames(prot_file))], all_of(biospecimen_id)) %>% 
+      readr::write_tsv(output_file)
+  } else if (grepl("phospho-expression", filename)) {
+    prot_file <- readr::read_tsv(filename)
+    biospecimen_id <- intersect(colnames(expression_file), biospecimen_ids)
+    prot_file %>% select(colnames(prot_file)[!grepl("PHOS", colnames(prot_file))], all_of(biospecimen_id)) %>% 
       readr::write_tsv(output_file)
   } else {
     # error-handling

@@ -122,14 +122,14 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
       expression_file <- readr::read_rds(filename) %>%
         dplyr::select(-Probe_ID)
       biospecimen_ids <- unique(colnames(expression_file))
+    } else if (grepl("gtex-gene", filename)) {
+      ## for gtex RNA-seq
+      gtex <- readr::read_rds(filename)
+      biospecimen_ids <- unique(colnames(gtex))
     } else {
       expression_file <- readr::read_rds(filename)
       biospecimen_ids <- unique(colnames(expression_file))
     }
-  } else if (grepl("gtex-gene", filename)) {
-    ## for gtex RNA-seq
-    gtex <- readr::read_tsv(filename)
-    biospecimen_ids <- unique(colnames(gtex))
   } else if (grepl("independent", filename)) {
     # in a column 'Kids_First_Biospecimen_ID'
     independent_file <- readr::read_tsv(filename)
@@ -138,9 +138,12 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     # in a column 'sample_id'
     rmats_file <- arrow::read_tsv_arrow(filename)
     biospecimen_ids <- unique(rmats_file$sample_id)
-  } else if (grepl("protein-impute", filename)) {
+  } else if (grepl("prot-expression", filename)) {
     prot_file <- readr::read_tsv(filename)
-    biospecimen_ids <- colnames(prot_file)[(grepl("BS_", colnames(prot_file)))]
+    biospecimen_ids <- colnames(prot_file)[(grepl("WCP", colnames(prot_file)))]
+  } else if (grepl("phospho-expression", filename)) {
+    prot_file <- readr::read_tsv(filename)
+    biospecimen_ids <- colnames(prot_file)[(grepl("PHOS", colnames(prot_file)))]
   } else {
     # error-handling
     stop("File type unrecognized by 'get_biospecimen_ids'")
@@ -461,13 +464,6 @@ polya_matched <- c(
                           other_matched_participants, 0.6, num_matched_participants),
   select_participants_ids(histology_df, "poly-A", "TCGA",
                           tcga_matched_participants, 0.9, num_matched_participants),
-  # GTEx Famele:Male == 0.3:0.7, other cohorts ~0.5 (balanced)
-  histology_df %>% filter(cohort == "GTEx", reported_gender == "Female") %>%
-    pull(Kids_First_Participant_ID) %>% unique() %>%
-    sample(ceiling(0.3 * num_matched_participants)),
-  histology_df %>% filter(cohort == "GTEx", reported_gender == "Male") %>%
-    pull(Kids_First_Participant_ID) %>% unique() %>%
-    sample(ceiling(0.7 * num_matched_participants))
 )
 
 # stranded rnaseq matched participant IDs
@@ -496,6 +492,19 @@ message("\nSelecting other library types matched participant IDs...")
 other_matched <- 
   select_participants_ids(histology_df, "other", "DGD",
                           dgd_matched_participants, 1.0, num_matched_participants)
+
+## GTEx RNA
+
+gtex_id <- c(
+  gtex_brain_cortex, gtex_brain_cerebellum,
+  # GTEx Famele:Male == 0.3:0.7, other cohorts ~0.5 (balanced)
+  histology_df %>% filter(cohort == "GTEx", reported_gender == "Female") %>%
+    pull(Kids_First_Participant_ID) %>% unique() %>%
+    sample(ceiling(0.3 * num_matched_participants)),
+  histology_df %>% filter(cohort == "GTEx", reported_gender == "Male") %>%
+    pull(Kids_First_Participant_ID) %>% unique() %>%
+    sample(ceiling(0.7 * num_matched_participants))
+)
 
 #### Combining selected matched and nonmatched participant IDs for subsetting---
 
@@ -542,13 +551,19 @@ rds_files <-
   names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
 rds_files <- rds_files[-grep("tcga", rds_files)]
 rds_files <- rds_files[-grep("methyl", rds_files)]
+rds_files <- rds_files[-grep("gtex", rds_files)]
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq, 
                                              polya_mycn_amp, polya_mycn_nonamp, 
                                              stranded_dmg, polya_dmg, 
                                              stranded_hgg, polya_hgg, 
-                                             gtex_brain_cortex, gtex_brain_cerebellum,
+                                             #gtex_brain_cortex, gtex_brain_cerebellum,
                                              rnaseq_samples)))
+
+## add gtex RNA-seq
+rds_files <- names(biospecimen_ids_for_subset[grep("gtex", names(biospecimen_ids_for_subset))])
+biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+  purrr::modify_at(rds_files, ~ append(.x, c(gtex_id)))
 
 # for each methyl rds instance, add in biospecimen IDs of samples for patients 
 # we know have both methylation and rnaseq data
