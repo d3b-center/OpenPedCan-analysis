@@ -1,2 +1,2 @@
-Kids_First_Biospecimen_ID	Kids_First_Participant_ID	experimental_strategy	sample_type	RNA_library	cohort
-BS_C397D84Q	PT_E3WS3ZXV	RNA-Seq	Tumor	exome capture	DGD
+Kids_First_Biospecimen_ID	Kids_First_Participant_ID	experimental_strategy	sample_type	RNA_library	cohort	sub_cohort
+BS_C397D84Q	PT_E3WS3ZXV	RNA-Seq	Tumor	exome capture	DGD	DGD

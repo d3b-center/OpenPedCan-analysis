@@ -58,7 +58,8 @@ missing_biospecimen_table <- function(hist_df, missing_ids, output_file) {
                   experimental_strategy,
                   sample_type,
                   RNA_library, 
-                  cohort)
+                  cohort, 
+                  sub_cohort)
   readr::write_tsv(missing_ids_df, file.path(results_dir, output_file))
   return(missing_ids_df)
 }
@@ -476,7 +477,7 @@ print(paste("Phospho biospecimen in hope-protein-imputed-phospho-expression-abun
 
 # get GBM Phospho-Proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "GBM") %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "CPTAC GBM") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all GBM Phospho-Proteomics biospecimen IDs
@@ -503,7 +504,7 @@ print(paste("Phospho biospecimen in gbm-protein-imputed-phospho-expression-abund
 ####GBM phospho samples 
 # get GBM WCP ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "GBM") %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "CPTAC GBM") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 
@@ -688,10 +689,9 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-controlfreec.tsv.gz"
   unique()
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-                sample_type == "Tumor",
+                !is.na(pathology_diagnosis),
                 cohort !=  "DGD", 
                 sub_cohort != "HOPE_tumor_only") %>%
-                #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
@@ -774,7 +774,7 @@ print(paste("DNA biospecimen in cnv-gatk.seg.gz missing in histolgies = ", lengt
 # check that all biospecimen IDs are in the file
 snv_consensus_maf <- data.table::fread(file.path(data_dir,
                                                  "snv-consensus-plus-hotspots.maf.tsv.gz"),
-                                       data.table = FALSE)
+                                       select = "Tumor_Sample_Barcode")
 snv_consensus_bs_id <- snv_consensus_maf %>% 
   dplyr::pull(Tumor_Sample_Barcode) %>%
   unique()
@@ -785,12 +785,12 @@ snv_tumor_only <- data.table::fread(file.path(data_dir,
 tumor_only_bs_id <- snv_tumor_only %>% 
   pull(Tumor_Sample_Barcode) %>% 
   unique()
-
+rm(snv_tumor_only)
 biospecimen_ids <- c(snv_consensus_bs_id, tumor_only_bs_id)
 
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-                sample_type == "Tumor", 
+                !is.na(pathology_diagnosis), 
                 is.na(RNA_library)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
