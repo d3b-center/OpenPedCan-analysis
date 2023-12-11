@@ -7,7 +7,7 @@ on:
 jobs:
   run_analysis:
     name: Run Analysis - TP53
-    runs-on: large-runner-32
+    runs-on: ubuntu-latest-m
     strategy:
       fail-fast: false
       matrix:
