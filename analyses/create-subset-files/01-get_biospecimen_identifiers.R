@@ -136,7 +136,7 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
   } else if (grepl("splice-events-rmats", filename)) {
     # in a column 'sample_id'
-    rmats_file <- arrow::read_tsv_arrow(filename)
+    rmats_file <- data.table::fread(filename, select = "sample_id") %>% unique()
     biospecimen_ids <- unique(rmats_file$sample_id)
   } else if (grepl("prot-expression", filename)) {
     prot_file <- readr::read_tsv(filename)
