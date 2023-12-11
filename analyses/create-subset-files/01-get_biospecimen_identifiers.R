@@ -277,7 +277,7 @@ option_list <- list(
   make_option(
     c("-r", "--supported_string"),
     type = "character",
-    default = "snv|biospecimen|cnv|consensus_seg_with_status|fusion|sv-manta|.rds|independent|splice",
+    default = "snv|cnv|consensus_seg_with_status|fusion|sv-manta|.rds|independent|splice|protein",
     help = "string for pattern matching used to subset to only supported files"
   ),
   make_option(
@@ -393,7 +393,7 @@ rnaseq_samples <- c("TARGET-40-PANVJJ-01A-01R", "TARGET-40-PAKUZU-01A-01R",
 ### Histologies and participants IDs mapping -----------------------------------
 
 # load histologies file
-histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"), 
+histology_df <- read_tsv(file.path(data_directory, "histologies-base.tsv"), 
                          guess_max = 10000)
 
 # get the participant ID to biospecimen ID mapping
