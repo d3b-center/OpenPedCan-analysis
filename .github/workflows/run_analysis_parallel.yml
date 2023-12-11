@@ -1,4 +1,4 @@
-name: Analysis
+name: Analysis - Parallel
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   run_analysis:
-    name: Run Analysis
+    name: Run Analysis - Parallel
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -16,17 +16,6 @@ jobs:
           - name: Molecular Subtyping - MB
             entrypoint: molecular-subtyping-MB/run-molecular-subtyping-mb.sh
             openpbta_subset: 0
-
-          - name: Molecular Subtyping - CRANIO
-            entrypoint: molecular-subtyping-CRANIO/run-molecular-subtyping-cranio.sh
-            openpbta_subset: 0
-
-          - name: Molecular Subtyping - EPN
-            entrypoint: molecular-subtyping-EPN/run-molecular-subtyping-EPN.sh
-
-          - name: Molecular Subtyping - EMBRYONAL
-            entrypoint: molecular-subtyping-embryonal/run-embryonal-subtyping.sh
-            openpbta_testing: 1
 
           - name: Molecular Subtyping - CHORDOMA
             entrypoint: molecular-subtyping-chordoma/run-molecular-subtyping-chordoma.sh
@@ -40,10 +29,6 @@ jobs:
 
           - name: Molecular Subtyping - HGG
             entrypoint: molecular-subtyping-HGG/run-molecular-subtyping-HGG.sh
-
-          - name: Molecular Subtyping - LGG
-            entrypoint: molecular-subtyping-LGAT/run_subtyping.sh
-            openpbta_subset: 0
             
           - name: Molecular Subtyping - ATRT
             entrypoint: molecular-subtyping-ATRT/run-molecular-subtyping-ATRT.sh
@@ -70,29 +55,13 @@ jobs:
             entrypoint: independent-samples/run-independent-samples.sh
             run_for_subtyping: 1
 
-          - name: TP53/NF1 scores
-            entrypoint: tp53_nf1_score/run_classifier.sh
-            openpedcan_polya_strand: 0
-
-          - name: Fusion filtering
-            entrypoint: fusion_filtering/run_fusion_merged.sh
-
           - name: Fusion summary
             entrypoint: fusion-summary/run-new-analysis.sh
             openpbta_subset: 0
 
-          - name: Consensus CN Manta
-            entrypoint: copy_number_consensus_call_manta/run_consensus_call.sh
-
-          - name: Consensus CN
-            entrypoint: copy_number_consensus_call/run_consensus_call.sh
-
           - name: Consensus CN annotation
             entrypoint: focal-cn-file-preparation/run-prepare-cn.sh
             openpbta_testing: 1
-
-          - name: TMB calculation
-            entrypoint: tmb-calculation/run_tmb_calculation.sh
 
           #- name: Immune Deconvolution
           #  entrypoint: immune-deconv/run-immune-deconv.sh

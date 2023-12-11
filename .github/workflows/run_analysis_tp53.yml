@@ -1,0 +1,37 @@
+name: Analysis - TP53
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run_analysis:
+    name: Run Analysis - TP53
+    runs-on: large-runner-32
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: TP53/NF1 scores
+            entrypoint: tp53_nf1_score/run_classifier.sh
+            openpedcan_polya_strand: 0
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download Data
+        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
+        with:
+          entrypoint: ./download-data.sh
+        env:
+          OPENPEDCAN_URL: https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets
+          OPENPEDCAN_RELEASE: testing
+
+      - name: Run Analysis
+        uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
+        with:
+          entrypoint: analyses/${{ matrix.entrypoint }}
+        env:
+          OPENPBTA_SUBSET: ${{ matrix.openpbta_subset }}
+          OPENPBTA_TESTING: ${{ matrix.openpbta_testing }}
+          RUN_FOR_SUBTYPING: ${{ matrix.run_for_subtyping }}
+          OPENPEDCAN_POLYA_STRAND: ${{ matrix.openpedcan_polya_strand }}
