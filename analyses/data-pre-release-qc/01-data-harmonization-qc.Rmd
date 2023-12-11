@@ -661,7 +661,7 @@ hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 sample_type == "Tumor",
                 cohort !=  "DGD", 
-                sub_cohort != "HOPE_tumor_only") %>%
+                sub_cohort != "HOPE tumor only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
@@ -691,7 +691,7 @@ hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 !is.na(pathology_diagnosis),
                 cohort !=  "DGD", 
-                sub_cohort != "HOPE_tumor_only") %>%
+                sub_cohort != "HOPE tumor only") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
@@ -719,7 +719,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "hope-cnv-controlfreec-tu
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
                 sample_type == "Tumor",
-                sub_cohort == "HOPE_tumor_only") %>%
+                sub_cohort == "HOPE tumor only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
@@ -749,7 +749,7 @@ biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-gatk.seg.gz")) %>%
 hist_ids <- hist_df %>%
   dplyr::filter(experimental_strategy == "WGS",
                 sample_type == "Tumor", 
-                sub_cohort != "HOPE_tumor_only") %>%
+                sub_cohort != "HOPE tumor only") %>%
                 #!is.na(pathology_diagnosis)) %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
