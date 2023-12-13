@@ -7,7 +7,7 @@ printf "Start generating pre-release files...\n\n"
 
 # Set locations for s3 bucket that contains release files
 URL="s3://d3b-openaccess-us-east-1-prd-pbta/open-targets"
-RELEASE="v12"
+RELEASE="v13"
 
 # Set the working directory to the directory of this file
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -31,6 +31,10 @@ scratch_dir="$BASEDIR/scratch"
 release_dir="${scratch_dir}/analysis-files-pre-release"
 mkdir -p ${release_dir}
 
+# Run step to generate cnv consensus file
+echo "Run copy number consensus calls"
+cd ${analyses_dir}/copy_number_consensus_call_manta
+bash run_consensus_call.sh
 
 # Run step to generate cnv consensus file
 echo "Run copy number consensus calls"
