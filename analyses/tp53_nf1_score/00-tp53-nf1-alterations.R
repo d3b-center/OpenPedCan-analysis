@@ -3,6 +3,7 @@
 # Read in consensus snv calls to gather alterations in TP53 and NF1
 # to evaluate classifier
 # @params snvConsensus multi-caller consensus snv calls
+# @params snvTumorOnly Tumor only snv calls
 # @params cnvConsensus multi-caller consensus cnv calls
 # @params histologyFile histology file: histologies.tsv
 # @params outputFolder output folder for alteration file
@@ -30,6 +31,8 @@ source(file.path(root_dir,
 option_list <- list(
   make_option(c("-s", "--snvConsensus"),type="character",
               help="Consensus snv calls (.tsv) "),
+  make_option(c("-t", "--snvTumorOnly"),type="character",
+              help="SNV tumor only (.tsv) "),
   make_option(c("-c","--cnvConsensus"),type="character",
                help="consensus cnv calls (.tsv) "),
   make_option(c("-e","--expr"),type="character",
@@ -46,12 +49,12 @@ option_list <- list(
 
 opt <- parse_args(OptionParser(option_list=option_list,add_help_option = FALSE))
 snvConsensusFile <- opt$snvConsensus
-snvConsensusFile <- opt$snvConsensus
 expFile <- opt$expr
 histologyFile <- opt$histologyFile
 outputFolder <- opt$outputFolder
 gencodeBed <- opt$gencode
 cnvConsensusFile <- opt$cnvConsensus
+snvTumorOnlyFile <- opt$snvTumorOnly
 cohort_interest<-unlist(strsplit(opt$cohort,","))
 
 if(!dir.exists(outputFolder)){
@@ -70,6 +73,10 @@ consensus_snv <- data.table::fread(snvConsensusFile,
                                               "Tumor_Sample_Barcode",
                                               "Hugo_Symbol"),
                                    data.table = FALSE)
+
+tumor_only_snv <- data.table::fread(snvTumorOnlyFile)
+consensus_snv <- consensus_snv %>% 
+  bind_rows(tumor_only_snv)
 
 # read in consensus CNV file
 cnvConsensus <- data.table::fread( cnvConsensusFile) %>%
