@@ -115,6 +115,7 @@ cnv_domain_overlap[duplicated(cnv_domain_overlap$match_id) | duplicated(cnv_doma
 # or within gene locus of TP53
 ```{r SV overlaps}
 sv_overlap <- read_tsv(file.path(results_dir, "sv_overlap_tp53.tsv")) %>%
+  select(-match_id) %>% 
   left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "Kids_First_Biospecimen_ID") %>%
   select(match_id, Gene_name, SV_chrom, SV_start, SV_end, SV_length, SV_type) %>%
   unique() %>%

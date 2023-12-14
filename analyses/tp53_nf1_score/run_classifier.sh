@@ -21,7 +21,7 @@ set -o pipefail
 #     if value is 0, skips the POLYA_STRAND steps
 
 POLYA_STRAND=${OPENPEDCAN_POLYA_STRAND:-1}
-RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
+RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-1}
 
 
 # Temporary solution to for the python3 rpy2 package to work
@@ -43,7 +43,7 @@ scratch_dir="../../scratch"
 # cds gencode bed file  
 cds_file="${scratch_dir}/gencode.v39.primary_assembly.annotation.bed"
 snvconsensus_file="${data_dir}/snv-consensus-plus-hotspots.maf.tsv.gz"
-cnvconsensus_file="${data_dir}/consensus_wgs_plus_cnvkit_wxs.tsv.gz"
+cnvconsensus_file="${data_dir}/consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"
 collapsed_rna_file="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
 
 if [[ $RUN_FOR_SUBTYPING == "0" ]]

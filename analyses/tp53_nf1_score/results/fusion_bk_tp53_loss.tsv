@@ -1,15 +1,27 @@
 seqnames	start	end	width	strand	Kids_First_Biospecimen_ID	sample_id	tumor_descriptor	composition	FusionName	variable	value
-chr17	7685631	7685631	1	*	TARGET-40-PALHRL-01A-01R	PALHRL_01_Primary Tumor	Primary Tumor	Solid Tissue	HNRNPUL1--TP53	RightBreakpoint	17:7685631
+chr17	7685422	7685422	1	*	PPTC_SXJOYIFN	OS-49-SJ	Primary Tumor	Patient Derived Xenograft	MACF1--TP53	RightBreakpoint	17:7685422
 chr17	7687377	7687377	1	*	TARGET-40-PAUVUL-01A-01R	PAUVUL_01_Primary Tumor	Primary Tumor	Solid Tissue	PHLDB1--TP53	RightBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	BS_E4QK839R	7316-167	Initial CNS Tumor	Solid Tissue	TP53--ENSG00000230647	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	BS_NJ4WPQVK	7316-349	Initial CNS Tumor	Solid Tissue	TP53--PSMG4	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	BS_NJ4WPQVK	7316-349	Initial CNS Tumor	Solid Tissue	TP53--TUBB2A/TUBB2BP1	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_0SEBOIRG	NCH-OS-1	Primary Tumor	Patient Derived Xenograft	TP53--DTNBP1/ARPC3P5	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_9SVURK4M	OS-1	Primary Tumor	Patient Derived Xenograft	TP53--LINC01078/TBC1D4	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_9SVURK4M	OS-1	Primary Tumor	Patient Derived Xenograft	TP53--TBC1D4	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_GEGKMATD	OS-34-SJ	Primary Tumor	Patient Derived Xenograft	TP53--ENSG00000255557	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_GRHEJMRI	OS-29	Relapse	Patient Derived Xenograft	TP53--REC114	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_HKMXTQZY	OS-42	Relapse	Patient Derived Xenograft	TP53--ENSG00000286743	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_IETT37PV	OS-48	Unknown	Patient Derived Xenograft	TP53--RNF111	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_IVBLKXJ3	OS-9	Primary Tumor	Patient Derived Xenograft	TP53--REC114	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_LB3LVVGQ	OS-34	Primary Tumor	Patient Derived Xenograft	TP53--ENSG00000255557	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_SXJOYIFN	OS-49-SJ	Primary Tumor	Patient Derived Xenograft	TP53--HPCA	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_UCETYUGB	OS-32	Primary Tumor	Patient Derived Xenograft	TP53--TNR	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_VGSIMDQZ	OS-31	Primary Tumor	Patient Derived Xenograft	TP53--CLIC5	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_Z6KSXVO5	OS-47-SJ	Primary Tumor	Patient Derived Xenograft	TP53--NAA38	LeftBreakpoint	17:7687377
+chr17	7687377	7687377	1	*	PPTC_ZFGLUN4R	ETP-1	Primary Tumor	Patient Derived Xenograft	TP53--SNX31	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-0A4I42-01A-01R	0A4I42_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--FRS2	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-0A4I42-01A-01R	0A4I42_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--MB	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-0A4I4M-01A-01R	0A4I4M_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--CHRAC1	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-0A4I8U-01A-01R	0A4I8U_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ENSG00000289511	LeftBreakpoint	17:7687377
-chr17	7687377	7687377	1	*	TARGET-40-PALHRL-01A-01R	PALHRL_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--TGFB1	LeftBreakpoint	17:7687377
-chr17	7687377	7687377	1	*	TARGET-40-PALKGN-01A-01R	PALKGN_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--SNX29	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-PALWWX-01A-01R	PALWWX_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--NEK9	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-PALWWX-01A-01R	PALWWX_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ZC2HC1C	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-PAMTCM-01A-01R	PAMTCM_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ENSG00000266311	LeftBreakpoint	17:7687377
@@ -44,9 +56,9 @@ chr17	7687377	7687377	1	*	TARGET-40-PAUVUL-01A-01R	PAUVUL_01_Primary Tumor	Prima
 chr17	7687377	7687377	1	*	TARGET-40-PAUYTT-01A-01R	PAUYTT_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--SYN3	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-PAVALD-01A-01R	PAVALD_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ENSG00000259503/LINC02205	LeftBreakpoint	17:7687377
 chr17	7687377	7687377	1	*	TARGET-40-PAVALD-01A-01R	PAVALD_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--LINC02205/ENSG00000287741	LeftBreakpoint	17:7687377
-chr17	7687377	7687377	1	*	TARGET-40-PAVDTY-01A-01R	PAVDTY_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ZNF76	LeftBreakpoint	17:7687377
 chr17	7668799	7668799	1	*	BS_8H59X81P	UM-Chor5D-CL	NA	Derived Cell Line	RN7SL4P--TP53	RightBreakpoint	17:7668799
 chr17	7668799	7668799	1	*	BS_XEYE0J99	UM-Chor5D-CL	NA	Derived Cell Line	RN7SL4P--TP53	RightBreakpoint	17:7668799
+chr17	7676622	7676622	1	*	PPTC_SXJOYIFN	OS-49-SJ	Primary Tumor	Patient Derived Xenograft	MACF1--TP53	RightBreakpoint	17:7676622
 chr17	7676622	7676622	1	*	TARGET-40-0A4I42-01A-01R	0A4I42_01_Primary Tumor	Primary Tumor	Solid Tissue	NSDHL--TP53	RightBreakpoint	17:7676622
 chr17	7676622	7676622	1	*	TARGET-40-0A4I4M-01A-01R	0A4I4M_01_Primary Tumor	Primary Tumor	Solid Tissue	EFR3A--TP53	RightBreakpoint	17:7676622
 chr17	7677811	7677811	1	*	TARGET-40-PAMHYN-01A-01R	PAMHYN_01_Primary Tumor	Primary Tumor	Solid Tissue	MIR3925/RNU1-88P--TP53	RightBreakpoint	17:7677811
@@ -56,11 +68,9 @@ chr17	7676622	7676622	1	*	TARGET-40-PATJVI-01A-01R	PATJVI_01_Primary Tumor	Prima
 chr17	7676622	7676622	1	*	TARGET-40-PATKSS-01A-01R	PATKSS_01_Primary Tumor	Primary Tumor	Solid Tissue	GAD1--TP53	RightBreakpoint	17:7676622
 chr17	7676622	7676622	1	*	TARGET-40-PAUBIT-01A-01R	PAUBIT_01_Primary Tumor	Primary Tumor	Solid Tissue	H2BC21--TP53	RightBreakpoint	17:7676622
 chr17	7684446	7684446	1	*	TARGET-40-PAUUML-01A-01R	PAUUML_01_Primary Tumor	Primary Tumor	Solid Tissue	PSMA3-AS1--TP53	RightBreakpoint	17:7684446
-chr17	7676622	7676622	1	*	TARGET-40-PAVDTY-01A-01R	PAVDTY_01_Primary Tumor	Primary Tumor	Solid Tissue	PPP5C--TP53	RightBreakpoint	17:7676622
 chr17	7673701	7673701	1	*	BS_A8XW5S0W	C4111398-Tumor	Initial CNS Tumor	Solid Tissue	TP53--NDEL1	LeftBreakpoint	17:7673701
 chr17	7666215	7666215	1	*	TARGET-30-PAIVHE-01A-01R	PAIVHE_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--PHF11	LeftBreakpoint	17:7666215
 chr17	7674573	7674573	1	*	TARGET-40-0A4I4O-01A-01R	0A4I4O_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--DEK	LeftBreakpoint	17:7674573
 chr17	7685172	7685172	1	*	TARGET-40-0A4I8U-01A-01R	0A4I8U_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ENSG00000289511/RPL23AP4	LeftBreakpoint	17:7685172
-chr17	7675825	7675825	1	*	TARGET-40-PASYUK-01A-01R	PASYUK_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ENSG00000286617/LINC00670	LeftBreakpoint	17:7675825
 chr17	7684059	7684059	1	*	TARGET-40-PATAWV-01A-01R	PATAWV_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--TRPS1	LeftBreakpoint	17:7684059
 chr17	7670700	7670700	1	*	TARGET-40-PATEEM-01A-01R	PATEEM_01_Primary Tumor	Primary Tumor	Solid Tissue	TP53--ROBO1/HMGB1P38	LeftBreakpoint	17:7670700
