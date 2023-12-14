@@ -1,6 +1,6 @@
 ---
 title: "Tp53 SNV hotspots"
-author: "K S Gaonkar (D3B)"
+author: "K S Gaonkar, Jo Lynne Rokita"
 output: html_notebook
 params:
   base_run:
@@ -13,7 +13,7 @@ In this notebook we will add TP53 alteration status as discussed in [#837](https
 
 **TP53 altered - loss**, if :
 
- - A sample contains a TP53 hotspot SNV mutation. (Cancer hotspot database and downloadable file available). Please also crosscheck that all mutations from this table are included.
+ - A sample contains a TP53 hotspot SNV mutation. (Cancer hotspot database and downloadable file available). Please also crosscheck that all mutations from this table are included. Source: https://cavatica.sbgenomics.com/u/kfdrc-harmonization/kf-reference-pipeline/files/#q?search=hot
  - A sample contains two TP53 alterations, suggesting (but not confirming) that both alleles are affected (SNV+SNV, (CNV or SV) + SNV).
  - A sample contains one alteration (SNV or (CNV or SV)) + has cancer_predispositions == "Li-Fraumeni syndrome", suggesting there is a germline variant in addition to the somatic variant we observe.
  - A sample does not have a TP53 alterations, but has cancer_predispositions == "Li-Fraumeni syndrome" and TP53 classifier score for matched RNA-Seq > 0.5 (or higher cutoff we decide upon later).
@@ -25,7 +25,7 @@ In this notebook we will add TP53 alteration status as discussed in [#837](https
 - A sample contains one of the two TP53 activating mutations p.R273C and p.R248W. [@doi:10.1038/ng0593-42]
 
 ## Setup
-```{r}
+```{r read in histology, make match id}
 library("ggpubr")
 library("ggthemes")
 library("tidyverse")
@@ -40,14 +40,6 @@ input_dir <- file.path(root_dir,
                          "analyses",
                          "tp53_nf1_score",
                          "input")
-# cell composition
-cell_line_composition <- read_tsv(file.path("..",
-                                            "molecular-subtyping-HGG",
-                                            "input",
-                                            "cell-line-composition.tsv"),
-                                  col_types = 
-                                    readr::cols( aliquot_id  = readr::col_character())) 
-
 # histology
 if ( params$base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"histologies.tsv"), stringsAsFactors = FALSE)
@@ -55,26 +47,19 @@ if ( params$base_run ==0 ){
   clinical<-read.delim(file.path(data_dir,"histologies-base.tsv"), stringsAsFactors = FALSE)  
 }
 
-# recording of "BS_ETC8R0TD" GMKF NBL sample; needs to be remove once updated in v12
-#clinical$RNA_library[clinical$Kids_First_Biospecimen_ID == "BS_ETC8R0TD"] <- "stranded"
-
 histology <- clinical %>%
-  dplyr::select("Kids_First_Biospecimen_ID",
-        "sample_id",
-        "Kids_First_Participant_ID",
-        "cancer_predispositions",
-        "sample_type",
-        "experimental_strategy",
-        "composition",
-        "cohort") %>%
-   # merge cell line composition
-  left_join(cell_line_composition)
- 
+  # remove TCGA, GTEX from altered file since we don't have DNA
+  filter(!is.na(pathology_diagnosis),
+         !cohort %in% c("TCGA", "GTEx")) %>%
+  mutate(match_id = paste(Kids_First_Participant_ID, sample_id, tumor_descriptor, composition, cell_line_composition, cell_line_passage, sep = "_")) %>%
+  dplyr::select(Kids_First_Biospecimen_ID, match_id, cancer_predispositions,
+  experimental_strategy) %>%
+    unique()
 
 # Cancer database
-hotspot_database_2017_tp53_snv <- readxl::read_xls(file.path(input_dir,"hotspots_v2.xls"),sheet = 1) %>%
+hotspot_database_2017_tp53_snv <- read_tsv(file.path(input_dir,"protein_snv_cancer_hotspots_v2.ENS105_liftover.tsv")) %>%
   filter(Hugo_Symbol == "TP53")
-hotspot_database_2017_tp53_indel <- readxl::read_xls(file.path(input_dir,"hotspots_v2.xls"),sheet = 2) %>%
+hotspot_database_2017_tp53_indel <- read_tsv(file.path(input_dir,"protein_indel_cancer_hotspots_v2.ENS105_liftover.tsv")) %>%
   filter(Hugo_Symbol == "TP53")
 
 # p53, p63 and p73 functional sites
@@ -90,30 +75,74 @@ if (!dir.exists(results_dir)) {
 }
 
 # Read in combined scores from tp53-nf1-classifier 
-classifier_score <- read_tsv(file.path(results_dir, "combined_scores.tsv")) %>%
-  dplyr::rename(Kids_First_Biospecimen_ID_RNA = sample_id) %>%
-  filter(Kids_First_Biospecimen_ID_RNA %in% histology$Kids_First_Biospecimen_ID) %>%
-  left_join(histology, by=c("Kids_First_Biospecimen_ID_RNA"="Kids_First_Biospecimen_ID"))
+classifier_score_initial <- read_tsv(file.path(results_dir, "combined_scores.tsv")) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID = sample_id) %>%
+  left_join(clinical[,c("Kids_First_Biospecimen_ID", "RNA_library")], by = "Kids_First_Biospecimen_ID") %>%
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")]) %>%
+  select(match_id, tp53_score, RNA_library) %>%
+  unique() %>%
+  # take mean score for cell lines (chordoma) with no passage info to distinguish
+  group_by(match_id, RNA_library) %>%
+  summarise(tp53_score = mean(tp53_score))
+
+# print out the remaining duplicates here - these are samples with two RNA libraries sequenced and they generally have similar scores, even though run separately, so that is a nice validation. Let's take an average of these as well. This will get us 1 score per match ID.
+nrow(classifier_score_initial)-length(unique(classifier_score_initial$match_id))
+
+classifier_score_initial[duplicated(classifier_score_initial$match_id) | duplicated(classifier_score_initial$match_id, fromLast = TRUE), ]
+
+classifier_score <- classifier_score_initial %>%
+  group_by(match_id) %>%
+  summarize(tp53_score = mean(tp53_score))
+
+```
 
 # Copy number per sample 
 # overlapping functional domain
-cnv_domain_overlap <- read_tsv(
-  file.path(
-    results_dir,
-    "loss_overlap_domains_tp53.tsv"))
+```{r CNV overlaps}
+cnv_domain_overlap <- read_tsv(file.path(results_dir, "loss_overlap_domains_tp53.tsv")) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID=biospecimen_id) %>%
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "Kids_First_Biospecimen_ID") %>%
+  select(match_id, copy_number, ploidy, domain) %>%
+  unique()
+
+# check duplicates - These are coming from two deceased samples which come from different brain regions we do not yet have annotated, so best to not combine.
+nrow(cnv_domain_overlap)-length(unique(cnv_domain_overlap$match_id))
+
+cnv_domain_overlap[duplicated(cnv_domain_overlap$match_id) | duplicated(cnv_domain_overlap$match_id, fromLast = TRUE), ]
+```
 
 # Structural variant overlapping 
 # or within gene locus of TP53
-sv_overlap <- read_tsv(
-  file.path(
-    results_dir,
-    "sv_overlap_tp53.tsv"))
+```{r SV overlaps}
+sv_overlap <- read_tsv(file.path(results_dir, "sv_overlap_tp53.tsv")) %>%
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "Kids_First_Biospecimen_ID") %>%
+  select(match_id, Gene_name, SV_chrom, SV_start, SV_end, SV_length, SV_type) %>%
+  unique() %>%
+  # collapse SVs per match id
+  group_by(match_id) %>%
+  summarize(SVs = str_c(paste0(SV_type, "=", SV_start, "-", SV_end), collapse = ";"),
+            SV_type = str_c(unique(SV_type), collapse = ";")) %>%
+  mutate(SV_counts = stringr::str_count(SVs, "="))
+
+# check for duplicate match ids  
+nrow(sv_overlap)-length(unique(sv_overlap$match_id))
+
+sv_overlap[duplicated(sv_overlap$match_id) | duplicated(sv_overlap$match_id, fromLast = TRUE), ]
+```
 
 # Structural variant as a fusion in exon1/intron1
-fusion_overlap <- read_tsv(
-  file.path(
-    results_dir,
-    "fusion_bk_tp53_loss.tsv"))
+```{r fusions}
+fusion_overlap <- read_tsv(file.path(results_dir,"fusion_bk_tp53_loss.tsv")) %>%
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "Kids_First_Biospecimen_ID") %>%
+  select(match_id, FusionName) %>%
+  group_by(match_id) %>%
+  summarize(Fusions = str_c(unique(FusionName), collapse = ";")) %>%
+  mutate(Fusion_counts = stringr::str_count(Fusions, "--"))
+
+# check for duplicate match ids  
+nrow(fusion_overlap)-length(unique(fusion_overlap$match_id))
+
+fusion_overlap[duplicated(fusion_overlap$match_id) | duplicated(fusion_overlap$match_id, fromLast = TRUE), ]
 
 ```
 
@@ -145,7 +174,8 @@ consensus_tp53_snv_indel <- data.table::fread(
                                               "Hugo_Symbol",
                                               "HGVSp_Short"),
                                    data.table = FALSE) %>%
-  filter(Hugo_Symbol == "TP53") %>%
+  dplyr::rename(Kids_First_Biospecimen_ID = Tumor_Sample_Barcode) %>%
+  filter(Hugo_Symbol == "TP53") %>% 
   filter(!(Variant_Classification %in% c("Silent", "Intron",
                                          # remove other non-amino acid SNVs
                                          "3'Flank" ,"5'Flank",
@@ -158,8 +188,26 @@ hotspots : overlaps AA position which are statistically significant SNV/Indels
 activating : overlaps AA position which are found to act as gain-of-function according to literature
 
 ```{r}
+# Gene location and domain overlap file 
+bioMartDataPfamTp53 <- 
+  readRDS(system.file("extdata", "pfamDataBioMart.RDS", package = "annoFuseData")) %>%
+  dplyr::filter(hgnc_symbol=="TP53")
 
-consensus_tp53_snv_indel <- consensus_tp53_snv_indel %>%
+PF08563 <- bioMartDataPfamTp53 %>%
+  filter(pfam_id == "PF08563") %>%
+  select(domain_start, domain_end)
+
+PF00870 <- bioMartDataPfamTp53 %>%
+  filter(pfam_id == "PF00870") %>%
+  select(domain_start, domain_end)
+
+PF07710 <- bioMartDataPfamTp53 %>%
+  filter(pfam_id == "PF07710") %>%
+  select(domain_start, domain_end)
+
+consensus_tp53_snv_indel_match <- consensus_tp53_snv_indel %>%
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "Kids_First_Biospecimen_ID") %>%
+  select(-Kids_First_Biospecimen_ID) %>%
   mutate(
     hotspot = case_when(
       # strip REF and Variant AA to get Amino_Acid_Position in consensus maf
@@ -173,53 +221,39 @@ consensus_tp53_snv_indel <- consensus_tp53_snv_indel %>%
          # if overlaps the activating  Amino_Acid_Position 
          c("273","248"))  ~ 1,
       TRUE ~ 0
-    )
-  )
+    ),
+    overlap_domain = case_when(Variant_Classification %in% c("Frame_Shift_Del", "In_Frame_Del", "Nonsense_Mutation") & PF08563$domain_start >= Start_Position & Start_Position <= PF08563$domain_end ~ 1,
+                               Variant_Classification %in% c("Frame_Shift_Del", "In_Frame_Del", "Nonsense_Mutation") & PF00870$domain_start >= Start_Position & Start_Position <= PF00870$domain_end ~ 1,
+                               Variant_Classification %in% c("Frame_Shift_Del", "In_Frame_Del", "Nonsense_Mutation") & PF07710$domain_start >= Start_Position & Start_Position <= PF07710$domain_end ~ 1,
+                                       TRUE ~ 0)
+  ) 
 
 ```
 
 ## Gather SNV,CNV, classifier and cancer_predisposition values
 
-We will gather values per sample_id since DNA and RNA samples can be only matched by `sample_id`
+We will gather values per sample_id, composition, and tumor descriptor to match DNA and RNA
 
 
 ```{r}
 
 tp53_alterations <- histology %>%
-  filter(experimental_strategy != "RNA-Seq") %>%
-  # filter for Tumors
-  filter(sample_type=="Tumor") %>%
-  # join consensus calls overlapping hotspots
-  left_join(consensus_tp53_snv_indel, 
-            by=c("Kids_First_Biospecimen_ID"="Tumor_Sample_Barcode")) %>%
-  # join filtered cnv losses
-  left_join(cnv_domain_overlap,by=c("Kids_First_Biospecimen_ID"="biospecimen_id",
-                                    "sample_id", "Kids_First_Participant_ID", 
-                                    "composition")) %>%
-  # join SV 
-  left_join(sv_overlap,by=c("Kids_First_Biospecimen_ID"="Kids.First.Biospecimen.ID.Tumor",
-                            "sample_id")) %>%
-  dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID) %>%
-  # join fusion
-  left_join(fusion_overlap,by="sample_id") 
-
-tp53_alterations_score <- tp53_alterations %>%
-  # add classifier score
-  full_join(classifier_score,by=c("sample_id",
-                                  "composition",
-                                  "cell_line_composition",
-                                  "cancer_predispositions",
-                                  "sample_type",
-                                  "Kids_First_Participant_ID",
-                                  "cohort")) %>%
-  # select useful columns
-  dplyr::select(sample_id,Kids_First_Biospecimen_ID_RNA,Kids_First_Biospecimen_ID_DNA,
-         tp53_score,cancer_predispositions,HGVSp_Short,copy_number,SV_type,FusionName,hotspot,activating) %>%
-  arrange(sample_id) %>%
+  select(-Kids_First_Biospecimen_ID) %>%
   unique() %>%
-  replace_na(list(hotspot = 0, activating = 0))
-
-tp53_alterations_score 
+  # join consensus calls overlapping hotspots
+  left_join(consensus_tp53_snv_indel_match) %>%
+  # join filtered cnv losses
+  left_join(cnv_domain_overlap) %>%
+  # join SV 
+  left_join(sv_overlap) %>%
+  # join fusion
+  left_join(fusion_overlap) %>%
+  left_join(classifier_score) %>%
+  # select useful columns
+  dplyr::select(match_id, tp53_score, cancer_predispositions, HGVSp_Short, names(cnv_domain_overlap), names(sv_overlap), names(fusion_overlap), hotspot, activating, overlap_domain) %>%
+  arrange(match_id) %>%
+  unique() %>%
+  replace_na(list(hotspot = 0, activating = 0, overlap_domain = 0))
 
 ```
 
@@ -227,29 +261,30 @@ Convert the above to wide format
 
 ```{r}
 
-tp53_alterations_score_wide <- tp53_alterations_score %>%
+tp53_alterations_score_wide <- tp53_alterations %>%
+  mutate(cn_less_ploidy = ifelse(copy_number < ploidy, "yes", "no")) %>%
   # group 
-  group_by(sample_id,
-           Kids_First_Biospecimen_ID_DNA,
-           Kids_First_Biospecimen_ID_RNA,
+  group_by(match_id,
            cancer_predispositions,
-           tp53_score) %>%
+           tp53_score,
+           SV_type,
+           SV_counts,
+           Fusions,
+           Fusion_counts,
+           cn_less_ploidy) %>%
   # 
-  # sample_id as rows add SNV counts,CNV loss counts 
+  # match_id as rows add SNV counts,CNV loss counts 
   # and hotspot/activating mutation annotation  
   summarise(
     # summarize length of SNV and CNV alterations 
    SNV_indel_counts= length(unique(HGVSp_Short[!is.na(HGVSp_Short)])), 
     CNV_loss_counts = length(unique(copy_number[!is.na(copy_number)])),
-    SV_counts = length(unique(SV_type[!is.na(SV_type)])),
-    Fusion_counts = length(unique(FusionName[!is.na(FusionName)])),
     HGVSp_Short = toString(unique(HGVSp_Short)),
     CNV_loss_evidence = toString(unique(copy_number)),
-    SV_type = toString(unique(SV_type)),
-    Fusion_evidence = toString(unique(FusionName)),
     # summarize unique hotspot values per sample_id
     hotspot = max(unique(hotspot[!is.na(hotspot) ])),
-    activating = max(unique(activating[!is.na(activating)]))) 
+    activating = max(unique(activating[!is.na(activating)])),
+    overlap_domain = max(unique(overlap_domain[!is.na(overlap_domain) ]))) 
 
 tp53_alterations_score_wide
 
@@ -277,6 +312,8 @@ tp53_alterations_score_wide <- tp53_alterations_score_wide %>%
               # check if more than 1 SNV is present
               # suggesting both alleles are mutated
               SNV_indel_counts > 1 |
+              # framaeshift del or nonsense SNV overlaps a functional domain
+              (overlap_domain >=1) |
               # check if SNV mutant and has
               # Li-Fraumeni syndrome suggesting
               # germline TP53 mutant as cancer predisposition 
@@ -299,10 +336,17 @@ tp53_alterations_score_wide <- tp53_alterations_score_wide %>%
           ) ~ "loss",
         # when activating == 1
         activating == 1 ~ "activated",
-        # if no evidence supports TP53 inativation or activation 
+        # if no evidence supports TP53 inactivation or activation 
         TRUE ~ "Other"
       )
   )
+
+# check for duplicate match ids  
+nrow(tp53_alterations_score_wide)-length(unique(tp53_alterations_score_wide$match_id))
+
+tp53_alterations_score_wide[duplicated(tp53_alterations_score_wide$match_id) | duplicated(tp53_alterations_score_wide$match_id, fromLast = TRUE), ]
+
+
 
 ```
 
@@ -324,83 +368,6 @@ TP53 mutants with gain-of-function (activating) mutants promote tumorigenesis ac
 "Other" annotated samples either don't have any high-confidence loss/gain TP53 SNVs nor CNV losses OR DNA sample is not available.
 
 
-### Expression profile for activating vs loss TP53 status
-```{r}
-
-expr_combined <- readRDS(file.path(data_dir,"gene-counts-rsem-expected_count-collapsed.rds"))
-
-```
-
-#### Expression profile for activating vs loss TP53 status
-
-```{r, out.width="50%"}
-# iterate through all possible RNA library type 
-# first filter to 
-clinical_filtered <- clinical %>% 
-  filter(Kids_First_Biospecimen_ID %in% names(expr_combined))
-
-# generate list of all RNA library type
-rna_library_list <- clinical_filtered %>% 
-  filter(Kids_First_Biospecimen_ID %in% names(expr_combined)) %>%
-  pull(RNA_library) %>% 
-  unique()
-
-for(i in 1:length(rna_library_list)) {
-  
-  library_each <- rna_library_list[[i]]
-  # pull BS IDs for that RNA library type
-  library_samples <- clinical_filtered %>% 
-    filter(RNA_library == library_each) %>%
-    pull(Kids_First_Biospecimen_ID) %>% 
-    unique()
-  # subset expression matrix using that
-  expr_each <- expr_combined %>% 
-    dplyr::select(library_samples)
-
-  # subset to TP53
-  subset_expr_each <- t(expr_each)[,"TP53"] %>% 
-    as.data.frame() 
-  colnames(subset_expr_each) <- "TP53"
-  
-  # combine the TP53 alteration information
-  subset_expr_combined <- subset_expr_each %>%
-    tibble::rownames_to_column() %>% 
-    left_join(tp53_alterations_score_wide,by=c("rowname"="Kids_First_Biospecimen_ID_RNA")) %>%
-    filter(tp53_altered %in% c("activated","loss"))
-  
-  # plot distribution of TP53 gene expression 
-  plot<- ggplot(subset_expr_combined, aes(x = factor(tp53_altered), y = TP53)) +
-    geom_violin()+
-    geom_jitter(alpha = 0.5, width = 0.2) +
-    stat_compare_means() +
-    theme_bw() +
-    ggtitle("Distribution of TP53 expression across tp53 altered status") +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-    xlab(paste0("tp53 altered status wth RNA library ", library_each))
-
-  print(plot)
-}
-
-
-```
-
-
-### Check if other cancer predisposition have high TP53 inactivation scores  
-
-```{r ,out.width="50%"}
-
-ggplot(tp53_alterations_score_wide, aes(x = factor(tp53_altered), y = tp53_score)) +
-  geom_violin()+
-  geom_jitter(alpha = 0.5, width = 0.2) +
-  theme_bw() +
-  ggtitle("Distribution of scores across tp53 altered status") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-  xlab("tp53 altered status") +
-  facet_wrap(.~cancer_predispositions)
-
-```
-Some NF-1 and/or Other inherited conditions NOS have high scoring TP53 mutants as well. 
-
 Interesting 2 bs ids annotated with Li-Fraumeni synfrome pre-disposition have very low tp53 classifier scores.
 
 ```{r}
@@ -414,11 +381,15 @@ tp53_alterations_score_wide %>%
 
 ## Save file 
 
-Adding DNA and RNA biospecimen ids to `tp53_alterations_score_wide` and saving
+Adding biospecimen ids to `tp53_alterations_score_wide` and saving
 
 ```{r}
 
 tp53_alterations_score_wide %>% 
+  left_join(histology[,c("Kids_First_Biospecimen_ID", "match_id")], by = "match_id") %>%
+  left_join(clinical[,c("Kids_First_Biospecimen_ID", "sample_id")], by = "Kids_First_Biospecimen_ID") %>%
+  select("Kids_First_Biospecimen_ID", "match_id", "sample_id", names(tp53_alterations_score_wide)) %>%
+  arrange(match_id) %>%
   write_tsv(file.path(results_dir,"tp53_altered_status.tsv"))
 
 ```

@@ -1,4 +1,5 @@
 ## Annotate CNV table with mutation frequencies
+This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 Adapted from [snv-frequencies](https://github.com/logstar/OpenPedCan-analysis/tree/snv-freq/analyses/snv-frequencies)
 **Module author:** Yuanchao Zhang ([@logstar](https://github.com/logstar))

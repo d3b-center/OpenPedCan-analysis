@@ -1,6 +1,6 @@
 ---
 title: "Find CNV losses that overlap with TP53 domains"
-author: "K S Gaonkar (D3B)"
+author: "K S Gaonkar, Jo Lynne Rokita"
 output: html_notebook
 params:
   base_run:

@@ -1,4 +1,5 @@
 # Comparative RNA-Seq analysis
+This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
 
 **Contents**
 

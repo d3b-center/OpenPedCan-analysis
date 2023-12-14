@@ -1,0 +1,108 @@
+---
+title: "01-molecular-subtype-pineoblastoma"
+author: "Zhuangzhuang Geng"
+date: "2023-12-06"
+output: html_document
+---
+
+## load library
+```{r}
+library(tidyverse)
+
+```
+
+## set directories
+```{r}
+
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data_dir <- file.path(root_dir, "data")
+analysis_dir <- file.path(root_dir, "analyses", "molecular-subtyping-PB")
+result_dir <- file.path(analysis_dir, "results")
+if(!dir.exists(result_dir)){
+  dir.create(result_dir)
+}
+
+```
+
+## read files
+```{r}
+
+histo <- readr::read_tsv(file.path(data_dir, "histologies-base.tsv"))
+
+## json file
+path_dx_list_pb <- jsonlite::fromJSON(
+  file.path(analysis_dir, "PB-subset",  
+            "PB_subtyping_path_dx_strings.json")
+)
+```
+
+## select PB samples from histologies
+```{r}
+pb_meta <- histo %>% 
+  filter(pathology_diagnosis %in% path_dx_list_pb$exact_path_dx | 
+           pathology_free_text_diagnosis %in% path_dx_list_pb$path_free_text_exact) %>% 
+  mutate(molecular_subtype_methyl = case_when(
+    dkfz_v12_methylation_subclass == "PB_FOXR2" ~ "PB, MYC/FOXR2", 
+    dkfz_v12_methylation_subclass == "PIN_RB" ~ "PB, RB1",
+    dkfz_v12_methylation_subclass == "PB_GRP1A" ~ "PB, Group 1A",
+    dkfz_v12_methylation_subclass == "PB_GRP1B" ~ "PB, Group 1B",
+    dkfz_v12_methylation_subclass == "PB_GRP2" ~ "PB, Group 2")) 
+
+```
+
+## there are four subtypes: 
+### pineoblastoma, miRNA processing-altered 1 (PB, Group 1)
+### pineoblastoma, miRNA processing-altered 2 (PB, Group 2)
+### pineoblastoma, RB1-altered (PB, RB1)
+### pineoblastoma, MYC/FOXR2-activated (PB, MYC/FOXR2)
+
+## for now, subtyping is based on the methylation classification 
+## PB_FOXR2: pineoblastoma, MYC/FOXR2-activated (PB, MYC/FOXR2)
+## PB_GRP1A, PB_GRP1B: pineoblastoma, miRNA processing-altered 1 (PB, Group 1)
+## PB_GRP2: pineoblastoma, miRNA processing-altered 2 (PB, Group 2)
+## PIN_RB: pineoblastoma, RB1-altered (PB, RB1)
+
+```{r}
+
+pb_methy_with_subtype <- pb_meta %>% 
+  filter(experimental_strategy == "Methylation" & dkfz_v12_methylation_subclass_score >= 0.8) %>% 
+  mutate(molecular_subtype = case_when(molecular_subtype_methyl == "PB, MYC/FOXR2" ~ "PB, MYC/FOXR2", 
+                                       molecular_subtype_methyl == "PB, RB1" ~ "PB, RB1",
+                                       molecular_subtype_methyl %in% c("PB, Group 1A", "PB, Group 1B") ~ "PB, Group 1",
+                                       molecular_subtype_methyl == "PB, Group 2" ~ "PB, Group 2"))
+  
+
+pb_methy_without_subtype <- pb_meta %>% 
+  filter(experimental_strategy == "Methylation" & 
+           !(Kids_First_Biospecimen_ID %in% pb_methy_with_subtype$Kids_First_Biospecimen_ID))
+
+pb_methyl_df <- pb_methy_with_subtype %>% 
+  bind_rows(pb_methy_without_subtype) %>% 
+  select(sample_id, molecular_subtype, molecular_subtype_methyl)
+
+```
+
+## assign the molecular subtypes to all samples based on the methylation results
+```{r}
+
+pb_meta_with_mol <- pb_meta %>%
+  select(-molecular_subtype_methyl, -molecular_subtype) %>%
+  left_join(pb_methyl_df, by = "sample_id") %>% 
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl, molecular_subtype) %>% 
+  ## Assign samples without subtype as "PB, To be classified"
+  mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "PB, To be classified", 
+                                       TRUE ~ molecular_subtype)) %>%
+  arrange(sample_id) %>%
+  write_tsv(file.path(result_dir, "pineo-molecular-subtypes.tsv"))
+
+```
+
+## session info
+
+```{r}
+
+sessionInfo()
+```
+
+
+

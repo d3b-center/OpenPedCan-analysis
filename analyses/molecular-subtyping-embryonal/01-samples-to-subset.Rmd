@@ -223,12 +223,13 @@ embryonal_df <- histologies_df %>%
 
 Now filter to include and exclude using the `pathology_diagnosis` and `pathology_free_text_diagnosis` labels.
 
-First, we will create an object filtered to include only samples with exact matches for the `path_dx_terms` (which is currently "Supratentorial or Spinal Cord PNET") in the `pathology_diagnosis` column.
+First, we will create an object filtered to include only samples with exact matches for the `path_dx_terms` (which is currently "Supratentorial or Spinal Cord PNET") in the `pathology_diagnosis` column and remove any pineoblastoma samples via `exclude_free_text`.
 
 ```{r}
 pnet_df <- embryonal_df %>%
   # Filter for exact match of the defined pathology diagnosis term in `path_dx_list$include_path_dx`
-  filter(pathology_diagnosis %in% path_dx_list$include_path_dx)
+  filter(pathology_diagnosis %in% path_dx_list$include_path_dx,
+         !grepl(path_dx_list$exclude_free_text, pathology_free_text_diagnosis))
 ```
 
 Now we will create an objected filtered to include any sample with "Other" in the `pathology_diagnosis` column of the metadata, and with the `free_text_dx_terms` in the `pathology_free_text_diagnosis` column.
@@ -293,7 +294,8 @@ Write to file high confidence methylation classification subtypes
 # high confidence methylation classification subtypes
 emb_methyl_subtyped <- histologies_df %>% 
   dplyr::filter(pathology_diagnosis %in% path_dx_list$include_path_dx |
-                  pathology_free_text_diagnosis %in% path_dx_list$include_free_text,
+                pathology_free_text_diagnosis %in% path_dx_list$include_free_text,
+                !grepl(path_dx_list$exclude_free_text, pathology_free_text_diagnosis),
                 dkfz_v12_methylation_subclass_score >= 0.8,
                 experimental_strategy == "Methylation", 
                 sample_type == "Tumor", 
@@ -314,6 +316,7 @@ emb_methyl_subtyped <- histologies_df %>%
 emb_methyl_not_subtyped <- histologies_df %>% 
   dplyr::filter(pathology_diagnosis %in% path_dx_list$include_path_dx |
                   pathology_free_text_diagnosis %in% path_dx_list$include_free_text,
+                !grepl(path_dx_list$exclude_free_text, pathology_free_text_diagnosis),
                 !Kids_First_Biospecimen_ID %in% unique(emb_methyl_subtyped$Kids_First_Biospecimen_ID_Methyl),
                 experimental_strategy == "Methylation", 
                 sample_type == "Tumor", 

@@ -1,4 +1,5 @@
 # OpenPedCan Methylation Summary
+This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 ## Purpose
 

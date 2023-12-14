@@ -1,4 +1,6 @@
 ## Collapse RNA-seq matrices
+This analysis is DEPRECATED in that it was last run in the repo with OpenPBTA data release `v23`.
+This analysis is now run upstream.
 
 Many downstream modules require RNA-seq data that have gene symbols as gene identifiers.
 Multiple Ensembl gene identifiers map to the same gene symbol in a small proportion of cases.

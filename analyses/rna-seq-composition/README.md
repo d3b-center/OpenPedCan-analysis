@@ -1,4 +1,6 @@
 # RNA-Seq sample composition analysis
+This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
+
 
 **Module authors:** Holly Beale ([@hollybeale](https://github.com/hbeale))
 

@@ -1,4 +1,6 @@
 # Sex Prediction from RNASeq
+This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
+
 
 The 01-clean_split_data.R, 02-train_elasticnet.R, 03-evaluate_model.R, 04-present_results.Rmd pipeline trains and evaluates an elasticnet logistic regression model to predict sex from RNASeq data.
 The training features are gene expression transcripts, and the training labels are reported_gender values for each sample.
