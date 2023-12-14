@@ -80,6 +80,7 @@ Rscript --vanilla 07-consensus-annotated-merge.R \
 --cnvkit_x_and_y ${results_dir}/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz \
 --consensus_auto ${results_dir}/consensus_seg_annotated_cn_autosomes.tsv.gz \
 --consensus_x_and_y ${results_dir}/consensus_seg_annotated_cn_x_and_y.tsv.gz \
+--cnv_tumor_only ${data_dir}/nv-controlfreec-tumor-only.tsv.gz \
 --outdir ${results_dir}
 
 
