@@ -26,13 +26,13 @@ option_list <- list(
   optparse::make_option(
     c("--cnvkit_auto"),
     type = "character",
-    default = "results/cnvkit_annotated_cn_wxs_autosomes.tsv.gz",
+    default = "results/cnvkit_annotated_cn_wxs_plus_freec_tumor_autosomes.tsv.gz",
     help = "annoatated cnvkit cnv calls on autosomes for WXS samples"
   ),
   optparse::make_option(
     c("--cnvkit_x_and_y"),
     type = "character",
-    default = "results/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz",
+    default = "results/cnvkit_annotated_cn_wxs_plus_freec_tumor_x_and_y.tsv.gz",
     help = "annoatated cnvkit cnv calls on x and y for WXS samples"
   ),
   optparse::make_option(
@@ -46,6 +46,12 @@ option_list <- list(
     type = "character",
     default = "results/consensus_seg_annotated_cn_x_and_y.tsv.gz",
     help = "annoatated consensus cnv calls on x and y for WGS samples"
+  ),
+  optparse::make_option(
+    c("--cnv_tumor_only"),
+    type = "character",
+    default = "../../data/cnv-controlfreec-tumor-only.tsv.gz",
+    help = "cnv from tumor-only samples"
   ),
   optparse::make_option(
     c("--outdir"),
@@ -64,10 +70,13 @@ cnvkit_auto <- data.table::fread(opt$cnvkit_auto)
 cnvkit_x_and_y <- data.table::fread(opt$cnvkit_x_and_y)
 consensus_auto <- data.table::fread(opt$consensus_auto)
 consensus_x_and_y <- data.table::fread(opt$consensus_x_and_y)
+cnv_tumor_only <- data.table::fread(opt$cnv_tumor_only)
 
 # merge WGS (consensus) and WXS (cnvkit) autosomes and x_and_y respectively
-merged_auto <- rbind(cnvkit_auto, consensus_auto)
-merged_x_and_y <- rbind(cnvkit_x_and_y, consensus_x_and_y)
+merged_auto <- rbind(cnvkit_auto, consensus_auto) %>% 
+  rbind(cnv_tumor_only)
+merged_x_and_y <- rbind(cnvkit_x_and_y, consensus_x_and_y) %>% 
+  rbind(cnv_tumor_only)
 
 # write out the files
 readr::write_tsv(merged_auto, 
@@ -79,7 +88,8 @@ readr::write_tsv(merged_x_and_y,
 # Merge autosomes with X and Y and output a combined file 
 # For the combined file, we do not need germline_sex_estimate from x_and_y
 merged_x_and_y <- merged_x_and_y %>% dplyr::select(-germline_sex_estimate)
-combined <- rbind(merged_auto, merged_x_and_y)
+combined <- rbind(merged_auto, merged_x_and_y) %>% 
+  rbind(cnv_tumor_only)
 
 readr::write_tsv(combined, 
           file.path(opt$outdir, "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"))
