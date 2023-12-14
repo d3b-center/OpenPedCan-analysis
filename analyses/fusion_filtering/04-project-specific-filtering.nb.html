@@ -1801,13 +1801,13 @@ group&lt;-params$group_base
 clinical&lt;-clinical[,c(&quot;Kids_First_Biospecimen_ID&quot;,&quot;Kids_First_Participant_ID&quot;,group)]
 }</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUm93czogNDM3MjkgQ29sdW1uczogNTNcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICgzNSk6IEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQsIHNhbXBsZV9pZCwgYWxpcXVvdF9pZCwgS2lkc19GaXJzdF9QYXJ0aS4uLlxuZGJsICgxNik6IGFnZV9hdF9kaWFnbm9zaXNfZGF5cywgT1NfZGF5cywgRUZTX2RheXMsIGFnZV9sYXN0X3VwZGF0ZV9kYXlzLCBuby4uLlxubGdsICAoMik6IGludGVncmF0ZWRfZGlhZ25vc2lzLCBtb2xlY3VsYXJfc3VidHlwZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
-<pre><code>Rows: 43729 Columns: 53
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogNDY0NTQgQ29sdW1uczogNTZcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICgzNyk6IEtpZHNfRmlyc3RfUGFydGljaXBhbnRfSUQsIEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQsIHNhbXBsZV9pZCwgYS4uLlxuZGJsICgxNyk6IGNlbGxfbGluZV9wYXNzYWdlLCBPU19kYXlzLCBFRlNfZGF5cywgYWdlX2F0X2RpYWdub3Npc19kYXlzLCBhZ2VfYS4uLlxubGdsICAoMik6IG1vbGVjdWxhcl9zdWJ0eXBlLCBpbnRlZ3JhdGVkX2RpYWdub3Npc1xuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 46454 Columns: 56
 ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
-chr (35): Kids_First_Biospecimen_ID, sample_id, aliquot_id, Kids_First_Parti...
-dbl (16): age_at_diagnosis_days, OS_days, EFS_days, age_last_update_days, no...
-lgl  (2): integrated_diagnosis, molecular_subtype
+chr (37): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, a...
+dbl (17): cell_line_passage, OS_days, EFS_days, age_at_diagnosis_days, age_a...
+lgl  (2): molecular_subtype, integrated_diagnosis
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -1833,10 +1833,10 @@ print(&quot;Raw calls from STARfusion and Arriba for OpenTargets&quot;)</code></
 <!-- rnb-source-begin eyJkYXRhIjoidGFibGUoZnVzaW9uX2NhbGxzJENhbGxlcikifQ== -->
 <pre class="r"><code>table(fusion_calls$Caller)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG4gICAgQVJSSUJBIFNUQVJGVVNJT04gXG4gICAgMTMwOTYzICAgICAgIDk4NzEgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG4gICAgQVJSSUJBIFNUQVJGVVNJT04gXG4gICAgMTQxMjc3ICAgICAgMTA3MjkgXG4ifQ== -->
 <pre><code>
     ARRIBA STARFUSION 
-    130963       9871 </code></pre>
+    141277      10729 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
