@@ -111,7 +111,7 @@ scores_df = scores_df.merge(
     full_status_df,
     how="left",
     left_on="SAMPLE_ID",
-    right_on="Kids_First_Biospecimen_ID_RNA",
+    right_on="Kids_First_Biospecimen_ID",
 )
 
 print("scores df shape")

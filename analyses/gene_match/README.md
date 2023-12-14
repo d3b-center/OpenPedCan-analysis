@@ -1,3 +1,6 @@
+## Gene symbol matching across GENCODE versions
+This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
+
 ## To run, 
 ```
 bash run-gene-mapping.sh

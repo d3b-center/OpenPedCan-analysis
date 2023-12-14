@@ -1,4 +1,5 @@
 ## Calculate TPM summary statistics for each cancer group and cohort
+This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 **Module authors:** Yuanchao Zhang ([@logstar](https://github.com/logstar)), Sangeeta Shukla ([@sangeetashukla](https://github.com/sangeetashukla))
 
