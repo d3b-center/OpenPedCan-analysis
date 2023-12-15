@@ -74,12 +74,21 @@ consensus_snv <- data.table::fread(snvConsensusFile,
                                               "Hugo_Symbol"),
                                    data.table = FALSE)
 
-tumor_only_snv <- data.table::fread(snvTumorOnlyFile)
+tumor_only_snv <- data.table::fread(snvTumorOnlyFile, 
+                                    select = c("Chromosome",
+                                               "Start_Position",
+                                               "End_Position",
+                                               "Strand",
+                                               "Variant_Classification",
+                                               "Tumor_Sample_Barcode",
+                                               "Hugo_Symbol"),
+                                    data.table = FALSE)
+
 consensus_snv <- consensus_snv %>% 
   bind_rows(tumor_only_snv)
 
 # read in consensus CNV file
-cnvConsensus <- data.table::fread( cnvConsensusFile) %>%
+cnvConsensus <- data.table::fread(cnvConsensusFile) %>%
   dplyr::filter(!grepl('X|Y', cytoband)) %>%
   dplyr::select(gene_symbol,
            biospecimen_id,

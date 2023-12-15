@@ -164,6 +164,18 @@ functional_sites_tp53 %>%
 Removing Silent or Intron classified variants to capture only putative damaging mutations
 
 ```{r}
+
+tumor_only_snv <- data.table::fread(file.path(data_dir, "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"), 
+                                    select = c("Chromosome",
+                                              "Start_Position",
+                                              "End_Position",
+                                              "Strand",
+                                              "Variant_Classification",
+                                              "Tumor_Sample_Barcode",
+                                              "Hugo_Symbol",
+                                              "HGVSp_Short"),
+                                   data.table = FALSE)
+
 consensus_tp53_snv_indel <- data.table::fread(
   file.path(data_dir,"snv-consensus-plus-hotspots.maf.tsv.gz"),
                                    select = c("Chromosome",
@@ -175,6 +187,7 @@ consensus_tp53_snv_indel <- data.table::fread(
                                               "Hugo_Symbol",
                                               "HGVSp_Short"),
                                    data.table = FALSE) %>%
+  bind_rows(tumor_only_snv) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID = Tumor_Sample_Barcode) %>%
   filter(Hugo_Symbol == "TP53") %>% 
   filter(!(Variant_Classification %in% c("Silent", "Intron",

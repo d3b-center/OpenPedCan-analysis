@@ -43,6 +43,7 @@ scratch_dir="../../scratch"
 # cds gencode bed file  
 cds_file="${scratch_dir}/gencode.v39.primary_assembly.annotation.bed"
 snvconsensus_file="${data_dir}/snv-consensus-plus-hotspots.maf.tsv.gz"
+snvTumorOnly_file="${data_dir}/snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"
 cnvconsensus_file="${data_dir}/consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"
 collapsed_rna_file="${data_dir}/gene-expression-rsem-tpm-collapsed.rds"
 
@@ -64,6 +65,7 @@ gunzip -c ${data_dir}/gencode.v39.primary_assembly.annotation.gtf.gz \
 # Prep the SNV consensus data for evaluation downstream
 Rscript --vanilla ${analysis_dir}/00-tp53-nf1-alterations.R \
   --snvConsensus ${snvconsensus_file} \
+  --snvTumorOnly ${snvTumorOnly_file} \
   --cnvConsensus ${cnvconsensus_file} \
   --histologyFile ${histology_file} \
   --outputFolder ${analysis_dir}/results \

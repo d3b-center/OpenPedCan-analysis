@@ -26,13 +26,13 @@ option_list <- list(
   optparse::make_option(
     c("--cnvkit_auto"),
     type = "character",
-    default = "results/cnvkit_annotated_cn_wxs_plus_freec_tumor_autosomes.tsv.gz",
+    default = "results/cnvkit_annotated_cn_wxs_autosomes.tsv.gz",
     help = "annoatated cnvkit cnv calls on autosomes for WXS samples"
   ),
   optparse::make_option(
     c("--cnvkit_x_and_y"),
     type = "character",
-    default = "results/cnvkit_annotated_cn_wxs_plus_freec_tumor_x_and_y.tsv.gz",
+    default = "results/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz",
     help = "annoatated cnvkit cnv calls on x and y for WXS samples"
   ),
   optparse::make_option(
@@ -48,10 +48,16 @@ option_list <- list(
     help = "annoatated consensus cnv calls on x and y for WGS samples"
   ),
   optparse::make_option(
-    c("--cnv_tumor_only"),
+    c("--cnv_tumor_only_x_and_y"),
     type = "character",
-    default = "../../data/cnv-controlfreec-tumor-only.tsv.gz",
-    help = "cnv from tumor-only samples"
+    default = "results/tumor_only_controlfreec_annotated_cn_x_and_y.tsv.gz",
+    help = "annoatated tumor only controlfreex cnv calls on x and y for samples"
+  ),
+  optparse::make_option(
+    c("--cnv_tumor_only_auto"),
+    type = "character",
+    default = "results/tumor_only_controlfreec_annotated_cn_autosomes.tsv.gz",
+    help = "annoatated tumor only controlfreex cnv calls on autosomes for samples"
   ),
   optparse::make_option(
     c("--outdir"),
@@ -70,13 +76,15 @@ cnvkit_auto <- data.table::fread(opt$cnvkit_auto)
 cnvkit_x_and_y <- data.table::fread(opt$cnvkit_x_and_y)
 consensus_auto <- data.table::fread(opt$consensus_auto)
 consensus_x_and_y <- data.table::fread(opt$consensus_x_and_y)
-cnv_tumor_only <- data.table::fread(opt$cnv_tumor_only)
+cnv_tumor_only_auto <- data.table::fread(opt$cnv_tumor_only_auto)
+cnv_tumor_only_x_and_y <- data.table::fread(opt$cnv_tumor_only_x_and_y)
+
 
 # merge WGS (consensus) and WXS (cnvkit) autosomes and x_and_y respectively
 merged_auto <- rbind(cnvkit_auto, consensus_auto) %>% 
-  rbind(cnv_tumor_only)
+  rbind(cnv_tumor_only_auto)
 merged_x_and_y <- rbind(cnvkit_x_and_y, consensus_x_and_y) %>% 
-  rbind(cnv_tumor_only)
+  rbind(cnv_tumor_only_x_and_y)
 
 # write out the files
 readr::write_tsv(merged_auto, 

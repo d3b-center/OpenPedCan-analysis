@@ -13,7 +13,7 @@ RUN_ORIGINAL=${RUN_ORIGINAL:-0}
 # Run testing files for circle CI - will not by default
 IS_CI=${OPENPBTA_TESTING:-0}
 
-RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
+RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-1}
 
 # This script should always run as if it were being called from
 # the directory it lives in.
@@ -74,6 +74,16 @@ Rscript --vanilla 04-prepare-cn-file.R \
 --controlfreec \
 --runWXSonly
 
+
+# Run annotation step for tumor-only ControlFreeC
+Rscript --vanilla 04-prepare-cn-file.R \
+--cnv_file ${data_dir}/cnv-controlfreec-tumor-only.tsv.gz \
+--gtf_file $gtf_file \
+--metadata $histologies_file \
+--filename_lead "tumor_only_controlfreec_annotated_cn" \
+--controlfreec 
+
+
 # Run merging for all annotated files 
 Rscript --vanilla 07-consensus-annotated-merge.R \
 --cnvkit_auto ${results_dir}/cnvkit_annotated_cn_wxs_autosomes.tsv.gz \
@@ -98,3 +108,5 @@ Rscript --vanilla 07-consensus-annotated-merge.R \
 # done
 #
 fi
+
+echo "Finish analysis"
