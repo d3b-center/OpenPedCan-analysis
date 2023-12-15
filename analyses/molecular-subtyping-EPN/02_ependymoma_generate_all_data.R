@@ -33,6 +33,8 @@ option_list <- list(
               help = "focal-cn-file-preparation based on gene"),
   make_option(c("--mutations"),
               help = 'consensus snv results file'),
+  make_option(c("--TumorOnlySNV"),
+              help = 'tumor only snv results file'),
   make_option(c("--outfile"), type = "character",
               help = "subfile of the GISTIC zip folder that contains focal data fro CDKN2A")
 )
@@ -49,6 +51,7 @@ breakpoints_cnv <- opt$breakpoints_cnv
 breakpoints_sv <- opt$breakpoints_sv
 focal_gene_cn <- opt$focal_gene_cn
 mutations <- opt$mutations
+snvTumorOnly <- opt$TumorOnlySNV
 outfile <- opt$outfile
 
 # Reading GISTIC broad_values and focal_by_genefile for CNA
@@ -111,8 +114,13 @@ focal_cn_gene_NF2 <- focal_cn_gene %>%
   column_to_rownames('biospecimen_id')
 
 # Reading consensus snv results and filtering for EPN samples
+TumorOnly_SNV <- data.table::fread(snvTumorOnly) %>%
+  mutate(gnomad_3_1_1_AF_non_cancer = as.character(gnomad_3_1_1_AF_non_cancer)) %>% 
+  filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"))
 mutations <- data.table::fread(mutations) %>%
   filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"))
+mutations <- mutations %>% 
+  bind_rows(TumorOnly_SNV) 
 
 
 # Reading the input in a  dataframe
