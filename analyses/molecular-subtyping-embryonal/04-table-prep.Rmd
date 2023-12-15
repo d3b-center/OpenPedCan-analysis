@@ -114,7 +114,7 @@ methyl_file <- file.path(results_dir,
 chr19_file <- file.path(results_dir, "cleaned_chr19_cn.tsv")
 # annotated sex chromosomes copy number alterations
 sex_chr_consensus <- file.path(data_dir,
-                               "consensus_wgs_plus_cnvkit_wxs_x_and_y.tsv.gz")
+                               "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only_x_and_y.tsv.gz")
 ```
 
 Read in files.
@@ -123,8 +123,7 @@ Read in files.
 histologies_df <- read_tsv(histologies_file, 
                            col_types = cols(
                              molecular_subtype = col_character()
-                          )) %>%
-  dplyr::mutate(match_id = paste(sample_id, composition, sep = "_"))
+                          )) 
 
 # manta data for BCOR tandem duplication
 manta_sv_df <- read_tsv(manta_file)
