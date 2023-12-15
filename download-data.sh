@@ -5,8 +5,8 @@ set -o pipefail
 
 # Use the OpenPedCan bucket as the default.
 URL=${OPENPEDCAN_URL:-https://s3.amazonaws.com/d3b-openaccess-us-east-1-prd-pbta/open-targets}
-RELEASE=${OPENPEDCAN_RELEASE:-v12}
-PREVIOUS=${OPENPEDCAN_RELEASE:-v11}
+RELEASE=${OPENPEDCAN_RELEASE:-v13}
+PREVIOUS=${OPENPEDCAN_RELEASE:-v12}
 
 # Remove old symlinks in data
 find data -type l -delete
