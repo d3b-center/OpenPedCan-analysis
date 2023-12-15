@@ -38,15 +38,14 @@ mb_results <- readRDS(file.path(output_dir, "mb-classified.rds"))$medulloPackage
   mutate(molecular_subtype = paste0("MB, ", molecular_subtype)) %>%
   select(Kids_First_Biospecimen_ID, molecular_subtype) %>%
   # pull in sample ID and composition
-  left_join(mb_biospecimens[,c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "sample_id", "composition", "tumor_descriptor")]) %>%
+  left_join(mb_biospecimens[,c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "sample_id", "composition", "tumor_descriptor", "match_id")]) %>%
   mutate(id = paste(sample_id, composition, sep = "_")) %>%
   #rename RNA bs_id to enable joining of other bs_ids
   dplyr::rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID)
 
 # are there discrepancies? yes
 rna_map <- mb_results %>%
-  select(sample_id, composition, tumor_descriptor, molecular_subtype) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  select(sample_id, composition, tumor_descriptor, molecular_subtype, match_id) %>%
   unique()
 
 # we will add methyl subtypes in the absence of RNA-Seq classification or in the case of discrepant classifier results
@@ -61,8 +60,7 @@ methyl_bs_with_mb_subtypes <- mb_biospecimens %>%
                                        dkfz_v12_methylation_subclass == "MB_WNT" ~ "MB, WNT",
                                        dkfz_v12_methylation_subclass == "MB_MYO" ~ "MB, MYO")) %>%
   #dplyr::rename(Kids_First_Biospecimen_ID_methyl = Kids_First_Biospecimen_ID) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, id) 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, match_id) 
 
 # assign remaining methyl sample without the subtype of interests as NA
 
@@ -72,7 +70,7 @@ methyl_no_subtype <- mb_biospecimens %>%
          !Kids_First_Biospecimen_ID %in% methyl_bs_with_mb_subtypes$Kids_First_Biospecimen_ID) %>% 
   mutate(molecular_subtype = NA_character_) %>% 
   mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, id) 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, match_id) 
 
 methyl_bs_with_mb_subtypes <- methyl_bs_with_mb_subtypes %>% 
   rbind(methyl_no_subtype) %>% 
@@ -80,26 +78,25 @@ methyl_bs_with_mb_subtypes <- methyl_bs_with_mb_subtypes %>%
 
 # are there any methylation discrepancies? no, OK we can use these to replace discrepancies in RNA-Seq
 methyl_subtype_map <- methyl_bs_with_mb_subtypes %>%
-  select(sample_id, composition, tumor_descriptor, molecular_subtype) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  select(sample_id, composition, tumor_descriptor, molecular_subtype, match_id) %>%
   unique()
 
-all.equal(length(unique(methyl_subtype_map$id)), nrow(methyl_subtype_map))
+all.equal(length(unique(methyl_subtype_map$match_id)), nrow(methyl_subtype_map))
 
 
 # 1 discrepant subtype pair from RNA results, let's fix it and set up to auto fix later
 dups <- rna_map %>%
-  filter(duplicated(.[["id"]])) 
+  filter(duplicated(.[["match_id"]])) 
 
 if (nrow(dups) > 0) {
   mb_results <- mb_results %>%
-  mutate(molecular_subtype = case_when(id %in% dups$id ~ NA_character_,
+  mutate(molecular_subtype = case_when(match_id %in% dups$match_id ~ NA_character_,
                                        TRUE ~ as.character(molecular_subtype)))
   tmp_df <- methyl_subtype_map %>%
-    filter(id %in% dups$id)
+    filter(match_id %in% dups$match_id)
     
   mb_results <- mb_results %>%
-    left_join(tmp_df, by = c("id", "sample_id", "composition", "tumor_descriptor")) %>%
+    left_join(tmp_df, by = c("match_id")) %>%
     mutate(Values=coalesce(molecular_subtype.x,molecular_subtype.y)) %>%
     select(-molecular_subtype.x,-molecular_subtype.y) %>%
     dplyr::rename(molecular_subtype = Values) %>%
@@ -109,21 +106,20 @@ if (nrow(dups) > 0) {
 
 # now add methylation results and associated samples if no rnaseq
 methyl_bs_with_mb_subtypes_norna <- methyl_bs_with_mb_subtypes %>%
-  filter(!id %in% mb_results$id) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, id) 
+  filter(!match_id %in% mb_results$match_id) %>%
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, match_id) 
 
 # these results will be the basis for all other bs_ids
 base_results_map <- mb_results %>%
   bind_rows(methyl_bs_with_mb_subtypes_norna) %>%
-  select(molecular_subtype, id) %>%
+  select(molecular_subtype, match_id) %>%
   unique()
 
 
 # subset clinical for non rna-seq specimens
 mb_biospecimens_subtyped <- mb_biospecimens %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  left_join(base_results_map) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, match_id) %>%
+  left_join(base_results_map, by = "match_id") %>%
   #make all NA To be classified
   dplyr::mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "MB, To be classified",
                                               TRUE ~ molecular_subtype)) %>%
@@ -131,7 +127,7 @@ mb_biospecimens_subtyped <- mb_biospecimens %>%
 
 # how many tumor in each subgroup?
 mb_biospecimens_subtyped %>%
-  select(id, molecular_subtype) %>%
+  select(match_id, molecular_subtype) %>%
   unique() %>%
   dplyr::count(molecular_subtype)
 
@@ -145,14 +141,14 @@ mb_biospecimens_subtyped %>%
 # how many tumors subtyped?
 mb_biospecimens_subtyped %>%
   filter(molecular_subtype != "MB, To be classified") %>%
-  pull(id) %>%
+  pull(match_id) %>%
   unique() %>%
   length()
 
 ### check accuracy of medulloPackage with methylation ------------------
 methyl_subtype_map_short <- methyl_subtype_map %>%
   dplyr::rename(molecular_subtype_methyl = molecular_subtype) %>%
-  select(id, molecular_subtype_methyl)
+  select(match_id, molecular_subtype_methyl)
 
 # add methyl subtype to the final subtype file
 mb_biospecimens_subtyped_plus_methyl <- mb_biospecimens_subtyped %>%
@@ -165,8 +161,8 @@ mb_biospecimens_subtyped_plus_methyl <- mb_biospecimens_subtyped %>%
 mb_biospecimens_subtyped_plus_methyl_subset <- mb_biospecimens_subtyped_plus_methyl %>%
   filter(!is.na(molecular_subtype_methyl),
          # remove methyl only samples
-         !id %in% methyl_bs_with_mb_subtypes_norna$id) %>%
-  select(id, molecular_subtype, molecular_subtype_methyl) %>%
+         !match_id %in% methyl_bs_with_mb_subtypes_norna$match_id) %>%
+  select(match_id, molecular_subtype, molecular_subtype_methyl) %>%
   unique() %>%
   mutate(match = ifelse(molecular_subtype == molecular_subtype_methyl, "true", "false"))
 
