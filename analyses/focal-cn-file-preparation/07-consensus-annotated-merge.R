@@ -96,8 +96,7 @@ readr::write_tsv(merged_x_and_y,
 # Merge autosomes with X and Y and output a combined file 
 # For the combined file, we do not need germline_sex_estimate from x_and_y
 merged_x_and_y <- merged_x_and_y %>% dplyr::select(-germline_sex_estimate)
-combined <- rbind(merged_auto, merged_x_and_y) %>% 
-  rbind(cnv_tumor_only)
+combined <- rbind(merged_auto, merged_x_and_y)
 
 readr::write_tsv(combined, 
           file.path(opt$outdir, "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"))
