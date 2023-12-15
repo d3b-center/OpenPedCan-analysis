@@ -78,13 +78,17 @@ cranio_bs <- metadata %>%
 
 ## Read in snv consensus mutation data, subset for samples of interest
 #dgd_maf_file <- file.path(root_dir, "data", "snv-dgd.maf.tsv.gz")
+tumor_only_snv_file <- file.path(root_dir, "data", "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz")
 snv_file <- file.path(root_dir, "data", "snv-consensus-plus-hotspots.maf.tsv.gz")
 
 #dgd_df <- read_tsv(dgd_maf_file, comment = '#') %>%
 #    filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID,
 #           Hugo_Symbol %in% c("BRAF","CTNNB1"))
 
+tumor_only_snv <- read_tsv(tumor_only_snv_file)
+
 snv_df <- read_tsv(snv_file, comment = '#') %>%
+  bind_rows(tumor_only_snv) %>%
   filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID,
            Hugo_Symbol %in% c("BRAF","CTNNB1")) #%>%
 #  bind_rows(dgd_df)
@@ -128,16 +132,14 @@ methyl_bs_ids_with_subtypes <- metadata %>%
   # reformat classifier result per https://www.molecularneuropathology.org/mnp/classifiers/11
   mutate(molecular_subtype = case_when(dkfz_v12_methylation_subclass == "CPH_PAP" ~ "CRANIO, PAP",
                                        dkfz_v12_methylation_subclass == "CPH_ADM" ~ "CRANIO, ADAM")) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, id) 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype, match_id) 
 
 ## add sample with low methyl score
 methyl_no_subtype <- metadata %>% 
   filter(experimental_strategy == "Methylation", 
          !(Kids_First_Biospecimen_ID %in% methyl_bs_ids_with_subtypes$Kids_First_Biospecimen_ID)) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%	 
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, id) %>%
-  dplyr::left_join(methyl_bs_ids_with_subtypes %>% dplyr::select(molecular_subtype, id), by = "id")  
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, match_id) %>%
+  dplyr::left_join(methyl_bs_ids_with_subtypes %>% dplyr::select(molecular_subtype, match_id), by = "match_id")  
 
 methyl_bs_ids_with_subtypes <- methyl_bs_ids_with_subtypes %>% 
   bind_rows(methyl_no_subtype)
@@ -145,10 +147,9 @@ methyl_bs_ids_with_subtypes <- methyl_bs_ids_with_subtypes %>%
 
 # are there any methylation discrepancies? no
 methyl_subtype_map <- methyl_bs_ids_with_subtypes %>%
-  select(sample_id, composition, tumor_descriptor, molecular_subtype) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  select(sample_id, composition, tumor_descriptor, molecular_subtype, match_id) %>%
   dplyr::rename(molecular_subtype_methyl = molecular_subtype) %>%
-  select(id, molecular_subtype_methyl) %>%
+  select(match_id, molecular_subtype_methyl) %>%
   unique()
 
 ```
@@ -159,8 +160,7 @@ First, make a frame with DNA and RNA samples per patient as well as age at diagn
 ```{r DNA and RNA metadata}
 dnameta <- metadata %>%
   filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing") & is.na(RNA_library)) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, age_at_diagnosis_days, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, id) 
+  dplyr::select(Kids_First_Participant_ID, age_at_diagnosis_days, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, match_id) 
 ```
 
 
@@ -197,14 +197,14 @@ snv_subtype <- snv_lesion_df %>%
              (BRAF.V600E & age_cutoff) & !(CTNNB1.Exon3 & !age_cutoff) ~ "CRANIO, PAP",
              !(BRAF.V600E & age_cutoff) & (CTNNB1.Exon3) ~ "CRANIO, ADAM",
              TRUE ~ "CRANIO, To be classified"))  %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, id, molecular_subtype)
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, match_id, molecular_subtype)
 
 # create dna map and fix discrepant subtypes
 dna_map <- snv_subtype %>%
-  select(id, molecular_subtype) %>%
+  select(match_id, molecular_subtype) %>%
   unique() %>%
   # if one sample is To be classified and one is ADAM for the same tumor event, recode to ADAM:
-  group_by(id) %>%
+  group_by(match_id) %>%
   summarise(molecular_subtype = str_c(molecular_subtype, collapse = ";", sep = ";")) %>%
   mutate(molecular_subtype = case_when(molecular_subtype %in% c("CRANIO, To be classified;CRANIO, ADAM", "CRANIO, ADAM;CRANIO, To be classified") ~ "CRANIO, ADAM",
                                        TRUE ~ molecular_subtype)) 
@@ -219,8 +219,7 @@ snv_subtype <- snv_subtype %>%
 # subtype others
 other_bs_id_subtyped <- metadata %>%
   filter(!Kids_First_Biospecimen_ID %in% snv_subtype$Kids_First_Biospecimen_ID) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, id) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, match_id) %>%
   # join with DNA map
   left_join(dna_map) %>%
   mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "CRANIO, To be classified",
