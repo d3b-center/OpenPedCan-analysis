@@ -168,16 +168,20 @@ Add methylation to all_data_df.
 methyl_df <- hgg_meta %>% 
   filter(experimental_strategy == "Methylation", 
          (grepl("GBM_|pedHGG_|HGG_", dkfz_v12_methylation_subclass) |
-             dkfz_v12_methylation_subclass %in% c("DHG_G34", "DMG_K27", "DMG_EGFR", "A_IDH_HG", "IHG", "HGAP", "A_IDH_HG")), 
+             dkfz_v12_methylation_subclass %in% c("DHG_G34", "DMG_K27", "DMG_EGFR", "A_IDH_HG", "IHG", "HGAP", "A_IDH_HG", 
+                                                  ## Add PXA methylation molecular subtype
+                                                  "PXA")), 
          dkfz_v12_methylation_subclass_score >= 0.8) %>% 
   # add all samples but only keep subtypes if score >=0.8
   mutate(molecular_subtype_methyl = case_when(grepl("GBM_|pedHGG_|HGG_", dkfz_v12_methylation_subclass) ~ "HGG, H3 wildtype",
     dkfz_v12_methylation_subclass == "DHG_G34"  ~ "DHG, H3 G35",
-    dkfz_v12_methylation_subclass %in% c("DMG_K27", "DMG_EGFR")  ~ "DMG, H3 K28",
+    dkfz_v12_methylation_subclass == "DMG_K27"  ~ "DMG, H3 K28",
+    dkfz_v12_methylation_subclass == "DMG_EGFR"  ~ "DMG, EGFR",
     dkfz_v12_methylation_subclass == "A_IDH_HG"  ~ "HGG, IDH",
     dkfz_v12_methylation_subclass == "O_IDH" ~ "Oligo, IDH",
     dkfz_v12_methylation_subclass == "IHG"  ~ "IHG",
     dkfz_v12_methylation_subclass == "HGAP"  ~ "HGG, MAPK",
+    dkfz_v12_methylation_subclass == "PXA"  ~ "PXA",
     TRUE ~ NA_character_)) %>% 
   select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, 
                 composition, id, molecular_subtype_methyl) %>%
@@ -438,6 +442,21 @@ ihg_df_biospecimen <- all_data_df %>%
   unique()
 ```
 
+## PXA subtype
+
+PXA have BRAF V600E mutation or MAPK pathway gene and 
+homozygous deletion of CDKN2A and/or CDKN2B
+
+DNA methyaltion profile of "PXA"
+
+```{r}
+pxa_df_biospecimen <- all_data_df %>% 
+  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E %in% c("p.V600E", "p.V640E") & 
+           (CDKN2A_focal_status == "loss" | CDKN2B_focal_status == "loss")) %>% 
+  mutate(molecular_subtype = "HGG, PXA") %>% 
+  unique()
+  
+```
 
 ## Biospecimen Table
 
@@ -447,7 +466,8 @@ Join all the tables that contain the biospecimen ids and `molecular_subtype` col
 molecular_subtype_table <- bind_rows(h3_g35_df_biospecimen,
                                      h3_k28_df_biospecimen,
                                      idh_df_biospecimen,
-                                     ihg_df_biospecimen) %>% 
+                                     ihg_df_biospecimen, 
+                                     pxa_df_biospecimen) %>% 
   distinct()
 
 as.data.frame(table(molecular_subtype_table$molecular_subtype)) %>%
@@ -476,8 +496,9 @@ wildtype_df <- all_data_df %>%
          `H3F3A_H3-3A.G35V` == "No",
          IDH1_mutation == "No R132 or R172",
          # and not re-classified by methyl
-         !molecular_subtype_methyl %in% c("DMG, H3 K28", "DHG, H3 G35", "IHG")) %>%
-  mutate(molecular_subtype = "HGG, H3 wildtype") %>%
+         !molecular_subtype_methyl %in% c("DMG, H3 K28", "DHG, H3 G35", "IHG")) %>%## if there is no H3 mutation and methylation molecular subtype == "DMG, EFGR", assign sample molecular subtype as "DMG, H3 K28"
+  mutate(molecular_subtype = case_when(molecular_subtype_methyl == "DMG, EGFR" ~ "DMG, H3 K28", 
+                                       TRUE ~"HGG, H3 wildtype")) %>%
   distinct()
 
 # add wildtype methyl not already there
@@ -539,10 +560,37 @@ as.data.frame(table(tumors_subtyped$molecular_subtype)) %>%
 
 ```
 
+## change the HGG_cleaned_all_table.tsv table from wide to long table
+
+```{r}
+lesions_subtypes_RNA <- lesions_subtypes %>% 
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID_RNA, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype, 
+         grep(c("fusion|expression|Fusion"), colnames(lesions_subtypes))) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA) %>%
+  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
+  distinct()
+
+lesions_subtypes_DNA <- lesions_subtypes %>% 
+  select(Kids_First_Participant_ID, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype, 
+         setdiff(colnames(lesions_subtypes), colnames(lesions_subtypes_RNA)),
+         -Kids_First_Biospecimen_ID_RNA, -Kids_First_Biospecimen_ID_Methyl) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA) %>%
+  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
+  distinct()
+
+lesions_subtypes_methyl <- lesions_subtypes %>% 
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID_Methyl, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype) %>% 
+  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_Methyl) %>%
+  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
+  distinct()
+
+lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, lesions_subtypes_methyl)
+```
+
 Write to file.
 
 ```{r}
-write_tsv(lesions_subtypes, lesion_subtype_file)
+write_tsv(lesions_subtypes_final, lesion_subtype_file)
 write_tsv(molecular_subtype_table_final, subtype_file)
 ```
 

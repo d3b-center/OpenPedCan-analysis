@@ -18,11 +18,11 @@ Defining Lesions:
 
 CRANIO, ADAM
 - Contains SNV in exon 3 of CTNNB1
-- Tumor occurs mostly in childhood or young adolescence (0-39 years), but can be seen in adults
+- Tumor occurs mostly in childhood or young adolescence (0-29 years), but can be seen in adults
 
 CRANIO, PAP
 - Contains BRAF V600E mutation
-- Tumor occurs exclusively in adults (40+ years)
+- Tumor occurs exclusively in adults (30+ years)
 
 # Usage
 
@@ -187,16 +187,15 @@ Select the columns from the table that the PIs have requested
 
 ```{r meta-subtype-table}
 # Dispute this all you like
-age_of_adulthood <- 40 * 365.25
+age_of_adulthood <- 30 * 365.25
 
 # SNV-related bs id subtypes
 snv_subtype <- snv_lesion_df %>%
-  mutate(fourty_or_older = as.numeric(age_at_diagnosis_days) >= age_of_adulthood) %>%
+  mutate(age_cutoff = as.numeric(age_at_diagnosis_days) >= age_of_adulthood) %>%
   mutate(molecular_subtype =
            case_when(
-             (BRAF.V600E & fourty_or_older) & !(CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, PAP",
-             !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & !fourty_or_older) ~ "CRANIO, ADAM",
-             !(BRAF.V600E & fourty_or_older) & (CTNNB1.Exon3 & fourty_or_older) ~ "CRANIO, ADAM",
+             (BRAF.V600E & age_cutoff) & !(CTNNB1.Exon3 & !age_cutoff) ~ "CRANIO, PAP",
+             !(BRAF.V600E & age_cutoff) & (CTNNB1.Exon3) ~ "CRANIO, ADAM",
              TRUE ~ "CRANIO, To be classified"))  %>%
   select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, id, molecular_subtype)
 

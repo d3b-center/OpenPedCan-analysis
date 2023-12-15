@@ -10,6 +10,10 @@ output:
 **Note: The files in the `hgg-subset` directory were generated via `02-HGG-molecular-subtyping-subset-files.R` using the the files in the version 9 data release.
 When re-running this module, you may want to regenerate the HGG subset files using the most recent data release.**
 
+## Molecular subtyping HGG workflow
+
+![HGG molecular subtyping workflow](./plots/mol_subtype_workflow.png)
+
 ## Usage
 
 To run all of the Rscripts in this module from the command line sequentially, use:

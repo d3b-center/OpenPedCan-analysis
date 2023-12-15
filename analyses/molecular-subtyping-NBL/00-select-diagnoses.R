@@ -20,7 +20,8 @@ hist <- read_tsv(file.path(root_dir, "data", "histologies-base.tsv"),
 
 # The `pathology_diagnosis` fields for NBL
 dx_terms <- hist %>%
-  filter(grepl("neuroblastoma|Neuroblastoma", pathology_diagnosis)) %>%
+  filter(grepl("neuroblastoma|Neuroblastoma", pathology_diagnosis, 
+               ignore.case = FALSE)) %>%
   pull(pathology_diagnosis) %>%
   unique()
 

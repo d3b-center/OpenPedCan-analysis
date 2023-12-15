@@ -132,8 +132,8 @@ subset_files <- function(filename, biospecimen_ids, output_directory) {
     if (grepl("putative-oncogenic", filename)) {
       fusion_file %>%
         dplyr::filter(Sample %in% biospecimen_ids |
-                        # this is required for the the fusion-summary module
-                        grepl("RELA|MN1|EWSR1|FGFR1--TACC1|MYB--QKI|BRAF", FusionName)) %>%
+                        # this is required for the the fusion-summary module and TP53 module
+                        grepl("RELA|MN1|EWSR1|FGFR1--TACC1|MYB--QKI|BRAF|TP53--TRPS1|TP53--PSMG4", FusionName)) %>%
         readr::write_tsv(output_file)
     } else if (grepl("dgd", filename)) {
       fusion_file %>%

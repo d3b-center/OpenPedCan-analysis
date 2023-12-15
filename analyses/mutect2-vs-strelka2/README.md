@@ -1,4 +1,5 @@
 # DEPRECATED: Mutect2 vs Strelka2: SNV caller comparison analysis
+This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
 
 This deprecated analysis evaluated Mutect2 and Strelka2 mutation calls by comparing their [MAF files](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) but has since been superseded by the more [comprehensive analysis for all four SNV Callers](https://github.com/AlexsLemonade/OpenPBTA-analysis/tree/master/analyses/snv-callers).
 The original issue for this analysis is [here](https://github.com/AlexsLemonade/OpenPBTA-analysis/issues/30).

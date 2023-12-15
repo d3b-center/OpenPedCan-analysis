@@ -2,7 +2,7 @@
 
 **Module authors:** Daniel Miller ([@dmiller15](https://github.com/dmiller15)) and Jo Lynne Rokita ([@jharenza](https://github.com/jharenza))
 
-Craniopharyngiomas can be subtyped into adamantinomatous or papillary based on whether they harbor specific gene mutations.
+Craniopharyngiomas can be subtyped into adamantinomatous or papillary based on either the specific gene mutations they harboring or the high confident methylation classification.
 Adamantinomatous craniopharyngiomas harbor mutations within exon 3 of the _CTNNB1_ gene and papillary craniopharyngiomas harbor BRAF V600E mutations.
 Adamantinomatous craniopharyngiomas occur mostly in childhood or young adolescence (0-39 years), but can be seen in adults, while papillary craniopharyngiomas occur exclusively in adults.
 This analysis will subtype craniopharyngiomas.
@@ -14,6 +14,10 @@ This module can be run with the following:
 ```
 bash run-molecular-subtyping-cranio.sh
 ```
+
+## Molecular subtyping CRANIO workflow
+
+ ![CRANIO molecular subtyping workflow](./plot/CRANIO_subtyping.png)
 
 ### Module contents
 

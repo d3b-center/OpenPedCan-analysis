@@ -13,6 +13,11 @@ bash run-molecular-subtyping-ATRT.sh
 
 `run-molecular-subtyping-ATRT.sh` is designed to be run as if it was called from this module directory even when called from outside of this directory.
 
+## Molecular subtyping ATRT workflow
+
+ ![ATRT molecular subtyping workflow](./plots/ATRT_subtyping.png)
+
+
 ## Folder content
 
 This folder contains scripts tasked to molecularly subtype ATRT samples in the PBTA dataset.

@@ -51,7 +51,8 @@ EPN_final <- read_tsv("results/EPN_all_data.tsv") %>%
 
 ### Spinal prioritization
 
-We will first prioritize samples from spinal cord to be assigned to "EPN, SP" or "EPN, SP-MYCN" (if MYCN amplification also observed) as described in [reference]. These samples will not be considered for further molecular_subtypeing. 
+We will first prioritize samples from spinal cord to be assigned to "EPN, SP-MYCN" (if MYCN amplification also observed) as described in [reference]. These samples will not be considered for further molecular_subtypeing. 
+*"EPN, SP" molecular subtype is based on the methylation subtype, not by disease_group. The code was changed before. Investigation is needed.
 
 ```{r}
 EPN_final <- EPN_final %>%

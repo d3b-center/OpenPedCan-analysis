@@ -18,6 +18,9 @@
         "embryonal neoplasm who grade iv",
         "embryonal tumor, not otherwise specified, who grade iv",
         "high grade embryonal tumor with rhabdoid features"
+    ],
+    "exclude_free_text": [
+        "pineoblastoma"
     ]
 }
 

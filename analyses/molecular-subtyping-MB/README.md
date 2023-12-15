@@ -8,6 +8,12 @@ In OpenPBTA, we used consensus subtypes from the R packages [medulloPackage](htt
 The input is a log-normalized TPM matrix with gene symbols as rownames in case of medulloPackage and entrez ids as rownames in case of MM2S.
 Here in OpenPedCan, we utilize [medulloPackage](https://github.com/d3b-center/medullo-classifier-package) since its accuracy (95.35%) was higher than that of MM2S (86.05%) 
 
+## Molecular subtyping MB workflow
+
+ ![MB molecular subtyping workflow](./plot/MB_subtyping.png)
+
+Note: the detailed information about `medulloPackage` can be found in our [paper](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008263). 
+
 ### Running the full analysis
 
 This runs 00-04 scripts to create all the output in the `results/` folder.

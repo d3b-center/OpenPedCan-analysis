@@ -30,12 +30,29 @@ cd "$script_directory" || exit
 
 # directories that hold the full files for the release and the subset files
 # generated via these scripts
+DATA_DIRECTORY=../../data
 FULL_DIRECTORY=../../data/$RELEASE
 SUBSET_DIRECTORY=../../data/testing/$RELEASE
 # If run subsetting only, we need to make this directory
 if [ ! -d ${SUBSET_DIRECTORY} ]; then
     mkdir -p ${SUBSET_DIRECTORY}
 fi
+
+# download Illumina methylation annotations file if does not exist in data
+# from the data release s3 bucket
+URL="https://d3b-openaccess-us-east-1-prd-pbta.s3.amazonaws.com/open-targets"
+RELEASE="v12"
+PROBES="infinium.gencode.v39.probe.annotations.tsv.gz"
+if [ -f "${DATA_DIRECTORY}/${PROBES}" ]; then
+    echo "${PROBES} exists, skip downloading"
+else 
+    echo "${PROBES} does not exist, downloading..."
+    wget ${URL}/${RELEASE}/${PROBES} -P ${FULL_DIRECTORY}/
+    # create symlink to data
+    ln -sfn $RELEASE/$PROBES ../../data/$PROBES
+fi
+
+
 
 #### generate subset files -----------------------------------------------------
 
@@ -84,9 +101,6 @@ cp $FULL_DIRECTORY/cnv-consensus-gistic.zip $SUBSET_DIRECTORY
 # all bed files
 cp $FULL_DIRECTORY/*.bed $SUBSET_DIRECTORY
 
-# data file description
-cp $FULL_DIRECTORY/data-files-description.md $SUBSET_DIRECTORY
-
 # if the md5sum.txt file already exists, get rid of it
 cd $SUBSET_DIRECTORY
 rm -f md5sum.txt
@@ -96,3 +110,7 @@ cd "$script_directory" || exit
 
 # the release notes are not included in md5sum.txt
 cp $FULL_DIRECTORY/release-notes.md $SUBSET_DIRECTORY
+
+# Upload all testing files s3 bucket in their respective folders (example)
+# aws s3 cp data/testing/$RELEASE s3://d3b-openaccess-us-east-1-prd-pbta/open-targets/testing --recursive
+
