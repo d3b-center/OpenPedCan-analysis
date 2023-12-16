@@ -21,7 +21,7 @@ set -o pipefail
 #     if value is 0, skips the POLYA_STRAND steps
 
 POLYA_STRAND=${OPENPEDCAN_POLYA_STRAND:-1}
-RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-1}
+RUN_FOR_SUBTYPING=${OPENPBTA_BASE_SUBTYPING:-0}
 
 
 # Temporary solution to for the python3 rpy2 package to work
