@@ -58,7 +58,7 @@ path_dx_list <- jsonlite::fromJSON(opts$path)
 
 epn_exp_samples <- histologies %>%
   filter(experimental_strategy == "RNA-Seq",
-         cohort %in% c("PBTA", "DGD", "Kentucky")) %>% 
+         cohort %in% c("PBTA", "DGD", "Kentucky", "PPTC")) %>% 
   filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) %>% 
   pull(Kids_First_Biospecimen_ID)
 epn_exp_samples <- intersect(epn_exp_samples, colnames(expression))
