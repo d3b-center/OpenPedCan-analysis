@@ -78,7 +78,7 @@ pb_methy_without_subtype <- pb_meta %>%
 
 pb_methyl_df <- pb_methy_with_subtype %>% 
   bind_rows(pb_methy_without_subtype) %>% 
-  select(sample_id, molecular_subtype, molecular_subtype_methyl)
+  select(match_id, molecular_subtype, molecular_subtype_methyl)
 
 ```
 
@@ -87,13 +87,16 @@ pb_methyl_df <- pb_methy_with_subtype %>%
 
 pb_meta_with_mol <- pb_meta %>%
   select(-molecular_subtype_methyl, -molecular_subtype) %>%
-  left_join(pb_methyl_df, by = "sample_id") %>% 
-  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl, molecular_subtype) %>% 
+  left_join(pb_methyl_df, by = "match_id") %>% 
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id, sample_id, molecular_subtype_methyl, molecular_subtype) %>% 
   ## Assign samples without subtype as "PB, To be classified"
   mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "PB, To be classified", 
                                        TRUE ~ molecular_subtype)) %>%
-  arrange(sample_id) %>%
+  arrange(match_id) %>%
   write_tsv(file.path(result_dir, "pineo-molecular-subtypes.tsv"))
+
+# do all bs ids have unique subtypes?
+length(unique(pb_meta_with_mol$Kids_First_Biospecimen_ID)) == nrow(pb_meta_with_mol)
 
 ```
 

@@ -360,13 +360,13 @@ display: none;
 <div id="load-library" class="section level2">
 <h2>load library</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.1     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.1     
-## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
@@ -384,15 +384,12 @@ if(!dir.exists(result_dir)){
 <div id="read-files" class="section level2">
 <h2>read files</h2>
 <pre class="r"><code>histo &lt;- readr::read_tsv(file.path(data_dir, &quot;histologies-base.tsv&quot;))</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
-##   dat &lt;- vroom(...)
-##   problems(dat)</code></pre>
-<pre><code>## Rows: 43729 Columns: 53
-## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<pre><code>## Rows: 47507 Columns: 56
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;\t&quot;
-## chr (34): Kids_First_Biospecimen_ID, sample_id, aliquot_id, Kids_First_Parti...
-## dbl (17): age_at_diagnosis_days, OS_days, EFS_days, age_last_update_days, no...
-## lgl  (2): integrated_diagnosis, molecular_subtype
+## chr (37): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, a...
+## dbl (17): cell_line_passage, OS_days, EFS_days, age_at_diagnosis_days, age_a...
+## lgl  (2): molecular_subtype, integrated_diagnosis
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -459,20 +456,24 @@ pb_methy_without_subtype &lt;- pb_meta %&gt;%
 
 pb_methyl_df &lt;- pb_methy_with_subtype %&gt;% 
   bind_rows(pb_methy_without_subtype) %&gt;% 
-  select(sample_id, molecular_subtype, molecular_subtype_methyl)</code></pre>
+  select(match_id, molecular_subtype, molecular_subtype_methyl)</code></pre>
 </div>
 <div id="assign-the-molecular-subtypes-to-all-samples-based-on-the-methylation-results" class="section level2">
 <h2>assign the molecular subtypes to all samples based on the
 methylation results</h2>
 <pre class="r"><code>pb_meta_with_mol &lt;- pb_meta %&gt;%
   select(-molecular_subtype_methyl, -molecular_subtype) %&gt;%
-  left_join(pb_methyl_df, by = &quot;sample_id&quot;) %&gt;% 
-  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl, molecular_subtype) %&gt;% 
+  left_join(pb_methyl_df, by = &quot;match_id&quot;) %&gt;% 
+  select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id, sample_id, molecular_subtype_methyl, molecular_subtype) %&gt;% 
   ## Assign samples without subtype as &quot;PB, To be classified&quot;
   mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ &quot;PB, To be classified&quot;, 
                                        TRUE ~ molecular_subtype)) %&gt;%
-  arrange(sample_id) %&gt;%
-  write_tsv(file.path(result_dir, &quot;pineo-molecular-subtypes.tsv&quot;))</code></pre>
+  arrange(match_id) %&gt;%
+  write_tsv(file.path(result_dir, &quot;pineo-molecular-subtypes.tsv&quot;))
+
+# do all bs ids have unique subtypes?
+length(unique(pb_meta_with_mol$Kids_First_Biospecimen_ID)) == nrow(pb_meta_with_mol)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>

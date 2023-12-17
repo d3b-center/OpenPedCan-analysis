@@ -68,6 +68,11 @@ echo "Run ATRT subtyping"
 cd ${analyses_dir}/molecular-subtyping-ATRT
 bash run-molecular-subtyping-ATRT.sh
 
+# Run PB subtyping
+echo "Run PB subtyping"
+cd ${analyses_dir}/molecular-subtyping-PB
+bash run-molecular-subtyping-PB.sh
+
 # Run HGG subtyping
 echo "Run HGG subtyping"
 cd ${analyses_dir}/molecular-subtyping-HGG
