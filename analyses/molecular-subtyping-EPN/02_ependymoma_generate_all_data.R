@@ -36,12 +36,12 @@ epn_notebook <- read_tsv(opt$disease_group_file)
 ## GSVA/Expression/Fusions
 gsva <- read_tsv(opt$gsva) %>%
   filter(hallmark_name == "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
-         Kids_First_Biospecimen_ID %in% epn_samples$Kids_First_Biospecimen_ID) %>%
+         Kids_First_Biospecimen_ID %in% epn_notebook$Kids_First_Biospecimen_ID) %>%
   column_to_rownames("Kids_First_Biospecimen_ID")
 expr_dat <- fread(opt$expr_dat) %>%
   column_to_rownames("GENE") # already subsetted
 fusion_df <- read_tsv(opt$fusion) %>%
-  filter(Kids_First_Biospecimen_ID %in% epn_samples$Kids_First_Biospecimen_ID) %>%
+  filter(Kids_First_Biospecimen_ID %in% epn_notebook$Kids_First_Biospecimen_ID) %>%
   column_to_rownames("Kids_First_Biospecimen_ID")
 
 ## CNV/SV
@@ -70,17 +70,18 @@ gistic_focalCN <- read_tsv(extracted_file_path_focal) %>%
 # Delete the extracted files after processing
 unlink(c(extracted_file_path_broad, extracted_file_path_focal))
 
+# focal consensus calls
 focal_cn_gene <- data.table::fread(opt$focal_gene_cn) %>%
-  filter(biospecimen_id %in% epn_samples$Kids_First_Biospecimen_ID) %>%
+  filter(biospecimen_id %in% epn_notebook$Kids_First_Biospecimen_ID) %>%
   filter(gene_symbol %in% c("CDKN2A", "MYCN", "NF2"),
-         status %in% c("amplification", "gain", "loss")) #%>%
-  column_to_rownames("biospecimen_id")
+         status %in% c("amplification", "gain", "loss"))
 
+# breakpoint density
 breakpoint_density_cnv <- read_tsv(opt$breakpoints_cnv) %>%
-  filter(samples %in% epn_samples$Kids_First_Biospecimen_ID) %>%
+  filter(samples %in% epn_notebook$Kids_First_Biospecimen_ID) %>%
   column_to_rownames("samples")
 breakpoint_density_sv <- read_tsv(opt$breakpoints_sv) %>%
-  filter(samples %in% epn_samples$Kids_First_Biospecimen_ID) %>%
+  filter(samples %in% epn_notebook$Kids_First_Biospecimen_ID) %>%
   column_to_rownames("samples")
 
 ## Mutations  
@@ -89,10 +90,10 @@ TumorOnly_SNV <- data.table::fread(opt$TumorOnlySNV) %>%
   filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"))
 mutations <- data.table::fread(opt$mutations) %>%
   filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"),
-         Tumor_Sample_Barcode %in% epn_samples$Kids_First_Biospecimen_ID)
+         Tumor_Sample_Barcode %in% epn_notebook$Kids_First_Biospecimen_ID)
 mutations <- mutations %>% 
   bind_rows(TumorOnly_SNV) %>%
-  filter(Tumor_Sample_Barcode %in% epn_samples$Kids_First_Biospecimen_ID)
+  filter(Tumor_Sample_Barcode %in% epn_notebook$Kids_First_Biospecimen_ID)
 
 # Get the list of DNA samples that made it through the pipeline
 # All that are present in the GISTIC data passed consensus filtering.

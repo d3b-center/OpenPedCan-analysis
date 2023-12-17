@@ -65,7 +65,7 @@ epn_exp_samples <- intersect(epn_exp_samples, colnames(expression))
 
 # Subsetting expression columns with column names/BSIDs that are in the list of ependymoma samples
 epn_expression <- expression %>%
-  select(epn_exp_samples) %>%
+  select(any_of(epn_exp_samples)) %>%
   tibble::rownames_to_column("GENE")
 
 # write the expression file out
