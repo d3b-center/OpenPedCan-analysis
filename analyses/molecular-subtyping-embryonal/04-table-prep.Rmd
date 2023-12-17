@@ -183,7 +183,8 @@ fusions_summary_df <- list(ttyh1_fusions,
                            cic_fusions) %>%
   purrr::reduce(dplyr::inner_join, by = "Kids_First_Biospecimen_ID") %>%
   # Filter out specific MN1--PATZ1 fusion based on comment: https://github.com/AlexsLemonade/OpenPBTA-analysis/pull/788#discussion_r495212879
-  filter(!(MN1_fusions == "MN1--PATZ1"))
+  filter(!(MN1_fusions == "MN1--PATZ1")) %>% 
+  left_join(histologies_df %>% select(Kids_First_Biospecimen_ID, match_id), by = "Kids_First_Biospecimen_ID")
 
 # remove data.frame we no longer need
 rm(ttyh1_fusions, mn1_fusions, foxr2_fusions, cic_fusions, fusions_df)
@@ -208,7 +209,9 @@ exp_genes_of_interest <- c("LIN28A", "FOXR2")
 # set up expression data
 exp_df <- exp_dat[, exp_genes_of_interest] %>%
   as.data.frame() %>%
-  tibble::rownames_to_column("Kids_First_Biospecimen_ID")
+  tibble::rownames_to_column("Kids_First_Biospecimen_ID") %>% 
+  left_join(histologies_df %>% select(Kids_First_Biospecimen_ID, match_id), by = "Kids_First_Biospecimen_ID")
+
 
 # remove data.frame we no longer need
 rm(exp_dat, exp_genes_of_interest)
@@ -218,7 +221,7 @@ rm(exp_dat, exp_genes_of_interest)
 
 ```{r}
 rna_df <- exp_df %>%
-  left_join(fusions_summary_df) 
+  left_join(fusions_summary_df, by = c("Kids_First_Biospecimen_ID", "match_id")) 
 
 # remove data.frame we no longer need
 rm(exp_df)
@@ -291,6 +294,8 @@ The following were mentioned in [`AlexsLemonade/OpenPBTA-analysis#251`](https://
 # relevant embyronal clinical metadata
 relevant_clinical_data <- histologies_df %>% 
   filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
+  ## remove PPTC neuroblastoma
+  filter(!(cohort == "PPTCA" & pathology_diagnosis == "Neuroblastoma")) %>%
   # convert age to years
   mutate(age_at_diagnosis_yrs = 
            floor(as.numeric(age_at_diagnosis_days) / 365)) %>%
@@ -300,14 +305,7 @@ relevant_clinical_data <- histologies_df %>%
 emb_dna <- relevant_clinical_data %>%
   filter(experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
          is.na(RNA_library)) %>%
-  select(Kids_First_Biospecimen_ID, 
-         Kids_First_Participant_ID, 
-         sample_id, composition, match_id,
-         age_at_diagnosis_yrs,
-         germline_sex_estimate,
-         primary_site,
-         pathology_diagnosis,
-         pathology_free_text_diagnosis) %>%
+  select(Kids_First_Biospecimen_ID, match_id) %>%
   # add dna molecular data
   left_join(chr19_cn_df, by = "Kids_First_Biospecimen_ID") %>% 
   rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID)
@@ -316,20 +314,22 @@ emb_dna <- relevant_clinical_data %>%
 emb_rna <- relevant_clinical_data %>%
   filter(experimental_strategy %in% c("RNA-Seq", "Targeted Sequencing"),
          !is.na(RNA_library)) %>%
-  select(Kids_First_Biospecimen_ID,
-         Kids_First_Participant_ID, 
-         sample_id, composition, match_id,
-         age_at_diagnosis_yrs,
-         germline_sex_estimate,
-         primary_site,
-         pathology_diagnosis,
-         pathology_free_text_diagnosis) %>%
+  select(Kids_First_Biospecimen_ID) %>%
   # add rna molecular data
   left_join(rna_df, by = "Kids_First_Biospecimen_ID") %>% 
   rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID)
   
 # merge all relevant embyronal dna and rna 
-all_data_df <- full_join(emb_dna, emb_rna)
+all_data_df <- full_join(emb_dna, emb_rna, by = "match_id") %>% 
+  left_join(relevant_clinical_data %>% 
+              select(Kids_First_Participant_ID,
+                     sample_id, composition, match_id,
+                     age_at_diagnosis_yrs,
+                     germline_sex_estimate,
+                     primary_site,
+                     pathology_diagnosis,
+                     pathology_free_text_diagnosis), by = "match_id") %>%
+  distinct()
 
 ```
 
@@ -480,17 +480,17 @@ other_nbl_df <- all_data_df %>%
     # All other criteria would have been met to be included in all_data_df
     pathology_diagnosis == "Neuroblastoma",
     # Exclude samples that *do* meet FOXR2 criteria
-    !(sample_id %in% nb_foxr2_df$sample_id)
+    !(match_id %in% nb_foxr2_df$match_id)
   )
 
 other_nbl_df
 ```
 
-We're going to use the `sample_id` to exclude from the subtyping table.
+We're going to use the `match_id` to exclude from the subtyping table.
 
 ```{r}
-exclude_sample_id <- other_nbl_df %>%
-  pull(sample_id)
+exclude_match_id <- other_nbl_df %>%
+  pull(match_id)
 
 subtypes_df <- bind_rows(
   etmr_c19mc_df,
@@ -502,7 +502,7 @@ subtypes_df <- bind_rows(
 subtypes_df <- all_data_df %>%
   select(contains("ID")) %>%
   # Remove any NBL samples that did not meet CNS NB-FOXR2 criteria
-  filter(!(sample_id %in% exclude_sample_id)) %>%
+  filter(!(match_id %in% exclude_match_id)) %>%
   full_join(subtypes_df) %>%
   replace_na(list(molecular_subtype = "CNS Embryonal, NOS"))
 ```
@@ -513,13 +513,14 @@ If CNS Embryonal, NOS", replace with high confidence methylation subtypes
 
 ```{r}
 subtypes_df <-  readr::read_tsv(methyl_file) %>% 
-  dplyr::full_join(subtypes_df, by = c("Kids_First_Participant_ID", "sample_id")) %>% 
+  dplyr::full_join(subtypes_df, by = c("Kids_First_Participant_ID", "match_id")) %>% 
   dplyr::mutate(molecular_subtype = case_when(
     molecular_subtype == "CNS Embryonal, NOS" & !is.na(molecular_subtype_methyl) ~ molecular_subtype_methyl,
     is.na(molecular_subtype) & !is.na(molecular_subtype_methyl) ~ molecular_subtype_methyl,
     is.na(molecular_subtype) & is.na(molecular_subtype_methyl) ~ "CNS Embryonal, NOS", 
     TRUE ~ molecular_subtype)) %>% 
-  dplyr::select(Kids_First_Participant_ID, sample_id, Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
+  dplyr::select(Kids_First_Participant_ID, match_id,
+                Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
                 Kids_First_Biospecimen_ID_Methyl, molecular_subtype, molecular_subtype_methyl) %>% 
   dplyr::distinct()
 
@@ -531,7 +532,7 @@ Write to file
 
 ```{r}
 subtypes_df %>%
-  arrange(Kids_First_Participant_ID, sample_id) %>%
+  arrange(Kids_First_Participant_ID, match_id) %>%
   write_tsv(output_subtypes)
 ```
 
