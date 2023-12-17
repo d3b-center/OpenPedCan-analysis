@@ -51,7 +51,6 @@ histology <- clinical %>%
   # remove TCGA, GTEX from altered file since we don't have DNA
   filter(!is.na(pathology_diagnosis),
          !cohort %in% c("TCGA", "GTEx")) %>%
-  mutate(match_id = paste(Kids_First_Participant_ID, sample_id, tumor_descriptor, composition, cell_line_composition, cell_line_passage, sep = "_")) %>%
   dplyr::select(Kids_First_Biospecimen_ID, match_id, cancer_predispositions,
   experimental_strategy) %>%
     unique()
