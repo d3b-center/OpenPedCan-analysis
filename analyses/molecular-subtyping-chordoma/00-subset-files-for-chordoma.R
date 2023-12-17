@@ -77,7 +77,7 @@ expression_data <- expression_data %>%
 cn_metadata <- data.table::fread(file.path(
   root_dir,
   "data",
-  "consensus_wgs_plus_cnvkit_wxs_autosomes.tsv.gz"
+  "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"
 )) %>%
   dplyr::left_join(chordoma_metadata,
     by = c("biospecimen_id" = "Kids_First_Biospecimen_ID")
