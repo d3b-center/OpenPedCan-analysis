@@ -27,38 +27,33 @@ path_dx_list_atrt <- jsonlite::fromJSON(atrt_subset_file)
 # select all ATRT biospecimens from PBTA and/DGD
 atrt_df <- histo %>%
   dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD")) %>%
-  dplyr::filter(pathology_diagnosis %in% path_dx_list_atrt$exact_path_dx) %>%
-  # create match id
-  mutate(id = paste(sample_id, composition, sep = "_"))
+  dplyr::filter(pathology_diagnosis %in% path_dx_list_atrt$exact_path_dx)
 
 # Create a dataframe with sample_id and matched biospecimens id for RNA-Seq, WGS and methylation
 atrt_df_methyl <- atrt_df %>% 
   filter(experimental_strategy == "Methylation",
          dkfz_v12_methylation_subclass_score >= 0.8,
          grepl("ATRT_", dkfz_v12_methylation_subclass)) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, 
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, composition, 
          dkfz_v12_methylation_subclass, dkfz_v12_methylation_subclass_score) %>%
   # mutate ATRT subtypes from methyl so they are in the format needed later
   mutate(molecular_subtype = case_when(dkfz_v12_methylation_subclass == "ATRT_MYC" ~ "ATRT, MYC",
                                                    dkfz_v12_methylation_subclass == "ATRT_SHH" ~ "ATRT, SHH",
                                                    dkfz_v12_methylation_subclass == "ATRT_TYR" ~ "ATRT, TYR",
-                                                   TRUE ~ dkfz_v12_methylation_subclass),
-         # create match id
-         id = paste(sample_id, composition, sep = "_")) 
+                                                   TRUE ~ dkfz_v12_methylation_subclass)) 
 
 methyl_no_subtype <- atrt_df %>% 
   filter(experimental_strategy == "Methylation",
-         !id %in% atrt_df_methyl$id) %>% 
+         !match_id %in% atrt_df_methyl$match_id) %>% 
   select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, 
          dkfz_v12_methylation_subclass, dkfz_v12_methylation_subclass_score) %>%
-  mutate(molecular_subtype = "ATRT, To be classified", 
-         id = paste(sample_id, composition, sep = "_")) 
+  mutate(molecular_subtype = "ATRT, To be classified") 
 
 
 # make a methyl map
 methyl_map <- atrt_df_methyl %>%
   bind_rows(methyl_no_subtype) %>%
-  select(id, molecular_subtype) %>%
+  select(match_id, molecular_subtype) %>%
   unique() %>%
   mutate(molecular_subtype_methyl = molecular_subtype)
 
@@ -70,7 +65,7 @@ length(unique(methyl_map$id)) == length(methyl_map$id)
 # for the samples without methylation sequencing, their molecular subtype are "ATRT, To be classified."
 # For the samples fit all the other situations, their molecular subtype are "ATRT, To be classified."
 atrt_subtype_final <- atrt_df %>% 
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, id) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, composition) %>%
   left_join(methyl_map) %>%
   mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "ATRT, To be classified",
                                        TRUE ~ molecular_subtype)) %>%
@@ -80,7 +75,7 @@ atrt_subtype_final <- atrt_df %>%
 
 # how many tumors subtyped?
 tumors_subtyped <- atrt_subtype_final %>%
-  select(id, molecular_subtype) %>%
+  select(match_id, molecular_subtype) %>%
   unique() %>%
   count(molecular_subtype)
 

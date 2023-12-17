@@ -22,16 +22,8 @@ output_file <- file.path(output_dir, "ATRT_subtyping_path_dx_strings.json")
 ## Read histologies file
 histo <- readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv")) 
 
-
 ## The `pathology_diagnosis` fields for ATRT
 exact_path_dx <- "Atypical Teratoid Rhabdoid Tumor (ATRT)"
-
-## To subset ATRT samples, pathology_diagnosis is enough
-#path_free_text_exact <- histo %>% 
-#  filter(cohort %in% c("PBTA", "Kentucky", "DGD"), 
-#         pathology_diagnosis == exact_path_dx)
-#  pull(pathology_free_text_diagnosis) %>% 
-#  unique()
 
 ## Create a list with the strings we'll use for inclusion
 term_list <- list(exact_path_dx = exact_path_dx)
