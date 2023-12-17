@@ -43,9 +43,7 @@ epn_samples <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max =
   filter(pathology_diagnosis %in% path_dx_list$exact_path_dx) 
 
 # Reading in table from results folder without the molecular_subtype column
-EPN_final <- read_tsv("results/EPN_all_data.tsv") %>%
-  mutate(molecular_subtype = case_when((is.na(Kids_First_Biospecimen_ID_DNA) & is.na(Kids_First_Biospecimen_ID_RNA) & is.na(Kids_First_Biospecimen_ID_RNA_panel) &                                  !is.na(Kids_First_Biospecimen_ID_Methyl) & is.na(molecular_subtype_methyl)) ~ "EPN, To be classified",
-                                       TRUE ~ NA_character_))
+EPN_final <- read_tsv("results/EPN_all_data.tsv")
 ```
 
 ### Spinal prioritization
@@ -55,7 +53,9 @@ We will first prioritize samples from spinal cord to be assigned to "EPN, SP-MYC
 
 ```{r}
 EPN_final <- EPN_final %>%
-  mutate(molecular_subtype = ifelse(disease_group == "spinal" & grepl("amplification", consensus_focal_CN_MYCN), "EPN, SP-MYCN", molecular_subtype))
+  mutate(molecular_subtype = case_when((disease_group == "spinal" & 
+                                      grepl("amplification", consensus_focal_CN_MYCN)) | molecular_subtype_methyl == "EPN, SP-MYCN" ~ "EPN, SP-MYCN", 
+                                      TRUE ~ NA_character_))
 sp_mycn_samples_assigned <- EPN_final %>%
   filter(molecular_subtype == "EPN, SP-MYCN") %>%
   pull(match_id) %>%
@@ -141,27 +141,17 @@ epn_pfb_samples_assigned <- EPN_final %>%
 print(paste("Number of samples assigned for PT_EPN_B:", length(epn_pfb_samples_assigned)))
 ```
 
-### Adding `SV_instability` and `CNV_instability` columns to the final dataframe
-
-```{r}
-# add columns
-sv_iqr <- IQR(EPN_final$`breaks_density-chromosomal_instability_SV`, na.rm = T)
-sv_median <- median(EPN_final$`breaks_density-chromosomal_instability_SV`, na.rm = T)
-cnv_iqr = IQR(EPN_final$`breaks_density-chromosomal_instability_CNV`, na.rm = T)
-cnv_median = median(EPN_final$`breaks_density-chromosomal_instability_CNV`, na.rm = T)
-EPN_final$SV_instability <- sapply(EPN_final$`breaks_density-chromosomal_instability_SV`, 
-                                     FUN = function(x) x-sv_median/sv_iqr)
-EPN_final$CNV_instability <- sapply(EPN_final$`breaks_density-chromosomal_instability_CNV`, 
-                                     FUN = function(x) x-cnv_median/cnv_iqr)
 
 # sort final table
+
+```{r}
 EPN_final_subtyped <- EPN_final %>% 
   mutate(molecular_subtype = case_when(is.na(molecular_subtype) ~ "EPN, To be classified",
                                              TRUE ~ molecular_subtype)) %>%
   arrange(Kids_First_Participant_ID, match_id)
 
 # write out final file 
-write_tsv(EPN_final_subtyped, "results/EPN_all_data_withmolecular_subtype.tsv")
+write_tsv(EPN_final_subtyped, "results/EPN_all_data_with_molecular_subtype.tsv")
 
 # generate easy table for compile
 EPN_subtypes_by_id <- EPN_final_subtyped %>%
