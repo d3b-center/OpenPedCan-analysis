@@ -62,10 +62,10 @@ prepareOutput <- function(fuseDF, bioid) {
   fuseDF %>% 
     # some fusions have in-frame and frameshift fusion calls for a sample
     # this will make unique fusionName and Sample dataset to get 1/0 values
-    dplyr::select(Sample,FusionName) %>%
-    unique() %>%
-    reshape2::dcast(Sample ~ FusionName,fun.aggregate = length) %>%
-    right_join(data.frame(Sample = bioid)) %>%
+    distinct(Sample, FusionName) %>%
+    mutate(Count = 1) %>%
+    pivot_wider(names_from = FusionName, values_from = Count, values_fill = list(Count = 0)) %>%
+    right_join(data.frame(Sample = specimensUnion)) %>%
     replace(is.na(.), 0) %>%
     rename(Kids_First_Biospecimen_ID = Sample)
 }
