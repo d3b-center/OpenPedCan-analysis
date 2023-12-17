@@ -71,7 +71,7 @@ neurocytoma_subtype <- neurocytoma_from_pathology_diagnosis %>%
   mutate(methyl_subtype = case_when(dkfz_v12_methylation_subclass == "EVNCYT" ~ "EVN",
                                            dkfz_v12_methylation_subclass == "CN" ~ "CNC",
                                            TRUE ~ NA_character_)) %>%
-  select(sample_id, composition, methyl_subtype, Kids_First_Biospecimen_ID) %>%
+  select(match_id, sample_id, composition, methyl_subtype, Kids_First_Biospecimen_ID) %>%
   unique()
   
 # add methyl with low score (for future analysis)
@@ -80,11 +80,11 @@ methyl_no_subtype <- neurocytoma_from_pathology_diagnosis %>%
   filter(experimental_strategy == "Methylation", 
          !Kids_First_Biospecimen_ID %in% neurocytoma_subtype$Kids_First_Biospecimen_ID) %>% 
   mutate(methyl_subtype = NA_character_) %>%
-  select(sample_id, composition, methyl_subtype, Kids_First_Biospecimen_ID) %>%
+  select(match_id, sample_id, composition, methyl_subtype, Kids_First_Biospecimen_ID) %>%
   unique()
 
 neurocytoma_subtype <- bind_rows(neurocytoma_subtype, methyl_no_subtype) %>% 
-  select(sample_id, composition, methyl_subtype)
+  select(match_id, sample_id, composition, methyl_subtype)
 
 neurocytoma_subtype <- neurocytoma_from_pathology_diagnosis %>% 
   dplyr::mutate(molecular_subtype= 
@@ -95,9 +95,9 @@ neurocytoma_subtype <- neurocytoma_from_pathology_diagnosis %>%
                   # then molecular_subtype == EVN (extraventricular neurocytoma)       
                             primary_site != "Ventricles" ~ "EVN")) %>%
   left_join(neurocytoma_subtype) %>%
-  dplyr::select(Kids_First_Participant_ID, sample_id, composition, Kids_First_Biospecimen_ID,
+  dplyr::select(Kids_First_Participant_ID, match_id, sample_id, composition, Kids_First_Biospecimen_ID,
                 molecular_subtype, methyl_subtype) %>%
-  arrange(sample_id) %>%
+  arrange(match_id) %>%
   write_tsv(outputfile)
 
 ```
