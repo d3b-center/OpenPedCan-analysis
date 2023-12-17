@@ -36,11 +36,11 @@ if (!dir.exists(subset_dir)) {
 metadata <-
   read_tsv(file.path(root_dir, "data", "histologies-base.tsv"),
            guess_max = 100000) %>% 
-  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"))
 
 # Select wanted columns in metadata for merging and assign to a new object
 select_metadata <- metadata %>%
-  select(sample_id,
+  select(match_id, sample_id,
          Kids_First_Participant_ID,
          Kids_First_Biospecimen_ID)
 
@@ -151,7 +151,7 @@ rm(rna_expression)
 cn_df <- read_tsv(file.path(
   root_dir,
   "data",
-  "consensus_wgs_plus_cnvkit_wxs.tsv.gz"
+  "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz"
 ))
 
 # Filter focal CN to HGG samples only
@@ -244,16 +244,16 @@ keep_cols <- c("Chromosome",
                "HGVSp_Short",
                "Exon_Number")
 
-#snv_dgd_maf <- data.table::fread(
-#  file.path(root_dir, "data" , "snv-dgd.maf.tsv.gz"),
-#  select = keep_cols,
-#  data.table = FALSE)
+snv_tumor_only_maf <- data.table::fread(
+  file.path(root_dir, "data" , "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"),
+  select = keep_cols,
+  data.table = FALSE)
 
 snv_consensus_hotspot_maf <- data.table::fread(
-  file.path(root_dir, "data" , "snv-consensus-plus-hotspots.maf.tsv.gz"),
+  file.path(root_dir, "data", "snv-consensus-plus-hotspots.maf.tsv.gz"),
   select = keep_cols,
-  data.table = FALSE) #%>% 
-#  bind_rows(snv_dgd_maf)
+  data.table = FALSE) %>% 
+  bind_rows(snv_tumor_only_maf)
 
 snv_consensus_hotspot_maf <- snv_consensus_hotspot_maf %>%
   left_join(select_metadata,

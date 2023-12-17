@@ -18,7 +18,7 @@ output_file <- file.path(root_dir,
 
 # Read histologies_base.tsv file
 histo <- read_tsv(file.path(root_dir, "data", "histologies-base.tsv")) %>% 
-  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"))
 
 # The `pathology_diagnosis` fields for HGG
 # as we identified in 00-v9-HGG-select-pathology-dx.Rmd are:

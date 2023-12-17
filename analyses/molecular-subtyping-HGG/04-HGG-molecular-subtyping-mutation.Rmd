@@ -61,6 +61,7 @@ bed_file <- file.path(root_dir,
                       "gencode.v39.primary_assembly.annotation.bed")
 gencode_cds_bed <- readr::read_tsv(bed_file, col_names = FALSE)
 # Read in HGG subset snv maf data 
+snv_tumor_only_df <- readr::read_tsv(file.path(input_dir, "hgg_snv_maf.tsv.gz"))
 snv_df <- readr::read_tsv(file.path(input_dir, "hgg_snv_maf.tsv.gz"))
 # Read in defining lesions file
 defining_lesions_df <- readr::read_tsv(file.path(results_dir,

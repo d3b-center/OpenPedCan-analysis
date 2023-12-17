@@ -105,7 +105,7 @@ metadata <-
   readr::read_tsv(file.path("..","..","data", "histologies-base.tsv"), 
                   guess_max = 100000) %>%
   dplyr::filter(sample_type == "Tumor") %>% 
-  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"))
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
 path_dx_list_lgat <- jsonlite::fromJSON(

@@ -49,7 +49,7 @@ We will need the clinical/histologies file for included samples to distinguish b
 hgg_metadata_df <- read_tsv(file.path(input_dir,
                                      "hgg_metadata.tsv"), 
                            guess_max = 1000) %>% 
-  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"))
 ```
 
 

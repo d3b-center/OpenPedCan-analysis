@@ -25,22 +25,19 @@ results_dir <- file.path(
 ### Required files
 ```{r}
 # File path to data directory
-tp53_status <- read_tsv(file.path(
+tp53_status_df <- read_tsv(file.path(
   root_dir,
   "analyses",
   "tp53_nf1_score",
   "results",
-  "tp53_altered_status.tsv"), guess_max = 100000) 
+  "tp53_altered_status.tsv"), guess_max = 100000) %>%
+  dplyr::rename(tp53_status = tp53_altered)
 
 bs_match <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max = 100000) %>%
   filter(!is.na(pathology_diagnosis),
-         !cohort %in% c("TCGA", "GTEx")) %>%
-  mutate(match_id = paste(Kids_First_Participant_ID, sample_id, tumor_descriptor, composition, cell_line_composition, cell_line_passage, sep = "_")) %>%
-  select(Kids_First_Biospecimen_ID, match_id) 
-
+         !cohort %in% c("TCGA", "GTEx"))
 
 hgg_subtypes <- read_tsv(file.path(results_dir,"HGG_cleaned_all_table.tsv")) %>%
-  select(-id) %>%
   left_join(bs_match)
 
 ```
@@ -48,12 +45,12 @@ hgg_subtypes <- read_tsv(file.path(results_dir,"HGG_cleaned_all_table.tsv")) %>%
 # Add tp53 status 
 ```{r}
 hgg_subtypes_tp53 <- hgg_subtypes %>%
-  left_join(tp53_status) %>%
+  left_join(unique(tp53_status_df[,c("match_id", "tp53_status")])) %>%
   mutate(molecular_subtype= case_when(
-    tp53_altered %in% c("activated", "loss") ~ stringr::str_c(molecular_subtype,", TP53"),
+    tp53_status %in% c("activated", "loss") ~ stringr::str_c(molecular_subtype,", TP53"),
     TRUE ~ molecular_subtype
   )) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, molecular_subtype, molecular_subtype_methyl, CNS_region) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, molecular_subtype, molecular_subtype_methyl, CNS_region, tp53_status) %>%
   arrange(Kids_First_Participant_ID, match_id) %>%
   unique() %>%
   write_tsv(file.path(results_dir,"HGG_molecular_subtype_tp53.tsv"))

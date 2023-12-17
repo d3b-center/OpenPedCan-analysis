@@ -61,7 +61,7 @@ if (!dir.exists(results_dir)) {
 metadata <-
   readr::read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), 
                   guess_max = 100000) %>%
-  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD"),
+  dplyr::filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"),
                 !is.na(pathology_diagnosis))
 
 # File from 00-LGAT-select-pathology-dx that is used for inclusion/exclusion
@@ -132,18 +132,19 @@ keep_cols <- c("Chromosome",
              "Hugo_Symbol",
              "HGVSp_Short",
              "Exon_Number")
-# DGD MAF
-#snv_dgd_maf <- data.table::fread(
-#  file.path(root_dir, "data" , "snv-dgd.maf.tsv.gz"),
-#                                   select = keep_cols,
-#                                   data.table = FALSE) %>%
-#  dplyr::filter(!Tumor_Sample_Barcode %in% lgg_epn_specimens) 
-# Add DGD MAF to consensus MAF
+# Tumor only MAF
+tumor_only_maf <- data.table::fread(
+  file.path(root_dir, "data" , "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"),
+                                   select = keep_cols,
+                                   data.table = FALSE) %>%
+  dplyr::filter(!Tumor_Sample_Barcode %in% lgg_epn_specimens) 
+
+# Add tumor only to consensus MAF
 snv_consensus_hotspot_maf <- data.table::fread(
   file.path(root_dir, "data" , "snv-consensus-plus-hotspots.maf.tsv.gz"),
                                    select = keep_cols,
                                    data.table = FALSE) %>%
-#  dplyr::bind_rows(snv_dgd_maf) %>%
+  dplyr::bind_rows(tumor_only_maf) %>%
   dplyr::filter(!Tumor_Sample_Barcode %in% lgg_epn_specimens)
 
 ```
