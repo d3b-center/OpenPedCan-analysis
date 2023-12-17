@@ -28,19 +28,22 @@ ews_file <- file.path(results_dir, "EWS_results.tsv")
 ```{r read in data}
 # histology file
 clinical <- readr::read_tsv(file.path(dataDir, "histologies-base.tsv"), guess_max = 100000) %>%
-  filter(cohort %in% c("PBTA", "Kentucky", "DGD"))
+  filter(cohort %in% c("PBTA", "Kentucky", "DGD", "PPTC"))
 
 # read pathology diagnosis JSON file 
 path_dx_list <- jsonlite::fromJSON(file.path(analysis_dir, "ews-subset", "EWS_subtyping_path_dx_strings.json"))
 
 # ewings samples or samples with EWS via methylation
 ews_clinical <- clinical %>%
-  filter(pathology_diagnosis == path_dx_list$exact_path_dx | (dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score >= 0.8)) 
+  filter(pathology_diagnosis == path_dx_list$exact_path_dx | (dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score >= 0.8))  %>%
+  # BS_ER9RMSVG, 7316-179 is medullo diagnosis but high conf methyl EWS, so needs inspection.   # Leave out of here for now
+  filter(Kids_First_Biospecimen_ID != "BS_ER9RMSVG")
 
 # what are the path diagnoses here? Non-EWS should be reviewed by pathology
 ews_clinical %>%
   count(pathology_diagnosis) %>%
   arrange(desc(n))
+
 
 ```
 
@@ -72,13 +75,12 @@ fusion_bsid <- ewings_foi_bsids %>%
   filter(has_ews_fusion) %>%
   left_join(clinical) %>%
   filter(cohort %in% c("PBTA", "Kentucky", "DGD")) %>%
-  select(Kids_First_Biospecimen_ID, sample_id, composition) %>%
-  mutate(molecular_subtype = "EWS",
-         id = paste(sample_id, composition, sep = "_"))
+  select(Kids_First_Biospecimen_ID, match_id, sample_id) %>%
+  mutate(molecular_subtype = "EWS")
 
 # subtype map 
 subtype_map <- fusion_bsid %>%
-  select(id, molecular_subtype) %>%
+  select(match_id, molecular_subtype) %>%
   unique()
 
 ```
@@ -96,8 +98,7 @@ methyl_bs_ids_with_subtypes <- clinical %>%
          dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score >= 0.8) %>%
   # reformat classifier result per https://www.molecularneuropathology.org/mnp/classifiers/11
   mutate(molecular_subtype_methyl = dkfz_v12_methylation_subclass) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype_methyl, id) 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, composition, tumor_descriptor, molecular_subtype_methyl) 
 
 # add samples with poor methyl score
 
@@ -105,14 +106,14 @@ methy_no_subtype <- clinical %>%
   filter(experimental_strategy == "Methylation",
          dkfz_v12_methylation_subclass == "EWS" & dkfz_v12_methylation_subclass_score < 0.8) %>% 
   mutate(molecular_subtype_methyl = NA_character_) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
-  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, tumor_descriptor, molecular_subtype_methyl, id)
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, composition, tumor_descriptor, molecular_subtype_methyl) 
+
 
 methyl_map <- bind_rows(methyl_bs_ids_with_subtypes, methy_no_subtype)
 
 # methyl map
 methyl_map <- methyl_map %>%
-  select(id, molecular_subtype_methyl) %>%
+  select(match_id, molecular_subtype_methyl) %>%
   unique()
 
 
@@ -123,8 +124,7 @@ methyl_map <- methyl_map %>%
 ```{r}
 
 all_subtypes <- ews_clinical %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, composition, pathology_diagnosis) %>%
-  mutate(id = paste(sample_id, composition, sep = "_")) %>%
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, composition, pathology_diagnosis) %>%
   left_join(subtype_map) %>%
   left_join(methyl_map) %>%
   # confirm the subtype based in the pathology, remove any with different pathology dx

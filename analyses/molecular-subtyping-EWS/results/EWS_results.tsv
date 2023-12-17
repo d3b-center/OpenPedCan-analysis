@@ -1,78 +1,101 @@
-Kids_First_Participant_ID	Kids_First_Biospecimen_ID	sample_id	composition	pathology_diagnosis	id	molecular_subtype	molecular_subtype_methyl
-PT_VHS5RM2K	BS_0448A413	7316-364	Solid Tissue	Ewings Sarcoma	7316-364_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_0NWC114C	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_1021ZGQT	7316-3775	Solid Tissue	Ewings Sarcoma	7316-3775_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_1DCQEBTG	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_5JMNQAY8	BS_1GEVH8SJ	7316-4217	Not Available	Ewings Sarcoma	7316-4217_Not Available	EWS	NA
-PT_X8S0H6TG	BS_1N9XZXGE	7316-876	Solid Tissue	Ewings Sarcoma	7316-876_Solid Tissue	EWS	EWS
-PT_1JP2ANQK	BS_1YMB70S6	7316-6353	Not Available	Ewings Sarcoma	7316-6353_Not Available	EWS	NA
-PT_HJMP6PH2	BS_21KG9DWJ	7316-3775	Solid Tissue	Ewings Sarcoma	7316-3775_Solid Tissue	EWS	NA
-PT_8NPNACF3	BS_2F5CPC8C	7316-7109	Solid Tissue	Ewings Sarcoma	7316-7109_Solid Tissue	EWS	EWS
-PT_NBSRQAMS	BS_2H4A2AK9	7316-1079	Solid Tissue	Ewings Sarcoma	7316-1079_Solid Tissue	EWS	EWS
-PT_XBCBJBTN	BS_2RGFY8JF	ET_1ADX2J9A	Not Available	Ewings Sarcoma	ET_1ADX2J9A_Not Available	EWS	NA
-PT_44EJ9T07	BS_3F6TXP1Y	7316-4205	Solid Tissue	Ewings Sarcoma	7316-4205_Solid Tissue	EWS	NA
-PT_5JMNQAY8	BS_3PWMTKET	7316-4217	Solid Tissue	Ewings Sarcoma	7316-4217_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_3XW15QAZ	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_4CT3A9PQ	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_PJFTMJ6H	BS_55KR9YPC	7316-2150	Solid Tissue	Ewings Sarcoma	7316-2150_Solid Tissue	EWS	EWS
-PT_5JMNQAY8	BS_7P6Q9HQ7	7316-4217	Solid Tissue	Ewings Sarcoma	7316-4217_Solid Tissue	EWS	EWS
-PT_SA94083W	BS_7R0ECRT8	7316-1856	Solid Tissue	Ewings Sarcoma	7316-1856_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_7TVVA2PY	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_SA94083W	BS_8S86CM61	7316-1856	Solid Tissue	Ewings Sarcoma	7316-1856_Solid Tissue	EWS	NA
-PT_X8S0H6TG	BS_910X6NM7	7316-876	Solid Tissue	Ewings Sarcoma	7316-876_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_9F45X0PE	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_9SVMVJ45	7316-3775	Solid Tissue	Ewings Sarcoma	7316-3775_Solid Tissue	EWS	NA
-PT_8NPNACF3	BS_B44YJ6E6	7316-7109	Solid Tissue	Ewings Sarcoma	7316-7109_Solid Tissue	EWS	EWS
-PT_1JP2ANQK	BS_B70XXJRP	7316-4424	Solid Tissue	Ewings Sarcoma	7316-4424_Solid Tissue	EWS	EWS
-PT_J50NZYZF	BS_B9V8RGTA	7316-956	Solid Tissue	Ewings Sarcoma	7316-956_Solid Tissue	EWS	EWS
-PT_H6MHKR2J	BS_C4MPKK2H	7316-4724	Not Available	Ewings Sarcoma	7316-4724_Not Available	EWS	NA
-PT_HJMP6PH2	BS_CA670CZB	7316-3775	Not Available	Ewings Sarcoma	7316-3775_Not Available	EWS	NA
-PT_38FS37DP	BS_D7WTD252	7316-2686	Solid Tissue	Ewings Sarcoma	7316-2686_Solid Tissue	EWS	EWS
-PT_38FS37DP	BS_DBEX7AG2	7316-2686	Solid Tissue	Ewings Sarcoma	7316-2686_Solid Tissue	EWS	EWS
-PT_44EJ9T07	BS_DC7RQ790	7316-4205	Solid Tissue	Ewings Sarcoma	7316-4205_Solid Tissue	EWS	NA
-PT_WJCD2NS0	BS_E5D4TMHP	7316-5315	Solid Tissue	Ewings Sarcoma	7316-5315_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_FHPWYH3X	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_VHS5RM2K	BS_FNM4BB83	7316-364	Solid Tissue	Ewings Sarcoma	7316-364_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_FS48BMA3	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_1JP2ANQK	BS_FWGN79WB	7316-4424	Not Available	Ewings Sarcoma	7316-4424_Not Available	EWS	NA
-PT_8NRH7W3N	BS_GGKN0G8N	7316-7105	Solid Tissue	Ewings Sarcoma	7316-7105_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_GXFX6VW1	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_1JP2ANQK	BS_H6YSDEDB	7316-6353	Solid Tissue	Ewings Sarcoma	7316-6353_Solid Tissue	EWS	EWS
-PT_VHS5RM2K	BS_J34K4N6D	7316-364	Solid Tissue	Ewings Sarcoma	7316-364_Solid Tissue	EWS	EWS
-PT_J50NZYZF	BS_J52D4XQY	7316-128	Solid Tissue	Ewings Sarcoma	7316-128_Solid Tissue	EWS	EWS
-PT_F822DBA0	BS_JFEZA9KE	7316-458	Solid Tissue	Ewings Sarcoma	7316-458_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_JG55VBHJ	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_8NRH7W3N	BS_JR0BT8A5	7316-7105	Not Available	Ewings Sarcoma	7316-7105_Not Available	EWS	NA
-PT_38FS37DP	BS_JX1PK0VW	7316-2686	Solid Tissue	Ewings Sarcoma	7316-2686_Solid Tissue	EWS	EWS
-PT_F822DBA0	BS_KPWRDRFP	7316-458	Solid Tissue	Ewings Sarcoma	7316-458_Solid Tissue	EWS	EWS
-PT_F822DBA0	BS_KQCXTBDN	7316-458	Solid Tissue	Ewings Sarcoma	7316-458_Solid Tissue	EWS	EWS
-PT_38FS37DP	BS_M0FN1D8Y	7316-2686	Derived Cell Line	Ewings Sarcoma	7316-2686_Derived Cell Line	EWS	NA
-PT_J50NZYZF	BS_MWZCP1XW	7316-956	Solid Tissue	Ewings Sarcoma	7316-956_Solid Tissue	EWS	EWS
-PT_J50NZYZF	BS_ND6FZ65Y	7316-956	Solid Tissue	Ewings Sarcoma	7316-956_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_P9G0E57D	7316-185	Solid Tissue	Ewings Sarcoma	7316-185_Solid Tissue	EWS	NA
-PT_J50NZYZF	BS_PSNBFWQV	7316-128	Solid Tissue	Ewings Sarcoma	7316-128_Solid Tissue	EWS	EWS
-PT_NBSRQAMS	BS_Q9NHTR7G	7316-1079	Solid Tissue	Ewings Sarcoma	7316-1079_Solid Tissue	EWS	EWS
-PT_NBSRQAMS	BS_R4Y180DM	7316-1079	Solid Tissue	Ewings Sarcoma	7316-1079_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_RNAADGMF	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_N17MK63X	BS_RQ4TNF1G	ET_2K4G9A1D	Not Available	Ewings Sarcoma	ET_2K4G9A1D_Not Available	EWS	NA
-PT_MZPW2BAD	BS_RSQJANXC	ET_ER0AEJ1E	Not Available	Ewings Sarcoma	ET_ER0AEJ1E_Not Available	EWS	NA
-PT_8NRH7W3N	BS_SBG1T91R	7316-7105	Solid Tissue	Ewings Sarcoma	7316-7105_Solid Tissue	EWS	EWS
-PT_WJCD2NS0	BS_SHVQXH3K	7316-5315	Solid Tissue	Ewings Sarcoma	7316-5315_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_SK70BMS6	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_PJFTMJ6H	BS_SSYNTXDC	7316-2150	Solid Tissue	Ewings Sarcoma	7316-2150_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_STN5XQAC	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_8NPNACF3	BS_T9JFSXQH	7316-7109	Solid Tissue	Ewings Sarcoma	7316-7109_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_TY2CX5HN	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_VWH0HPVF	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_WJCD2NS0	BS_VXQSQP29	ET_D5XE84FE	Not Available	Ewings Sarcoma	ET_D5XE84FE_Not Available	EWS	NA
-PT_YYKHGYV8	BS_W6KTNJBM	7316-4209	Not Available	Ewings Sarcoma	7316-4209_Not Available	EWS	NA
-PT_PJFTMJ6H	BS_WJGFDRWK	7316-2150	Solid Tissue	Ewings Sarcoma	7316-2150_Solid Tissue	EWS	EWS
-PT_1JP2ANQK	BS_WN6EX9EK	7316-4424	Solid Tissue	Ewings Sarcoma	7316-4424_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_XKM2EAT4	7316-185	Solid Tissue	Ewings Sarcoma	7316-185_Solid Tissue	EWS	NA
-PT_1JP2ANQK	BS_XP53Q0KM	7316-6353	Solid Tissue	Ewings Sarcoma	7316-6353_Solid Tissue	EWS	EWS
-PT_HJMP6PH2	BS_XQNMWJ4H	7316-4768	Solid Tissue	Ewings Sarcoma	7316-4768_Solid Tissue	EWS	NA
-PT_HJMP6PH2	BS_XZTV0J8W	7316-185	Solid Tissue	Ewings Sarcoma	7316-185_Solid Tissue	EWS	NA
-PT_5JMNQAY8	BS_Y5MKCBD1	7316-4217	Solid Tissue	Ewings Sarcoma	7316-4217_Solid Tissue	EWS	EWS
-PT_51SG66HY	BS_YBE93FFN	7316-6992	Solid Tissue	Ewings Sarcoma	7316-6992_Solid Tissue	EWS	NA
-PT_J50NZYZF	BS_YQR6Q53H	7316-128	Solid Tissue	Ewings Sarcoma	7316-128_Solid Tissue	EWS	EWS
-PT_X8S0H6TG	BS_ZECKZTFC	7316-876	Solid Tissue	Ewings Sarcoma	7316-876_Solid Tissue	EWS	EWS
+Kids_First_Participant_ID	Kids_First_Biospecimen_ID	match_id	sample_id	composition	pathology_diagnosis	molecular_subtype	molecular_subtype_methyl
+PT_VHS5RM2K	BS_0448A413	PT_VHS5RM2K_7316-364_Solid Tissue_Initial CNS Tumor	7316-364	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_0NWC114C	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_0QTPR8NM	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_1021ZGQT	PT_HJMP6PH2_7316-3775_Solid Tissue_Recurrence	7316-3775	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_1DCQEBTG	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_5JMNQAY8	BS_1GEVH8SJ	PT_5JMNQAY8_7316-4217_Not Available_Initial CNS Tumor	7316-4217	Not Available	Ewings Sarcoma	EWS	NA
+PT_X8S0H6TG	BS_1N9XZXGE	PT_X8S0H6TG_7316-876_Solid Tissue_Initial CNS Tumor	7316-876	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_1JP2ANQK	BS_1YMB70S6	PT_1JP2ANQK_7316-6353_Not Available_Progressive	7316-6353	Not Available	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_21KG9DWJ	PT_HJMP6PH2_7316-3775_Solid Tissue_Recurrence	7316-3775	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_38FS37DP	BS_2EAF5GXZ	PT_38FS37DP_7316-2686_Derived Cell Line_Initial CNS Tumor_Serum-based_8	7316-2686	Derived Cell Line	Ewings Sarcoma	EWS	NA
+PT_8NPNACF3	BS_2F5CPC8C	PT_8NPNACF3_7316-7109_Solid Tissue_Initial CNS Tumor	7316-7109	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_NBSRQAMS	BS_2H4A2AK9	PT_NBSRQAMS_7316-1079_Solid Tissue_Initial CNS Tumor	7316-1079	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_XBCBJBTN	BS_2RGFY8JF	PT_XBCBJBTN_ET_1ADX2J9A_Not Available_Primary Tumor	ET_1ADX2J9A	Not Available	Ewings Sarcoma	EWS	NA
+PT_89MDQM4A	BS_2ZPGN4AS	PT_89MDQM4A_ET_DYCGCT3C_Not Available_Primary Tumor	ET_DYCGCT3C	Not Available	Ewings Sarcoma	EWS	NA
+PT_44EJ9T07	BS_3F6TXP1Y	PT_44EJ9T07_7316-4205_Solid Tissue_Initial CNS Tumor	7316-4205	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_5JMNQAY8	BS_3PWMTKET	PT_5JMNQAY8_7316-4217_Solid Tissue_Initial CNS Tumor	7316-4217	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_3XW15QAZ	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_4CT3A9PQ	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_PJFTMJ6H	BS_55KR9YPC	PT_PJFTMJ6H_7316-2150_Solid Tissue_Initial CNS Tumor	7316-2150	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_1JP2ANQK	BS_66TDG10F	PT_1JP2ANQK_ET_9GSTCGZA_Not Available_Progressive	ET_9GSTCGZA	Not Available	Ewings Sarcoma	EWS	NA
+PT_5JMNQAY8	BS_7P6Q9HQ7	PT_5JMNQAY8_7316-4217_Solid Tissue_Initial CNS Tumor	7316-4217	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_SA94083W	BS_7R0ECRT8	PT_SA94083W_7316-1856_Solid Tissue_Initial CNS Tumor	7316-1856	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_7TVVA2PY	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_N17MK63X	BS_86SKTG9Y	PT_N17MK63X_ET_2K4G9A1D_Not Available_Primary Tumor	ET_2K4G9A1D	Not Available	Ewings Sarcoma	EWS	NA
+PT_SA94083W	BS_8S86CM61	PT_SA94083W_7316-1856_Solid Tissue_Initial CNS Tumor	7316-1856	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_93X64HCA	BS_8WKDAXEF	PT_93X64HCA_ET_5ECC4ZRA_Solid Tissue_Primary Tumor	ET_5ECC4ZRA	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_X8S0H6TG	BS_910X6NM7	PT_X8S0H6TG_7316-876_Solid Tissue_Initial CNS Tumor	7316-876	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_9SVMVJ45	PT_HJMP6PH2_7316-3775_Solid Tissue_Recurrence	7316-3775	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_8NPNACF3	BS_B44YJ6E6	PT_8NPNACF3_7316-7109_Solid Tissue_Initial CNS Tumor	7316-7109	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_1JP2ANQK	BS_B70XXJRP	PT_1JP2ANQK_7316-4424_Solid Tissue_Progressive	7316-4424	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_J50NZYZF	BS_B9V8RGTA	PT_J50NZYZF_7316-956_Solid Tissue_Progressive	7316-956	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_H6MHKR2J	BS_C4MPKK2H	PT_H6MHKR2J_7316-4724_Not Available_Initial CNS Tumor	7316-4724	Not Available	Ewings Sarcoma	EWS	NA
+PT_APCZ05PP	BS_CA3QVWME	PT_APCZ05PP_ET_AGJN03AJ_Solid Tissue_Primary Tumor	ET_AGJN03AJ	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_CA670CZB	PT_HJMP6PH2_7316-3775_Not Available_Recurrence	7316-3775	Not Available	Ewings Sarcoma	EWS	NA
+PT_38FS37DP	BS_D7WTD252	PT_38FS37DP_7316-2686_Solid Tissue_Initial CNS Tumor	7316-2686	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HY4QQHN4	BS_D8AE7DC2	PT_HY4QQHN4_ET_7SY25S7M_Not Available_Primary Tumor	ET_7SY25S7M	Not Available	Ewings Sarcoma	EWS	NA
+PT_38FS37DP	BS_DBEX7AG2	PT_38FS37DP_7316-2686_Solid Tissue_Initial CNS Tumor	7316-2686	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_44EJ9T07	BS_DC7RQ790	PT_44EJ9T07_7316-4205_Solid Tissue_Initial CNS Tumor	7316-4205	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_WJCD2NS0	BS_E5D4TMHP	PT_WJCD2NS0_7316-5315_Solid Tissue_Recurrence	7316-5315	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_FHPWYH3X	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_VHS5RM2K	BS_FNM4BB83	PT_VHS5RM2K_7316-364_Solid Tissue_Initial CNS Tumor	7316-364	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_3FBE56XT	BS_FQ28Q58A	PT_3FBE56XT_ET_3DTQ8EYT_Not Available_Primary Tumor	ET_3DTQ8EYT	Not Available	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_FS48BMA3	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_1JP2ANQK	BS_FWGN79WB	PT_1JP2ANQK_7316-4424_Not Available_Progressive	7316-4424	Not Available	Ewings Sarcoma	EWS	NA
+PT_8NRH7W3N	BS_GGKN0G8N	PT_8NRH7W3N_7316-7105_Solid Tissue_Initial CNS Tumor	7316-7105	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_GXFX6VW1	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_1JP2ANQK	BS_H6YSDEDB	PT_1JP2ANQK_7316-6353_Solid Tissue_Progressive	7316-6353	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_VHS5RM2K	BS_J34K4N6D	PT_VHS5RM2K_7316-364_Solid Tissue_Initial CNS Tumor	7316-364	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_J50NZYZF	BS_J52D4XQY	PT_J50NZYZF_7316-128_Solid Tissue_Progressive	7316-128	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_F822DBA0	BS_JFEZA9KE	PT_F822DBA0_7316-458_Solid Tissue_Initial CNS Tumor	7316-458	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_JG55VBHJ	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_8NRH7W3N	BS_JR0BT8A5	PT_8NRH7W3N_7316-7105_Not Available_Initial CNS Tumor	7316-7105	Not Available	Ewings Sarcoma	EWS	NA
+PT_38FS37DP	BS_JX1PK0VW	PT_38FS37DP_7316-2686_Solid Tissue_Initial CNS Tumor	7316-2686	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_F822DBA0	BS_KPWRDRFP	PT_F822DBA0_7316-458_Solid Tissue_Initial CNS Tumor	7316-458	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_F822DBA0	BS_KQCXTBDN	PT_F822DBA0_7316-458_Solid Tissue_Initial CNS Tumor	7316-458	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_38FS37DP	BS_M0FN1D8Y	PT_38FS37DP_7316-2686_Derived Cell Line_Initial CNS Tumor_Serum-based_8	7316-2686	Derived Cell Line	Ewings Sarcoma	EWS	NA
+PT_J50NZYZF	BS_MWZCP1XW	PT_J50NZYZF_7316-956_Solid Tissue_Progressive	7316-956	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_J50NZYZF	BS_ND6FZ65Y	PT_J50NZYZF_7316-956_Solid Tissue_Progressive	7316-956	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_P9G0E57D	PT_HJMP6PH2_7316-185_Solid Tissue_Initial CNS Tumor	7316-185	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_P5N77DTV	BS_PPVW1VVG	PT_P5N77DTV_ET_3XDQ6MF4_Not Available_Primary Tumor	ET_3XDQ6MF4	Not Available	Ewings Sarcoma	EWS	NA
+PT_J50NZYZF	BS_PSNBFWQV	PT_J50NZYZF_7316-128_Solid Tissue_Progressive	7316-128	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_NBSRQAMS	BS_Q9NHTR7G	PT_NBSRQAMS_7316-1079_Solid Tissue_Initial CNS Tumor	7316-1079	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_NBSRQAMS	BS_R4Y180DM	PT_NBSRQAMS_7316-1079_Solid Tissue_Initial CNS Tumor	7316-1079	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_RNAADGMF	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_N17MK63X	BS_RQ4TNF1G	PT_N17MK63X_ET_2K4G9A1D_Not Available_Primary Tumor	ET_2K4G9A1D	Not Available	Ewings Sarcoma	EWS	NA
+PT_TVB2PAPK	BS_RQV24SXY	PT_TVB2PAPK_ET_1VSS01J4_Not Available_Recurrence	ET_1VSS01J4	Not Available	Ewings Sarcoma	EWS	NA
+PT_MZPW2BAD	BS_RSQJANXC	PT_MZPW2BAD_ET_ER0AEJ1E_Not Available_Primary Tumor	ET_ER0AEJ1E	Not Available	Ewings Sarcoma	EWS	NA
+PT_8NRH7W3N	BS_SBG1T91R	PT_8NRH7W3N_7316-7105_Solid Tissue_Initial CNS Tumor	7316-7105	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_WJCD2NS0	BS_SHVQXH3K	PT_WJCD2NS0_7316-5315_Solid Tissue_Recurrence	7316-5315	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_SK70BMS6	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_1JP2ANQK	BS_SMXXV0F1	PT_1JP2ANQK_ET_CDRADTD3_Not Available_Recurrence	ET_CDRADTD3	Not Available	Ewings Sarcoma	EWS	NA
+PT_QMR7WBJY	BS_SNPDF68H	PT_QMR7WBJY_7316-9977_Solid Tissue_Initial CNS Tumor	7316-9977	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_PJFTMJ6H	BS_SSYNTXDC	PT_PJFTMJ6H_7316-2150_Solid Tissue_Initial CNS Tumor	7316-2150	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_STN5XQAC	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_8NPNACF3	BS_T9JFSXQH	PT_8NPNACF3_7316-7109_Solid Tissue_Initial CNS Tumor	7316-7109	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_TY2CX5HN	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_H6MHKR2J	BS_V42WKCSW	PT_H6MHKR2J_ET_FQ9SBKJA_Not Available_Primary Tumor	ET_FQ9SBKJA	Not Available	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_VWH0HPVF	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_WJCD2NS0	BS_VXQSQP29	PT_WJCD2NS0_ET_D5XE84FE_Not Available_Recurrence	ET_D5XE84FE	Not Available	Ewings Sarcoma	EWS	NA
+PT_YYKHGYV8	BS_W6KTNJBM	PT_YYKHGYV8_7316-4209_Not Available_Initial CNS Tumor	7316-4209	Not Available	Ewings Sarcoma	EWS	NA
+PT_PJFTMJ6H	BS_WJGFDRWK	PT_PJFTMJ6H_7316-2150_Solid Tissue_Initial CNS Tumor	7316-2150	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_1JP2ANQK	BS_WN6EX9EK	PT_1JP2ANQK_7316-4424_Solid Tissue_Progressive	7316-4424	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_XKM2EAT4	PT_HJMP6PH2_7316-185_Solid Tissue_Initial CNS Tumor	7316-185	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_1JP2ANQK	BS_XP53Q0KM	PT_1JP2ANQK_7316-6353_Solid Tissue_Progressive	7316-6353	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_HJMP6PH2	BS_XQNMWJ4H	PT_HJMP6PH2_7316-4768_Solid Tissue_Deceased	7316-4768	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_HJMP6PH2	BS_XZTV0J8W	PT_HJMP6PH2_7316-185_Solid Tissue_Initial CNS Tumor	7316-185	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_5JMNQAY8	BS_Y5MKCBD1	PT_5JMNQAY8_7316-4217_Solid Tissue_Initial CNS Tumor	7316-4217	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_51SG66HY	BS_YBE93FFN	PT_51SG66HY_7316-6992_Solid Tissue_Initial CNS Tumor	7316-6992	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_QMR7WBJY	BS_YHK3B601	PT_QMR7WBJY_7316-9977_Solid Tissue_Initial CNS Tumor	7316-9977	Solid Tissue	Ewings Sarcoma	EWS	NA
+PT_J50NZYZF	BS_YQR6Q53H	PT_J50NZYZF_7316-128_Solid Tissue_Progressive	7316-128	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PT_X8S0H6TG	BS_ZECKZTFC	PT_X8S0H6TG_7316-876_Solid Tissue_Initial CNS Tumor	7316-876	Solid Tissue	Ewings Sarcoma	EWS	EWS
+PPTC_P0243	PPTC_6NAVTLHB	PPTC_P0243_SK-NEP-1_Patient Derived Xenograft_Relapse	SK-NEP-1	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0085	PPTC_8FU92WLB	PPTC_P0085_ES-1_Patient Derived Xenograft_Primary Tumor	ES-1	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0244	PPTC_C1EQHFWZ	PPTC_P0244_TC-71_Patient Derived Xenograft_Relapse	TC-71	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0088	PPTC_MJCGYUSF	PPTC_P0088_ES-8_Patient Derived Xenograft_Relapse	ES-8	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0096	PPTC_P0ZLDYX1	PPTC_P0096_EW-8_Patient Derived Xenograft_Primary Tumor	EW-8	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0095	PPTC_RTTBHIGM	PPTC_P0095_EW-5_Patient Derived Xenograft_Primary Tumor	EW-5	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0060	PPTC_TVALFRGF	PPTC_P0060_CHLA-258_Patient Derived Xenograft_Relapse	CHLA-258	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0086	PPTC_VVIZKDPE	PPTC_P0086_ES-4_Patient Derived Xenograft_Relapse	ES-4	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
+PPTC_P0087	PPTC_Z6FKX3MA	PPTC_P0087_ES-6_Patient Derived Xenograft_Relapse	ES-6	Patient Derived Xenograft	Ewings Sarcoma	EWS	NA
