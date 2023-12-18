@@ -52,15 +52,14 @@ path_dx_list <- jsonlite::fromJSON(
 )
 
 # clinical file
-clinical_file <- read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000) %>%
-    dplyr::mutate(id = paste(sample_id, composition, sep = "_"))
+clinical_file <- read_tsv(file.path(root_dir, "data", "histologies-base.tsv"), guess_max = 100000) 
 
 lgat_manifest <- clinical_file %>% 
   filter(Kids_First_Biospecimen_ID %in% bsid_to_include) %>%
   # select columns for interest
   dplyr::select(Kids_First_Biospecimen_ID,
          Kids_First_Participant_ID,
-         id,
+         match_id,
          sample_id,
          tumor_descriptor,
          composition,
@@ -85,23 +84,23 @@ lgat_rna <- lgat_manifest %>%
   dplyr::select( -experimental_strategy, -cancer_predispositions)
 
 all_lgat_matched <- full_join(lgat_dna, lgat_rna,
-                         by = c("Kids_First_Participant_ID",
-                                "sample_id", "id",
+                         by = c("match_id", "Kids_First_Participant_ID",
+                                "sample_id",
                                 "pathology_free_text_diagnosis",
                                 "pathology_diagnosis"),
                          suffix = c("_DNA", "_RNA")) %>%
-  dplyr::select(starts_with("Kids_First"), sample_id, id,
+  dplyr::select(starts_with("Kids_First"), sample_id, match_id,
                 pathology_free_text_diagnosis,
                 pathology_diagnosis) %>%
   # group where there are duplicates
-  group_by(Kids_First_Participant_ID, sample_id, id, pathology_diagnosis, pathology_free_text_diagnosis) %>%
+  group_by(Kids_First_Participant_ID, sample_id, match_id, pathology_diagnosis, pathology_free_text_diagnosis) %>%
   summarise(Kids_First_Biospecimen_ID_DNA = toString(unique(Kids_First_Biospecimen_ID_DNA)),
             Kids_First_Biospecimen_ID_RNA = toString(unique(Kids_First_Biospecimen_ID_RNA))) %>%
   ungroup() 
 
 # SNV based annotation
 lgat_snv <- read_tsv(file.path(subset_dir,"LGAT_snv_subset.tsv")) %>%
-  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "id")]) %>%
+  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "match_id")]) %>%
   select(-Kids_First_Biospecimen_ID) %>%
   unique()
 
@@ -109,13 +108,13 @@ lgat_snv <- read_tsv(file.path(subset_dir,"LGAT_snv_subset.tsv")) %>%
 lgat_cnv <- read_tsv(file.path(subset_dir,"LGAT_cnv_subset.tsv")) %>%
   # To-do add to CNV subset script
   dplyr::rename(Kids_First_Biospecimen_ID=lgat_wgs_biospecimen_ids) %>%
-  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "id")]) %>%
+  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "match_id")]) %>%
   select(-Kids_First_Biospecimen_ID) %>%
   unique()
 
 # Fusion base annotation
 lgat_fus <- read_tsv(file.path(subset_dir,"LGAT_fusion_subset.tsv")) %>%
-  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "id")]) %>%
+  left_join(lgat_manifest[,c("Kids_First_Biospecimen_ID", "match_id")]) %>%
   select(-Kids_First_Biospecimen_ID) %>%
   unique()
 
@@ -125,8 +124,8 @@ methyl_bsids <- read_tsv(file.path(subset_dir,"LGAT_methyl_subtypes.tsv")) %>%
 
 methyl_subtyped <- read_tsv(file.path(subset_dir,"LGAT_methyl_subtypes.tsv")) %>%
   dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_Methyl) %>%
-  left_join(clinical_file[,c("Kids_First_Biospecimen_ID", "id", "pathology_diagnosis")]) %>%
-  group_by(Kids_First_Participant_ID, molecular_subtype_methyl, id, pathology_diagnosis) %>% 
+  left_join(clinical_file[,c("Kids_First_Biospecimen_ID", "match_id", "pathology_diagnosis")]) %>%
+  group_by(Kids_First_Participant_ID, molecular_subtype_methyl, match_id, pathology_diagnosis) %>% 
   summarise(Kids_First_Biospecimen_ID_Methyl = toString(unique(Kids_First_Biospecimen_ID))) %>%
   ungroup()
 
@@ -139,7 +138,7 @@ This subtype is characterized by germline NF1 variants. We do not have germline 
 nf1_snv <- lgat_snv %>%
   filter(NF1_mut=="Yes") %>%
   mutate(molecular_subtype = "NF1-somatic") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 nf1_germline <- lgat_manifest %>% 
@@ -149,7 +148,7 @@ nf1_germline <- lgat_manifest %>%
   # keeping "NF1" in cancer_predisposition
   filter(grepl("NF-1", cancer_predispositions))  %>% 
   mutate(molecular_subtype = "NF1-germline") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 nf1_biospecimen <- bind_rows(nf1_snv,
@@ -166,7 +165,7 @@ This subtype contains KIAA1549-BRAF fusion
 kiaabraf_biospecimen <- lgat_fus %>%
   filter(KIAA_BRAF_fus=="Yes") %>%
   mutate(molecular_subtype = "KIAA1549-BRAF") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 ```
@@ -179,7 +178,7 @@ This subtype contains BRAF V600E or V599 SNV or non-canonical BRAF SNV/indel ove
 brafV600_biospecimen <- lgat_snv %>%
   filter(BRAF_V600E_mut=="Yes") %>%
   mutate(molecular_subtype = "BRAF V600E") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 ```
 
@@ -193,13 +192,13 @@ OR contains KRAS, NRAS, HRAS, MAP2K1, MAP2K2, MAP2K1, ARAF SNV or indel
 otherMAPK_fus_biospecimen <- lgat_fus %>%
   filter(MAPK_fus=="Yes") %>%
   mutate(molecular_subtype = "other MAPK") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 otherMAPK_snv_biospecimen <- lgat_snv %>%
   filter(MAPK_mut=="Yes") %>%
   mutate(molecular_subtype = "other MAPK") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 ```
@@ -215,13 +214,13 @@ OR harbors a PDGFRA SNV or fusion
 rtk_fus_biospecimen <- lgat_fus %>%
   filter(RTK_fus=="Yes") %>%
   mutate(molecular_subtype = "RTK") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 rtk_snv_biospecimen <- lgat_snv %>%
   filter(RTK_mut=="Yes") %>%
   mutate(molecular_subtype = "RTK") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 
@@ -237,19 +236,19 @@ OR harbors FGFR1 or FGFR2 fusions
 fgfr_fus_biospecimen <- lgat_fus %>%
   filter(FGFR_fus=="Yes") %>%
   mutate(molecular_subtype = "FGFR") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 fgfr_snv_biospecimen <- lgat_snv %>%
   filter(FGFR_mut=="Yes") %>%
   mutate(molecular_subtype = "FGFR") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 fgfr_cnv_biospecimen <- lgat_cnv %>%
   filter(FGFR_DUP_TANDEM=="Yes" |  FGFR_DUP == "Yes") %>%
   mutate(molecular_subtype = "FGFR") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 
 ```
@@ -261,7 +260,7 @@ This subtype harbors an IDH R132 mutation
 idh_biospecimen <- lgat_snv %>%
   filter(IDH_mut=="Yes") %>%
   mutate(molecular_subtype = "IDH") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 ```
 
@@ -272,7 +271,7 @@ This subtype harbors an H3F3A K28M or G35R/V mutation
 h3_biospecimen <- lgat_snv %>%
   filter(H3.1_mut =="Yes"| H3.2_mut =="Yes" |H3.3_mut =="Yes") %>%
   mutate(molecular_subtype = "H3") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 ```
  
@@ -283,7 +282,7 @@ This subtype harbors either a MYB-QKI fusion or other MYB or MYBL1 fusion
 myb_biospecimen <- lgat_fus %>%
   filter(MYB_fus=="Yes") %>%
   mutate(molecular_subtype = "MYB/MYBL1") %>%
-dplyr::select("id","molecular_subtype") %>%
+dplyr::select("match_id","molecular_subtype") %>%
   unique()
 ```
 
@@ -296,7 +295,7 @@ This is a secondary co-occurring alteration with prognostic significance.
 cdkn_biospecimen <- lgat_cnv %>%
   filter(CDKN2A_DEL=="Yes"| CDKN2B_DEL == "Yes") %>%
   mutate(molecular_subtype = "CDKN2A/B") %>%
-  dplyr::select("id","molecular_subtype") %>%
+  dplyr::select("match_id","molecular_subtype") %>%
   unique()
 ```
 
@@ -322,7 +321,7 @@ all_rna_subtype <- bind_rows(kiaabraf_biospecimen,
 
 all_subtype <- bind_rows(all_rna_subtype,
                          all_dna_subtype) %>%
-  group_by(id) %>%
+  group_by(match_id) %>%
   # merging them here with summarise
   summarise(molecular_subtype= toString(unique(molecular_subtype))) %>%
   ungroup() 
@@ -367,14 +366,14 @@ all_subtype_clinical <- all_lgat_matched %>%
 ### Inlcude Methylation subtypes
 
 ```{r}
-all_subtype_with_methyl <- methyl_subtyped[,c("Kids_First_Biospecimen_ID_Methyl", "molecular_subtype_methyl", "id")] %>%
-  dplyr::full_join(all_subtype_clinical, by = "id") %>%
+all_subtype_with_methyl <- methyl_subtyped[,c("Kids_First_Biospecimen_ID_Methyl", "molecular_subtype_methyl", "match_id")] %>%
+  dplyr::full_join(all_subtype_clinical, by = "match_id") %>%
   dplyr::mutate(molecular_subtype = case_when(
     grepl("To be classified", molecular_subtype) & !is.na(molecular_subtype_methyl) ~ molecular_subtype_methyl,
     grepl("wildtype", molecular_subtype) & !is.na(molecular_subtype_methyl) ~ molecular_subtype_methyl,
     TRUE ~ molecular_subtype)) %>%
   dplyr::select(Kids_First_Participant_ID, sample_id, Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
-                Kids_First_Biospecimen_ID_Methyl, molecular_subtype, molecular_subtype_methyl, id) %>%
+                Kids_First_Biospecimen_ID_Methyl, molecular_subtype, molecular_subtype_methyl, match_id) %>%
   # update GNT subtype == GNT to be classified
   dplyr::mutate(molecular_subtype = case_when(molecular_subtype == "GNT" ~ "GNT, To be classified",
                                         TRUE ~ molecular_subtype),
@@ -395,8 +394,8 @@ all_subtype_with_methyl <- methyl_subtyped[,c("Kids_First_Biospecimen_ID_Methyl"
 all_bs_ids <- clinical_file %>%
   select(-molecular_subtype) %>%
   filter(Kids_First_Biospecimen_ID %in% c(methyl_bsids, lgat_manifest$Kids_First_Biospecimen_ID)) %>%
-  left_join(all_subtype_with_methyl[,c("id", "molecular_subtype", "molecular_subtype_methyl")], by = "id") %>%
-  select(Kids_First_Participant_ID,	Kids_First_Biospecimen_ID, sample_id, id, molecular_subtype, molecular_subtype_methyl) %>%
+  left_join(all_subtype_with_methyl[,c("match_id", "molecular_subtype", "molecular_subtype_methyl")], by = "match_id") %>%
+  select(Kids_First_Participant_ID,	Kids_First_Biospecimen_ID, sample_id, match_id, molecular_subtype, molecular_subtype_methyl) %>%
   arrange(Kids_First_Biospecimen_ID) %>%
   dplyr::distinct() %>% 
   readr::write_tsv(file.path(resultDir,"lgat_subtyping.tsv"))
