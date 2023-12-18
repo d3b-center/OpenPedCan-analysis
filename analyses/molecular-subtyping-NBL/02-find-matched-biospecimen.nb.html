@@ -1818,9 +1818,9 @@ if (!dir.exists(plot_dir)) {
                 cohort, pathology_free_text_diagnosis, gene_symbol, MYCN_CN, MYCN_TPM,
                 MYCN_CN_status, match_id)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMTU2NSBDb2x1bW5zOiA2NFxu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIlxcdFwiXG5jaHIgKDMzKTogS2lkc19GaXJzdF9QYXJ0aWNpcGFudF9JRCwgS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgc2FtcGxlX2lkLCBhLi4uXG5kYmwgKDE0KTogT1NfZGF5cywgRUZTX2RheXMsIGFnZV9hdF9kaWFnbm9zaXNfZGF5cywgYWdlX2F0X2V2ZW50X2RheXMsIGFnZV9hLi4uXG5sZ2wgKDE3KTogY2VsbF9saW5lX2NvbXBvc2l0aW9uLCBjZWxsX2xpbmVfcGFzc2FnZSwgbW9sZWN1bGFyX3N1YnR5cGUsIGludGVnLi4uXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMTU2NSBDb2x1bW5zOiA2NFxu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIlxcdFwiXG5jaHIgKDMzKTogS2lkc19GaXJzdF9QYXJ0aWNpcGFudF9JRCwgS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgc2FtcGxlX2lkLCBhLi4uXG5kYmwgKDE0KTogT1NfZGF5cywgRUZTX2RheXMsIGFnZV9hdF9kaWFnbm9zaXNfZGF5cywgYWdlX2F0X2V2ZW50X2RheXMsIGFnZV9hLi4uXG5sZ2wgKDE3KTogY2VsbF9saW5lX2NvbXBvc2l0aW9uLCBjZWxsX2xpbmVfcGFzc2FnZSwgbW9sZWN1bGFyX3N1YnR5cGUsIGludGVnLi4uXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
 <pre><code>Rows: 1565 Columns: 64
-── Column specification ────────────────────────────────────────────────────────
+── Column specification ──────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
 chr (33): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, a...
 dbl (14): OS_days, EFS_days, age_at_diagnosis_days, age_at_event_days, age_a...
@@ -1867,12 +1867,12 @@ mycn_rna_df &lt;- mycn_df %&gt;%
       dplyr::select(Kids_First_Biospecimen_ID_RNA, MYCN_TPM, match_id),
     by = &quot;match_id&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBkcGx5cjo6aW5uZXJfam9pbiguLCBteWNuX3JuYV9kZiAlPiUgZHBseXI6OnNlbGVjdChLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEX1JOQSwgOiBEZXRlY3RlZCBhbiB1bmV4cGVjdGVkIG1hbnktdG8tbWFueSByZWxhdGlvbnNoaXAgYmV0d2VlbiBgeGAgYW5kIGB5YC5cbuKEuSBSb3cgMTEgb2YgYHhgIG1hdGNoZXMgbXVsdGlwbGUgcm93cyBpbiBgeWAuXG7ihLkgUm93IDE5OCBvZiBgeWAgbWF0Y2hlcyBtdWx0aXBsZSByb3dzIGluIGB4YC5cbuKEuSBJZiBhIG1hbnktdG8tbWFueSByZWxhdGlvbnNoaXAgaXMgZXhwZWN0ZWQsIHNldCBgcmVsYXRpb25zaGlwID1cbiAgXCJtYW55LXRvLW1hbnlcImAgdG8gc2lsZW5jZSB0aGlzIHdhcm5pbmcuXG4ifQ== -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZyBpbiBkcGx5cjo6aW5uZXJfam9pbiguLCBteWNuX3JuYV9kZiAlPiUgZHBseXI6OnNlbGVjdChLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEX1JOQSwgOiBEZXRlY3RlZCBhbiB1bmV4cGVjdGVkIG1hbnktdG8tbWFueSByZWxhdGlvbnNoaXAgYmV0d2VlbiBgeGAgYW5kIGB5YC5cbuKEuSBSb3cgMTEgb2YgYHhgIG1hdGNoZXMgbXVsdGlwbGUgcm93cyBpbiBgeWAuXG7ihLkgUm93IDE5OCBvZiBgeWAgbWF0Y2hlcyBtdWx0aXBsZSByb3dzIGluIGB4YC5cbuKEuSBJZiBhIG1hbnktdG8tbWFueSByZWxhdGlvbnNoaXAgaXMgZXhwZWN0ZWQsIHNldCBgcmVsYXRpb25zaGlwID0gXCJtYW55LXRvLW1hbnlcImAgdG8gc2lsZW5jZSB0aGlzXG4gIHdhcm5pbmcuXG4ifQ== -->
 <pre><code>Warning in dplyr::inner_join(., mycn_rna_df %&gt;% dplyr::select(Kids_First_Biospecimen_ID_RNA, : Detected an unexpected many-to-many relationship between `x` and `y`.
 ℹ Row 11 of `x` matches multiple rows in `y`.
 ℹ Row 198 of `y` matches multiple rows in `x`.
-ℹ If a many-to-many relationship is expected, set `relationship =
-  &quot;many-to-many&quot;` to silence this warning.</code></pre>
+ℹ If a many-to-many relationship is expected, set `relationship = &quot;many-to-many&quot;` to silence this
+  warning.</code></pre>
 <!-- rnb-warning-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

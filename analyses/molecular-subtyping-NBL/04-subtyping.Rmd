@@ -73,7 +73,8 @@ path_dx_list <- jsonlite::fromJSON(
   file.path(subset_dir, "nbl_subtyping_path_dx_strings.json"))
 
 # tmp expression cutoff 
-Suggested_Cutoff <- 140.83 # TARGET-30-PAMEZH-01A-01R
+Suggested_Cutoff <- 140.83 # TARGET-30-PAMEZH-01A-01R	
+
 # MYCN clinical status
 mycn_clincial_status <- alteration_df %>% 
   dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
@@ -110,13 +111,8 @@ alteration_df <- alteration_df %>%
                pathology_free_text_diagnosis %in% mycn_path_free ~ "NBL, MYCN amplified",
              MYCN_CN_status %in% mycn_status &  
                pathology_free_text_diagnosis %in% mycn_path_free ~ "NBL, MYCN non-amplified",
-             ## for PPTC and Maris sample, MYCN status is in pathology_free_text_diagnosis
-             grepl("MYCN Amplified", pathology_free_text_diagnosis) ~ "NBL, MYCN amplified",
-             grepl("MYCN Non-amplified", pathology_free_text_diagnosis) ~ "NBL, MYCN non-amplified",
              TRUE ~ NA_character_)
-         ) %>%
-  group_by(match_id) %>% 
-  fill(molecular_subtype)
+         )
 
 ```
 
@@ -145,11 +141,6 @@ clincal_amplified_IDs <- alteration_df %>%
   dplyr::filter(MYCN_CN_status %in% mycn_status, 
                 pathology_free_text_diagnosis == "MYCN amp") %>% 
   dplyr::pull(Kids_First_Biospecimen_ID_DNA)
-
-clinical_amplified_match_id <- alteration_df %>% 
-  dplyr::filter(MYCN_CN_status %in% mycn_status, 
-                pathology_free_text_diagnosis == "MYCN amp") %>% 
-  dplyr::pull(match_id)
 
 # Iterate through the biospecimen list in clincal_amplified_IDs which belong 
 # to case 4A and plot the segment means the MYCN chromosome 2 cytoband region
@@ -186,12 +177,10 @@ clincal_amplified_df <- alteration_df %>%
                     MYCN_TPM < Suggested_Cutoff ~ "NBL, MYCN non-amplified",
                     TRUE ~ as.character(molecular_subtype)
                   )
-               ) %>%
-  group_by(match_id) %>% 
-  fill(molecular_subtype)
+               )
 
 alteration_df <- alteration_df %>% 
-  dplyr::filter(!match_id %in% clincal_amplified_df$match_id) %>%
+  dplyr::filter(!Kids_First_Biospecimen_ID_DNA %in% clincal_amplified_IDs) %>%
   dplyr::bind_rows(clincal_amplified_df)
 
 ```
@@ -203,10 +192,10 @@ assign molecular subtype based on `Suggested_Cutoff`.
 ## Subtype based on TPM
 
 ```{r subtype based tpm}
-case_5_match_id <- alteration_df %>% 
+case_5_ids <- alteration_df %>% 
   dplyr::filter(is.na(molecular_subtype), 
                       MYCN_TPM >= Suggested_Cutoff | MYCN_TPM < Suggested_Cutoff) %>% 
-  dplyr::pull(match_id)
+  dplyr::pull(Kids_First_Biospecimen_ID_DNA)
                   
 
 alteration_df <- alteration_df %>% 
@@ -218,9 +207,7 @@ alteration_df <- alteration_df %>%
                       MYCN_TPM < Suggested_Cutoff) ~ "NBL, MYCN non-amplified",
                     TRUE ~ as.character(molecular_subtype)
                   )
-               ) %>%
-  group_by(match_id) %>% 
-  fill(molecular_subtype)
+               )
 
 ```
 
@@ -247,15 +234,15 @@ determined based on TPM.
 
 ```{r df subtyped by tmp}
  alteration_tmp_df <- alteration_df %>% 
-  dplyr::filter(match_id %in% 
-                  unique(c(clinical_amplified_match_id, case_5_match_id))) %>% 
+  dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% 
+                  unique(c(clincal_amplified_IDs, case_5_ids))) %>% 
   dplyr::select(Kids_First_Biospecimen_ID_DNA, 
                 Kids_First_Biospecimen_ID_RNA,
-                Kids_First_Participant_ID,
-                sample_id, cohort, MYCN_CN,
+		Kids_First_Participant_ID,
+		sample_id, cohort, MYCN_CN,
                 pathology_free_text_diagnosis, 
                 MYCN_CN_status, MYCN_TPM,
-                molecular_subtype, match_id)
+                molecular_subtype)
 
 ```
 
@@ -304,14 +291,17 @@ molecular_subtype_table <- hist_df %>%
                 experimental_strategy == "Methylation", 
                 sample_type == "Tumor") %>% 
   dplyr::mutate(molecular_subtype_methyl = NA_character_) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, match_id, molecular_subtype_methyl) %>%
+  dplyr::select(Kids_First_Biospecimen_ID, match_id,
+                molecular_subtype_methyl) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::distinct() %>% 
-  dplyr::full_join(molecular_subtype_table, 
+  dplyr::right_join(molecular_subtype_table, 
                    by = "match_id") %>%
   dplyr::select(Kids_First_Participant_ID, sample_id, cohort, Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
                 Kids_First_Biospecimen_ID_Methyl, molecular_subtype, molecular_subtype_methyl, match_id) %>% 
-  dplyr::distinct()
+  dplyr::distinct() %>% 
+  group_by(match_id) %>% 
+  fill(molecular_subtype)
   
 ```
 
