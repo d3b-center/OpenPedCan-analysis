@@ -67,7 +67,7 @@ mycn_dna_df <- mycn_df %>%
                   mycn_dna_rna_df$Kids_First_Biospecimen_ID_DNA)) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID_DNA = Kids_First_Biospecimen_ID) %>% 
   dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Participant_ID, MYCN_TPM,
-                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, sample_id, cohort) %>% 
+                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, sample_id, cohort, match_id) %>% 
   dplyr::mutate(Kids_First_Biospecimen_ID_RNA = NA_character_)
   
 # unmatched rna biospecimen
@@ -78,7 +78,7 @@ mycn_rna_df <- mycn_df %>%
                   mycn_dna_rna_df$Kids_First_Biospecimen_ID_RNA)) %>%
   dplyr::rename(Kids_First_Biospecimen_ID_RNA = Kids_First_Biospecimen_ID) %>% 
   dplyr::select(Kids_First_Biospecimen_ID_RNA, Kids_First_Participant_ID, MYCN_TPM,
-                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, sample_id, cohort) %>% 
+                MYCN_CN, MYCN_CN_status, pathology_free_text_diagnosis, sample_id, cohort, match_id) %>% 
   dplyr::mutate(Kids_First_Biospecimen_ID_DNA = NA_character_)
 
 ```
@@ -90,7 +90,7 @@ mycn_rna_df <- mycn_df %>%
 mycn_dna_rna_df <- mycn_dna_rna_df %>% 
   dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
                 Kids_First_Participant_ID, MYCN_TPM, MYCN_CN ,MYCN_CN_status,
-                pathology_free_text_diagnosis,sample_id, cohort) 
+                pathology_free_text_diagnosis,sample_id, cohort, match_id) 
 
 # bind matched and unmatched biospecimen 
 alteration_df <- dplyr::bind_rows(mycn_dna_rna_df, mycn_dna_df, mycn_rna_df)
@@ -155,7 +155,7 @@ bar_plot2
 Suggested_Cutoff <- 140.83
 bar_plot2 + geom_hline(aes(yintercept=Suggested_Cutoff, 
                            linetype = "Suggested Amp Cutoff"),
-                       color = "black", size= 2)
+                       color = "black", size= 0.2)
 
 plot_file <- file.path(plot_dir, "tpm_biospecimen_all_samples_with_tpm.png")
 ggsave(filename = plot_file, width = 49, height = 20)

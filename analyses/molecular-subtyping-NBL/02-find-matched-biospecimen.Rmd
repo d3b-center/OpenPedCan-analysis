@@ -46,9 +46,6 @@ Create a `match_id` combining `Kids_First_Participant_ID`, `sample_id`, and
 ```{r mycn subset file}
 mycn_df <- readr::read_tsv(file.path(subset_dir, "mycn_nbl_subset_data.tsv"), 
                            guess_max = 100000) %>% 
-  # create match_id
-  dplyr::mutate(match_id = paste(Kids_First_Participant_ID, 
-                                 sample_id, cohort, sep = "_")) %>%
   # select columns of interest
   dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, 
                 aliquot_id, experimental_strategy, RNA_library,  pathology_diagnosis,
@@ -103,29 +100,52 @@ dup_dna_ids <- mycn_dna_rna_df %>%
   dplyr::filter(n > 1) %>% 
   pull(Kids_First_Biospecimen_ID_DNA)
 
-# display duplicate biospecimen
-mycn_dna_rna_df %>% dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% 
-                                    dup_dna_ids) 
+dup_dna_rna_df <- mycn_dna_rna_df %>% 
+  dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% dup_dna_ids) 
+
+## check if there are duplication in RNA
+n = (nrow(dup_dna_rna_df) - length(unique(dup_dna_rna_df %>% pull(Kids_First_Biospecimen_ID_RNA))))
+print(paste("There are", n, "duplicated RNA samples")) 
+ 
 
 ```
 
-There are four pairs of duplicate DNA and RNA biospecimen. 
+There are 14 pairs of duplicate DNA and RNA biospecimen. 
 Biospecimen with lower copy number in each duplicate pair will be left out. 
 `Adyita` and `Jo Lynne` determine the two `DGD` bioscpecimen to exclude. 
+
+```{r}
+## display the duplication
+dup_dna_rna_df %>% filter(Kids_First_Biospecimen_ID_RNA %in% 
+                            dup_dna_rna_df$Kids_First_Biospecimen_ID_RNA[duplicated(dup_dna_rna_df$Kids_First_Biospecimen_ID_RNA)]) %>% 
+  select(match_id, Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA, MYCN_CN) %>% 
+  arrange(Kids_First_Biospecimen_ID_RNA)
+
+```
 
 ## Remove dupicate biospecimen
 
 ```{r remove duplicates}
 # matched biospecimen
 mycn_dna_rna_df <- mycn_dna_rna_df %>% 
-  dplyr::filter(!(Kids_First_Biospecimen_ID_DNA == "TARGET-30-PAPVFD-01A-01D" & 
-                   MYCN_CN == 2), 
-                !(Kids_First_Biospecimen_ID_DNA == "TARGET-30-PASXRG-01A-01D" &
-                   MYCN_CN == 4),
-                !(Kids_First_Biospecimen_ID_DNA == "BS_1F8J25Q1" &
-                   Kids_First_Biospecimen_ID_RNA == "BS_2HM4AE24"),
-                !(Kids_First_Biospecimen_ID_DNA == "BS_0XC02E11" &
-                   Kids_First_Biospecimen_ID_RNA == "BS_XV40PE3Q"))
+  dplyr::filter(!(Kids_First_Biospecimen_ID_DNA == "BS_8XDZQKSD" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_MPE34NYZ" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PASWYR-01A-01R")), 
+                !(Kids_First_Biospecimen_ID_DNA == "TARGET-30-PASXIE-01A-01D" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_9TKGBJH7" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PASXIE-01A-01R")), 
+                !(Kids_First_Biospecimen_ID_DNA == "BS_P6FPBJM8" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_9JBYGRQW" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PASXRG-01A-01R")), 
+                !(Kids_First_Biospecimen_ID_DNA == "BS_KXRFQF5N" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_1BKHK7AY" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PASXRJ-01A-01R")),
+                !(Kids_First_Biospecimen_ID_DNA == "BS_D7442ACV" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_3DJBSNGE" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PATBMM-01A-01R")),
+                !(Kids_First_Biospecimen_ID_DNA == "BS_D3N3FG7Y" &
+                   (Kids_First_Biospecimen_ID_RNA == "BS_N05R3CT2" | 
+                      Kids_First_Biospecimen_ID_RNA == "TARGET-30-PATCFL-01A-01R")))
 
 ```
 

@@ -74,7 +74,7 @@ hist_df <- readr::read_tsv(file.path(data_dir, "histologies-base.tsv"),
 
 # consensus cnv with status file
 consensus_df <- 
-  readr::read_tsv(file.path(data_dir, "consensus_wgs_plus_cnvkit_wxs.tsv.gz")) %>%
+  readr::read_tsv(file.path(data_dir, "consensus_wgs_plus_cnvkit_wxs_plus_freec_tumor_only.tsv.gz")) %>%
   dplyr::rename(Kids_First_Biospecimen_ID = biospecimen_id,
                 MYCN_CN_status = status,
                 MYCN_CN = copy_number) %>%
