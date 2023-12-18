@@ -125,7 +125,6 @@ if (length(arriba_ttyh1_fusions$tumor_id) > 0 ) {
     pull(tumor_id) %>% unique()
 }
 
-# v12 starfusion does not have TTYHI fusions where _TTYH1_ is the 5' fusion partner
 starfusion_ttyh1_fusions <- starfusion %>% 
   filter(str_detect(FusionName, "^TTYH1"), 
          str_detect(LeftBreakpoint, "^chr19"), 
@@ -141,7 +140,7 @@ if (length(starfusion_ttyh1_fusions$tumor_id) > 0 ) {
   ttyh1_fusions <- c(starfusion_ttyh1_fusions, ttyh1_fusions)
 }
 
-# v12 DGD fusion does not have TTYHI fusions where _TTYH1_ is the 5' fusion partner
+# v13 DGD fusion does not have TTYHI fusions where _TTYH1_ is the 5' fusion partner
 dgd_ttyh1_fusions <- dgd_fusion %>% 
   filter(str_detect(FusionName, "^TTYH1"),
          str_detect(LeftBreakpoint, "^chr19"),
@@ -159,7 +158,8 @@ if (length(dgd_ttyh1_fusions$tumor_id) > 0 ) {
 
 # keep samples with with at least one break point within 
 # genomic region: `chr19:53,627,063-53,788,978` 
-ttyh1_fusion_biospecimens <-  ttyh1_fusion_biospecimens %in% ttyh1_fusions
+#### !!!!!
+ttyh1_fusion_biospecimens <-  ttyh1_fusion_biospecimens[ttyh1_fusion_biospecimens %in% ttyh1_fusions]
 ```
 
 ### _MN1_ fusions
@@ -191,7 +191,7 @@ DNA-seq biospecimens associated with the samples that contain the relevant fusio
 ```{r}
 relevant_samples <- histologies_df %>%
   filter(Kids_First_Biospecimen_ID %in% fusion_biospecimens) %>%
-  pull(sample_id)
+  pull(match_id)
 
 relevant_sample_df <- histologies_df %>%
   filter(!is.na(pathology_diagnosis),
@@ -305,7 +305,7 @@ emb_methyl_subtyped <- histologies_df %>%
                             dkfz_v12_methylation_subclass == "CNS_BCOR_ITD" ~ "CNS BCOR",
                             dkfz_v12_methylation_subclass == "NET_CXXC5" ~ "CNS HGNET-MN1",
                             dkfz_v12_methylation_subclass == "ABM_MN1" ~ "CNS HGNET-MN1")) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl) %>%
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl, match_id) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::filter(!is.na(molecular_subtype_methyl)) %>% 
   dplyr::distinct()
@@ -320,9 +320,10 @@ emb_methyl_not_subtyped <- histologies_df %>%
                 sample_type == "Tumor", 
                 composition == "Solid Tissue",
                 cohort != "TARGET") %>%
-  dplyr::left_join(emb_methyl_subtyped %>% dplyr::select(Kids_First_Participant_ID, sample_id, molecular_subtype_methyl),
-                   by = c("Kids_First_Participant_ID", "sample_id")) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl) %>%
+  dplyr::left_join(emb_methyl_subtyped %>% 
+                     dplyr::select(match_id, molecular_subtype_methyl),
+                   by = c("match_id")) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl, match_id) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::distinct()
 
