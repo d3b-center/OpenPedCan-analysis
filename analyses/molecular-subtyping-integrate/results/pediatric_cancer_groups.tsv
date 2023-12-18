@@ -30,7 +30,7 @@ CIC-DUX4 Sarcoma	Primary Tumor	1
 CIC-rearranged sarcoma	Progressive	2
 CNS Burkitt's lymphoma	Initial CNS Tumor	3
 CNS Embryonal tumor	Deceased	3
-CNS Embryonal tumor	Initial CNS Tumor	36
+CNS Embryonal tumor	Initial CNS Tumor	39
 CNS Embryonal tumor	Primary Tumor	1
 CNS Embryonal tumor	Progressive	10
 CNS Embryonal tumor	Recurrence	13
@@ -213,7 +213,7 @@ Perineuroma	Initial CNS Tumor	3
 Pilocytic astrocytoma	Initial CNS Tumor	86
 Pilocytic astrocytoma	Progressive	25
 Pilocytic astrocytoma	Recurrence	6
-Pineoblastoma	Initial CNS Tumor	49
+Pineoblastoma	Initial CNS Tumor	46
 Pineoblastoma	Progressive	8
 Pineoblastoma	Recurrence	3
 Pineocytoma	Initial CNS Tumor	1

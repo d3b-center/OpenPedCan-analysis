@@ -273,14 +273,8 @@ PBTA	Perineuroma	Perineuroma	No	No
 TCGA	Pheochromocytoma and Paraganglioma	Pheochromocytoma and Paraganglioma	No	No
 PBTA	Pilocytic astrocytoma	Pilocytic astrocytoma	No	No
 DGD	Pilocytic astrocytoma	Pilocytic astrocytoma	No	No
-PBTA	Pineoblastoma, Group 2	Pineoblastoma	Yes	No
 PBTA	Pineoblastoma	Pineoblastoma	No	No
-PBTA	Pineoblastoma, MYC/FOXR2	Pineoblastoma	Yes	No
-PBTA	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
 DGD	Pineoblastoma	Pineoblastoma	No	No
-DGD	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
-DGD	Pineoblastoma, Group 2	Pineoblastoma	Yes	No
-DGD	Pineoblastoma, MYC/FOXR2	Pineoblastoma	Yes	No
 DGD	Pineocytoma	Pineocytoma	No	No
 PBTA	Pleomorphic xanthoastrocytoma	Pleomorphic xanthoastrocytoma	No	No
 DGD	Pleomorphic xanthoastrocytoma	Pleomorphic xanthoastrocytoma	No	No
