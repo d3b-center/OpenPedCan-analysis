@@ -92,17 +92,18 @@ keep_cols <- c("Chromosome",
              "PolyPhen",
              "DOMAINS")
 
-#snv_dgd_maf <- data.table::fread(
- # file.path(root_dir, "data" , "snv-dgd.maf.tsv.gz"),
-  #select = keep_cols,
-  #data.table = FALSE) 
+snv_tumor_only <- data.table::fread(
+  file.path(root_dir, "data" , "snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz"),
+  select = keep_cols,
+  data.table = FALSE) 
 
 snv_consensus_hotspot_maf <- data.table::fread(
   file.path(root_dir, "data" , "snv-consensus-plus-hotspots.maf.tsv.gz"),
   select = keep_cols,
-  data.table = FALSE) #%>% 
-  #dplyr::bind_rows(snv_dgd_maf)
+  data.table = FALSE) %>% 
+  bind_rows(snv_tumor_only)
 
+rm(snv_tumor_only)
 ```
 
 Filter to tumor samples that should be included on the basis of pathology diagnosis
@@ -130,7 +131,7 @@ lgat_dna_df <- lgat_specimens_df %>%
                 is.na(RNA_library)) %>%
   # will keep Kids_First_Biospecimen_ID 
   # sample_id is kept to be able to match with RNA-Seq in the later step
-  dplyr::select(Kids_First_Biospecimen_ID, sample_id)
+  dplyr::select(Kids_First_Biospecimen_ID, match_id)
 ```
 
 
@@ -294,7 +295,7 @@ H3.3_mut | harbors an H3-3A K28M or G35R/V mutation
 
 recode_mutations <- function(.data, genes, subtype) {
   .data %>%
-  reshape2::dcast(Tumor_Sample_Barcode + sample_id~ Hugo_Symbol,
+  reshape2::dcast(Tumor_Sample_Barcode + match_id~ Hugo_Symbol,
                   fun.aggregate = length) %>%
   dplyr::mutate(!!as.name(subtype) := if_else(any(colnames(.) %in% genes) & rowSums(dplyr::select(.,one_of(genes))) >= 1,
           "Yes", 
@@ -313,10 +314,10 @@ lgat_subtypes_list <- list(recode_mutations(lgat_braf_V600,genes = snvOI$BRAF_V6
                            recode_mutations(lgat_nf1,genes = snvOI$NF1$gene, subtype = "NF1_mut"))    
 
 lgat_subtypes <- lgat_subtypes_list %>%
-  reduce(inner_join, by = c("Tumor_Sample_Barcode","sample_id")) %>%  
+  reduce(inner_join, by = c("Tumor_Sample_Barcode","match_id")) %>%  
   dplyr::rename("Kids_First_Biospecimen_ID"="Tumor_Sample_Barcode")  %>%
-  dplyr::select("Kids_First_Biospecimen_ID","sample_id",ends_with("mut")) %>%
-  dplyr::arrange(Kids_First_Biospecimen_ID, sample_id)
+  dplyr::select("Kids_First_Biospecimen_ID","match_id",ends_with("mut")) %>%
+  dplyr::arrange(Kids_First_Biospecimen_ID, match_id)
 lgat_subtypes
 
 ```
@@ -357,7 +358,7 @@ lgat_methyl_subtyped <- clinical %>%
                   			    dkfz_v12_methylation_subclass %in% c("DLGNT_1", "DLGNT_2", "PA_CORT") ~ "GNT, MAPK",
                   			    dkfz_v12_methylation_subclass %in% c("DGONC", "DIG_DIA", "DNET", "GNT_A") ~ "GNT",
                   			    dkfz_v12_methylation_subclass == "PXA" ~ "PXA")) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl) %>%
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id, molecular_subtype_methyl) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::filter(!is.na(molecular_subtype_methyl)) %>% 
   dplyr::distinct()
@@ -375,9 +376,9 @@ lgat_methyl_not_subtyped <- clinical %>%
                 sample_type == "Tumor", 
                 composition == "Solid Tissue",
                 cohort != "TARGET") %>%
-  dplyr::left_join(lgat_methyl_subtyped %>% dplyr::select(Kids_First_Participant_ID, sample_id, molecular_subtype_methyl),
-                   by = c("Kids_First_Participant_ID", "sample_id")) %>%
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id, molecular_subtype_methyl) %>%
+  dplyr::left_join(lgat_methyl_subtyped %>% dplyr::select(Kids_First_Participant_ID, match_id, molecular_subtype_methyl),
+                   by = c("Kids_First_Participant_ID", "match_id")) %>%
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id, molecular_subtype_methyl) %>%
   dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
   dplyr::distinct()
 
