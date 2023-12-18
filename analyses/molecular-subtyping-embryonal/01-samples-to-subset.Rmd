@@ -194,9 +194,9 @@ relevant_samples <- histologies_df %>%
   pull(sample_id)
 
 relevant_sample_df <- histologies_df %>%
-  filter(sample_id %in% relevant_samples,
+  filter(!is.na(pathology_diagnosis),
+         sample_id %in% relevant_samples,
          experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-         sample_type == "Tumor",
          is.na(RNA_library))
 
 relevant_sample_df
@@ -218,7 +218,7 @@ First subset to solid **tumors**, excluding any derived cell lines.
 ```{r}
 # removed  filter composition == "Solid Tissue"
 embryonal_df <- histologies_df %>%
-  filter(sample_type == "Tumor")
+  filter(!is.na(pathology_diagnosis))
 ```
 
 Now filter to include and exclude using the `pathology_diagnosis` and `pathology_free_text_diagnosis` labels.
@@ -241,18 +241,16 @@ pathology_free_text_df <- embryonal_df %>%
          pathology_free_text_diagnosis %in% path_dx_list$include_free_text) 
 ```
 
-Any sample with "Neuroblastoma" in the `pathology_diagnosis` column, where `primary_site` does not contain "Other locations NOS", and `pathology_free_text_diagnosis` does not contain "peripheral" or "metastatic".
+Any sample with "Neuroblastoma" in the `pathology_diagnosis` column, where `primary_site` does not contain "Other locations NOS" or "Adrenal Gland" and `pathology_free_text_diagnosis` does not contain "peripheral" or "Adrenal Gland" and cohort is DGD or PBTA.
 
 ```{r}
 neuroblastoma_df <- embryonal_df %>%
-  filter(
+  filter(cohort %in% c("PBTA", "DGD"),
     pathology_diagnosis == "Neuroblastoma",
-    str_detect(str_to_lower(primary_site), "other locations nos", negate = TRUE),
-    str_detect(
-      str_to_lower(pathology_free_text_diagnosis),
-      "peripheral|metastatic",
-      negate = TRUE
-    )
+    !grepl("Adrenal Gland|Other locations NOS", primary_site),
+    !grepl("Adrenal Gland", pathology_free_text_diagnosis),
+    str_detect(str_to_lower(pathology_free_text_diagnosis),
+      "peripheral", negate = TRUE)
   )
 ```
 
@@ -281,7 +279,7 @@ Write to file.
 ```{r}
 histologies_df %>%
   dplyr::filter(Kids_First_Biospecimen_ID %in% all_biospecimen_ids) %>%
-  dplyr::filter(!cohort %in% c("GMKF", "TARGET")) %>% 
+  dplyr::filter(!cohort %in% c("GMKF", "TARGET", "Maris")) %>% 
   dplyr::select(Kids_First_Biospecimen_ID) %>%
   write_tsv(output_file)
 ```
