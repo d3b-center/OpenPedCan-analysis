@@ -1,5 +1,4 @@
 # OpenPBTA sample-distribution-analysis
-This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
 
 ## Usage
 
