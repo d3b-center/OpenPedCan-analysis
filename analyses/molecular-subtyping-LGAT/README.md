@@ -77,7 +77,7 @@ Prior to `release-v17-20200908`, we used `short_histology == "LGAT"` as our incl
 
 ## Molecular subtyping HGG workflow
 
-![LGG molecular subtyping workflow](./plots/LGAT_subtyping_workflow.png)
+![LGG molecular subtyping workflow](./plot/LGAT_subtyping_workflow.png)
 
 ### Preprocessing
 
