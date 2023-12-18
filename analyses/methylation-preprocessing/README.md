@@ -1,5 +1,4 @@
 # OpenPedCan Methylation Analysis
-This analysis is was last run with OpenPedCan data release `v12` and is now run upstream in CAVATICA.
 
 ## Purpose
 

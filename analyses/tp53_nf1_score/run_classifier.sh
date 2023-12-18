@@ -89,7 +89,7 @@ if [ "$POLYA_STRAND" -gt "0" ]; then
 fi
 
 # check correlation expression and scores
-# Rscript -e "rmarkdown::render('${analysis_dir}/02-qc-rna_expression_score.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING, ci_run = $POLYA_STRAND))"
+Rscript -e "rmarkdown::render('${analysis_dir}/02-qc-rna_expression_score.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING, ci_run = $POLYA_STRAND))"
 
 # subset cnv where tp53 is lost
 Rscript -e "rmarkdown::render('${analysis_dir}/03-tp53-cnv-loss-domain.Rmd',params=list(base_run = $RUN_FOR_SUBTYPING))"

@@ -560,37 +560,10 @@ as.data.frame(table(tumors_subtyped$molecular_subtype)) %>%
 
 ```
 
-## change the HGG_cleaned_all_table.tsv table from wide to long table
-
-```{r}
-lesions_subtypes_RNA <- lesions_subtypes %>% 
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID_RNA, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype, 
-         grep(c("fusion|expression|Fusion"), colnames(lesions_subtypes))) %>% 
-  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA) %>%
-  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
-  distinct()
-
-lesions_subtypes_DNA <- lesions_subtypes %>% 
-  select(Kids_First_Participant_ID, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype, 
-         setdiff(colnames(lesions_subtypes), colnames(lesions_subtypes_RNA)),
-         -Kids_First_Biospecimen_ID_RNA, -Kids_First_Biospecimen_ID_Methyl) %>% 
-  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA) %>%
-  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
-  distinct()
-
-lesions_subtypes_methyl <- lesions_subtypes %>% 
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID_Methyl, sample_id, id, CNS_region, age_at_diagnosis_yr, composition, molecular_subtype_methyl, molecular_subtype) %>% 
-  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_Methyl) %>%
-  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
-  distinct()
-
-lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, lesions_subtypes_methyl)
-```
-
 Write to file.
 
 ```{r}
-write_tsv(lesions_subtypes_final, lesion_subtype_file)
+write_tsv(lesions_subtypes, lesion_subtype_file)
 write_tsv(molecular_subtype_table_final, subtype_file)
 ```
 
