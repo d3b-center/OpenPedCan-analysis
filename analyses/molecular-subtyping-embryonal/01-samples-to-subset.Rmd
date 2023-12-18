@@ -245,7 +245,7 @@ Any sample with "Neuroblastoma" in the `pathology_diagnosis` column, where `prim
 
 ```{r}
 neuroblastoma_df <- embryonal_df %>%
-  filter(cohort %in% c("PBTA", "DGD"),
+  filter(cohort %in% c("PBTA"),
     pathology_diagnosis == "Neuroblastoma",
     !grepl("Adrenal Gland|Other locations NOS", primary_site),
     !grepl("Adrenal Gland", pathology_free_text_diagnosis),

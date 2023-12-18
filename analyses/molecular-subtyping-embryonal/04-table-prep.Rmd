@@ -210,7 +210,8 @@ exp_genes_of_interest <- c("LIN28A", "FOXR2")
 exp_df <- exp_dat[, exp_genes_of_interest] %>%
   as.data.frame() %>%
   tibble::rownames_to_column("Kids_First_Biospecimen_ID") %>% 
-  left_join(histologies_df %>% select(Kids_First_Biospecimen_ID, match_id), by = "Kids_First_Biospecimen_ID")
+  left_join(histologies_df %>% 
+              select(Kids_First_Biospecimen_ID, match_id), by = "Kids_First_Biospecimen_ID")
 
 
 # remove data.frame we no longer need
@@ -294,12 +295,17 @@ The following were mentioned in [`AlexsLemonade/OpenPBTA-analysis#251`](https://
 # relevant embyronal clinical metadata
 relevant_clinical_data <- histologies_df %>% 
   filter(Kids_First_Biospecimen_ID %in% biospecimen_ids) %>%
-  ## remove PPTC neuroblastoma
-  filter(!(cohort == "PPTCA" & pathology_diagnosis == "Neuroblastoma")) %>%
   # convert age to years
   mutate(age_at_diagnosis_yrs = 
            floor(as.numeric(age_at_diagnosis_days) / 365)) %>%
   select(-age_at_diagnosis_days)
+
+# get RNA fusion panel data
+emb_panel <- relevant_clinical_data %>%
+  filter(experimental_strategy == "Targeted Sequencing",
+         !is.na(RNA_library)) %>%
+  select(Kids_First_Biospecimen_ID, match_id) %>%
+  rename(Kids_First_Biospecimen_ID_Panel = Kids_First_Biospecimen_ID)
 
 # get relevant embyronal dna clinical metadata
 emb_dna <- relevant_clinical_data %>%
@@ -312,8 +318,7 @@ emb_dna <- relevant_clinical_data %>%
 
 # get relevant embyronal rna clinical metadata
 emb_rna <- relevant_clinical_data %>%
-  filter(experimental_strategy %in% c("RNA-Seq", "Targeted Sequencing"),
-         !is.na(RNA_library)) %>%
+  filter(experimental_strategy == "RNA-Seq") %>%
   select(Kids_First_Biospecimen_ID) %>%
   # add rna molecular data
   left_join(rna_df, by = "Kids_First_Biospecimen_ID") %>% 
@@ -321,6 +326,7 @@ emb_rna <- relevant_clinical_data %>%
   
 # merge all relevant embyronal dna and rna 
 all_data_df <- full_join(emb_dna, emb_rna, by = "match_id") %>% 
+  full_join(emb_panel) %>%
   left_join(relevant_clinical_data %>% 
               select(Kids_First_Participant_ID,
                      sample_id, composition, match_id,
@@ -341,6 +347,7 @@ all_data_df %>%
          sample_id, composition, match_id,
          Kids_First_Biospecimen_ID_DNA,
          Kids_First_Biospecimen_ID_RNA,
+         Kids_First_Biospecimen_ID_Panel,
          age_at_diagnosis_yrs,
          germline_sex_estimate,
          pathology_diagnosis,
@@ -352,7 +359,7 @@ all_data_df %>%
          FOXR2_fusions,
          MN1_fusions,
          CIC_fusions) %>%
-  arrange(Kids_First_Participant_ID, sample_id, composition, match_id) %>%
+  arrange(Kids_First_Participant_ID, match_id) %>%
   write_tsv(output_all)
 ```
 
@@ -393,8 +400,9 @@ For now, we will call the sample with a _LIN28A_ z-score > 3 that has no _TTYH1_
 ```{r}
 # TODO: is this the correct call or should this be a CNS Embryonal, NOS call?
 etmr_nos_df <- all_data_df %>%
-  filter(LIN28A > 3,
-         TTYH1_fusions == "None") %>%
+  filter(!match_id %in% etmr_c19mc_df$match_id,
+         (pathology_diagnosis == "Embryonal Tumor with Multilayered Rosettes (ETMR)" | grepl("etmr|ETMRembryonal tumor with abundant neuropil and true rosettes|embryonal tumor with multilayer rosettes", pathology_free_text_diagnosis)) |
+         (LIN28A > 3 & TTYH1_fusions == "None")) %>%
   select(contains("ID")) %>%
   mutate(molecular_subtype = "ETMR, NOS")
 ```
