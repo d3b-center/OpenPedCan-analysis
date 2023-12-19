@@ -45,7 +45,7 @@ Burkitt Leukemia/Lymphoma	Primary Tumor	5
 CNS Embryonal tumor	Deceased	1
 CNS Embryonal tumor	Initial CNS Tumor	28
 CNS Embryonal tumor	Primary Tumor	3
-CNS Embryonal tumor	Progressive	13
+CNS Embryonal tumor	Progressive	12
 CNS Embryonal tumor	Recurrence	13
 CNS Embryonal tumor	Relapse	1
 CNS Embryonal tumor	Unknown	1
@@ -112,7 +112,7 @@ EBV-Positive Diffuse Large B-Cell Lymphoma	Primary Tumor	1
 Embryonal tumor with multilayer rosettes	Deceased	2
 Embryonal tumor with multilayer rosettes	Initial CNS Tumor	20
 Embryonal tumor with multilayer rosettes	Primary Tumor	2
-Embryonal tumor with multilayer rosettes	Progressive	4
+Embryonal tumor with multilayer rosettes	Progressive	7
 Embryonal tumor with multilayer rosettes	Recurrence	2
 Embryonal tumor with multilayer rosettes	Relapse	1
 Ependymoma	Deceased	42
@@ -139,10 +139,11 @@ Ganglioglioma	Primary Tumor	3
 Ganglioglioma	Progressive	46
 Ganglioglioma	Recurrence	30
 Ganglioneuroblastoma	Initial CNS Tumor	7
-Ganglioneuroblastoma	Primary Tumor	186
+Ganglioneuroblastoma	Primary Tumor	182
 Ganglioneuroblastoma	Progressive	3
 Ganglioneuroblastoma	Recurrence	7
 Ganglioneuroma	Initial CNS Tumor	7
+Ganglioneuroma	Primary Tumor	4
 Ganglioneuroma	Progressive	8
 Germ Cell Tumor	Primary Tumor	11
 Germinoma	Initial CNS Tumor	22
@@ -215,7 +216,7 @@ Malignant peripheral nerve sheath tumor	Initial CNS Tumor	8
 Malignant peripheral nerve sheath tumor	Primary Tumor	2
 Malignant peripheral nerve sheath tumor	Progressive	3
 Malignant peripheral nerve sheath tumor	Recurrence	3
-Medulloblastoma	Deceased	111
+Medulloblastoma	Deceased	92
 Medulloblastoma	Initial CNS Tumor	790
 Medulloblastoma	Primary Tumor	26
 Medulloblastoma	Progressive	38
@@ -250,7 +251,7 @@ Neuroblastic tumor	Primary Tumor	3
 Neuroblastoma	Deceased	3
 Neuroblastoma	Initial CNS Tumor	14
 Neuroblastoma	Metastatic	2
-Neuroblastoma	Primary Tumor	1471
+Neuroblastoma	Primary Tumor	1469
 Neuroblastoma	Progressive	56
 Neuroblastoma	Recurrence	28
 Neuroblastoma	Relapse	16
@@ -293,7 +294,7 @@ Papillary Thyroid Carcinoma Pathway	Progressive	1
 Perineuroma	Initial CNS Tumor	3
 Pineoblastoma	Initial CNS Tumor	54
 Pineoblastoma	Primary Tumor	1
-Pineoblastoma	Progressive	10
+Pineoblastoma	Progressive	7
 Pineoblastoma	Recurrence	5
 Pleomorphic xanthoastrocytoma	Deceased	2
 Pleomorphic xanthoastrocytoma	Initial CNS Tumor	9
