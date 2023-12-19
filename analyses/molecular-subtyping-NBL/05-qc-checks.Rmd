@@ -38,15 +38,14 @@ path_dx_list <- jsonlite::fromJSON(
 # read histolgies base 
 hist_df <- readr::read_tsv(file.path(data_dir, "histologies-base.tsv"), 
                            guess_max = 100000) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, sample_id, cohort, 
+  filter(!is.na(pathology_diagnosis)) %>%
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, cohort, 
                 experimental_strategy, pathology_diagnosis)
 
 # read molecular subtypes
 subtypes_df <- readr::read_tsv(file.path(results_dir, 
                             "alteration_table_with_molecular_subtype.tsv"), 
-                            guess_max = 100000) %>%
-  dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA) %>% 
-  dplyr::select(-sample_id, -cohort)
+                            guess_max = 100000)
 
 ```
 
@@ -57,8 +56,8 @@ target_df <- hist_df %>%
   dplyr::filter(cohort == "TARGET", 
          pathology_diagnosis %in% path_dx_list$exact_path_dx,
          experimental_strategy == "WXS") %>% 
-  dplyr::inner_join(subtypes_df, by = "Kids_First_Biospecimen_ID") %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id,
+  dplyr::inner_join(subtypes_df, by = c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id")) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id,
                 experimental_strategy, MYCN_TPM, MYCN_CN_status, molecular_subtype) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID_TARGET = Kids_First_Biospecimen_ID,
                 experimental_strategy_TARGET = experimental_strategy,
@@ -74,8 +73,8 @@ gmkf_df <- hist_df %>%
   dplyr::filter(cohort == "GMKF", 
          pathology_diagnosis %in% path_dx_list$exact_path_dx,
          experimental_strategy == "WGS") %>% 
-  dplyr::inner_join(subtypes_df, by = "Kids_First_Biospecimen_ID") %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, sample_id,
+  dplyr::inner_join(subtypes_df, by = c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id")) %>% 
+  dplyr::select(Kids_First_Biospecimen_ID, Kids_First_Participant_ID, match_id,
                 experimental_strategy, MYCN_TPM, MYCN_CN_status, molecular_subtype) %>% 
   dplyr::rename(Kids_First_Biospecimen_ID_GMKF = Kids_First_Biospecimen_ID,
                 experimental_strategy_GMKF = experimental_strategy,
@@ -89,12 +88,11 @@ gmkf_df <- hist_df %>%
 ```{r merge cohort subtypes}
 merged_subtypes <- 
   dplyr::inner_join(target_df, gmkf_df, 
-                    by = c("Kids_First_Participant_ID", "sample_id")) %>%
+                    by = c("Kids_First_Participant_ID", "match_id")) %>%
   # reorder columns
   dplyr::select(Kids_First_Biospecimen_ID_GMKF,
                 Kids_First_Biospecimen_ID_TARGET,
                 Kids_First_Participant_ID,
-                sample_id,
                 experimental_strategy_GMKF,
                 experimental_strategy_TARGET,
                 MYCN_TPM_GMKF,
