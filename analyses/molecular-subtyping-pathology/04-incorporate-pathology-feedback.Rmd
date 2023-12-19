@@ -560,6 +560,38 @@ compiled_df <- compiled_df %>%
   distinct()
 ```
 
+### PT `PT_01MZ62KG`
+This patient is being subtyped as CNS embryonal NOS and has pathology free text diagnosis as pineoblastoma, but subtyped as NOS there as well. We will update to ETMR, C19MC-altered as previous.
+```{r}
+compiled_df %>%
+  filter(Kids_First_Participant_ID == "PT_VZEREHVW")
+
+compiled_df <- compiled_df %>%
+  mutate(
+    integrated_diagnosis = case_when(
+      sample_id == "7316-447" ~ "Embryonal tumor with multilayer rosettes, C19MC-altered",
+      TRUE ~ integrated_diagnosis
+    ),
+    short_histology = case_when(
+      sample_id == "7316-447" ~ "ETMR",
+      TRUE ~ short_histology
+    ),
+    broad_histology = case_when(
+      sample_id == "7316-447" ~ "Embryonal tumor",
+      TRUE ~ broad_histology
+    ),
+    molecular_subtype = case_when(
+      sample_id == "7316-447" ~ "ETMR, C19MC-altered",
+      TRUE ~ molecular_subtype
+    ),
+    Notes = case_when(
+      sample_id == "7316-447" ~ "Updated by pathology review",
+      TRUE ~ Notes
+    )
+  ) %>% 
+  distinct()
+```
+
 
 ###Check list of subtypes look as expected at this point in time
 ```{r}
