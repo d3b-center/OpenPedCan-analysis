@@ -112,7 +112,9 @@ alteration_df <- alteration_df %>%
              MYCN_CN_status %in% mycn_status &  
                pathology_free_text_diagnosis %in% mycn_path_free ~ "NBL, MYCN non-amplified",
              TRUE ~ NA_character_)
-         )
+         ) %>% 
+  group_by(match_id) %>% 
+  fill(molecular_subtype)
 
 ```
 
@@ -177,7 +179,9 @@ clincal_amplified_df <- alteration_df %>%
                     MYCN_TPM < Suggested_Cutoff ~ "NBL, MYCN non-amplified",
                     TRUE ~ as.character(molecular_subtype)
                   )
-               )
+               ) %>% 
+  group_by(match_id) %>% 
+  fill(molecular_subtype)
 
 alteration_df <- alteration_df %>% 
   dplyr::filter(!Kids_First_Biospecimen_ID_DNA %in% clincal_amplified_IDs) %>%
@@ -242,7 +246,7 @@ determined based on TPM.
 		sample_id, cohort, MYCN_CN,
                 pathology_free_text_diagnosis, 
                 MYCN_CN_status, MYCN_TPM,
-                molecular_subtype)
+                molecular_subtype, match_id)
 
 ```
 
@@ -305,6 +309,24 @@ molecular_subtype_table <- hist_df %>%
   
 ```
 
+### convert the output to long table
+
+```{r}
+proteo_hist <- hist_df %>% 
+  filter(experimental_strategy %in% c("Whole Cell Proteomics", "Phospho-Proteomics")) %>% 
+  select(Kids_First_Biospecimen_ID, match_id) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID_prot = Kids_First_Biospecimen_ID)
+
+molecular_subtype_table_long <- molecular_subtype_table %>% 
+  left_join(proteo_hist, by = "match_id") %>% 
+  pivot_longer(!c("Kids_First_Participant_ID", "sample_id", "cohort", "molecular_subtype", "molecular_subtype_methyl","match_id"), 
+               values_to = "Kids_First_Biospecimen_ID") %>% 
+  filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
+  select(-c("name", "cohort")) %>% 
+  distinct()
+
+```
+
 ## Write molecular subtyping table to file
 
 ```{r write to file}
@@ -316,7 +338,7 @@ alteration_tmp_df %>%
   arrange(Kids_First_Participant_ID) %>%
   readr::write_tsv(file.path(results_dir, 
                              "molecular_subtypes_based_on_cutoff.tsv"))
-molecular_subtype_table %>% 
+molecular_subtype_table_long %>% 
   arrange(Kids_First_Participant_ID) %>%
   readr::write_tsv(file.path(results_dir, 
                              "neuroblastoma_molecular_subtypes.tsv"))
