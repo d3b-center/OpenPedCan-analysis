@@ -1,44 +1,41 @@
 Kids_First_Participant_ID	Kids_First_Biospecimen_ID	cohort	cancer_group	experimental_strategy	tumor_descriptor
 PT_KDW5HHWQ	BS_03EY696E	PBTA	Oligodendroglioma	Methylation	Recurrence
-PT_3KM9W8S8	BS_03G6PJKJ	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_4YWZ538V	BS_05YAF3YQ	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_GDE98S17	BS_08TS9717	PBTA	Ependymoma	Methylation	Recurrence
 PT_6XWCT04R	BS_0DG68A8N	PBTA	Ependymoma	Methylation	Recurrence
+PT_4ZSR5DY8	BS_0HMQNWT6	PBTA	Low-grade glioma	Methylation	Progressive
 PT_8FBR94AD	BS_0K1E1H3F	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_ZPE3RXF0	BS_0N5F0CR5	PBTA	Meningioma	Methylation	Progressive
-PT_HJMP6PH2	BS_0NWC114C	PBTA	Ewing sarcoma	Methylation	Deceased
 PT_EN4G7A9Z	BS_0RN1W1Q3	PBTA	High-grade glioma	Methylation	Progressive
-PT_3AR6AW9N	BS_0SQ5T1DR	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_QP4BVCX4	BS_10N6X5N8	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_2YT37G8P	BS_0YB6N1PA	PBTA	Low-grade glioma	Methylation	Progressive
+PT_QP4BVCX4	BS_10N6X5N8	PBTA	Craniopharyngioma	Methylation	Recurrence
+PT_440E1XW5	BS_13VNAV6C	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_9F58PWB3	BS_1D9VXFXY	PBTA	Neuroblastoma	Methylation	Progressive
 PT_8VEQB03E	BS_1F0EJ0CG	PBTA	Ependymoma	Methylation	Progressive
 PT_FN4GEEFR	BS_1GB1R07D	PBTA	Medulloblastoma	Methylation	Progressive
 PT_QN3R80MS	BS_1HY7YDZH	PBTA	Ependymoma	Methylation	Recurrence
 PT_K84J9401	BS_1JBHR7FM	PBTA	Ependymoma	Methylation	Progressive
-PT_3D74J8RZ	BS_1JF0AGKG	PBTA	Meningioma	Methylation	Progressive
 PT_57YP9ABV	BS_1JSG9783	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
 PT_NFC12XAR	BS_1KCV4WMQ	PBTA	Ependymoma	Methylation	Progressive
 PT_6PP78VNE	BS_1NRF8RFY	PBTA	Diffuse hemispheric glioma	Methylation	Recurrence
-PT_S2SQJVGK	BS_1Q2TAKTX	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_9ZY739FB	BS_1Q4DFV3T	PBTA	Neurofibroma/Plexiform	Methylation	Recurrence
 PT_JP1FDKN9	BS_1R8Y46A9	PBTA	Ependymoma	Methylation	Recurrence
-PT_DW2XRPC9	BS_1TPEKAK9	PBTA	High-grade glioma	Methylation	Recurrence
 PT_ZD45GXZ0	BS_1WW4VNXC	PBTA	Ependymoma	Methylation	Progressive
 PT_C1RDBCVM	BS_1ZTSEGTW	PBTA	Ependymoma	Methylation	Progressive
 PT_ZMKMKCFQ	BS_20CDD4SQ	PBTA	Low-grade glioma	Methylation	Progressive
 PT_B5TJ8Q6D	BS_243YNBAH	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
 PT_0DWRY9ZX	BS_24KYA5PH	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_Z4GS3ZQQ	BS_25EN3VC0	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Recurrence
-PT_4W0BP7F3	BS_26Q3RNP6	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
-PT_RPC00TAJ	BS_2EJCW07F	PBTA	High-grade glioma	Methylation	Progressive
+PT_RPC00TAJ	BS_2EJCW07F	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_X71D7G5S	BS_2ETZRJQ6	PBTA	Diffuse hemispheric glioma	Methylation	Recurrence
 PT_RXT6KRR6	BS_2KYCDB13	PBTA	Ganglioneuroblastoma	Methylation	Recurrence
 PT_89XRZBSG	BS_2N7G3R27	PBTA	High-grade glioma	Methylation	Recurrence
-PT_QDGVJKE0	BS_2P2JFKJ7	PBTA	High-grade glioma	Methylation	Progressive
+PT_QDGVJKE0	BS_2P2JFKJ7	PBTA	High-grade glioma	Methylation	Recurrence
 PT_J9B6VRH8	BS_2QHBMM9W	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
-PT_3GYW6P6P	BS_2QSSPVGA	PBTA	Glial-neuronal tumor	Methylation	Progressive
+PT_3GYW6P6P	BS_2QSSPVGA	PBTA	Glial-neuronal tumor NOS	Methylation	Progressive
 PT_JRYEKF4G	BS_2TMMNDC5	PBTA	Ependymoma	Methylation	Recurrence
 PT_5CYJ3NZ9	BS_2VF759DR	PBTA	CNS Embryonal tumor	Methylation	Progressive
+PT_YM51XZH0	BS_32TK5JR8	PBTA	Ependymoma	Methylation	Deceased
 PT_H9QTP1JF	BS_336M1VHM	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_DY6QG8QC	BS_33B0BZWS	PBTA	Ganglioglioma	Methylation	Progressive
 PT_J47HSDR0	BS_36HN0ANX	PBTA	Ependymoma	Methylation	Recurrence
@@ -46,28 +43,30 @@ PT_GB5MHYE2	BS_37T009DG	PBTA	Ependymoma	Methylation	Progressive
 PT_XA8ASFJK	BS_3C7JKRKJ	PBTA	Low-grade glioma	Methylation	Progressive
 PT_1PZC01QF	BS_3ENRPP86	PBTA	Ependymoma	Methylation	Progressive
 PT_RNHJMDVV	BS_3K04VX4H	PBTA	Ependymoma	Methylation	Recurrence
-PT_P5HHJJPH	BS_3MYH1TKQ	PBTA	High-grade glioma	Methylation	Progressive
+PT_P5HHJJPH	BS_3MYH1TKQ	PBTA	Pleomorphic xanthoastrocytoma	Methylation	Progressive
 PT_62VNQ8C4	BS_3NJKMKGA	PBTA	Medulloblastoma	Methylation	Progressive
-PT_S0Q27J13	BS_3Q6GVFYJ	PBTA	High-grade glioma	Methylation	Progressive
 PT_1DSX4VJM	BS_3VFJ1SXF	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_GBDYKSPY	BS_3WYGSH4H	PBTA	Neurofibroma/Plexiform	Methylation	Progressive
 PT_W2AGRJWS	BS_3Y6PF79N	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Recurrence
 PT_74XM7BV7	BS_47GABKYC	PBTA	Medulloblastoma	Methylation	Recurrence
+PT_Y572BRC1	BS_48VF55QR	PBTA	Low-grade glioma	Methylation	Progressive
 PT_BCWGRGDB	BS_4DYK40XD	PBTA	Meningioma	Methylation	Progressive
 PT_PJSV0X4X	BS_4E8TKKHY	PBTA	Medulloblastoma	Methylation	Recurrence
+PT_R604JG6B	BS_4JAZPN4H	PBTA	Medulloblastoma	Methylation	Deceased
 PT_Y3T7H1R2	BS_4MNBDGES	PBTA	Diffuse intrinsic pontine glioma	Methylation	Deceased
+PT_PKYY553K	BS_4R2H7MWN	PBTA	Ependymoma	Methylation	Recurrence
 PT_Q3EP24V1	BS_4SJW4Q4Z	PBTA	Low-grade glioma	Methylation	Progressive
 PT_8FWP7BR3	BS_4ZQMPNP5	PBTA	Low-grade glioma	Methylation	Progressive
 PT_ZZWYKZZ8	BS_53K6KZH2	PBTA	Ependymoma	Methylation	Deceased
 PT_7S5BVPE2	BS_548VV6P6	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_FCM7XPVR	BS_554AS76R	PBTA	Ependymoma	Methylation	Recurrence
-PT_01MZ62KG	BS_5AEBR8CK	PBTA	Pineoblastoma	Methylation	Progressive
-PT_YK7AD0KK	BS_5F49NFW9	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_FCM7XPVR	BS_554AS76R	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
+PT_01MZ62KG	BS_5AEBR8CK	PBTA	Embryonal tumor with multilayer rosettes	Methylation	Progressive
+PT_YK7AD0KK	BS_5F49NFW9	PBTA	Craniopharyngioma	Methylation	Recurrence
 PT_V12EAF2V	BS_5F87T08B	PBTA	Ganglioneuroma	Methylation	Progressive
-PT_20ZM6THA	BS_5K9S2PZE	PBTA	Glial-neuronal tumor	Methylation	Recurrence
+PT_E99F32RF	BS_5K50ZZVF	PBTA	High-grade glioma	Methylation	Deceased
+PT_20ZM6THA	BS_5K9S2PZE	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
 PT_DAKPNP7K	BS_5NFX4ZRQ	PBTA	Medulloblastoma	Methylation	Progressive
 PT_S6FAQ95F	BS_5REGCJEY	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
-PT_ESWK06KQ	BS_5TPXNSKY	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_NT4SS4QP	BS_5VRG5FS1	PBTA	Ependymoma	Methylation	Recurrence
 PT_ESHACWF6	BS_5X8XV0CC	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_MRTHX2AQ	BS_5X9HJHRE	PBTA	Neuroblastoma	Methylation	Recurrence
@@ -78,7 +77,8 @@ PT_GQDHZFJP	BS_66QBC815	PBTA	Low-grade glioma	Methylation	Progressive
 PT_DNCNEQCV	BS_6F3TENEM	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
 PT_DPTMDT4E	BS_6FH33KY0	PBTA	Ependymoma	Methylation	Progressive
 PT_HEVH2ZQ1	BS_6G81ZFP6	PBTA	High-grade glioma	Methylation	Deceased
-PT_WWRB8KDQ	BS_6HDWSD3P	PBTA	High-grade glioma	Methylation	Progressive
+PT_ESWK06KQ	BS_6GZDX27J	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_WWRB8KDQ	BS_6HDWSD3P	PBTA	High-grade glioma	Methylation	Deceased
 PT_FN57KS79	BS_6HGVVJKE	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_M7ZBZJ43	BS_6M8GG1M8	PBTA	Ependymoma	Methylation	Recurrence
 PT_DA6JGBFJ	BS_6MFWTW8V	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
@@ -90,35 +90,36 @@ PT_2BJF83GQ	BS_6T1N6Z4Y	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_QAX38GM7	BS_6TNM4BXN	PBTA	Low-grade glioma	Methylation	Progressive
 PT_D5KKHPAE	BS_6WPS513V	PBTA	High-grade glioma	Methylation	Recurrence
 PT_DNH1VP67	BS_6YAX2HSE	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_MDWPRDBT	BS_6ZSPAKYX	PBTA	High-grade glioma	Methylation	Progressive
 PT_NTK39NNV	BS_707NA9ET	PBTA	Low-grade glioma	Methylation	Progressive
 PT_JC4DHFJR	BS_75H9VE5T	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_V1PVYRHP	BS_7BRX0YCQ	PBTA	CNS Embryonal tumor	Methylation	Deceased
 PT_4A2H0KNR	BS_7FZA386P	PBTA	Infant-type hemispheric glioma	Methylation	Recurrence
-PT_67R1AF5R	BS_7GR7VZ1K	PBTA	Ependymoma	Methylation	Recurrence
+PT_RGX23JFP	BS_7GX7B105	PBTA	Ganglioglioma	Methylation	Progressive
 PT_WP871F5S	BS_7HASJ8Z2	PBTA	Hemangioblastoma	Methylation	Progressive
 PT_NZ85YSJ1	BS_7M1ZAZ7B	PBTA	Medulloblastoma	Methylation	Deceased
 PT_F168VFAE	BS_7N0Y7G6V	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
 PT_7DTGJYA7	BS_7NPV770K	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_Z4BF2NSB	BS_7RFHADQQ	PBTA	High-grade glioma	Methylation	Deceased
 PT_30EX0QAT	BS_81KRVBJ1	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
+PT_962TCBVR	BS_846RA6HX	PBTA	Low-grade glioma	Methylation	Progressive
+PT_ZZRBX5JT	BS_85NJ8086	PBTA	Ependymoma	Methylation	Progressive
 PT_59D00MBQ	BS_86MPXAX5	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_CYBYN18G	BS_871VFVQE	PBTA	Ependymoma	Methylation	Recurrence
 PT_JNEV57VK	BS_897FT64P	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_VTG1S395	BS_8F1N461T	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
+PT_1H2REHT2	BS_8GJ6K5QY	PBTA	High-grade glioma	Methylation	Progressive
 PT_EWNAWYKB	BS_8HKF7V0J	PBTA	High-grade glioma	Methylation	Recurrence
-PT_SNJ1YR1R	BS_8N9533VT	PBTA	High-grade glioma	Methylation	Deceased
+PT_WGTQYN3K	BS_8HVVX41B	PBTA	Ependymoma	Methylation	Progressive
+PT_SNJ1YR1R	BS_8N9533VT	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_CBTW4E3X	BS_8S0S0135	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_AXMVG8QE	BS_8SAH8JDS	PBTA	Meningioma	Methylation	Recurrence
 PT_JEW5HG4W	BS_8T5T4MTS	PBTA	Meningioma	Methylation	Recurrence
 PT_J06X17XH	BS_8X8Y85AR	PBTA	Sarcoma	Methylation	Recurrence
 PT_0MJEAART	BS_93W1TAZP	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_04V47WFC	BS_95XVF293	PBTA	Ependymoma	Methylation	Progressive
 PT_Y6ZREKYF	BS_968XYDJK	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_Y7F2JZMQ	BS_96M9C6B5	PBTA	Ganglioglioma	Methylation	Recurrence
-PT_E99F32RF	BS_98P54544	PBTA	High-grade glioma	Methylation	Deceased
 PT_HNZNZ635	BS_98S645ES	PBTA	High-grade glioma	Methylation	Progressive
 PT_E3Y5BBSF	BS_99K0N5B3	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_3A2Q62RD	BS_99ZAJDYN	PBTA	Ependymoma	Methylation	Progressive
 PT_WGWMA5AZ	BS_9AHABF0Q	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_CRTJW8WQ	BS_9BE0HCDC	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_1795S8AX	BS_9EBA6RK3	PBTA	Diffuse midline glioma	Methylation	Deceased
@@ -126,11 +127,11 @@ PT_4DXV2XMZ	BS_9EGR373P	PBTA	Sarcoma	Methylation	Recurrence
 PT_JSFBMK5V	BS_9FKT8K0G	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_MTVXXQTG	BS_9NAHFT6J	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_9JT1441X	BS_9R6GH6CW	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_MGJJBG0T	BS_9SF86CS6	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
 PT_HSHPZAEZ	BS_9THYN9W6	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_PWVX2F69	BS_9VPAZAZH	PBTA	High-grade glioma	Methylation	Recurrence
 PT_5JA1N2H4	BS_9ZTH8XZA	PBTA	Medulloblastoma	Methylation	Deceased
 PT_GR02DP0Q	BS_9ZZ0543Z	PBTA	High-grade glioma	Methylation	Progressive
-PT_DY2GNA83	BS_A46S5GG6	PBTA	Medulloblastoma	Methylation	Deceased
 PT_E50ZPGSJ	BS_A746BQ2T	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_7WYPEC3Q	BS_AAHD7HKE	PBTA	Medulloblastoma	Methylation	Progressive
 PT_SYHB12RN	BS_AAVNFHHB	PBTA	High-grade glioma	Methylation	Deceased
@@ -139,15 +140,13 @@ PT_26V72ZXB	BS_AEX9TT0Z	PBTA	Medulloblastoma	Methylation	Progressive
 PT_VJZN69T9	BS_AJ8937QY	PBTA	Medulloblastoma	Methylation	Progressive
 PT_VD2DHTMY	BS_AM1YZ3FP	PBTA	Ependymoma	Methylation	Recurrence
 PT_CWVNNBPH	BS_ASQSA9JQ	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_RDGW5MJE	BS_ATR3CMEZ	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_JJ8QNAM8	BS_AW4FGY4C	PBTA	High-grade glioma	Methylation	Deceased
 PT_R1N5M7NH	BS_B1EB1F4K	PBTA	NA	Methylation	Recurrence
 PT_829V3YNC	BS_B5K5M3KH	PBTA	Ependymoma	Methylation	Recurrence
 PT_2VSDT9CK	BS_B5V1MQ2M	PBTA	Low-grade glioma	Methylation	Progressive
-PT_1JP2ANQK	BS_B70XXJRP	PBTA	Ewing sarcoma	Methylation	Progressive
 PT_9CQA1W10	BS_BEG2KZHH	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_9PJR0ZK7	BS_BEH6A0QS	PBTA	Malignant peripheral nerve sheath tumor	Methylation	Recurrence
-PT_CMB6TASJ	BS_BEQYY2S5	PBTA	Ependymoma	Methylation	Progressive
+PT_CMB6TASJ	BS_BEQYY2S5	PBTA	CNS Embryonal tumor	Methylation	Progressive
 PT_QH9H491G	BS_BG1W2F7V	PBTA	Meningioma	Methylation	Recurrence
 PT_8ED5MJR2	BS_BHVZDY7X	PBTA	High-grade glioma	Methylation	Deceased
 PT_GKWWWJ0X	BS_BK32ZR7J	PBTA	Ganglioglioma	Methylation	Recurrence
@@ -159,31 +158,30 @@ PT_EQX0VT4F	BS_C3H1GKM5	PBTA	Ependymoma	Methylation	Recurrence
 PT_Y8RNS9JE	BS_C4BJX2SA	PBTA	High-grade glioma	Methylation	Recurrence
 PT_NPETR8RY	BS_C5CHG1S8	PBTA	Ependymoma	Methylation	Recurrence
 PT_EQCQNN1B	BS_C8MH6YDY	PBTA	Neuroblastoma	Methylation	Progressive
-PT_062ZW10V	BS_CH5WKQAP	PBTA	Glial-neuronal tumor	Methylation	Deceased
 PT_342RRJVB	BS_CJ9FZSK4	PBTA	Mesenchymal tumor	Methylation	Recurrence
 PT_P9RT6693	BS_CN7NVE6K	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_HHG37M6W	BS_CPBKXP86	PBTA	High-grade glioma	Methylation	Recurrence
-PT_3A2Q62RD	BS_CQMW2QGX	PBTA	Ependymoma	Methylation	Progressive
-PT_KBDP8ZCR	BS_CRWYJ73G	PBTA	High-grade glioma	Methylation	Deceased
+PT_KBDP8ZCR	BS_CRWYJ73G	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_V5ASTHRH	BS_CTV7V6RC	PBTA	Mixed germ cell tumor	Methylation	Progressive
 PT_YMN5GV47	BS_CXV7X7WN	PBTA	Low-grade glioma	Methylation	Progressive
 PT_PTTBTPS6	BS_CZNXC2S4	PBTA	Medulloblastoma	Methylation	Recurrence
+PT_DVXE38EX	BS_D810R3BW	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_8M6W215T	BS_DAMRZ72S	PBTA	Medulloblastoma	Methylation	Recurrence
+PT_23NZGSRJ	BS_DJJGF4GB	PBTA	Medulloblastoma	Methylation	Deceased
 PT_S4YNE17X	BS_DRGEX9VX	PBTA	Schwannoma	Methylation	Progressive
-PT_PRSP252Y	BS_DXCHRCF6	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
-PT_7HSD72ZQ	BS_DXP7GTAA	PBTA	High-grade glioma	Methylation	Deceased
+PT_7HSD72ZQ	BS_DXP7GTAA	PBTA	Pleomorphic xanthoastrocytoma	Methylation	Deceased
 PT_NYBH025T	BS_DYMT3JZG	PBTA	Ependymoma	Methylation	Progressive
+PT_4347ZBEX	BS_DZGBN4Z0	PBTA	High-grade glioma	Methylation	Progressive
 PT_XKVFVBY4	BS_E21K18A3	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_P571HTNK	BS_E42TRDVH	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_K1YK24PP	BS_E5346WB5	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_RDGW5MJE	BS_E5MT047Z	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_PAPEQ0T0	BS_E8ZB483Q	PBTA	Ependymoma	Methylation	Progressive
 PT_1P436YMM	BS_E9GAYC6R	PBTA	Ganglioglioma	Methylation	Progressive
 PT_QWR0EECG	BS_EANQNMYY	PBTA	Ependymoma	Methylation	Progressive
 PT_DKMVGV69	BS_ECBAMM9X	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_N673SYWW	BS_ED6NMRWD	PBTA	Craniopharyngioma	Methylation	Progressive
-PT_23JJKZPS	BS_EDDWGEHP	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_GHTSGFCT	BS_EE3NK86W	PBTA	High-grade glioma	Methylation	Deceased
-PT_TP6GS00H	BS_EJSEXK4F	PBTA	Ependymoma	Methylation	Recurrence
+PT_3WA7SBQ6	BS_EMN3H5Y7	PBTA	Choroid plexus tumor	Methylation	Recurrence
 PT_32JK6Z61	BS_EP1E4EWQ	PBTA	Ependymoma	Methylation	Deceased
 PT_858H7ABM	BS_ER1S1BYR	PBTA	Diffuse midline glioma	Methylation	Recurrence
 PT_ABMAQYY2	BS_EWZ127K2	PBTA	Medulloblastoma	Methylation	Recurrence
@@ -195,72 +193,80 @@ PT_1ZAWNGWT	BS_F9P4YDBJ	PBTA	Ganglioglioma	Methylation	Progressive
 PT_MTE126WM	BS_FARP2SQ9	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_RXJZ3C5G	BS_FD03JPYW	PBTA	Low-grade glioma	Methylation	Progressive
 PT_63F63QY0	BS_FG4HB896	PBTA	Diffuse midline glioma	Methylation	Progressive
-PT_ZZRBX5JT	BS_FJC1RB8X	PBTA	Ependymoma	Methylation	Recurrence
-PT_DVXE38EX	BS_FJCG5W3E	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Recurrence
+PT_AQWDQW27	BS_FGFXGS44	PBTA	Meningioma	Methylation	Progressive
 PT_0NY38X3W	BS_FJKZ7952	PBTA	Ependymoma	Methylation	Progressive
 PT_DA2TJAV1	BS_FJNERYAH	PBTA	Low-grade glioma	Methylation	Progressive
 PT_D13X3N8F	BS_FPDWC63C	PBTA	NA	Methylation	Progressive
 PT_BMK69WFB	BS_FQKWSDEZ	PBTA	High-grade glioma	Methylation	Progressive
 PT_B2KF59PQ	BS_FR4K7JTC	PBTA	Diffuse hemispheric glioma	Methylation	Recurrence
 PT_X8SK8120	BS_FS3DD2PH	PBTA	Central neurocytoma	Methylation	Progressive
-PT_RGX0DPJY	BS_FVQKDYJP	PBTA	High-grade glioma	Methylation	Deceased
+PT_RGX0DPJY	BS_FVQKDYJP	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_VG6S9YQ9	BS_FW4MCZSG	PBTA	Ependymoma	Methylation	Recurrence
 PT_XA98HG1C	BS_FZ2SY1NJ	PBTA	Medulloblastoma	Methylation	Progressive
 PT_H3WWDMW9	BS_FZ3J46KM	PBTA	Medulloblastoma	Methylation	Deceased
-PT_FDQHEKJB	BS_G2Y7FCXS	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
+PT_FDQHEKJB	BS_G2Y7FCXS	PBTA	Craniopharyngioma	Methylation	Progressive
 PT_28TM5WBD	BS_G5W0Q8Q2	PBTA	Infant-type hemispheric glioma	Methylation	Deceased
 PT_NME1D79F	BS_G61KHHGG	PBTA	High-grade glioma	Methylation	Recurrence
 PT_B04PRJTQ	BS_GB1XQAD2	PBTA	Ependymoma	Methylation	Recurrence
 PT_3FWKC70D	BS_GBH5465S	PBTA	Low-grade glioma	Methylation	Recurrence
+PT_3KM9W8S8	BS_GGDMSB26	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_5FPQXNAM	BS_GJ5YWQNJ	PBTA	NA	Methylation	Progressive
 PT_D5KHK0SS	BS_GNS3DD0V	PBTA	Low-grade glioma	Methylation	Progressive
-PT_19GCSK2S	BS_GXJ34W0F	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_WGTQYN3K	BS_H213BADH	PBTA	Ependymoma	Methylation	Recurrence
+PT_Z4BF2NSB	BS_GTF0J2P7	PBTA	High-grade glioma	Methylation	Recurrence
+PT_FWWRWTV2	BS_H1YVXKC0	PBTA	High-grade glioma	Methylation	Deceased
 PT_8GN3TQRM	BS_H2TZE6ZA	PBTA	High-grade glioma	Methylation	Recurrence
 PT_37B5JRP1	BS_H3MYZY2E	PBTA	High-grade glioma	Methylation	Deceased
+PT_SD4RJ57T	BS_H66ZV62C	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_JV9G8MFD	BS_HCH609PX	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Recurrence
 PT_KKE7HAEH	BS_HQ70M3HD	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_C5EZXTB6	BS_HR4P2SYZ	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_CJ1M7YTY	BS_HSAD17B7	PBTA	Pineoblastoma	Methylation	Progressive
 PT_BNARR0N6	BS_HXJK25E5	PBTA	Ependymoma	Methylation	Progressive
-PT_7K321REE	BS_HY5J31DZ	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
+PT_7K321REE	BS_HY5J31DZ	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_XP27KRP0	BS_J48Y28VV	PBTA	High-grade glioma	Methylation	Recurrence
+PT_23JJKZPS	BS_J6X7W25J	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_M7B5AK7P	BS_J7DNY34X	PBTA	Ganglioneuroma	Methylation	Progressive
 PT_G16WS1MW	BS_J81C76DJ	PBTA	Meningioma	Methylation	Progressive
-PT_P0A5MQPS	BS_JB9TKWYN	PBTA	Non-germinomatous germ cell tumor	Methylation	Progressive
+PT_P0A5MQPS	BS_JB9TKWYN	PBTA	NA	Methylation	Progressive
 PT_XQVKV373	BS_JCSHMADP	PBTA	Ependymoma	Methylation	Recurrence
+PT_4W0BP7F3	BS_JDAF806P	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_DY2D16CZ	BS_JGTG242X	PBTA	Medulloblastoma	Methylation	Recurrence
-PT_ZZ8SBJJ5	BS_JJ3NEG4A	PBTA	Atypical choroid plexus papilloma	Methylation	Progressive
+PT_ZZ8SBJJ5	BS_JJ3NEG4A	PBTA	Choroid plexus tumor	Methylation	Progressive
+PT_WYXTEG3E	BS_JMGPEWPD	PBTA	Craniopharyngioma	Methylation	Progressive
 PT_PFA762TK	BS_JQD0V916	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_VREE80NP	BS_JQM0E99N	PBTA	Neurofibroma/Plexiform	Methylation	Deceased
+PT_B7BBE5DV	BS_JQZWFWFK	PBTA	CNS Embryonal tumor	Methylation	Recurrence
 PT_3VCS1PPF	BS_JRVK8WGZ	PBTA	Ependymoma	Methylation	Progressive
 PT_2NQPX1R2	BS_JSEQ84NG	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_6BX46NVR	BS_JVSMR4M7	PBTA	Ependymoma	Methylation	Progressive
 PT_3CHB9PK5	BS_K1JR4YRA	PBTA	High-grade glioma	Methylation	Deceased
 PT_G0CGYF8E	BS_K2WNM2Z5	PBTA	Ependymoma	Methylation	Recurrence
 PT_0PT33SCF	BS_K3XA1CFD	PBTA	CNS Embryonal tumor	Methylation	Recurrence
-PT_WYXTEG3E	BS_KA7M3DQS	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Deceased
+PT_062ZW10V	BS_KBGFKE34	PBTA	Glial-neuronal tumor NOS	Methylation	Deceased
+PT_2WVW55DA	BS_KBRRF2J1	PBTA	Infant-type hemispheric glioma	Methylation	Progressive
 PT_XTVQB9S4	BS_KF5Q3K89	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
+PT_N9P7RARB	BS_KH679HCS	PBTA	Ependymoma	Methylation	Recurrence
 PT_XWYNQBTK	BS_KMVRX07R	PBTA	Malignant peripheral nerve sheath tumor	Methylation	Progressive
 PT_TKWTTRQ7	BS_KP5F3FTJ	PBTA	Medulloblastoma	Methylation	Progressive
+PT_6N825561	BS_KZTMGEMZ	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_MXASQ2GW	BS_M00T28BR	PBTA	Neurofibroma/Plexiform	Methylation	Progressive
 PT_229DRV7B	BS_M0YWF7TK	PBTA	Neurofibroma/Plexiform	Methylation	Recurrence
 PT_JW6FBEFK	BS_M5AC601F	PBTA	Subependymal Giant Cell Astrocytoma	Methylation	Progressive
 PT_99S5BPE3	BS_M5HRCND3	PBTA	Ependymoma	Methylation	Recurrence
-PT_SD4RJ57T	BS_MAQMYWNS	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_FH0TD11J	BS_MDP4Y3YH	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
 PT_8ZKFTBZS	BS_MH8S62B8	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_WHK1MYQG	BS_MHSG8QBM	PBTA	Sarcoma	Methylation	Recurrence
+PT_M72FHJXN	BS_MM7886N4	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_VTM2STE3	BS_MQ55A0TN	PBTA	High-grade glioma	Methylation	Progressive
+PT_67R1AF5R	BS_MWTH7NNH	PBTA	Ependymoma	Methylation	Recurrence
 PT_FFCD5XD7	BS_MWV91M7D	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_HF824BSM	BS_MX0DDD8T	PBTA	High-grade glioma	Methylation	Recurrence
-PT_Y572BRC1	BS_MYT6NAAB	PBTA	Low-grade glioma	Methylation	Progressive
 PT_NH8CJ84W	BS_N0553FJB	PBTA	Craniopharyngioma	Methylation	Progressive
 PT_ZVYRFGEN	BS_N214HN9M	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_M72FHJXN	BS_N27CGYZB	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_9CCEQ57K	BS_NC79CTRA	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
-PT_J50NZYZF	BS_ND6FZ65Y	PBTA	Ewing sarcoma	Methylation	Progressive
+PT_DY2GNA83	BS_NHDD620E	PBTA	Medulloblastoma	Methylation	Deceased
 PT_CSZ9QA1N	BS_NHHQWHER	PBTA	High-grade glioma	Methylation	Deceased
+PT_3AR6AW9N	BS_NQQ4P8S7	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_4ZRCW5H5	BS_NR9W96GR	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_NJQ26FHN	BS_NRHPSZRN	PBTA	Ependymoma	Methylation	Deceased
 PT_PR4YBBH3	BS_NW4MHHTV	PBTA	Diffuse midline glioma	Methylation	Deceased
@@ -269,6 +275,7 @@ PT_596H0BQF	BS_P3A3FMWA	PBTA	NA	Methylation	Progressive
 PT_B5DQ8FF0	BS_P3EHKA6H	PBTA	Ependymoma	Methylation	Progressive
 PT_AWMZ12NP	BS_P4YHVCZW	PBTA	Ganglioglioma	Methylation	Progressive
 PT_F27SA15G	BS_P6BMPCE3	PBTA	Low-grade glioma	Methylation	Recurrence
+PT_DNAJYFZT	BS_P8BTR3QS	PBTA	Ependymoma	Methylation	Recurrence
 PT_RA6AGBA7	BS_P9JVPHRF	PBTA	Diffuse midline glioma	Methylation	Progressive
 PT_DH8A0SNQ	BS_PGNB51T2	PBTA	Teratoma	Methylation	Progressive
 PT_5Q52M9W8	BS_PKCV80C3	PBTA	High-grade glioma	Methylation	Progressive
@@ -279,25 +286,22 @@ PT_BZCJMEX8	BS_PSEA8K6N	PBTA	Ependymoma	Methylation	Recurrence
 PT_218SX3G4	BS_PV4N35MA	PBTA	CNS Embryonal tumor	Methylation	Progressive
 PT_B5VQ16GW	BS_PWRJHMQV	PBTA	Low-grade glioma	Methylation	Progressive
 PT_HERXR7FX	BS_PX2GS0TD	PBTA	High-grade glioma	Methylation	Recurrence
-PT_PMEXVDFJ	BS_PYY0T39J	PBTA	Infant-type hemispheric glioma	Methylation	Deceased
 PT_QPY0H50V	BS_Q3YR7RM9	PBTA	Inflammatory Myofibroblastic Tumor	Methylation	Progressive
 PT_9S6WMQ92	BS_Q400D66E	PBTA	Medulloblastoma	Methylation	Progressive
-PT_962TCBVR	BS_Q5PQA328	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_3MNY9BRY	BS_Q61KTESW	PBTA	Low-grade glioma	Methylation	Progressive
 PT_H024RK87	BS_Q6T1BM6K	PBTA	NA	Methylation	Recurrence
 PT_NNZQ09SH	BS_Q9XEFY7D	PBTA	Rosette-forming glioneuronal tumor	Methylation	Recurrence
 PT_W4XVT4AJ	BS_QFGWRM7H	PBTA	Diffuse intrinsic pontine glioma	Methylation	Deceased
-PT_YWFFHZD5	BS_QK2JGRS8	PBTA	Choroid plexus carcinoma	Methylation	Progressive
+PT_YWFFHZD5	BS_QK2JGRS8	PBTA	Choroid plexus tumor	Methylation	Progressive
 PT_GH27VJBD	BS_QM4VTDP1	PBTA	Ependymoma	Methylation	Progressive
 PT_0WQFCZ6S	BS_QRNHR7M9	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Recurrence
 PT_Y76A7PBA	BS_QTWKCTS7	PBTA	High-grade glioma	Methylation	Recurrence
-PT_FWWRWTV2	BS_QYH73D6M	PBTA	High-grade glioma	Methylation	Deceased
 PT_KT1TR9JH	BS_R11RSZDN	PBTA	Embryonal tumor with multilayer rosettes	Methylation	Progressive
 PT_RY0GF9JR	BS_R2PFW6R8	PBTA	Ependymoma	Methylation	Recurrence
 PT_RDJ40M73	BS_R7CV19F3	PBTA	Diffuse hemispheric glioma	Methylation	Recurrence
 PT_98T18T3B	BS_R9WTTH5P	PBTA	Pineoblastoma	Methylation	Recurrence
 PT_HFQNKP5X	BS_RA65J4RZ	PBTA	Chordoma	Methylation	Recurrence
-PT_HXRGX93V	BS_RCBCFYWA	PBTA	Ependymoma	Methylation	Recurrence
+PT_HXRGX93V	BS_RCBCFYWA	PBTA	Ependymoma	Methylation	Progressive
 PT_BC6JG69J	BS_RDR36VG5	PBTA	High-grade glioma	Methylation	Deceased
 PT_N32BYY8A	BS_RFJN5JSA	PBTA	High-grade glioma	Methylation	Progressive
 PT_X8JQPZMN	BS_RPNFPF58	PBTA	High-grade glioma	Methylation	Deceased
@@ -307,71 +311,68 @@ PT_TGTJECMR	BS_RZPSHESX	PBTA	Teratoma	Methylation	Progressive
 PT_YHTK536P	BS_S19WN975	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_5Y0CE4WK	BS_S1MG1BK6	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_1VQWQ0TC	BS_S367XK8A	PBTA	Low-grade glioma	Methylation	Recurrence
-PT_4ZSR5DY8	BS_S3ABJN0R	PBTA	Low-grade glioma	Methylation	Progressive
 PT_PFFQ4M1W	BS_S3MQGNEQ	PBTA	Sarcoma	Methylation	Progressive
 PT_A0F23R7E	BS_S56R95NQ	PBTA	Ganglioglioma	Methylation	Progressive
-PT_YGN06RPZ	BS_S60ZPQZM	PBTA	Diffuse leptomeningeal glioneuronal tumor	Methylation	Progressive
+PT_YGN06RPZ	BS_S60ZPQZM	PBTA	NA	Methylation	Progressive
 PT_9D2N4S5Z	BS_S9H9WDCD	PBTA	Low-grade glioma	Methylation	Deceased
 PT_ZG4J0EK0	BS_SFD4VRYG	PBTA	Medulloblastoma	Methylation	Recurrence
 PT_WJCD2NS0	BS_SHVQXH3K	PBTA	Ewing sarcoma	Methylation	Recurrence
 PT_RJ1TJ2KH	BS_SK7VDHHN	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Deceased
 PT_DHZ5KCNN	BS_SNDPSMTW	PBTA	Ganglioneuroblastoma	Methylation	Recurrence
-PT_T4VN7ZRB	BS_SQ4BXSZS	PBTA	Ependymoma	Methylation	Recurrence
-PT_R604JG6B	BS_SWJRXYQ1	PBTA	Medulloblastoma	Methylation	Deceased
-PT_DNAJYFZT	BS_SZ9SVSBH	PBTA	Ependymoma	Methylation	Progressive
-PT_2YT37G8P	BS_T12T8R20	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_5SWFTE95	BS_T8GDG1XP	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_9JXFZWCF	BS_T9KBSWAW	PBTA	Sarcoma	Methylation	Progressive
 PT_P9GVEXFE	BS_TA55BX6B	PBTA	Pineoblastoma	Methylation	Progressive
+PT_T4VN7ZRB	BS_TA6KZ7QQ	PBTA	Ependymoma	Methylation	Progressive
 PT_W3FSA7NH	BS_TAB4FCRP	PBTA	Low-grade glioma	Methylation	Progressive
-PT_B7BBE5DV	BS_TEBYP1A1	PBTA	NA	Methylation	Recurrence
-PT_D6AJHDST	BS_TKJPEPA9	PBTA	Ependymoma	Methylation	Progressive
+PT_GHTSGFCT	BS_TD96FDCK	PBTA	NA	Methylation	Progressive
+PT_D6AJHDST	BS_TDXY6H8G	PBTA	Ependymoma	Methylation	Recurrence
 PT_7M2PGCBV	BS_TKS3KBF7	PBTA	Meningioma	Methylation	Recurrence
 PT_P1F0AHMT	BS_TRSPTHMM	PBTA	High-grade glioma	Methylation	Progressive
 PT_VCD0W8HG	BS_TSCQZE80	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_AP658JQV	BS_TSMY09VT	PBTA	Diffuse hemispheric glioma	Methylation	Deceased
-PT_AQWDQW27	BS_TT0R88ZT	PBTA	Meningioma	Methylation	Progressive
-PT_GTHZF21E	BS_TVZQJP7B	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_GTHZF21E	BS_TVPQ40TM	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_BGX962PA	BS_TWBD7741	PBTA	Sarcoma	Methylation	Progressive
+PT_HJMP6PH2	BS_TY2CX5HN	PBTA	Ewing sarcoma	Methylation	Deceased
 PT_FA2F3HQG	BS_V0F35JP0	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_1H2REHT2	BS_V1PQAKJT	PBTA	Low-grade glioma	Methylation	Progressive
 PT_DPVW4M1W	BS_V2BZYFY4	PBTA	Sarcoma	Methylation	Recurrence
 PT_Y98Q8XKV	BS_V839GTGE	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
 PT_6NSPR99T	BS_V9YC31VQ	PBTA	Ependymoma	Methylation	Deceased
-PT_PKYY553K	BS_VB39JC7F	PBTA	Ependymoma	Methylation	Progressive
+PT_S2SQJVGK	BS_VBPNA1QT	PBTA	Low-grade glioma	Methylation	Progressive
 PT_9CSZBV2P	BS_VFF1Y8S7	PBTA	CNS neuroblastoma	Methylation	Recurrence
+PT_TP6GS00H	BS_VHZYZ8PF	PBTA	Ependymoma	Methylation	Progressive
 PT_2WA5PM32	BS_VMTD1WJJ	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_PRSP252Y	BS_VNST53WV	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
 PT_KMHGNCNR	BS_VQ4E0ZSM	PBTA	Low-grade glioma	Methylation	Recurrence
-PT_7ECZ8VD0	BS_VTSA23T2	PBTA	Choroid plexus carcinoma	Methylation	Recurrence
-PT_6N825561	BS_VVVAAAXD	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
+PT_7ECZ8VD0	BS_VTSA23T2	PBTA	Choroid plexus tumor	Methylation	Recurrence
+PT_PMEXVDFJ	BS_VW79B0QX	PBTA	Infant-type hemispheric glioma	Methylation	Deceased
+PT_DW2XRPC9	BS_W0FSAQJ5	PBTA	High-grade glioma	Methylation	Progressive
 PT_5ZHYHDY2	BS_W0VT0DC9	PBTA	Malignant peripheral nerve sheath tumor	Methylation	Progressive
-PT_4RJ2EATN	BS_W4PY86FE	PBTA	Craniopharyngioma	Methylation	Recurrence
-PT_7HGY5W67	BS_W4SCDX8T	PBTA	Glial-neuronal tumor	Methylation	Recurrence
+PT_4RJ2EATN	BS_W4PY86FE	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_7HGY5W67	BS_W4SCDX8T	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
 PT_KZ04SDDS	BS_W57KS1XE	PBTA	High-grade glioma	Methylation	Progressive
-PT_MGJJBG0T	BS_W7K1H10P	PBTA	Glial-neuronal tumor	Methylation	Deceased
 PT_EB0D3BXG	BS_W808K35Z	PBTA	Neuroblastoma	Methylation	Progressive
 PT_C94VR1Y2	BS_W871TM75	PBTA	Ependymoma	Methylation	Recurrence
 PT_1N6ATKJS	BS_WDE40ZAY	PBTA	Low-grade glioma	Methylation	Progressive
 PT_DRR78VTX	BS_WG9NBSJM	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_23NZGSRJ	BS_WGBQB1HQ	PBTA	Medulloblastoma	Methylation	Deceased
 PT_67X59TQK	BS_WHEVP8BJ	PBTA	High-grade glioma	Methylation	Deceased
+PT_MDWPRDBT	BS_WKCWT9J1	PBTA	High-grade glioma	Methylation	Recurrence
 PT_9YNQJZ5G	BS_WMSJC65B	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
-PT_440E1XW5	BS_WQ0R3VJ6	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_DS0HZCSD	BS_WX2BE8KZ	PBTA	High-grade glioma	Methylation	Deceased
+PT_DS0HZCSD	BS_WX2BE8KZ	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_VR8T8JX8	BS_X09QGCHP	PBTA	Ependymoma	Methylation	Recurrence
 PT_FMK5VFYW	BS_X11BE7CV	PBTA	CNS Embryonal tumor	Methylation	Progressive
 PT_W6AWJJK7	BS_X1J980CP	PBTA	Ganglioglioma	Methylation	Recurrence
 PT_W7FK539G	BS_X36SF91S	PBTA	Neuroblastoma	Methylation	Progressive
-PT_G1EVC9DA	BS_X4W7RWVN	PBTA	Choroid plexus papilloma	Methylation	Progressive
+PT_G1EVC9DA	BS_X4W7RWVN	PBTA	Choroid plexus tumor	Methylation	Progressive
+PT_04V47WFC	BS_X5M93E0R	PBTA	Ependymoma	Methylation	Progressive
 PT_2KB81GB1	BS_XE23PBB3	PBTA	High-grade glioma	Methylation	Progressive
 PT_2ECVKTTQ	BS_XERG58K3	PBTA	Low-grade glioma	Methylation	Recurrence
 PT_25Z2NX27	BS_XM6P6866	PBTA	NA	Methylation	Progressive
 PT_0J07HTRF	BS_XNR6T9GM	PBTA	Diffuse midline glioma	Methylation	Deceased
+PT_1JP2ANQK	BS_XP53Q0KM	PBTA	Ewing sarcoma	Methylation	Progressive
 PT_2FVTD0WR	BS_XSME1PXF	PBTA	Low-grade glioma	Methylation	Progressive
 PT_B38P3Y5T	BS_XWAT4JQM	PBTA	Diffuse midline glioma	Methylation	Deceased
-PT_YM51XZH0	BS_XZR4A4KT	PBTA	Ependymoma	Methylation	Deceased
 PT_FH0TJ5P2	BS_Y1CFCD70	PBTA	High-grade glioma	Methylation	Recurrence
 PT_G4N67N0D	BS_Y6CXCPED	PBTA	High-grade glioma	Methylation	Progressive
-PT_RGX23JFP	BS_Y8P23T9M	PBTA	Ganglioglioma	Methylation	Progressive
 PT_AP9P5D7N	BS_YBZ421J5	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Recurrence
 PT_XWVQW6JX	BS_YDHW508X	PBTA	Low-grade glioma	Methylation	Progressive
 PT_W2G4Y7HG	BS_YG39AE0N	PBTA	Medulloblastoma	Methylation	Recurrence
@@ -379,26 +380,27 @@ PT_7FSE9DD5	BS_YKFX7YSV	PBTA	Ependymoma	Methylation	Recurrence
 PT_5W2PKFK6	BS_YKWSNZ5A	PBTA	Ependymoma	Methylation	Recurrence
 PT_PKP1250P	BS_YMJJ8Y23	PBTA	Ependymoma	Methylation	Recurrence
 PT_9AW9EWHA	BS_YPRGV9M3	PBTA	Ependymoma	Methylation	Recurrence
-PT_N9P7RARB	BS_YREMKDJA	PBTA	Ependymoma	Methylation	Recurrence
+PT_J50NZYZF	BS_YQR6Q53H	PBTA	Ewing sarcoma	Methylation	Progressive
 PT_95S99RWE	BS_YS76FT7P	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Recurrence
+PT_S0Q27J13	BS_YSQA737H	PBTA	High-grade glioma	Methylation	Progressive
+PT_19GCSK2S	BS_YVWA1G4P	PBTA	Diffuse midline glioma	Methylation	Deceased
 PT_DFQAH7RS	BS_YX2VCM1V	PBTA	Dysembryoplastic neuroepithelial tumor	Methylation	Progressive
 PT_HE8FBFNA	BS_YZGBDN88	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_164RNWTT	BS_Z0KREQTN	PBTA	Ependymoma	Methylation	Progressive
 PT_5EPZ7TCT	BS_Z62B53CW	PBTA	Meningioma	Methylation	Progressive
 PT_3C6QA9MA	BS_Z7RSRCX9	PBTA	Ependymoma	Methylation	Recurrence
+PT_3D74J8RZ	BS_Z8BJAPNR	PBTA	Meningioma	Methylation	Progressive
 PT_5SX0GRW1	BS_Z9WJ6WW1	PBTA	Neuroblastoma	Methylation	Deceased
-PT_Z7YJ7MSM	BS_ZANBP1Z1	PBTA	Glial-neuronal tumor	Methylation	Recurrence
+PT_Z7YJ7MSM	BS_ZANBP1Z1	PBTA	Glial-neuronal tumor NOS	Methylation	Recurrence
 PT_RX1EWBP9	BS_ZDM8Y1XM	PBTA	Atypical Teratoid Rhabdoid Tumor	Methylation	Progressive
 PT_P1290MMP	BS_ZFCXH22E	PBTA	Neuroblastoma	Methylation	Progressive
-PT_3WA7SBQ6	BS_ZHQ8NGZR	PBTA	Choroid plexus carcinoma	Methylation	Recurrence
 PT_3R0P995B	BS_ZJ36E1SR	PBTA	Ependymoma	Methylation	Progressive
-PT_AV0W0V8D	BS_ZPGN9ABV	PBTA	Choroid plexus carcinoma	Methylation	Progressive
+PT_AV0W0V8D	BS_ZPGN9ABV	PBTA	Choroid plexus tumor	Methylation	Progressive
 PT_Y6Y9JJ9P	BS_ZQ29NTTA	PBTA	Ependymoma	Methylation	Progressive
-PT_2WVW55DA	BS_ZS0NAJHV	PBTA	Infant-type hemispheric glioma	Methylation	Progressive
 PT_94EHCMXA	BS_ZSJEHWJM	PBTA	Low-grade glioma	Methylation	Progressive
 PT_EJ8TKG2Z	BS_ZTEV2216	PBTA	Craniopharyngioma	Methylation	Progressive
 PT_02J5CWN5	BS_ZTMGC2AC	PBTA	Low-grade glioma	Methylation	Progressive
-PT_WPYCXMDA	BS_ZTWT62DX	PBTA	Adamantinomatous Craniopharyngioma	Methylation	Progressive
+PT_WPYCXMDA	BS_ZTWT62DX	PBTA	Craniopharyngioma	Methylation	Progressive
 PT_PN05NGWX	BS_ZV23QCBQ	PBTA	Ependymoma	Methylation	Progressive
 PABLDZ	TARGET-20-PABLDZ-04A-03D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence
 PADYIR	TARGET-20-PADYIR-04A-01D.M	TARGET	Acute Myeloid Leukemia	Methylation	Recurrence

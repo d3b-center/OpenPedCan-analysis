@@ -7,7 +7,7 @@ printf "Start molecular subtyping...\n\n"
 
 # Set locations for s3 bucket that contains release file
 URL="s3://d3b-openaccess-us-east-1-prd-pbta/open-targets"
-RELEASE="v12"
+RELEASE="v13"
 
 # Set the working directory to the directory of this file
 cd "$(dirname "${BASH_SOURCE[0]}")"
