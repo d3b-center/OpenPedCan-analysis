@@ -1,61 +1,56 @@
 stripped_subtype	cancer_group
-Abdominal inflammatory myofibroblastic tumor	NA
 Acute Promyelocytic Leukemia	Acute Myeloid Leukemia
 Adamantinomatous craniopharyngioma	Adamantinomatous Craniopharyngioma
 Adenoma	NA
-Adrenal mass	NA
 Anaplastic (malignant) meningioma	Meningioma
-Aneurismal bone cyst (abc) with col1a1-usp6 fusion	NA
-Aneurysmal bone cyst (abc)	NA
+Aneurismal bone cyst (abc) with col1a1-usp6 fusion	Aneurismal bone cyst
+Aneurysmal bone cyst (abc)	Aneurysmal bone cyst
 Aplastic anemia	NA
 Arteriovenous malformation	NA
-Astrocytoma;Oligoastrocytoma	NA
+Atypical Lymph Node	NA
 Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor
 Atypical lymphoid infiltrate	NA
 Atypical meningioma	Meningioma
-Atypical vascular lesion	NA
-Bone marrow cellularity	NA
-Bone marrow failure	NA
+Benign Neoplasm	NA
 Brain Lower Grade Glioma	Low-grade glioma
 Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma
+Cavernoma	NA
 Cholesterol granuloma	NA
 Chondroma	NA
-Chronic myeloid leukemia pathway	NA
 Clear Cell Sarcoma of the Kidney	Clear cell sarcoma of the kidney
 Clear cell meningioma	Meningioma
 Cranial fasciitis	NA
-Cyst	NA
 Dermoid cyst	NA
+Diffuse hemispheric glioma	Astrocytoma
 Dysembryoplastic neuroepithelial tumor (DNET)	Dysembryoplastic neuroepithelial tumor
 Dysembryoplastic neuroepithelial tumor (DNET);Dysplasia/Gliosis;Ganglioglioma	NA
 Dysembryoplastic neuroepithelial tumor (DNET);Ganglioglioma	NA
 Dysplasia/Gliosis	NA
-Dysplasia/Gliosis;Low-grade glioma/astrocytoma (WHO grade I/II)	NA
 Ependymoma;Metastatic secondary tumors	NA
 Epidermoid cyst	NA
 Epilepsy	NA
-Familial adenomatous polyposis	NA
 Fibroma	NA
 Fibromixoid lesion	Fibromyxoid lesion
+Giant Cell Granuloma	NA
 Giant cell tumor of bone	NA
 Glioblastoma Multiforme Pathway	NA
-Gliosis	NA
+Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)	NA
 Hamartoma	NA
 Hemangioma	NA
-High Grade Sarcoma	Sarcoma
+Hematoma	NA
+High-grade glioma	Astrocytoma;Oligoastrocytoma
+High-grade glioma	Glioblastoma
 High-grade glioma/astrocytoma (WHO grade III/IV)	High-grade glioma
+High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform	NA
+High-grade glioma/astrocytoma (WHO grade III/IV);Oligodendroglioma	NA
 Histiocytic Tumor	Histiocytic tumor
-Hypocellular bone marrow	NA
-Hypophyseal stalk thickening	NA
 Inclusion cyst	NA
 Inflammatory lesion	NA
-Juvenile Xanthogranuloma	Juvenile xanthogranuloma
 Kidney Chromophobe	Chromophobe renal cell carcinoma
 Kidney Renal Clear Cell Carcinoma	Renal Clear Cell Carcinoma
 Kidney Renal Papillary Cell Carcinoma	Renal Papillary Cell Carcinoma
 Lipoblastoma	NA
 Lipoma	NA
-Lipomyelomeningocele	NA
 Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma
 Lymphadenitis	NA
 Malignant peripheral nerve sheath tumor (MPNST)	Malignant peripheral nerve sheath tumor
@@ -64,46 +59,30 @@ Melanocytoma	Melanocytic tumor
 Meningioma;Neurofibroma/Plexiform	NA
 Meningioma;Schwannoma	NA
 Meningothelial meningioma	Meningioma
+Microcytic Anemia	NA
 Mixed Lineage Leukemia	Acute Lymphoblastic Leukemia
-Myelodysplastic syndrome	NA
 Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor
 Myofibroma	NA
-Myxoid spindle cell tumor	NA
 Myxopapillary ependymoma	Ependymoma
 Necrotizing myelopathy	NA
-Neuroblastic tumor	NA
-Neuroendocrine carcinoma	NA
 Neuroepithelial neoplasm with EWSR1--PLAG1 fusion	Glial-neuronal tumor
 Neurofibroma/Plexiform;Schwannoma	NA
-Neutropenia	NA
-Nodular fasciitis	NA
+Non-Cancer Diagnosis	NA
+Non-cancer diagnosis	NA
 Non-germinomatous germ cell tumor;Teratoma	NA
-Noonan syndrome	NA
-Not Reported	NA
+Nonintractable epilepsy without status epilepticus	NA
 Ossifying fibroma	NA
 Osteoblastoma	NA
 Osteoma	NA
 Other	Astroblastoma
 Pilomatricoma	NA
-Pleuropulmonary blastoma	NA
-Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	NA
+Post-Transplant Lymphoproliferative Disorder	NA
 Posterior fossa group A (PFA) ependymoma	Ependymoma
 Posterior fossa group B (PFB) ependymoma	Ependymoma
 Posterior fossa subependymoma	Ependymoma
-Primary myelofibrosis	NA
-Reactive connective tissue	NA
 Rosai-dorfman	Rosai-Dorfman disease
-Shwachman-diamond syndrome	NA
-Solid pseudopapillary neoplasm of the pancreas	NA
 Spinal ependymoma	Ependymoma
 Spinal subependymoma	Ependymoma
 Spinocerebellar ataxia type 7	NA
 Subependymal Giant Cell Astrocytoma (SEGA)	Subependymal Giant Cell Astrocytoma
 Supratentorial ependymoma	Ependymoma
-Therapy-Related Acute Myeloid Leukemia	Acute Myeloid Leukemia
-Thrombocytopenia	NA
-Thrombocytosis	NA
-Type ii pleuropulmonary blastoma	NA
-Undifferentiated malignant neoplasm	NA
-Vascular malformation	NA
-Wilms Tumor	Wilms tumor
