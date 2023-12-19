@@ -1,5 +1,4 @@
 cohort	harmonized_diagnosis	cancer_group	has_subtype_removed	additional_modification
-DGD	Abdominal inflammatory myofibroblastic tumor	Abdominal inflammatory myofibroblastic tumor	No	No
 DGD	Acute Lymphoblastic Leukemia	Acute Lymphoblastic Leukemia	No	No
 DGD	Mixed Lineage Leukemia	Acute Lymphoblastic Leukemia	No	Yes
 PPTC	Acute Lymphoblastic Leukemia	Acute Lymphoblastic Leukemia	No	No
@@ -11,31 +10,22 @@ TCGA	Acute Myeloid Leukemia	Acute Myeloid Leukemia	No	No
 PBTA	Adamantinomatous craniopharyngioma	Adamantinomatous Craniopharyngioma	No	Yes
 DGD	Adamantinomatous craniopharyngioma	Adamantinomatous Craniopharyngioma	No	Yes
 DGD	Adenocarcinoma	Adenocarcinoma	No	No
-DGD	Adrenal mass	Adrenal mass	No	No
 TCGA	Adrenocortical Carcinoma	Adrenocortical Carcinoma	No	No
 DGD	Alveolar soft part sarcoma	Alveolar soft part sarcoma	No	No
 PPTC	Alveolar soft part sarcoma	Alveolar soft part sarcoma	No	No
-DGD	Aneurismal bone cyst (abc) with col1a1-usp6 fusion	Aneurismal bone cyst	No	Yes
-PBTA	Aneurysmal bone cyst (abc)	Aneurysmal bone cyst	No	Yes
-DGD	Aneurysmal bone cyst (abc)	Aneurysmal bone cyst	No	Yes
 DGD	Angiosarcoma	Angiosarcoma	No	No
 PBTA	Other	Astroblastoma	No	Yes
 DGD	Astrocytoma	Astrocytoma	No	No
 PBTA	Diffuse hemispheric glioma, H3 G35-mutant	Astrocytoma	Yes	Yes
 PBTA	High-grade glioma, IDH-mutant	Astrocytoma;Oligoastrocytoma	Yes	Yes
-DGD	Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential	Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential	No	No
-DGD	Atypical Spitz Nevus	Atypical Spitz Nevus	No	No
 PBTA	Atypical Teratoid Rhabdoid Tumor, MYC	Atypical Teratoid Rhabdoid Tumor	Yes	No
 PBTA	Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor	No	Yes
 PBTA	Atypical Teratoid Rhabdoid Tumor, SHH	Atypical Teratoid Rhabdoid Tumor	Yes	No
 PBTA	Atypical Teratoid Rhabdoid Tumor, TYR	Atypical Teratoid Rhabdoid Tumor	Yes	No
 DGD	Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor	No	Yes
 PPTC	Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor	No	Yes
-DGD	Atypical vascular lesion	Atypical vascular lesion	No	No
 DGD	B Acute Lymphoblastic Leukemia/Lymphoma	B Acute Lymphoblastic Leukemia/Lymphoma	No	No
 TCGA	Bladder Urothelial Carcinoma	Bladder Urothelial Carcinoma	No	No
-DGD	Bone marrow cellularity, ctcae	Bone marrow cellularity	Yes	No
-DGD	Bone marrow failure	Bone marrow failure	No	No
 TCGA	Breast Invasive Carcinoma	Breast Invasive Carcinoma	No	No
 DGD	Burkitt Leukemia/Lymphoma	Burkitt Leukemia/Lymphoma	No	No
 PBTA	CNS Embryonal tumor, NEC/NOS	CNS Embryonal tumor	Yes	No
@@ -45,11 +35,8 @@ DGD	CNS Embryonal tumor, NEC/NOS	CNS Embryonal tumor	Yes	No
 PPTC	CNS Embryonal tumor, NEC/NOS	CNS Embryonal tumor	Yes	No
 DGD	CNS Melanoma	CNS Melanoma	No	No
 PBTA	CNS neuroblastoma	CNS neuroblastoma	No	No
-DGD	Cellular Congenital Mesoblastic Nephroma	Cellular Congenital Mesoblastic Nephroma	No	No
 PBTA	Central neurocytoma	Central neurocytoma	No	No
-DGD	Cerebral ventriculomegaly	Cerebral ventriculomegaly	No	No
 TCGA	Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	No	No
-DGD	Childhood Astrocytic Tumor	Childhood Astrocytic Tumor	No	No
 DGD	Cholangiocarcinoma	Cholangiocarcinoma	No	No
 TCGA	Cholangiocarcinoma	Cholangiocarcinoma	No	No
 PBTA	Chondromyxoid fibroma	Chondromyxoid fibroma	No	No
@@ -58,25 +45,22 @@ PBTA	Chordoma, poorly differentiated	Chordoma	Yes	No
 DGD	Chordoma	Chordoma	No	No
 PBTA	Chordoma, conventional	Chordoma	Yes	No
 DGD	Chordoma, poorly differentiated	Chordoma	Yes	No
-PBTA	Choroid plexus carcinoma	Choroid plexus carcinoma	No	No
-DGD	Choroid plexus carcinoma	Choroid plexus carcinoma	No	No
-PBTA	Choroid plexus papilloma	Choroid plexus papilloma	No	No
-DGD	Choroid plexus papilloma	Choroid plexus papilloma	No	No
+PBTA	Choroid plexus papilloma	Choroid plexus tumor	No	Yes
+DGD	Choroid plexus papilloma	Choroid plexus tumor	No	Yes
+PBTA	Choroid plexus carcinoma	Choroid plexus tumor	No	Yes
+DGD	Choroid plexus carcinoma	Choroid plexus tumor	No	Yes
 PBTA	Choroid plexus tumor	Choroid plexus tumor	No	No
 TCGA	Kidney Chromophobe	Chromophobe renal cell carcinoma	No	Yes
 DGD	Chronic Myelogenous Leukemia	Chronic Myelogenous Leukemia	No	No
-DGD	Chronic myeloid leukemia pathway	Chronic myeloid leukemia pathway	No	No
 PPTC	Clear Cell Sarcoma of the Kidney	Clear cell sarcoma of the kidney	No	Yes
 TARGET	Clear Cell Sarcoma of the Kidney	Clear cell sarcoma of the kidney	No	Yes
 TCGA	Colon Adenocarcinoma	Colon Adenocarcinoma	No	No
 PPTC	Colon Carcinoma	Colon Carcinoma	No	No
-DGD	Congenital Mesoblastic Nephroma	Congenital Mesoblastic Nephroma	No	No
 DGD	Congenital malignant brain tumor	Congenital malignant brain tumor	No	No
 PBTA	Congenital malignant brain tumor	Congenital malignant brain tumor	No	No
 PBTA	Craniopharyngioma	Craniopharyngioma	No	No
 DGD	Craniopharyngioma	Craniopharyngioma	No	No
 TCGA	Cutaneous Melanoma	Cutaneous Melanoma	No	No
-DGD	Cyst	Cyst	No	No
 DGD	Desmoid-type fibromatosis	Desmoid-type fibromatosis	No	No
 DGD	Desmoplastic infantile astrocytoma and ganglioglioma, wildtype	Desmoplastic infantile astrocytoma and ganglioglioma	Yes	No
 PBTA	Desmoplastic infantile astrocytoma and ganglioglioma, wildtype	Desmoplastic infantile astrocytoma and ganglioglioma	Yes	No
@@ -88,10 +72,6 @@ DGD	Diffuse hemispheric glioma, H3 G35-mutant	Diffuse hemispheric glioma	Yes	No
 DGD	Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma	No	Yes
 PBTA	Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma	No	Yes
 PPTC	Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma	No	Yes
-PBTA	Diffuse leptomeningeal glioneuronal tumor,  MAPK	Diffuse leptomeningeal glioneuronal tumor	Yes	No
-DGD	Diffuse leptomeningeal glioneuronal tumor,  To be classified	Diffuse leptomeningeal glioneuronal tumor	Yes	No
-PBTA	Diffuse leptomeningeal glioneuronal tumor,  KIAA1549-BRAF	Diffuse leptomeningeal glioneuronal tumor	Yes	No
-DGD	Diffuse leptomeningeal glioneuronal tumor,  KIAA1549-BRAF	Diffuse leptomeningeal glioneuronal tumor	Yes	No
 PBTA	Diffuse midline glioma, H3 K28-altered	Diffuse midline glioma	Yes	No
 DGD	Diffuse midline glioma, H3 K28-altered	Diffuse midline glioma	Yes	No
 PBTA	Diffuse midline glioma, H3 K28-mutant	Diffuse midline glioma	Yes	No
@@ -124,7 +104,6 @@ DGD	Ewing sarcoma	Ewing sarcoma	No	No
 PPTC	Ewing sarcoma	Ewing sarcoma	No	No
 PBTA	Extraventricular neurocytoma	Extraventricular neurocytoma	No	No
 DGD	Extraventricular neurocytoma	Extraventricular neurocytoma	No	No
-PBTA	Familial adenomatous polyposis	Familial adenomatous polyposis	No	No
 PBTA	Fibromixoid lesion	Fibromyxoid lesion	No	Yes
 DGD	Follicular Variant Thyroid Gland Papillary Carcinoma, Encapsulated Subtype with Invasion	Follicular Variant Thyroid Gland Papillary Carcinoma	Yes	No
 DGD	Ganglioglioma, wildtype	Ganglioglioma	Yes	No
@@ -170,36 +149,33 @@ DGD	Germ Cell Tumor	Germ Cell Tumor	No	No
 PBTA	Germinoma	Germinoma	No	No
 DGD	Germinoma	Germinoma	No	No
 PPTC	Germinoma	Germinoma	No	No
-PBTA	Glial-neuronal tumor,  RTK	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  wildtype	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  BRAF V600E	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  other MAPK	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  other MAPK	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  FGFR	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  RTK, CDKN2A/B	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  To be classified	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  To be classified	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  FGFR	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  BRAF V600E	Glial-neuronal tumor	Yes	No
 DGD	Neuroepithelial neoplasm with EWSR1--PLAG1 fusion	Glial-neuronal tumor	No	Yes
-PBTA	Glial-neuronal tumor, wildtype	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  KIAA1549-BRAF	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  wildtype	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  other MAPK, CDKN2A/B	Glial-neuronal tumor	Yes	No
 PBTA	Neuroepithelial neoplasm with EWSR1--PLAG1 fusion	Glial-neuronal tumor	No	Yes
-PBTA	Glial-neuronal tumor,  H3	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  NF1-somatic	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  KIAA1549-BRAF	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  NF1-somatic, NF1-germline	Glial-neuronal tumor	Yes	No
-DGD	Glial-neuronal tumor,  RTK	Glial-neuronal tumor	Yes	No
-PBTA	Glial-neuronal tumor,  NF1-somatic, FGFR	Glial-neuronal tumor	Yes	No
+PBTA	Glial-neuronal tumor,  RTK	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  wildtype	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  BRAF V600E	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  other MAPK	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  other MAPK	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  FGFR	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  RTK, CDKN2A/B	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  To be classified	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  To be classified	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  FGFR	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  BRAF V600E	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor, wildtype	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  KIAA1549-BRAF	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  wildtype	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  other MAPK, CDKN2A/B	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  H3	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  NF1-somatic	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  KIAA1549-BRAF	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  NF1-somatic, NF1-germline	Glial-neuronal tumor NOS	Yes	Yes
+DGD	Glial-neuronal tumor,  RTK	Glial-neuronal tumor NOS	Yes	Yes
+PBTA	Glial-neuronal tumor,  NF1-somatic, FGFR	Glial-neuronal tumor NOS	Yes	Yes
 PBTA	High-grade glioma, IDH-wildtype and H3-wildtype	Glioblastoma	Yes	Yes
 PBTA	High-grade glioma, IDH-mutant	Glioblastoma	Yes	Yes
 CPTAC	Glioblastoma	Glioblastoma	No	No
 TCGA	Glioblastoma Multiforme	Glioblastoma Multiforme	No	No
-DGD	Glioma	Glioma	No	No
-PBTA	Gliosis	Gliosis	No	No
-DGD	Granular Cell Tumor	Granular Cell Tumor	No	No
 TCGA	Head and Neck Squamous Cell Carcinoma	Head and Neck Squamous Cell Carcinoma	No	No
 PBTA	Hemangioblastoma	Hemangioblastoma	No	No
 DGD	Hemangioblastoma	Hemangioblastoma	No	No
@@ -219,22 +195,17 @@ PBTA	High-grade neuroepithelial tumor	High-grade neuroepithelial tumor	No	No
 DGD	Histiocytic tumor	Histiocytic tumor	No	No
 DGD	Histiocytic Tumor	Histiocytic tumor	No	Yes
 DGD	Hodgkin's lymphoma	Hodgkin's lymphoma	No	No
-DGD	Hypocellular bone marrow	Hypocellular bone marrow	No	No
-DGD	Hypophyseal stalk thickening	Hypophyseal stalk thickening	No	No
 PBTA	Infant-type hemispheric glioma, ALK-altered	Infant-type hemispheric glioma	Yes	No
 PBTA	Infant-type hemispheric glioma, NTRK-altered	Infant-type hemispheric glioma	Yes	No
 PBTA	Infant-type hemispheric glioma	Infant-type hemispheric glioma	No	No
 PBTA	Infant-type hemispheric glioma, ROS1-altered	Infant-type hemispheric glioma	Yes	No
 DGD	Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor	No	Yes
-DGD	Inflammatory Myofibroblastic Tumor	Inflammatory Myofibroblastic Tumor	No	No
 PBTA	Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor	No	Yes
-DGD	Inflammatory lesion	Inflammatory lesion	No	No
 PBTA	Intraneural perineuroma	Intraneural perineuroma	No	No
 PBTA	Other	Juvenile xanthogranuloma	No	Yes
 DGD	Other	Juvenile xanthogranuloma	No	Yes
 PBTA	Langerhans Cell histiocytosis	Langerhans Cell histiocytosis	No	No
 DGD	Langerhans Cell histiocytosis	Langerhans Cell histiocytosis	No	No
-PBTA	Lipomyelomeningocele	Lipomyelomeningocele	No	No
 PBTA	Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma	No	Yes
 DGD	Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma	No	Yes
 PBTA	Low-grade glioma, other MAPK	Low-grade glioma	Yes	No
@@ -278,7 +249,6 @@ TCGA	Brain Lower Grade Glioma	Low-grade glioma	No	Yes
 TCGA	Lung Adenocarcinoma	Lung Adenocarcinoma	No	No
 TCGA	Lung Squamous Cell Carcinoma	Lung Squamous Cell Carcinoma	No	No
 TCGA	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma	No	No
-DGD	Malignant PEComa	Malignant PEComa	No	No
 PBTA	Malignant peripheral nerve sheath tumor (MPNST)	Malignant peripheral nerve sheath tumor	No	Yes
 DGD	Malignant peripheral nerve sheath tumor (MPNST)	Malignant peripheral nerve sheath tumor	No	Yes
 DGD	Medulloblastoma	Medulloblastoma	No	No
@@ -305,14 +275,8 @@ PBTA	Metastatic secondary tumors	Metastatic secondary tumors	No	No
 DGD	Metastatic secondary tumors	Metastatic secondary tumors	No	No
 PBTA	Mixed germ cell tumor	Mixed germ cell tumor	No	No
 DGD	Mixed germ cell tumor	Mixed germ cell tumor	No	No
-DGD	Monomorphic Post-Transplant Lymphoproliferative Disorder	Monomorphic Post-Transplant Lymphoproliferative Disorder	No	No
-DGD	Mucoepidermoid Carcinoma	Mucoepidermoid Carcinoma	No	No
-DGD	Myelodysplastic syndrome	Myelodysplastic syndrome	No	No
 DGD	Myeloid Leukemia Associated with Down Syndrome	Myeloid Leukemia Associated with Down Syndrome	No	No
 DGD	Myeloid Sarcoma	Myeloid Sarcoma	No	No
-PBTA	Myxoid spindle cell tumor	Myxoid spindle cell tumor	No	No
-DGD	Neoplasm of unspecified behavior of endocrine glands	Neoplasm of unspecified behavior of endocrine glands	No	No
-DGD	Neuroblastic tumor	Neuroblastic tumor	No	No
 GMKF	Neuroblastoma, MYCN non-amplified	Neuroblastoma	Yes	No
 GMKF	Neuroblastoma, MYCN-amplified	Neuroblastoma	Yes	No
 GMKF	Neuroblastoma	Neuroblastoma	No	No
@@ -327,29 +291,74 @@ PPTC	Neuroblastoma, MYCN non-amplified	Neuroblastoma	Yes	No
 TARGET	Neuroblastoma, MYCN-amplified	Neuroblastoma	Yes	No
 TARGET	Neuroblastoma, MYCN non-amplified	Neuroblastoma	Yes	No
 TARGET	Neuroblastoma	Neuroblastoma	No	No
-DGD	Neuroendocrine carcinoma	Neuroendocrine carcinoma	No	No
 PBTA	Neurofibroma/Plexiform	Neurofibroma/Plexiform	No	No
 DGD	Neurofibroma/Plexiform	Neurofibroma/Plexiform	No	No
-DGD	Neutropenia	Neutropenia	No	No
-DGD	Nodular fasciitis	Nodular fasciitis	No	No
+PBTA	Perineuroma	Neurofibroma/Plexiform	No	Yes
 DGD	Non-Hodgkin Lymphoma	Non-Hodgkin Lymphoma	No	No
-PBTA	Non-germinomatous germ cell tumor	Non-germinomatous germ cell tumor	No	No
-DGD	Non-germinomatous germ cell tumor	Non-germinomatous germ cell tumor	No	No
-DGD	Noonan syndrome	Noonan syndrome	No	No
-DGD	Not Reported	Not Reported	No	No
 PBTA	Not Reported	Not Reported	No	No
 PBTA	Oligodendroglioma	Oligodendroglioma	No	No
 DGD	Oligodendroglioma	Oligodendroglioma	No	No
 DGD	Osteosarcoma	Osteosarcoma	No	No
 PPTC	Osteosarcoma	Osteosarcoma	No	No
 TARGET	Osteosarcoma	Osteosarcoma	No	No
+DGD	Glioma	Other tumor	No	Yes
+DGD	Neuroblastic tumor	Other tumor	No	Yes
+DGD	Not Reported	Other tumor	No	Yes
+DGD	Thrombocytopenia	Other tumor	No	Yes
+DGD	Noonan syndrome	Other tumor	No	Yes
+DGD	Spinal Cord Neoplasm	Other tumor	No	Yes
+DGD	Hypocellular bone marrow	Other tumor	No	Yes
+PBTA	Aneurysmal bone cyst (abc)	Other tumor	No	Yes
+DGD	Papillary Thyroid Carcinoma Pathway	Other tumor	No	Yes
+PBTA	Gliosis	Other tumor	No	Yes
+DGD	Childhood Astrocytic Tumor	Other tumor	No	Yes
+DGD	Neutropenia	Other tumor	No	Yes
+PBTA	Myxoid spindle cell tumor	Other tumor	No	Yes
+DGD	Solid pseudopapillary neoplasm of the pancreas	Other tumor	No	Yes
+DGD	Shwachman-diamond syndrome	Other tumor	No	Yes
+DGD	Cyst	Other tumor	No	Yes
+DGD	Cerebral ventriculomegaly	Other tumor	No	Yes
+DGD	Atypical vascular lesion	Other tumor	No	Yes
+DGD	Mucoepidermoid Carcinoma	Other tumor	No	Yes
+DGD	Hypophyseal stalk thickening	Other tumor	No	Yes
+DGD	Cellular Congenital Mesoblastic Nephroma	Other tumor	No	Yes
+DGD	Atypical Spitz Nevus	Other tumor	No	Yes
+DGD	Vascular malformation	Other tumor	No	Yes
+DGD	Aneurysmal bone cyst (abc)	Other tumor	No	Yes
+DGD	Granular Cell Tumor	Other tumor	No	Yes
+DGD	Type ii pleuropulmonary blastoma	Other tumor	No	Yes
+DGD	Chronic myeloid leukemia pathway	Other tumor	No	Yes
+DGD	Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential	Other tumor	No	Yes
+DGD	Recurrent Glioma	Other tumor	No	Yes
+DGD	Malignant PEComa	Other tumor	No	Yes
+PBTA	Reactive connective tissue	Other tumor	No	Yes
+DGD	Aneurismal bone cyst (abc) with col1a1-usp6 fusion	Other tumor	No	Yes
+PBTA	Lipomyelomeningocele	Other tumor	No	Yes
+PBTA	Familial adenomatous polyposis	Other tumor	No	Yes
+DGD	Spindle cell neoplasm	Other tumor	No	Yes
+DGD	Undifferentiated malignant neoplasm	Other tumor	No	Yes
+DGD	Thrombocytosis	Other tumor	No	Yes
+DGD	Congenital Mesoblastic Nephroma	Other tumor	No	Yes
+DGD	Pleuropulmonary blastoma	Other tumor	No	Yes
+DGD	Primary myelofibrosis	Other tumor	No	Yes
+DGD	Adrenal mass	Other tumor	No	Yes
+DGD	Abdominal inflammatory myofibroblastic tumor	Other tumor	No	Yes
+DGD	Inflammatory Myofibroblastic Tumor	Other tumor	No	Yes
+DGD	Neoplasm of unspecified behavior of endocrine glands	Other tumor	No	Yes
+DGD	Nodular fasciitis	Other tumor	No	Yes
+PBTA	Vascular malformation	Other tumor	No	Yes
+DGD	Neuroendocrine carcinoma	Other tumor	No	Yes
+DGD	Bone marrow failure	Other tumor	No	Yes
+DGD	Myelodysplastic syndrome	Other tumor	No	Yes
+DGD	Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	Other tumor	No	Yes
+DGD	Monomorphic Post-Transplant Lymphoproliferative Disorder	Other tumor	No	Yes
+DGD	Bone marrow cellularity, ctcae	Other tumor	Yes	Yes
+DGD	Inflammatory lesion	Other tumor	No	Yes
 DGD	Ovarian Serous Cystadenocarcinoma	Ovarian Serous Cystadenocarcinoma	No	No
 TCGA	Ovarian Serous Cystadenocarcinoma	Ovarian Serous Cystadenocarcinoma	No	No
 TCGA	Pancreatic Adenocarcinoma	Pancreatic Adenocarcinoma	No	No
 DGD	Pancreatoblastoma	Pancreatoblastoma	No	No
 DGD	Papillary Carcinoma	Papillary Carcinoma	No	No
-DGD	Papillary Thyroid Carcinoma Pathway	Papillary Thyroid Carcinoma Pathway	No	No
-PBTA	Perineuroma	Perineuroma	No	No
 TCGA	Pheochromocytoma and Paraganglioma	Pheochromocytoma and Paraganglioma	No	No
 DGD	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
 PBTA	Pineoblastoma, MYC/FOXR2	Pineoblastoma	Yes	No
@@ -359,16 +368,10 @@ PBTA	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
 DGD	Pineoblastoma	Pineoblastoma	No	No
 PBTA	Pleomorphic xanthoastrocytoma	Pleomorphic xanthoastrocytoma	No	No
 PBTA	Pleomorphic xanthoastrocytoma, BRAF V600E	Pleomorphic xanthoastrocytoma	Yes	No
-DGD	Pleuropulmonary blastoma	Pleuropulmonary blastoma	No	No
-DGD	Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	No	No
 PBTA	Primary CNS lymphoma	Primary CNS lymphoma	No	No
 DGD	Primary mediastinal large B cell lymphoma	Primary mediastinal large B cell lymphoma	No	No
-DGD	Primary myelofibrosis	Primary myelofibrosis	No	No
 TCGA	Prostate Adenocarcinoma	Prostate Adenocarcinoma	No	No
-PBTA	Reactive connective tissue	Reactive connective tissue	No	No
 TCGA	Rectum Adenocarcinoma	Rectum Adenocarcinoma	No	No
-DGD	Recurrent Acute Leukemia	Recurrent Acute Leukemia	No	No
-DGD	Recurrent Glioma	Recurrent Glioma	No	No
 TCGA	Kidney Renal Clear Cell Carcinoma	Renal Clear Cell Carcinoma	No	Yes
 TCGA	Kidney Renal Papillary Cell Carcinoma	Renal Papillary Cell Carcinoma	No	Yes
 DGD	Retinoblastoma	Retinoblastoma	No	No
@@ -386,10 +389,7 @@ DGD	Sarcoma	Sarcoma	No	No
 TCGA	Sarcoma	Sarcoma	No	No
 PBTA	Schwannoma	Schwannoma	No	No
 DGD	Schwannoma	Schwannoma	No	No
-DGD	Shwachman-diamond syndrome	Shwachman-diamond syndrome	No	No
 PPTC	Small Cell Carcinoma	Small Cell Carcinoma	No	No
-DGD	Solid pseudopapillary neoplasm of the pancreas	Solid pseudopapillary neoplasm of the pancreas	No	No
-DGD	Spinal Cord Neoplasm	Spinal Cord Neoplasm	No	No
 DGD	Spindle cell neoplasm	Spindle cell neoplasm	No	No
 TCGA	Stomach Adenocarcinoma	Stomach Adenocarcinoma	No	No
 PBTA	Subependymal Giant Cell Astrocytoma (SEGA)	Subependymal Giant Cell Astrocytoma	No	Yes
@@ -399,36 +399,34 @@ DGD	T Acute Lymphoblastic Leukemia/Lymphoma	T Acute Lymphoblastic Leukemia/Lymph
 PBTA	Teratoma	Teratoma	No	No
 DGD	Teratoma	Teratoma	No	No
 TCGA	Testicular Germ Cell Tumor	Testicular Germ Cell Tumor	No	No
-DGD	Thrombocytopenia	Thrombocytopenia	No	No
-DGD	Thrombocytosis	Thrombocytosis	No	No
 TCGA	Thymoma	Thymoma	No	No
 TCGA	Thyroid Carcinoma	Thyroid Carcinoma	No	No
 DGD	Thyroid Gland Papillary Carcinoma	Thyroid Gland Papillary Carcinoma	No	No
 DGD	Thyroid gland neoplasm	Thyroid gland neoplasm	No	No
-DGD	Transient Abnormal Myelopoiesis Associated with Down Syndrome	Transient Abnormal Myelopoiesis Associated with Down Syndrome	No	No
 DGD	Type I Pleuropulmonary Blastoma	Type I Pleuropulmonary Blastoma	No	No
-DGD	Type ii pleuropulmonary blastoma	Type ii pleuropulmonary blastoma	No	No
-DGD	Undifferentiated malignant neoplasm	Undifferentiated malignant neoplasm	No	No
 TCGA	Uterine Carcinosarcoma	Uterine Carcinosarcoma	No	No
 TCGA	Uterine Corpus Endometrial Carcinoma	Uterine Corpus Endometrial Carcinoma	No	No
 TCGA	Uveal Melanoma	Uveal Melanoma	No	No
-DGD	Vascular malformation	Vascular malformation	No	No
-PBTA	Vascular malformation	Vascular malformation	No	No
 DGD	Wilms tumor	Wilms tumor	No	No
 PPTC	Wilms tumor	Wilms tumor	No	No
 TARGET	Wilms tumor	Wilms tumor	No	No
 PBTA	Dysplasia/Gliosis	NA	No	Yes
 PBTA	High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform	NA	No	Yes
+PBTA	Diffuse leptomeningeal glioneuronal tumor,  MAPK	NA	Yes	Yes
 PBTA	Osteoblastoma	NA	No	Yes
 DGD	Non-cancer diagnosis	NA	No	Yes
 PBTA	Epidermoid cyst	NA	No	Yes
+DGD	Diffuse leptomeningeal glioneuronal tumor,  To be classified	NA	Yes	Yes
 PBTA	Adenoma	NA	No	Yes
 DGD	Dysplasia/Gliosis	NA	No	Yes
 PBTA	Lipoma	NA	No	Yes
 PBTA	Epilepsy, chronic rasmussen encephalitis	NA	Yes	Yes
+PBTA	Diffuse leptomeningeal glioneuronal tumor,  KIAA1549-BRAF	NA	Yes	Yes
 PBTA	Cavernoma	NA	No	Yes
 DGD	Lipoblastoma	NA	No	Yes
 PBTA	Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)	NA	No	Yes
+DGD	Recurrent Acute Leukemia	NA	No	Yes
+PBTA	Non-germinomatous germ cell tumor	NA	No	Yes
 DGD	Hamartoma	NA	No	Yes
 DGD	Osteoblastoma	NA	No	Yes
 DGD	High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform	NA	No	Yes
@@ -449,12 +447,14 @@ DGD	Atypical Lymph Node	NA	No	Yes
 PBTA	Myofibroma	NA	No	Yes
 DGD	Cranial fasciitis	NA	No	Yes
 PBTA	Arteriovenous malformation	NA	No	Yes
+DGD	Non-germinomatous germ cell tumor	NA	No	Yes
 PBTA	Hamartoma	NA	No	Yes
 PBTA	Dermoid cyst	NA	No	Yes
 DGD	Post-Transplant Lymphoproliferative Disorder	NA	No	Yes
 PBTA	Giant cell tumor of bone	NA	No	Yes
 DGD	Aplastic anemia	NA	No	Yes
 PBTA	Lipoblastoma	NA	No	Yes
+DGD	Diffuse leptomeningeal glioneuronal tumor,  KIAA1549-BRAF	NA	Yes	Yes
 DGD	Benign Neoplasm	NA	No	Yes
 DGD	Hematoma	NA	No	Yes
 DGD	Neurofibroma/Plexiform;Schwannoma	NA	No	Yes
@@ -467,6 +467,7 @@ DGD	Glioblastoma Multiforme Pathway	NA	No	Yes
 DGD	Adenoma	NA	No	Yes
 DGD	Inflammatory lesion	NA	No	Yes
 PBTA	Osteoma	NA	No	Yes
+DGD	Transient Abnormal Myelopoiesis Associated with Down Syndrome	NA	No	Yes
 PBTA	Non-germinomatous germ cell tumor;Teratoma	NA	No	Yes
 PBTA	Fibroma	NA	No	Yes
 DGD	Non-Cancer Diagnosis	NA	No	Yes
