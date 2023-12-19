@@ -48,73 +48,6 @@ if (!(is.logical(running_in_ci)))
 library(tidyverse)
 ```
 
-Create function to separate and rebind bs_ids from results files to mimic histologies file
-```{r}
-bind_exp_strategies <- function(results_df) {
-  # Many of the molecular subtyping tables contain a 
-  # Kids_First_Biospecimen_ID_RNA and Kids_First_Biospecimen_ID_DNA column,
-  # this function separates those out and binds the rows to mirror how 
-  # histologies.tsv is organized
-  #
-  # Args:
-  #   results_df: a molecular subtyping table with Kids_First_Biospecimen_ID_RNA,
-  #               and Kids_First_Biospecimen_ID_DNA columns
-  # Returns:
-  #   A data.frame where each biospecimen is a row
-  
-  # So far, files have one of two sets of columns - this might change in the future or we might need to think of how to better handle
-  dna_rna_cols <- c("Kids_First_Biospecimen_ID_DNA", "Kids_First_Biospecimen_ID_RNA")
-  long_cols <- c("Kids_First_Biospecimen_ID_Methyl", "Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA")
-  
-  # if only DNA and RNA present:
-  if (!"Kids_First_Biospecimen_ID_Methyl" %in% names(results_df)) {
-    
-    # All experimental strategies in one column - special case: EPN
-    if ("Kids_First_Biospecimen_ID" %in% names(results_df)) {
-      all_df <- results_df %>%
-        dplyr::filter(!is.na(Kids_First_Biospecimen_ID))
-      return(all_df %>% distinct())
-      
-    } else {
-      rna_df <- results_df %>%
-        dplyr::select(-Kids_First_Biospecimen_ID_DNA) %>%
-        dplyr::filter(!is.na(Kids_First_Biospecimen_ID_RNA)) %>%
-        dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA)
-      
-      dna_df <- results_df %>%
-        dplyr::select(-Kids_First_Biospecimen_ID_RNA) %>%
-        dplyr::filter(!is.na(Kids_First_Biospecimen_ID_DNA)) %>%
-        dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA)
-      return(bind_rows(rna_df, dna_df) %>% distinct())
-    }
-  }
-  
-    # if all the things - DNA, RNA, methyl, DNA and RNA panel - are present:
-  if ("Kids_First_Biospecimen_ID_Methyl" %in% names(results_df)) {
-    rna_df <- results_df %>%
-      dplyr::select(-c(Kids_First_Biospecimen_ID_Methyl, Kids_First_Biospecimen_ID_DNA)) %>%
-      dplyr::filter(!is.na(Kids_First_Biospecimen_ID_RNA)) %>%
-      dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_RNA)
-    
-    dna_df <- results_df %>%
-      dplyr::select(-c(Kids_First_Biospecimen_ID_Methyl, Kids_First_Biospecimen_ID_RNA)) %>%
-      dplyr::filter(!is.na(Kids_First_Biospecimen_ID_DNA)) %>%
-      dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_DNA)
-    
-    methyl_df <- results_df %>%
-      dplyr::select(-c(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA)) %>%
-      dplyr::filter(!is.na(Kids_First_Biospecimen_ID_Methyl)) %>%
-      dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_Methyl)
-    
-    return(bind_rows(rna_df, dna_df, methyl_df) %>% distinct())
-  }
-    
-  # sometimes there will be multiple RNA-seq assays per single DNA-seq assay
-  # or vice versa, which is why this distinct is necessary
-  
-}
-```
-
 ### Directories and files
 
 ```{r}
@@ -211,9 +144,8 @@ nbl_results_df <- read_tsv(nbl_results_file)
 ### Handling non-ATRT/non-MB embryonal tumors
 
 ```{r non atrt/non mb}
-embryonal_results_df <- bind_exp_strategies(embryonal_results_df) %>%
-  unique() %>%
-  inner_join(select(histologies_df,join_cols),
+embryonal_results_df <- embryonal_results_df %>%
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "CNS Embryonal, NOS"~ "CNS Embryonal tumor, NEC/NOS",
                                           molecular_subtype == "CNS HGNET-MN1"~ "CNS Embryonal tumor, HGNET-MN1",
@@ -234,9 +166,9 @@ embryonal_results_df <- bind_exp_strategies(embryonal_results_df) %>%
 
 ```{r}
 # Add EWS integrated diagnosis, broad histology, short histology
-ews_results_df <-ews_results_df %>%
+ews_results_df <- ews_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = "Ewing sarcoma",
          broad_histology = "Mesenchymal non-meningothelial tumor",
@@ -247,9 +179,9 @@ ews_results_df <-ews_results_df %>%
 ### Handling HGG
 
 ```{r}
-hgg_results_df <- bind_exp_strategies(hgg_results_df) %>%
+hgg_results_df <- hgg_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(grepl("DMG, H3 K28", molecular_subtype) ~ "Diffuse midline glioma, H3 K28-altered",
                                           grepl("DHG, H3 G35", molecular_subtype) ~ "Diffuse hemispheric glioma, H3 G35-mutant",
@@ -303,9 +235,9 @@ lgat_results_df <- lgat_results_df %>%
 ### Handling EPN 
 
 ```{r}
-epn_results_df <- bind_exp_strategies(epn_results_df) %>%
+epn_results_df <- epn_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
            by = "Kids_First_Biospecimen_ID") %>%
   mutate(molecular_subtype = if_else(is.na(molecular_subtype), "EPN, To be classified", molecular_subtype), 
          integrated_diagnosis = case_when(molecular_subtype == "EPN, PF A" ~ "Posterior fossa group A (PFA) ependymoma",
@@ -330,7 +262,7 @@ epn_results_df <- bind_exp_strategies(epn_results_df) %>%
 ```{r}
 mb_results_df <- mb_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
             by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "MB, SHH" ~ "Medulloblastoma, SHH-activated",
                                           molecular_subtype == "MB, WNT" ~ "Medulloblastoma, WNT-activated",
@@ -348,7 +280,7 @@ mb_results_df <- mb_results_df %>%
 ```{r}
 cranio_results_df <- cranio_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "CRANIO, ADAM" ~"Adamantinomatous craniopharyngioma",
                                           molecular_subtype == "CRANIO, PAP" ~"Papillary craniopharyngioma", 
@@ -362,7 +294,7 @@ cranio_results_df <- cranio_results_df %>%
 ```{r}
 neurocytoma_results_df <- neurocytoma_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
             by = "Kids_First_Biospecimen_ID") %>%
   mutate(harmonized_diagnosis = case_when(molecular_subtype == "CNC"~ "Central neurocytoma",
                                           molecular_subtype == "EVN" ~"Extraventricular neurocytoma", 
@@ -377,7 +309,7 @@ neurocytoma_results_df <- neurocytoma_results_df %>%
 
 chordoma_results_df <- chordoma_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   # will update subtype and integrated diagnosis in step 3
   mutate(molecular_subtype = NA_character_,
@@ -392,7 +324,7 @@ chordoma_results_df <- chordoma_results_df %>%
 ```{r}
 atrt_results_df <-  atrt_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "ATRT, MYC" ~ "Atypical Teratoid Rhabdoid Tumor, MYC",
                                           molecular_subtype == "ATRT, TYR" ~ "Atypical Teratoid Rhabdoid Tumor, TYR", 
@@ -408,7 +340,7 @@ atrt_results_df <-  atrt_results_df %>%
 ```{r}
 pb_results_df <-  pb_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df,join_cols),
+  inner_join(select(histologies_df, all_of(join_cols)),
              by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(grepl("^PB, Group|^PB, MYC", molecular_subtype) ~
                                             str_replace(molecular_subtype, "PB, ", "Pineoblastoma, "),
@@ -423,10 +355,10 @@ pb_results_df <-  pb_results_df %>%
 ### Handling NBL
 
 ```{r}
-nbl_results_df <- bind_exp_strategies(nbl_results_df) %>%
+nbl_results_df <- nbl_results_df %>%
   unique() %>%
-  inner_join(select(histologies_df, c("Kids_First_Participant_ID", "sample_id", join_cols)),
-             by = c("Kids_First_Biospecimen_ID", "Kids_First_Participant_ID", "sample_id")) %>%
+  inner_join(select(histologies_df, all_of(join_cols)),
+             by = "Kids_First_Biospecimen_ID") %>%
   mutate(integrated_diagnosis = case_when(molecular_subtype == "NBL, MYCN amplified" ~ paste0(short_histology, ", MYCN-amplified"),
                                           molecular_subtype == "NBL, MYCN non-amplified" ~ paste0(short_histology, ", MYCN non-amplified"), 
                                           TRUE ~ NA_character_),
