@@ -236,25 +236,18 @@ If there are biospecimen not in cases 1-5, assign the subtype as `NBL, To be cla
 ## Biosepcimen not subtyped
 
 ```{r final table}
-nbl_subtypes <- nbl_subtypes %>% 
-  dplyr::mutate(molecular_subtype =
+# join to all bs ids
+molecular_subtype_table <- nbl_subtypes %>%
+  # remove free text
+  select(-pathology_free_text_diagnosis) %>%
+  full_join(nbl_bs_ids) %>%
+  # if there were some which did not have matches, then make them TBC
+  mutate(molecular_subtype =
                   case_when(
                     is.na(molecular_subtype) ~ "NBL, To be classified",
                     TRUE ~ as.character(molecular_subtype)
                   )
                ) 
-
-# do all match ids have unique subtype?
-length(unique(nbl_subtypes$match_id)) == nrow(nbl_subtypes)
-
-# join to all bs ids
-molecular_subtype_table <- nbl_subtypes %>%
-  # remove free text
-  select(-pathology_free_text_diagnosis) %>%
-  full_join(nbl_bs_ids)
-
-# how many of each subtype?
-as.data.frame(table(nbl_subtypes$molecular_subtype))
 
 ```
 
