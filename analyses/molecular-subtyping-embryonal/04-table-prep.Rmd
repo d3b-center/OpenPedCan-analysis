@@ -531,8 +531,10 @@ match_df <-  readr::read_tsv(methyl_file) %>%
   unique()
 
 subtypes_df <- relevant_clinical_data %>%
+  filter(match_id %in% match_df$match_id) %>%
+  select(-molecular_subtype) %>%
   left_join(match_df) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id)
+  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, molecular_subtype, molecular_subtype_methyl)
 
 ```
 
