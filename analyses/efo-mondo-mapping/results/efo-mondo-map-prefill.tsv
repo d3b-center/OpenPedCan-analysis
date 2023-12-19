@@ -16,7 +16,6 @@ Astrocytoma;Oligoastrocytoma	NA	NA	NA
 Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential	NA	NA	NA
 Atypical Spitz Nevus	NA	NA	NA
 Atypical Teratoid Rhabdoid Tumor	EFO_1002008	MONDO_0020560	NCIT_C6906
-Atypical choroid plexus papilloma	MONDO_0002684	MONDO_0002684	NCIT_C53686
 Atypical vascular lesion	NA	NA	NA
 B Acute Lymphoblastic Leukemia/Lymphoma	EFO_0000094	MONDO_0004967	NCIT_C8644
 Bladder Urothelial Carcinoma	EFO_0006544	MONDO_0005611	NCIT_C39851
@@ -24,7 +23,6 @@ Bone marrow cellularity	NA	NA	NA
 Bone marrow failure	NA	NA	NA
 Breast Invasive Carcinoma	EFO_1000307	MONDO_0006256	NCIT_C9245
 Burkitt Leukemia/Lymphoma	EFO_0000309	MONDO_0007243	NCIT_C2912
-CNS Burkitt's lymphoma	EFO_0000309	MONDO_0007243	NCIT_C2912
 CNS Embryonal tumor	EFO_0005784	MONDO_0018843	NCIT_C5398
 CNS Melanoma	EFO_0002617	MONDO_0005191	NCIT_C133504
 CNS neuroblastoma	EFO_0000621	MONDO_0006130	NCIT_C4826
@@ -52,7 +50,6 @@ Cutaneous Melanoma	EFO_0000389	MONDO_0005012	NCIT_C3510
 Cyst	NA	NA	NA
 Desmoid-type fibromatosis	EFO_0009907	Orphanet_873	NCIT_C9182
 Desmoplastic infantile astrocytoma and ganglioglioma	MONDO_0016731	MONDO_0016731	NCIT_C4747
-Diffuse fibrillary astrocytoma	MONDO_0016688	MONDO_0016688	NCIT_C4322
 Diffuse hemispheric glioma	MONDO_0016680	MONDO_0016680	NA
 Diffuse intrinsic pontine glioma	EFO_1000026	MONDO_0006033	NCIT_C94764
 Diffuse leptomeningeal glioneuronal tumor	MONDO_0016745	MONDO_0016745	NCIT_C129424
@@ -137,11 +134,11 @@ Papillary Carcinoma	NA	NA	NA
 Papillary Thyroid Carcinoma Pathway	NA	NA	NA
 Perineuroma	MONDO_0019404	MONDO_0019404	NCIT_C4973
 Pheochromocytoma and Paraganglioma	EFO_0020005	MONDO_0035540	NA
-Pilocytic astrocytoma	Orphanet_251612	MONDO_0016691	NCIT_C4047
 Pineoblastoma	EFO_1000475	MONDO_0016722	NCIT_C9344
 Pleomorphic xanthoastrocytoma	MONDO_0016690	MONDO_0016690	NCIT_C4323
 Pleuropulmonary blastoma	NA	NA	NA
 Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	NA	NA	NA
+Primary CNS lymphoma	EFO_1000157	MONDO_0002571	NCIT_C9301
 Primary mediastinal large B cell lymphoma	MONDO_0004021	MONDO_0020323	NCIT_C9280
 Primary myelofibrosis	NA	NA	NA
 Prostate Adenocarcinoma	EFO_0000673	MONDO_0005082	NCIT_C2919

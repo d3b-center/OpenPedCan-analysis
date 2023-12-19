@@ -31,8 +31,6 @@ PBTA	Atypical Teratoid Rhabdoid Tumor, SHH	Atypical Teratoid Rhabdoid Tumor	Yes	
 PBTA	Atypical Teratoid Rhabdoid Tumor, TYR	Atypical Teratoid Rhabdoid Tumor	Yes	No
 DGD	Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor	No	Yes
 PPTC	Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor	No	Yes
-PBTA	Atypical choroid plexus papilloma	Atypical choroid plexus papilloma	No	No
-DGD	Atypical choroid plexus papilloma	Atypical choroid plexus papilloma	No	No
 DGD	Atypical vascular lesion	Atypical vascular lesion	No	No
 DGD	B Acute Lymphoblastic Leukemia/Lymphoma	B Acute Lymphoblastic Leukemia/Lymphoma	No	No
 TCGA	Bladder Urothelial Carcinoma	Bladder Urothelial Carcinoma	No	No
@@ -40,7 +38,6 @@ DGD	Bone marrow cellularity, ctcae	Bone marrow cellularity	Yes	No
 DGD	Bone marrow failure	Bone marrow failure	No	No
 TCGA	Breast Invasive Carcinoma	Breast Invasive Carcinoma	No	No
 DGD	Burkitt Leukemia/Lymphoma	Burkitt Leukemia/Lymphoma	No	No
-PBTA	CNS Burkitt's lymphoma	CNS Burkitt's lymphoma	No	No
 PBTA	CNS Embryonal tumor, NEC/NOS	CNS Embryonal tumor	Yes	No
 PBTA	CNS Embryonal tumor, HGNET-MN1	CNS Embryonal tumor	Yes	No
 PBTA	CNS Embryonal tumor	CNS Embryonal tumor	No	No
@@ -86,7 +83,6 @@ PBTA	Desmoplastic infantile astrocytoma and ganglioglioma, wildtype	Desmoplastic
 DGD	Desmoplastic infantile astrocytoma and ganglioglioma, BRAF V600E	Desmoplastic infantile astrocytoma and ganglioglioma	Yes	No
 PBTA	Desmoplastic infantile astrocytoma and ganglioglioma, RTK	Desmoplastic infantile astrocytoma and ganglioglioma	Yes	No
 PBTA	Desmoplastic infantile astrocytoma and ganglioglioma, BRAF V600E	Desmoplastic infantile astrocytoma and ganglioglioma	Yes	No
-PBTA	Diffuse fibrillary astrocytoma	Diffuse fibrillary astrocytoma	No	No
 PBTA	Diffuse hemispheric glioma, H3 G35-mutant	Diffuse hemispheric glioma	Yes	No
 DGD	Diffuse hemispheric glioma, H3 G35-mutant	Diffuse hemispheric glioma	Yes	No
 DGD	Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma	No	Yes
@@ -227,67 +223,49 @@ DGD	Inflammatory Myofibroblastic Tumor	Inflammatory Myofibroblastic Tumor	No	No
 PBTA	Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor	No	Yes
 DGD	Inflammatory lesion	Inflammatory lesion	No	No
 PBTA	Intraneural perineuroma	Intraneural perineuroma	No	No
-PBTA	Juvenile xanthogranuloma	Juvenile xanthogranuloma	No	No
-DGD	Juvenile xanthogranuloma	Juvenile xanthogranuloma	No	No
+PBTA	Other	Juvenile xanthogranuloma	No	Yes
+DGD	Other	Juvenile xanthogranuloma	No	Yes
 PBTA	Langerhans Cell histiocytosis	Langerhans Cell histiocytosis	No	No
 DGD	Langerhans Cell histiocytosis	Langerhans Cell histiocytosis	No	No
 PBTA	Lipomyelomeningocele	Lipomyelomeningocele	No	No
-DGD	Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma	No	Yes
-DGD	Low-grade glioma, KIAA1549-BRAF	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, other MAPK	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, KIAA1549-BRAF	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-somatic, NF1-germline	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, KIAA1549-BRAF, RTK	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, wildtype	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, NF1-germline	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, IDH	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-somatic, FGFR	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-germline, FGFR	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, BRAF/MAPK	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, BRAF V600E	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, KIAA1549-BRAF, other MAPK	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, BRAF V600E, CDKN2A/B	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma	No	Yes
+DGD	Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma	No	Yes
+PBTA	Low-grade glioma, other MAPK	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, NF1-somatic, NF1-germline	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, KIAA1549-BRAF	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, NF1-germline, FGFR	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, wildtype	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, BRAF/MAPK	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, BRAF V600E, CDKN2A/B	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, NF1-somatic, FGFR	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, KIAA1549-BRAF, FGFR	Low-grade glioma	Yes	No
 DGD	Low-grade glioma, IDH	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, RTK	Low-grade glioma	Yes	No
 DGD	Low-grade glioma, NF1-somatic, IDH	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, other MAPK, IDH	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, MYB/MYBL1	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, BRAF V600E	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, NF1-germline	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, FGFR	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, RTK	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, MAPK	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, NF1-somatic, NF1-germline	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, RTK	Low-grade glioma	Yes	No
 DGD	Low-grade glioma, MYB/MYBL1	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, other MAPK	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, FGFR	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, BRAF V600E	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, BRAF V600E	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, KIAA1549-BRAF	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, RTK	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, NF1-germline	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, NF1-somatic	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-somatic, NF1-germline, FGFR	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, other MAPK	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, BRAF V600E, other MAPK	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-germline, CDKN2A/B	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, FGFR, NF1-somatic	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, KIAA1549-BRAF, BRAF V600E	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, other MAPK, H3	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, NF1-somatic, NF1-germline, FGFR	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, KIAA1549-BRAF, other MAPK	Low-grade glioma	Yes	No
+DGD	Low-grade glioma, NF1-somatic, NF1-germline	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, FGFR, NF1-germline	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, NF1-somatic, FGFR	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, BRAF V600E, other MAPK	Low-grade glioma	Yes	No
 DGD	Low-grade glioma, wildtype	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, RTK, CDKN2A/B	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-somatic, NF1-germline, CDKN2A/B	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, KIAA1549-BRAF, RTK	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, IDH	Low-grade glioma	Yes	No
+PBTA	Low-grade glioma, KIAA1549-BRAF, other MAPK	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, RTK, BRAF V600E	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-somatic, RTK	Low-grade glioma	Yes	No
 DGD	Low-grade glioma, FGFR, NF1-somatic	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, other MAPK, CDKN2A/B	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, KIAA1549-BRAF, CDKN2A/B	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, CDKN2A/B	Low-grade glioma	Yes	No
-DGD	Low-grade glioma, RTK, CDKN2A/B	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, NF1-germline, RTK, FGFR	Low-grade glioma	Yes	No
-PBTA	Low-grade glioma, NF1-germline, BRAF V600E	Low-grade glioma	Yes	No
 PBTA	Low-grade glioma, NF1-germline, other MAPK	Low-grade glioma	Yes	No
 TCGA	Brain Lower Grade Glioma	Low-grade glioma	No	Yes
 TCGA	Lung Adenocarcinoma	Lung Adenocarcinoma	No	No
@@ -313,12 +291,7 @@ PPTC	Medulloblastoma, WNT-activated	Medulloblastoma	Yes	No
 PBTA	Melanocytoma	Melanocytic tumor	No	Yes
 DGD	Melanoma	Melanoma	No	No
 PBTA	Meningioma	Meningioma	No	No
-DGD	Atypical meningioma	Meningioma	No	Yes
-PBTA	Atypical meningioma	Meningioma	No	Yes
-PBTA	Clear cell meningioma	Meningioma	No	Yes
 DGD	Meningioma	Meningioma	No	No
-PBTA	Meningothelial meningioma	Meningioma	No	Yes
-PBTA	Anaplastic (malignant) meningioma	Meningioma	No	Yes
 PBTA	Mesenchymal tumor	Mesenchymal tumor	No	No
 TCGA	Mesothelioma	Mesothelioma	No	No
 PBTA	Metastatic secondary tumors	Metastatic secondary tumors	No	No
@@ -370,19 +343,17 @@ DGD	Papillary Carcinoma	Papillary Carcinoma	No	No
 DGD	Papillary Thyroid Carcinoma Pathway	Papillary Thyroid Carcinoma Pathway	No	No
 PBTA	Perineuroma	Perineuroma	No	No
 TCGA	Pheochromocytoma and Paraganglioma	Pheochromocytoma and Paraganglioma	No	No
-PBTA	Pilocytic astrocytoma	Pilocytic astrocytoma	No	No
-DGD	Pilocytic astrocytoma	Pilocytic astrocytoma	No	No
 DGD	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
 PBTA	Pineoblastoma, MYC/FOXR2	Pineoblastoma	Yes	No
 PBTA	Pineoblastoma, Group 2	Pineoblastoma	Yes	No
 PBTA	Pineoblastoma	Pineoblastoma	No	No
 PBTA	Pineoblastoma, Group 1	Pineoblastoma	Yes	No
 DGD	Pineoblastoma	Pineoblastoma	No	No
-DGD	Pleomorphic xanthoastrocytoma	Pleomorphic xanthoastrocytoma	No	No
 PBTA	Pleomorphic xanthoastrocytoma	Pleomorphic xanthoastrocytoma	No	No
 PBTA	Pleomorphic xanthoastrocytoma, BRAF V600E	Pleomorphic xanthoastrocytoma	Yes	No
 DGD	Pleuropulmonary blastoma	Pleuropulmonary blastoma	No	No
 DGD	Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	No	No
+PBTA	Primary CNS lymphoma	Primary CNS lymphoma	No	No
 DGD	Primary mediastinal large B cell lymphoma	Primary mediastinal large B cell lymphoma	No	No
 DGD	Primary myelofibrosis	Primary myelofibrosis	No	No
 TCGA	Prostate Adenocarcinoma	Prostate Adenocarcinoma	No	No
@@ -413,7 +384,6 @@ DGD	Solid pseudopapillary neoplasm of the pancreas	Solid pseudopapillary neoplas
 DGD	Spinal Cord Neoplasm	Spinal Cord Neoplasm	No	No
 DGD	Spindle cell neoplasm	Spindle cell neoplasm	No	No
 TCGA	Stomach Adenocarcinoma	Stomach Adenocarcinoma	No	No
-PBTA	Subependymal Giant Cell Astrocytoma	Subependymal Giant Cell Astrocytoma	No	No
 PBTA	Subependymal Giant Cell Astrocytoma (SEGA)	Subependymal Giant Cell Astrocytoma	No	Yes
 PBTA	Subependymal Giant Cell Astrocytoma, wildtype	Subependymal Giant Cell Astrocytoma	Yes	No
 DGD	Subependymal Giant Cell Astrocytoma, wildtype	Subependymal Giant Cell Astrocytoma	Yes	No

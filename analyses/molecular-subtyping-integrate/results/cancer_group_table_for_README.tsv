@@ -2,7 +2,6 @@ stripped_subtype	cancer_group
 Acute Promyelocytic Leukemia	Acute Myeloid Leukemia
 Adamantinomatous craniopharyngioma	Adamantinomatous Craniopharyngioma
 Adenoma	NA
-Anaplastic (malignant) meningioma	Meningioma
 Aneurismal bone cyst (abc) with col1a1-usp6 fusion	Aneurismal bone cyst
 Aneurysmal bone cyst (abc)	Aneurysmal bone cyst
 Aplastic anemia	NA
@@ -10,7 +9,6 @@ Arteriovenous malformation	NA
 Atypical Lymph Node	NA
 Atypical Teratoid Rhabdoid Tumor (ATRT)	Atypical Teratoid Rhabdoid Tumor
 Atypical lymphoid infiltrate	NA
-Atypical meningioma	Meningioma
 Benign Neoplasm	NA
 Brain Lower Grade Glioma	Low-grade glioma
 Brainstem glioma- Diffuse intrinsic pontine glioma	Diffuse intrinsic pontine glioma
@@ -18,7 +16,6 @@ Cavernoma	NA
 Cholesterol granuloma	NA
 Chondroma	NA
 Clear Cell Sarcoma of the Kidney	Clear cell sarcoma of the kidney
-Clear cell meningioma	Meningioma
 Cranial fasciitis	NA
 Dermoid cyst	NA
 Diffuse hemispheric glioma	Astrocytoma
@@ -58,7 +55,6 @@ Malignant peripheral nerve sheath tumor (MPNST);Neurofibroma/Plexiform	NA
 Melanocytoma	Melanocytic tumor
 Meningioma;Neurofibroma/Plexiform	NA
 Meningioma;Schwannoma	NA
-Meningothelial meningioma	Meningioma
 Microcytic Anemia	NA
 Mixed Lineage Leukemia	Acute Lymphoblastic Leukemia
 Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor
@@ -75,6 +71,7 @@ Ossifying fibroma	NA
 Osteoblastoma	NA
 Osteoma	NA
 Other	Astroblastoma
+Other	Juvenile xanthogranuloma
 Pilomatricoma	NA
 Post-Transplant Lymphoproliferative Disorder	NA
 Posterior fossa group A (PFA) ependymoma	Ependymoma

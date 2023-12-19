@@ -37,6 +37,7 @@ seq_center
 broad_histology
 short_histology
 molecular_subtype
+molecular_subtype_methyl
 integrated_diagnosis
 harmonized_diagnosis
 Notes

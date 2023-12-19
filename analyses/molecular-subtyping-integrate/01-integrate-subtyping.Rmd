@@ -50,6 +50,9 @@ base_histology <- read_tsv(file.path(data_dir,"histologies-base.tsv"),
                            Notes = readr::col_character()), 
                            guess_max=100000) %>%
   unique()
+
+col_order <- read_lines(file.path("input", "column_order.txt"))
+
 ```
 
 ### Read molecular-subtyping-pathology results
@@ -71,7 +74,8 @@ compiled_subtyping_other <- base_histology %>%
   filter(!Kids_First_Biospecimen_ID %in% compiled_subtyping$Kids_First_Biospecimen_ID) %>%
   select(
   # gather only columns needed to format as `compiled_subtyping`
-  Kids_First_Participant_ID ,
+  Kids_First_Participant_ID,
+  match_id,
   sample_id,
   Kids_First_Biospecimen_ID,
   molecular_subtype,
@@ -103,7 +107,7 @@ short_histology and broad_histology will be added from base histology for sample
 
 histology <- base_histology %>% 
   select(-Notes,-molecular_subtype,-integrated_diagnosis, -harmonized_diagnosis ) %>%
-  left_join(compiled_subtyping,by=c("Kids_First_Biospecimen_ID","sample_id","Kids_First_Participant_ID","tumor_descriptor"),suffix=c(".base",".subtyped")) %>%
+  left_join(compiled_subtyping,by=c("Kids_First_Biospecimen_ID", "match_id", "sample_id","Kids_First_Participant_ID","tumor_descriptor"),suffix=c(".base",".subtyped")) %>%
   unique() %>%
   dplyr::mutate(
     broad_histology = if_else(!is.na(broad_histology.subtyped),
@@ -329,10 +333,7 @@ But first need to remove broad_histology.base, broad_histology.subtyped and shor
 
 ```{r}
 histology_final <- histology_cg %>% 
-  select(-broad_histology.base,
-         -broad_histology.subtyped,
-         - short_histology.base,
-         -short_histology.subtyped) %>%
+  select(all_of(col_order)) %>%
   arrange(Kids_First_Biospecimen_ID) %>%
   write_tsv("results/histologies.tsv")
 ```
