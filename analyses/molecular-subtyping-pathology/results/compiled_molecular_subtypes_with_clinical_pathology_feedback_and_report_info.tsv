@@ -1747,10 +1747,9 @@ PT_00G007DM	PT_00G007DM_7316-272_Solid Tissue_Initial CNS Tumor	7316-272	BS_K07K
 PT_00G007DM	PT_00G007DM_7316-272_Solid Tissue_Initial CNS Tumor	7316-272	BS_QWNBZ9RJ	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, C19MC-altered	ETMR, C19MC-altered	Updated via OpenPBTA subtyping	Initial CNS Tumor	NA	NA
 PT_017WC8PS	PT_017WC8PS_C4114227-Tumor_Solid Tissue_Initial CNS Tumor	C4114227-Tumor	BS_A6E869SH	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, NOS	ETMR, NOS	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
 PT_017WC8PS	PT_017WC8PS_C4114227-Tumor_Solid Tissue_Initial CNS Tumor	C4114227-Tumor	BS_K7S00RTR	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, NOS	ETMR, NOS	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
-PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_5AEBR8CK	Tumor of pineal region	Pineoblastoma	NA	PB, To be classified	NA	Progressive	NA	NA
-PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_P39SQPTS	Embryonal tumor	Embryonal tumor	CNS Embryonal tumor, NEC/NOS	CNS Embryonal, NOS	Updated via OpenPedCan subtyping	Progressive	NA	NA
-PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_P39SQPTS	Tumor of pineal region	Pineoblastoma	NA	PB, To be classified	NA	Progressive	NA	NA
-PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_TE8QFF7T	Tumor of pineal region	Pineoblastoma	NA	PB, To be classified	NA	Progressive	NA	NA
+PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_5AEBR8CK	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, C19MC-altered	ETMR, C19MC-altered	Updated by pathology review	Progressive	NA	NA
+PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_P39SQPTS	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, C19MC-altered	ETMR, C19MC-altered	Updated by pathology review	Progressive	NA	NA
+PT_01MZ62KG	PT_01MZ62KG_7316-447_Solid Tissue_Progressive	7316-447	BS_TE8QFF7T	Embryonal tumor	ETMR	Embryonal tumor with multilayer rosettes, C19MC-altered	ETMR, C19MC-altered	Updated by pathology review	Progressive	NA	NA
 PT_01SH4F1X	PT_01SH4F1X_7316-6365_Solid Tissue_Initial CNS Tumor	7316-6365	BS_4Y2JAQTS	Low-grade astrocytic tumor	Ganglioglioma	Ganglioglioma, wildtype	GNG, wildtype	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
 PT_01SH4F1X	PT_01SH4F1X_7316-6365_Solid Tissue_Initial CNS Tumor	7316-6365	BS_92T7PSY6	Low-grade astrocytic tumor	Ganglioglioma	Ganglioglioma, wildtype	GNG, wildtype	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
 PT_01SH4F1X	PT_01SH4F1X_7316-6365_Not Available_Initial CNS Tumor	7316-6365	BS_PJ95BE63	Low-grade astrocytic tumor	Ganglioglioma	NA	GNG, To be classified	NA	Initial CNS Tumor	NA	NA
@@ -2234,45 +2233,26 @@ PT_23NZGSRJ	PT_23NZGSRJ_7316-2659_Solid Tissue_Initial CNS Tumor	7316-2659	BS_1B
 PT_23NZGSRJ	PT_23NZGSRJ_7316-2659_Not Available_Initial CNS Tumor	7316-2659	BS_5Y5KMKCJ	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Initial CNS Tumor	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-2659_Solid Tissue_Initial CNS Tumor	7316-2659	BS_8VP3HW1B	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_209RV8H2	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_209RV8H2	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_623A1X2V	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_623A1X2V	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_889QSA3D	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_889QSA3D	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Derived Cell Line_Deceased_Serum-free_8	7316-4509	BS_8HBQ3JPK	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_8RFEQHZG	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_8RFEQHZG	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_CCHHH752	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_CCHHH752	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_CJ2G78ZZ	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_CJ2G78ZZ	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_D18GZP8M	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_D18GZP8M	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_DJJGF4GB	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_DJJGF4GB	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_F2MTFYFR	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_F2MTFYFR	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_GNXGGWFN	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_GNXGGWFN	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_H8JZ6CZR	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_H8JZ6CZR	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_HFWZT2MY	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_HFWZT2MY	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_KGNVZV8A	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_KGNVZV8A	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_PDPN598X	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_PDPN598X	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_Q03MVGN6	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_Q03MVGN6	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_QHESEF9K	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_QHESEF9K	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_RKRWCBJT	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_RKRWCBJT	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_TVPE8AMP	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_TVPE8AMP	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Derived Cell Line_Deceased_Serum-free_8	7316-4509	BS_W37YKD6X	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
 PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_WGBQB1HQ	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 3	MB, Group3	Subtype based on prediction;Updated via OpenPedCan subtyping	Deceased	NA	MB, Group3
-PT_23NZGSRJ	PT_23NZGSRJ_7316-4509_Solid Tissue_Deceased	7316-4509	BS_WGBQB1HQ	Embryonal tumor	Medulloblastoma	NA	MB, To be classified	NA	Deceased	NA	MB, Group3
 PT_24DDXEB5	PT_24DDXEB5_7316-1715_Solid Tissue_Initial CNS Tumor	7316-1715	BS_FJCWXV37	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 4	MB, Group4	Subtype based on prediction;Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	MB, Group4
 PT_24DDXEB5	PT_24DDXEB5_7316-1715_Solid Tissue_Initial CNS Tumor	7316-1715	BS_QRDT19KS	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 4	MB, Group4	Subtype based on prediction;Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	MB, Group4
 PT_258H4KAP	NA	7316-3662	BS_3T98NKC5	Low-grade astrocytic tumor	LGAT	NA	LGG, To be classified	Updated via pathology_free_text_diagnosis	Initial CNS Tumor	Pilocytic astrocytoma	NA
