@@ -390,7 +390,7 @@ all_results_df <- bind_rows(embryonal_results_df,
 ```
 
 ## What is missing subtype information?
-```{r what's missing?}
+```{r what iss missing}
 all_results_df %>%
   filter(is.na(molecular_subtype),
          short_histology != "Chordoma")

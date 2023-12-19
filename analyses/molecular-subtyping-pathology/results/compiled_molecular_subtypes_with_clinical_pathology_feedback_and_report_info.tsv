@@ -46,21 +46,21 @@ PAITEG	PAITEG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAITEG-01A-01W	Embryona
 PAIVHE	PAIVHE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVHE-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAIVHE	PAIVHE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVHE-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAIVHE	PAIVHE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVHE-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAIVMJ	PAIVMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVMJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PAIVZR	PAIVZR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVZR-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAIVMJ	PAIVMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVMJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PAIVZR	PAIVZR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIVZR-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAIWRB	PAIWRB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIWRB-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAIXFZ	PAIXFZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXFZ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAIXFZ	PAIXFZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXFZ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAIXIF	PAIXIF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXIF-01A-01W	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAIXNC	PAIXNC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXNC-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAIXNV	PAIXNV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXNV-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAIXRK	PAIXRK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAIXRK-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAKFUY	PAKFUY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKFUY-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAKGCI	PAKGCI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKGCI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAKGCI	PAKGCI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKGCI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAKGKH	PAKGKH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKGKH-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAKHAV	PAKHAV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKHAV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAKHAV	PAKHAV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKHAV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAKHCF	PAKHCF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKHCF-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAKHHB	PAKHHB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKHHB-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAKINP	PAKINP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKINP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAKINP	PAKINP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKINP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAKIPY	PAKIPY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKIPY-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAKJRE	PAKJRE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKJRE-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAKVUY	PAKVUY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAKVUY-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -80,7 +80,7 @@ PALBFW	PALBFW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALBFW-01A-01W	Embryona
 PALCBW	PALCBW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALCBW-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALCBW	PALCBW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALCBW-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALCBW	PALCBW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALCBW-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALEAC	PALEAC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALEAC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALEAC	PALEAC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALEAC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALETP	PALETP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALETP-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALETP	PALETP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALETP-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALETP	PALETP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALETP-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -88,7 +88,7 @@ PALEVG	PALEVG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALEVG-01A-01D.M	Embryo
 PALEVG	PALEVG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALEVG-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALEVG	PALEVG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALEVG-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALFPI	PALFPI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALFPI-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALFSE	PALFSE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALFSE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALFSE	PALFSE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALFSE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALHVD	PALHVD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALHVD-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALHVD	PALHVD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALHVD-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALIIN	PALIIN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALIIN-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -96,15 +96,15 @@ PALIIN	PALIIN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALIIN-01A-01R	Embryona
 PALIIN	PALIIN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALIIN-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALJPX	PALJPX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALJPX-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALJUV	PALJUV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALJUV-01A-01W	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALKKV	PALKKV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALKKV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALKKV	PALKKV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALKKV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALKUC	PALKUC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALKUC-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALKXJ	PALKXJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALKXJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PALLJJ	PALLJJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALLJJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALKXJ	PALKXJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALKXJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PALLJJ	PALLJJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALLJJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALNLU	PALNLU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALNLU-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALNVP	PALNVP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALNVP-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALNVP	PALNVP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALNVP-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALPGG	PALPGG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALPGG-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALRIA	PALRIA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALRIA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALRIA	PALRIA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALRIA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALRSD	PALRSD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALRSD-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALSAE	PALSAE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALSAE-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALSAE	PALSAE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALSAE-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -115,8 +115,8 @@ PALUDH	PALUDH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALUDH-01A-01D.M	Embryo
 PALUDH	PALUDH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALUDH-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALUYS	PALUYS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALUYS-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALVKK	PALVKK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALVKK-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PALVUC	PALVUC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALVUC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PALVVH	PALVVH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALVVH-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PALVUC	PALVUC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALVUC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PALVVH	PALVVH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALVVH-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PALWIP	PALWIP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALWIP-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALWVJ	PALWVJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALWVJ-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALWVJ	PALWVJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALWVJ-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -130,14 +130,14 @@ PALZSL	PALZSL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALZSL-01A-01W	Embryona
 PALZZV	PALZZV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALZZV-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALZZV	PALZZV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALZZV-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PALZZV	PALZZV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PALZZV-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAMAFV	PAMAFV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMAFV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAMAFV	PAMAFV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMAFV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAMBAC	PAMBAC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMBAC-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMBMJ	PAMBMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMBMJ-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMCXF	PAMCXF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMCXF-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAMCXF	PAMCXF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMCXF-01A-01W	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAMDAL	PAMDAL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMDAL-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMEZH	PAMEZH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMEZH-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAMLNB	PAMLNB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMLNB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAMLNB	PAMLNB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMLNB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAMMWD	PAMMWD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMMWD-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMMXF	PAMMXF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMMXF-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMMXF	PAMMXF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMMXF-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -158,8 +158,8 @@ PAMZGT	PAMZGT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZGT-01A-01W	Embryona
 PAMZMG	PAMZMG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZMG-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMZMG	PAMZMG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZMG-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAMZMG	PAMZMG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZMG-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAMZMJ	PAMZMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZMJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PAMZSH	PAMZSH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZSH-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAMZMJ	PAMZMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZMJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PAMZSH	PAMZSH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAMZSH-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PANBCI	PANBCI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PANBCI-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PANBJH	PANBJH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PANBJH-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PANBMJ	PANBMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PANBMJ-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -225,7 +225,7 @@ PAPBZI	PAPBZI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPBZI-01A-01W	Embryona
 PAPCTS	PAPCTS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPCTS-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPCTS	PAPCTS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPCTS-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPCTS	PAPCTS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPCTS-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPEAV	PAPEAV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPEAV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPEAV	PAPEAV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPEAV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPEFE	PAPEFE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPEFE-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPEFE	PAPEFE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPEFE-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPEFE	PAPEFE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPEFE-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -249,8 +249,8 @@ PAPRMJ	PAPRMJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPRMJ-01A-01D	Embryona
 PAPRPR	PAPRPR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPRPR-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPRXW	PAPRXW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPRXW-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPRXW	PAPRXW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPRXW-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPSEI	PAPSEI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPSEI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PAPSKM	PAPSKM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPSKM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPSEI	PAPSEI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPSEI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PAPSKM	PAPSKM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPSKM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPSMC	PAPSMC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPSMC-01A-01W	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTAN	PAPTAN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTAN-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTAN	PAPTAN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTAN-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -263,27 +263,27 @@ PAPTDH	PAPTDH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTDH-01A-01R	Embryona
 PAPTFZ	PAPTFZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTFZ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTFZ	PAPTFZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTFZ-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTFZ	PAPTFZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTFZ-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPTIP	PAPTIP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTIP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPTIP	PAPTIP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTIP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPTJB	PAPTJB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTJB-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTLA	PAPTLA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLA-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTLA	PAPTLA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLA-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPTLD	PAPTLD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLD-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPTLD	PAPTLD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLD-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPTLV	PAPTLV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLV-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTLV	PAPTLV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLV-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPTLV	PAPTLV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLV-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPTLY	PAPTLY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PAPTMM	PAPTMM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTMM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PAPUAR	PAPUAR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUAR-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPTLY	PAPTLY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTLY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PAPTMM	PAPTMM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPTMM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PAPUAR	PAPUAR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUAR-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPUEB	PAPUEB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUEB-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUJU	PAPUJU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUJU-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUJU	PAPUJU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUJU-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUNH	PAPUNH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUNH-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUNH	PAPUNH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUNH-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPUTN	PAPUTN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUTN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPUTN	PAPUTN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUTN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPUWY	PAPUWY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUWY-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUWY	PAPUWY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUWY-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPUWY	PAPUWY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPUWY-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPVEB	PAPVEB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVEB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPVEB	PAPVEB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVEB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPVEB	PAPVEB_04_Bone Marrow_Recurrence	04	TARGET-30-PAPVEB-04A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Recurrence	NA	NA
 PAPVEB	PAPVEB_04_Bone Marrow_Recurrence	04	TARGET-30-PAPVEB-04A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Recurrence	NA	NA
 PAPVFD	PAPVFD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVFD-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -296,7 +296,7 @@ PAPVXS	PAPVXS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVXS-01A-01D	Embryona
 PAPVXS	PAPVXS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVXS-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPVXS	PAPVXS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPVXS-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPWFY	PAPWFY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPWFY-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAPWUC	PAPWUC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPWUC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAPWUC	PAPWUC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPWUC-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PAPYNZ	PAPYNZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPYNZ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPZFW	PAPZFW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPZFW-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPZFW	PAPZFW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPZFW-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -306,14 +306,14 @@ PAPZYZ	PAPZYZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPZYZ-01A-01D	Embryona
 PAPZYZ	PAPZYZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPZYZ-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAPZYZ	PAPZYZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAPZYZ-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARABJ	PARABJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARABJ-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARABN	PARABN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARABN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARABN	PARABN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARABN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARACM	PARACM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACM-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARACM	PARACM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACM-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARACR	PARACR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACR-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARACS	PARACS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACS-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARACS	PARACS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACS-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARACS	PARACS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARACS-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARAHE	PARAHE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARAHE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARAHE	PARAHE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARAHE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARAMT	PARAMT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARAMT-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARAMT	PARAMT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARAMT-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARAMT	PARAMT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARAMT-01A-01R	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -328,7 +328,7 @@ PARBGP	PARBGP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARBGP-01A-01D.M	Embryo
 PARBGP	PARBGP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARBGP-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARBLH	PARBLH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARBLH-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARBLH	PARBLH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARBLH-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARCET	PARCET_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARCET-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARCET	PARCET_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARCET-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARCRR	PARCRR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARCRR-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDCK	PARDCK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDCK-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDCK	PARDCK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDCK-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -336,13 +336,13 @@ PARDCK	PARDCK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDCK-01A-01R	Embryona
 PARDIW	PARDIW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDIW-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDIW	PARDIW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDIW-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDIW	PARDIW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDIW-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARDUJ	PARDUJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDUJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARDUJ	PARDUJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDUJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARDVT	PARDVT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDVT-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDVT	PARDVT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDVT-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDYU	PARDYU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDYU-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARDYU	PARDYU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARDYU-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PAREAG	PAREAG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAREAG-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PAREGK	PAREGK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAREGK-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PAREGK	PAREGK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PAREGK-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARETE	PARETE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARETE-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARETE	PARETE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARETE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARFRE	PARFRE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARFRE-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -350,12 +350,12 @@ PARFRE	PARFRE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARFRE-01A-01R	Embryona
 PARFWB	PARFWB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARFWB-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARFWB	PARFWB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARFWB-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARFWB	PARFWB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARFWB-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARGDJ	PARGDJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGDJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARGDJ	PARGDJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGDJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARGHY	PARGHY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGHY-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARGKK	PARGKK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGKK-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARGKK	PARGKK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGKK-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARGKK	PARGKK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGKK-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARGUX	PARGUX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGUX-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARGUX	PARGUX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGUX-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARGZK	PARGZK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARGZK-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARHAM	PARHAM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHAM-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARHAM	PARHAM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHAM-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -363,9 +363,9 @@ PARHAM	PARHAM_02_Solid Tissue_Recurrence	02	TARGET-30-PARHAM-02A-01D.M	Embryonal
 PARHAM	PARHAM_02_Solid Tissue_Recurrence	02	TARGET-30-PARHAM-02A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Recurrence	NA	NA
 PARHDE	PARHDE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHDE-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARHUX	PARHUX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHUX-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PARHYL	PARHYL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHYL-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PARIKF	PARIKF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARIKF-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PARIRD	PARIRD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARIRD-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARHYL	PARHYL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARHYL-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PARIKF	PARIKF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARIKF-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PARIRD	PARIRD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARIRD-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARJEN	PARJEN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARJEN-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARJMX	PARJMX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARJMX-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARJVP	PARJVP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARJVP-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -380,12 +380,12 @@ PARKZF	PARKZF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARKZF-01A-01D	Embryona
 PARLMK	PARLMK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARLMK-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARLTG	PARLTG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARLTG-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARMDD	PARMDD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMDD-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARMFA	PARMFA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMFA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARMFA	PARMFA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMFA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARMLF	PARMLF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMLF-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARMPP	PARMPP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMPP-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARMTT	PARMTT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMTT-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PARNCW	PARNCW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNCW-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PARNEE	PARNEE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNEE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARMTT	PARMTT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARMTT-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PARNCW	PARNCW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNCW-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PARNEE	PARNEE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNEE-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARNLJ	PARNLJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNLJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARNNC	PARNNC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNNC-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARNNC	PARNNC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNNC-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -394,13 +394,13 @@ PARNTS	PARNTS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNTS-01A-01D	Embryona
 PARNTS	PARNTS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARNTS-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARPGU	PARPGU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARPGU-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARPUF	PARPUF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARPUF-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PARRBU	PARRBU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARRBU-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARRBU	PARRBU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARRBU-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARRLH	PARRLH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARRLH-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARSBI	PARSBI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSBI-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARSBI	PARSBI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSBI-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARSBI	PARSBI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSBI-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARSEA	PARSEA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSEA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PARSHT	PARSHT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSHT-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARSEA	PARSEA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSEA-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PARSHT	PARSHT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSHT-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARSRJ	PARSRJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSRJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARSRJ	PARSRJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSRJ-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARSVF	PARSVF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARSVF-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -425,7 +425,7 @@ PARUTJ	PARUTJ_01_Solid Tissue_Primary Tumor	01	BS_K2K5YSDS	Embryonal tumor	Neuro
 PARUTJ	PARUTJ_01_Solid Tissue_Primary Tumor	01	BS_S5KDWVEA	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARUTJ	PARUTJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARUTJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARUTX	PARUTX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARUTX-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PARUXY	PARUXY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARUXY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARUXY	PARUXY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARUXY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARUZA	PARUZA_01_Solid Tissue_Primary Tumor	01	BS_808H2FQN	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARUZA	PARUZA_01_Solid Tissue_Primary Tumor	01	BS_ERHKS2Y7	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARVFJ	PARVFJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVFJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -434,7 +434,7 @@ PARVIH	PARVIH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVIH-01A-01D	Embryona
 PARVLK	PARVLK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVLK-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARVLK	PARVLK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVLK-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARVLK	PARVLK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVLK-01A-01R	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PARVME	PARVME_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVME-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARVME	PARVME_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVME-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARVMU	PARVMU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVMU-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARVNT	PARVNT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARVNT-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARVPD	PARVPD_01_Solid Tissue_Primary Tumor	01	BS_NPVE58AT	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -453,7 +453,7 @@ PARWTY	PARWTY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARWTY-01A-01D	Embryona
 PARXAX	PARXAX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXAX-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARXDW	PARXDW_01_Solid Tissue_Primary Tumor	01	BS_75HW641M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PARXLL	PARXLL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXLL-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PARXLM	PARXLM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXLM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PARXLM	PARXLM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXLM-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARXLN	PARXLN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXLN-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARXMH	PARXMH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXMH-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PARXMM	PARXMM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PARXMM-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -510,16 +510,16 @@ PASAJY	PASAJY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASAJY-01A-01D	Embryona
 PASALE	PASALE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASALE-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASANE	PASANE_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASANE-01A-01D	Embryonal tumor	Ganglioneuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASATF	PASATF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASATF-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PASATK	PASATK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASATK-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASATK	PASATK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASATK-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASAVJ	PASAVJ_01_Solid Tissue_Primary Tumor	01	BS_28ZRHXX8	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASAVJ	PASAVJ_01_Solid Tissue_Primary Tumor	01	BS_J3707KE2	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASAVJ	PASAVJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASAVJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASAZJ	PASAZJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASAZJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASAZJ	PASAZJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASAZJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASAZZ	PASAZZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASAZZ-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASBDN	PASBDN_01_Solid Tissue_Primary Tumor	01	BS_15ED4VDX	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASBDN	PASBDN_01_Solid Tissue_Primary Tumor	01	BS_JGVTE14P	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASBDN	PASBDN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASBDN-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASBEN	PASBEN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASBEN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASBEN	PASBEN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASBEN-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASBGV	PASBGV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASBGV-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASBHS	PASBHS_01_Solid Tissue_Primary Tumor	01	BS_EF8F5GH8	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASBHS	PASBHS_01_Solid Tissue_Primary Tumor	01	BS_SSHQFYA8	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -542,12 +542,12 @@ PASCGM	PASCGM_01_Solid Tissue_Primary Tumor	01	BS_HYX0M8VM	Embryonal tumor	Neuro
 PASCGM	PASCGM_01_Solid Tissue_Primary Tumor	01	BS_REGK1PS6	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASCIX	PASCIX_09_Bone Marrow_Primary Tumor	09	TARGET-30-PASCIX-09A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASCJJ	PASCJJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCJJ-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASCKI	PASCKI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCKI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
-PASCLP	PASCLP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCLP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASCKI	PASCKI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCKI-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
+PASCLP	PASCLP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCLP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASCRK	PASCRK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCRK-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASCTR	PASCTR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCTR-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASCTR	PASCTR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCTR-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASCUF	PASCUF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCUF-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASCUF	PASCUF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCUF-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASCWD	PASCWD_01_Solid Tissue_Primary Tumor	01	BS_DWYR5CTE	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASCWD	PASCWD_01_Solid Tissue_Primary Tumor	01	BS_W5X4568N	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASCWD	PASCWD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASCWD-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -561,7 +561,7 @@ PASDRV	PASDRV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASDRV-01A-01D	Embryona
 PASDYT	PASDYT_01_Solid Tissue_Primary Tumor	01	BS_B6E0477K	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASDYT	PASDYT_01_Solid Tissue_Primary Tumor	01	BS_N13KZYRR	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASDYT	PASDYT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASDYT-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASDZJ	PASDZJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASDZJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASDZJ	PASDZJ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASDZJ-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASEAR	PASEAR_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASEAR-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASEDP	PASEDP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASEDP-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASEGA	PASEGA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASEGA-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -602,7 +602,7 @@ PASFKX	PASFKX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFKX-01A-01D	Embryona
 PASFNF	PASFNF_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFNF-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASFNY	PASFNY_01_Solid Tissue_Primary Tumor	01	BS_MTQ7F28J	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASFNY	PASFNY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFNY-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASFRV	PASFRV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFRV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASFRV	PASFRV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFRV-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASFWL	PASFWL_01_Solid Tissue_Primary Tumor	01	BS_5BFNH9S6	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASFWL	PASFWL_01_Solid Tissue_Primary Tumor	01	BS_WHX83JW2	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASFWL	PASFWL_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASFWL-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -627,7 +627,7 @@ PASGGI	PASGGI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGGI-01A-01D	Embryona
 PASGHN	PASGHN_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGHN-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASGKP	PASGKP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGKP-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASGNT	PASGNT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGNT-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PASGPY	PASGPY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGPY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASGPY	PASGPY_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGPY-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASGRL	PASGRL_01_Solid Tissue_Primary Tumor	01	BS_EQE447QB	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASGUT	PASGUT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGUT-01A-01D	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASGUT	PASGUT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGUT-01A-01D.M	Embryonal tumor	Ganglioneuroblastoma	Ganglioneuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -635,7 +635,7 @@ PASGUT	PASGUT_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASGUT-01A-01R	Embryona
 PASHEL	PASHEL_01_Solid Tissue_Primary Tumor	01	BS_TR758MB1	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASHFA	PASHFA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASHFA-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASHFA	PASHFA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASHFA-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASHFA	PASHFA_02_Solid Tissue_Recurrence	02	TARGET-30-PASHFA-02A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Recurrence	NA	NA
+PASHFA	PASHFA_02_Solid Tissue_Recurrence	02	TARGET-30-PASHFA-02A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Recurrence	NA	NA
 PASHLP	PASHLP_01_Solid Tissue_Primary Tumor	01	BS_CGGJZ5Q1	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASIIB	PASIIB_01_Solid Tissue_Primary Tumor	01	BS_30NT6PNA	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASIIB	PASIIB_01_Solid Tissue_Primary Tumor	01	BS_6GSJCDCN	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -653,7 +653,7 @@ PASJWA	PASJWA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJWA-01A-01D	Embryona
 PASJWG	PASJWG_01_Solid Tissue_Primary Tumor	01	BS_VGAKW5G6	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASJWG	PASJWG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJWG-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASJWU	PASJWU_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJWU-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PASJYB	PASJYB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJYB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASJYB	PASJYB_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJYB-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASJZC	PASJZC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJZC-01A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASJZC	PASJZC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASJZC-01A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASKCS	PASKCS_01_Solid Tissue_Primary Tumor	01	BS_1YD0ZQ4R	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -663,7 +663,7 @@ PASKFM	PASKFM_01_Solid Tissue_Primary Tumor	01	BS_JQ0XD1K9	Embryonal tumor	Neuro
 PASKFV	PASKFV_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKFV-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASKIS	PASKIS_01_Solid Tissue_Primary Tumor	01	BS_6WBAV14H	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASKIS	PASKIS_01_Solid Tissue_Primary Tumor	01	BS_QDRHQSPZ	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
-PASKJX	PASKJX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKJX-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASKJX	PASKJX_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKJX-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASKKZ	PASKKZ_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKKZ-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASKNK	PASKNK_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKNK-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASKPC	PASKPC_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASKPC-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -685,7 +685,7 @@ PASLCD	PASLCD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLCD-01A-01D	Embryona
 PASLDM	PASLDM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLDM-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASLFG	PASLFG_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLFG-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASLGM	PASLGM_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLGM-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PASLGS	PASLGS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLGS-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PASLGS	PASLGS_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLGS-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PASLIH	PASLIH_01_Solid Tissue_Primary Tumor	01	BS_6KH6CXMH	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASLIH	PASLIH_01_Solid Tissue_Primary Tumor	01	BS_HW9CGZ29	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PASLIH	PASLIH_01_Solid Tissue_Primary Tumor	01	TARGET-30-PASLIH-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
@@ -1153,7 +1153,7 @@ PATNCI	PATNCI_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNCI-01A-01D	Embryona
 PATNEA	PATNEA_01_Solid Tissue_Primary Tumor	01	BS_8DB19DYW	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PATNEA	PATNEA_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNEA-01A-01D	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	Updated via OpenPedCan subtyping	Primary Tumor	NA	NA
 PATNGD	PATNGD_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNGD-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
-PATNKP	PATNKP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNKP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NA	NA	Primary Tumor	NA	NA
+PATNKP	PATNKP_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNKP-01A-01D.M	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
 PATNKP	PATNKP_02_Solid Tissue_Recurrence	02	TARGET-30-PATNKP-02A-01D.M	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Recurrence	NA	NA
 PATNKP	PATNKP_02_Solid Tissue_Recurrence	02	TARGET-30-PATNKP-02A-01R	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN-amplified	NBL, MYCN amplified	Updated via OpenPedCan subtyping	Recurrence	NA	NA
 PATNPW	PATNPW_01_Solid Tissue_Primary Tumor	01	TARGET-30-PATNPW-01A-01D	Embryonal tumor	Neuroblastoma	NA	NBL, To be classified	NA	Primary Tumor	NA	NA
@@ -1845,7 +1845,7 @@ PT_0D0YGGBW	NA	7316-7114	BS_4JN5WWX9	Low-grade astrocytic tumor	LGAT	Low-grade g
 PT_0D0YGGBW	NA	7316-7114	BS_TNK7YQQ2	Low-grade astrocytic tumor	LGAT	Low-grade glioma, KIAA1549-BRAF	LGG, KIAA1549-BRAF	Updated via OpenPBTA subtyping and pathology_free_text_diagnosis	Initial CNS Tumor	Low-grade glioma, KIAA1549-BRAF	NA
 PT_0DM10YSE	PT_0DM10YSE_7316-5523_Solid Tissue_Initial CNS Tumor	7316-5523	BS_486R313X	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
 PT_0DM10YSE	PT_0DM10YSE_7316-5523_Solid Tissue_Initial CNS Tumor	7316-5523	BS_K3F9WTAN	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	Updated via OpenPedCan subtyping	Initial CNS Tumor	NA	NA
-PT_0DR71Q13	PT_0DR71Q13_7316-3517_Solid Tissue_Initial CNS Tumor	7316-3517	BS_NZ133AHZ	Embryonal tumor	Ganglioneuroblastoma	NA	NA	NA	Initial CNS Tumor	NA	NA
+PT_0DR71Q13	PT_0DR71Q13_7316-3517_Solid Tissue_Initial CNS Tumor	7316-3517	BS_NZ133AHZ	Embryonal tumor	Ganglioneuroblastoma	NA	NBL, To be classified	NA	Initial CNS Tumor	NA	NA
 PT_0DWRY9ZX	PT_0DWRY9ZX_7316-1017_Solid Tissue_Recurrence	7316-1017	BS_24KYA5PH	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 4	MB, Group4	Subtype based on prediction;Updated via OpenPedCan subtyping	Recurrence	NA	MB, Group4
 PT_0DWRY9ZX	PT_0DWRY9ZX_7316-1017_Solid Tissue_Recurrence	7316-1017	BS_FB6ADVMD	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 4	MB, Group4	Subtype based on prediction;Updated via OpenPedCan subtyping	Recurrence	NA	MB, Group4
 PT_0DWRY9ZX	PT_0DWRY9ZX_7316-1017_Solid Tissue_Recurrence	7316-1017	BS_SD4SNCCX	Embryonal tumor	Medulloblastoma	Medulloblastoma, group 4	MB, Group4	Subtype based on prediction;Updated via OpenPedCan subtyping	Recurrence	NA	MB, Group4
