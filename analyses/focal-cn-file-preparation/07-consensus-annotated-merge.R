@@ -27,11 +27,13 @@ option_list <- list(
     c("--cnvkit_auto"),
     type = "character",
     default = "results/cnvkit_annotated_cn_wxs_autosomes.tsv.gz",
+    default = "results/cnvkit_annotated_cn_wxs_autosomes.tsv.gz",
     help = "annoatated cnvkit cnv calls on autosomes for WXS samples"
   ),
   optparse::make_option(
     c("--cnvkit_x_and_y"),
     type = "character",
+    default = "results/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz",
     default = "results/cnvkit_annotated_cn_wxs_x_and_y.tsv.gz",
     help = "annoatated cnvkit cnv calls on x and y for WXS samples"
   ),
@@ -96,6 +98,7 @@ readr::write_tsv(merged_x_and_y,
 # Merge autosomes with X and Y and output a combined file 
 # For the combined file, we do not need germline_sex_estimate from x_and_y
 merged_x_and_y <- merged_x_and_y %>% dplyr::select(-germline_sex_estimate)
+combined <- rbind(merged_auto, merged_x_and_y)
 combined <- rbind(merged_auto, merged_x_and_y)
 
 readr::write_tsv(combined, 
