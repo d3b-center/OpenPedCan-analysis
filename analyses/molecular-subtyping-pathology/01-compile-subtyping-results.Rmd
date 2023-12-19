@@ -389,6 +389,14 @@ all_results_df <- bind_rows(embryonal_results_df,
   write_tsv(output_file)
 ```
 
+## What is missing subtype information?
+```{r what's missing?}
+all_results_df %>%
+  filter(is.na(molecular_subtype),
+         short_histology != "Chordoma")
+
+```
+
 ## Session Info
 
 ```{r}
