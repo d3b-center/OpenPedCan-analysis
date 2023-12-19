@@ -63,6 +63,7 @@ alteration_df <-
 cnv_cnvkit_df <- 
   readr::read_tsv(file.path(data_dir, "cnv-cnvkit.seg.gz"), 
                   guess_max = 100000)
+
 # base histologies
 hist_df <- 
   readr::read_tsv(file.path(data_dir, "histologies-base.tsv"), 
@@ -75,11 +76,23 @@ path_dx_list <- jsonlite::fromJSON(
 # tmp expression cutoff 
 Suggested_Cutoff <- 140.83 # TARGET-30-PAMEZH-01A-01R	
 
-# MYCN clinical status
-mycn_clincial_status <- alteration_df %>% 
-  dplyr::select(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
-                 pathology_free_text_diagnosis) %>% 
-  dplyr::rename(molecular_subtype = pathology_free_text_diagnosis)
+
+# all bs ids to subtype
+nbl_bs_ids <- hist_df %>% 
+  dplyr::filter(pathology_diagnosis %in% path_dx_list$exact_path_dx,
+                !is.na(pathology_diagnosis)) %>% 
+  dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id)
+
+# alteration table by match id
+mycn_alterations <- alteration_df %>% 
+  dplyr::select(-c(Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA, Kids_First_Participant_ID, sample_id, cohort)) %>%
+  unique() %>%
+  group_by(match_id) %>%
+  # take mean of TPM and CN - these will yield the same status results in the end
+  summarize(MYCN_TPM = mean(MYCN_TPM),
+            MYCN_CN = mean(MYCN_CN),
+            across(everything(), ~paste(unique(na.omit(.x)), collapse = ", ")), .groups = 'drop') %>%
+  mutate(across(everything(), ~na_if(trimws(.), "")))
 
 ```
 
@@ -99,20 +112,24 @@ NOT `amplification`, assign `molecular_subtype` as "NBL, MYCN non-amplified"
 
 ```{r subtype based on clinical and copy number}
 # assign subtypes for cases 1, 2, 3 described above
-mycn_path_free <- 
-  c("MYCN non-amp", "ganglioneuroblastoma, stage ii favorable histology non n-myc amplified")
+mycn_path_free <- c("MYCN non-amp", "ganglioneuroblastoma, stage ii favorable histology non n-myc amplified")
 mycn_status <- c("gain","loss","neutral")
-alteration_df <- alteration_df %>% 
+
+nbl_subtypes <- mycn_alterations %>% 
   dplyr::mutate(molecular_subtype = 
            case_when(
-             MYCN_CN_status == "amplification" & 
-               pathology_free_text_diagnosis == "MYCN amp" ~ "NBL, MYCN amplified",
-             MYCN_CN_status =="amplification" & 
+             grepl("amplification", MYCN_CN_status) & 
+               pathology_free_text_diagnosis %in% c("MYCN amp") ~ "NBL, MYCN amplified",
+             grepl("amplification", MYCN_CN_status) & 
                pathology_free_text_diagnosis %in% mycn_path_free ~ "NBL, MYCN amplified",
              MYCN_CN_status %in% mycn_status &  
                pathology_free_text_diagnosis %in% mycn_path_free ~ "NBL, MYCN non-amplified",
+             # assign for cell lines and PPTC
+             grepl("MYCN Non-amplified", pathology_free_text_diagnosis) ~ "NBL, MYCN non-amplified",
+             grepl("MYCN Amplified", pathology_free_text_diagnosis) ~ "NBL, MYCN amplified",
              TRUE ~ NA_character_)
-         )
+         ) %>% 
+  arrange(match_id)
 
 ```
 
@@ -130,16 +147,18 @@ check if the RNA biospecimen has a TPM value and assign amplification status
 based on the `Suggested_Cutoff` inferred from the MYCN expression distribution 
 bar plot. 
 
-In cases where there are no TPM values, assign the `molecular_subtype` columns the 
-the string values, `Pathology-amp,MYCN_CN_status-non-amp,TPM-NA`. This coding
-we eventually be change `NA` in the subsequent steps.
+In cases where there are no TPM values and CN status does not match pathology, assign To be Classified.
 
 ## Subtype based on segment means and TPM
 
 ```{r subtype based on segment means and tpm} 
-clincal_amplified_IDs <- alteration_df %>% 
-  dplyr::filter(MYCN_CN_status %in% mycn_status, 
-                pathology_free_text_diagnosis == "MYCN amp") %>% 
+clincal_amplified_IDs_df <- nbl_subtypes %>% 
+  dplyr::filter(is.na(molecular_subtype),
+                MYCN_CN_status %in% mycn_status, 
+                pathology_free_text_diagnosis %in% c("MYCN amp", "MYCN Amplified")) %>%
+  left_join(alteration_df[,c("Kids_First_Biospecimen_ID_DNA", "match_id")]) 
+
+clincal_amplified_IDs <- clincal_amplified_IDs_df %>%
   dplyr::pull(Kids_First_Biospecimen_ID_DNA)
 
 # Iterate through the biospecimen list in clincal_amplified_IDs which belong 
@@ -168,19 +187,19 @@ for (iter in 1: length(clincal_amplified_IDs)) {
   }  
 }
 
-clincal_amplified_df <- alteration_df %>%
-  dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% clincal_amplified_IDs) %>% 
+clincal_amplified_df <- nbl_subtypes %>%
+  dplyr::filter(match_id %in% clincal_amplified_IDs_df$match_id) %>% 
   dplyr::mutate(molecular_subtype =
                   case_when(
-                    is.na(MYCN_TPM) ~ "Pathology-amp,MYCN_CN_status-non-amp,TPM-NA",
+                    is.na(MYCN_TPM) ~ "NBL, To be classified",
                     MYCN_TPM >= Suggested_Cutoff ~ "NBL, MYCN amplified",
                     MYCN_TPM < Suggested_Cutoff ~ "NBL, MYCN non-amplified",
                     TRUE ~ as.character(molecular_subtype)
                   )
                )
 
-alteration_df <- alteration_df %>% 
-  dplyr::filter(!Kids_First_Biospecimen_ID_DNA %in% clincal_amplified_IDs) %>%
+nbl_subtypes <- nbl_subtypes %>% 
+  dplyr::filter(!match_id %in% clincal_amplified_IDs_df$match_id) %>%
   dplyr::bind_rows(clincal_amplified_df)
 
 ```
@@ -192,13 +211,13 @@ assign molecular subtype based on `Suggested_Cutoff`.
 ## Subtype based on TPM
 
 ```{r subtype based tpm}
-case_5_ids <- alteration_df %>% 
+case_5_ids <- nbl_subtypes %>% 
   dplyr::filter(is.na(molecular_subtype), 
                       MYCN_TPM >= Suggested_Cutoff | MYCN_TPM < Suggested_Cutoff) %>% 
-  dplyr::pull(Kids_First_Biospecimen_ID_DNA)
+  dplyr::pull(match_id)
                   
 
-alteration_df <- alteration_df %>% 
+nbl_subtypes <- nbl_subtypes %>% 
   dplyr::mutate(molecular_subtype =
                   case_when(
                     (is.na(molecular_subtype) & 
@@ -212,12 +231,12 @@ alteration_df <- alteration_df %>%
 ```
 
 Case 6: 
-If there are biospecimen not in cases 1-5, assign the subtype as `NBL, To be classified`
+If there are biospecimen not in cases 1-5, assign the subtype as `NBL, To be classified`, and add back all bs ids.
 
 ## Biosepcimen not subtyped
 
-```{r subtype to be classified}
-alteration_df <- alteration_df %>% 
+```{r final table}
+nbl_subtypes <- nbl_subtypes %>% 
   dplyr::mutate(molecular_subtype =
                   case_when(
                     is.na(molecular_subtype) ~ "NBL, To be classified",
@@ -225,99 +244,48 @@ alteration_df <- alteration_df %>%
                   )
                ) 
 
+# do all match ids have unique subtype?
+length(unique(nbl_subtypes$match_id)) == nrow(nbl_subtypes)
+
+# join to all bs ids
+molecular_subtype_table <- nbl_subtypes %>%
+  # remove free text
+  select(-pathology_free_text_diagnosis) %>%
+  full_join(nbl_bs_ids)
+
+# how many of each subtype?
+as.data.frame(table(nbl_subtypes$molecular_subtype))
+
 ```
 
 Create a dataframe containing all the samples whose molecular_subtype was 
 determined based on TPM.
 
-## Biosepcimen subtyped by TMP
+## Create separate df for biosepcimen subtyped by TPM
 
-```{r df subtyped by tmp}
- alteration_tmp_df <- alteration_df %>% 
-  dplyr::filter(Kids_First_Biospecimen_ID_DNA %in% 
-                  unique(c(clincal_amplified_IDs, case_5_ids))) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID_DNA, 
-                Kids_First_Biospecimen_ID_RNA,
-		Kids_First_Participant_ID,
-		sample_id, cohort, MYCN_CN,
-                pathology_free_text_diagnosis, 
-                MYCN_CN_status, MYCN_TPM,
-                molecular_subtype)
-
+```{r df subtyped by tpm}
+ alteration_tmp_df <- molecular_subtype_table %>% 
+  dplyr::filter(match_id %in% 
+                  unique(c(clincal_amplified_IDs, case_5_ids)))
 ```
 
-
-## Final molecular subtyping table
-
-```{r final molecular subtyping table}
-# create the final molecular subtyping table 
-molecular_subtype_table <- alteration_df %>% 
-  dplyr::select(Kids_First_Biospecimen_ID_DNA, 
-                Kids_First_Biospecimen_ID_RNA,
-                Kids_First_Participant_ID,
-                sample_id, cohort, molecular_subtype, match_id) %>% 
-  dplyr::mutate(molecular_subtype = 
-                  case_when(
-                    molecular_subtype == 
-                      "Pathology-amp,MYCN_CN_status-non-amp,TPM-NA" ~
-                      "NBL, To be classified",
-                    TRUE ~ as.character(molecular_subtype)
-                  )
-               ) %>% 
-  dplyr::arrange(molecular_subtype)
-
-mycn_subtyped <- molecular_subtype_table %>% 
-  dplyr::filter(molecular_subtype != "NBL, To be classified")
-
-mycn_not_subtyped <- molecular_subtype_table %>% 
-  dplyr::filter(molecular_subtype == "NBL, To be classified") %>% 
-  dplyr::select(-molecular_subtype) %>% 
-  dplyr::left_join(mycn_clincial_status, 
-                   by = c("Kids_First_Biospecimen_ID_DNA",
-                          "Kids_First_Biospecimen_ID_RNA")) %>% 
-  dplyr::mutate(molecular_subtype =
-                  case_when(
-                    molecular_subtype == "MYCN amp" ~ "NBL, MYCN amplified",
-                    molecular_subtype == "MYCN non-amp" ~ "NBL, MYCN non-amplified",
-                    TRUE ~ "NBL, To be classified"
-                  )
-               )
-
-molecular_subtype_table <- bind_rows(mycn_subtyped, mycn_not_subtyped)
-
-# include methylation samples
-molecular_subtype_table <- hist_df %>% 
-  dplyr::filter(pathology_diagnosis %in% path_dx_list$exact_path_dx,
-                experimental_strategy == "Methylation", 
-                sample_type == "Tumor") %>% 
-  dplyr::mutate(molecular_subtype_methyl = NA_character_) %>% 
-  dplyr::select(Kids_First_Biospecimen_ID, match_id,
-                molecular_subtype_methyl) %>%
-  dplyr::rename("Kids_First_Biospecimen_ID_Methyl" = "Kids_First_Biospecimen_ID") %>% 
-  dplyr::distinct() %>% 
-  dplyr::right_join(molecular_subtype_table, 
-                   by = "match_id") %>%
-  dplyr::select(Kids_First_Participant_ID, sample_id, cohort, Kids_First_Biospecimen_ID_DNA, Kids_First_Biospecimen_ID_RNA,
-                Kids_First_Biospecimen_ID_Methyl, molecular_subtype, molecular_subtype_methyl, match_id) %>% 
-  dplyr::distinct() %>% 
-  group_by(match_id) %>% 
-  fill(molecular_subtype)
-  
-```
 
 ## Write molecular subtyping table to file
 
 ```{r write to file}
-alteration_df %>% 
-  arrange(Kids_First_Participant_ID) %>%
+molecular_subtype_table %>% 
+  arrange(Kids_First_Participant_ID, match_id) %>%
   readr::write_tsv(file.path(results_dir, 
                              "alteration_table_with_molecular_subtype.tsv"))
+
 alteration_tmp_df %>% 
-  arrange(Kids_First_Participant_ID) %>%
+  arrange(Kids_First_Participant_ID, match_id) %>%
   readr::write_tsv(file.path(results_dir, 
                              "molecular_subtypes_based_on_cutoff.tsv"))
-molecular_subtype_table %>% 
-  arrange(Kids_First_Participant_ID) %>%
+
+molecular_subtype_no_alt <- molecular_subtype_table %>% 
+  select(-c(MYCN_TPM, MYCN_CN, MYCN_CN_status)) %>%
+  arrange(Kids_First_Participant_ID, match_id) %>%
   readr::write_tsv(file.path(results_dir, 
                              "neuroblastoma_molecular_subtypes.tsv"))
 ```
