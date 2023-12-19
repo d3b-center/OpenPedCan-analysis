@@ -169,7 +169,7 @@ chordoma_smarcb1_df <- smarcb1_expression %>%
   group_by(match_id) %>%
   summarize(across(everything(), ~paste(unique(na.omit(.x)), collapse = ", ")), .groups = 'drop') %>%
   # add back bs ids
-  left_join(subset_metadata[,c("Kids_First_Biospecimen_ID", "match_id")]) %>%
+  left_join(subset_metadata[,c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id", "sample_id")]) %>%
   arrange(match_id) 
 
 
