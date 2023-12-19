@@ -50,8 +50,12 @@ hgg_subtypes_tp53 <- hgg_subtypes %>%
     tp53_status %in% c("activated", "loss") ~ stringr::str_c(molecular_subtype,", TP53"),
     TRUE ~ molecular_subtype
   )) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, molecular_subtype, molecular_subtype_methyl, CNS_region, tp53_status) %>%
-  arrange(Kids_First_Participant_ID, match_id) %>%
+  select(match_id, molecular_subtype, molecular_subtype_methyl, CNS_region, tp53_status) %>%
+  unique() %>%
+  group_by(match_id, molecular_subtype) %>%
+  summarize(across(everything(), ~paste(unique(na.omit(.x)), collapse = ", ")), .groups = 'drop') %>% 
+  right_join(hgg_subtypes[,c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id", "sample_id")]) %>%
+  arrange(match_id) %>%
   unique() %>%
   write_tsv(file.path(results_dir,"HGG_molecular_subtype_tp53.tsv"))
 
