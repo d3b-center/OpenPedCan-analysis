@@ -580,8 +580,11 @@ lesions_subtypes_methyl <- lesions_subtypes %>%
   dplyr::rename(Kids_First_Biospecimen_ID = Kids_First_Biospecimen_ID_Methyl) %>%
   filter(!is.na(Kids_First_Biospecimen_ID)) %>% 
   distinct()
+  
+lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, lesions_subtypes_methyl) %>%
+  full_join(molecular_subtype_table_final)
 
-lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, lesions_subtypes_methyl)
+
 ```
 
 Write to file.
