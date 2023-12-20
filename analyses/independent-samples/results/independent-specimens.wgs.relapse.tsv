@@ -2,7 +2,7 @@ Kids_First_Participant_ID	Kids_First_Biospecimen_ID	cohort	cancer_group	experime
 PT_VTM2STE3	BS_02YBZSBY	PBTA	High-grade glioma	WGS	Progressive
 PT_J06X17XH	BS_02ZSVZCB	PBTA	Sarcoma	WGS	Recurrence
 PT_Y572BRC1	BS_042DVDQM	PBTA	Low-grade glioma	WGS	Progressive
-PT_3SF3NQ43	BS_04KM3N3S	PBTA	Low-grade glioma	WGS	Progressive
+PT_3SF3NQ43	BS_04KM3N3S	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_YGN06RPZ	BS_060QB7XB	PBTA	NA	WGS	Progressive
 PT_RX1EWBP9	BS_0FQKT8EY	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Progressive
 PT_F168VFAE	BS_0G54B21P	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Progressive
@@ -17,7 +17,7 @@ PT_8ZKFTBZS	BS_0RTP9JV1	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_6N825561	BS_0YWFFRYV	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Deceased
 PT_ZZWYKZZ8	BS_11PGDQ89	PBTA	Ependymoma	WGS	Deceased
 PT_S0Q27J13	BS_12TRHKCY	PBTA	High-grade glioma	WGS	Progressive
-PT_QP4BVCX4	BS_14P5D735	PBTA	Craniopharyngioma	WGS	Recurrence
+PT_QP4BVCX4	BS_14P5D735	PBTA	Adamantinomatous Craniopharyngioma	WGS	Recurrence
 PT_P9GVEXFE	BS_1BFJJ3PA	PBTA	Pineoblastoma	WGS	Progressive
 PT_DAKPNP7K	BS_1DA3F1K1	PBTA	Medulloblastoma	WGS	Progressive
 PT_C1RDBCVM	BS_1GFA9NF0	PBTA	Ependymoma	WGS	Progressive
@@ -36,14 +36,14 @@ PT_W7FK539G	BS_25VZM81R	PBTA	Neuroblastoma	WGS	Progressive
 PT_P2B3RNR0	BS_26K4T1TS	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_GS68Z9B6	BS_26TTS8JJ	PBTA	Hemangioblastoma	WGS	Progressive
 PT_3H7N0512	BS_26YDKGBP	PBTA	Ganglioglioma	WGS	Progressive
-PT_MNZ23MYQ	BS_28H882Z1	PBTA	Low-grade glioma	WGS	Recurrence
+PT_MNZ23MYQ	BS_28H882Z1	PBTA	Pilocytic astrocytoma	WGS	Recurrence
 PT_ESWK06KQ	BS_2D0J8W64	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_5JCY0JFD	BS_2EVAFHE0	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_3WA7SBQ6	BS_2F8PFTW5	PBTA	Choroid plexus tumor	WGS	Recurrence
 PT_PRSP252Y	BS_2N53HYFM	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
 PT_F27SA15G	BS_2NN6ME5A	PBTA	Low-grade glioma	WGS	Recurrence
 PT_TKWTTRQ7	BS_2RX2NF1Q	PBTA	Medulloblastoma	WGS	Progressive
-PT_H57TEQDT	BS_2SRKC1JX	PBTA	Low-grade glioma	WGS	Progressive
+PT_H57TEQDT	BS_2SRKC1JX	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_XNMKQ4MR	BS_2SW9ZSEC	PBTA	Low-grade glioma	WGS	Recurrence
 PT_F0JZHY0K	BS_2VRZV9W9	PBTA	Low-grade glioma	WGS	Recurrence
 PT_G16WS1MW	BS_2W200YK5	PBTA	Meningioma	WGS	Progressive
@@ -75,7 +75,7 @@ PT_2YT37G8P	BS_4QFSH7C4	PBTA	Low-grade glioma	WGS	Progressive
 PT_ZZRBX5JT	BS_4SK2VJ75	PBTA	Ependymoma	WGS	Progressive
 PT_EWNAWYKB	BS_4YJF0KE7	PBTA	High-grade glioma	WGS	Recurrence
 PT_2KN2TFJP	BS_4ZG27R47	PBTA	High-grade glioma	WGS	Deceased
-PT_YDFPMXAR	BS_52XA6Y6H	PBTA	Low-grade glioma	WGS	Progressive
+PT_YDFPMXAR	BS_52XA6Y6H	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_Z4BF2NSB	BS_537YFJ06	PBTA	High-grade glioma	WGS	Deceased
 PT_0V88WASE	BS_53RGQ4AK	PBTA	Low-grade glioma	WGS	Recurrence
 PT_GBN55D2P	BS_544KFC5J	PBTA	Ependymoma	WGS	Progressive
@@ -92,7 +92,7 @@ PT_MGJJBG0T	BS_65Q0974Q	PBTA	Glial-neuronal tumor NOS	WGS	Deceased
 PT_T0MRCE9A	BS_6AAJ8JBD	PBTA	Medulloblastoma	WGS	Deceased
 PT_JE9RX5DR	BS_6AFWGT6Z	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_9BJWHYZP	BS_6AYC4A6W	PBTA	Oligodendroglioma	WGS	Recurrence
-PT_XZGWKXC5	BS_6GPWAQ5R	PBTA	Low-grade glioma	WGS	Recurrence
+PT_XZGWKXC5	BS_6GPWAQ5R	PBTA	Pilocytic astrocytoma	WGS	Recurrence
 PT_1P436YMM	BS_6GTKRGNK	PBTA	Ganglioglioma	WGS	Progressive
 PT_NXX0M835	BS_6HYN5530	PBTA	NA	WGS	Progressive
 PT_SYSCTVT8	BS_6N8TEKH6	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
@@ -145,7 +145,7 @@ PT_7K321REE	BS_8P5ZHHPM	PBTA	Adamantinomatous Craniopharyngioma	WGS	Recurrence
 PT_0H8VY9HP	BS_8Q0XYNY0	PBTA	Low-grade glioma	WGS	Progressive
 PT_596H0BQF	BS_8Q8CAY84	PBTA	NA	WGS	Progressive
 PT_37B5JRP1	BS_8Q8N6AHW	PBTA	High-grade glioma	WGS	Deceased
-PT_YK7AD0KK	BS_8R2Z1DVD	PBTA	Craniopharyngioma	WGS	Recurrence
+PT_YK7AD0KK	BS_8R2Z1DVD	PBTA	Adamantinomatous Craniopharyngioma	WGS	Recurrence
 PT_T6H5RWH5	BS_91P6RMCF	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_MXASQ2GW	BS_922YMFYK	PBTA	Neurofibroma/Plexiform	WGS	Progressive
 PT_RDJ40M73	BS_928HWFFM	PBTA	Diffuse hemispheric glioma	WGS	Recurrence
@@ -167,7 +167,7 @@ PT_4ZWS0R9N	BS_A8P99605	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_ESHACWF6	BS_A94A7EJ4	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Progressive
 PT_5Q52M9W8	BS_AB4QGN7R	PBTA	High-grade glioma	WGS	Progressive
 PT_S2BEPYQ0	BS_ABZ3BK38	PBTA	High-grade glioma	WGS	Deceased
-PT_9DN55H64	BS_AD9QBJJD	PBTA	Low-grade glioma	WGS	Progressive
+PT_9DN55H64	BS_AD9QBJJD	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_DNCNEQCV	BS_ADEJ9BFW	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
 PT_99S5BPE3	BS_AG6M7TJE	PBTA	Ependymoma	WGS	Recurrence
 PT_XDV8W16W	BS_AGGH3QGS	PBTA	Low-grade glioma	WGS	Progressive
@@ -189,7 +189,7 @@ PT_HGG8X8QE	BS_B1163H1W	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_S4YNE17X	BS_B4Z69W5J	PBTA	NA	WGS	Deceased
 PT_PTTBTPS6	BS_B5V3KSQY	PBTA	Medulloblastoma	WGS	Recurrence
 PT_CMB6TASJ	BS_B73JK7T1	PBTA	CNS Embryonal tumor	WGS	Progressive
-PT_Q8WBFJ5R	BS_B85R6Q94	PBTA	Low-grade glioma	WGS	Progressive
+PT_Q8WBFJ5R	BS_B85R6Q94	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_YWFFHZD5	BS_BAPPHCYQ	PBTA	Choroid plexus tumor	WGS	Progressive
 PT_7M2PGCBV	BS_BBTT7DH4	PBTA	Meningioma	WGS	Recurrence
 PT_164RNWTT	BS_BJ9WKXWQ	PBTA	Ependymoma	WGS	Progressive
@@ -211,7 +211,7 @@ PT_ZZ8SBJJ5	BS_CPZZR2R7	PBTA	Choroid plexus tumor	WGS	Progressive
 PT_2VSDT9CK	BS_CQ8C6X4X	PBTA	Low-grade glioma	WGS	Progressive
 PT_AQ0RFSVQ	BS_CQK4ECE0	PBTA	Sarcoma	WGS	Progressive
 PT_BCWGRGDB	BS_CQZCXSNW	PBTA	Meningioma	WGS	Progressive
-PT_EN4G7A9Z	BS_CSZQAS8E	PBTA	Low-grade glioma	WGS	Progressive
+PT_EN4G7A9Z	BS_CSZQAS8E	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_KKE7HAEH	BS_CV1QXWG1	PBTA	Adamantinomatous Craniopharyngioma	WGS	Recurrence
 PT_QC4M7SGJ	BS_CY3P3Z2T	PBTA	Low-grade glioma	WGS	Recurrence
 PT_AQWDQW27	BS_D3KVGMRJ	PBTA	Meningioma	WGS	Progressive
@@ -220,7 +220,7 @@ PT_ER1C7KPB	BS_D59VEERR	PBTA	Ganglioglioma	WGS	Progressive
 PT_WWZWD4KC	BS_D6FEADYR	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
 PT_N32BYY8A	BS_D6XHKZDZ	PBTA	High-grade glioma	WGS	Progressive
 PT_DW2XRPC9	BS_D7PRJEMD	PBTA	High-grade glioma	WGS	Progressive
-PT_1VQWQ0TC	BS_D94ZCKWJ	PBTA	Low-grade glioma	WGS	Progressive
+PT_1VQWQ0TC	BS_D94ZCKWJ	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_A9E0SJZB	BS_DD08M2NA	PBTA	NA	WGS	Progressive
 PT_XTVQB9S4	BS_DE26D072	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Progressive
 PT_BZCJMEX8	BS_DF6VTW0D	PBTA	Ependymoma	WGS	Recurrence
@@ -282,7 +282,7 @@ PT_3FH27J1X	BS_FZPNPDQQ	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_ZG4J0EK0	BS_G14MSJYQ	PBTA	Medulloblastoma	WGS	Recurrence
 PT_N0KJ1CR2	BS_G753Z42N	PBTA	Oligodendroglioma	WGS	Recurrence
 PT_6Q0NPVP3	BS_G9YT70JB	PBTA	Ganglioglioma	WGS	Recurrence
-PT_EHY1SB4R	BS_GG7F58ZC	PBTA	Low-grade glioma	WGS	Progressive
+PT_EHY1SB4R	BS_GG7F58ZC	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_3A2Q62RD	BS_GG98K7W0	PBTA	Ependymoma	WGS	Progressive
 PT_JC3FDHBS	BS_GG9T6CXD	PBTA	High-grade glioma	WGS	Deceased
 PT_19GCSK2S	BS_GH6PH611	PBTA	Diffuse midline glioma	WGS	Deceased
@@ -299,7 +299,7 @@ PT_8ED5MJR2	BS_GTJZFG9B	PBTA	High-grade glioma	WGS	Deceased
 PT_B7BBE5DV	BS_GWFCD8MA	PBTA	NA	WGS	Recurrence
 PT_B5DQ8FF0	BS_GY83XDY8	PBTA	Ependymoma	WGS	Progressive
 PT_WYXTEG3E	BS_H13TBC1X	PBTA	Adamantinomatous Craniopharyngioma	WGS	Deceased
-PT_ME0JMDEB	BS_H1Q7X6NE	PBTA	Low-grade glioma	WGS	Progressive
+PT_ME0JMDEB	BS_H1Q7X6NE	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_VBJ02EY1	BS_H3P7W3J4	PBTA	Low-grade glioma	WGS	Progressive
 PT_AZQ230WT	BS_H8EVA6AJ	PBTA	Ependymoma	WGS	Progressive
 PT_GH27VJBD	BS_H8MAKDRB	PBTA	Ependymoma	WGS	Progressive
@@ -353,9 +353,9 @@ PT_BQAR0KHK	BS_KWHEFBG0	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_P5HHJJPH	BS_KXGJ1HMG	PBTA	Pleomorphic xanthoastrocytoma	WGS	Progressive
 PT_JSFBMK5V	BS_KY1CTGJ3	PBTA	Diffuse midline glioma	WGS	Progressive
 PT_1DSX4VJM	BS_KYPMZZSY	PBTA	Diffuse midline glioma	WGS	Deceased
-PT_GHTSGFCT	BS_KYVZWYMS	PBTA	NA	WGS	Deceased
+PT_GHTSGFCT	BS_KYVZWYMS	PBTA	High-grade glioma	WGS	Deceased
 PT_Y76A7PBA	BS_M4E4H6NG	PBTA	High-grade glioma	WGS	Recurrence
-PT_FDQHEKJB	BS_M5YAF092	PBTA	Craniopharyngioma	WGS	Progressive
+PT_FDQHEKJB	BS_M5YAF092	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
 PT_HFQNKP5X	BS_MAHWW7NR	PBTA	Chordoma	WGS	Deceased
 PT_N8W26H19	BS_MBYEK6HV	PBTA	Low-grade glioma	WGS	Progressive
 PT_HE8FBFNA	BS_MCZ1BH05	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Progressive
@@ -366,7 +366,7 @@ PT_Z7YJ7MSM	BS_MGY2V5N4	PBTA	Glial-neuronal tumor NOS	WGS	Recurrence
 PT_062ZW10V	BS_MQRBQKPQ	PBTA	Glial-neuronal tumor NOS	WGS	Deceased
 PT_H024RK87	BS_MRX1SPFB	PBTA	NA	WGS	Recurrence
 PT_3KM9W8S8	BS_MS8TBCWJ	PBTA	Atypical Teratoid Rhabdoid Tumor	WGS	Deceased
-PT_H45M7M2T	BS_MSZW0KPS	PBTA	Low-grade glioma	WGS	Recurrence
+PT_H45M7M2T	BS_MSZW0KPS	PBTA	Pilocytic astrocytoma	WGS	Recurrence
 PT_YM51XZH0	BS_MT7ZHBK4	PBTA	Ependymoma	WGS	Deceased
 PT_KT1TR9JH	BS_MVQYCQMP	PBTA	Embryonal tumor with multilayer rosettes	WGS	Progressive
 PT_DFQAH7RS	BS_MW16Y7ME	PBTA	Dysembryoplastic neuroepithelial tumor	WGS	Progressive
@@ -410,7 +410,7 @@ PT_DKMVGV69	BS_QH30P0AR	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_CSZ9QA1N	BS_QJ58E1KY	PBTA	High-grade glioma	WGS	Deceased
 PT_D7R5C3A2	BS_QJ627KJY	PBTA	Low-grade glioma	WGS	Progressive
 PT_3VCS1PPF	BS_QMY84KF4	PBTA	Ependymoma	WGS	Progressive
-PT_WPYCXMDA	BS_QSDKJM8T	PBTA	Craniopharyngioma	WGS	Progressive
+PT_WPYCXMDA	BS_QSDKJM8T	PBTA	Adamantinomatous Craniopharyngioma	WGS	Progressive
 PT_XP27KRP0	BS_QVXGDEPP	PBTA	High-grade glioma	WGS	Recurrence
 PT_V75NCPJE	BS_QW10D8NY	PBTA	Low-grade glioma	WGS	Deceased
 PT_NC2X0HJS	BS_QXZVH619	PBTA	High-grade glioma	WGS	Deceased
@@ -449,7 +449,7 @@ PT_RGX23JFP	BS_SYGKQD8M	PBTA	Ganglioglioma	WGS	Progressive
 PT_N5J8REP8	BS_T37FFSF2	PBTA	NA	WGS	Progressive
 PT_GTHZF21E	BS_T3WNX1E2	PBTA	Diffuse midline glioma	WGS	Deceased
 PT_KMHGNCNR	BS_T5T21G7N	PBTA	Low-grade glioma	WGS	Recurrence
-PT_ME64S267	BS_T5XJE9H7	PBTA	Low-grade glioma	WGS	Recurrence
+PT_ME64S267	BS_T5XJE9H7	PBTA	Pilocytic astrocytoma	WGS	Recurrence
 PT_WEY5N1C5	BS_TBWPXD8S	PBTA	Low-grade glioma	WGS	Progressive
 PT_01MZ62KG	BS_TE8QFF7T	PBTA	Embryonal tumor with multilayer rosettes	WGS	Progressive
 PT_H9QTP1JF	BS_TFYBVE0A	PBTA	Medulloblastoma	WGS	Progressive
@@ -468,7 +468,7 @@ PT_V12EAF2V	BS_VQ94757H	PBTA	Ganglioneuroma	WGS	Progressive
 PT_EYNK9NJT	BS_VW1TW6VV	PBTA	High-grade glioma	WGS	Deceased
 PT_C9AY9KQF	BS_VYCDBFSH	PBTA	High-grade glioma	WGS	Progressive
 PT_JBYZJRNM	BS_VYDJK425	PBTA	Diffuse midline glioma	WGS	Deceased
-PT_NSN14GB6	BS_W13BPYBN	PBTA	Low-grade glioma	WGS	Progressive
+PT_NSN14GB6	BS_W13BPYBN	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_JQ8ZRKBH	BS_W3DXWFMX	PBTA	Low-grade glioma	WGS	Recurrence
 PT_3P3HARZ2	BS_W5R5QAKY	PBTA	Low-grade glioma	WGS	Progressive
 PT_G1EVC9DA	BS_W676PQPM	PBTA	Choroid plexus tumor	WGS	Progressive
@@ -500,7 +500,7 @@ PT_GKWWWJ0X	BS_XKE77TR4	PBTA	Ganglioglioma	WGS	Recurrence
 PT_X8JQPZMN	BS_XMDPQQ4M	PBTA	High-grade glioma	WGS	Deceased
 PT_RY0GF9JR	BS_XSVG8RMY	PBTA	Ependymoma	WGS	Recurrence
 PT_BGX962PA	BS_XT8KRVGX	PBTA	Sarcoma	WGS	Progressive
-PT_QJDY4Y9P	BS_XVVQ4M5T	PBTA	Low-grade glioma	WGS	Progressive
+PT_QJDY4Y9P	BS_XVVQ4M5T	PBTA	Pilocytic astrocytoma	WGS	Progressive
 PT_QAJRK2W9	BS_XYYR1EVZ	PBTA	High-grade glioma	WGS	Progressive
 PT_0PZWF6YB	BS_XZG4XX3W	PBTA	Low-grade glioma	WGS	Progressive
 PT_NTK39NNV	BS_Y2C78JC4	PBTA	Low-grade glioma	WGS	Progressive
