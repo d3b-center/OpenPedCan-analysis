@@ -66,11 +66,11 @@ fi
 if [ "$SKIP_SUBSETTING" -lt "1" ]; then
 
   # get list of biospecimen ids for subset files
-  TMPDIR=./tmp Rscript --vanilla 01-get_biospecimen_identifiers.R \
-      --data_directory $FULL_DIRECTORY \
-      --output_file $BIOSPECIMEN_FILE \
-      --num_matched $NUM_MATCHED \
-      --local $RUN_LOCAL
+#  TMPDIR=./tmp Rscript --vanilla 01-get_biospecimen_identifiers.R \
+#      --data_directory $FULL_DIRECTORY \
+#      --output_file $BIOSPECIMEN_FILE \
+#      --num_matched $NUM_MATCHED \
+#      --local $RUN_LOCAL
 
   # subset the files
   TMPDIR=./tmp Rscript --vanilla 02-subset_files.R \
@@ -107,7 +107,7 @@ cp $FULL_DIRECTORY/fusion-dgd.tsv.gz $SUBSET_DIRECTORY
 # All proteomic files
 cp $FULL_DIRECTORY/*protein* $SUBSET_DIRECTORY
 
-# Full tumor only MAF
+# Full tumor only MAF (for now, it is small)
 cp $FULL_DIRECTORY/snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz $SUBSET_DIRECTORY
 
 # if the md5sum.txt file already exists, get rid of it

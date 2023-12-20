@@ -39,7 +39,6 @@ suppressWarnings(
 )
 suppressPackageStartupMessages(library(optparse))
 suppressPackageStartupMessages(library(data.table))
-suppressPackageStartupMessages(library(arrow))
 suppressPackageStartupMessages(options(readr.show_col_types = FALSE))
 
 `%>%` <- dplyr::`%>%`
@@ -413,6 +412,8 @@ histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"),
 
 # get the participant ID to biospecimen ID mapping
 id_mapping_df <- histology_df %>%
+  # remove exp strategies not needed for subset (proteomics)
+  dplyr::filter(!experimental_strategy %in% c("Whole Cell Proteomics", "Phospho-Proteomics")) %>%
   dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID) %>%
   dplyr::distinct()
 
@@ -432,6 +433,14 @@ if (running_locally) {
 files_to_subset <- files_to_subset[-grep("gistic.zip", files_to_subset)]
 files_to_subset
 
+# drop rMATs file from this list 
+files_to_subset <- files_to_subset[-grep("splice-events-rmats", files_to_subset)]
+files_to_subset
+
+# drop tumor only MAF  file from this list 
+files_to_subset <- files_to_subset[-grep("snv-mutect2-tumor-only", files_to_subset)]
+files_to_subset
+
 # for each file, extract the participant ID list by first obtaining the
 # biospecimen IDs and then mapping back to participant ID
 message("\nGetting participant IDs from all files...")
@@ -441,7 +450,7 @@ participant_id_list <- purrr::map(files_to_subset,
 
 # list of matched participant IDs, not including cohort-specific 
 # file (TCGA and DGD)
-message("\nGetting matched participant IDs, exclduing cohort-specific files ...")
+message("\nGetting matched participant IDs, excluding cohort-specific files ...")
 other_participant_id_list <- 
   participant_id_list[-grep("tcga|dgd", names(participant_id_list))]
 other_matched_participants <- purrr::reduce(other_participant_id_list,
@@ -453,7 +462,7 @@ message("\nGetting TCGA rna-seq matched participant IDs...")
 tcga_participant_id_list <- 
   participant_id_list[grep("tcga", names(participant_id_list))]
 tcga_matched_participants <- purrr::reduce(tcga_participant_id_list,
-                                               intersect)
+                                           intersect)
 
 # list of DGD-specific panel files and matched participant IDs 
 # for subsetting 
