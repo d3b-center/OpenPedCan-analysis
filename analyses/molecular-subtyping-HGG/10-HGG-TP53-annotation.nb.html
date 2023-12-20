@@ -1762,11 +1762,24 @@ mutations co-occurring with H3 mutations.</p>
 <h2>Set up</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIGluIHRpZHl2ZXJzZSBmdW5jdGlvbnNcbmxpYnJhcnkodGlkeXZlcnNlKVxuXG5yb290X2RpciA8LSBycHJvanJvb3Q6OmZpbmRfcm9vdChycHJvanJvb3Q6Omhhc19kaXIoXCIuZ2l0XCIpKVxuZGF0YV9kaXIgPC0gZmlsZS5wYXRoKHJvb3RfZGlyLCBcImRhdGFcIilcbiMgcmVzdWx0cyBmb2xkZXJcbnJlc3VsdHNfZGlyIDwtIGZpbGUucGF0aChcbiAgcm9vdF9kaXIsXG4gIFwiYW5hbHlzZXNcIixcbiAgXCJtb2xlY3VsYXItc3VidHlwaW5nLUhHR1wiLFxuICBcInJlc3VsdHNcIilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgTG9hZCBpbiB0aWR5dmVyc2UgZnVuY3Rpb25zIiwibGlicmFyeSh0aWR5dmVyc2UpIl19 -->
 <pre class="r"><code># Load in tidyverse functions
-library(tidyverse)
-
-root_dir &lt;- rprojroot::find_root(rprojroot::has_dir(&quot;.git&quot;))
+library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-message-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuMiAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAgXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG7inJYgZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKEuSBVc2UgdGhlIGNvbmZsaWN0ZWQgcGFja2FnZSAoPGh0dHA6Ly9jb25mbGljdGVkLnItbGliLm9yZy8+KSB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
+<pre><code>── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<!-- rnb-message-end -->
+<!-- rnb-source-begin eyJkYXRhIjpbInJvb3RfZGlyIDwtIHJwcm9qcm9vdDo6ZmluZF9yb290KHJwcm9qcm9vdDo6aGFzX2RpcihcIi5naXRcIikpIiwiZGF0YV9kaXIgPC0gZmlsZS5wYXRoKHJvb3RfZGlyLCBcImRhdGFcIikiLCIjIHJlc3VsdHMgZm9sZGVyIiwicmVzdWx0c19kaXIgPC0gZmlsZS5wYXRoKFxuICByb290X2RpcixcbiAgXCJhbmFseXNlc1wiLFxuICBcIm1vbGVjdWxhci1zdWJ0eXBpbmctSEdHXCIsXG4gIFwicmVzdWx0c1wiKSJdfQ== -->
+<pre class="r"><code>root_dir &lt;- rprojroot::find_root(rprojroot::has_dir(&quot;.git&quot;))
 data_dir &lt;- file.path(root_dir, &quot;data&quot;)
 # results folder
 results_dir &lt;- file.path(
@@ -1781,7 +1794,7 @@ results_dir &lt;- file.path(
 <h3>Required files</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWxlIHBhdGggdG8gZGF0YSBkaXJlY3RvcnlcbnRwNTNfc3RhdHVzX2RmIDwtIHJlYWRfdHN2KGZpbGUucGF0aChcbiAgcm9vdF9kaXIsXG4gIFwiYW5hbHlzZXNcIixcbiAgXCJ0cDUzX25mMV9zY29yZVwiLFxuICBcInJlc3VsdHNcIixcbiAgXCJ0cDUzX2FsdGVyZWRfc3RhdHVzLnRzdlwiKSwgZ3Vlc3NfbWF4ID0gMTAwMDAwKSAlPiVcbiAgZHBseXI6OnJlbmFtZSh0cDUzX3N0YXR1cyA9IHRwNTNfYWx0ZXJlZClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgRmlsZSBwYXRoIHRvIGRhdGEgZGlyZWN0b3J5IiwidHA1M19zdGF0dXNfZGYgPC0gcmVhZF90c3YoZmlsZS5wYXRoKFxuICByb290X2RpcixcbiAgXCJhbmFseXNlc1wiLFxuICBcInRwNTNfbmYxX3Njb3JlXCIsXG4gIFwicmVzdWx0c1wiLFxuICBcInRwNTNfYWx0ZXJlZF9zdGF0dXMudHN2XCIpLCBndWVzc19tYXggPSAxMDAwMDApICU+JVxuICBkcGx5cjo6cmVuYW1lKHRwNTNfc3RhdHVzID0gdHA1M19hbHRlcmVkKSJdfQ== -->
 <pre class="r"><code># File path to data directory
 tp53_status_df &lt;- read_tsv(file.path(
   root_dir,
@@ -1791,40 +1804,47 @@ tp53_status_df &lt;- read_tsv(file.path(
   &quot;tp53_altered_status.tsv&quot;), guess_max = 100000) %&gt;%
   dplyr::rename(tp53_status = tp53_altered)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTM5MTkgQ29sdW1uczogMTjilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiXFx0XCJcbmNociAoOSk6IEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQsIG1hdGNoX2lkLCBzYW1wbGVfaWQsIGNhbmNlcl9wcmVkaXNwb3NpdGlvbnMsIFNWX3R5cGUuLi5cbmRibCAoOSk6IHRwNTNfc2NvcmUsIFNWX2NvdW50cywgRnVzaW9uX2NvdW50cywgU05WX2luZGVsX2NvdW50cywgQ05WX2xvc3NfY291bnRzLCBDTlZfbG8uLi5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
-<pre><code>Rows: 13919 Columns: 18── Column specification ────────────────────────────────────────────────────────────────────
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMTM5MTkgQ29sdW1uczogMThcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICg5KTogS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgbWF0Y2hfaWQsIHNhbXBsZV9pZCwgY2FuY2VyX3ByZWRpc3Bvc2l0aS4uLlxuZGJsICg5KTogdHA1M19zY29yZSwgU1ZfY291bnRzLCBGdXNpb25fY291bnRzLCBTTlZfaW5kZWxfY291bnRzLCBDTlZfbG9zc19jby4uLlxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 13919 Columns: 18
+── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
-chr (9): Kids_First_Biospecimen_ID, match_id, sample_id, cancer_predispositions, SV_type...
-dbl (9): tp53_score, SV_counts, Fusion_counts, SNV_indel_counts, CNV_loss_counts, CNV_lo...
+chr (9): Kids_First_Biospecimen_ID, match_id, sample_id, cancer_predispositi...
+dbl (9): tp53_score, SV_counts, Fusion_counts, SNV_indel_counts, CNV_loss_co...
+
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnNfbWF0Y2ggPC0gcmVhZF90c3YoZmlsZS5wYXRoKGRhdGFfZGlyLCBcImhpc3RvbG9naWVzLWJhc2UudHN2XCIpLCBndWVzc19tYXggPSAxMDAwMDApICU+JVxuICBmaWx0ZXIoIWlzLm5hKHBhdGhvbG9neV9kaWFnbm9zaXMpLFxuICAgICAgICAgIWNvaG9ydCAlaW4lIGMoXCJUQ0dBXCIsIFwiR1RFeFwiKSlcbmBgYCJ9 -->
+<!-- rnb-message-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYnNfbWF0Y2ggPC0gcmVhZF90c3YoZmlsZS5wYXRoKGRhdGFfZGlyLCBcImhpc3RvbG9naWVzLWJhc2UudHN2XCIpLCBndWVzc19tYXggPSAxMDAwMDApICU+JVxuICBmaWx0ZXIoIWlzLm5hKHBhdGhvbG9neV9kaWFnbm9zaXMpLFxuICAgICAgICAgIWNvaG9ydCAlaW4lIGMoXCJUQ0dBXCIsIFwiR1RFeFwiKSkifQ== -->
 <pre class="r"><code>bs_match &lt;- read_tsv(file.path(data_dir, &quot;histologies-base.tsv&quot;), guess_max = 100000) %&gt;%
   filter(!is.na(pathology_diagnosis),
          !cohort %in% c(&quot;TCGA&quot;, &quot;GTEx&quot;))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUm93czogNDc1MDcgQ29sdW1uczogNTbilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiXFx0XCJcbmNociAoMzcpOiBLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lELCBLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lELCBzYW1wbGVfaWQsIGFsaXF1b3RfaWQsIHMuLi5cbmRibCAoMTcpOiBjZWxsX2xpbmVfcGFzc2FnZSwgT1NfZGF5cywgRUZTX2RheXMsIGFnZV9hdF9kaWFnbm9zaXNfZGF5cywgYWdlX2F0X2V2ZW50X2RheXMuLi5cbmxnbCAgKDIpOiBtb2xlY3VsYXJfc3VidHlwZSwgaW50ZWdyYXRlZF9kaWFnbm9zaXNcbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG4ifQ== -->
-<pre><code>Rows: 47507 Columns: 56── Column specification ────────────────────────────────────────────────────────────────────
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogNDc1MDcgQ29sdW1uczogNTZcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICgzNyk6IEtpZHNfRmlyc3RfUGFydGljaXBhbnRfSUQsIEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQsIHNhbXBsZV9pZCwgYS4uLlxuZGJsICgxNyk6IGNlbGxfbGluZV9wYXNzYWdlLCBPU19kYXlzLCBFRlNfZGF5cywgYWdlX2F0X2RpYWdub3Npc19kYXlzLCBhZ2VfYS4uLlxubGdsICAoMik6IG1vbGVjdWxhcl9zdWJ0eXBlLCBpbnRlZ3JhdGVkX2RpYWdub3Npc1xuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 47507 Columns: 56
+── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
-chr (37): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, aliquot_id, s...
-dbl (17): cell_line_passage, OS_days, EFS_days, age_at_diagnosis_days, age_at_event_days...
+chr (37): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, a...
+dbl (17): cell_line_passage, OS_days, EFS_days, age_at_diagnosis_days, age_a...
 lgl  (2): molecular_subtype, integrated_diagnosis
+
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGdnX3N1YnR5cGVzIDwtIHJlYWRfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpcixcIkhHR19jbGVhbmVkX2FsbF90YWJsZS50c3ZcIikpICU+JVxuICBsZWZ0X2pvaW4oYnNfbWF0Y2gpXG5gYGAifQ== -->
+<!-- rnb-message-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiaGdnX3N1YnR5cGVzIDwtIHJlYWRfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpcixcIkhHR19jbGVhbmVkX2FsbF90YWJsZS50c3ZcIikpICU+JVxuICBsZWZ0X2pvaW4oYnNfbWF0Y2gpIn0= -->
 <pre class="r"><code>hgg_subtypes &lt;- read_tsv(file.path(results_dir,&quot;HGG_cleaned_all_table.tsv&quot;)) %&gt;%
   left_join(bs_match)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTk5NCBDb2x1bW5zOiA0N+KUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCJcXHRcIlxuY2hyICg0MCk6IEtpZHNfRmlyc3RfUGFydGljaXBhbnRfSUQsIEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQsIHNhbXBsZV9pZCwgbWF0Y2hfaWQsIENOUy4uLlxuZGJsICAoNyk6IGFnZV9hdF9kaWFnbm9zaXNfeXIsIEZPWEcxX2V4cHJlc3Npb25fenNjb3JlLCBPTElHMl9leHByZXNzaW9uX3pzY29yZSwgVFA3M19BUy4uLlxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5Kb2luaW5nIHdpdGggYGJ5ID0gam9pbl9ieShLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lELCBLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lELCBzYW1wbGVfaWQsIG1hdGNoX2lkLCBDTlNfcmVnaW9uLCBjb21wb3NpdGlvbiwgbW9sZWN1bGFyX3N1YnR5cGUpYFxuIn0= -->
-<pre><code>Rows: 1994 Columns: 47── Column specification ────────────────────────────────────────────────────────────────────
+<!-- rnb-message-begin eyJkYXRhIjoiUm93czogMjAwOCBDb2x1bW5zOiA0N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIlxcdFwiXG5jaHIgKDQwKTogS2lkc19GaXJzdF9QYXJ0aWNpcGFudF9JRCwgS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgc2FtcGxlX2lkLCBtLi4uXG5kYmwgICg3KTogYWdlX2F0X2RpYWdub3Npc195ciwgRk9YRzFfZXhwcmVzc2lvbl96c2NvcmUsIE9MSUcyX2V4cHJlc3Npb25fenNjLi4uXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Kb2luaW5nIHdpdGggYGJ5ID0gam9pbl9ieShLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lELCBLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lELCBzYW1wbGVfaWQsIG1hdGNoX2lkLCBDTlNfcmVnaW9uLCBjb21wb3NpdGlvbiwgbW9sZWN1bGFyX3N1YnR5cGUpYFxuIn0= -->
+<pre><code>Rows: 2008 Columns: 47
+── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;\t&quot;
-chr (40): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, match_id, CNS...
-dbl  (7): age_at_diagnosis_yr, FOXG1_expression_zscore, OLIG2_expression_zscore, TP73_AS...
+chr (40): Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, m...
+dbl  (7): age_at_diagnosis_yr, FOXG1_expression_zscore, OLIG2_expression_zsc...
+
 ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.Joining with `by = join_by(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, match_id, CNS_region, composition, molecular_subtype)`</code></pre>
-<!-- rnb-output-end -->
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining with `by = join_by(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, sample_id, match_id, CNS_region, composition, molecular_subtype)`</code></pre>
+<!-- rnb-message-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1833,7 +1853,7 @@ dbl  (7): age_at_diagnosis_yr, FOXG1_expression_zscore, OLIG2_expression_zscore,
 <h1>Add tp53 status</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGdnX3N1YnR5cGVzX3RwNTMgPC0gaGdnX3N1YnR5cGVzICU+JVxuICBsZWZ0X2pvaW4odW5pcXVlKHRwNTNfc3RhdHVzX2RmWyxjKFwibWF0Y2hfaWRcIiwgXCJ0cDUzX3N0YXR1c1wiKV0pKSAlPiVcbiAgbXV0YXRlKG1vbGVjdWxhcl9zdWJ0eXBlPSBjYXNlX3doZW4oXG4gICAgdHA1M19zdGF0dXMgJWluJSBjKFwiYWN0aXZhdGVkXCIsIFwibG9zc1wiKSB+IHN0cmluZ3I6OnN0cl9jKG1vbGVjdWxhcl9zdWJ0eXBlLFwiLCBUUDUzXCIpLFxuICAgIFRSVUUgfiBtb2xlY3VsYXJfc3VidHlwZVxuICApKSAlPiVcbiAgc2VsZWN0KG1hdGNoX2lkLCBtb2xlY3VsYXJfc3VidHlwZSwgbW9sZWN1bGFyX3N1YnR5cGVfbWV0aHlsLCBDTlNfcmVnaW9uLCB0cDUzX3N0YXR1cykgJT4lXG4gIHVuaXF1ZSgpICU+JVxuICBncm91cF9ieShtYXRjaF9pZCwgbW9sZWN1bGFyX3N1YnR5cGUpICU+JVxuICBzdW1tYXJpemUoYWNyb3NzKGV2ZXJ5dGhpbmcoKSwgfnBhc3RlKHVuaXF1ZShuYS5vbWl0KC54KSksIGNvbGxhcHNlID0gXCIsIFwiKSksIC5ncm91cHMgPSAnZHJvcCcpICU+JSBcbiAgcmlnaHRfam9pbihoZ2dfc3VidHlwZXNbLGMoXCJLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lEXCIsIFwiS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRFwiLCBcIm1hdGNoX2lkXCIsIFwic2FtcGxlX2lkXCIpXSkgJT4lXG4gIGFycmFuZ2UobWF0Y2hfaWQpICU+JVxuICB1bmlxdWUoKSAlPiVcbiAgd3JpdGVfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpcixcIkhHR19tb2xlY3VsYXJfc3VidHlwZV90cDUzLnRzdlwiKSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiaGdnX3N1YnR5cGVzX3RwNTMgPC0gaGdnX3N1YnR5cGVzICU+JVxuICBsZWZ0X2pvaW4odW5pcXVlKHRwNTNfc3RhdHVzX2RmWyxjKFwibWF0Y2hfaWRcIiwgXCJ0cDUzX3N0YXR1c1wiKV0pKSAlPiVcbiAgbXV0YXRlKG1vbGVjdWxhcl9zdWJ0eXBlPSBjYXNlX3doZW4oXG4gICAgdHA1M19zdGF0dXMgJWluJSBjKFwiYWN0aXZhdGVkXCIsIFwibG9zc1wiKSB+IHN0cmluZ3I6OnN0cl9jKG1vbGVjdWxhcl9zdWJ0eXBlLFwiLCBUUDUzXCIpLFxuICAgIFRSVUUgfiBtb2xlY3VsYXJfc3VidHlwZVxuICApKSAlPiVcbiAgc2VsZWN0KG1hdGNoX2lkLCBtb2xlY3VsYXJfc3VidHlwZSwgbW9sZWN1bGFyX3N1YnR5cGVfbWV0aHlsLCBDTlNfcmVnaW9uLCB0cDUzX3N0YXR1cykgJT4lXG4gIHVuaXF1ZSgpICU+JVxuICBncm91cF9ieShtYXRjaF9pZCwgbW9sZWN1bGFyX3N1YnR5cGUpICU+JVxuICBzdW1tYXJpemUoYWNyb3NzKGV2ZXJ5dGhpbmcoKSwgfnBhc3RlKHVuaXF1ZShuYS5vbWl0KC54KSksIGNvbGxhcHNlID0gXCIsIFwiKSksIC5ncm91cHMgPSAnZHJvcCcpICU+JSBcbiAgcmlnaHRfam9pbihoZ2dfc3VidHlwZXNbLGMoXCJLaWRzX0ZpcnN0X1BhcnRpY2lwYW50X0lEXCIsIFwiS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRFwiLCBcIm1hdGNoX2lkXCIsIFwic2FtcGxlX2lkXCIpXSkgJT4lXG4gIGFycmFuZ2UobWF0Y2hfaWQpICU+JVxuICB1bmlxdWUoKSAlPiVcbiAgd3JpdGVfdHN2KGZpbGUucGF0aChyZXN1bHRzX2RpcixcIkhHR19tb2xlY3VsYXJfc3VidHlwZV90cDUzLnRzdlwiKSkifQ== -->
 <pre class="r"><code>hgg_subtypes_tp53 &lt;- hgg_subtypes %&gt;%
   left_join(unique(tp53_status_df[,c(&quot;match_id&quot;, &quot;tp53_status&quot;)])) %&gt;%
   mutate(molecular_subtype= case_when(
@@ -1849,29 +1869,25 @@ dbl  (7): age_at_diagnosis_yr, FOXG1_expression_zscore, OLIG2_expression_zscore,
   unique() %&gt;%
   write_tsv(file.path(results_dir,&quot;HGG_molecular_subtype_tp53.tsv&quot;))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSm9pbmluZyB3aXRoIGBieSA9IGpvaW5fYnkobWF0Y2hfaWQpYEpvaW5pbmcgd2l0aCBgYnkgPSBqb2luX2J5KG1hdGNoX2lkKWBcbiJ9 -->
-<pre><code>Joining with `by = join_by(match_id)`Joining with `by = join_by(match_id)`</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjayBmb3IgZHVwbGljYXRlc1xubnJvdyhoZ2dfc3VidHlwZXNfdHA1MyktbGVuZ3RoKHVuaXF1ZShoZ2dfc3VidHlwZXNfdHA1MyRLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEKSlcbmBgYCJ9 -->
+<!-- rnb-message-begin eyJkYXRhIjoiSm9pbmluZyB3aXRoIGBieSA9IGpvaW5fYnkobWF0Y2hfaWQpYFxuSm9pbmluZyB3aXRoIGBieSA9IGpvaW5fYnkobWF0Y2hfaWQpYFxuIn0= -->
+<pre><code>Joining with `by = join_by(match_id)`
+Joining with `by = join_by(match_id)`</code></pre>
+<!-- rnb-message-end -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgY2hlY2sgZm9yIGR1cGxpY2F0ZXMiLCJucm93KGhnZ19zdWJ0eXBlc190cDUzKS1sZW5ndGgodW5pcXVlKGhnZ19zdWJ0eXBlc190cDUzJEtpZHNfRmlyc3RfQmlvc3BlY2ltZW5fSUQpKSJdfQ== -->
 <pre class="r"><code># check for duplicates
 nrow(hgg_subtypes_tp53)-length(unique(hgg_subtypes_tp53$Kids_First_Biospecimen_ID))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
 <pre><code>[1] 0</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGdnX3N1YnR5cGVzX3RwNTNbZHVwbGljYXRlZChoZ2dfc3VidHlwZXNfdHA1MyRLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEKSB8IGR1cGxpY2F0ZWQoaGdnX3N1YnR5cGVzX3RwNTMkS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgZnJvbUxhc3QgPSBUUlVFKSwgXVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiaGdnX3N1YnR5cGVzX3RwNTNbZHVwbGljYXRlZChoZ2dfc3VidHlwZXNfdHA1MyRLaWRzX0ZpcnN0X0Jpb3NwZWNpbWVuX0lEKSB8IGR1cGxpY2F0ZWQoaGdnX3N1YnR5cGVzX3RwNTMkS2lkc19GaXJzdF9CaW9zcGVjaW1lbl9JRCwgZnJvbUxhc3QgPSBUUlVFKSwgXSJ9 -->
 <pre class="r"><code>hgg_subtypes_tp53[duplicated(hgg_subtypes_tp53$Kids_First_Biospecimen_ID) | duplicated(hgg_subtypes_tp53$Kids_First_Biospecimen_ID, fromLast = TRUE), ]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MCwibmNvbCI6OCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIwIMOXIDgiXX19LCJyZGYiOiJVa1JZTXdwWUNnQUFBQU1BQkFJREFBTUZBQUFBQUFWVlZFWXRPQUFBQkFJQUFBQUJBQVFBQ1FBQUFBRjRBQUFERXdBQUFBZ0FBQUFRQUFBQUFBQUFBQkFBQUFBQUFBQUFFQUFBQUFBQUFBQVFBQUFBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBUUFBQUFBQUFBQUJBQUFBQUFBQUFFQWdBQUFBRUFCQUFKQUFBQUJXNWhiV1Z6QUFBQUVBQUFBQWdBQkFBSkFBQUFDRzFoZEdOb1gybGtBQVFBQ1FBQUFCRnRiMnhsWTNWc1lYSmZjM1ZpZEhsd1pRQUVBQWtBQUFBWWJXOXNaV04xYkdGeVgzTjFZblI1Y0dWZmJXVjBhSGxzQUFRQUNRQUFBQXBEVGxOZmNtVm5hVzl1QUFRQUNRQUFBQXQwY0RVelgzTjBZWFIxY3dBRUFBa0FBQUFaUzJsa2MxOUdhWEp6ZEY5UVlYSjBhV05wY0dGdWRGOUpSQUFFQUFrQUFBQVpTMmxrYzE5R2FYSnpkRjlDYVc5emNHVmphVzFsYmw5SlJBQUVBQWtBQUFBSmMyRnRjR3hsWDJsa0FBQUVBZ0FBQUFFQUJBQUpBQUFBQ1hKdmR5NXVZVzFsY3dBQUFBMEFBQUFBQUFBRUFnQUFBQUVBQkFBSkFBQUFCV05zWVhOekFBQUFFQUFBQUFFQUJBQUpBQUFBQ21SaGRHRXVabkpoYldVQUFBRCtBQUFFQWdBQUFBRUFCQUFKQUFBQUIyOXdkR2x2Ym5NQUFBSVRBQUFBQlFBQUFCQUFBQUFCQUFRQUNRQUFBQUZ5QUFBQUVBQUFBQUVBQkFBSkFBQUFEM1Z1Ym1GdFpXUXRZMmgxYm1zdE13QUFBQW9BQUFBQkFBQUFBQUFBQUEwQUFBQUJBQUFBQUFBQUFBMEFBQUFCQUFBQUNBQUFCQUlBQUFML0FBQUFFQUFBQUFVQUJBQUpBQUFBQm1WdVoybHVaUUFFQUFrQUFBQUZiR0ZpWld3QUJBQUpBQUFBRG5KdmQyNWhiV1Z6TG5CeWFXNTBBQVFBQ1FBQUFBcHliM2R6TG5SdmRHRnNBQVFBQ1FBQUFBcGpiMnh6TG5SdmRHRnNBQUFBL2dBQUFQND0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["match_id"],"name":[1],"type":["chr"],"align":["left"]},{"label":["molecular_subtype"],"name":[2],"type":["chr"],"align":["left"]},{"label":["molecular_subtype_methyl"],"name":[3],"type":["chr"],"align":["left"]},{"label":["CNS_region"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tp53_status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Kids_First_Biospecimen_ID"],"name":[7],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[8],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10],"total":[8]},"rows":{"min":[10],"max":[10],"total":[0]},"pages":{}}}
+{"columns":[{"label":["match_id"],"name":[1],"type":["chr"],"align":["left"]},{"label":["molecular_subtype"],"name":[2],"type":["chr"],"align":["left"]},{"label":["molecular_subtype_methyl"],"name":[3],"type":["chr"],"align":["left"]},{"label":["CNS_region"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tp53_status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Kids_First_Participant_ID"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Kids_First_Biospecimen_ID"],"name":[7],"type":["chr"],"align":["left"]},{"label":["sample_id"],"name":[8],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
-<pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 </div>
 

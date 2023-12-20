@@ -61,7 +61,8 @@ Reading molecular_subtype, integrated_diagnosis, short_histology, broad_histolog
 
 ```{r}
 
-compiled_subtyping<-read_tsv(file.path("..", "molecular-subtyping-pathology", "results", "compiled_molecular_subtypes_with_clinical_pathology_feedback_and_report_info.tsv"))
+compiled_subtyping<-read_tsv(file.path("..", "molecular-subtyping-pathology", "results", "compiled_molecular_subtypes_with_clinical_pathology_feedback_and_report_info.tsv")) %>%
+  select(-tumor_descriptor)
 
 ```
 
@@ -75,12 +76,11 @@ compiled_subtyping_other <- base_histology %>%
   select(
   # gather only columns needed to format as `compiled_subtyping`
   Kids_First_Participant_ID,
+  Kids_First_Biospecimen_ID,
   match_id,
   sample_id,
-  Kids_First_Biospecimen_ID,
   molecular_subtype,
   integrated_diagnosis,
-  tumor_descriptor,
   broad_histology,
   short_histology,
   Notes,
@@ -106,8 +106,8 @@ short_histology and broad_histology will be added from base histology for sample
 ```{r}
 
 histology <- base_histology %>% 
-  select(-Notes,-molecular_subtype,-integrated_diagnosis, -harmonized_diagnosis ) %>%
-  left_join(compiled_subtyping,by=c("Kids_First_Biospecimen_ID", "match_id", "sample_id","Kids_First_Participant_ID","tumor_descriptor"),suffix=c(".base",".subtyped")) %>%
+  select(-c(Notes, molecular_subtype, integrated_diagnosis, harmonized_diagnosis)) %>%
+  left_join(compiled_subtyping,by=c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id", "sample_id"), suffix=c(".base",".subtyped")) %>%
   unique() %>%
   dplyr::mutate(
     broad_histology = if_else(!is.na(broad_histology.subtyped),
@@ -130,9 +130,6 @@ histology <- base_histology %>%
     dplyr::mutate(harmonized_diagnosis = case_when(molecular_subtype == "CNC" ~ "Central neurocytoma",
                                                    molecular_subtype == "EVN" ~ "Extraventricular neurocytoma",
                                                    TRUE ~ as.character(harmonized_diagnosis))) %>%
-  # if tumor descriptor is NA, add value (some DGD samples)
-  dplyr::mutate(tumor_descriptor = case_when(!is.na(pathology_diagnosis) & is.na(tumor_descriptor) ~ "Unknown",
-                                             TRUE ~ tumor_descriptor)) %>%
   unique()
 ```
 
@@ -193,7 +190,10 @@ histology_cg <- histology %>%
     cancer_group %in% c("Acute Promyelocytic Leukemia", "Therapy-Related Acute Myeloid Leukemia") ~ "Acute Myeloid Leukemia",
     cancer_group == "Mixed Lineage Leukemia" ~ "Acute Lymphoblastic Leukemia",
     cancer_group %in% c("Brain Lower Grade Glioma", "Low-grade glioma/astrocytoma (WHO grade I/II)") ~ "Low-grade glioma",
-    cancer_group %in% c("congenital malignant brain tumor", "High-grade glioma/astrocytoma (WHO grade III/IV)") ~ "High-grade glioma",
+    cancer_group %in% c("congenital malignant brain tumor", "High-grade glioma/astrocytoma (WHO grade III/IV)",
+                        "Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)",
+                        "High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform") ~ "High-grade glioma",
+    cancer_group == "High-grade glioma/astrocytoma (WHO grade III/IV);Oligodendroglioma" ~ "Oligodendroglioma",
     cancer_group == "Kidney Chromophobe" ~ "Chromophobe renal cell carcinoma",
     cancer_group == "Kidney Renal Clear Cell Carcinoma" ~ "Renal Clear Cell Carcinoma",
     cancer_group == "Kidney Renal Papillary Cell Carcinoma" ~ "Renal Papillary Cell Carcinoma",    

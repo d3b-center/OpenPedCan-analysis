@@ -57,6 +57,7 @@ cpp_df <- histologies_df %>%
   # Subset to relevant ID and disease labels column
   select(Kids_First_Biospecimen_ID,
          Kids_First_Participant_ID,
+         match_id,
          sample_id,
          pathology_diagnosis,
          pathology_free_text_diagnosis,
