@@ -9,7 +9,6 @@ Aneurismal bone cyst (abc) with col1a1-usp6 fusion	Other tumor
 Aneurysmal bone cyst (abc)	Other tumor
 Aplastic anemia	NA
 Arteriovenous malformation	NA
-Astrocytoma;Oligoastrocytoma	NA
 Atypical Lymph Node	NA
 Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential	Other tumor
 Atypical Spitz Nevus	Other tumor
@@ -38,24 +37,21 @@ Congenital Mesoblastic Nephroma	Other tumor
 Cranial fasciitis	NA
 Cyst	Other tumor
 Dermoid cyst	NA
+Diffuse hemispheric glioma	Astrocytoma
+Diffuse leptomeningeal glioneuronal tumor	NA
 Dysembryoplastic neuroepithelial tumor (DNET)	Dysembryoplastic neuroepithelial tumor
 Dysembryoplastic neuroepithelial tumor (DNET);Dysplasia/Gliosis;Ganglioglioma	NA
 Dysembryoplastic neuroepithelial tumor (DNET);Ganglioglioma	NA
 Dysplasia/Gliosis	NA
-Dysplasia/Gliosis;Ganglioglioma	NA
-Dysplasia/Gliosis;Low-grade glioma/astrocytoma (WHO grade I/II)	NA
-Embryonal Tumor with Multilayered Rosettes (ETMR)	Embryonal tumor with multilayer rosettes
-Embryonal Tumor with Multilayered Rosettes (ETMR);High-grade glioma/astrocytoma (WHO grade III/IV)	NA
 Ependymoma;Metastatic secondary tumors	NA
 Epidermoid cyst	NA
 Epilepsy	NA
 Familial adenomatous polyposis	Other tumor
 Fibroma	NA
 Fibromixoid lesion	Fibromyxoid lesion
-Ganglioglioma;Low-grade glioma/astrocytoma (WHO grade I/II)	NA
 Giant Cell Granuloma	NA
 Giant cell tumor of bone	NA
-Glial-neuronal tumor NOS	Glial-neuronal tumor
+Glial-neuronal tumor	Glial-neuronal tumor NOS
 Glioblastoma Multiforme Pathway	NA
 Glioma	Other tumor
 Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)	NA
@@ -64,6 +60,8 @@ Granular Cell Tumor	Other tumor
 Hamartoma	NA
 Hemangioma	NA
 Hematoma	NA
+High-grade glioma	Astrocytoma;Oligoastrocytoma
+High-grade glioma	Glioblastoma
 High-grade glioma/astrocytoma (WHO grade III/IV)	High-grade glioma
 High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform	NA
 High-grade glioma/astrocytoma (WHO grade III/IV);Oligodendroglioma	NA
@@ -81,8 +79,6 @@ Lipoblastoma	NA
 Lipoma	NA
 Lipomyelomeningocele	Other tumor
 Low-grade glioma/astrocytoma (WHO grade I/II)	Low-grade glioma
-Low-grade glioma/astrocytoma (WHO grade I/II);Neurofibroma/Plexiform	NA
-Low-grade glioma/astrocytoma (WHO grade I/II);Oligodendroglioma	NA
 Lymphadenitis	NA
 Malignant PEComa	Other tumor
 Malignant peripheral nerve sheath tumor (MPNST)	Malignant peripheral nerve sheath tumor
@@ -99,10 +95,10 @@ Myelodysplastic syndrome	Other tumor
 Myofibroblastic tumor	Inflammatory Myofibroblastic Tumor
 Myofibroma	NA
 Myxoid spindle cell tumor	Other tumor
+Myxopapillary ependymoma	Ependymoma
 Necrotizing myelopathy	NA
 Neoplasm of unspecified behavior of endocrine glands	Other tumor
 Neuroblastic tumor	Other tumor
-Neurocytoma	NA
 Neuroendocrine carcinoma	Other tumor
 Neuroepithelial neoplasm with EWSR1--PLAG1 fusion	Glial-neuronal tumor
 Neurofibroma/Plexiform;Schwannoma	NA
@@ -125,6 +121,9 @@ Pilomatricoma	NA
 Pleuropulmonary blastoma	Other tumor
 Portions of white matter with a few reactive astrocytes and rare cells with mild atypia	Other tumor
 Post-Transplant Lymphoproliferative Disorder	NA
+Posterior fossa group A (PFA) ependymoma	Ependymoma
+Posterior fossa group B (PFB) ependymoma	Ependymoma
+Posterior fossa subependymoma	Ependymoma
 Primary myelofibrosis	Other tumor
 Reactive connective tissue	Other tumor
 Recurrent Acute Leukemia	NA
@@ -133,10 +132,12 @@ Rosai-dorfman	Rosai-Dorfman disease
 Shwachman-diamond syndrome	Other tumor
 Solid pseudopapillary neoplasm of the pancreas	Other tumor
 Spinal Cord Neoplasm	Other tumor
+Spinal ependymoma	Ependymoma
+Spinal subependymoma	Ependymoma
 Spindle cell neoplasm	Other tumor
 Spinocerebellar ataxia type 7	NA
 Subependymal Giant Cell Astrocytoma (SEGA)	Subependymal Giant Cell Astrocytoma
-Supratentorial or Spinal Cord PNET	Embryonal tumor
+Supratentorial ependymoma	Ependymoma
 Thrombocytopenia	Other tumor
 Thrombocytosis	Other tumor
 Transient Abnormal Myelopoiesis Associated with Down Syndrome	NA

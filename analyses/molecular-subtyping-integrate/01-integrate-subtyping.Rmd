@@ -61,7 +61,8 @@ Reading molecular_subtype, integrated_diagnosis, short_histology, broad_histolog
 
 ```{r}
 
-compiled_subtyping<-read_tsv(file.path("..", "molecular-subtyping-pathology", "results", "compiled_molecular_subtypes_with_clinical_pathology_feedback_and_report_info.tsv"))
+compiled_subtyping<-read_tsv(file.path("..", "molecular-subtyping-pathology", "results", "compiled_molecular_subtypes_with_clinical_pathology_feedback_and_report_info.tsv")) %>%
+  select(-tumor_descriptor)
 
 ```
 
@@ -78,7 +79,6 @@ compiled_subtyping_other <- base_histology %>%
   Kids_First_Biospecimen_ID,
   match_id,
   sample_id,
-  tumor_descriptor,
   molecular_subtype,
   integrated_diagnosis,
   broad_histology,
@@ -106,8 +106,8 @@ short_histology and broad_histology will be added from base histology for sample
 ```{r}
 
 histology <- base_histology %>% 
-  select(-c(Notes,molecular_subtype, integrated_diagnosis, harmonized_diagnosis)) %>%
-  left_join(compiled_subtyping,by=c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id", "sample_id", "tumor_descriptor"), suffix=c(".base",".subtyped")) %>%
+  select(-c(Notes, molecular_subtype, integrated_diagnosis, harmonized_diagnosis)) %>%
+  left_join(compiled_subtyping,by=c("Kids_First_Participant_ID", "Kids_First_Biospecimen_ID", "match_id", "sample_id"), suffix=c(".base",".subtyped")) %>%
   unique() %>%
   dplyr::mutate(
     broad_histology = if_else(!is.na(broad_histology.subtyped),
