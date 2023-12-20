@@ -189,7 +189,6 @@ PT_XEBJ890W	BS_24AK5EEP	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_DQ3ZCHB6	BS_258RRGDM	PBTA	Ganglioglioma	RNA-Seq	Initial CNS Tumor
 PT_K0NHTG93	BS_2604H901	DGD	Germ Cell Tumor	Targeted Sequencing	Primary Tumor
 PT_3A0B29QT	BS_264RCK7G	PBTA	Dysembryoplastic neuroepithelial tumor	RNA-Seq	Initial CNS Tumor
-PT_CGVPMMD8	BS_2663ECGN	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_C41JYFF4	BS_269X6Y6G	PBTA	Pineoblastoma	RNA-Seq	Initial CNS Tumor
 PT_H0Y8DJA8	BS_26H7DZD4	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
 PT_XPGJ239Y	BS_2720P44V	PBTA	Low-grade glioma	RNA-Seq	Recurrence
@@ -599,6 +598,7 @@ PT_H7XAC1YF	BS_6TB7MG0W	PBTA	Mixed germ cell tumor	RNA-Seq	Recurrence
 PT_HBNYKPM1	BS_6TSAVMT9	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_3MNY9BRY	BS_6VF6VPCG	PBTA	Low-grade glioma	RNA-Seq	Progressive
 PT_QRWAYJBN	BS_6VG0F0XE	DGD	Low-grade glioma	Targeted Sequencing	Progressive
+PT_XX33CWA3	BS_6VPPC681	PBTA	Chordoma	RNA-Seq	Metastatic
 PT_A64KYWHR	BS_6VRG1XFB	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_BGHP70ZG	BS_6VW8FC7Z	PBTA	Pilocytic astrocytoma	RNA-Seq	Initial CNS Tumor
 PT_6BWQNKWR	BS_6VYSQ8T6	PBTA	NA	RNA-Seq	Progressive
@@ -1019,7 +1019,6 @@ PT_7KS8C9Y6	BS_BBQ6BHGN	PBTA	Diffuse midline glioma	RNA-Seq	Initial CNS Tumor
 PT_KHX1WQ4H	BS_BC936YNZ	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_98W7YNZ7	BS_BE1WV2B2	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
 PT_BA38VR93	BS_BE6EZQHP	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
-PT_XX33CWA3	BS_BE7KBY3Q	PBTA	Chordoma	RNA-Seq	Metastatic
 PT_BK06Z2Q1	BS_BEKKNDWB	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
 PT_P8SRH6R7	BS_BFXA99CS	DGD	Low-grade glioma	Targeted Sequencing	Progressive
 PARZBH	BS_BG0ZDND2	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
@@ -1431,6 +1430,7 @@ PT_P0WNG43G	BS_G2W3D5M2	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_EGW3VRVV	BS_G2ZD7T67	DGD	B Acute Lymphoblastic Leukemia/Lymphoma	Targeted Sequencing	Primary Tumor
 PT_5V2GEART	BS_G3N1PZCT	DGD	CNS Melanoma	Targeted Sequencing	Initial CNS Tumor
 PT_QA9WJ679	BS_G3NN392N	PBTA	Diffuse midline glioma	RNA-Seq	Initial CNS Tumor
+PT_CGVPMMD8	BS_G3W0DTAX	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_TVJ5EGMR	BS_G5NHSFD4	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_27FDWCVZ	BS_G5QBBHDV	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_8QH9FV9J	BS_G5TXDQJ3	PBTA	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Initial CNS Tumor
@@ -1448,7 +1448,6 @@ PT_B2KF59PQ	BS_G97WTXW8	PBTA	Diffuse hemispheric glioma	RNA-Seq	Recurrence
 PT_6B194PRW	BS_G9JAJSQG	DGD	B Acute Lymphoblastic Leukemia/Lymphoma	Targeted Sequencing	Primary Tumor
 PT_2VSDT9CK	BS_G9XE3N9T	PBTA	Low-grade glioma	RNA-Seq	Progressive
 PT_4J24F353	BS_GAGRGSSX	PBTA	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Initial CNS Tumor
-PT_YJY2QXDM	BS_GAYRBK8G	PBTA	Chordoma	RNA-Seq	Metastatic
 PAUSJB	BS_GB1XPW06	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PT_TTKZWQG5	BS_GC2J7SWH	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_EJ8TKG2Z	BS_GC3CH9TY	PBTA	Craniopharyngioma	RNA-Seq	Progressive
@@ -1529,7 +1528,6 @@ PT_7FXAJ0N4	BS_H54V7VT3	DGD	Thyroid Gland Papillary Carcinoma	Targeted Sequencin
 PT_80V1EZWM	BS_H5HSPCW1	DGD	Rhabdomyosarcoma	Targeted Sequencing	Primary Tumor
 PASMUB	BS_H5RWQDCJ	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PT_5Y0CE4WK	BS_H5VQJR7X	PBTA	Diffuse midline glioma	RNA-Seq	Deceased
-PT_0VS7CBZ1	BS_H61920QK	PBTA	Chordoma	RNA-Seq	Primary Tumor
 PT_0ZTZA3KE	BS_H6EPE2WW	DGD	Acute Lymphoblastic Leukemia	Targeted Sequencing	Recurrence
 PT_1JP2ANQK	BS_H6YSDEDB	PBTA	Ewing sarcoma	RNA-Seq	Progressive
 PT_8ET4G9QN	BS_H7E7G24R	DGD	Neurofibroma/Plexiform	Targeted Sequencing	Progressive
@@ -2047,7 +2045,6 @@ PT_NCVTTNTG	BS_PBTQS0F6	PBTA	Ganglioneuroma	RNA-Seq	Initial CNS Tumor
 PT_65B5CGQG	BS_PC107GE3	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
 PT_8CX1AT08	BS_PC8NM4G4	DGD	Medulloblastoma	Targeted Sequencing	Initial CNS Tumor
 PT_GJ2SN63Z	BS_PCR7RTEH	DGD	Langerhans Cell histiocytosis	Targeted Sequencing	Primary Tumor
-PT_MFF8XQES	BS_PDH51MYK	PBTA	Chordoma	RNA-Seq	Primary Tumor
 PT_EGGE4SGY	BS_PDVD0GCM	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_A1J3631D	BS_PEEBT382	DGD	B Acute Lymphoblastic Leukemia/Lymphoma	Targeted Sequencing	Recurrence
 PT_QBEA1CGX	BS_PENM28KT	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
@@ -2080,7 +2077,6 @@ PT_S6TMQPG6	BS_PRSB0X9N	DGD	Low-grade glioma	Targeted Sequencing	Initial CNS Tum
 PT_6D9C46GC	BS_PS0P3QJ3	PBTA	Infant-type hemispheric glioma	RNA-Seq	Initial CNS Tumor
 PT_203SE2J7	BS_PTTZ15MN	DGD	Neuroblastoma	Targeted Sequencing	Primary Tumor
 PT_YJGJS19Q	BS_PTXCTHRM	DGD	Oligodendroglioma	Targeted Sequencing	Progressive
-PT_7HEDWKTM	BS_PVCTC2RZ	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_2AEQGWN1	BS_PVCWX633	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_WPM8Y4QX	BS_PWDRF91N	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_AAZ38138	BS_PWDTGRV4	DGD	Dysembryoplastic neuroepithelial tumor	Targeted Sequencing	Recurrence
@@ -2209,7 +2205,6 @@ PT_TJ74G94K	BS_RDBNX7YJ	PBTA	Oligodendroglioma	RNA-Seq	Recurrence
 PT_C0ME1J0G	BS_REF8ARH1	PBTA	Schwannoma	RNA-Seq	Initial CNS Tumor
 PASCGM	BS_REGK1PS6	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PT_RWF4AB4X	BS_REVS37G8	PBTA	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Initial CNS Tumor
-PT_6ZENTV3N	BS_REXTZ6RB	PBTA	Chordoma	RNA-Seq	Primary Tumor
 PT_E3Y5BBSF	BS_RFMQ7T0T	PBTA	Adamantinomatous Craniopharyngioma	RNA-Seq	Recurrence
 PT_3A2Q62RD	BS_RGPSEMHC	PBTA	Ependymoma	RNA-Seq	Initial CNS Tumor
 PT_WH5PD8ZK	BS_RGQH7K0C	PBTA	Medulloblastoma	RNA-Seq	Initial CNS Tumor
@@ -2563,7 +2558,6 @@ PT_2ECVKTTQ	BS_W3R88RFP	PBTA	Low-grade glioma	RNA-Seq	Second Malignancy
 PASFEU	BS_W3ZSVEVP	GMKF	Ganglioneuroblastoma	RNA-Seq	Primary Tumor
 PT_NGDW8WVP	BS_W41S7B55	PBTA	Hemangioblastoma	RNA-Seq	Initial CNS Tumor
 PT_XKVFVBY4	BS_W4DB5RP1	PBTA	Diffuse midline glioma	RNA-Seq	Deceased
-PT_EPW84DJW	BS_W4FR71ZE	PBTA	Chordoma	RNA-Seq	Progressive
 PT_X7HC5YCY	BS_W4H1D4Y6	PBTA	High-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_2C63FJAM	BS_W4HGV6E7	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_H0Q5FCYW	BS_W4K462V7	DGD	Ganglioneuroma	Targeted Sequencing	Initial CNS Tumor
@@ -2837,7 +2831,6 @@ PASFEV	BS_Z0MTZA9K	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
 PT_5BFEWBGY	BS_Z0ZPD9S9	PBTA	Diffuse midline glioma	RNA-Seq	Initial CNS Tumor
 PT_D9NTSYSC	BS_Z1A875MW	PBTA	Glial-neuronal tumor NOS	RNA-Seq	Initial CNS Tumor
 PT_GSSQYQKV	BS_Z28VKGNS	PBTA	Neurofibroma/Plexiform	RNA-Seq	Initial CNS Tumor
-PT_YAF9B3CC	BS_Z2FRDNFX	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_YY7CRV21	BS_Z2NWPQKF	PBTA	NA	RNA-Seq	Initial CNS Tumor
 PT_AWY62V1T	BS_Z30J2YJV	PBTA	NA	RNA-Seq	Initial CNS Tumor
 PATVKN	BS_Z36F6GKX	GMKF	Neuroblastoma	RNA-Seq	Primary Tumor
@@ -2922,235 +2915,6 @@ PT_8KF6YSTW	BS_ZZA88AMB	DGD	Neuroblastoma	Targeted Sequencing	Primary Tumor
 PT_5M8A47WW	BS_ZZMYDZJW	PBTA	Low-grade glioma	RNA-Seq	Initial CNS Tumor
 PT_9YNQJZ5G	BS_ZZPBANDD	PBTA	Dysembryoplastic neuroepithelial tumor	RNA-Seq	Progressive
 PT_RGX23JFP	BS_ZZWMD6FA	PBTA	Ganglioglioma	RNA-Seq	Progressive
-PPTC_P0107	PPTC_0BTTJ3DO	PPTC	High-grade glioma	RNA-Seq	Primary Tumor
-PPTC_P0150	PPTC_0DFNR5QJ	PPTC	Rhabdoid tumor of the kidney	RNA-Seq	Relapse
-PPTC_P0174	PPTC_0KKYMHWV	PPTC	Colon Carcinoma	RNA-Seq	Primary Tumor
-PPTC_P0169	PPTC_0OCOQKP9	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0182	PPTC_0SEBOIRG	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0139	PPTC_0VBLCA6F	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0002	PPTC_1F2NQYNV	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0001	PPTC_1LTWK45C	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0021	PPTC_1TXKLGM7	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0055	PPTC_1URX7AYH	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0134	PPTC_1VBXKGEP	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Primary Tumor
-PPTC_P0042	PPTC_26SCKSNX	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0189	PPTC_26XO9EOQ	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0127	PPTC_2BGWJADT	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0043	PPTC_2DDKX49M	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0003	PPTC_2NJW0IZP	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0225	PPTC_2UAFXTKR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0016	PPTC_31PW2ISO	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0180	PPTC_3FOYJRWJ	PPTC	High-grade glioma	RNA-Seq	Primary Tumor
-PPTC_P0236	PPTC_3FSILWGW	PPTC	Rhabdomyosarcoma	RNA-Seq	Relapse
-PPTC_P0195	PPTC_3R0PZOIT	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0093	PPTC_3U4IK52G	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0217	PPTC_4HBFEXN7	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0010	PPTC_4KN5QCCT	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0102	PPTC_4UKUZZKD	PPTC	Ependymoma	RNA-Seq	Relapse
-PPTC_P0178	PPTC_4UX9ZCI1	PPTC	Hepatoblastoma	RNA-Seq	Primary Tumor
-PPTC_P0027	PPTC_4XWVMTQ5	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0025	PPTC_4ZENVTY9	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0073	PPTC_54DHIOQ8	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0205	PPTC_5FBHWSVW	PPTC	Osteosarcoma	RNA-Seq	Post-treatment
-PPTC_P0114	PPTC_5GOEA2P1	PPTC	Ependymoma	RNA-Seq	Relapse
-PPTC_P0166	PPTC_5YRNDC30	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0230	PPTC_5Z8LONMQ	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0015	PPTC_6AR8MJNL	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0202	PPTC_6HDZ2MEA	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0243	PPTC_6NAVTLHB	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0220	PPTC_7VN0EK3H	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0145	PPTC_87TOUF5I	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0185	PPTC_8CXZZTWL	PPTC	Rhabdoid tumor of the kidney	RNA-Seq	Unknown
-PPTC_P0051	PPTC_8DJ76QEB	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0085	PPTC_8FU92WLB	PPTC	Ewing sarcoma	RNA-Seq	Primary Tumor
-PPTC_P0074	PPTC_8IVKZKFF	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0117	PPTC_8JSGEYVN	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0147	PPTC_8QLFTMA5	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0193	PPTC_9SVURK4M	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0237	PPTC_A1M6GHH9	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0008	PPTC_AAX6YVV4	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0094	PPTC_ABPEMIQU	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0092	PPTC_AHOJ9KAQ	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0216	PPTC_AJXEUZR5	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0069	PPTC_AMXOJX4R	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0036	PPTC_ANP1TEQW	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0204	PPTC_AODFYMNI	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0014	PPTC_ARFZWNSG	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0062	PPTC_ATC9QVCW	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0022	PPTC_ATI2BNEM	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0234	PPTC_ATKNYROR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0083	PPTC_AVD76PB4	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0188	PPTC_AVNGCDXR	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0168	PPTC_AWZ9HDXM	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0065	PPTC_AZ37GWMQ	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0104	PPTC_BCIUGV1N	PPTC	High-grade glioma	RNA-Seq	Primary Tumor
-PPTC_P0101	PPTC_BEMKRKC0	PPTC	High-grade glioma	RNA-Seq	Unknown
-PPTC_P0052	PPTC_BKJSZ1YW	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0108	PPTC_BNBI0FG6	PPTC	High-grade glioma	RNA-Seq	Unknown
-PPTC_P0144	PPTC_BWAQ9HXA	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0207	PPTC_BWTFG9LW	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0192	PPTC_BXLWLMJA	PPTC	Alveolar soft part sarcoma	RNA-Seq	Unknown
-PPTC_P0040	PPTC_BZX20MAE	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0006	PPTC_C0ACLTSN	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0215	PPTC_C12M43YZ	PPTC	Osteosarcoma	RNA-Seq	Post-treatment
-PPTC_P0244	PPTC_C1EQHFWZ	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0118	PPTC_CH8SW6RG	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0112	PPTC_CSSLGYP3	PPTC	Germinoma	RNA-Seq	Primary Tumor
-PPTC_P0228	PPTC_DACAZF9U	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0041	PPTC_DDBBYGWH	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0050	PPTC_DEPUNJXG	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0128	PPTC_DJVXMH8Y	PPTC	Ependymoma	RNA-Seq	Relapse
-PPTC_P0229	PPTC_DSUKCA9R	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0031	PPTC_DSYRWEPJ	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0200	PPTC_DYJCRK3Y	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0019	PPTC_EGZCFMAI	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0053	PPTC_EGZTP80O	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0151	PPTC_ELQJEDKZ	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0159	PPTC_ERDJUF0W	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0227	PPTC_ERDXFNHW	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0238	PPTC_FIGBF02R	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0024	PPTC_FILHJ9XN	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0172	PPTC_FNIPDG3B	PPTC	Rhabdomyosarcoma	RNA-Seq	Unknown
-PPTC_P0044	PPTC_FTXY9GAD	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0201	PPTC_GEGKMATD	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0233	PPTC_GIBF1SH9	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0009	PPTC_GM0AC2PL	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0206	PPTC_GNWIL0D9	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0197	PPTC_GRHEJMRI	PPTC	Osteosarcoma	RNA-Seq	Relapse
-PPTC_P0082	PPTC_HDGGBVIL	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0154	PPTC_HI0CV2BJ	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0158	PPTC_HJRRD10Z	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0203	PPTC_HKMXTQZY	PPTC	Osteosarcoma	RNA-Seq	Relapse
-PPTC_P0039	PPTC_HLZYDQAW	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0067	PPTC_HSR1JTCY	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0058	PPTC_HXGWRDRT	PPTC	CNS Embryonal tumor	RNA-Seq	Unknown
-PPTC_P0219	PPTC_I8X9KDAS	PPTC	Osteosarcoma	RNA-Seq	Unknown
-PPTC_P0046	PPTC_IC6OVTWE	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0057	PPTC_IEMLLO4D	PPTC	Alveolar soft part sarcoma	RNA-Seq	Unknown
-PPTC_P0211	PPTC_IETT37PV	PPTC	Osteosarcoma	RNA-Seq	Unknown
-PPTC_P0190	PPTC_IK3RVEDP	PPTC	Wilms tumor	RNA-Seq	Relapse
-PPTC_P0056	PPTC_IMRDHMSK	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0224	PPTC_IVBLKXJ3	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0165	PPTC_IW87M9YQ	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0226	PPTC_IZ9QKLHY	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0011	PPTC_J48LOHZN	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0126	PPTC_JBWQ9LAF	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0020	PPTC_JMFJSC1Y	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0032	PPTC_JNFS8CBR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0012	PPTC_JTUANN7H	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0103	PPTC_JZFOEBAD	PPTC	CNS Embryonal tumor	RNA-Seq	Primary Tumor
-PPTC_P0171	PPTC_KB5T2UVM	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0133	PPTC_KC0XYBEM	PPTC	Medulloblastoma	RNA-Seq	Relapse
-PPTC_P0054	PPTC_KDDSFOMR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0218	PPTC_KDN0K8HO	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0131	PPTC_LA2TYUP9	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0176	PPTC_LHFMWPGE	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0063	PPTC_LOUMEHPY	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0072	PPTC_LQ6Y7A1M	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0130	PPTC_LQSTORKN	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0088	PPTC_MJCGYUSF	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0124	PPTC_MJCZO3SE	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0038	PPTC_MTLVCDS8	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0110	PPTC_MW31BSHL	PPTC	High-grade glioma	RNA-Seq	Relapse
-PPTC_P0091	PPTC_N4YWHKLD	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0105	PPTC_N5ZGB4MA	PPTC	CNS Embryonal tumor	RNA-Seq	Primary Tumor
-PPTC_P0241	PPTC_N7FNZTJW	PPTC	Rhabdomyosarcoma	RNA-Seq	Relapse
-PPTC_P0156	PPTC_NC59EOPS	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0138	PPTC_NE0QYRMF	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0068	PPTC_NEVTLBQX	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0028	PPTC_NHAKPGJL	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0191	PPTC_NIJOHA1Q	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0017	PPTC_NO95BRXR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0179	PPTC_NSWAXGTU	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0162	PPTC_NWB4P5JD	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0136	PPTC_NYOCUDRG	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0232	PPTC_O4CDUZ7Q	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0141	PPTC_OAAXTZSW	PPTC	Medulloblastoma	RNA-Seq	Relapse
-PPTC_P0034	PPTC_OBFZLKBH	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0013	PPTC_OBLSWNF5	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0187	PPTC_OBMYTSXZ	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0098	PPTC_OM0JCZUP	PPTC	Embryonal tumor with multilayer rosettes	RNA-Seq	Primary Tumor
-PPTC_P0111	PPTC_OMTNBDYU	PPTC	High-grade glioma	RNA-Seq	Primary Tumor
-PPTC_P0153	PPTC_OMYYDNIE	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0208	PPTC_ONIX2OUQ	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0081	PPTC_OPN43SQN	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0096	PPTC_P0ZLDYX1	PPTC	Ewing sarcoma	RNA-Seq	Primary Tumor
-PPTC_P0076	PPTC_PA8ZOTZO	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0033	PPTC_PDZPNOQS	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0070	PPTC_PROQBSZV	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0164	PPTC_PWS4VOOF	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0149	PPTC_PXATEUM3	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0222	PPTC_PXIEGPDN	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0113	PPTC_QEEFX28F	PPTC	Ependymoma	RNA-Seq	Relapse
-PPTC_P0018	PPTC_QL8WKPTN	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0077	PPTC_QNLYDL7E	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0115	PPTC_R9NRW0SB	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Relapse
-PPTC_P0029	PPTC_RFBY14FU	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0090	PPTC_RGDKCUY9	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0223	PPTC_RKVE3BVH	PPTC	Osteosarcoma	RNA-Seq	Relapse
-PPTC_P0097	PPTC_ROYBCLFP	PPTC	Rhabdoid tumor of the kidney	RNA-Seq	Primary Tumor
-PPTC_P0231	PPTC_ROYQY6FA	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0095	PPTC_RTTBHIGM	PPTC	Ewing sarcoma	RNA-Seq	Primary Tumor
-PPTC_P0075	PPTC_SL7X6FA8	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0049	PPTC_SPCD6MEM	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0239	PPTC_SPSAPLY7	PPTC	Rhabdomyosarcoma	RNA-Seq	Relapse
-PPTC_P0155	PPTC_STCKL0W6	PPTC	Wilms tumor	RNA-Seq	Post-treatment
-PPTC_P0212	PPTC_SXJOYIFN	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0116	PPTC_T4HUMP5O	PPTC	Ependymoma	RNA-Seq	Primary Tumor
-PPTC_P0122	PPTC_T6XDCWG5	PPTC	Embryonal tumor with multilayer rosettes	RNA-Seq	Primary Tumor
-PPTC_P0240	PPTC_T9PZ1IEB	PPTC	Rhabdomyosarcoma	RNA-Seq	Relapse
-PPTC_P0004	PPTC_THNC7QJU	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0209	PPTC_TM6SSY3A	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0078	PPTC_TPFVVATE	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0242	PPTC_TR2YZK4U	PPTC	Rhabdomyosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0146	PPTC_TSWFBHTQ	PPTC	Wilms tumor	RNA-Seq	Primary Tumor
-PPTC_P0060	PPTC_TVALFRGF	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0161	PPTC_U2YXO1S3	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0047	PPTC_U9VYDUIO	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0183	PPTC_UCBE34K1	PPTC	High-grade glioma	RNA-Seq	Primary Tumor
-PPTC_P0199	PPTC_UCETYUGB	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0071	PPTC_UKKD06QF	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0007	PPTC_UMZQEWLR	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0140	PPTC_US2HAP7Z	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0037	PPTC_UVDGUNOE	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0142	PPTC_VBQI3RMZ	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Unknown
-PPTC_P0121	PPTC_VBSQ8QPM	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0235	PPTC_VFEZCN4E	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0048	PPTC_VGGB3IXB	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0198	PPTC_VGSIMDQZ	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0061	PPTC_VID4Q7JK	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0148	PPTC_VPAEHQ6T	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Primary Tumor
-PPTC_P0005	PPTC_VPO2GVMT	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0163	PPTC_VT41AM3Q	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0086	PPTC_VVIZKDPE	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0035	PPTC_W8HVDSZP	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0170	PPTC_WB6OSRXV	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0064	PPTC_WESCL9QP	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0129	PPTC_WRUCBXTZ	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0181	PPTC_WS87CENR	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
-PPTC_P0186	PPTC_WTDE4P9T	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Primary Tumor
-PPTC_P0045	PPTC_WUKQBC96	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0173	PPTC_WXDTSV0D	PPTC	Small Cell Carcinoma	RNA-Seq	Primary Tumor
-PPTC_P0026	PPTC_X1WMQHXD	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0030	PPTC_XFEQHDGT	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Relapse
-PPTC_P0132	PPTC_XGA6F4WX	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0080	PPTC_XI4JM8IG	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0143	PPTC_XTIO37FZ	PPTC	Embryonal tumor with multilayer rosettes	RNA-Seq	Relapse
-PPTC_P0213	PPTC_Y1SHZMSW	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0135	PPTC_Y5CIZ6MP	PPTC	Ependymoma	RNA-Seq	Relapse
-PPTC_P0119	PPTC_Y6TUHSFA	PPTC	Medulloblastoma	RNA-Seq	Primary Tumor
-PPTC_P0175	PPTC_YC6U3SFY	PPTC	Clear cell sarcoma of the kidney	RNA-Seq	Relapse
-PPTC_P0023	PPTC_YCDLFM9Z	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0157	PPTC_YDPK5ISE	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0160	PPTC_YUSQG6GC	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0087	PPTC_Z6FKX3MA	PPTC	Ewing sarcoma	RNA-Seq	Relapse
-PPTC_P0210	PPTC_Z6KSXVO5	PPTC	Osteosarcoma	RNA-Seq	Primary Tumor
-PPTC_P0066	PPTC_Z83IPQ2P	PPTC	Neuroblastoma	RNA-Seq	Relapse
-PPTC_P0089	PPTC_ZFGLUN4R	PPTC	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
-PPTC_P0167	PPTC_ZFRSXHVQ	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0100	PPTC_ZJ1S3BGD	PPTC	Diffuse intrinsic pontine glioma	RNA-Seq	Relapse
-PPTC_P0059	PPTC_ZLVJRHPW	PPTC	Atypical Teratoid Rhabdoid Tumor	RNA-Seq	Primary Tumor
-PPTC_P0079	PPTC_ZVWIYKN9	PPTC	Neuroblastoma	RNA-Seq	Primary Tumor
 DCC002	TARGET-10-DCC002-09A-01R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
 PAKHZT	TARGET-10-PAKHZT-03A-01R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor
 PAKKCA	TARGET-10-PAKKCA-03A-01R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Primary Tumor

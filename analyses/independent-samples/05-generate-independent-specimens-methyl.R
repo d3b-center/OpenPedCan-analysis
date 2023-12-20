@@ -26,10 +26,10 @@ histology_df <- histology_df[sample(nrow(histology_df)), ]
 independent_rna_sample_df_each <- readr::read_tsv("results/independent-specimens.rnaseqpanel.primary-plus.eachcohort.tsv")
 independent_rna_sample_df_all <- readr::read_tsv("results/independent-specimens.rnaseqpanel.primary-plus.tsv")
 
-# Filter for tumor samples where composition is not Derived Cell Line and PDX
+# Filter for tumor samples where composition is not Derived Cell Line and Patient Derived Xenograft
 histology_df <- histology_df %>%
   dplyr::filter(sample_type == "Tumor",
-                !composition %in% c("Derived Cell Line", "PDX"),
+                !composition %in% c("Derived Cell Line", "Patient Derived Xenograft"),
                 !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
                        fixed = FALSE, useBytes = FALSE)) 
 
