@@ -63,7 +63,13 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     # 'Tumor_Sample_Barcode'
     # if the files have consensus in the name, the first line of the file does
     # not contain MAF version information
-    if (grepl("hotspots", filename)) {
+    
+    # Skip tumor only MAF
+    if (grepl("tumor-only", filename)) {
+      message("Skipping tumor only MAF file: ", filename)
+      return(NULL)
+    }
+    if (grepl("snv-consensus-plus-hotspots", filename)) {
       snv_file <- data.table::fread(filename,
                                     skip = 1,  # skip version string
                                     data.table = FALSE,
@@ -143,11 +149,16 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     # in a column 'Kids_First_Biospecimen_ID'
     independent_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
+ # skip rmats file
+    # Skip tumor only MAF
   } else if (grepl("splice-events-rmats", filename)) {
-    # in a column 'sample_id'
-    rmats_file <- data.table::fread(filename, select = "sample_id") %>%
-    unique()
-    biospecimen_ids <- unique(rmats_file$sample_id)
+    message("Skipping splice events file: ", filename)
+      return(NULL)
+  #   } else if (grepl("splice-events-rmats", filename)) {
+  #  # in a column 'sample_id'
+   # rmats_file <- data.table::fread(filename, select = "sample_id") %>%
+    #unique()
+    #biospecimen_ids <- unique(rmats_file$sample_id)
   } else {
     # error-handling
     stop("File type unrecognized by 'get_biospecimen_ids'")
