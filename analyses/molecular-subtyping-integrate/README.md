@@ -12,3 +12,153 @@ bash run-subtyping-integrate.sh
 ### Module contents
 
 `01-integrate-subtyping.Rmd` integrates results from compiled results in `compiled_molecular_subtypes_with_clinical_pathology_feedback.tsv` to `histologies-base.tsv`
+
+### Table of cancers and resulting cancer group (v13)
+
+| stripped_subtype                                                                        | cancer_group                            |
+|-----------------------------------------------------------------------------------------|-----------------------------------------|
+| Abdominal inflammatory myofibroblastic tumor                                            | Other tumor                             |
+| Acute Promyelocytic Leukemia                                                            | Acute Myeloid Leukemia                  |
+| Adamantinomatous craniopharyngioma                                                      | Adamantinomatous Craniopharyngioma      |
+| Adenoma                                                                                 | NA                                      |
+| Adrenal mass                                                                            | Other tumor                             |
+| Anaplastic (malignant) meningioma                                                       | Meningioma                              |
+| Aneurismal bone cyst (abc) with col1a1-usp6 fusion                                      | Other tumor                             |
+| Aneurysmal bone cyst (abc)                                                              | Other tumor                             |
+| Aplastic anemia                                                                         | NA                                      |
+| Arteriovenous malformation                                                              | NA                                      |
+| Atypical Lymph Node                                                                     | NA                                      |
+| Atypical Neurofibromatous Neoplasm of Uncertain Biologic Potential                      | Other tumor                             |
+| Atypical Spitz Nevus                                                                    | Other tumor                             |
+| Atypical Teratoid Rhabdoid Tumor (ATRT)                                                 | Atypical Teratoid Rhabdoid Tumor        |
+| Atypical choroid plexus papilloma                                                       | Choroid plexus tumor                    |
+| Atypical lymphoid infiltrate                                                            | NA                                      |
+| Atypical meningioma                                                                     | Meningioma                              |
+| Atypical vascular lesion                                                                | Other tumor                             |
+| Benign Neoplasm                                                                         | NA                                      |
+| Bone marrow cellularity                                                                 | Other tumor                             |
+| Bone marrow failure                                                                     | Other tumor                             |
+| Brain Lower Grade Glioma                                                                | Low-grade glioma                        |
+| Brainstem glioma- Diffuse intrinsic pontine glioma                                      | Diffuse intrinsic pontine glioma        |
+| Cavernoma                                                                               | NA                                      |
+| Cellular Congenital Mesoblastic Nephroma                                                | Other tumor                             |
+| Cerebral ventriculomegaly                                                               | Other tumor                             |
+| Childhood Astrocytic Tumor                                                              | Other tumor                             |
+| Cholesterol granuloma                                                                   | NA                                      |
+| Chondroma                                                                               | NA                                      |
+| Choroid plexus carcinoma                                                                | Choroid plexus tumor                    |
+| Choroid plexus papilloma                                                                | Choroid plexus tumor                    |
+| Chronic myeloid leukemia pathway                                                        | Other tumor                             |
+| Clear Cell Sarcoma of the Kidney                                                        | Clear cell sarcoma of the kidney        |
+| Clear cell meningioma                                                                   | Meningioma                              |
+| Congenital Mesoblastic Nephroma                                                         | Other tumor                             |
+| Cranial fasciitis                                                                       | NA                                      |
+| Cyst                                                                                    | Other tumor                             |
+| Dermoid cyst                                                                            | NA                                      |
+| Diffuse hemispheric glioma                                                              | Astrocytoma                             |
+| Diffuse leptomeningeal glioneuronal tumor                                               | NA                                      |
+| Dysembryoplastic neuroepithelial tumor (DNET)                                           | Dysembryoplastic neuroepithelial tumor  |
+| Dysembryoplastic neuroepithelial tumor (DNET);Dysplasia/Gliosis;Ganglioglioma           | NA                                      |
+| Dysembryoplastic neuroepithelial tumor (DNET);Ganglioglioma                             | NA                                      |
+| Dysplasia/Gliosis                                                                       | NA                                      |
+| Ependymoma;Metastatic secondary tumors                                                  | NA                                      |
+| Epidermoid cyst                                                                         | NA                                      |
+| Epilepsy                                                                                | NA                                      |
+| Familial adenomatous polyposis                                                          | Other tumor                             |
+| Fibroma                                                                                 | NA                                      |
+| Fibromixoid lesion                                                                      | Fibromyxoid lesion                      |
+| Giant Cell Granuloma                                                                    | NA                                      |
+| Giant cell tumor of bone                                                                | NA                                      |
+| Glial-neuronal tumor                                                                    | Glial-neuronal tumor NOS                |
+| Glioblastoma Multiforme Pathway                                                         | NA                                      |
+| Glioma                                                                                  | Other tumor                             |
+| Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)                    | NA                                      |
+| Gliosis                                                                                 | Other tumor                             |
+| Granular Cell Tumor                                                                     | Other tumor                             |
+| Hamartoma                                                                               | NA                                      |
+| Hemangioma                                                                              | NA                                      |
+| Hematoma                                                                                | NA                                      |
+| High-grade glioma                                                                       | Astrocytoma;Oligoastrocytoma            |
+| High-grade glioma                                                                       | Glioblastoma                            |
+| High-grade glioma/astrocytoma (WHO grade III/IV)                                        | High-grade glioma                       |
+| High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform                 | NA                                      |
+| High-grade glioma/astrocytoma (WHO grade III/IV);Oligodendroglioma                      | NA                                      |
+| Histiocytic Tumor                                                                       | Histiocytic tumor                       |
+| Hypocellular bone marrow                                                                | Other tumor                             |
+| Hypophyseal stalk thickening                                                            | Other tumor                             |
+| Inclusion cyst                                                                          | NA                                      |
+| Inflammatory Myofibroblastic Tumor                                                      | Other tumor                             |
+| Inflammatory lesion                                                                     | Other tumor                             |
+| Inflammatory lesion                                                                     | NA                                      |
+| Kidney Chromophobe                                                                      | Chromophobe renal cell carcinoma        |
+| Kidney Renal Clear Cell Carcinoma                                                       | Renal Clear Cell Carcinoma              |
+| Kidney Renal Papillary Cell Carcinoma                                                   | Renal Papillary Cell Carcinoma          |
+| Lipoblastoma                                                                            | NA                                      |
+| Lipoma                                                                                  | NA                                      |
+| Lipomyelomeningocele                                                                    | Other tumor                             |
+| Low-grade glioma/astrocytoma (WHO grade I/II)                                           | Low-grade glioma                        |
+| Lymphadenitis                                                                           | NA                                      |
+| Malignant PEComa                                                                        | Other tumor                             |
+| Malignant peripheral nerve sheath tumor (MPNST)                                         | Malignant peripheral nerve sheath tumor |
+| Malignant peripheral nerve sheath tumor (MPNST);Neurofibroma/Plexiform                  | NA                                      |
+| Melanocytoma                                                                            | Melanocytic tumor                       |
+| Meningioma;Neurofibroma/Plexiform                                                       | NA                                      |
+| Meningioma;Schwannoma                                                                   | NA                                      |
+| Meningothelial meningioma                                                               | Meningioma                              |
+| Microcytic Anemia                                                                       | NA                                      |
+| Mixed Lineage Leukemia                                                                  | Acute Lymphoblastic Leukemia            |
+| Monomorphic Post-Transplant Lymphoproliferative Disorder                                | Other tumor                             |
+| Mucoepidermoid Carcinoma                                                                | Other tumor                             |
+| Myelodysplastic syndrome                                                                | Other tumor                             |
+| Myofibroblastic tumor                                                                   | Inflammatory Myofibroblastic Tumor      |
+| Myofibroma                                                                              | NA                                      |
+| Myxoid spindle cell tumor                                                               | Other tumor                             |
+| Myxopapillary ependymoma                                                                | Ependymoma                              |
+| Necrotizing myelopathy                                                                  | NA                                      |
+| Neoplasm of unspecified behavior of endocrine glands                                    | Other tumor                             |
+| Neuroblastic tumor                                                                      | Other tumor                             |
+| Neuroendocrine carcinoma                                                                | Other tumor                             |
+| Neuroepithelial neoplasm with EWSR1--PLAG1 fusion                                       | Glial-neuronal tumor                    |
+| Neurofibroma/Plexiform;Schwannoma                                                       | NA                                      |
+| Neutropenia                                                                             | Other tumor                             |
+| Nodular fasciitis                                                                       | Other tumor                             |
+| Non-Cancer Diagnosis                                                                    | NA                                      |
+| Non-cancer diagnosis                                                                    | NA                                      |
+| Non-germinomatous germ cell tumor                                                       | NA                                      |
+| Non-germinomatous germ cell tumor;Teratoma                                              | NA                                      |
+| Nonintractable epilepsy without status epilepticus                                      | NA                                      |
+| Noonan syndrome                                                                         | Other tumor                             |
+| Not Reported                                                                            | Other tumor                             |
+| Ossifying fibroma                                                                       | NA                                      |
+| Osteoblastoma                                                                           | NA                                      |
+| Osteoma                                                                                 | NA                                      |
+| Other                                                                                   | Astroblastoma                           |
+| Papillary Thyroid Carcinoma Pathway                                                     | Other tumor                             |
+| Perineuroma                                                                             | Neurofibroma/Plexiform                  |
+| Pilomatricoma                                                                           | NA                                      |
+| Pleuropulmonary blastoma                                                                | Other tumor                             |
+| Portions of white matter with a few reactive astrocytes and rare cells with mild atypia | Other tumor                             |
+| Post-Transplant Lymphoproliferative Disorder                                            | NA                                      |
+| Posterior fossa group A (PFA) ependymoma                                                | Ependymoma                              |
+| Posterior fossa group B (PFB) ependymoma                                                | Ependymoma                              |
+| Posterior fossa subependymoma                                                           | Ependymoma                              |
+| Primary myelofibrosis                                                                   | Other tumor                             |
+| Reactive connective tissue                                                              | Other tumor                             |
+| Recurrent Acute Leukemia                                                                | NA                                      |
+| Recurrent Glioma                                                                        | Other tumor                             |
+| Rosai-dorfman                                                                           | Rosai-Dorfman disease                   |
+| Shwachman-diamond syndrome                                                              | Other tumor                             |
+| Solid pseudopapillary neoplasm of the pancreas                                          | Other tumor                             |
+| Spinal Cord Neoplasm                                                                    | Other tumor                             |
+| Spinal ependymoma                                                                       | Ependymoma                              |
+| Spinal subependymoma                                                                    | Ependymoma                              |
+| Spindle cell neoplasm                                                                   | Other tumor                             |
+| Spinocerebellar ataxia type 7                                                           | NA                                      |
+| Subependymal Giant Cell Astrocytoma (SEGA)                                              | Subependymal Giant Cell Astrocytoma     |
+| Supratentorial ependymoma                                                               | Ependymoma                              |
+| Thrombocytopenia                                                                        | Other tumor                             |
+| Thrombocytosis                                                                          | Other tumor                             |
+| Transient Abnormal Myelopoiesis Associated with Down Syndrome                           | NA                                      |
+| Type ii pleuropulmonary blastoma                                                        | Other tumor                             |
+| Undifferentiated malignant neoplasm                                                     | Other tumor                             |
+| Vascular malformation                                                                   | Other tumor                             |

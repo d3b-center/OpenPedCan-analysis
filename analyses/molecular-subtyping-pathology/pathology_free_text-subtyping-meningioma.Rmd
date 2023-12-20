@@ -76,6 +76,7 @@ meningioma_df <- histologies_df %>%
   # Retain only relevant identifier and disease label columns
   dplyr::select(Kids_First_Biospecimen_ID,
                 Kids_First_Participant_ID,
+                match_id,
                 sample_id,
                 tumor_descriptor,
                 pathology_free_text_diagnosis,

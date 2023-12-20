@@ -87,6 +87,7 @@ subtype_df <- histologies_df %>%
 # Subset to relevant ID and disease labels column
   select(Kids_First_Biospecimen_ID,
          Kids_First_Participant_ID,
+         match_id,
          sample_id,
          pathology_diagnosis,
          tumor_descriptor,
@@ -97,7 +98,7 @@ subtype_df <- histologies_df %>%
 
 subtype_df <- subtype_df %>%
   inner_join(gnt_subtyped,
-             by=c("Kids_First_Participant_ID", "sample_id", "Kids_First_Biospecimen_ID")) 
+             by=c("Kids_First_Participant_ID", "match_id", "sample_id", "Kids_First_Biospecimen_ID")) 
 
 
 ```
