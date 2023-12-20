@@ -27,7 +27,10 @@ exact_path_dx<- c(
   "Brainstem glioma- Diffuse intrinsic pontine glioma",
   "Glioblastoma",
   "Astrocytoma;Oligoastrocytoma",
-  "Astrocytoma"
+  "Astrocytoma",
+  "High-grade glioma/astrocytoma (WHO grade III/IV);Oligodendroglioma",
+  "High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform",
+  "Gliomatosis Cerebri;High-grade glioma/astrocytoma (WHO grade III/IV)"
 )
 
 # Gliomatosis Cerebri can be high grade glioma or low grade 
