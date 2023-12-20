@@ -82,9 +82,9 @@ tumor_only_snv_file <- file.path(root_dir, "data", "snv-mutect2-tumor-only-plus-
 snv_file <- file.path(root_dir, "data", "snv-consensus-plus-hotspots.maf.tsv.gz")
 
 tumor_only_snv <- read_tsv(tumor_only_snv_file) %>%
-  mutate(gnomad_3_1_1_AC_popmax = as.integer(gnomad_3_1_1_AC_popmax))
-
+  select(!grepl("gnomad"))
 snv_df <- read_tsv(snv_file, comment = '#') %>%
+  select(!grepl("gnomad")) %>%
   bind_rows(tumor_only_snv) %>%
   filter(Tumor_Sample_Barcode %in% metadata$Kids_First_Biospecimen_ID,
            Hugo_Symbol %in% c("BRAF","CTNNB1"))
