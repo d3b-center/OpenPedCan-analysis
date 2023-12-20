@@ -136,10 +136,10 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     ## for gtex RNA-seq
     gtex <- readr::read_rds(filename)
     biospecimen_ids <- unique(colnames(gtex))
-  } else if (grepl("methyl", filename)){
-      expression_file <- readr::read_rds(filename) %>%
-        dplyr::select(-Probe_ID)
-      biospecimen_ids <- unique(colnames(expression_file))
+ # } else if (grepl("methyl", filename)){
+  #    expression_file <- readr::read_rds(filename) %>%
+   #     dplyr::select(-Probe_ID)
+    #  biospecimen_ids <- unique(colnames(expression_file))
     } else {
       expression_file <- readr::read_rds(filename)
       biospecimen_ids <- unique(colnames(expression_file))
@@ -149,9 +149,11 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     independent_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
  # skip rmats file
-    # Skip tumor only MAF
   } else if (grepl("splice-events-rmats", filename)) {
     message("Skipping splice events file: ", filename)
+      return(NULL)
+  } else if (grepl("methyl", filename)) {
+      message("Skipping methylation file: ", filename)
       return(NULL)
   #   } else if (grepl("splice-events-rmats", filename)) {
   #  # in a column 'sample_id'
@@ -392,10 +394,10 @@ gtex_brain_cerebellum <- c("GTEX-111FC-3326-SM-5GZYV", "GTEX-117XS-3126-SM-5GIDP
 #### Samples we need to include to run methylation-summary module --------------
 
 # For more information, see the 00-enrich-methyl-rnaseq-examples.Rmd notebook
-methyl_samples <- c("TARGET-40-PANVJJ-01A-01D.M", "TARGET-40-PAKUZU-01A-01D.M", 
-                    "TARGET-50-PAJMRL-01A-01D.M", "TARGET-50-PAJNRL-01A-01D.M", 
-                    "TARGET-40-0A4I48-01A-01D.M", "BS_QE0MYJAD", "BS_5YNY8WRA",
-                    "BS_B81HY49C", "BS_DKTVT34S", "BS_C32A6KDR")
+#methyl_samples <- c("TARGET-40-PANVJJ-01A-01D.M", "TARGET-40-PAKUZU-01A-01D.M", 
+#                    "TARGET-50-PAJMRL-01A-01D.M", "TARGET-50-PAJNRL-01A-01D.M", 
+#                    "TARGET-40-0A4I48-01A-01D.M", "BS_QE0MYJAD", "BS_5YNY8WRA",
+#                    "BS_B81HY49C", "BS_DKTVT34S", "BS_C32A6KDR")
 rnaseq_samples <- c("TARGET-40-PANVJJ-01A-01R", "TARGET-40-PAKUZU-01A-01R", 
                     "TARGET-50-PAJMRL-01A-01R", "TARGET-50-PAJNRL-01A-01R", 
                     "TARGET-40-0A4I48-01A-01R", "BS_JT82QGXF", "BS_AGTPCRR4", 
@@ -413,7 +415,7 @@ histology_df <- read_tsv(file.path(data_directory, "histologies.tsv"),
 # get the participant ID to biospecimen ID mapping
 id_mapping_df <- histology_df %>%
   # remove exp strategies not needed for subset (proteomics)
-  dplyr::filter(!experimental_strategy %in% c("Whole Cell Proteomics", "Phospho-Proteomics")) %>%
+  dplyr::filter(!experimental_strategy %in% c("Whole Cell Proteomics", "Phospho-Proteomics", "Methylation")) %>%
   dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID) %>%
   dplyr::distinct()
 
@@ -430,16 +432,10 @@ if (running_locally) {
 }
 
 # drop GISTIC zipped file from this list 
-files_to_subset <- files_to_subset[-grep("gistic.zip", files_to_subset)]
+# drop rMATs, tumor only (for now), and methylation files from this list 
+files_to_subset <- files_to_subset[-grep("gistic.zip|splice-events-rmats|snv-mutect2-tumor-only|methyl", files_to_subset)]
 files_to_subset
 
-# drop rMATs file from this list 
-files_to_subset <- files_to_subset[-grep("splice-events-rmats", files_to_subset)]
-files_to_subset
-
-# drop tumor only MAF  file from this list 
-files_to_subset <- files_to_subset[-grep("snv-mutect2-tumor-only", files_to_subset)]
-files_to_subset
 
 # for each file, extract the participant ID list by first obtaining the
 # biospecimen IDs and then mapping back to participant ID
@@ -576,9 +572,7 @@ message(paste0("\nAppending biospecimen IDs of interest to lists..."))
 # for each rnaseq rds instance, add in biospecimen IDs for samples we know have
 # a positive example of TP53 mutation for tp53_nf1_score, samples that 
 # can fully test the batch correction module, and of samples for patients 
-# we know have both methylation and rnaseq data 
-rds_files <- 
-  names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
+rds_files <- names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
 rds_files <- rds_files[-grep("tcga", rds_files)]
 rds_files <- rds_files[-grep("methyl", rds_files)]
 rds_files <- rds_files[-grep("gtex", rds_files)]
@@ -598,19 +592,18 @@ biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
 
 # for each methyl rds instance, add in biospecimen IDs of samples for patients 
 # we know have both methylation and rnaseq data
-rds_files <- 
-  names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
-rds_files <- rds_files[grep("methyl", rds_files)]
-biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(rds_files, ~ append(.x, methyl_samples))
+#rds_files <- names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
+#rds_files <- rds_files[grep("methyl", rds_files)]
+#biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+#  purrr::modify_at(rds_files, ~ append(.x, methyl_samples))
 
 # for methyl primary each cohort independent list instance, add in biospecimen IDs
 # of samples for patients we know have both methylation and rnaseq data
-independent_files <- 
-  names(biospecimen_ids_for_subset[grep("independent", names(biospecimen_ids_for_subset))])
-independent_files <- independent_files[grep("methyl.primary.eachcohort", independent_files)]
-biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(independent_files, ~ append(.x, methyl_samples))
+#independent_files <- 
+#  names(biospecimen_ids_for_subset[grep("independent", names(biospecimen_ids_for_subset))])
+#independent_files <- independent_files[grep("methyl.primary.eachcohort", independent_files)]
+#biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
+#  purrr::modify_at(independent_files, ~ append(.x, methyl_samples))
 
 # for rnaseq primary each cohort independent list instance, add in biospecimen IDs
 # of samples for patients we know have both methylation and rnaseq data

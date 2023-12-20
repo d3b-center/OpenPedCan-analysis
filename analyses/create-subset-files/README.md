@@ -21,7 +21,7 @@ Non-matched samples are also added to each file (10% of `--num_matched`), which 
 Some files are copied over in their entirety (e.g., BED files).
 See `create_subset_files.sh` for more information.
 
-Note: `splice-events-rmats.tsv.gz` is skipped in v13 due to large size currently, until it is used in a module.
+Note: `splice-events-rmats.tsv.gz` and all `methyl*` files are skipped in v13 due to large size and that no modules currently routinely utilize these files.
 
 #### Special considerations
 
