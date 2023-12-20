@@ -79,18 +79,27 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     bed_file <- readr::read_tsv(filename)
     biospecimen_ids <- unique(bed_file$Kids_First_Biospecimen_ID)
   } else if (grepl("cnv", filename)) {
-    # the two CNV files now have different structures
-    if (stringr::str_detect(filename, "gistic", negate = TRUE)) {
-      cnv_file <- readr::read_tsv(filename)
+    # Skip files with "gistic" in their name
+    if (grepl("gistic", filename)) {
+      message("Skipping gistic file: ", filename)
+      return(NULL)
     }
-    if (grepl("controlfreec|cnvkit_with_status", filename)) {
+    
+    # Handle other CNV files
+    if (grepl("cnv-controlfreec|cnvkit_with_status", filename)) {
+      cnv_file <- readr::read_tsv(filename)
       biospecimen_ids <- unique(cnv_file$Kids_First_Biospecimen_ID)
     } else if (grepl("consensus_wgs_plus_cnvkit_wxs", filename)) {
+      cnv_file <- readr::read_tsv(filename)
       biospecimen_ids <- unique(cnv_file$biospecimen_id)
     } else if (grepl("cnv-gatk", filename)) {
+      cnv_file <- readr::read_tsv(filename)
       biospecimen_ids <- unique(cnv_file$BS_ID)
-    } else {
+    } else if (grepl("cnv-cnvkit|cnv-consensus.", filename)) {
+      cnv_file <- readr::read_tsv(filename)
       biospecimen_ids <- unique(cnv_file$ID)
+    } else {
+      stop("Unrecognized CNV file type or missing implementation for file: ", filename)
     }
   } else if (grepl("consensus_seg_with_status", filename)) {
     cn_seg_status_file <- readr::read_tsv(filename)
@@ -136,8 +145,8 @@ get_biospecimen_ids <- function(filename, id_mapping_df) {
     biospecimen_ids <- unique(independent_file$Kids_First_Biospecimen_ID)
   } else if (grepl("splice-events-rmats", filename)) {
     # in a column 'sample_id'
-    rmats_file <- arrow::read_tsv_arrow(filename, select = "sample_id") %>%
-      unique()
+    rmats_file <- data.table::fread(filename, select = "sample_id") %>%
+    unique()
     biospecimen_ids <- unique(rmats_file$sample_id)
   } else {
     # error-handling
