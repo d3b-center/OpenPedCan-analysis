@@ -441,7 +441,6 @@ DGD	Wilms tumor	Wilms tumor	No	No
 PPTC	Wilms tumor	Wilms tumor	No	No
 TARGET	Wilms tumor	Wilms tumor	No	No
 PBTA	Dysplasia/Gliosis	NA	No	Yes
-PBTA	High-grade glioma/astrocytoma (WHO grade III/IV);Neurofibroma/Plexiform	NA	No	Yes
 PBTA	Diffuse leptomeningeal glioneuronal tumor,  MAPK	NA	Yes	Yes
 PBTA	Osteoblastoma	NA	No	Yes
 DGD	Non-cancer diagnosis	NA	No	Yes
