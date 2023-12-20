@@ -34,7 +34,7 @@ Rscript --vanilla scripts/gatk-missing-wgs.R \
 python3 scripts/merged_to_individual_files.py \
     --manta ../../data/sv-manta.tsv.gz \
     --cnvkit ../../data/cnv-cnvkit.seg.gz \
-    --freec $SCRATCHDIR/cnv-controlfreec-merged.tsv.gz \
+    --freec ../../scratch/cnv-controlfreec-merged.tsv.gz \
     --histologies input/gatk-missing-wgs.tsv \
     --snake $SCRATCHDIR/config_snakemake.yaml \
     --scratch $SCRATCHDIR \
