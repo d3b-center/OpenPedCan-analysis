@@ -101,6 +101,15 @@ cp $FULL_DIRECTORY/cnv-consensus-gistic.zip $SUBSET_DIRECTORY
 # all bed files
 cp $FULL_DIRECTORY/*.bed $SUBSET_DIRECTORY
 
+# DGD fusion file
+cp $FULL_DIRECTORY/fusion-dgd.tsv.gz $SUBSET_DIRECTORY
+
+# All proteomic files
+cp $FULL_DIRECTORY/*protein* $SUBSET_DIRECTORY
+
+# Full tumor only MAF
+cp $FULL_DIRECTORY/snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz $SUBSET_DIRECTORY
+
 # if the md5sum.txt file already exists, get rid of it
 cd $SUBSET_DIRECTORY
 rm -f md5sum.txt
