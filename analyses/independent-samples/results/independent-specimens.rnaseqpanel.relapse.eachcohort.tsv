@@ -49,7 +49,6 @@ PT_62G82T6Q	BS_1Z9AX9JS	PBTA	Low-grade glioma	RNA-Seq	Progressive
 PT_F91JTSZC	BS_208W3AYF	DGD	Rhabdomyosarcoma	Targeted Sequencing	Progressive
 PT_KZ56XHJT	BS_21ET39G7	PBTA	Diffuse midline glioma	RNA-Seq	Progressive
 PT_SKYC4AME	BS_223BM91B	PBTA	Diffuse intrinsic pontine glioma	RNA-Seq	Deceased
-PT_CGVPMMD8	BS_2663ECGN	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_XPGJ239Y	BS_2720P44V	PBTA	Low-grade glioma	RNA-Seq	Recurrence
 PT_S4YNE17X	BS_28CDASF7	PBTA	Schwannoma	RNA-Seq	Progressive
 PT_NTK39NNV	BS_2ADZNNV4	PBTA	Low-grade glioma	RNA-Seq	Progressive
@@ -381,6 +380,7 @@ PT_1DE7WVW3	BS_FZJB74XA	DGD	Low-grade glioma	Targeted Sequencing	Progressive
 PT_3P3HARZ2	BS_FZRCFK0W	PBTA	Low-grade glioma	RNA-Seq	Progressive
 PT_P1290MMP	BS_G1Y281HX	PBTA	Neuroblastoma	RNA-Seq	Progressive
 PT_3CHB9PK5	BS_G3RJTBZD	PBTA	High-grade glioma	RNA-Seq	Deceased
+PT_CGVPMMD8	BS_G3W0DTAX	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_GR02DP0Q	BS_G4VAG1SX	DGD	High-grade glioma	Targeted Sequencing	Progressive
 PT_PKP1250P	BS_G63HYD6N	PBTA	Ependymoma	RNA-Seq	Recurrence
 PT_GS68Z9B6	BS_G7MH3910	DGD	Hemangioblastoma	Targeted Sequencing	Progressive
@@ -562,7 +562,6 @@ PT_279D9QZ8	BS_PKW05VZV	PBTA	Ganglioglioma	RNA-Seq	Recurrence
 PT_7MJ7DK20	BS_PPHFYVTQ	DGD	B Acute Lymphoblastic Leukemia/Lymphoma	Targeted Sequencing	Recurrence
 PT_5SWFTE95	BS_PQAD7B77	DGD	Diffuse intrinsic pontine glioma	Targeted Sequencing	Deceased
 PT_YJGJS19Q	BS_PTXCTHRM	DGD	Oligodendroglioma	Targeted Sequencing	Progressive
-PT_7HEDWKTM	BS_PVCTC2RZ	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_AAZ38138	BS_PWDTGRV4	DGD	Dysembryoplastic neuroepithelial tumor	Targeted Sequencing	Recurrence
 PT_YHJ3TP9X	BS_PZAZJ0BZ	DGD	Other tumor	Targeted Sequencing	Progressive
 PT_0MJEAART	BS_PZVHMSYN	PBTA	Diffuse midline glioma	RNA-Seq	Deceased
@@ -716,7 +715,6 @@ PT_Y585X1BS	BS_W1385R8Y	PBTA	High-grade glioma	RNA-Seq	Recurrence
 PT_AZQ230WT	BS_W2DMN1QX	DGD	Ependymoma	Targeted Sequencing	Progressive
 PT_3T3VGWC6	BS_W434VYPN	DGD	Pleomorphic xanthoastrocytoma	Targeted Sequencing	Recurrence
 PT_XKVFVBY4	BS_W4DB5RP1	PBTA	Diffuse midline glioma	RNA-Seq	Deceased
-PT_EPW84DJW	BS_W4FR71ZE	PBTA	Chordoma	RNA-Seq	Progressive
 PT_CSZ9QA1N	BS_W60RQAKK	PBTA	High-grade glioma	RNA-Seq	Deceased
 PT_XA98HG1C	BS_W644VEVE	PBTA	Medulloblastoma	RNA-Seq	Progressive
 PT_CWXSP19D	BS_W6F1C2J8	PBTA	Schwannoma	RNA-Seq	Recurrence
@@ -789,7 +787,6 @@ PT_MSWWCWZP	BS_YWHJY99A	PBTA	Medulloblastoma	RNA-Seq	Recurrence
 PT_2H3ZMQKY	BS_YZHNMD7J	DGD	Medulloblastoma	Targeted Sequencing	Recurrence
 PT_6B7ZN2M9	BS_YZM9RFVD	PBTA	Ependymoma	RNA-Seq	Recurrence
 PT_Q6CGR1G6	BS_Z0E26P1R	PBTA	Low-grade glioma	RNA-Seq	Progressive
-PT_YAF9B3CC	BS_Z2FRDNFX	PBTA	Chordoma	RNA-Seq	Recurrence
 PT_3MNY9BRY	BS_Z810J1CB	DGD	Pilocytic astrocytoma	Targeted Sequencing	Recurrence
 PT_SNTWW5V0	BS_ZD6XFSVJ	PBTA	Oligodendroglioma	RNA-Seq	Recurrence
 PT_J06X17XH	BS_ZHHAM3AN	PBTA	Sarcoma	RNA-Seq	Recurrence
@@ -809,18 +806,6 @@ PT_03K77G7N	BS_ZYPMR035	PBTA	Oligodendroglioma	RNA-Seq	Recurrence
 PT_VG6S9YQ9	BS_ZYVWSXNK	PBTA	Ependymoma	RNA-Seq	Recurrence
 PT_9YNQJZ5G	BS_ZZPBANDD	PBTA	Dysembryoplastic neuroepithelial tumor	RNA-Seq	Progressive
 PT_RGX23JFP	BS_ZZWMD6FA	PBTA	Ganglioglioma	RNA-Seq	Progressive
-PPTC_P0169	PPTC_0OCOQKP9	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0079	PPTC_9LVWBU8B	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0062	PPTC_ATC9QVCW	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0083	PPTC_AVD76PB4	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0082	PPTC_HDGGBVIL	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0165	PPTC_IW87M9YQ	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0171	PPTC_KB5T2UVM	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0072	PPTC_LQ6Y7A1M	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0081	PPTC_OPN43SQN	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0061	PPTC_VID4Q7JK	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0080	PPTC_XI4JM8IG	PPTC	Neuroblastoma	RNA-Seq	Progressive
-PPTC_P0167	PPTC_ZFRSXHVQ	PPTC	Neuroblastoma	RNA-Seq	Progressive
 PAKSWW	TARGET-10-PAKSWW-04A-01R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Recurrence
 PANCVR	TARGET-10-PANCVR-04A-02R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Recurrence
 PANKAK	TARGET-10-PANKAK-04A-02R	TARGET	Acute Lymphoblastic Leukemia	RNA-Seq	Recurrence

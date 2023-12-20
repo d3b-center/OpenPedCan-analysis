@@ -42,13 +42,8 @@ independent_rna_samples <- function(independent_dna_sample_df = NULL,
   independent_level <- match.arg(independent_level)
   if(!missing(seed)){set.seed(seed)}
   primary_descs <- c("Initial CNS Tumor", "Primary Tumor")
-  relapse_descs <- c("Recurrence", "Progressive", 
+  relapse_descs <- c("Recurrence", "Relapse", "Progressive", 
                      "Progressive Disease Post-Mortem", "Deceased")
-  
-  # add dna-rna match_id column comprising of "Kids_First_Participant_ID" and "sample_id" to histology_df
-  # because some Kids_First_Participant_ID might have more than one sample_id
-  histology_df <- histology_df %>%
-    dplyr::mutate(match_id = paste(Kids_First_Participant_ID, sample_id, sep = "_"))
   
   # Find sample set for the dna independent samples 
   # This will always be the included since in both the following
@@ -236,7 +231,7 @@ independent_rna_samples <- function(independent_dna_sample_df = NULL,
     
     independent_all <- sample_df %>%
       dplyr::distinct(Kids_First_Participant_ID, .keep_all = TRUE) %>%
-      dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, cohort, tumor_descriptor) %>%
+      dplyr::select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, cohort, experimental_strategy, tumor_descriptor) %>%
       arrange(Kids_First_Biospecimen_ID)
     
     return(independent_all)

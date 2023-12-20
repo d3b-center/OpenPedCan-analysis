@@ -31,7 +31,7 @@ independent_dna_samples <- function(histology_df,
   if(!missing(seed)){set.seed(seed)}
   
   primary_descs <- c("Initial CNS Tumor", "Primary Tumor")
-  relapse_descs <- c("Recurrence", "Progressive", 
+  relapse_descs <- c("Recurrence", "Relapse", "Progressive", 
                      "Progressive Disease Post-Mortem", "Deceased")
   
   if(tumor_types %in% c("prefer_primary")){
