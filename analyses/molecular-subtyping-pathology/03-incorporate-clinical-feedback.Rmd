@@ -101,7 +101,8 @@ Identify pnoc003 samples that have differences between clinical review subtype
 and molecular subtype from histone variant mutation status
 
 ```{r}
-diff_subtype <- subtype %>% left_join(pnoc003_review,by=c("Kids_First_Participant_ID","tumor_descriptor")) %>% 
+diff_subtype <- subtype %>% 
+  left_join(pnoc003_review,by=c("Kids_First_Participant_ID","tumor_descriptor")) %>% 
   dplyr::filter(
     # checking for samples where clinically reviewed subtype is H3 WT
     # but molecular subtype is not HGG
@@ -118,6 +119,7 @@ diff_subtype <- subtype %>% left_join(pnoc003_review,by=c("Kids_First_Participan
                 sample_id,
                 `H3 Status`,
                 molecular_subtype,
+                match_id,
                 tumor_descriptor) %>%
   distinct()
 
