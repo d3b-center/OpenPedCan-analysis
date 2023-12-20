@@ -41,7 +41,6 @@ fi
 # download Illumina methylation annotations file if does not exist in data
 # from the data release s3 bucket
 URL="https://d3b-openaccess-us-east-1-prd-pbta.s3.amazonaws.com/open-targets"
-RELEASE="v12"
 PROBES="infinium.gencode.v39.probe.annotations.tsv.gz"
 if [ -f "${DATA_DIRECTORY}/${PROBES}" ]; then
     echo "${PROBES} exists, skip downloading"
@@ -66,11 +65,11 @@ fi
 if [ "$SKIP_SUBSETTING" -lt "1" ]; then
 
   # get list of biospecimen ids for subset files
-#  TMPDIR=./tmp Rscript --vanilla 01-get_biospecimen_identifiers.R \
-#      --data_directory $FULL_DIRECTORY \
-#      --output_file $BIOSPECIMEN_FILE \
-#      --num_matched $NUM_MATCHED \
-#      --local $RUN_LOCAL
+  TMPDIR=./tmp Rscript --vanilla 01-get_biospecimen_identifiers.R \
+      --data_directory $FULL_DIRECTORY \
+      --output_file $BIOSPECIMEN_FILE \
+      --num_matched $NUM_MATCHED \
+      --local $RUN_LOCAL
 
   # subset the files
   TMPDIR=./tmp Rscript --vanilla 02-subset_files.R \
