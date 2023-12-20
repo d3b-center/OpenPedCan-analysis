@@ -110,6 +110,7 @@ cranio_adam_df <- joined_df %>%
   # Filter to relevant ID and disease type label columns
   select(Kids_First_Biospecimen_ID,
          Kids_First_Participant_ID,
+         match_id,
          sample_id,
          broad_histology,
          short_histology,
