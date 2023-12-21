@@ -1,7 +1,4 @@
 # Gather SNV hotspots
-This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
-This analysis is now run upstream and hotspot annotation is included in the SNV MAF files.
-
 
 In this analysis we will evaluate snv and indels from strelka2,mutect2,vardict and lancet in [MAF format](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) for overlaps within hotspots in MSKCC cancer hotspots v2 file downloaded [here](https://github.com/kgaonkar6/OpenPBTA-analysis/blob/recurrence-snv/analyses/hotspots-detection/input/hotspots_v2.xls) as well as use a TERT promoter region overlap to gather known mutations.
 
