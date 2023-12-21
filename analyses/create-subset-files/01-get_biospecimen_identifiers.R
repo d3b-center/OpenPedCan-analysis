@@ -354,14 +354,16 @@ set.seed(opt$seed)
 # For more information, see the 00-enrich-tp53_nf1_score-examples notebook
 tp53_dnaseq <- c("BS_16FT8V4B", "BS_B9QP40ER", "BS_7KR13R3P", "BS_K2K5YSDS", 
                  "TARGET-30-PAPBGH-01A-01W", "TARGET-40-PARGTM-01A-01D",
-                 "TARGET-40-PATPBS-01A-01D", "BS_1XSM0T7R", "BS_YG6FYM9A", 
-                 "BS_QBPZQF73", "BS_S8M4XW3Z", "BS_X2VRDBVG", "BS_YETTZ1NC",
-                 "TARGET-40-PATEEM-01A-01Y")
+                 "TARGET-40-PATPBS-01A-01D")
 tp53_rnaseq <- c("BS_E4QK839R", "BS_XZM79E42", "BS_8ZY4GST0", "BS_S5KDWVEA",
                  "TARGET-30-PAPBGH-01A-01R", "TARGET-40-PARGTM-01A-01R", 
-                 "TARGET-40-PATPBS-01A-01R", "BS_1719EQ53", "BS_D5MT05YK", 
-                 "BS_NW3NGVR8", "BS_3RAM3K7B", "BS_NJ4WPQVK",
-                 "TARGET-40-PATEEM-01A-01R")
+                 "TARGET-40-PATPBS-01A-01R")
+nf1_dnaseq <- c("BS_2J4FG4HV", "BS_QJHY513X", "BS_6DT506HY", 
+                "TARGET-50-PAKKNS-01A-01D", "TARGET-30-PAPVRN-01A-01D",
+                "TARGET-10-PANTSM-04A-01D")
+nf1_rnaseq <- c("BS_81SP2HX4", "BS_KFD5128N", "BS_YDEVMD24", 
+                "TARGET-50-PAKKNS-01A-01R", "TARGET-30-PAPVRN-01A-01R",
+                "TARGET-10-PANTSM-04A-01R")
 
 #### Samples we need to include to run rnaseq-batch-correct module -------------
 
@@ -570,14 +572,14 @@ biospecimen_ids_for_subset <- purrr::map(
 message(paste0("\nAppending biospecimen IDs of interest to lists..."))
 
 # for each rnaseq rds instance, add in biospecimen IDs for samples we know have
-# a positive example of TP53 mutation for tp53_nf1_score, samples that 
+# a positive example of NF1 mutation and TP53 for tp53_nf1_score, samples that 
 # can fully test the batch correction module, and of samples for patients 
 rds_files <- names(biospecimen_ids_for_subset[grep(".rds", names(biospecimen_ids_for_subset))])
 rds_files <- rds_files[-grep("tcga", rds_files)]
 rds_files <- rds_files[-grep("methyl", rds_files)]
 rds_files <- rds_files[-grep("gtex", rds_files)]
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, 
+  purrr::modify_at(rds_files, ~ append(.x, c(tp53_rnaseq, nf1_rnaseq, 
                                              polya_mycn_amp, polya_mycn_nonamp, 
                                              stranded_dmg, polya_dmg, 
                                              stranded_hgg, polya_hgg, 
@@ -614,21 +616,15 @@ biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
   purrr::modify_at(independent_files, ~ append(.x, rnaseq_samples))
 
 # for each snv instance, add in biospecimen IDs for samples we know have a
-# positive example of TP53 mutation for tp53_nf1_score
+# positive example of NF1 mutation and TP53 for tp53_nf1_score
 snv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "snv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq)))
-
-# for each SV instance, add in biospecimen IDs for samples we know have a
-# positive example of TP53 mutation for tp53_nf1_score
-sv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "sv-manta")
-biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(sv_index, ~ append(.x, c(tp53_dnaseq)))
+  purrr::modify_at(snv_index, ~ append(.x, c(tp53_dnaseq, nf1_dnaseq)))
 
 ## add non-GATK samples to cnv file 
-cnv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "cnv")
+  cnv_index <- stringr::str_which(names(biospecimen_ids_for_subset), "cnv")
 biospecimen_ids_for_subset <- biospecimen_ids_for_subset %>%
-  purrr::modify_at(cnv_index, ~ append(.x, c(non_GATK_sample, tp53_dnaseq)))
+  purrr::modify_at(cnv_index, ~ append(.x, c(non_GATK_sample)))
 
 # remove any redundant that might result combining and appending to the 
 # biospecimen IDs lists for subsetting 
