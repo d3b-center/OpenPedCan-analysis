@@ -1,5 +1,4 @@
 ## Expression Plots
-This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 **Module authors:** Komal Rathi ([@komalsrathi](https://github.com/komalsrathi))
 

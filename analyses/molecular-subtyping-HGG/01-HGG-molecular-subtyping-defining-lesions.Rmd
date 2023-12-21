@@ -155,10 +155,12 @@ snv_consensus_hotspot_maf <- data.table::fread(
 # Filter the snv consensus mutation data for the target lesions
 snv_lesions_df <- snv_consensus_hotspot_maf  %>%
   dplyr::filter(Hugo_Symbol %in% c("H3-3A", "H3C2",
-                                   "H3C3", "H3C14") &
+                                   "H3C3", "H3C14",
+                                   "BRAF") &
                   ## add the H3 p.K28I mutation
                   HGVSp_Short %in% c("p.K28M", "p.G35R",
-                                     "p.G35V", "p.K28I")) %>%
+                                     "p.G35V", "p.K28I",
+                                     "p.V600E")) %>%
   dplyr::select(Tumor_Sample_Barcode, Hugo_Symbol, HGVSp_Short) %>%
   dplyr::mutate(
     `H3F3A_H3-3A.K28M` = dplyr::case_when(Hugo_Symbol == "H3-3A" &
@@ -191,7 +193,10 @@ snv_lesions_df <- snv_consensus_hotspot_maf  %>%
                                   TRUE ~ "No"),
     `H3F3A_H3-3A.G35V` = dplyr::case_when(Hugo_Symbol == "H3-3A" &
                                     HGVSp_Short == "p.G35V" ~ "Yes",
-                                  TRUE ~ "No")
+                                  TRUE ~ "No"),
+    `BRAF.V600E` = dplyr::case_when(Hugo_Symbol == "BRAF" &
+                                     HGVSp_Short == "p.V600E|p.640E" ~ "Yes",
+                                   TRUE ~ "No")
   ) %>%
   dplyr::select(
     -HGVSp_Short,
@@ -226,6 +231,7 @@ snv_lesions_df <- snv_lesions_df %>%
       HIST2H3C_H3C14.K28I == "Yes" ~ TRUE,
       `H3F3A_H3-3A.G35R` == "Yes" ~ TRUE,
       `H3F3A_H3-3A.G35V` == "Yes" ~ TRUE,
+      `BRAF.V600E` == "Yes" ~ TRUE,
       TRUE ~ FALSE
     )
   )

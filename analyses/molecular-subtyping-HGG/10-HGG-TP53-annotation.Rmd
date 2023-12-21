@@ -1,6 +1,5 @@
 ---
 title: "TP53 annotation for HGG"
-author: "K S Gaonkar, Jo Lynne Rokita"
 output: html_notebook
 ---
 
@@ -12,7 +11,6 @@ In this notebook we will annotate HGG samples with TP53 status we obtained from 
 library(tidyverse)
 
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
-data_dir <- file.path(root_dir, "data")
 # results folder
 results_dir <- file.path(
   root_dir,
@@ -30,37 +28,43 @@ tp53_status <- read_tsv(file.path(
   "analyses",
   "tp53_nf1_score",
   "results",
-  "tp53_altered_status.tsv"), guess_max = 100000) 
+  "tp53_altered_status.tsv"), guess_max = 100000)
 
-bs_match <- read_tsv(file.path(data_dir, "histologies-base.tsv"), guess_max = 100000) %>%
-  filter(!is.na(pathology_diagnosis),
-         !cohort %in% c("TCGA", "GTEx")) %>%
-  mutate(match_id = paste(Kids_First_Participant_ID, sample_id, tumor_descriptor, composition, cell_line_composition, cell_line_passage, sep = "_")) %>%
-  select(Kids_First_Biospecimen_ID, match_id) 
+tp53_status$Kids_First_Biospecimen_ID_RNA <- as.character(tp53_status$Kids_First_Biospecimen_ID_RNA)
 
 
-hgg_subtypes <- read_tsv(file.path(results_dir,"HGG_cleaned_all_table.tsv")) %>%
-  select(-id) %>%
-  left_join(bs_match)
+hgg_subtypes <- read_tsv(file.path(results_dir,"HGG_cleaned_all_table.tsv")) 
+hgg_subtypes$Kids_First_Biospecimen_ID_RNA <- as.character(hgg_subtypes$Kids_First_Biospecimen_ID_RNA)
 
 ```
 
 # Add tp53 status 
 ```{r}
-hgg_subtypes_tp53 <- hgg_subtypes %>%
-  left_join(tp53_status) %>%
+
+hgg_subtypes <- hgg_subtypes %>%
+  left_join(tp53_status,by=c(
+                             "sample_id",
+                             "Kids_First_Biospecimen_ID_RNA",
+                             "Kids_First_Biospecimen_ID_DNA")) %>%
+  rename("tp53_SNV_indel_counts"="SNV_indel_counts",
+         "tp53_CNV_loss_counts"="CNV_loss_counts",
+         "tp53_HGVSp_Short"="HGVSp_Short" , 
+         "tp53_CNV_loss_evidence"="CNV_loss_evidence",
+         "tp53_hotspot"="hotspot",
+         "tp53_activating"="activating",
+         "tp53_Fusion_counts"="Fusion_counts", 
+         "tp53_Fusion_evidence"="Fusion_evidence") %>%
   mutate(molecular_subtype= case_when(
     tp53_altered %in% c("activated", "loss") ~ stringr::str_c(molecular_subtype,", TP53"),
     TRUE ~ molecular_subtype
   )) %>%
-  select(Kids_First_Participant_ID, Kids_First_Biospecimen_ID, match_id, sample_id, molecular_subtype, molecular_subtype_methyl, CNS_region) %>%
-  arrange(Kids_First_Participant_ID, match_id) %>%
-  unique() %>%
+  # update samples with duplicate subtypes
+  mutate(molecular_subtype = case_when(id == "7316-9066_Solid Tissue" ~ "DMG, H3 K28, TP53",
+                                       id %in% c("7316-9013_Solid Tissue",
+                                                 "7316-6477_Solid Tissue",
+                                                 "7316-6477_Derived Cell Line_Serum-free_11") ~ "HGG, H3 wildtype, TP53",
+                                       TRUE ~ molecular_subtype)) %>%
+  arrange(Kids_First_Participant_ID, sample_id) %>%
   write_tsv(file.path(results_dir,"HGG_molecular_subtype_tp53.tsv"))
-
-# check for duplicates
-nrow(hgg_subtypes_tp53)-length(unique(hgg_subtypes_tp53$Kids_First_Biospecimen_ID))
-
-hgg_subtypes_tp53[duplicated(hgg_subtypes_tp53$Kids_First_Biospecimen_ID) | duplicated(hgg_subtypes_tp53$Kids_First_Biospecimen_ID, fromLast = TRUE), ]
 
 ```
