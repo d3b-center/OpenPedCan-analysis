@@ -1,5 +1,4 @@
 # EFO, MONDO, and NCIT mapping
-This analysis is DEPRECATED and was last run with data release `v12`.
 
 ## Introduction and Purpose
 

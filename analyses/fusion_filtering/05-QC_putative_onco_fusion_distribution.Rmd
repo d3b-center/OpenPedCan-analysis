@@ -1,6 +1,6 @@
 ---
 title: "Cancer group distribution of putative onocgene annotated fusions "
-author: "K S Gaonkar for D3B ; Jaclyn Taroni for CCDL"
+author: "K S Gaonkar for D3B ; Jaclyn Taroni for CCDL, Jo Lynne Rokita (D3b)"
 output: html_notebook
 params:
   histology:
