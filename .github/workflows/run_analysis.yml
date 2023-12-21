@@ -6,7 +6,7 @@ on:
 
 jobs:
   consensus_cn_manta:
-    name: Consensus CN Manta
+    name: Run Analysis - Consensus CN Manta
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,10 +20,10 @@ jobs:
       - name: Run Consensus CN Manta
         uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
         with:
-          entrypoint: copy_number_consensus_call_manta/run_consensus_call.sh
+          entrypoint: ./analyses/copy_number_consensus_call_manta/run_consensus_call.sh
   
   consensus_cn:
-    name: Consensus CN
+    name: Run Analysis - Consensus CN
     needs: consensus_cn_manta
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +38,7 @@ jobs:
       - name: Run Consensus CN
         uses: docker://pgc-images.sbgenomics.com/d3b-bixu/open-pedcan:latest
         with:
-          entrypoint: copy_number_consensus_call/run_consensus_call.sh
+          entrypoint: ./analyses/copy_number_consensus_call/run_consensus_call.sh
 
   run_analysis:
     name: Run Analysis
