@@ -330,7 +330,7 @@ print(paste("Genes not matching all expression matrices =", length(rownames(gene
 ```{r CPTAC_WCP}
 # get CPTAC whole cell proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "CPTAC") %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "PBTA" & sub_cohort == "CPTAC") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all CPTAC whole cell proteomics biospecimen IDs 
@@ -383,7 +383,7 @@ print(paste("WCP biospecimen in cptac-protein-imputed-prot-expression-log2-ratio
 ```{r HOPE_WCP}
 # get HOPE whole cell proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "PBTA") %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "PBTA" & sub_cohort == "HOPE") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all HOPE whole cell proteomics biospecimen IDs 
@@ -414,7 +414,7 @@ print(paste("WCP biospecimen in hope-protein-imputed-prot-expression-abundance.t
 ```{r CPTAC_phos}
 # get CPTAC Phospho-Proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "CPTAC") %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "PBTA" & sub_cohort == "CPTAC") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all CPTAC Phospho-Proteomics biospecimen IDs
@@ -445,7 +445,7 @@ print(paste("Phospho biospecimen in cptac-protein-imputed-phospho-expression-log
 ```{r}
 # get Hope Phospho-Proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "PBTA") %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "PBTA" & sub_cohort == "HOPE") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all Hope Phospho-Proteomics biospecimen IDs
@@ -477,7 +477,7 @@ print(paste("Phospho biospecimen in hope-protein-imputed-phospho-expression-abun
 
 # get GBM Phospho-Proteomics ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "CPTAC GBM") %>%
+  filter(experimental_strategy == "Phospho-Proteomics" & cohort == "CPTAC") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 # check all GBM Phospho-Proteomics biospecimen IDs
@@ -504,7 +504,7 @@ print(paste("Phospho biospecimen in gbm-protein-imputed-phospho-expression-abund
 ####GBM phospho samples 
 # get GBM WCP ids
 hist_ids <- hist_df %>%
-  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "CPTAC GBM") %>%
+  filter(experimental_strategy == "Whole Cell Proteomics" & cohort == "CPTAC") %>%
   dplyr::pull(Kids_First_Biospecimen_ID)
 
 
@@ -713,7 +713,7 @@ print(paste("DNA biospecimen in cnv-controlfreec.tsv.gz missing in histolgies = 
 - Hope tumor only samples (hope-cnv-controlfreec-tumor-only.tsv.gz)
 ```{r cnv tumor only}
 # check that all  biospecimen IDs are in the file
-biospecimen_ids <- readr::read_tsv(file.path(data_dir, "hope-cnv-controlfreec-tumor-only.tsv.gz")) %>%
+biospecimen_ids <- readr::read_tsv(file.path(data_dir, "cnv-controlfreec-tumor-only.tsv.gz")) %>%
   dplyr::pull(Kids_First_Biospecimen_ID) %>%
   unique()
 hist_ids <- hist_df %>%
@@ -725,18 +725,18 @@ hist_ids <- hist_df %>%
 missing_ids <- setdiff(hist_ids, biospecimen_ids)
 missing_hist_ids <- setdiff(biospecimen_ids, hist_ids)
 if (length(missing_ids) > 0) {
-  output_file <- "histologies-samples-missing-in-hope-cnv-controlfreec-tumor-only.tsv"
+  output_file <- "histologies-samples-missing-in-cnv-controlfreec-tumor-only.tsv"
   missing_ids_df <- missing_biospecimen_table(hist_df, missing_ids, output_file)
   missing_ids_df
 }
-print(paste("DNA biospecimen in histolgies missing in hope-cnv-controlfreec-tumor-only.tsv.gz = ", length(missing_ids)))
+print(paste("DNA biospecimen in histolgies missing in cnv-controlfreec-tumor-only.tsv.gz = ", length(missing_ids)))
 if (length(missing_hist_ids) > 0) {
   output_file <- "hope-cnv-controlfreec-tumor-only-samples-missing-in-histologies.tsv"
   missing_hist_ids_df <- tibble::tibble(Kids_First_Biospecimen_ID = missing_hist_ids)
   missing_hist_ids_df %>% readr::write_tsv(file.path(results_dir, output_file))
   missing_hist_ids_df
 }
-print(paste("DNA biospecimen in hope-cnv-controlfreec-tumor-only.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
+print(paste("DNA biospecimen in cnv-controlfreec-tumor-only.tsv.gz missing in histolgies = ", length(missing_hist_ids)))
 ```
 
 
