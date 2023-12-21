@@ -451,9 +451,9 @@ DNA methyaltion profile of "PXA"
 
 ```{r}
 pxa_df_biospecimen <- all_data_df %>% 
-  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E == "p.V600E" & 
+  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E %in% c("p.V600E", "p.V640E") & 
            (CDKN2A_focal_status == "loss" | CDKN2B_focal_status == "loss")) %>% 
-  mutate(molecular_subtype = "PXA") %>% 
+  mutate(molecular_subtype = "HGG, PXA") %>% 
   unique()
   
 ```
