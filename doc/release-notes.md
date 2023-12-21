@@ -1,47 +1,26 @@
 # release notes
 
 ## current release
-- release date: 
-- status: 
-- Overview of changes: 
-  - This release adds the following data: 
-    - Whole cell proteomic and phosphorylation data from HOPE and CPTAC
-      - 218 Whole Cell Proteomics samples from CPTAC (cptac-protein-imputed-prot-expression.tsv)
-      - 218 Phospho-Proteomics samples from CPTAC (cptac-protein-imputed-phospho-expression.tsv)
-      - 90 Whole Cell Proteomics samples from HOPE (hope-protein-imputed-prot-expression.tsv)
-      - 90 Phospho-Proteomics samples from HOPE (hope-protein-imputed-phospho-expression.tsv)
-    - RNA-Seq data
-      - 93 RNA-seq samples from PBTA 
-      - 40 RNA-seq samples from Maris
-      - 243 RNA-seq samples from PPTC
-      - 567 exome cpature targeted sequencing samples from DGD
-    - DNA data
-      - 501 WGS samples from samples PBTA
-      - 656 targeted sequencing samples from DGD
-
-
-## previous release
-## release-v12
 - release date: 2023-04-30
 - status: available
 - overview of changes (See [Ticket 431](https://github.com/PediatricOpenTargets/ticket-tracker/issues/431) for additional details):
   - MAJOR UPDATE
-- This release adds the following data: 
-  - 744 methylation array data samples
-    - 728 PBTA samples (17 normal, 711 tumor)
-    - 16 TARGET samples (6 normal, 10 tumor)
-  - 1264 RNA-seq samples
-    - 1264 PBTA samples (3 normal, 1261 tumor)
-  - 2762 WGS/WXS samples
-    - 2444 PBTA WGS samples (1174 normal, 1270 tumor)
-    - 315 PBTA WXS samples (160 normal, 155 tumor)
+    - This release adds the following data: 
+      - 744 methylation array data samples
+        - 728 PBTA samples (17 normal, 711 tumor)
+        - 16 TARGET samples (6 normal, 10 tumor)
+      - 1264 RNA-seq samples
+        - 1264 PBTA samples (3 normal, 1261 tumor)
+      - 2762 WGS/WXS samples
+        - 2444 PBTA WGS samples (1174 normal, 1270 tumor)
+        - 315 PBTA WXS samples (160 normal, 155 tumor)
 
-  - This release reprocessed these data: 
-    - Harmonize PBTA X01 cohort using GENCODE v39 [Ticket 427](https://github.com/PediatricOpenTargets/ticket-tracker/issues/427)
-  - Harmonize TARGET and GMKF cohorts using GENCODE v39 [Ticket 428](https://github.com/PediatricOpenTargets/ticket-tracker/issues/428)
-  - Remap TCGA expression matrix to GENCODE v39 [Ticket 521](https://github.com/PediatricOpenTargets/ticket-tracker/issues/521)
-  - Remap GTEx TPM matrix to GENCODE v39 gene symbols [Ticket 522](https://github.com/PediatricOpenTargets/ticket-tracker/issues/522)
-
+    - This release reprocessed these data: 
+      - Harmonize PBTA X01 cohort using GENCODE v39 [Ticket 427](https://github.com/PediatricOpenTargets/ticket-tracker/issues/427)
+    - Harmonize TARGET and GMKF cohorts using GENCODE v39 [Ticket 428](https://github.com/PediatricOpenTargets/ticket-tracker/issues/428)
+    - Remap TCGA expression matrix to GENCODE v39 [Ticket 521](https://github.com/PediatricOpenTargets/ticket-tracker/issues/521)
+    - Remap GTEx TPM matrix to GENCODE v39 gene symbols [Ticket 522](https://github.com/PediatricOpenTargets/ticket-tracker/issues/522)
+  
   - files changed
     - files added
       - `20038D-17Q6-01.regions.100bp_padded.bed`
@@ -64,15 +43,15 @@
       - `independent-specimens.rnaseqpanel.primary.pre-release.tsv` renamed to `independent-specimens.rnaseq.primary-pre-release.tsv`
       - `independent-specimens.rnaseqpanel.relapse.pre-release.tsv` to `independent-specimens.rnaseq.relapse-pre-release.tsv`
       - `fusion_summary_lgat_foi.tsv` renamed to `fusion_summary_lgg_hgg_foi.tsv`
-    
+      
     - files longer automatically downloaded
       - `methyl-beta-values.rds`
       - `methyl-m-values.rds`
-    
+      
     - files removed 
       - `tcga-gene-counts-rsem-expected_count-collapsed.rds`
       - `snv-dgd.maf.tsv.gz`
-
+ 
   - Updated data to use GENCODE v39 GDC
     - Update gene_match module GENCODE versions [Ticket 400](https://github.com/PediatricOpenTargets/ticket-tracker/issues/400)
     - Update analysis modules to use GENCODE 39 [Tikcet 422](https://github.com/PediatricOpenTargets/ticket-tracker/issues/422) 
@@ -83,8 +62,8 @@
     - HGG subtyping to include GENCODE v39 gene symbols [Ticket 487](https://github.com/PediatricOpenTargets/ticket-tracker/issues/487)
     - LGG subtyping to take in new H3 gene symbols for GENCODE v39 update [Ticket 488](https://github.com/PediatricOpenTargets/ticket-tracker/issues/488)
     - Update DGD fusion file to match GENCODE v39 symbols + run FusionAnnotator on it [Ticket 490](https://github.com/PediatricOpenTargets/ticket-tracker/issues/490)
-
-
+    
+ 
   - Update histologies file - key changes noted here (other tickets can be found in OpenPedCan repo)
     - Corrected diagnosis for sample `7316-356` [Ticket 366](https://github.com/PediatricOpenTargets/ticket-tracker/issues/366)
     - Update histologies with the correct MYCN status from TARGET and GMKF clinical files [Ticket 415](https://github.com/PediatricOpenTargets/ticket-tracker/issues/415)
@@ -93,10 +72,9 @@
     - Examine the latest base adapt histologies for updates [Ticket 454](https://github.com/PediatricOpenTargets/ticket-tracker/issues/454)
     - Create bixu-generated fields for v12 release [Ticket 481](https://github.com/PediatricOpenTargets/ticket-tracker/issues/481)
     - v12 WGS germline sex estimate [Ticket 492](https://github.com/PediatricOpenTargets/ticket-tracker/issues/492)
-  
   - Updates to help with creation and QC of histologies file
     - Histologies QC to check germline sex estimate [Ticket 426](https://github.com/PediatricOpenTargets/ticket-tracker/issues/426)
-
+ 
   - Molecular subtyping updates
     - Update EPN fusions [Ticket 287](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/287)
     - Update gliomatosis cerebri term in LGAT subtyping [Ticket 358](https://github.com/PediatricOpenTargets/ticket-tracker/issues/358)
@@ -116,7 +94,7 @@
 
   - Update EFO MONDO file 
     - Updated EFO/MONDO mapping using OT custom EFO ontology [Ticket 418](https://github.com/PediatricOpenTargets/ticket-tracker/issues/418) and [Ticket 420](https://github.com/PediatricOpenTargets/ticket-tracker/issues/420) 
-
+ 
   - methylation updates
     - Update methylation summary module [Ticket 371](https://github.com/PediatricOpenTargets/ticket-tracker/issues/371) 
     - Add v12b6 CBTN methylation classifier results to data warehouse [Ticket 391](https://github.com/PediatricOpenTargets/ticket-tracker/issues/391)
@@ -124,7 +102,7 @@
     - Preprocess CBTN methylation arrays [Ticket 430](https://github.com/PediatricOpenTargets/ticket-tracker/issues/430)
     - Update methylation subtyping information for D3b warehouse import [Ticket 434](https://github.com/PediatricOpenTargets/ticket-tracker/issues/434)
     - Create methylation summary tables for display and download on the MTP portal [Ticket 456](https://github.com/PediatricOpenTargets/ticket-tracker/issues/456) and [Ticket 478](https://github.com/PediatricOpenTargets/ticket-tracker/issues/456)
-
+  
   - v12 data release updates
     - Update gene_match module for v12 data release [Ticket 525](https://github.com/PediatricOpenTargets/ticket-tracker/issues/525)
     - Updated efo-mondo-mapping module for v12 data release [Ticket 526](https://github.com/PediatricOpenTargets/ticket-tracker/issues/526)
@@ -132,7 +110,7 @@
     - Update fusion-frequencies tables for v12 data release [Ticket 528](https://github.com/PediatricOpenTargets/ticket-tracker/issues/528)
     - Update snv-frequencies tables for v12  data release [Ticket 529](https://github.com/PediatricOpenTargets/ticket-tracker/issues/529)
     - Update rna-seq-expression-summary-stats tables for v12 data release [Ticket 530](https://github.com/PediatricOpenTargets/ticket-tracker/issues/530)
-
+  
   - other changes
     - Remove metastatic secondary tumors from independent specimen lists [Ticket 383](https://github.com/PediatricOpenTargets/ticket-tracker/issues/383)
     - Update MTP tables filtering module [Ticket 433](https://github.com/PediatricOpenTargets/ticket-tracker/issues/433)
@@ -249,8 +227,8 @@ v12
 └── xgen-exome-research-panel-targets_hg38_ucsc_liftover.100bp_padded.sort.merged.bed
 ```
 
-
-## release-v11
+## archived release
+### release-v11
 - release date: 2022-07-07
 - status: available
 - overview of changes (See [PR 188](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/188) for additional details):
@@ -418,10 +396,8 @@ v11
 ├── uberon-map-gtex-subgroup.tsv
 ├── wgs_canonical_calling_regions.hg38.bed
 └── xgen-exome-research-panel-targets_hg38_ucsc_liftover.100bp_padded.sort.merged.bed
-
 ```
 
-## archived release
 ### release-v10
 - release date: 2021-10-11
 - status: available

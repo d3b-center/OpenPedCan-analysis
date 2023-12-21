@@ -8,4 +8,4 @@ cnv_tumor_only <- read_tsv(file.path(data_dir, "cnv-controlfreec-tumor-only.tsv"
 
 cnv_merged <- cnv_tumor_only %>% 
   bind_rows(cnv_controlfreec) %>% 
-  write_tsv(file.path(data_dir, "cnv-controlfreec-merged.tsv.gz"))
+  write_tsv(file.path(root_dir, "scratch", "cnv-controlfreec-merged.tsv.gz"))

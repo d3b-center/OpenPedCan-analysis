@@ -590,7 +590,7 @@ lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, 
 Write to file.
 
 ```{r}
-write_tsv(lesions_subtypes_final, lesion_subtype_file)
+write_tsv(lesions_subtypes, lesion_subtype_file)
 write_tsv(molecular_subtype_table_final, subtype_file)
 ```
 

@@ -86,7 +86,7 @@ breakpoint_density_sv <- read_tsv(opt$breakpoints_sv) %>%
 
 ## Mutations  
 TumorOnly_SNV <- data.table::fread(opt$TumorOnlySNV) %>%
-  mutate(gnomad_3_1_1_AF_non_cancer = as.character(gnomad_3_1_1_AF_non_cancer)) %>% 
+  select(!grepl("gnomad")) %>% 
   filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"))
 mutations <- data.table::fread(opt$mutations) %>%
   filter(Hugo_Symbol %in% c("NF2", "H3-3A", "H3-3B", "H3C2", "H3C3", "H3C14"),
