@@ -1,6 +1,6 @@
 ---
 title: "Project specific filtering"
-author: "K S Gaonkar (D3B); Jaclyn Taroni (CCDL); Kelsey Keith (DBHI)"
+author: "K S Gaonkar (D3B); Jaclyn Taroni (CCDL); Kelsey Keith (DBHI), Jo Lynne Rokita (D3b)"
 output: html_notebook
 params:
   histology:
@@ -16,8 +16,8 @@ params:
     value: broad_histology
     input: string
   dataRNA:
-    label: "Input filtered fusion dataframe"
-    value: scratch/standardFusionExp_QC_expression_filtered_annotated.RDS
+    label: "Input expression and artifact filtered fusion dataframe"
+    value: data/fusion-annoFuse.tsv.gz
     input: file    
   numCaller:
     label: "Least Number of callers to have called fusion"
@@ -76,7 +76,7 @@ suppressPackageStartupMessages(library("reshape2"))
 suppressPackageStartupMessages(library("qdapRegex"))
 
 #read filtFusion files
-QCGeneFiltered_filtFusion<-readRDS(file.path(root_dir, params$dataRNA))
+QCGeneFiltered_filtFusion<-read_tsv(file.path(root_dir, params$dataRNA))
 
 # results folder
 outputfolder<-params$outputfolder
@@ -166,32 +166,6 @@ fusion_calls <- annoFuse::fusion_driver(fusion_calls,
                                   # we don't want to filter for putative driver fusion yet
                                   filterPutativeDriver = FALSE
                                   )
-```
-
-### Adding check to see if reciprocal fusion exists
-
-```{r}
-
-# check for fusions have reciprocal fusions in the same Sample
-# works only for GeneY -- GeneX ; GeneX -- GeneY matches
-reciprocal_fusion <- function(FusionName,Sample,standardFusioncalls ){
-  Gene1A <- strsplit(FusionName,"--")[[1]][1]
-  Gene1B <- strsplit(FusionName,"--")[[1]][2]
-  reciprocal <- paste0(Gene1B,"--",Gene1A)
-  check <- any(standardFusioncalls$FusionName[standardFusioncalls$Sample==Sample] == reciprocal)
-  df <- data.frame("FusionName"=FusionName,"Sample"=Sample,"reciprocal_exists"=check)
-}
-
-# run reciprocal_fusion function to get status of fusion if reciprocal
-is_reciprocal <- apply(fusion_calls,1,function(x) reciprocal_fusion(x["FusionName"],x["Sample"],fusion_calls))
-
-# convert list to dataframe
-is_reciprocal<-data.frame(Reduce(rbind, is_reciprocal))
-
-# merge to reciprocal status to fusion calls
-fusion_calls <- fusion_calls %>%
-  dplyr::left_join(is_reciprocal,by=c("Sample","FusionName"))
-
 ```
 
 ### Filter Putative Oncogene fusions

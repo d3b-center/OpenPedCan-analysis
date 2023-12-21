@@ -448,9 +448,9 @@ DNA methyaltion profile of "PXA"
 
 ```{r}
 pxa_df_biospecimen <- all_data_df %>% 
-  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E == "p.V600E" & 
+  filter(molecular_subtype_methyl == "PXA" & BRAF_V600E %in% c("p.V600E", "p.V640E") & 
            (CDKN2A_focal_status == "loss" | CDKN2B_focal_status == "loss")) %>% 
-  mutate(molecular_subtype = "PXA") %>% 
+  mutate(molecular_subtype = "HGG, PXA") %>% 
   unique()
   
 ```
@@ -590,7 +590,7 @@ lesions_subtypes_final <- bind_rows(lesions_subtypes_RNA, lesions_subtypes_DNA, 
 Write to file.
 
 ```{r}
-write_tsv(lesions_subtypes_final, lesion_subtype_file)
+write_tsv(lesions_subtypes, lesion_subtype_file)
 write_tsv(molecular_subtype_table_final, subtype_file)
 ```
 

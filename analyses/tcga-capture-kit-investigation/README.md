@@ -1,6 +1,4 @@
 # TCGA brain tumor WXS capture kit investigation
-This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
-
 This is an investigation of the TMB discrepancy between PBTA and TCGA data. 
 
 ## Background

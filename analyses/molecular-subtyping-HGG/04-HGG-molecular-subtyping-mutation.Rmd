@@ -208,7 +208,7 @@ Should they be included in the subset files?_
 ```{r}
 braf_snv_df <- filtered_snv_df %>%
   dplyr::filter(Hugo_Symbol == "BRAF",
-                grepl("V600E", HGVSp_Short))
+                grepl("V600E|V640E", HGVSp_Short))
 
 head(braf_snv_df, n = 10)
 ```
