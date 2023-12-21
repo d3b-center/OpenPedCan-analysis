@@ -1,5 +1,4 @@
 ## Annotate fusion tables with fusion frequencies and fused gene frequencies
-This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 Adapted from [snv-frequencies](https://github.com/logstar/OpenPedCan-analysis/tree/snv-freq/analyses/snv-frequencies) authored by Yuanchao Zhang ([@logstar](https://github.com/logstar))
 

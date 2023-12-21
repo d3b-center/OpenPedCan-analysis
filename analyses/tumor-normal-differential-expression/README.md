@@ -1,5 +1,4 @@
 ## Differential Expression of RNA-seq matrices
-This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 
 This module takes as input histologies and the RNA-Seq expression matrices data, and performs differential expression analysis for all combinations of GTEx subgroup (normal) and cancer histology type (tumor).
