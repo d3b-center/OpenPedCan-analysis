@@ -2,20 +2,11 @@
 [![DOI](https://zenodo.org/badge/358689512.svg)](https://zenodo.org/badge/latestdoi/358689512)
 
 The Open Pediatric Cancer (OpenPedCan) project at the Children’s Hospital of Philadelphia is an open analysis effort that harmonizes pediatric cancer data from multiple sources, performs downstream cancer analyses on these data, provides them on PedcBioPortal, and the NCI's Molecular Targets Platform (MTP).
-For detailed methods, please see our [methods repository](https://github.com/d3b-center/OpenPedCan-methods).
-
-To cite this work, please note the data release used in your work and cite the following:
-1. OpenPBTA:
-Shapiro, J.A., Gaonkar, K.S., Spielman, S.J., Savonen, C.L., Bethell, C.J., Jin, R., Rathi, K.S., Zhu, Y., Egolf, L.E., Farrow, B.K., et al. (2023). OpenPBTA: The Open Pediatric Brain Tumor Atlas. Cell Genom., 100340. [10.1016/j.xgen.2023.100340](https://www.cell.com/cell-genomics/pdf/S2666-979X(23)00115-5.pdf).
-2. OpenPedCan:
-DOI for [all releases](https://zenodo.org/search?q=parent.id%3A6473912&f=allversions%3Atrue&l=list&p=1&s=10&sort=version): `10.5281/zenodo.6473912`. 
-
 The OpenPedCan analyses currently include the following datasets, described more fully below:
 
 - TARGET
 - Kids First Neuroblastoma
 - OpenPBTA
-- Additional PBTA samples from PNOC, Mioncoseq, CBTN
 - GTEx
 - TCGA
 - DGD (CHOP P30 Panel)
@@ -43,7 +34,7 @@ OpenPedCan project includes 17,382 GTEx RNA-Seq samples from GTEx v8 release, wh
 The Cancer Genome Atlas Program [(TCGA)](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga)
 TCGA is a landmark cancer genomics program that molecularly characterized over 20,000 primary cancer and matched normal samples spanning 33 cancer types.
 It is a joint effort between NCI and the National Human Genome Research Institute.
-OpenPedCan project includes 10,414 TCGA RNA-Seq samples (716 normal and 9698 tumor) from [33 cancer types](https://github.com/d3b-center/OpenPedCan-analysis/blob/0a5c14705a385c99a6a16e34e932e94009b7a11c/analyses/molecular-subtyping-integrate/results/tcga_cancer_groups.tsv) in the v12 release.
+OpenPedCan project includes 10,414 TCGA RNA-Seq samples (716 normal and 9698 tumor) from [33 cancer types](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/0a5c14705a385c99a6a16e34e932e94009b7a11c/analyses/molecular-subtyping-integrate/results/tcga_cancer_groups.tsv) in the v12 release.
 
 DGD [(CHOP P30 Panel)](https://www.chop.edu/cancer-panels)
 CHOP's [Division of Genome Diagnostics](https://www.chop.edu/centers-programs/division-genomic-diagnostics) has partnered with CCDI to add somatic panel sequencing data to OpenPedCan and the Molecular Targets Platform.
@@ -52,7 +43,7 @@ The OpenPedCan operates on a pull request model to accept contributions from com
 The maintainers have set up continuous integration software via GitHub Actions to confirm the reproducibility of analyses within the project’s Docker container.
 
 The project maintainers include scientists from the [Center for Data-Driven Discovery in Biomedicine at the Children's Hospital of Philadelphia](https://d3b.center/).
-We invite researchers to join OpenPedCan to help rigorously characterize the genomic landscape of these diseases to enable more rapid discovery of additional mechanisms contributing to the pathogenesis of pediatric cancer and overall accelerate clinical translation on behalf of patients.
+We invite researchers to join OpenPedCan to help rigorously characterize the genomic landscape of these diseases to enable more rapid discovery of additional mechanisms contributing to the pathogenesis of pediatric brain and spinal cord tumors and overall accelerate clinical translation on behalf of patients.
 
 **New to the project? Please be sure to read the following documentation before contributing:**
 
@@ -119,51 +110,45 @@ Below is a summary of biospecimens by sequencing strategy in v12 release:
 
 ## Data Release Process
 
-1. The initial task in the OpenPedcan data release process is to create a `histologies-base.tsv` file via the [D3b Center's histologies-qc](https://github.com/d3b-center/histologies-qc) repository. 
-2. A core set of merged matrices from raw genomic algorithm output is created.
-The `histologies-base.tsv` file is utilized together with these matrices to run the [pre-release QC](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/data-pre-release-qc) to ensure all samples from the histologies file are represented in the data files, if there is output.
-3. The [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) script is run next; this module creates independent specimen lists and analysis output required for molecular subtyping. 
-4. The [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh) script is run to subtype all samples and add this information to a final `histologies.tsv` file used in the data release.
-5. Once all release files are generated, the [create-subset-files](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/create-subset-files) module is run to create smaller subsets of the data release files for use in continuous integration.
+The initial task in the OpenPedcan data release process is to create a `histologies-base` file via the [D3b Center's histologies-qc](https://github.com/d3b-center/histologies-qc) repository that is utilized together with the Pediatric Open Targets Project harmonized datasets to run OpenPedCan `analysis pre-release` and `molecular subtyping` modules. The [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) and [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh) bash scripts run the `analysis pre-release` and `molecular subtyping` modules to generate the final release datasets used with the downstream OpenPedCan analysis modules, respectively. In addtion, the [create-subset-files](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/create-subset-files) modules is run independently as part of the data release process to create smaller subsets of the data release files that are used in continuous integration to save on the amount of time it takes to download files as well as reducing the amount of RAM that is required.
 
 |      Analysis Type     |                                                            Workflow Script                                                            |                                                                  Analysis Module                                                                 | Runtime on EC2 m6i.4xlarge (minutes) |                                                                 Comment                                                                 |
 |:----------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------:|
-| Data pre-release QC    |                                                                                                                                       | [data-pre-release-qc](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/data-pre-release-qc)                         | 21.013                               | Performs QC on harmonized pre-release datasets, including primary matrices, before being utilized in all data release analysis modules. |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [copy_number_consensus_call](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/copy_number_consensus_call)           | 67.683                               | Run independently to create the data release copy number consensus file                                                                 |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [independent-samples](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/independent-samples)                         | 00.200                               | Generated using the `histologies-base` file for analysis pre-release and molecular subtyping modules.                                   |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [fusion_filtering](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/fusion_filtering)                               | 81.433                               |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [run-gistic](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/run-gistic)                                           | 56.950                               |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [focal-cn-file-preparation](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/focal-cn-file-preparation)             | 53.217                               |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [fusion-summary](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/fusion-summary)                                   | 00.233                               |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [tmb-calculation](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/tmb-calculation)                                 | 13.600                               |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [gene-set-enrichment-analysis](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/gene-set-enrichment-analysis)       | 8.533                                |                                                                                                                                         |
-| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [tp53_nf1_score](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/tp53_nf1_score)                                   | 17.001                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-MB](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-MB)                   | 09.150                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-CRANIO](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-CRANIO)           | 06.083                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-EPN](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EPN)                 | 07.117                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-embryonal](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-embryonal)     | 05.650                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-chordoma](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-chordoma)       | 01.717                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-EWS](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EWS)                 | 00.083                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-neurocytoma](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-neurocytoma) | 00.050                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-HGG](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-HGG)                 | 08.383                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-LGAT](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-LGAT)               | 12.517                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-ATRT](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-ATRT)               | 00.067                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-PB](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-PB)               |                                |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-NBL](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-NBL)                 | 03.467                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-pathology](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-pathology)     | 00.567                               |                                                                                                                                         |
-| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-integrate](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-integrate)     | 00.150                               |                                                                                                                                         |
-| Analysis pre-release   | [run-for-subtyping.sh](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [independent-samples](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/independent-samples)                         | 00.412                               | Generated using the `final histologies` file for each cohort and each cohort-cancer_group for downstream analysis modules.              |
-| continuous integration |                                                                                                                                       | [create-subset-files](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/create-subset-files)                         | 41.500                               |                                                                                                                                         |
+| Data pre-release QC    |                                                                                                                                       | [data-pre-release-qc](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/data-pre-release-qc)                         | 21.013                               | Performs QC on harmonized pre-release datasets, including primary matrices, before being utilized in all data release analysis modules. |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [copy_number_consensus_call](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/copy_number_consensus_call)           | 67.683                               | Run independently to create the data release copy number consensus file                                                                 |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [independent-samples](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples)                         | 00.200                               | Generated using the `histologies-base` file for analysis pre-release and molecular subtyping modules.                                   |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [fusion_filtering](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion_filtering)                               | 81.433                               |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [run-gistic](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/run-gistic)                                           | 56.950                               |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [focal-cn-file-preparation](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/focal-cn-file-preparation)             | 53.217                               |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [fusion-summary](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/fusion-summary)                                   | 00.233                               |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [tmb-calculation](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/tmb-calculation)                                 | 13.600                               |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [gene-set-enrichment-analysis](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/gene-set-enrichment-analysis)       | 8.533                                |                                                                                                                                         |
+| Analysis pre-release   | [generate-analysis-files.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/generate-analysis-files.sh) | [tp53_nf1_score](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/tp53_nf1_score)                                   | 17.001                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-MB](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-MB)                   | 09.150                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-CRANIO](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-CRANIO)           | 06.083                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-EPN](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EPN)                 | 07.117                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-embryonal](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-embryonal)     | 05.650                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-chordoma](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-chordoma)       | 01.717                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-EWS](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EWS)                 | 00.083                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-neurocytoma](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-neurocytoma) | 00.050                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-HGG](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-HGG)                 | 08.383                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-LGAT](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-LGAT)               | 12.517                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-NBL](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-NBL)                 | 03.467                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-ATRT](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-ATRT)               | 00.067                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-pathology](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-pathology)     | 00.567                               |                                                                                                                                         |
+| Molecular subtyping    | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [molecular-subtyping-integrate](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-integrate)     | 00.150                               |                                                                                                                                         |
+| Analysis pre-release   | [run-for-subtyping.sh](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/scripts/run-for-subtyping.sh)             | [independent-samples](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/independent-samples)                         | 00.412                               | Generated using the `final histologies` file for each cohort and each cohort-cancer_group for downstream analysis modules.              |
+| continuous integration |                                                                                                                                       | [create-subset-files](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/create-subset-files)                         | 41.500                               |                                                                                                                                         |
 
 ## How to Obtain OpenPedCan Data
 
-We are releasing this dataset on both [CAVATICA](https://cavatica.sbgenomics.com/u/cavatica/opentarget) and AWS S3.
-Users performing analyses should always refer to the symlinks in the `data/` directory and not files within the release folder.
+We are releasing this dataset on both [CAVATICA](https://cavatica.sbgenomics.com) and AWS S3.
+Users performing analyses, should always refer to the symlinks in the `data/` directory and not files within the release folder, as an updated release may be produced before a publication is prepared.
 
 **The data formats and caveats are described in more detail in [`doc/data-formats.md`](doc/data-formats.md).
 For brief descriptions of the data files, see the [`data-files-description.md`](doc/data-files-description.md) file included in the download.**
 
-Use the [data issue template](https://github.com/d3b-center/ticket-tracker/issues/new?assignees=&labels=data&template=data-question.md&title=) to file issues if you have questions about or identify issues with OpenPedCan data.
+Use the [data issue template](https://github.com/PediatricOpenTargets/ticket-tracker/issues/new?assignees=&labels=data&template=data-question.md&title=) to file issues if you have questions about or identify issues with OpenPedCan data.
 
 ### Data Access via Download Script
 
@@ -180,10 +165,10 @@ We will update the default release number whenever we produce a new release.
 
 ### Data Access via CAVATICA
 
-For any user registered on CAVATICA, the OpenPBTA and OpenPedcan data can be accessed from the CAVATICA public project below:
+For any user registered on CAVATICA, the OpenPBTA and OpenTargets data can be accessed from the CAVATICA public project below:
 
 - [OpenPBTA Open Access](https://cavatica.sbgenomics.com/u/cavatica/openpbta/)
-- [OpenPedcan Open Access](https://cavatica.sbgenomics.com/u/cavatica/opentarget)
+- [OpenTargets Open Access](https://cavatica.sbgenomics.com/u/cavatica/opentarget)
 
 The release folder structure in CAVATICA mirrors that on AWS.
 Users downloading via CAVATICA should place the data files within the `data/release*` folder and then create symlinks to those files within `/data`.
@@ -193,7 +178,7 @@ Users downloading via CAVATICA should place the data files within the `data/rele
 ### Planned Analyses
 
 There are certain analyses that we have planned or that others have proposed, but which nobody is currently in charge of completing.
-Check the existing [issues](https://github.com/d3b-center/OpenPedCan-analysis/issues) to identify these.
+Check the existing [issues](https://github.com/PediatricOpenTargets/ticket-tracker/issues) to identify these.
 If you would like to take on a planned analysis, please comment on the issue noting your interest in tackling the issue in question.
 Ask clarifying questions to understand the current scope and goals.
 Then propose a potential solution.
@@ -204,7 +189,7 @@ When you file a pull request with your solution, you should note that it closes 
 ### Proposing a New Analysis
 
 In addition to the planned analyses, we welcome contributors who wish to propose their own analyses of this dataset as part of the OpenPedCan project.
-Check the existing [issues](https://github.com/d3b-center/OpenPedCan-analysis/issues) before proposing an analysis to see if something similar is already planned.
+Check the existing [issues](https://github.com/PediatricOpenTargets/ticket-tracker/issues) before proposing an analysis to see if something similar is already planned.
 If there is not a similar planned analysis, create a new issue.
 The ideal issue will describe the scientific goals of the analysis, the planned methods to address the scientific goals, the input data that is required for the planned methods, and a proposed timeline for the analysis.
 Project maintainers will interact on the issue to clarify any questions or raise any potential concerns.
@@ -222,14 +207,14 @@ Artifacts include both vector or high-resolution figures sufficient for inclusio
 
 #### Software Dependencies
 
-Analyses should be performed within the project's [Docker container](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/Dockerfile).
+Analyses should be performed within the project's [Docker container](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/Dockerfile).
 We use a single monolithic container in these analyses for ease of use.
-If you need software that is not included, please edit the Dockerfile to install the relevant software or file a [new issue on this repository](https://github.com/d3b-center/OpenPedCan-analysis/issues/new/choose) requesting assistance.
+If you need software that is not included, please edit the Dockerfile to install the relevant software or file a [new issue on this repository](https://github.com/PediatricOpenTargets/ticket-tracker/issues/new/choose) requesting assistance.
 
 #### Pull Request Model
 
-Analyses are added to this repository via [Pull Requests](https://github.com/d3b-center/OpenPedCan-analysis/compare.
-**Please read the [Pull Request section of the contribution guidelines](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#pull-requests) carefully.**
+Analyses are added to this repository via [Pull Requests](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/compare.
+**Please read the [Pull Request section of the contribution guidelines](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#pull-requests) carefully.**
 We are using continuous integration software applied to the supplied test datasets to confirm that the analysis can be carried out successfully within the Docker container.
 
 ## How to Add an Analysis
@@ -315,9 +300,9 @@ Files that are intermediate, which means that they are useful within an analysis
 
 We build our project Docker image from a versioned [`tidyverse`](https://hub.docker.com/r/rocker/tidyverse) image from the [Rocker Project](https://www.rocker-project.org/) (v3.6.0).
 
-To add dependencies that are required for your analysis to the project Docker image, you must alter the project [`Dockerfile`](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/Dockerfile).
-The `Dockerfile` can be directly edited to install dependencies, if you are developing using a branch on the [d3b-center/OpenPedCan-analysis](https://github.com/d3b-center/OpenPedCan-analysis) repository.
-If you are developing using a branch on your fork of the d3b-center/OpenPedCan-analysis repository, create a branch on the d3b-center/OpenPedCan-analysis repository to edit the `Dockerfile` to install dependencies, e.g. <https://github.com/d3b-center/OpenPedCan-analysis/pull/36>, so [the GitHub action for checking docker image build](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/.github/workflows/build-docker.yml) can run with the Docker Hub credentials saved in the d3b-center/OpenPedCan-analysis repository.
+To add dependencies that are required for your analysis to the project Docker image, you must alter the project [`Dockerfile`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/Dockerfile).
+The `Dockerfile` can be directly edited to install dependencies, if you are developing using a branch on the [PediatricOpenTargets/OpenPedCan-analysis](https://github.com/PediatricOpenTargets/OpenPedCan-analysis) repository.
+If you are developing using a branch on your fork of the PediatricOpenTargets/OpenPedCan-analysis repository, create a branch on the PediatricOpenTargets/OpenPedCan-analysis repository to edit the `Dockerfile` to install dependencies, e.g. <https://github.com/PediatricOpenTargets/OpenPedCan-analysis/pull/36>, so [the GitHub action for checking docker image build](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/workflows/build-docker.yml) can run with the Docker Hub credentials saved in the PediatricOpenTargets/OpenPedCan-analysis repository.
 
 - R packages installed on this image will be installed from an [MRAN snapshot](https://mran.microsoft.com/documents/rro/reproducibility#reproducibility) corresponding to the last day that R 3.6.0 was the most recent release ([ref](https://hub.docker.com/r/rocker/tidyverse)).
   - Installing most packages, from CRAN or Bioconductor, should be done with our `install_bioc.R` script, which will ensure that the proper MRAN snapshot is used. `BiocManager::install()` should _not_ be used, as it will not install from MRAN.
@@ -327,7 +312,7 @@ If you are developing using a branch on your fork of the d3b-center/OpenPedCan-a
   - When adding a new package, make sure that all dependencies are also added; every package should appear with a specified version **both** in the `Dockerfile` and `requirements.txt`.
 - Other software can be installed with `apt-get`, but this should _never_ be used for R packages.
 
-If you need assistance adding a dependency to the Dockerfile, [file a new issue on this repository](https://github.com/d3b-center/ticket-tracker/issues/new) to request help.
+If you need assistance adding a dependency to the Dockerfile, [file a new issue on this repository](https://github.com/PediatricOpenTargets/ticket-tracker/issues/new) to request help.
 
 #### Development in the Project Docker Container
 
@@ -343,7 +328,7 @@ Development should utilize the project Docker image.
 An analysis that is developed using the project Docker image can be efficiently rerun by another developer or the original developer (after a long time since it is developed), without dependency or numerical issues.
 This will significantly facilitate the following tasks that are constantly performed by all developers of the OpenPedCan-analysis project.
 
-- Review another developer's pull request, including code and results. For more information about pull request and review, see [the guideline for how to contribute to the OpenPedCan-analysis repository](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#contribution-guidelines-for-the-openpbta-analysis).
+- Review another developer's pull request, including code and results. For more information about pull request and review, see [the guideline for how to contribute to the OpenPedCan-analysis repository](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#contribution-guidelines-for-the-openpbta-analysis).
 - Update the results of an analysis module that is developed by another developer. For example, rerun the same analysis module with new data.
 - Update the code of an analysis module that is developed by another developer. For example, add a new feature to a module, or refactor a module.
 
@@ -380,7 +365,7 @@ docker exec -ti <CONTAINER_NAME> bash
 
 If you set the `PWD:/home/rstudio/OpenPedCan-analysis` above, then you can navigate to `home/rstudio/OpenPedCan-analysis` and begin.
 
-### Development using Amazon EC2 (CHOP)
+### Development using Amazon EC2
 
 Many analyses will require Amazon EC2 for development.
 For this, we have created a template image in `Mgmt-Console-Dev-chopd3bprod`.
@@ -412,10 +397,10 @@ In this case, it is important to ensure that local or personal settings such as 
 
 ### GitHub Actions (GA)
 
-We use GitHub Actions (GA) to ensure that the project Docker image will build if there are any changes introduced to the [`Dockerfile`](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/Dockerfile) and that all analysis code will execute.
+We use GitHub Actions (GA) to ensure that the project Docker image will build if there are any changes introduced to the [`Dockerfile`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/Dockerfile) and that all analysis code will execute.
 
 We have put together data files specifically for the purpose of GA that contain all of the features of the full data files for only a small subset of samples.
-You can see how this was done by viewing [this module](https://github.com/d3b-center/OpenPedCan-analysis/tree/dev/analyses/create-subset-files).
+You can see how this was done by viewing [this module](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/create-subset-files).
 We use the subset files to cut down on the computational resources and time required for testing.
 
 Provided that your analytical code points to the symlinks in the `data/` directory per [the instructions above](#how-to-add-an-analysis), adding the analysis to the GA (see below) will run your analysis on this subset of the data.
@@ -433,7 +418,7 @@ Running this will change the symlinks in `data` to point to the files in `data/t
 
 #### Adding Analyses to Github Actions workflow
 
-For an analysis to be run in a Github Actions workflow, it must be added to [`.github/continuous_integration.yml`](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/.github/workflows/continuous_integration.yml). Here is an example of a step in that workflow:
+For an analysis to be run in a Github Actions workflow, it must be added to [`.github/continuous_integration.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/workflows/continuous_integration.yml). Here is an example of a step in that workflow:
 
 ```yaml
 # Molecular subtyping modules
@@ -488,7 +473,7 @@ Because of the dependency on the image in DockerHub, the following changes will 
 
 3. A Username and Access Token for the new Docker Hub registry will need to be added in [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) under the forked repository will need to be added.
 
-To add a new analysis job, take the template below and value each missing prompt, then add it to [`.github/continuous_integration.yml`](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/.github/continuous_integration.yml).
+To add a new analysis job, take the template below and value each missing prompt, then add it to [`.github/continuous_integration.yml`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/.github/continuous_integration.yml).
 
 ```yaml
 - name: <Name of the analysis to run>
@@ -509,7 +494,7 @@ Optionally, environment variables for `OPENPBTA_SUBSET`, `OPENPBTA_TESTING`, `RU
 #### Adding Analyses with Multiple Steps
 
 There is a different procedure for adding an analysis comprised of multiple scripts or notebooks to GA.
-Per [the contribution guidelines](https://github.com/d3b-center/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#size-and-composition-of-pull-requests), each script or notebook should be added via a separate pull request.
+Per [the contribution guidelines](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/blob/dev/CONTRIBUTING.md#size-and-composition-of-pull-requests), each script or notebook should be added via a separate pull request.
 For each of these pull requests, the individual script or notebook should be added as its own run in the `.github/continuous_integration.yml` file.
 This validates that the code being added can be executed at the time of review.
 
@@ -608,3 +593,41 @@ The name command in the `.github/continuous_integration.yml` is used to specify 
 In this example `OPENPBTA_PATHSIG=0.75` species an environment variable `OPENPBTA_PATHSIG` that is set to 0.75.
 Any environment variables prefixed with `OPENPBTA_` are passed to the specified shell script.
 Environment variables without this prefix are not passed.
+
+### Molecular-subtyping
+
+If you would like to identify molecular subtype membership for new RNA-seq PBTA samples belonging to the following broad_histologies, run the bash script below.
+
+- [`molecular-subtyping-EWS`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EWS)
+- [`molecular-subtyping-HGG`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-HGG)
+- [`molecular-subtyping-LGAT`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-LGAT)
+- [`molecular-subtyping-embryonal`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-embryonal)
+- [`molecular-subtyping-CRANIO`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-CRANIO)
+- [`molecular-subtyping-EPN`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-EPN)
+- [`molecular-subtyping-MB`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-MB)
+- [`molecular-subtyping-neurocytoma`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-neurocytoma)
+- [`molecular-subtyping-chordoma`](https://github.com/PediatricOpenTargets/OpenPedCan-analysis/tree/dev/analyses/molecular-subtyping-chordoma)
+
+<!--TODO: Add WGS/WXS summarization modules.-->
+
+```bash
+bash scripts/run-for-subtyping.sh
+```
+
+Running this will re-run RNA-seq specific summary file generation modules as well as molecular-subtyping-\* modules to generate the `compiled_molecular_subtypes_with_clinical_pathology_feedback.tsv` file containing the `molecular_subtype` column.
+
+#### Adding summary analyses to run-for-subtyping.sh
+
+For an analysis to be run for subyping, it must use `histologies-base.tsv` as input and shouldn't depend on `molecular_subtype` or `integrated_diagnosis` columns for molecular-subtyping-\* modules.
+Please set BASE_SUBTYPING=1 as a condition to run code with `histologies-base.tsv`.
+
+Here is an example:
+
+```bash
+BASE_SUBTYPING=1 analyses/gene-set-enrichment-analysis/run-gsea.sh
+
+```
+
+This would run the `analyses/gene-set-enrichment-analysis/run-gsea.sh` with `histologies-base.tsv` to generate gsva scores that are used in multiple molecular-subtyping-\* modules.
+
+<!--TODO: Add instructions for running scripts from anywhere in the project?-->

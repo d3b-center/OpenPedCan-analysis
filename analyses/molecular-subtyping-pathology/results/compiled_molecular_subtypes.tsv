@@ -2340,10 +2340,10 @@ PT_3AWKWXEV	7316-85	BS_P7J6GBHR	Diffuse astrocytic and oligodendroglial tumor	HG
 PT_3AWKWXEV	7316-85	BS_QYPHA40N	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	NA	Updated via OpenPedCan subtyping
 PT_3AWKWXEV	7316-85	BS_ERAWW3H7	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	NA	Updated via OpenPedCan subtyping
 PT_3AWKWXEV	7316-85	BS_SXM30B9W	Diffuse astrocytic and oligodendroglial tumor	HGAT	NA	HGG, To be classified	NA	NA
-PT_3AWKWXEV	7316-85	BS_BYCX6VK1	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_3AWKWXEV	7316-85	BS_SB12W1XT	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_3AWKWXEV	7316-85	BS_E42SSQGJ	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_3AWKWXEV	7316-85	BS_7JTWSDK1	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
+PT_3AWKWXEV	7316-85	BS_BYCX6VK1	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_3AWKWXEV	7316-85	BS_SB12W1XT	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_3AWKWXEV	7316-85	BS_E42SSQGJ	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_3AWKWXEV	7316-85	BS_7JTWSDK1	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
 PT_3BCCR1WZ	7316-7090	BS_XSPB2XTH	Low-grade astrocytic tumor	LGAT	NA	LGG, To be classified	NA	NA
 PT_3C6QA9MA	7316-1279	BS_FW5ECXXK	Ependymal tumor	Ependymoma	Supratentorial ependymoma, ZFTA fusion-positive	EPN, ST ZFTA	EPN, ST ZFTA	Updated via OpenPedCan subtyping
 PT_3C6QA9MA	7316-1279	BS_Z7RSRCX9	Ependymal tumor	Ependymoma	Supratentorial ependymoma, ZFTA fusion-positive	EPN, ST ZFTA	EPN, ST ZFTA	Updated via OpenPedCan subtyping
@@ -3086,8 +3086,8 @@ PT_7HGY5W67	7316-6044	BS_5NK9RCM7	Low-grade astrocytic tumor	LGAT	Glial-neuronal
 PT_7HGY5W67	7316-6044	BS_NPWT4SXA	Low-grade astrocytic tumor	LGAT	Glial-neuronal tumor, wildtype	GNT, wildtype	NA	Updated via OpenPedCan subtyping
 PT_7HGY5W67	7316-6044	BS_W4SCDX8T	Low-grade astrocytic tumor	LGAT	Glial-neuronal tumor, wildtype	GNT, wildtype	NA	Updated via OpenPedCan subtyping
 PT_7HGY5W67	7316-6056	BS_GPPREVAD	Embryonal tumor	Embryonal tumor	CNS Embryonal tumor, NEC/NOS	CNS Embryonal, NOS	NA	Updated via OpenPedCan subtyping
-PT_7HSD72ZQ	7316-8808	BS_MD7A34PT	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_7HSD72ZQ	7316-8808	BS_DXP7GTAA	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
+PT_7HSD72ZQ	7316-8808	BS_MD7A34PT	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_7HSD72ZQ	7316-8808	BS_DXP7GTAA	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
 PT_7JQ24F35	7316-1681	BS_895FJ34T	Low-grade astrocytic tumor	LGAT	NA	SEGA, To be classified	SEGA, To be classified	NA
 PT_7JQ24F35	7316-1681	BS_ERZJP66A	Low-grade astrocytic tumor	LGAT	NA	SEGA, To be classified	SEGA, To be classified	NA
 PT_7JQ24F35	7316-1681	BS_R634WKN7	Low-grade astrocytic tumor	LGAT	NA	SEGA, To be classified	SEGA, To be classified	NA
@@ -5906,9 +5906,9 @@ PT_P571HTNK	7316-9433	BS_EKJB7HFV	Diffuse astrocytic and oligodendroglial tumor	
 PT_P571HTNK	7316-9433	BS_YNKCZ0DF	Diffuse astrocytic and oligodendroglial tumor	HGAT	Diffuse midline glioma, H3 K28-altered	DMG, H3 K28	DMG, H3 K28	Updated via OpenPedCan subtyping
 PT_P571HTNK	7316-9433	BS_E42TRDVH	Diffuse astrocytic and oligodendroglial tumor	HGAT	Diffuse midline glioma, H3 K28-altered	DMG, H3 K28	DMG, H3 K28	Updated via OpenPedCan subtyping
 PT_P5HHJJPH	7316-870	BS_989GRHJC	Diffuse astrocytic and oligodendroglial tumor	HGAT	NA	HGG, To be classified	NA	NA
-PT_P5HHJJPH	7316-870	BS_4PPHAQXF	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_P5HHJJPH	7316-870	BS_KXGJ1HMG	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
-PT_P5HHJJPH	7316-870	BS_3MYH1TKQ	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, IDH-wildtype and H3-wildtype	HGG, H3 wildtype	PXA	Updated via OpenPedCan subtyping
+PT_P5HHJJPH	7316-870	BS_4PPHAQXF	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_P5HHJJPH	7316-870	BS_KXGJ1HMG	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
+PT_P5HHJJPH	7316-870	BS_3MYH1TKQ	Diffuse astrocytic and oligodendroglial tumor	HGAT	High-grade glioma, pleomorphic xanthoastrocytoma	HGG, PXA	PXA	Updated via OpenPedCan subtyping
 PT_P6PKT77Y	7316-7741	BS_MXV7JCBD	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	NA	Updated via OpenPedCan subtyping
 PT_P6PKT77Y	7316-7741	BS_ANFZNMQ4	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	NA	Updated via OpenPedCan subtyping
 PT_P6PKT77Y	7316-7741	BS_RF93Q7R6	Embryonal tumor	Neuroblastoma	Neuroblastoma, MYCN non-amplified	NBL, MYCN non-amplified	NA	Updated via OpenPedCan subtyping

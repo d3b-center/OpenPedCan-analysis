@@ -1,5 +1,4 @@
 # GISTIC Comparision
-This analysis is DEPRECATED and was last run with OpenPBTA data release `v23`.
 
 **Module authors:** Chante Bethell ([@cbethell](https://github.com/cbethell)) and Jaclyn Taroni ([@jaclyn-taroni](https://github.com/jaclyn-taroni))
 
