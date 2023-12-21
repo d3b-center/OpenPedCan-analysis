@@ -38,13 +38,8 @@ free_text_dx_terms <- c(
   "embryonal tumor, not otherwise specified, who grade iv",
   "high grade embryonal tumor with rhabdoid features")
 
-# Some pineoblastoma are previously dx as PNET, and now subtyped in PB module, so remove from EMB subtyping
-exclude_free_text_terms <- "pineoblastoma"
-
 terms_list <- list(include_path_dx = path_dx_terms,
-                   include_free_text = free_text_dx_terms,
-                   exclude_free_text = exclude_free_text_terms)
-  
+                   include_free_text = free_text_dx_terms)
+
 #Save this list as JSON.
 writeLines(jsonlite::prettify(jsonlite::toJSON(terms_list)), output_file)
-

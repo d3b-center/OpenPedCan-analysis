@@ -1,5 +1,4 @@
 ## Annotate SNV table with mutation frequencies
-This analysis is DEPRECATED and was last run with OpenPedCan data release `v12`.
 
 **Module author:** Yuanchao Zhang ([@logstar](https://github.com/logstar))
 
