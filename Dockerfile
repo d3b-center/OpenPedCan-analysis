@@ -184,7 +184,7 @@ RUN R -e 'BiocManager::install(c( \
 
 
 # package required for immune deconvolution
-RUN R -e "remotes::install_github('icbi-lab/immunedeconv' --ref '493bcaa9e1f73554ac2d25aff6e6a7925b0ea7a6', dependencies = TRUE)"
+RUN R -e "remotes::install_github('omnideconv/immunedeconv', ref = 'v1.2.3', dependencies = TRUE)"
 RUN R -e "remotes::install_github('const-ae/ggupset', ref = '7a33263cc5fafdd72a5bfcbebe5185fafe050c73', dependencies = TRUE)"
 
 # Need this package to make plots colorblind friendly
