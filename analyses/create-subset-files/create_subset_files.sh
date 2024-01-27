@@ -106,6 +106,9 @@ cp $FULL_DIRECTORY/fusion-dgd.tsv.gz $SUBSET_DIRECTORY
 # All proteomic files
 cp $FULL_DIRECTORY/*protein* $SUBSET_DIRECTORY
 
+# miRNA files
+cp $FULL_DIRECTORY/*mirna* $SUBSET_DIRECTORY
+
 # Full tumor only MAF (for now, it is small)
 cp $FULL_DIRECTORY/snv-mutect2-tumor-only-plus-hotspots.maf.tsv.gz $SUBSET_DIRECTORY
 
