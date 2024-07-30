@@ -21,12 +21,27 @@ histology_df <- histology_df[sample(nrow(histology_df)), ]
 
 # Filter to only samples from tumors, where composition is not "Derived Cell Line" and "PDX"
 tumor_samples <- histology_df %>%
+  dplyr::filter(sample_type == "Tumor",
+                !composition %in% c("Derived Cell Line", "PDX"),
+                is.na(RNA_library),
+                experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
+                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+                       fixed = FALSE, useBytes = FALSE))
+
+# Filter to participants with only Metastatic samples 
+tumor_samples_only_met <- histology_df %>%
   dplyr::filter(sample_type == "Tumor", 
                 !composition %in% c("Derived Cell Line", "PDX"), 
                 is.na(RNA_library), 
                 experimental_strategy %in% c("WGS", "WXS", "Targeted Sequencing"),
-                !grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
+                grepl("Metastatic secondary tumors", pathology_diagnosis, ignore.case = FALSE, perl = FALSE,
                        fixed = FALSE, useBytes = FALSE))
+tumor_samples_only_met <- tumor_samples_only_met %>%
+  filter(!Kids_First_Participant_ID %in% tumor_samples$Kids_First_Participant_ID)
+
+# Combine both dataframes
+tumor_samples <- tumor_samples %>%
+  rbind(tumor_samples_only_met)
 
 # subset to WGS samples only
 wgs_samples <- tumor_samples %>%
