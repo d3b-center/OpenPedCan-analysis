@@ -1,0 +1,89 @@
+---
+title: "oncoplot_DMG"
+author: "ZZ"
+date: "2024-01-16"
+output: pdf_document
+---
+
+## load libraries
+
+```{r libraries}
+library(tidyverse)
+library(ComplexHeatmap)
+library(reshape2)
+library(circlize)
+```
+
+
+## set directories and read file
+```{r}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+subset_dir <- file.path(root_dir, "analyses", "DMG_analysis", "subset")
+result_dir <- file.path(root_dir, "analyses", "DMG_analysis", "results")
+
+onco_df <- read_tsv(file.path(result_dir, "df_for_oncoplot.tsv"))
+```
+
+oncoplot
+
+```{r}
+
+colname_annotate <- c("match_id", "reported_gender", "tumor_descriptor", "molecular_subtype","EGFR_exp", "EZHIP_exp")
+
+annotate_info <- as.data.frame(onco_df[,colname_annotate])
+rownames(annotate_info) <- annotate_info$match_id
+annotate_info <- annotate_info[,-1]
+
+ha = HeatmapAnnotation(df = annotate_info, col = list(reported_gender = c("Male" = "#0707CF",
+                                                      "Female" = "#CC0303",
+                                                      "Unknown" = "white"),
+                                                      molecular_subtype = c("DMG, H3 K28" = "red", 
+                                                                            "DMG, H3 K28, TP53" = "green")))
+
+mat <- as.matrix(onco_df[,-c(2,3,4,5,14,15)])
+mat[is.na(mat)] = ""
+rownames(mat) = mat[, 1]
+mat = mat[, -1]
+mat = t(as.matrix(mat))
+
+alter_fun = list(
+  background = function(x, y, w, h) {
+    grid.rect(x, y, w, h, gp = gpar(fill = "#ffffff",col= "#ffffff"))
+  },
+  `Likely Gain-of-function` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#ff4d4d", col = NA))
+  },
+  `Likely Loss-of-function` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#0D47A1", col = NA))
+  },
+  Unknown = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "grey", col = NA))
+  },
+  `Loss-of-function` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#80bfff", col = NA))
+  },
+  Inconclusive = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#8D6E63", col = NA))
+  },
+  `Gain-of-function` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#9966ff", col = NA))
+  },
+  `WHO mutation` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#E69F00", col = NA))
+  },
+  `amplification` = function(x, y, w, h) {
+    grid.rect(x, y, w-unit(0.3, "mm"), h-unit(0.3, "mm"), gp = gpar(fill = "#827717", col = NA))
+  }
+)
+
+oncoplot <- oncoPrint(mat, get_type = function(x)strsplit(x, ";")[[1]], 
+          alter_fun = alter_fun, top_annotation = ha)
+
+pdf(file = "oncoplot.pdf", width = 16, height = 8) 
+draw(oncoplot)
+dev.off()
+
+
+```
+
+

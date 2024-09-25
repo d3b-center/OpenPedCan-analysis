@@ -1,0 +1,306 @@
+match_id	age_at_diagnosis_days	reported_gender	molecular_subtype	tumor_descriptor	ATRX	EGFR	H3-3A	H3C14	H3C2	H3C3	NF1	TP53	EGFR_exp	EZHIP_exp
+PT_GX2EXVPV_C4110783-Tumor_Solid Tissue_Initial CNS Tumor	2005	Male	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_C52RFPB9_7316-8044_Solid Tissue_Deceased	2359	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_6PJ126FF_7316-8815_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_TWF36J8K_7316-6251_Solid Tissue_Initial CNS Tumor	2758	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	;Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_4YWZ538V_7316-719_Solid Tissue_Deceased	2724	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_Y5KY6KN9_7316-195_Solid Tissue_Initial CNS Tumor	3296	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function;Unknown	NA	NA	NA	Unknown	Likely Loss-of-function;Unknown	NA	NA
+PT_71SDXD2V_C4114596-Tumor_Solid Tissue_Initial CNS Tumor	4522	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_G6H7DC0C_C4119147-Tumor_Solid Tissue_Recurrence	2650	Male	DMG, H3 K28	Recurrence	NA		Likely Gain-of-function;Unknown	NA	NA	NA	NA	NA	NA	NA
+PT_KZ56XHJT_7316-3217_Solid Tissue_Progressive	2773	Female	DMG, H3 K28	Progressive	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_8FBR94AD_7316-6884_Solid Tissue_Deceased	3055	Male	DMG, H3 K28	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_9CQA1W10_7316-6349_Solid Tissue_Deceased	2841	Female	DMG, H3 K28, TP53	Deceased	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_SD4RJ57T_7316-9842_Solid Tissue_Deceased	5005	Male	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_8ZKFTBZS_7316-6087_Solid Tissue_Deceased	1477	Female	DMG, H3 K28	Deceased	Unknown	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_3AR6AW9N_7316-9840_Solid Tissue_Deceased	3868	Male	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_40HTPY49_7316-466_Solid Tissue_Initial CNS Tumor	2606	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	Unknown	Likely Loss-of-function;Unknown	NA	NA	NA
+PT_23JJKZPS_7316-8016_Solid Tissue_Deceased	1331	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	NA	NA	NA	Unknown	Unknown	Loss-of-function	NA	NA
+PT_VPEMAQBN_A12748_Solid Tissue_Initial CNS Tumor	1709	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_7KS8C9Y6_7316-4952_Solid Tissue_Initial CNS Tumor	1896	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_440E1XW5_7316-9068_Solid Tissue_Deceased	3612	Female	DMG, H3 K28	Deceased	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_1YQH5NSH_7316-5922_Derived Cell Line_Initial CNS Tumor_Serum-free_27	2520	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_P571HTNK_7316-8851_Derived Cell Line_Initial CNS Tumor_Serum-free_9	2251	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_JSFBMK5V_7316-1769_Solid Tissue_Progressive	5653	Male	DMG, H3 K28	Progressive	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	Unknown	NA	NA
+PT_S7JCQ3TH_7316-8828_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_PR4YBBH3_7316-116_Solid Tissue_Initial CNS Tumor	3739	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_K0YWXDH1_7316-2692_Solid Tissue_Initial CNS Tumor	2524	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_7DTGJYA7_7316-1695_Solid Tissue_Deceased	1070	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_BC0B16HC_7316-7075_Solid Tissue_Initial CNS Tumor	3415	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	NA	NA	NA
+PT_P571HTNK_7316-9433_Derived Cell Line_Progressive_Serum-free_7	2251	Female	DMG, H3 K28	Progressive	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_H9QTD79G_7316-7533_Not Available_Initial CNS Tumor	4837	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_NK8A49X5_7316-3216_Solid Tissue_Initial CNS Tumor	4896	Male	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_NK8A49X5_A14449_Solid Tissue_Progressive	4896	Male	DMG, H3 K28	Progressive	Likely Loss-of-function	amplification;Unknown;Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	NA	overexpression	NA
+PT_HMF8J4EG_7316-644_Solid Tissue_Initial CNS Tumor	2879	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_KZ56XHJT_7316-3231_Solid Tissue_Progressive Disease Post-Mortem	2773	Female	DMG, H3 K28	Progressive Disease Post-Mortem	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_1AAYYGGY_A14709_Solid Tissue_Initial CNS Tumor	4608	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_QTDY0Y9A_7316-3771_Solid Tissue_Initial CNS Tumor	4290	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function;Unknown	NA	NA	Unknown	Unknown	NA	NA	NA
+PT_84Q11Z5X_7316-288_Solid Tissue_Initial CNS Tumor	5362	Female	DMG, H3 K28	Initial CNS Tumor	Unknown;Likely Loss-of-function	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Unknown	NA	NA
+PT_0J07HTRF_7316-6475_Solid Tissue_Deceased	1913	Female	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_E50ZPGSJ_7316-6387_Solid Tissue_Progressive	4844	Female	DMG, H3 K28, TP53	Progressive	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_4XB3YTJM_7316-388_Derived Cell Line_Initial CNS Tumor_Serum-based_10	1897	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_CWVNNBPH_C3985446-Tumor_Solid Tissue_Initial CNS Tumor	3403	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_9X1XY3JK_7316-6041_Solid Tissue_Initial CNS Tumor	4174	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_KZ56XHJT_A12398_Solid Tissue_Progressive	2773	Female	DMG, H3 K28, TP53	Progressive	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_ZSHEMD0K_7316-6773_Not Available_Initial CNS Tumor	1422	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_P2NGYMG5_7316-1956_Solid Tissue_Initial CNS Tumor	4559	Female	DMG, H3 K28	Initial CNS Tumor	Unknown;Likely Loss-of-function	Unknown	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	Unknown	NA	NA
+PT_R4T1V1K4_7316-3206_Solid Tissue_Deceased	3578	Male	DMG, H3 K28, TP53	Deceased	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_19GCSK2S_7316-6761_Solid Tissue_Initial CNS Tumor	3363	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_P2B3RNR0_7316-6450_Solid Tissue_Deceased	1184	Female	DMG, H3 K28	Deceased	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_0EBP2PBD_7316-8041_Solid Tissue_Initial CNS Tumor	2801	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_H5R0M2P6_7316-3677_Solid Tissue_Initial CNS Tumor	4323	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_JNEV57VK_7316-3058_Derived Cell Line_Progressive_Serum-free_0	2869	Male	DMG, H3 K28, TP53	Progressive	Unknown	Unknown	Unknown;Likely Gain-of-function	NA	NA	Unknown	Unknown;Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_FYPWZBH0_7316-1085_Solid Tissue_Initial CNS Tumor	3360	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_2ZTSD2GF_C4107462-Tumor_Solid Tissue_Initial CNS Tumor	1983	Male	DMG, H3 K28	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_HGG8X8QE_7316-7144_Solid Tissue_Deceased	5853	Male	DMG, H3 K28, TP53	Deceased	Unknown	amplification;Unknown	Unknown;Likely Gain-of-function	NA	NA	Unknown	Unknown	Unknown;Likely Loss-of-function	NA	NA
+PT_ESWK06KQ_7316-6755_Solid Tissue_Deceased	1056	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_RPC00TAJ_7316-231_Solid Tissue_Progressive	6660	Female	DMG, H3 K28	Progressive	Unknown	;Unknown	Unknown;Likely Gain-of-function	NA	NA	NA	Unknown	Unknown	NA	NA
+PT_5SWFTE95_7316-7621_Solid Tissue_Deceased	6636	Male	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_G16VK7FR_A19649_Solid Tissue_Initial CNS Tumor	2021	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_EA50EF17_C4119516-Tumor_Solid Tissue_Initial CNS Tumor	2368	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_R5T773FS_7316-8029_Solid Tissue_Initial CNS Tumor	2758	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_Y74CVASJ_A16538_Solid Tissue_Initial CNS Tumor	1717	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_CR2ADBZE_C4124190-Tumor_Solid Tissue_Initial CNS Tumor	6171	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_NWYSD53S_A15170_Solid Tissue_Initial CNS Tumor	1544	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_RE6AXQM1_7316-5813_Solid Tissue_Initial CNS Tumor	1743	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_PX713NB8_C4116810-Tumor_Solid Tissue_Initial CNS Tumor	2687	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_WN5P2GCY_7316-8019_Solid Tissue_Deceased	1721	Female	DMG, H3 K28, TP53	Deceased	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_7P6J57H3_7316-3226_Solid Tissue_Initial CNS Tumor	1949	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_K1YK24PP_7316-5928_Solid Tissue_Deceased	1734	Female	DMG, H3 K28, TP53	Deceased	Unknown	Unknown	Likely Gain-of-function;Unknown	NA	NA	NA	Unknown	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_9685DQ65_C4123452-Tumor_Solid Tissue_Initial CNS Tumor	3649	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	overexpression
+PT_7DTGJYA7_7316-639_Solid Tissue_Initial CNS Tumor	1070	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_DBKC0M6Z_C4123698-Tumor_Solid Tissue_Initial CNS Tumor	2320	Female	DMG, H3 K28	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_EN2RN5Y1_A17997_Solid Tissue_Initial CNS Tumor	3159	Female	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_YZD8NRDP_C4115826-Tumor_Solid Tissue_Initial CNS Tumor	3223	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_DR94DMTG_C3984954-Tumor_Solid Tissue_Initial CNS Tumor	3250	Male	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_W5GP3F6B_7316-5003_Solid Tissue_Initial CNS Tumor	2459	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_KVMF5TFW_7316-3030_Solid Tissue_Initial CNS Tumor	2600	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	NA	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_ZGBBCPCP_7316-10361_Solid Tissue_Initial CNS Tumor	5091	Female	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_GTHZF21E_7316-9066_Solid Tissue_Deceased	3795	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Loss-of-function	NA	NA
+PT_A7EPZSBH_7316-9946_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_59D00MBQ_7316-1937_Solid Tissue_Initial CNS Tumor	3283	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_C7HHJG7Z_7316-4516_Solid Tissue_Initial CNS Tumor	5333	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	Loss-of-function;Unknown	NA	NA
+PT_18QG3Z4H_7316-1052_Solid Tissue_Initial CNS Tumor	3828	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	Unknown	Unknown	Likely Loss-of-function	NA	NA
+PT_E3WNEDD4_7316-8023_Solid Tissue_Deceased	865	Male	DMG, H3 K28, TP53	Deceased	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Unknown	NA	NA
+PT_5BWZA0NT_7316-1102_Derived Cell Line_Initial CNS Tumor_Serum-based_4	4456	Female	DMG, H3 K28	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_DRR78VTX_7316-9836_Solid Tissue_Deceased	6061	Unknown	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_1DSX4VJM_7316-1708_Solid Tissue_Deceased	2296	Male	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_KTRJ8TFY_7316-3223_Solid Tissue_Initial CNS Tumor	2079	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_9GKVQ9QS_7316-3213_Solid Tissue_Initial CNS Tumor	2097	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_3QFBAXAN_7316-8101_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	;Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_KTRJ8TFY_A09689_Solid Tissue_Initial CNS Tumor	2079	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_JSFBMK5V_7316-1769_Derived Cell Line_Progressive_Serum-free_11	5653	Male	DMG, H3 K28	Progressive	NA		Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	NA	NA	NA
+PT_SABX4PZ2_C4118286-Tumor_Solid Tissue_Recurrence	2894	Female	DMG, H3 K28	Recurrence	NA		NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_GTHZF21E_7316-7689_Solid Tissue_Initial CNS Tumor	3795	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Loss-of-function	NA	NA
+PT_Z4PJA6KT_7316-1763_Solid Tissue_Initial CNS Tumor	3810	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	;Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function;Unknown	NA	NA
+PT_QJ53FP9N_7316-9622_Solid Tissue_Deceased	2694	Female	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_M9XXJ4GR_A09576_Solid Tissue_Initial CNS Tumor	3893	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_T1Q4HQYE_C4114719-Tumor_Solid Tissue_Initial CNS Tumor	1342	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_7FZ8SE69_7316-2152_Solid Tissue_Initial CNS Tumor	4402	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	;Gain-of-function;WHO mutation;Unknown	Likely Gain-of-function;Unknown	NA	NA	NA	Unknown	Loss-of-function;Unknown	NA	NA
+PT_WGVEF96B_7316-4446_Derived Cell Line_Initial CNS Tumor_Serum-free_27	2853	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_A06JR0E5_7316-5004_Solid Tissue_Initial CNS Tumor	2205	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_19GCSK2S_7316-7622_Solid Tissue_Deceased	3363	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_8SF8D0M9_7316-8100_Solid Tissue_Initial CNS Tumor	NA	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_M72FHJXN_7316-6756_Solid Tissue_Deceased	6542	Female	DMG, H3 K28	Deceased	Likely Loss-of-function;Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_NWYSD53S_7316-4997_Solid Tissue_Initial CNS Tumor	1544	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_FCWMT41S_7316-7133_Solid Tissue_Initial CNS Tumor	2064	Male	DMG, H3 K28	Initial CNS Tumor	NA	Gain-of-function	NA	NA	NA	NA	NA	NA	NA	NA
+PT_FKCPVY7V_7316-8031_Solid Tissue_Initial CNS Tumor	4143	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_RDGW5MJE_7316-8967_Solid Tissue_Deceased	3228	Male	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_BQJK7KPK_7316-6574_Solid Tissue_Initial CNS Tumor	3275	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_GDZXK2AG_7316-4672_Solid Tissue_Initial CNS Tumor	3224	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	;Unknown	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_BC0B16HC_7316-7075_Not Available_Initial CNS Tumor	3415	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	NA	NA	NA
+PT_Z0JKP1GY_7316-3158_Solid Tissue_Initial CNS Tumor	4739	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_97F1YCGF_7316-3026_Solid Tissue_Initial CNS Tumor	2800	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_HGM20MW7_A09446_Solid Tissue_Initial CNS Tumor	3558	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	;Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_9CQA1W10_7316-6349_Derived Cell Line_Deceased_Serum-free_7	2841	Female	DMG, H3 K28, TP53	Deceased	NA	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_D9A6G154_7316-9211_Solid Tissue_Initial CNS Tumor	NA	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_1E3E6GMF_A09985_Solid Tissue_Initial CNS Tumor	2211	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_7S5BVPE2_7316-712_Solid Tissue_Deceased	2214	Male	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_VCD0W8HG_7316-2756_Solid Tissue_Initial CNS Tumor	4320	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_A325EYR2_7316-2557_Solid Tissue_Initial CNS Tumor	2774	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_KTRJ8TFY_7316-3230_Solid Tissue_Progressive Disease Post-Mortem	2079	Male	DMG, H3 K28, TP53	Progressive Disease Post-Mortem	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function;Unknown;Likely Loss-of-function	NA	NA
+PT_KAQMYFYB_A16405_Solid Tissue_Initial CNS Tumor	2219	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Y7HKMCN0_7316-9716_Solid Tissue_Initial CNS Tumor	4625	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_XHV730W9_7316-6791_Solid Tissue_Initial CNS Tumor	3912	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_5BWZA0NT_7316-1102_Solid Tissue_Initial CNS Tumor	4456	Female	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_351GXJCW_7316-8025_Solid Tissue_Deceased	1189	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_Y5KY6KN9_7316-195_Derived Cell Line_Initial CNS Tumor_Serum-based_11	3296	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Unknown;Likely Loss-of-function	NA	NA
+PT_Y74CVASJ_7316-5002_Solid Tissue_Initial CNS Tumor	1717	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_VCD0W8HG_7316-4702_Solid Tissue_Deceased	4320	Female	DMG, H3 K28	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_RE6AXQM1_A19015_Solid Tissue_Initial CNS Tumor	1743	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_M9XXJ4GR_7316-3222_Solid Tissue_Initial CNS Tumor	3893	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_RYMG3M91_A18777_Solid Tissue_Initial CNS Tumor	3656	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_9GKVQ9QS_A05262_Solid Tissue_Initial CNS Tumor	2097	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function;Likely Loss-of-function	NA	NA
+PT_ZGJTEMMT_C4121853-Tumor_Solid Tissue_Initial CNS Tumor	1017	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	;Unknown;Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_NK8A49X5_A08692_Solid Tissue_Initial CNS Tumor	4896	Male	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_FN57KS79_7316-9831_Solid Tissue_Deceased	1699	Male	DMG, H3 K28, TP53	Deceased	NA	NA	NA	NA	Unknown	Unknown	NA	Likely Loss-of-function	NA	NA
+PT_NK8A49X5_7316-4448_Derived Cell Line_Progressive_Serum-free_27	4896	Male	DMG, H3 K28	Progressive	Likely Loss-of-function	amplification;Unknown;Gain-of-function	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_6QPZ4NP2_C4117671-Tumor_Solid Tissue_Initial CNS Tumor	696	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_DNH1VP67_7316-1062_Solid Tissue_Deceased	1976	Male	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_0J07HTRF_7316-6475_Derived Cell Line_Deceased_Serum-free_5	1913	Female	DMG, H3 K28	Deceased	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_C9YDTZPA_A15726_Solid Tissue_Initial CNS Tumor	1978	Male	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_1YQH5NSH_A20091_Solid Tissue_Initial CNS Tumor	2520	Male	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_JC4DHFJR_7316-2536_Solid Tissue_Deceased	4413	Female	DMG, H3 K28	Deceased	Unknown	Unknown	Unknown;Likely Gain-of-function	NA	NA	Unknown	Unknown	Unknown;Inconclusive	NA	NA
+PT_TATAHET9_C4124313-Tumor_Solid Tissue_Initial CNS Tumor	1450	Female	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_FRHVM7G9_7316-9048_Solid Tissue_Initial CNS Tumor	1431	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_9JT1441X_7316-544_Solid Tissue_Deceased	3989	Male	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_1E3E6GMF_7316-3224_Solid Tissue_Initial CNS Tumor	2211	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_59D00MBQ_7316-2810_Solid Tissue_Deceased	3283	Male	DMG, H3 K28, TP53	Deceased	Unknown	Unknown	Likely Gain-of-function;Unknown	NA	NA	Unknown	Unknown	Loss-of-function	NA	NA
+PT_V1HNAC2Q_A07150_Solid Tissue_Initial CNS Tumor	2786	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_KBDP8ZCR_7316-1889_Solid Tissue_Deceased	6087	Male	DMG, H3 K28	Deceased	Unknown;Likely Loss-of-function	Unknown	Likely Gain-of-function;Unknown	NA	NA	NA	Unknown	Unknown	NA	NA
+PT_QA9WJ679_7316-3218_Solid Tissue_Initial CNS Tumor	5417	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Unknown	NA	NA
+PT_R4T1V1K4_7316-2784_Solid Tissue_Initial CNS Tumor	3578	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_5Y0CE4WK_7316-9838_Solid Tissue_Deceased	2012	Unknown	DMG, H3 K28	Deceased	NA	Unknown	NA	NA	Unknown	NA	Unknown	NA	NA	NA
+PT_D5PE7B2H_7316-45_Solid Tissue_Initial CNS Tumor	5152	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_W5GP3F6B_A16915_Solid Tissue_Initial CNS Tumor	2459	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_4XB3YTJM_7316-388_Solid Tissue_Initial CNS Tumor	1897	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	Unknown	Unknown	Loss-of-function	NA	NA
+PT_P571HTNK_7316-8851_Solid Tissue_Initial CNS Tumor	2251	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_Z4PJA6KT_7316-1763_Derived Cell Line_Initial CNS Tumor_Serum-based_3	3810	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_JNEV57VK_7316-2594_Solid Tissue_Initial CNS Tumor	2869	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Unknown;Likely Gain-of-function	NA	NA	Unknown	Likely Loss-of-function;Unknown	NA	NA	NA
+PT_858H7ABM_7316-903_Solid Tissue_Recurrence	6704	Female	DMG, H3 K28	Recurrence	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	NA	NA	NA
+PT_JNEV57VK_7316-3058_Solid Tissue_Progressive	2869	Male	DMG, H3 K28, TP53	Progressive	Unknown	Unknown	Unknown;Likely Gain-of-function	NA	NA	Unknown	Unknown;Likely Loss-of-function	Loss-of-function;Unknown	NA	NA
+PT_JBYZJRNM_7316-9062_Solid Tissue_Deceased	3127	Male	DMG, H3 K28, TP53	Deceased	Unknown	amplification;;Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_SNJ1YR1R_7316-9837_Solid Tissue_Deceased	2537	Male	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_DJ106XYS_7316-3935_Solid Tissue_Initial CNS Tumor	4489	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function;Unknown	NA	NA	Unknown	Unknown	Likely Loss-of-function;Unknown	NA	NA
+PT_3AR6AW9N_C3986184-Tumor_Solid Tissue_Recurrence	3868	Male	DMG, H3 K28, TP53	Recurrence	NA		Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	Likely Loss-of-function	NA	overexpression
+PT_H62STE27_7316-5323_Solid Tissue_Initial CNS Tumor	2649	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_V482NWB8_7316-8037_Solid Tissue_Initial CNS Tumor	4049	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_0MJEAART_7316-549_Solid Tissue_Deceased	3697	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_B38P3Y5T_7316-3208_Solid Tissue_Deceased	3388	Female	DMG, H3 K28	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_HXF3X28C_C4115088-Tumor_Solid Tissue_Initial CNS Tumor	1276	Female	DMG, H3 K28	Initial CNS Tumor	NA		NA	NA	Unknown	NA	Unknown	NA	NA	NA
+PT_FV2TNKY5_7316-7929_Not Available_Initial CNS Tumor	4799	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_XXGDDTZ4_C4118163-Tumor_Solid Tissue_Initial CNS Tumor	6220	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_PQNX91R7_C4116072-Tumor_Solid Tissue_Recurrence	2359	Female	DMG, H3 K28, TP53	Recurrence	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_CRTJW8WQ_7316-9835_Solid Tissue_Deceased	2830	Male	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_HSHPZAEZ_7316-545_Solid Tissue_Deceased	3296	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_1795S8AX_7316-9070_Solid Tissue_Deceased	4139	Male	DMG, H3 K28	Deceased	NA	Unknown	NA	NA	NA	NA	Likely Loss-of-function	NA	NA	NA
+PT_FQ1Q16FV_7316-5825_Solid Tissue_Initial CNS Tumor	5790	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_HCD9DP9H_C4123944-Tumor_Solid Tissue_Initial CNS Tumor	3735	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	overexpression
+PT_MTVXXQTG_7316-8017_Solid Tissue_Deceased	7777	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_TFCNV42Z_7316-4335_Solid Tissue_Initial CNS Tumor	4851	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_PR4YBBH3_7316-126_Solid Tissue_Deceased	3739	Female	DMG, H3 K28, TP53	Deceased	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_VWZZTK38_7316-1844_Solid Tissue_Initial CNS Tumor	4231	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_H9QTD79G_7316-7533_Solid Tissue_Initial CNS Tumor	4837	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_QA9WJ679_A08768_Solid Tissue_Initial CNS Tumor	5417	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Unknown	NA	NA
+PT_PSX2CSYX_7316-46_Solid Tissue_Initial CNS Tumor	2063	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_EN2RN5Y1_SF11385_Derived Cell Line_Initial CNS Tumor_NA_NA	3159	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	Unknown	NA	NA	NA	NA
+PT_NK8A49X5_7316-3228_Solid Tissue_Progressive	4896	Male	DMG, H3 K28	Progressive	Likely Loss-of-function;Unknown	;Unknown;Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_HV10JGD2_C4107339-Tumor_Solid Tissue_Initial CNS Tumor	2186	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_6PJ126FF_7316-8812_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_CWVNNBPH_7316-9834_Solid Tissue_Deceased	3403	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_SNJ1YR1R_C3985815-Tumor_Solid Tissue_Initial CNS Tumor	2537	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Likely Loss-of-function	NA	overexpression
+PT_RGX0DPJY_7316-6934_Solid Tissue_Initial CNS Tumor	3646	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_4XB3YTJM_7316-388_Derived Cell Line_Initial CNS Tumor_Serum-free_21	1897	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_SD4RJ57T_C3986430-Tumor_Solid Tissue_Initial CNS Tumor	5005	Male	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_C9YDTZPA_7316-5000_Solid Tissue_Initial CNS Tumor	1978	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_2QZJ4T95_7316-715_Solid Tissue_Initial CNS Tumor	3035	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_K1YK24PP_7316-4347_Solid Tissue_Initial CNS Tumor	1734	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_HV1DFFQ1_7316-9139_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Y5KY6KN9_7316-195_Derived Cell Line_Initial CNS Tumor_Serum-free_14	3296	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_2JDDX6TJ_7316-409_Solid Tissue_Initial CNS Tumor	4253	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function;Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	Likely Loss-of-function	NA	NA
+PT_97DBD8YS_C4118040-Tumor_Solid Tissue_Initial CNS Tumor	4960	Male	DMG, H3 K28	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_ZFKQKGME_7316-8052_Solid Tissue_Deceased	4880	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function;Unknown	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_HY664Q1B_7316-7542_Not Available_Initial CNS Tumor	3052	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_X5TQR8V2_7316-343_Solid Tissue_Initial CNS Tumor	6470	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function;Unknown	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_FN57KS79_C3985077-Tumor_Solid Tissue_Initial CNS Tumor	1699	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_3VQ5CZ5A_7316-8024_Solid Tissue_Deceased	2345	Female	DMG, H3 K28	Deceased	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_JNEV57VK_7316-3058_Derived Cell Line_Progressive_Serum-based_0	2869	Male	DMG, H3 K28	Progressive	Unknown	Unknown	Unknown;Likely Gain-of-function	Unknown	NA	NA	Unknown;Likely Loss-of-function	NA	NA	NA
+PT_FMS4AXKD_7316-9049_Solid Tissue_Initial CNS Tumor	1391	Female	DMG, H3 K28	Initial CNS Tumor	NA	;Gain-of-function	NA	NA	NA	NA	NA	NA	NA	overexpression
+PT_5BFEWBGY_7316-6079_Solid Tissue_Initial CNS Tumor	2262	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_40N7BXSQ_7316-599_Derived Cell Line_Initial CNS Tumor_Serum-based_8	444	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_C9YDTZPA_CNMC-967_Derived Cell Line_Initial CNS Tumor_Serum-based_27	1978	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_MNSEJCDM_7316-3227_Solid Tissue_Initial CNS Tumor	2190	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	amplification	NA	NA	NA	Unknown	NA	Likely Loss-of-function	NA	NA
+PT_E8M5V9V0_7316-9511_Solid Tissue_Deceased	6217	Female	DMG, H3 K28	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_M23Q0DC3_7316-3212_Solid Tissue_Initial CNS Tumor	1740	Female	DMG, H3 K28	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_CSKHQB16_A14567_Solid Tissue_Initial CNS Tumor	1460	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	Loss-of-function	NA	NA
+PT_Z2KHR3GQ_7316-8377_Solid Tissue_Initial CNS Tumor	NA	Female	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function;Unknown	NA	NA	NA
+PT_VKRWCBA2_7316-6982_Solid Tissue_Initial CNS Tumor	1472	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Q37KKTVP_7316-6985_Solid Tissue_Initial CNS Tumor	1449	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_JDS5171S_C4111152-Tumor_Solid Tissue_Recurrence	1707	Male	DMG, H3 K28	Recurrence	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	overexpression
+PT_1AAYYGGY_7316-4996_Solid Tissue_Initial CNS Tumor	4608	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_ERTJRQ37_7316-9854_Solid Tissue_Initial CNS Tumor	NA	Unknown	DMG, H3 K28, TP53	Initial CNS Tumor	NA	amplification;Gain-of-function	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	overexpression	NA
+PT_DZ0X4KM1_7316-3047_Solid Tissue_Initial CNS Tumor	1050	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_KZ56XHJT_7316-3234_Derived Cell Line_Progressive_Serum-free_27	2773	Female	DMG, H3 K28	Progressive	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_9KK0BAGK_7316-3161_Solid Tissue_Initial CNS Tumor	2347	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_XKVFVBY4_7316-550_Solid Tissue_Deceased	2032	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_P571HTNK_7316-9433_Solid Tissue_Progressive	2251	Female	DMG, H3 K28	Progressive	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_Z4PJA6KT_7316-1763_Derived Cell Line_Initial CNS Tumor_Serum-free_9	3810	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_C71G98K3_7316-8658_Solid Tissue_Initial CNS Tumor	NA	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Inconclusive	NA	NA
+PT_PPPQFTDV_C4110906-Tumor_Solid Tissue_Initial CNS Tumor	1776	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_PE0SAKT4_C4116195-Tumor_Solid Tissue_Initial CNS Tumor	5712	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_DKMVGV69_7316-9845_Solid Tissue_Deceased	2379	Unknown	DMG, H3 K28	Deceased	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_9Z1FS69W_7316-3155_Solid Tissue_Initial CNS Tumor	2340	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_DS0HZCSD_7316-9843_Solid Tissue_Deceased	10932	Unknown	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	Loss-of-function	NA	NA
+PT_5NS35B66_7316-4491_Solid Tissue_Deceased	1974	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_KZ56XHJT_A08732_Solid Tissue_Initial CNS Tumor	2773	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_P9G8GKD5_7316-5299_Solid Tissue_Initial CNS Tumor	2952	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_63F63QY0_7316-3521_Solid Tissue_Progressive	4188	Female	DMG, H3 K28	Progressive	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Unknown	NA	NA
+PT_HGM20MW7_7316-3221_Solid Tissue_Initial CNS Tumor	3558	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Y660CKCB_7316-3122_Solid Tissue_Initial CNS Tumor	5769	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_E8M5V9V0_7316-6064_Solid Tissue_Initial CNS Tumor	6217	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_RGX0DPJY_7316-7664_Solid Tissue_Deceased	3646	Male	DMG, H3 K28, TP53	Deceased	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_EN2RN5Y1_7316-5005_Solid Tissue_Initial CNS Tumor	3159	Female	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_M0A3C69H_C4111890-Tumor_Solid Tissue_Initial CNS Tumor	1938	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_E24DN34J_7316-8428_Solid Tissue_Initial CNS Tumor	760	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	Unknown;Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_G8ZTC724_7316-6813_Solid Tissue_Initial CNS Tumor	5998	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_FA2F3HQG_7316-3858_Solid Tissue_Initial CNS Tumor	1037	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_M23Q0DC3_A03942_Solid Tissue_Initial CNS Tumor	1740	Female	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_R0R6VWX9_7316-9343_Solid Tissue_Initial CNS Tumor	NA	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Z4PJA6KT_7316-1763_Derived Cell Line_Initial CNS Tumor_Serum-free_8	3810	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_JSFBMK5V_7316-392_Solid Tissue_Initial CNS Tumor	5653	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	NA	NA	NA
+PT_KZ56XHJT_7316-3217_Solid Tissue_Initial CNS Tumor	2773	Female	DMG, H3 K28	Initial CNS Tumor	Likely Loss-of-function;Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_DMAF1J4A_A18552_Solid Tissue_Initial CNS Tumor	2233	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	amplification;Unknown	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_ZSHEMD0K_7316-6773_Solid Tissue_Initial CNS Tumor	1422	Male	DMG, H3 K28	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_EW44V0NM_7316-8045_Solid Tissue_Deceased	1537	Male	DMG, H3 K28	Deceased	NA	NA	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_C5EZXTB6_7316-6476_Solid Tissue_Deceased	2201	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_JK7BAVGR_C4116564-Tumor_Solid Tissue_Initial CNS Tumor	3001	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	;Gain-of-function	NA	NA	NA	Unknown	NA	Likely Loss-of-function	overexpression	NA
+PT_MNSEJCDM_7316-3229_Solid Tissue_Progressive Disease Post-Mortem	2190	Male	DMG, H3 K28, TP53	Progressive Disease Post-Mortem	NA		NA	NA	NA	Unknown	NA	Likely Loss-of-function	NA	NA
+PT_DMAF1J4A_7316-5006_Solid Tissue_Initial CNS Tumor	2233	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	;Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_G16VK7FR_7316-5814_Solid Tissue_Initial CNS Tumor	2021	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_G16VK7FR_CNMC-1277_Derived Cell Line_Initial CNS Tumor_Serum-based_27	2021	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	NA	NA	Unknown	NA	Unknown	Likely Loss-of-function	NA	NA
+PT_Y5KY6KN9_7316-195_Derived Cell Line_Initial CNS Tumor_Serum-free_8	3296	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_EZX4WCAD_C4124067-Tumor_Solid Tissue_Initial CNS Tumor	4496	Male	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	overexpression
+PT_V92V7WHQ_C4113612-Tumor_Solid Tissue_Initial CNS Tumor	6436	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_K7FZ6YHZ_7316-7616_Solid Tissue_Deceased	5512	Male	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_A06JR0E5_CNMC-1034_Derived Cell Line_Initial CNS Tumor_Serum-based_27	2205	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Loss-of-function	NA	NA
+PT_CSKHQB16_7316-4995_Solid Tissue_Initial CNS Tumor	1460	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	Loss-of-function	NA	NA
+PT_BQAR0KHK_7316-7585_Solid Tissue_Deceased	2234	Male	DMG, H3 K28, TP53	Deceased	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_Q5S82AA3_7316-4558_Solid Tissue_Initial CNS Tumor	3169	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_1YCS5K9Q_C4115703-Tumor_Solid Tissue_Initial CNS Tumor	2279	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_JNEV57VK_7316-3058_Derived Cell Line_Progressive_Serum-based_7	2869	Male	DMG, H3 K28	Progressive	Unknown	Unknown	Unknown;Likely Gain-of-function	NA	NA	NA	Unknown;Likely Loss-of-function	NA	NA	NA
+PT_5NS35B66_7316-3011_Solid Tissue_Initial CNS Tumor	1974	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_6FYZ0GSV_7316-9434_Solid Tissue_Progressive	2244	Female	DMG, H3 K28, TP53	Progressive	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function;Loss-of-function	NA	NA
+PT_ZVYRFGEN_7316-1068_Solid Tissue_Deceased	1252	Female	DMG, H3 K28	Deceased	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_WGVEF96B_A08958_Solid Tissue_Initial CNS Tumor	2853	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_V1HNAC2Q_7316-3215_Solid Tissue_Initial CNS Tumor	2786	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_4ZRCW5H5_7316-7748_Solid Tissue_Progressive	6132	Male	DMG, H3 K28	Progressive	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+PT_W6H1Q54P_7316-8122_Solid Tissue_Initial CNS Tumor	1807	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_W6H1Q54P_7316-8122_Not Available_Initial CNS Tumor	1807	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_RA6AGBA7_7316-461_Solid Tissue_Progressive	3209	Female	DMG, H3 K28, TP53	Progressive	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_Y5KY6KN9_7316-195_Derived Cell Line_Initial CNS Tumor_Serum-based_4	3296	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	NA	Unknown;Likely Loss-of-function	NA	NA
+PT_B38P3Y5T_7316-2781_Solid Tissue_Initial CNS Tumor	3388	Female	DMG, H3 K28	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_59D00MBQ_7316-1936_Solid Tissue_Initial CNS Tumor	3283	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_E9J8FNW5_C4116318-Tumor_Solid Tissue_Recurrence	3187	Female	DMG, H3 K28	Recurrence	NA	;Gain-of-function	NA	NA	NA	NA	NA	NA	NA	NA
+PT_VPEMAQBN_7316-3225_Solid Tissue_Initial CNS Tumor	1709	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_KAQMYFYB_7316-5001_Solid Tissue_Initial CNS Tumor	2219	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_FS1GKF9Y_C4115949-Tumor_Solid Tissue_Recurrence	5616	Female	DMG, H3 K28, TP53	Recurrence	Likely Loss-of-function	;Unknown	Unknown	NA	NA	NA	Likely Loss-of-function	Likely Loss-of-function	NA	NA
+PT_CRTJW8WQ_C3985569-Tumor_Solid Tissue_Initial CNS Tumor	2830	Male	DMG, H3 K28, TP53	Initial CNS Tumor	Likely Loss-of-function		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_NKETJQ7Q_7316-9623_Solid Tissue_Deceased	1628	Male	DMG, H3 K28, TP53	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_S8FRH9FA_7316-9971_Solid Tissue_Initial CNS Tumor	1495	Female	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_0NHK26KP_C4116441-Tumor_Solid Tissue_Initial CNS Tumor	5210	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_RYMG3M91_7316-5812_Solid Tissue_Initial CNS Tumor	3656	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_FA2F3HQG_7316-6065_Solid Tissue_Deceased	1037	Female	DMG, H3 K28	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_9WSN93D0_C4119393-Tumor_Solid Tissue_Recurrence	3562	Female	DMG, H3 K28	Recurrence	NA	;Gain-of-function;WHO mutation	NA	NA	Unknown	NA	NA	NA	overexpression	NA
+PT_WGVEF96B_7316-3219_Solid Tissue_Initial CNS Tumor	2853	Female	DMG, H3 K28, TP53	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_DR94DMTG_7316-9830_Solid Tissue_Deceased	3250	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Unknown	NA	NA	NA
+PT_1YQH5NSH_7316-5815_Solid Tissue_Initial CNS Tumor	2520	Male	DMG, H3 K28	Initial CNS Tumor	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_VPEMAQBN_7316-3235_Derived Cell Line_Initial CNS Tumor_Serum-free_27	1709	Female	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	Likely Loss-of-function	NA	NA
+PT_E5CM6C84_7316-6274_Solid Tissue_Initial CNS Tumor	1778	Male	DMG, H3 K28	Initial CNS Tumor	NA	NA	NA	NA	Unknown	NA	NA	NA	NA	NA
+PT_X1009J1H_7316-8049_Solid Tissue_Deceased	1534	Male	DMG, H3 K28	Deceased	NA	NA	Likely Gain-of-function	NA	NA	NA	Likely Loss-of-function	NA	NA	NA
+PT_A06JR0E5_A17096_Solid Tissue_Initial CNS Tumor	2205	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Loss-of-function	NA	NA
+PT_7P6J57H3_A12911_Solid Tissue_Initial CNS Tumor	1949	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_77J37DEW_7316-9064_Solid Tissue_Deceased	3415	Female	DMG, H3 K28	Deceased	Unknown	Unknown	Likely Gain-of-function	NA	NA	NA	NA	NA	NA	NA
+PT_4W8H3VB0_C4116687-Tumor_Solid Tissue_Initial CNS Tumor	883	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA		Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_V1HNAC2Q_7316-3240_Derived Cell Line_Initial CNS Tumor_Serum-free_0	2786	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_J03YQ4V3_7316-8021_Solid Tissue_Deceased	5787	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	NA	Inconclusive	NA	NA
+PT_814K3T0D_7316-4999_Solid Tissue_Initial CNS Tumor	2920	Male	DMG, H3 K28, TP53	Initial CNS Tumor	NA	NA	Likely Gain-of-function	NA	NA	NA	NA	Likely Loss-of-function	NA	NA
+PT_X5AEX1N4_7316-7269_Solid Tissue_Deceased	2158	Female	DMG, H3 K28, TP53	Deceased	Unknown	NA	Likely Gain-of-function	NA	NA	NA	Unknown	Likely Loss-of-function	NA	NA

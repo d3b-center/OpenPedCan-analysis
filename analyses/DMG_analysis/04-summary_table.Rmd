@@ -1,0 +1,99 @@
+---
+title: "summary_DMG"
+author: "ZZ"
+date: "2024-01-15"
+output: pdf_document
+---
+
+## libraries
+```{r}
+library(tidyverse)
+
+```
+
+## set directories 
+```{r}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+data_dir <- file.path(root_dir, "data", "v13")
+subset_dir <- file.path(root_dir, "analyses", "DMG_analysis", "subset")
+result_dir <- file.path(root_dir, "analyses", "DMG_analysis", "results")
+
+```
+
+## load files
+
+```{r}
+hist <- read_tsv(file.path(data_dir, "histologies.tsv"))
+selected_sample <- hist %>% 
+  filter(grepl(c("DMG"), molecular_subtype))
+onco_df <- read_tsv(file.path(result_dir, "df_for_oncoplot.tsv"))
+sv <- data.table::fread(file.path(data_dir, "sv-manta.tsv.gz"))
+tp53 <- read_tsv(file.path(root_dir, "analyses", "tp53_nf1_score", "results", "tp53_altered_status.tsv"))
+
+```
+### subset files
+```{r}
+tp53_select <- tp53 %>% 
+  filter(match_id %in% selected_sample$match_id) %>% 
+  select(match_id, tp53_score, tp53_altered) %>% 
+  mutate(tp53_alteration = case_when(tp53_altered %in% c("activated", "loss") ~ "Y", TRUE ~ "N")) %>% 
+  unique()
+
+sv_selected <- sv %>% 
+  filter(Kids.First.Biospecimen.ID.Tumor %in% selected_sample$Kids_First_Biospecimen_ID, 
+         Gene_name == "EGFR") %>% 
+  select(Gene_name, Kids.First.Biospecimen.ID.Tumor, SV_type) %>% 
+  dplyr::rename("Kids_First_Biospecimen_ID" = "Kids.First.Biospecimen.ID.Tumor") %>% 
+  left_join(selected_sample %>% select(Kids_First_Biospecimen_ID, match_id)) %>% 
+  mutate(EGFR_ins = case_when(SV_type == "INS" ~ "Y", 
+                              TRUE ~ "N")) %>% 
+  select(match_id, EGFR_ins, SV_type) %>% 
+  unique()
+
+rm(sv)
+```
+
+### transform onco file
+
+```{r}
+
+snv_annotate <- read_tsv(file.path(subset_dir, "snv_selected_genes_oncokb.maf.tsv"))
+snv_annotate_1 <- snv_annotate %>% 
+  left_join(selected_sample %>% select(match_id, Kids_First_Biospecimen_ID), 
+            by = c("Tumor_Sample_Barcode" = "Kids_First_Biospecimen_ID")) %>%
+  mutate(H3.1_K28M = case_when(Hugo_Symbol == "H3-3A" & HGVSp_Short == "p.K28M" ~ "Y", TRUE ~ "N"), 
+         H3.3_K28M = case_when(Hugo_Symbol %in% c("H3C2", "H3C3") & HGVSp_Short == "p.K28M" ~ "Y", TRUE ~ "N"),
+         EGFR_ins = case_when(grepl("Ins", Variant_Classification) & Hugo_Symbol == "EGFR" ~ "Y", TRUE ~ "N"), 
+         EGFR_onco = case_when(Hugo_Symbol == "EGFR" & ONCOGENIC == "Oncogenic" ~ "Y", TRUE ~ "N"),
+         EGFR_WHO_reported = case_when(Hugo_Symbol == "EGFR" & HGVSp_Short %in% c("p.A289T", "p.A289V") ~ "Y", TRUE ~ "N"),
+         ATRX_onco = case_when(Hugo_Symbol == "ATRX" & ONCOGENIC == "Oncogenic" ~ "Y", TRUE ~ "N")) %>% 
+  select(match_id, H3.1_K28M, H3.3_K28M, EGFR_ins, EGFR_onco, EGFR_WHO_reported, ATRX_onco) %>% 
+  filter(rowSums(is.na(.)) != 6) %>%
+  group_by(match_id) %>% 
+  summarize_at(vars(H3.1_K28M, H3.3_K28M, EGFR_ins, EGFR_onco, EGFR_WHO_reported, ATRX_onco), 
+               funs(sum = paste(unique(.), collapse = ";"))) %>%
+  unique() 
+  
+
+
+```
+
+```{r}
+
+summary_df <- onco_df %>% 
+  mutate(H3_WT = case_when(is.na(`H3-3A`) & is.na(H3C14) & is.na(H3C2) & is.na(H3C3) ~ "Y", TRUE ~ "N"), 
+         EGFR_overexp = case_when(EGFR_exp == "overexpression" ~ "Y", TRUE ~ "N"), 
+         EZHIP_overexp = case_when(EZHIP_exp == "overexpression" ~ "Y", TRUE ~ "N"), 
+         EGFR_amp = case_when(grepl("amplification", EGFR) ~ "Y", TRUE ~ "N")) %>% 
+  select(match_id, H3_WT, EGFR_overexp, EZHIP_overexp, EGFR_amp) %>%
+  left_join(tp53_select) %>% 
+  left_join(snv_annotate_1) %>% 
+  left_join(sv_selected) %>% 
+  mutate(H3.1_K28M_sum = case_when(H3.1_K28M_sum %in% c("Y;N", "N;Y") ~ "Y", TRUE ~ H3.1_K28M_sum), 
+         H3.3_K28M_sum = case_when(H3.3_K28M_sum %in% c("Y;N", "N;Y") ~ "Y", TRUE ~ H3.3_K28M_sum), 
+         EGFR_ins_sum = case_when(EGFR_ins_sum %in% c("Y;N", "N;Y") ~ "Y", TRUE ~ EGFR_ins_sum),
+         EGFR_onco_sum = case_when(EGFR_onco_sum %in% c("Y;N", "N;Y") ~ "Y", TRUE ~ EGFR_onco_sum),
+         EGFR_WHO_reported_sum = case_when(EGFR_WHO_reported_sum %in% c("Y;N", "N;Y") ~ "Y", TRUE ~ EGFR_WHO_reported_sum))
+
+write_tsv(summary_df, file.path(result_dir, "summary_table.tsv"))
+```
