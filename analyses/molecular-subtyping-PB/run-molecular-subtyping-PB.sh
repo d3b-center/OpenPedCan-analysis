@@ -11,3 +11,6 @@ Rscript --vanilla 00-PB-select-pathology-dx.R
 
 # Run R script to subtype PB using methylation data 
 Rscript -e "rmarkdown::render('01-molecular-subtype-pineoblastoma.Rmd', clean = TRUE)"
+
+# add umap
+Rscript -e "rmarkdown::render('02-pineoblastoma-umap.Rmd', clean = TRUE)"

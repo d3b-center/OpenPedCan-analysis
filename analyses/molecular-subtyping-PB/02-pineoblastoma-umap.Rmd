@@ -32,7 +32,8 @@ source(file.path(root_dir, "figures", "manuscript_OPC", "utils", "theme_for_plot
 Set file paths
 
 ```{r}
-hist_file <- file.path(data_dir, "histologies.tsv")
+hist_file <- file.path(data_dir, "histologies-base.tsv")
+subtype_file <- file.path(results_dir, "pineo-molecular-subtypes.tsv")
 methyl_file <- file.path(data_dir, "methyl-beta-values.rds")
 
 ```
@@ -48,15 +49,17 @@ Filter hist for methyl samples, and append to subtype df
 ```{r}
 hist_methyl <- hist %>%
   dplyr::filter(pathology_diagnosis == "Pineoblastoma",
-                experimental_strategy == "Methylation") %>%
+                experimental_strategy == "Methylation") 
+
+subtypes <- read_tsv(subtype_file) %>%
+  right_join(hist_methyl) %>%
+  filter(!is.na(molecular_subtype_methyl)) %>%
   dplyr::rename(Kids_First_Biospecimen_ID_methyl = Kids_First_Biospecimen_ID) %>%
   # remove anything not PB and also the to be classified sample
-  filter(grepl("PB", molecular_subtype)) %>%
-  filter(!grepl("To be classified", molecular_subtype)) %>%
-  # update one with pathogenic germline variant
-  mutate(molecular_subtype = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ "PB, Group 1 + DROSHA GPV",
+  # update one with germline pathogenic variant (GPV) reported in Fiorca, et al 2024
+  mutate(molecular_subtype = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ paste0(molecular_subtype, " + DROSHA GPV"),
          TRUE ~ molecular_subtype),
-         molecular_subtype_methyl = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ "PB, Group 1A + DROSHA GPV",
+         molecular_subtype_methyl = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ paste0(molecular_subtype_methyl, " + DROSHA GPV"),
          TRUE ~ molecular_subtype_methyl))
 
 ```
@@ -72,7 +75,7 @@ Load methylation data and filter for ids in `mb_shh_subtypes`
 ```{r load methyl}
 methyl <- readRDS(methyl_file)
 
-pineo_methyl <- methyl[,colnames(methyl) %in% c("Probe_ID", hist_methyl$Kids_First_Biospecimen_ID_methyl)]
+pineo_methyl <- methyl[,colnames(methyl) %in% c("Probe_ID", subtypes$Kids_First_Biospecimen_ID_methyl)]
 
 pineo_methyl <- pineo_methyl %>%
   distinct(Probe_ID, .keep_all = TRUE) %>%
@@ -90,12 +93,12 @@ Generate UMAP results
 
 ```{r}
 set.seed(2024)
-
+# neighbors needs to be low because the sample size is very low right now
 umap_results <- umap::umap(t(pineo_methyl[var_probes, ]), n_neighbors = 5)
 
 umap_plot_df <- data.frame(umap_results$layout) %>%
   tibble::rownames_to_column("Kids_First_Biospecimen_ID_methyl") %>%
-  left_join(hist_methyl)
+  left_join(subtypes)
 ```
 
 Plot UMAP with molecular subtype and age range 
