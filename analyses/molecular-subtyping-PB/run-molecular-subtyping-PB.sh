@@ -10,8 +10,7 @@ script_directory="$(perl -e 'use File::Basename;
   print dirname(abs_path(@ARGV[0]));' -- "$0")"
 cd "$script_directory" || exit
 
-# This option controls whether on not the step that generates the HGG only
-# files gets run -- it will be turned off in CI
+# This will be turned off in CI
 SUBSET=${OPENPBTA_SUBSET:-1}
 
 scratch_path="../../scratch/"
@@ -27,22 +26,23 @@ Rscript -e "rmarkdown::render('01-molecular-subtype-pineoblastoma.Rmd', clean = 
 
 
 if [ "$SUBSET" -gt "0" ]; then
-  echo "classify SHH samples into alpha, beta, delta, gamma"
-  Rscript --vanilla 05-subtype-mb-shh.R
- 
   echo "check whether methylation files exist"
   URL="https://d3b-openaccess-us-east-1-prd-pbta.s3.amazonaws.com/open-targets"
   RELEASE="v15"
   BETA="methyl-beta-values.rds"
   if [ -f "${data_dir}/${BETA}" ]; then
       echo "${BETA} exists, skip downloading"
-  else 
+      echo "run pineoblastoma clustering"
+      # add umap
+      Rscript -e "rmarkdown::render('02-pineoblastoma-umap.Rmd', clean = TRUE)"
+    else 
       echo "${BETA} does not exist, downloading..."
       wget ${URL}/${RELEASE}/${BETA} -P ${data_dir}/${RELEASE}/
       cd ${data_dir}
       ln -sfn ${RELEASE}/${BETA} ./${BETA}
       cd ../analyses/molecular-subtyping-MB
+      echo "run pineoblastoma clustering"
+      # add umap
+      Rscript -e "rmarkdown::render('02-pineoblastoma-umap.Rmd', clean = TRUE)"
   fi
   
-# add umap
-Rscript -e "rmarkdown::render('02-pineoblastoma-umap.Rmd', clean = TRUE)"
