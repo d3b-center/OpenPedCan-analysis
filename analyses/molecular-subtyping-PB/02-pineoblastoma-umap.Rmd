@@ -1,0 +1,126 @@
+---
+title: "pineo-umap"
+author: Jo Lynne Rokita
+output: html_document
+date: "2024-10-07"
+---
+
+
+Load libraries and set directory paths
+
+```{r}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(umap)
+  library(ggplot2)
+  library(devtools)
+  library(gdata)
+  library(ggpubr)
+  library(patchwork)
+})
+
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+
+data_dir <- file.path(root_dir, "data")
+analysis_dir <- file.path(root_dir, "analyses", "molecular-subtyping-PB")
+results_dir <- file.path(analysis_dir, "results")
+plots_dir <- file.path(analysis_dir, "plot")
+
+source(file.path(root_dir, "figures", "manuscript_OPC", "utils", "theme_for_plot.R"))
+```
+
+Set file paths
+
+```{r}
+hist_file <- file.path(data_dir, "histologies-base.tsv")
+subtype_file <- file.path(results_dir, "pineo-molecular-subtypes.tsv")
+methyl_file <- file.path(data_dir, "methyl-beta-values.rds")
+
+```
+
+Wrangle data. 
+
+```{r get methyl ids}
+hist <- read_tsv(hist_file)
+```
+
+Filter hist for methyl samples, and append to subtype df
+
+```{r}
+hist_methyl <- hist %>%
+  dplyr::filter(pathology_diagnosis == "Pineoblastoma",
+                experimental_strategy == "Methylation") 
+
+subtypes <- read_tsv(subtype_file) %>%
+  right_join(hist_methyl) %>%
+  filter(!is.na(molecular_subtype_methyl)) %>%
+  dplyr::rename(Kids_First_Biospecimen_ID_methyl = Kids_First_Biospecimen_ID) %>%
+  # remove anything not PB and also the to be classified sample
+  # update one with germline pathogenic variant (GPV) reported in Fiorca, et al 2024
+  mutate(molecular_subtype = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ paste0(molecular_subtype, " + DROSHA GPV"),
+         TRUE ~ molecular_subtype),
+         molecular_subtype_methyl = case_when(Kids_First_Biospecimen_ID_methyl == "BS_SG2X2XQB" ~ paste0(molecular_subtype_methyl, " + DROSHA GPV"),
+         TRUE ~ molecular_subtype_methyl))
+
+```
+
+Get number of samples by MB SHH subtype
+
+```{r}
+table(hist_methyl$molecular_subtype)
+```
+
+Load methylation data and filter for ids in `mb_shh_subtypes`
+
+```{r load methyl}
+methyl <- readRDS(methyl_file)
+
+pineo_methyl <- methyl[,colnames(methyl) %in% c("Probe_ID", subtypes$Kids_First_Biospecimen_ID_methyl)]
+
+pineo_methyl <- pineo_methyl %>%
+  distinct(Probe_ID, .keep_all = TRUE) %>%
+  column_to_rownames("Probe_ID")
+```
+
+Identify 20k most variable probes among MB samples
+
+```{r}
+methyl_var <- apply(pineo_methyl, 1, var, na.rm = TRUE)
+var_probes <- names(sort(methyl_var, decreasing = TRUE)[1:20000])
+```
+
+Generate UMAP results
+
+```{r}
+set.seed(2024)
+# neighbors needs to be low because the sample size is very low right now
+umap_results <- umap::umap(t(pineo_methyl[var_probes, ]), n_neighbors = 5)
+
+umap_plot_df <- data.frame(umap_results$layout) %>%
+  tibble::rownames_to_column("Kids_First_Biospecimen_ID_methyl") %>%
+  left_join(subtypes)
+```
+
+Plot UMAP with molecular subtype and age range 
+
+```{r}
+umap_pineo <-  ggplot(umap_plot_df, aes(x = X1, 
+             y = X2,
+             fill = molecular_subtype_methyl)) +
+  geom_point(alpha = 0.8, size = 3.5, shape = 21, stroke = 0.8, color = "black") +
+  labs(fill = "Molecular subtype") +
+  theme_bw() +
+  xlab("UMAP1") +
+  ylab("UMAP2") +
+  theme_Publication() 
+
+ggsave(file.path(plots_dir, "umap_pineo.pdf"),
+       umap_pineo,
+       width = 7, height = 3.5)
+```
+
+Save session info
+```{r}
+sessionInfo()
+
+```

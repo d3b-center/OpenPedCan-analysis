@@ -20,6 +20,8 @@ bash run-molecular-subtyping-PB.sh
 
 This folder contains scripts tasked to molecularly subtype PB samples 
 
+`00-PB-select-pathology-dx.R` - filter to pineoblastoma diagnoses
+`01-molecular-subtype-pineoblastoma.Rmd` - Subtype pineoblastoma:
 * Filter the samples with `dkfz_v12_methylation_subclass >=0.8` and `cns_methylation_subclass` is one of the three PB subtypes ->
   * PB_FOXR2: pineoblastoma, MYC/FOXR2-activated (PB, MYC/FOXR2)
   * PB_GRP1A, PB_GRP1B: pineoblastoma, miRNA processing-altered 1 (PB, Group 1)
@@ -28,4 +30,10 @@ This folder contains scripts tasked to molecularly subtype PB samples
 
 * If methylation does not exist or `dkfz_v12_methylation_subclass < 0.8`  for any PB samples -> `PB, To be clasified`
 
-Final results is a table with `Kids_First_Biospecimen_ID`, `Kids_First_Participant_ID`, `sample_id`, `molecular_subtype_methyl`, and `molecular_subtype`, and saved as `pb-molecular-subtype.tsv`
+Final results is a table with `Kids_First_Biospecimen_ID`, `Kids_First_Participant_ID`, `sample_id`, `molecular_subtype_methyl`, and `molecular_subtype`, and saved as `pb-molecular-subtype.tsv`.
+
+`02-pineoblastoma-umap.Rmd` - Create umap of top 20k most variable methylation probes and plot the pineoblastoma subtypes.
+
+
+
+
