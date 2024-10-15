@@ -30,6 +30,7 @@ if [ "$SUBSET" -gt "0" ]; then
   URL="https://d3b-openaccess-us-east-1-prd-pbta.s3.amazonaws.com/open-targets"
   RELEASE="v15"
   BETA="methyl-beta-values.rds"
+
   if [ -f "${data_dir}/${BETA}" ]; then
       echo "${BETA} exists, skip downloading"
       echo "run pineoblastoma clustering"
@@ -45,4 +46,8 @@ if [ "$SUBSET" -gt "0" ]; then
       # add umap
       Rscript -e "rmarkdown::render('02-pineoblastoma-umap.Rmd', clean = TRUE)"
   fi
+else
+  echo "SUBSET is not greater than 0 or not a valid number."
+fi
+
   
