@@ -19,3 +19,8 @@ Release: v15
     - Sheet 1: R packages
     - Sheet 2: python libraries
     - Sheet 3: CLI tools
+    
+4. DNA and RNA-seq QC table
+- This table displays read counts and coverage for all DNA and RNA biospecimens. 
+    - Sheet 1: DNA and RNA QC metrics
+    
