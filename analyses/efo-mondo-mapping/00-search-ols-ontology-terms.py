@@ -66,7 +66,7 @@ def parse_input_for_ols_term_type(input_map_prefill, ols_term_type, URL):
         else:
           outdata=[cgrp[0], searchterm, "Not found", "Not found"]
 
-        out_df=out_df.append({"CancerGroup":outdata[0], "SearchTerm":outdata[1], "OntoID":outdata[2], "OntoDesc":outdata[3]},ignore_index=True)
+        out_df=out_df._append({"CancerGroup":outdata[0], "SearchTerm":outdata[1], "OntoID":outdata[2], "OntoDesc":outdata[3]},ignore_index=True)
         cntr=cntr+1
   return(out_df)
    
