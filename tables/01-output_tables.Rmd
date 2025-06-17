@@ -52,6 +52,7 @@ table_s1_file <- file.path(results_dir, "SuppTable1-Histologies.xlsx")
 # Read files
 ```{r}
 histology_df <- read_tsv(histology_file, guess_max =100000)
+EFO_MONDO <- read_tsv(file.path(root_dir, "analyses", "efo-mondo-mapping", "results", "efo-mondo-map.tsv"))
 ```
 
 ## Table S1: histologies table
@@ -81,6 +82,7 @@ readme <- tribble(
 "dkfz_v12_methylation_subclass_score","v12b6 DKFZ methylation-based CNS tumor subclass","numeric",
 "dkfz_v12_methylation_mgmt_status","v12b6 DKFZ MGMT promoter methylation status",paste(unique(histology_df$dkfz_v11_methylation_subclass), collapse = "; "),
 "dkfz_v12_methylation_mgmt_estimated","v12b6 DKFZ MGMT promoter methylation fraction","numeric",
+"efo_code", "The Experimental Factor Ontology (EFO) provides systematic description of experimental variables including cancer groups available in European Bioinformatics Institute databases and some other external projects", "text",
 "EFS_days","Event-free survival in days","numeric",
 "EFS_event_type", "Event considered when calculating EFS", paste(unique(histology_df$EFS_event_type), collapse = "; "),
 "ethnicity","Patient reported ethnicity",paste(unique(histology_df$ethnicity), collapse = "; "),
@@ -97,6 +99,8 @@ readme <- tribble(
 "match_id", "ID used to match experimental strategies within an event per sample composition", "Concatenation of sample_id, tumor descriptor, composition, and cell line composition and passage if applicable",
 "molecular_subtype","Molecular subtype defined by WHO 2021 guidelines","text",
 "molecular_subtype_methyl","DKFZ v12b6 or NIH v2 methylation class aligned to WHO 2021 subtypes","text",
+"mondo_code", "The Mondo Disease Ontology (MONDO) is an independent resource aiming to harmonize disease definitions", "text",
+"ncit_code", "NCI Thesaurus (NCIt) provides reference terminology for many NCI and other systems", "text",
 "NIH_v2_methylation_Superfamily", "NIH Bethesda CNS v2 methylation superfamily", "text",
 "NIH_v2_methylation_Superfamily_mean_score", "NIH Bethesda CNS v2 methylation superfamily score", "text",
 "NIH_v2_methylation_Superfamily_Consistency_score", "NIH Bethesda CNS v2 methylation superfamily consistency score", "text",
@@ -128,6 +132,9 @@ readme <- tribble(
 "tumor_ploidy","Control-FREEC ploidy estimate","numeric"
 )
 
+# Combine histology with EFO/MONDO
+histology_df <- histology_df %>% 
+  left_join(EFO_MONDO, by = c("cancer_group" = "cancer_group"))
 # Combine and output
 list_s1_table <- list(README = readme,
                       histologies_file = histology_df)
