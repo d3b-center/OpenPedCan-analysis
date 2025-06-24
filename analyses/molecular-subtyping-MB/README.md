@@ -175,4 +175,10 @@ results/MB_molecular_subtype.tsv
 
 This script classifies MB, SHH subtype further as alpha, beta, delta, or gamma.
 
+#### 06-mb-shh-umap.Rmd
 
+Generates UMAPs of SHH-activated MB by methylation probe values.
+
+#### 07-compare-rna-methyl-subtypes.R
+
+Compares MB molecular subtypes derived from RNA and DNA methylation data modalities.

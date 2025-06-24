@@ -61,6 +61,9 @@ if [ "$SUBSET" -gt "0" ]; then
 
   echo "run umap with methylation"
   Rscript -e "rmarkdown::render('06-mb-shh-umap.Rmd', clean = TRUE)"
+  
+  echo "compare RNA and methylation-derived molecular subtypes"
+  Rscript --vanilla 07-compare-rna-methyl-subtypes.R
 fi
 
 
