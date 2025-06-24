@@ -1,4 +1,4 @@
-Methylation Subtype	MB, Group3	MB, Group4	MB, SHH	MB, WNT
+Methylation Subtype	Group3 (RNA-Seq)	Group4 (RNA-Seq)	SHH (RNA-Seq)	WNT (RNA-Seq)
 MB_G34_II	8	0	0	0
 MB_G34_III	17	0	0	0
 MB_G34_IV	8	0	0	0

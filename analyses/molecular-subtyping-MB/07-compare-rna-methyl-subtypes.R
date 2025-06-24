@@ -4,6 +4,7 @@
 # load libraries
 library(tidyverse)
 library(data.table)
+library(knitr)
 
 # Set up directories
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -23,7 +24,9 @@ if (!dir.exists(results_dir)) {
 hist_file <- file.path(data_dir, "histologies.tsv")
 
 # wrangle data
-hist <- read_tsv(hist_file)
+hist <- read_tsv(hist_file) %>%
+  dplyr::mutate(molecular_subtype = gsub("MB, ", "", molecular_subtype),
+                molecular_subtype_methyl = gsub("MB, ", "", molecular_subtype_methyl))
 
 # subset hist for MB methylation samples and subtyping
 hist_mb_methyl <- hist %>%
@@ -46,10 +49,10 @@ hist_mb_rna <- hist %>%
                 molecular_subtype) %>%
   dplyr::rename(molecular_subtype_rna = molecular_subtype)
 
-# merge RNA and methylation subtypes by match ID
+# merge RNA-Seq and methylation subtypes by match ID
 hist_mb_merged <- hist_mb_rna %>%
   left_join(hist_mb_methyl,
-            by = "match_id") %>%
+            by = c("Kids_First_Participant_ID", "match_id"), suffix = c("_rna", "_methyl")) %>%
   dplyr::filter(!is.na(molecular_subtype_methyl)) %>%
   arrange(match_id) %>%
   distinct(match_id, molecular_subtype_rna, .keep_all = TRUE)
@@ -60,7 +63,16 @@ summary_df <- table(hist_mb_merged$dkfz_v12_methylation_subclass,
   as.data.frame() %>%
   pivot_wider(names_from = "Var2",
               values_from = "Freq") %>%
-  dplyr::rename("Methylation Subtype" = Var1)
+  dplyr::rename("Methylation Subtype" = Var1) %>%
+  rename_with(.cols = 2:ncol(.), .fn = ~ paste0(.x, " (RNA-Seq)"))
+
+# Optional: print as formatted table for paper
+# Print the table with kable
+kable(
+  summary_df,
+  format = "markdown",
+  caption = "Comparison of Methylation and RNA-Seq Molecular Subtypes"
+)
 
 # write to output
 write_tsv(summary_df,
