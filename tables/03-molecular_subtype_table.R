@@ -47,4 +47,4 @@ MB_subtype <- read_tsv(file.path(mb_dir, "mb_shh_molecular_subtypes.tsv"))
 final_table <- list(histologies_summary = hist_combined, 
                     MB_SHH_subtype = MB_subtype)
 write.xlsx(final_table, 
-           file.path(output_dir, "SuppTable2-Molecular-Subtype-Table.xlsx"))
+           file.path(output_dir, "SuppTable3-Molecular-Subtype-Table.xlsx"))

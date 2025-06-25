@@ -8,7 +8,7 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 analysis_dir <- file.path(root_dir, "analyses")
 output_dir <- file.path(root_dir, "tables", "results")
 
-output_file <- file.path(output_dir, "SuppTable3-Modules.xlsx")
+output_file <- file.path(output_dir, "SuppTable2-Modules.xlsx")
 
 # 1. Read the markdown file
 md_lines <- read_lines(file.path(analysis_dir, "README.md"))
