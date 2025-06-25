@@ -47,7 +47,7 @@ Write to `results/`
 
 ```{r save}
 write.xlsx(qc_df,
-           file.path(results_dir, "SuppTable4-dna-rna-qc.xlsx"), 
+           file.path(results_dir, "SuppTable5-dna-rna-qc.xlsx"), 
            overwrite=TRUE, 
            keepNA=TRUE)
 ```

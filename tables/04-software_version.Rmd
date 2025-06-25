@@ -119,5 +119,5 @@ list_package_table <- list(r_packages = r_packages,
                            python_libraries = python_libraries, 
                            cli_tools = cli_tools)
 
-openxlsx::write.xlsx(list_package_table, "results/SuppTable3-List_Package_Table.xlsx")
+openxlsx::write.xlsx(list_package_table, "results/SuppTable4-List_Package_Table.xlsx")
 ```
